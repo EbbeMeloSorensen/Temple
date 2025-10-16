@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace PR.Web.Persistence
+namespace Temple.Persistence.EFCore.Identity
 {
     public class Seed
     {

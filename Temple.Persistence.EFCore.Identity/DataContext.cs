@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace PR.Web.Persistence
+namespace Temple.Persistence.EFCore.Identity
 {
     public class DataContext : IdentityDbContext<AppUser>
     {

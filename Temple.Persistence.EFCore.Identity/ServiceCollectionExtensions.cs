@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PR.Persistence.EntityFrameworkCore
+namespace Temple.Persistence.EFCore.Identity
 {
     public static class ServiceCollectionExtensions
     {
