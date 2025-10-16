@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Temple.Application\Temple.Application.csproj" />
+    <ProjectReference Include="..\Temple.Infrastructure\Temple.Infrastructure.csproj" />
+    <ProjectReference Include="..\Temple.Persistence.EFCore.AppData\Temple.Persistence.EFCore.AppData.csproj" />
+    <ProjectReference Include="..\Temple.Persistence.EFCore.Dummies\Temple.Persistence.EFCore.Dummies.csproj" />
+  </ItemGroup>
+
+</Project>

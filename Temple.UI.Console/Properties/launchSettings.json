@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Temple.UI.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "list"
+    }
+  }
+}
