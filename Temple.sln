@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.Persistence.EFCore.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.Application", "Temple.Application\Temple.Application.csproj", "{00740FED-D3E8-45B2-9BFC-B491F9D4376F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.Infrastructure", "Temple.Infrastructure\Temple.Infrastructure.csproj", "{36BEAC2D-4C6E-4FF0-B43E-CB7AD1EDDB4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.POC.ConsoleApp", "Temple.POC.ConsoleApp\Temple.POC.ConsoleApp.csproj", "{A5D01E25-D415-455E-B0D2-46B7B6475A26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{00740FED-D3E8-45B2-9BFC-B491F9D4376F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00740FED-D3E8-45B2-9BFC-B491F9D4376F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00740FED-D3E8-45B2-9BFC-B491F9D4376F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BEAC2D-4C6E-4FF0-B43E-CB7AD1EDDB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BEAC2D-4C6E-4FF0-B43E-CB7AD1EDDB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BEAC2D-4C6E-4FF0-B43E-CB7AD1EDDB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BEAC2D-4C6E-4FF0-B43E-CB7AD1EDDB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D01E25-D415-455E-B0D2-46B7B6475A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D01E25-D415-455E-B0D2-46B7B6475A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D01E25-D415-455E-B0D2-46B7B6475A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D01E25-D415-455E-B0D2-46B7B6475A26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

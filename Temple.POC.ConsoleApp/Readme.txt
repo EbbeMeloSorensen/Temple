@@ -1,0 +1,2 @@
+﻿Dette projekt lavede jeg som et lille demonstrationsprojekt på vejen mod at refaktore konsolapplikationen PR.UI.Console,
+så den baserer sig på det konsoliderede applikationslag i stedet for den gamle version
