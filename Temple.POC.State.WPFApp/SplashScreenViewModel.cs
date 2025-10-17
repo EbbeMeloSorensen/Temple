@@ -1,9 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
-using System.ComponentModel;
 
 namespace Temple.POC.State.WPFApp;
 
-public class SplashViewModel : ViewModelBase
+public class SplashScreenViewModel : ViewModelBase
 {
     private string _statusMessage = "Starting application...";
 

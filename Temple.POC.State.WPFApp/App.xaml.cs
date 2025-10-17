@@ -27,9 +27,9 @@ namespace Temple.POC.State.WPFApp
 
             try
             {
-                var splashViewModel = new SplashViewModel();
-                var splash = new SplashScreenWindow(splashViewModel);
-                splash.Show();
+                var splashScreenViewModel = new SplashScreenViewModel();
+                var splashScreen = new SplashScreenWindow(splashScreenViewModel);
+                splashScreen.Show();
 
                 _host = await Task.Run(() =>
                 {
@@ -72,7 +72,7 @@ namespace Temple.POC.State.WPFApp
                 controller.ProgressChanged += (s, msg) =>
                 {
                     // Marshal to UI thread
-                    Dispatcher.Invoke(() => splashViewModel.StatusMessage = msg);
+                    Dispatcher.Invoke(() => splashScreenViewModel.StatusMessage = msg);
                 };
 
                 await controller.InitializeAsync();
@@ -81,7 +81,7 @@ namespace Temple.POC.State.WPFApp
                 {
                     var scope = _host!.Services.CreateScope();
                     var mainWindow = scope.ServiceProvider.GetRequiredService<MainWindow>();
-                    splash.Close();
+                    splashScreen.Close();
                     mainWindow.Show();
                 });
             }
