@@ -6,13 +6,27 @@
         xmlns:local="clr-namespace:Temple.POC.State.WPFApp"
         mc:Ignorable="d"
         Title="Temple.POC.State.WPFApp" Height="450" Width="800">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:HomeViewModel}">
+            <local:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:SettingsViewModel}">
+            <local:SettingsView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Vertical">
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
             <Button Content="{Binding ButtonText}" Command="{Binding LoadSmurfsCommand}"/>
             <TextBlock Text="Current State:" FontWeight="Bold"/>
             <TextBlock Text="{Binding CurrentState}" FontSize="16" Margin="0,5,0,15" />
@@ -20,12 +34,14 @@
             <Button Content="Shutdown" Command="{Binding ShutdownCommand}" Width="100" Margin="5"/>
         </StackPanel>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding Smurfs}">
+        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Smurfs}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

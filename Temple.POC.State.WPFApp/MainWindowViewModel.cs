@@ -13,6 +13,7 @@ namespace Temple.POC.State.WPFApp
         private readonly IMediator _mediator;
         private readonly ApplicationController _controller;
         private string _currentState;
+        private object _currentViewModel;
 
         public string ButtonText
         {
@@ -29,6 +30,17 @@ namespace Temple.POC.State.WPFApp
             get => _currentState;
             private set => Set(ref _currentState, value);
         }
+
+        public object CurrentViewModel
+        {
+            get => _currentViewModel;
+            set
+            {
+                _currentViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         public ObservableCollection<SmurfDto> Smurfs { get; } = new();
 
@@ -52,11 +64,25 @@ namespace Temple.POC.State.WPFApp
             _controller.StateChanged += (_, e) =>
             {
                 CurrentState = e.NewState.ToString();
+
+                if (CurrentState == "Idle")
+                {
+                    ShowHome();
+                }
+                else
+                {
+                    ShowSettings();
+                }
             };
 
             StartWorkCommand = new RelayCommand(_controller.BeginWork);
             ShutdownCommand = new RelayCommand(_controller.Shutdown);
+
+            ShowHome();
         }
+
+        public void ShowHome() => CurrentViewModel = new HomeViewModel();
+        public void ShowSettings() => CurrentViewModel = new SettingsViewModel();
 
         private async Task LoadSmurfsAsync()
         {
