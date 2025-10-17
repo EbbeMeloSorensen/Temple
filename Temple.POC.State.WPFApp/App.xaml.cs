@@ -6,6 +6,7 @@ using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Smurfs;
+using Temple.Application.State;
 using Temple.Infrastructure.Pagination;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
@@ -50,6 +51,10 @@ namespace Temple.POC.State.WPFApp
                     // Register our ViewModel and View
                     services.AddSingleton<MainWindowViewModel>();
                     services.AddTransient<MainWindow>();
+
+                    // Register stuff for our state machine
+                    services.AddSingleton<ApplicationStateMachine>();
+                    services.AddSingleton<ApplicationController>();
                 })
                 .Build();
 
@@ -59,6 +64,9 @@ namespace Temple.POC.State.WPFApp
                 var db = scope.ServiceProvider.GetRequiredService<PRDbContextBase>();
                 db.Database.MigrateAsync().GetAwaiter().GetResult();
                 Seeding.SeedDatabase(db).GetAwaiter().GetResult();
+
+                var controller = _host.Services.GetRequiredService<ApplicationController>();
+                controller.Initialize(); // Fires Starting → Idle transition
 
                 await Current.Dispatcher.InvokeAsync(() =>
                 {
