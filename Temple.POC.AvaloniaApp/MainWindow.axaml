@@ -10,7 +10,9 @@
     </Design.DataContext>
 
     <StackPanel Margin="20" Spacing="10">
-        <TextBlock Text="{Binding Greeting}" FontSize="18" HorizontalAlignment="Center"/>
         <Button Content="Click me" Command="{Binding UpdateGreetingCommand}" Width="120" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Greeting}" FontSize="18" HorizontalAlignment="Center"/>
+		<Button Content="Load Items" Command="{Binding LoadItemsCommand}" Width="120" HorizontalAlignment="Center"/>
+        <ListBox ItemsSource="{Binding Items}" />
     </StackPanel>
 </Window>

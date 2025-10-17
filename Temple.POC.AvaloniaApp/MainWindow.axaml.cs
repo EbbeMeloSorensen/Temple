@@ -8,7 +8,6 @@ namespace Temple.POC.AvaloniaApp
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel(); // simple, direct binding
         }
     }
 }

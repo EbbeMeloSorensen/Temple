@@ -18,5 +18,14 @@
       <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Temple.Application\Temple.Application.csproj" />
+    <ProjectReference Include="..\Temple.Infrastructure\Temple.Infrastructure.csproj" />
+    <ProjectReference Include="..\Temple.Persistence.EFCore.AppData\Temple.Persistence.EFCore.AppData.csproj" />
+    <ProjectReference Include="..\Temple.Persistence.EFCore.Dummies\Temple.Persistence.EFCore.Dummies.csproj" />
   </ItemGroup>
 </Project>

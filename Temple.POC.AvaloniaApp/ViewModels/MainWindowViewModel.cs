@@ -1,13 +1,19 @@
+using MediatR;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Temple.Application.Smurfs;
 
 namespace Temple.POC.AvaloniaApp.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private string _greeting = "Hello from Avalonia!";
+        private readonly IMediator _mediator;
+
         public string Greeting
         {
             get => _greeting;
@@ -21,16 +27,34 @@ namespace Temple.POC.AvaloniaApp.ViewModels
             }
         }
 
-        public ICommand UpdateGreetingCommand { get; }
+        public ObservableCollection<string> Items { get; } = new();
 
-        public MainWindowViewModel()
+        public ICommand UpdateGreetingCommand { get; }
+        public ICommand LoadItemsCommand { get; }
+
+        public MainWindowViewModel(IMediator mediator)
         {
+            _mediator = mediator;
             UpdateGreetingCommand = new RelayCommand(UpdateGreeting);
+            LoadItemsCommand = new RelayCommand(async () => await LoadItemsAsync());
         }
 
         private void UpdateGreeting()
         {
             Greeting = "You clicked the button!";
+        }
+
+        private async Task LoadItemsAsync()
+        {
+            Items.Clear();
+
+            var result = await _mediator.Send(new List.Query
+            {
+                Params = new SmurfParams()
+            });
+
+            foreach (var item in result.Value)
+                Items.Add(item.Name);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
