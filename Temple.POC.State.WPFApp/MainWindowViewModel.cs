@@ -3,7 +3,7 @@ using MediatR;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Temple.Application.Smurfs;
-using Temple.Application.State;
+using Temple.Application.Core;
 
 namespace Temple.POC.State.WPFApp
 {

@@ -11,10 +11,12 @@
     <PackageReference Include="FluentValidation" Version="11.3.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.9" />
     <PackageReference Include="Stateless" Version="5.20.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Temple.Persistence.EFCore.AppData\Temple.Persistence.EFCore.AppData.csproj" />
     <ProjectReference Include="..\Temple.Persistence.Versioned\Temple.Persistence.Versioned.csproj" />
   </ItemGroup>
 

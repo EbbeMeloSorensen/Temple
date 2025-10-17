@@ -1,0 +1,91 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Temple.Application.State;
+using Temple.Persistence.EFCore.AppData;
+
+namespace Temple.Application.Core;
+
+public class ApplicationController
+{
+    private readonly ApplicationStateMachine _stateMachine;
+    private readonly IServiceScopeFactory _scopeFactory;
+    private readonly ILogger<ApplicationController> _logger;
+
+    public event EventHandler<string>? ProgressChanged;
+
+    public ApplicationState CurrentState => _stateMachine.CurrentState;
+
+    public event EventHandler<ApplicationStateChangedEventArgs> StateChanged
+    {
+        add => _stateMachine.StateChanged += value;
+        remove => _stateMachine.StateChanged -= value;
+    }
+
+    public ApplicationController(
+        ApplicationStateMachine stateMachine,
+        IServiceScopeFactory scopeFactory,
+        ILogger<ApplicationController> logger)
+    {
+        _stateMachine = stateMachine;
+        _scopeFactory = scopeFactory;
+        _logger = logger;
+    }
+
+    private void Report(string message)
+    {
+        _logger.LogInformation(message);
+        ProgressChanged?.Invoke(this, message);
+    }
+
+    public async Task InitializeAsync()
+    {
+        _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → (still Starting)
+        Report("Initializing application...");
+
+        try
+        {
+            using var scope = _scopeFactory.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<PRDbContextBase>();
+
+            Report("Applying database migrations...");
+            await db.Database.MigrateAsync();
+
+            Report("Seeding database...");
+            await Seeding.SeedDatabase(db);
+
+            Report("Finalizing startup...");
+            await Task.Delay(500); // Simulate additional initialization
+
+            _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → Idle
+            Report("Application is ready.");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Initialization failed.");
+            // Optionally: add a Failed state in your state machine
+        }
+    }
+
+    public void BeginWork()
+    {
+        _stateMachine.Fire(ApplicationTrigger.WorkRequested);
+        Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(2000); // simulate work
+                _stateMachine.Fire(ApplicationTrigger.WorkCompleted);
+            }
+            catch
+            {
+                _stateMachine.Fire(ApplicationTrigger.ErrorOccurred);
+            }
+        });
+    }
+
+    public void Shutdown()
+    {
+        _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
+    }
+}

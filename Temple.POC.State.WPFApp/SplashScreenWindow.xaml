@@ -16,11 +16,17 @@
         ShowInTaskbar="False"
         Topmost="True"
         Padding="30">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Starting application..."
-                   FontSize="16"
-                   Margin="0,0,0,10"
-                   TextAlignment="Center"/>
-        <ProgressBar IsIndeterminate="True" Width="200" Height="20"/>
-    </StackPanel>
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Ebbes Cool WPF App" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,20"/>
+            <TextBlock Text="{Binding StatusMessage}" 
+                       FontSize="14" 
+                       TextWrapping="Wrap" 
+                       TextAlignment="Center"/>
+        </StackPanel>
+    </Grid>
 </Window>

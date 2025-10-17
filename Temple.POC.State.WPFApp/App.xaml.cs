@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Windows;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Windows;
 using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Smurfs;
 using Temple.Application.State;
-using Temple.Infrastructure.Pagination;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
+using Temple.Infrastructure.Pagination;
 
 namespace Temple.POC.State.WPFApp
 {
@@ -20,53 +20,62 @@ namespace Temple.POC.State.WPFApp
     {
         private IHost _host;
 
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(
+            StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            var splash = new SplashScreenWindow();
-            splash.Show();
-
-            _host = Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services) =>
-                {
-                    //var connectionString = "Data source=babuska27.db";
-                    //var connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_DummyWpfApp";
-                    var connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=L1on8Zebra;Database=DB_WPF_POC";
-
-                    services.AddAppDataPersistence<PRDbContextBase>(options =>
-                    {
-                        //options.UseSqlite(connectionString);
-                        options.UseNpgsql(connectionString);
-                    });
-
-                    services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
-                    services.AddApplication();   // registers MediatR and handlers
-                    services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
-                    services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
-
-                    services.AddMediatR(cfg =>
-                        cfg.RegisterServicesFromAssemblyContaining<List.Query>());
-
-                    // Register our ViewModel and View
-                    services.AddSingleton<MainWindowViewModel>();
-                    services.AddTransient<MainWindow>();
-
-                    // Register stuff for our state machine
-                    services.AddSingleton<ApplicationStateMachine>();
-                    services.AddSingleton<ApplicationController>();
-                })
-                .Build();
-
-            Task.Run(async () =>
+            try
             {
-                using var scope = _host.Services.CreateScope();
-                var db = scope.ServiceProvider.GetRequiredService<PRDbContextBase>();
-                db.Database.MigrateAsync().GetAwaiter().GetResult();
-                Seeding.SeedDatabase(db).GetAwaiter().GetResult();
+                var splashViewModel = new SplashViewModel();
+                var splash = new SplashScreenWindow(splashViewModel);
+                splash.Show();
+
+                _host = await Task.Run(() =>
+                {
+                    return Host.CreateDefaultBuilder()
+                        .ConfigureServices((context, services) =>
+                        {
+                            //var connectionString = "Data source=babuska27.db";
+                            //var connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_DummyWpfApp";
+                            var connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=L1on8Zebra;Database=DB_WPF_POC_5";
+
+                            services.AddAppDataPersistence<PRDbContextBase>(options =>
+                            {
+                                //options.UseSqlite(connectionString);
+                                options.UseNpgsql(connectionString);
+                            });
+
+                            services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
+                            services.AddApplication();   // registers MediatR and handlers
+                            services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+                            services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
+
+                            services.AddMediatR(cfg =>
+                                cfg.RegisterServicesFromAssemblyContaining<List.Query>());
+
+                            // Register our ViewModel and View
+                            services.AddSingleton<MainWindowViewModel>();
+                            services.AddTransient<MainWindow>();
+
+                            // Register stuff for our state machine
+                            services.AddSingleton<ApplicationStateMachine>();
+                            services.AddSingleton<ApplicationController>();
+                        })
+                        .Build();
+                });
+
+                await _host.StartAsync();
 
                 var controller = _host.Services.GetRequiredService<ApplicationController>();
-                controller.Initialize(); // Fires Starting → Idle transition
+
+                controller.ProgressChanged += (s, msg) =>
+                {
+                    // Marshal to UI thread
+                    Dispatcher.Invoke(() => splashViewModel.StatusMessage = msg);
+                };
+
+                await controller.InitializeAsync();
 
                 await Current.Dispatcher.InvokeAsync(() =>
                 {
@@ -75,10 +84,17 @@ namespace Temple.POC.State.WPFApp
                     splash.Close();
                     mainWindow.Show();
                 });
-            });
+            }
+            catch (Exception exception)
+            {
+                // Handle or log gracefully
+                MessageBox.Show($"Startup failed: {exception}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown(-1);
+            }
         }
 
-        protected override async void OnExit(ExitEventArgs e)
+        protected override async void OnExit(
+            ExitEventArgs e)
         {
             if (_host is not null)
             {

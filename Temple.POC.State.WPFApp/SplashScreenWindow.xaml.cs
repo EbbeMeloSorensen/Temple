@@ -19,9 +19,11 @@ namespace Temple.POC.State.WPFApp
     /// </summary>
     public partial class SplashScreenWindow : Window
     {
-        public SplashScreenWindow()
+        public SplashScreenWindow(
+            SplashViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }
