@@ -6,13 +6,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Temple.Persistence;
-using Temple.Persistence.EFCore.AppData;
+using System;
 using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
-using Temple.Application.Smurfs;
 using Temple.Infrastructure.Pagination;
+using Temple.Infrastructure.Security;
+using Temple.Persistence;
+using Temple.Persistence.EFCore.AppData;
 using Temple.UI.Console.Verbs;
 
 namespace Temple.UI.Console
@@ -22,20 +23,43 @@ namespace Temple.UI.Console
         private static IHost? _host = null;
 
         public static async Task CreatePerson(
-            Create options)
+            Verbs.PR.Create options)
         {
-            //    System.Console.Write("Creating Person...\nProgress: ");
+            System.Console.Write("Creating Person...\nProgress: ");
 
-            //    options.StartTime.TryParsingAsDateTime(out var startTime);
-            //    options.EndTime.TryParsingAsDateTime(out var endTime);
+            options.StartTime.TryParsingAsDateTime(out var startTime);
+            options.EndTime.TryParsingAsDateTime(out var endTime);
 
-            //    var person = new Person()
-            //    {
-            //        FirstName = options.FirstName,
-            //        Start = startTime ?? DateTime.UtcNow.Date,
-            //        End = endTime ?? new DateTime(9999, 12, 31, 23, 59, 59, DateTimeKind.Utc)
-            //    };
+            var person = new Domain.Entities.PR.Person()
+            {
+                FirstName = options.FirstName,
+                Start = startTime ?? DateTime.UtcNow.Date,
+                End = endTime ?? new DateTime(9999, 12, 31, 23, 59, 59, DateTimeKind.Utc)
+            };
 
+            try
+            {
+                using var scope = (await GetHost()).Services.CreateScope();
+                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+                //var result = await mediator.Send(new Application.Smurfs.List.Query { Params = new Application.Smurfs.SmurfParams() });
+                //var result = await mediator.Send(new Application.People.List.Query { Params = new Application.People.PersonParams() });
+
+                await mediator.Send(new Application.People.Create.Command {Person = person});
+
+                System.Console.Write($"\nPerson: \"{person.FirstName}\" created successfully\n");
+            }
+            catch (HttpRequestException exception)
+            {
+                System.Console.Write($"\nHttpRequestException thrown: \"{exception.Message}\"\n");
+            }
+            catch (Exception exception)
+            {
+                System.Console.Write($"\nException thrown: \"{exception.Message}\"\n");
+            }
+
+
+            // Old - where we targeted a different application layer
             //    var application = GetApplication();
             //    var businessRuleViolations = application.CreateNewPerson_ValidateInput(person);
 
@@ -62,7 +86,7 @@ namespace Temple.UI.Console
         }
 
         public static async Task ListPeople(
-            Verbs.List options)
+            Verbs.PR.List options)
         {
             options.HistoricalTime.TryParsingAsDateTime(out var historicalTime);
             options.DatabaseTime.TryParsingAsDateTime(out var databaseTime);
@@ -72,12 +96,39 @@ namespace Temple.UI.Console
                 using var scope = (await GetHost()).Services.CreateScope();
                 var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-                var result = await mediator.Send(new Temple.Application.Smurfs.List.Query { Params = new SmurfParams() });
+                //var result = await mediator.Send(new Application.Smurfs.List.Query { Params = new Application.Smurfs.SmurfParams() });
+                var result = await mediator.Send(new Application.People.List.Query { Params = new Application.People.PersonParams() });
+
+                System.Console.WriteLine($"\nPeople:");
+                foreach (var personDto in result.Value)
+                {
+                    System.Console.WriteLine($" {personDto.FirstName}");
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                System.Console.Write($"\nHttpRequestException thrown: \"{exception.Message}\"\n");
+            }
+            catch (Exception exception)
+            {
+                System.Console.Write($"\nException thrown: \"{exception.Message}\"\n");
+            }
+        }
+
+        public static async Task ListSmurfs(
+            Verbs.Smurfs.List options)
+        {
+            try
+            {
+                using var scope = (await GetHost()).Services.CreateScope();
+                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+                var result = await mediator.Send(new Application.Smurfs.List.Query { Params = new Application.Smurfs.SmurfParams() });
 
                 System.Console.WriteLine($"\nSmurfs:");
-                foreach (var smurf in result.Value)
+                foreach (var smurfDto in result.Value)
                 {
-                    System.Console.WriteLine($" {smurf.Name}");
+                    System.Console.WriteLine($" {smurfDto.Name}");
                 }
             }
             catch (HttpRequestException exception)
@@ -241,9 +292,10 @@ namespace Temple.UI.Console
             //args = "import --filename Contacts.json --legacy true --host localhost --user postgres --password L1on8Zebra".Split();
 
             await Parser.Default.ParseArguments<
-                    Create,
+                    Verbs.PR.Create,
                     Count,
-                    Verbs.List,
+                    Verbs.PR.List,
+                    Verbs.Smurfs.List,
                     Details,
                     Export,
                     Import,
@@ -251,9 +303,10 @@ namespace Temple.UI.Console
                     Delete,
                     Breakfast>(args)
                 .MapResult(
-                    (Create options) => CreatePerson(options),
+                    (Verbs.PR.Create options) => CreatePerson(options),
                     (Count options) => CountPeople(options),
-                    (Verbs.List options) => ListPeople(options),
+                    (Verbs.PR.List options) => ListPeople(options),
+                    (Verbs.Smurfs.List options) => ListSmurfs(options),
                     (Details options) => GetPersonDetails(options),
                     (Export options) => ExportPeople(options),
                     (Import options) => ImportPeople(options),
@@ -290,13 +343,19 @@ namespace Temple.UI.Console
                             options.UseNpgsql(connectionString);
                         });
 
-                        services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
                         services.AddApplication(); // registers MediatR and handlers
+                        services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
+                        services.AddScoped<IUserAccessor, Temple.UI.Console.UserAccessor>();
                         services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
-                        services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
+                        services.AddScoped<IPagingHandler<Application.Smurfs.SmurfDto>, PagingHandler<Application.Smurfs.SmurfDto>>();
+                        services.AddScoped<IPagingHandler<Application.People.PersonDto>, PagingHandler<Application.People.PersonDto>>();
 
                         services.AddMediatR(cfg =>
                             cfg.RegisterServicesFromAssemblyContaining<Application.Smurfs.List.Query>());
+
+                        services.AddMediatR(cfg =>
+                            cfg.RegisterServicesFromAssemblyContaining<Application.People.List.Query>());
+
                     })
                     .Build();
 

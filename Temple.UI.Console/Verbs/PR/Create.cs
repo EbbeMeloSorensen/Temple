@@ -1,8 +1,8 @@
 ﻿using CommandLine;
 
-namespace Temple.UI.Console.Verbs
+namespace Temple.UI.Console.Verbs.PR
 {
-    [Verb("create", HelpText = "Create a new Person.")]
+    [Verb("createperson", HelpText = "Create a new Person.")]
     public sealed class Create
     {
         [Option('f', "firstname", Required = true, HelpText = "First Name")]

@@ -1,8 +1,8 @@
 ﻿using CommandLine;
 
-namespace Temple.UI.Console.Verbs
+namespace Temple.UI.Console.Verbs.PR
 {
-    [Verb("list", HelpText = "List all people.")]
+    [Verb("listpeople", HelpText = "List all people.")]
     public sealed class List
     {
         [Option('h', "historicaltime", Required = false, HelpText = "Historical Time", Default = "")]
