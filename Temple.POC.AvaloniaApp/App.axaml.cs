@@ -32,7 +32,15 @@ namespace Temple.POC.AvaloniaApp
                 {
                     //var connectionString = "Data source=babuska27.db";
                     //var connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_DummyWpfApp";
-                    var connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=L1on8Zebra;Database=DB_Avalonia";
+
+                    // Postgres - MELO - Home
+                    //var connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=L1on8Zebra;Database=DB_Avalonia";
+
+                    // Postgres - MELO - Basement
+                    //var connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_Temple_UI_Console";
+
+                    // Postgres - Linux in podman
+                    var connectionString = "Server=localhost;Port=5432;User Id=myuser;Password=mypassword;Database=DB_Temple_Avalonia";
 
                     services.AddAppDataPersistence<PRDbContextBase>(options =>
                     {

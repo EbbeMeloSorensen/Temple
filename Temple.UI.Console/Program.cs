@@ -335,7 +335,12 @@ namespace Temple.UI.Console
                         // Load connection string from appsettings.json or environment
                         var connectionString = context.Configuration.GetConnectionString("DefaultConnection");
                         //connectionString = "Data source=babuska3.db";
-                        connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_Temple_UI_Console";
+
+                        // Postgres - MELO - Basement
+                        //connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_Temple_UI_Console";
+
+                        // Postgres - Linux in podman
+                        connectionString = "Server=localhost;Port=5432;User Id=myuser;Password=mypassword;Database=DB_Temple_UI_Console";
 
                         services.AddAppDataPersistence<PRDbContextBase>(options =>
                         {
