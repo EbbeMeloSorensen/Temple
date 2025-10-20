@@ -1,17 +1,17 @@
 ﻿using CommandLine;
-using Craft.Utils;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
+using Craft.Utils;
+using Craft.Domain;
 using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
+using Temple.Domain.BusinessRules.PR;
 using Temple.Infrastructure.Pagination;
-using Temple.Infrastructure.Security;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
 using Temple.UI.Console.Verbs;
@@ -42,12 +42,11 @@ namespace Temple.UI.Console
                 using var scope = (await GetHost()).Services.CreateScope();
                 var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-                //var result = await mediator.Send(new Application.Smurfs.List.Query { Params = new Application.Smurfs.SmurfParams() });
-                //var result = await mediator.Send(new Application.People.List.Query { Params = new Application.People.PersonParams() });
+                var result = await mediator.Send(new Application.People.Create.Command {Person = person});
 
-                await mediator.Send(new Application.People.Create.Command {Person = person});
-
-                System.Console.Write($"\nPerson: \"{person.FirstName}\" created successfully\n");
+                System.Console.Write(result.IsSuccess
+                    ? $"\nPerson: \"{person.FirstName}\" created successfully\n"
+                    : $"\nPerson: \"{person.FirstName}\" creation failed ({result.Error})\n");
             }
             catch (HttpRequestException exception)
             {
@@ -337,10 +336,10 @@ namespace Temple.UI.Console
                         //connectionString = "Data source=babuska3.db";
 
                         // Postgres - MELO - Basement
-                        //connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_Temple_UI_Console";
+                        connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_Temple_UI_Console";
 
                         // Postgres - Linux in podman
-                        connectionString = "Server=localhost;Port=5432;User Id=myuser;Password=mypassword;Database=DB_Temple_UI_Console";
+                        //connectionString = "Server=localhost;Port=5432;User Id=myuser;Password=mypassword;Database=DB_Temple_UI_Console";
 
                         services.AddAppDataPersistence<PRDbContextBase>(options =>
                         {
@@ -352,6 +351,7 @@ namespace Temple.UI.Console
                         services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
                         services.AddScoped<IUserAccessor, Temple.UI.Console.UserAccessor>();
                         services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+                        services.AddScoped<IBusinessRuleCatalog, BusinessRuleCatalog>();
                         services.AddScoped<IPagingHandler<Application.Smurfs.SmurfDto>, PagingHandler<Application.Smurfs.SmurfDto>>();
                         services.AddScoped<IPagingHandler<Application.People.PersonDto>, PagingHandler<Application.People.PersonDto>>();
 

@@ -1,10 +1,11 @@
-﻿using FluentValidation;
+﻿using Craft.Domain;
+using FluentValidation;
 using MediatR;
+using Temple.Application.Core;
+using Temple.Application.Interfaces;
 using Temple.Domain.Entities.PR;
 using Temple.Persistence;
 using Temple.Persistence.Versioned;
-using Temple.Application.Core;
-using Temple.Application.Interfaces;
 
 namespace Temple.Application.People
 {
@@ -26,13 +27,16 @@ namespace Temple.Application.People
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly IUserAccessor _userAccessor;
+            private readonly IBusinessRuleCatalog _businessRuleCatalog;
             private readonly IUnitOfWorkFactory _unitOfWorkFactory;
 
             public Handler(
                 IUserAccessor userAccessor,
+                IBusinessRuleCatalog businessRuleCatalog,
                 IUnitOfWorkFactory unitOfWorkFactory)
             {
                 _userAccessor = userAccessor;
+                _businessRuleCatalog = businessRuleCatalog;
                 _unitOfWorkFactory = new UnitOfWorkFactoryFacade(unitOfWorkFactory);
             }
 
@@ -40,9 +44,15 @@ namespace Temple.Application.People
                 Command request,
                 CancellationToken cancellationToken)
             {
+                var errors = _businessRuleCatalog.ValidateAtomic(request.Person);
+
+                if (errors.Any())
+                {
+                    return Result<Unit>.Failure("There are a number of business rule violations");
+                }
+
                 using (var unitOfWork = _unitOfWorkFactory.GenerateUnitOfWork())
                 {
-                    // HUSK AWAIT HER, ELLERS VIRKER DET IKKE!!
                     await unitOfWork.People.Add(request.Person);
                     unitOfWork.Complete();
                 }

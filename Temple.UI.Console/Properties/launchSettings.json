@@ -2,7 +2,7 @@
   "profiles": {
     "Temple.UI.Console": {
       "commandName": "Project",
-      "commandLineArgs": "listpeople"
+      "commandLineArgs": "createperson -f \"Leia\""
     }
   }
 }
