@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Temple.ViewModel;
 
 namespace Temple.UI.WPF
 {
