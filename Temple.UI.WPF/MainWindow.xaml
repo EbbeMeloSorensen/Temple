@@ -29,6 +29,7 @@
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
             <Button Content="{Binding ButtonText}" Command="{Binding LoadSmurfsCommand}"/>
+            <Button Content="Create Person" Command="{Binding CreatePersonCommand}"/>
             <TextBlock Text="Current State:" FontWeight="Bold"/>
             <TextBlock Text="{Binding CurrentState}" FontSize="16" Margin="0,5,0,15" />
             <Button Content="Start Work" Command="{Binding StartWorkCommand}" Width="100" Margin="5"/>

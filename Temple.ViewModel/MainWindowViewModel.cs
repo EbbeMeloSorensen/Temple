@@ -1,9 +1,10 @@
-﻿using Craft.ViewModels.Dialogs;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using MediatR;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MediatR;
-using System.Collections.ObjectModel;
-using System.Windows;
+using Craft.ViewModel.Utils;
+using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.Smurfs;
 
@@ -17,6 +18,7 @@ namespace Temple.ViewModel
         private readonly ApplicationController _controller;
         private string _currentState;
         private object _currentViewModel;
+        private AsyncCommand<object> _createPersonCommand;
 
         public string ButtonText
         {
@@ -49,6 +51,11 @@ namespace Temple.ViewModel
         public RelayCommand LoadSmurfsCommand { get; }
         public RelayCommand StartWorkCommand { get; }
         public RelayCommand ShutdownCommand { get; }
+
+        public AsyncCommand<object> CreatePersonCommand
+        {
+            get { return _createPersonCommand ?? (_createPersonCommand = new AsyncCommand<object>(CreatePerson, CanCreatePerson)); }
+        }
 
         public MainWindowViewModel(
             IMediator mediator,
@@ -104,15 +111,21 @@ namespace Temple.ViewModel
         {
             var dialogViewModel = new CreateOrUpdatePersonDialogViewModel();
 
-            //if (_applicationDialogService.ShowDialog(dialogViewModel, owner as Window) != DialogResult.OK)
-            //{
-            //    return;
-            //}
+            if (_applicationDialogService.ShowDialog(dialogViewModel, owner as Window) != DialogResult.OK)
+            {
+                return;
+            }
 
             //if (dialogViewModel.Person.End > DateTime.UtcNow)
             //{
             //    PersonListViewModel.AddPerson(dialogViewModel.Person);
             //}
+        }
+
+        private bool CanCreatePerson(
+            object owner)
+        {
+            return true;
         }
     }
 }
