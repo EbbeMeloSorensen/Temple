@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.API", "Temple.API\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.POC.State.WPFApp", "Temple.POC.State.WPFApp\Temple.POC.State.WPFApp.csproj", "{9BE6F784-813A-4091-B89B-51920E23FCB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.UI.WPF", "Temple.UI.WPF\Temple.UI.WPF.csproj", "{D531CAD1-6766-4FC2-B674-A1F641891FA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{9BE6F784-813A-4091-B89B-51920E23FCB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BE6F784-813A-4091-B89B-51920E23FCB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BE6F784-813A-4091-B89B-51920E23FCB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D531CAD1-6766-4FC2-B674-A1F641891FA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D531CAD1-6766-4FC2-B674-A1F641891FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D531CAD1-6766-4FC2-B674-A1F641891FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D531CAD1-6766-4FC2-B674-A1F641891FA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
