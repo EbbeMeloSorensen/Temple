@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Craft.UI.Utils" Version="1.0.7" />
+    <PackageReference Include="Craft.ViewModel.Utils" Version="1.0.7" />
+    <PackageReference Include="Craft.ViewModels" Version="1.0.7" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
   </ItemGroup>
