@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace Temple.UI.WPF
+namespace Temple.ViewModel
 {
     public class SplashScreenViewModel : ViewModelBase
     {
@@ -18,5 +18,4 @@ namespace Temple.UI.WPF
             }
         }
     }
-
 }

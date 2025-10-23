@@ -4,14 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Temple.UI.WPF"
+        xmlns:viewModel="clr-namespace:Temple.ViewModel;assembly=Temple.ViewModel"
         mc:Ignorable="d"
         Title="Temple.UI.WPF" Height="450" Width="800">
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type local:HomeViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
             <local:HomeView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:SettingsViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
             <local:SettingsView/>
         </DataTemplate>
     </Window.Resources>

@@ -4,6 +4,7 @@ using MediatR;
 using System.Collections.ObjectModel;
 using Temple.Application.Core;
 using Temple.Application.Smurfs;
+using Temple.ViewModel;
 
 namespace Temple.UI.WPF
 {

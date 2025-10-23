@@ -10,6 +10,7 @@ using Temple.Application.State;
 using Temple.Infrastructure.Pagination;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
+using Temple.ViewModel;
 
 namespace Temple.UI.WPF
 {
