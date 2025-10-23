@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using Craft.ViewModels.Dialogs;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
+using System.Collections.ObjectModel;
+using System.Windows;
 using Temple.Application.Core;
 using Temple.Application.Smurfs;
 
@@ -11,6 +13,7 @@ namespace Temple.ViewModel
     {
         private string _buttonText;
         private readonly IMediator _mediator;
+        private readonly IDialogService _applicationDialogService;
         private readonly ApplicationController _controller;
         private string _currentState;
         private object _currentViewModel;
@@ -49,9 +52,11 @@ namespace Temple.ViewModel
 
         public MainWindowViewModel(
             IMediator mediator,
+            IDialogService applicationDialogService,
             ApplicationController controller)
         {
             _mediator = mediator;
+            _applicationDialogService = applicationDialogService;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
             _buttonText = "Populate list with smurfs";
@@ -92,6 +97,22 @@ namespace Temple.ViewModel
             {
                 Smurfs.Add(smurfDto);
             }
+        }
+
+        private async Task CreatePerson(
+            object owner)
+        {
+            var dialogViewModel = new CreateOrUpdatePersonDialogViewModel();
+
+            //if (_applicationDialogService.ShowDialog(dialogViewModel, owner as Window) != DialogResult.OK)
+            //{
+            //    return;
+            //}
+
+            //if (dialogViewModel.Person.End > DateTime.UtcNow)
+            //{
+            //    PersonListViewModel.AddPerson(dialogViewModel.Person);
+            //}
         }
     }
 }

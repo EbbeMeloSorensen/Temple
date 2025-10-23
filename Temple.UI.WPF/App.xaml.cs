@@ -50,6 +50,7 @@ namespace Temple.UI.WPF
                             services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
                             services.AddApplication();   // registers MediatR and handlers
                             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+                            //services.AddScoped<IDialogService, DialogService>();
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
 
                             services.AddMediatR(cfg =>
