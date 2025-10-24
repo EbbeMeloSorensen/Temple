@@ -1,0 +1,2 @@
+Todo:
+* Når man ikke sender et navn med, så skal det vises på feltet og ikke under det generelle fejl-felt

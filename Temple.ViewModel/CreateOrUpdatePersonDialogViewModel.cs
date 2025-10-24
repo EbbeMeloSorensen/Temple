@@ -6,6 +6,8 @@ using GalaSoft.MvvmLight.Command;
 using Craft.UI.Utils;
 using Craft.ViewModel.Utils;
 using Craft.ViewModels.Dialogs;
+using FluentValidation.Validators;
+using Temple.Application.People;
 using Temple.Domain.Entities.PR;
 
 namespace Temple.ViewModel
@@ -341,12 +343,14 @@ namespace Temple.ViewModel
                 switch (_mode)
                 {
                     case CreateOrUpdatePersonDialogViewModelMode.CreateNew:
-                        var a = 0;
-                        //var smurfs = await _mediator.Send(new List.Query { Params = new SmurfParams() });
+                        var command = new Create.Command { Person = Person };
+                        var result = await _mediator.Send(command);
 
-                        //await _mediator.Send(new Create.Command { Person = person })
-
-                        //await _application.CreateNewPerson(Person);
+                        if (!result.IsSuccess)
+                        {
+                            GeneralError = result.Error;
+                            return;
+                        }
                         break;
                     case CreateOrUpdatePersonDialogViewModelMode.CreateVariant:
                         //await _application.CreatePersonVariant(Person);
@@ -515,6 +519,27 @@ namespace Temple.ViewModel
             switch (_mode)
             {
                 case CreateOrUpdatePersonDialogViewModelMode.CreateNew:
+
+                    var validator = new Create.CommandValidator();
+                    var command = new Create.Command {Person = Person};
+                    var result = validator.Validate(command);
+
+                    var failure = result.Errors.FirstOrDefault(_ => _.PropertyName == "Person.FirstName");
+
+                    if (failure != null)
+                    {
+                        switch (failure.ErrorCode)
+                        {
+                            case "NotEmptyValidator":
+                                _errors["FirstName"] = "First name is required";
+                                break;
+                            case "MaximumLengthValidator":
+                                _errors["FirstName"] = "First name can't exceed 10 characters";
+                                break;
+                        }
+                    }
+
+                    // Old
                     //_errors = _application.CreateNewPerson_ValidateInput(
                     //    Person);
                     break;

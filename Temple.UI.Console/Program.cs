@@ -344,7 +344,7 @@ namespace Temple.UI.Console
 
                         services.AddApplication(); // registers MediatR and handlers
                         services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
-                        services.AddScoped<IUserAccessor, Temple.UI.Console.UserAccessor>();
+                        services.AddScoped<IUserAccessor, UserAccessor>();
                         services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
                         services.AddScoped<IBusinessRuleCatalog, BusinessRuleCatalog>();
                         services.AddScoped<IPagingHandler<Application.Smurfs.SmurfDto>, PagingHandler<Application.Smurfs.SmurfDto>>();

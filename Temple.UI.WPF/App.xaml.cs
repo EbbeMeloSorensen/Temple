@@ -1,18 +1,20 @@
-﻿using System.Windows;
+﻿using Craft.Domain;
+using Craft.UIElements.Dialogs;
+using Craft.ViewModels.Dialogs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Windows;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
+using Temple.Application.People;
 using Temple.Application.Smurfs;
 using Temple.Application.State;
+using Temple.Domain.BusinessRules.PR;
 using Temple.Infrastructure.Pagination;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
 using Temple.ViewModel;
-using Craft.ViewModels.Dialogs;
-using Craft.UIElements.Dialogs;
-using Temple.Application.People;
 
 namespace Temple.UI.WPF
 {
@@ -51,7 +53,9 @@ namespace Temple.UI.WPF
 
                             services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
                             services.AddApplication();   // registers MediatR and handlers
+                            services.AddScoped<IUserAccessor, UserAccessor>();
                             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+                            services.AddScoped<IBusinessRuleCatalog, BusinessRuleCatalog>();
                             services.AddScoped<IDialogService, DialogService>();
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
                             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
