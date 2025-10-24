@@ -106,8 +106,6 @@ namespace Temple.API.Extensions
                         .WithOrigins("http://localhost:3000");
                 });
             });
-            // services.AddMediatR(assemblies: typeof(Application.Smurfs.List.Handler).Assembly);
-            // services.AddMediatR(assemblies: typeof(Application.People.List.Handler).Assembly);
             services.AddApplication();
             services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
             services.AddScoped<IUserAccessor, UserAccessor>();

@@ -1,12 +1,12 @@
-﻿using CommandLine;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Craft.Utils;
+using MediatR;
+using CommandLine;
 using Craft.Domain;
+using Craft.Utils;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Domain.BusinessRules.PR;
@@ -46,10 +46,6 @@ namespace Temple.UI.Console
                 System.Console.Write(result.IsSuccess
                     ? $"\nPerson: \"{person.FirstName}\" created successfully\n"
                     : $"\nPerson: \"{person.FirstName}\" creation failed ({result.Error})\n");
-            }
-            catch (HttpRequestException exception)
-            {
-                System.Console.Write($"\nHttpRequestException thrown: \"{exception.Message}\"\n");
             }
             catch (Exception exception)
             {
@@ -353,13 +349,6 @@ namespace Temple.UI.Console
                         services.AddScoped<IBusinessRuleCatalog, BusinessRuleCatalog>();
                         services.AddScoped<IPagingHandler<Application.Smurfs.SmurfDto>, PagingHandler<Application.Smurfs.SmurfDto>>();
                         services.AddScoped<IPagingHandler<Application.People.PersonDto>, PagingHandler<Application.People.PersonDto>>();
-
-                        services.AddMediatR(cfg =>
-                            cfg.RegisterServicesFromAssemblyContaining<Application.Smurfs.List.Query>());
-
-                        services.AddMediatR(cfg =>
-                            cfg.RegisterServicesFromAssemblyContaining<Application.People.List.Query>());
-
                     })
                     .Build();
 
