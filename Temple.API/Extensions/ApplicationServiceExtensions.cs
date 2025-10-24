@@ -1,16 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Craft.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Temple.Persistence;
-using Temple.Persistence.EFCore.Dummies;
-using Temple.Persistence.EFCore.AppData;
-using Temple.Persistence.EFCore.Identity;
 using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.People;
 using Temple.Application.Smurfs;
+using Temple.Domain.BusinessRules.PR;
 using Temple.Infrastructure.Pagination;
 using Temple.Infrastructure.Security;
+using Temple.Persistence;
+using Temple.Persistence.EFCore.AppData;
+using Temple.Persistence.EFCore.Dummies;
+using Temple.Persistence.EFCore.Identity;
 
 namespace Temple.API.Extensions
 {
@@ -94,9 +96,6 @@ namespace Temple.API.Extensions
                 //options.UseSqlServer(connectionString);
             });
 
-
-
-
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
@@ -114,6 +113,7 @@ namespace Temple.API.Extensions
             services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+            services.AddScoped<IBusinessRuleCatalog, BusinessRuleCatalog>();
             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
 

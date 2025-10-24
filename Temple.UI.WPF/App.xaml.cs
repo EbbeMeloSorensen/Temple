@@ -40,8 +40,8 @@ namespace Temple.UI.WPF
                         .ConfigureServices((context, services) =>
                         {
                             //var connectionString = "Data source=babuska27.db";
-                            //var connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_DummyWpfApp";
-                            var connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=L1on8Zebra;Database=DB_WPF_POC_6";
+                            var connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_DummyWpfApp";
+                            //var connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=L1on8Zebra;Database=DB_WPF_POC_6";
 
                             services.AddAppDataPersistence<PRDbContextBase>(options =>
                             {

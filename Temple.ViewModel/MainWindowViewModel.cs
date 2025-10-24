@@ -109,7 +109,7 @@ namespace Temple.ViewModel
         private async Task CreatePerson(
             object owner)
         {
-            var dialogViewModel = new CreateOrUpdatePersonDialogViewModel();
+            var dialogViewModel = new CreateOrUpdatePersonDialogViewModel(_mediator);
 
             if (_applicationDialogService.ShowDialog(dialogViewModel, owner as Window) != DialogResult.OK)
             {

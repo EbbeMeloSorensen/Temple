@@ -1,12 +1,12 @@
-﻿using Craft.UI.Utils;
-using Craft.ViewModel.Utils;
-using Craft.ViewModels.Dialogs;
-using GalaSoft.MvvmLight.Command;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
+using MediatR;
+using GalaSoft.MvvmLight.Command;
+using Craft.UI.Utils;
+using Craft.ViewModel.Utils;
+using Craft.ViewModels.Dialogs;
 using Temple.Domain.Entities.PR;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Temple.ViewModel
 {
@@ -21,6 +21,7 @@ namespace Temple.ViewModel
     {
         private static readonly DateTime _maxDateTime = new(9999, 12, 31, 23, 59, 59, DateTimeKind.Utc);
 
+        private readonly IMediator _mediator;
         private CreateOrUpdatePersonDialogViewModelMode _mode;
         private StateOfView _state;
         private IEnumerable<Person> _otherVariants;
@@ -274,9 +275,12 @@ namespace Temple.ViewModel
         public string Error => null; // Not used
 
         public CreateOrUpdatePersonDialogViewModel(
+            IMediator mediator,
             Person person = null,
             IEnumerable<Person> otherVariants = null)
         {
+            _mediator = mediator;
+
             if (person == null)
             {
                 _mode = CreateOrUpdatePersonDialogViewModelMode.CreateNew;
@@ -337,6 +341,11 @@ namespace Temple.ViewModel
                 switch (_mode)
                 {
                     case CreateOrUpdatePersonDialogViewModelMode.CreateNew:
+                        var a = 0;
+                        //var smurfs = await _mediator.Send(new List.Query { Params = new SmurfParams() });
+
+                        //await _mediator.Send(new Create.Command { Person = person })
+
                         //await _application.CreateNewPerson(Person);
                         break;
                     case CreateOrUpdatePersonDialogViewModelMode.CreateVariant:

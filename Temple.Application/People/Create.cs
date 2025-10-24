@@ -1,6 +1,6 @@
-﻿using Craft.Domain;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
+using Craft.Domain;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Domain.Entities.PR;
@@ -44,12 +44,19 @@ namespace Temple.Application.People
                 Command request,
                 CancellationToken cancellationToken)
             {
-                var errors = _businessRuleCatalog.ValidateAtomic(request.Person);
+                // Hack for now
+                request.Person.Start = DateTime.UtcNow;
+                request.Person.End = new DateTime(9999, 12, 31, 23, 59, 59, DateTimeKind.Utc);
 
-                if (errors.Any())
-                {
-                    return Result<Unit>.Failure("There are a number of business rule violations");
-                }
+                // Den her blok kan meget passende være der, men for nu er den udkommenteret, for lige at få validering på plads inden for rammerne af
+                // den der MediatR pipeline, som ChatGpt snakker om
+
+                //var errors = _businessRuleCatalog.ValidateAtomic(request.Person);
+
+                //if (errors.Any())
+                //{
+                //    return Result<Unit>.Failure($"Business rule violations detected. First: {errors.First().Value}");
+                //}
 
                 using (var unitOfWork = _unitOfWorkFactory.GenerateUnitOfWork())
                 {
