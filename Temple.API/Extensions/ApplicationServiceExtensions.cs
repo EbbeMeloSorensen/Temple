@@ -1,7 +1,6 @@
 ﻿using Craft.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.People;

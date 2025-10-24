@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Smurfs;

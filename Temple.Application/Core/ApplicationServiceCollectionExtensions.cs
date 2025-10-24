@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Temple.Application;
+namespace Temple.Application.Core;
 
 public static class ApplicationServiceCollectionExtensions
 {

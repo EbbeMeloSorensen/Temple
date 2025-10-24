@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Temple.Domain.Entities.PR;
-using Temple.Application;
 using Temple.Application.People;
+using Temple.Application.Core;
 
 namespace Temple.API.Controllers
 {

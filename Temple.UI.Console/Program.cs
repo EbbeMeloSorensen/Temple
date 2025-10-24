@@ -7,7 +7,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Craft.Utils;
 using Craft.Domain;
-using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Domain.BusinessRules.PR;

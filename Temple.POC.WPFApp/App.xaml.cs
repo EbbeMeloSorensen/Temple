@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
-using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Smurfs;

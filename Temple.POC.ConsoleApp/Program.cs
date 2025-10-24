@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
-using Temple.Application;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Smurfs;

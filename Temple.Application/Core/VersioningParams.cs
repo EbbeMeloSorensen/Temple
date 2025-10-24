@@ -1,4 +1,4 @@
-﻿namespace Temple.Application;
+﻿namespace Temple.Application.Core;
 
 public class VersioningParams
 {
