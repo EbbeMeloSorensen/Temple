@@ -6,29 +6,17 @@ using GalaSoft.MvvmLight.Command;
 using Craft.ViewModel.Utils;
 using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
-using Temple.Application.Smurfs;
 
 namespace Temple.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private string _buttonText;
         private readonly IMediator _mediator;
         private readonly IDialogService _applicationDialogService;
         private readonly ApplicationController _controller;
         private string _currentState;
         private object _currentViewModel;
         private AsyncCommand<object> _createPersonCommand;
-
-        public string ButtonText
-        {
-            get => _buttonText;
-            set
-            {
-                _buttonText = value;
-                RaisePropertyChanged();
-            }
-        }
 
         public string CurrentState
         {
@@ -46,9 +34,10 @@ namespace Temple.ViewModel
             }
         }
 
-        public ObservableCollection<SmurfDto> Smurfs { get; } = new();
+        public ObservableCollection<string> Items { get; } = new();
 
         public RelayCommand LoadSmurfsCommand { get; }
+        public RelayCommand LoadPeopleCommand { get; }
         public RelayCommand StartWorkCommand { get; }
         public RelayCommand ShutdownCommand { get; }
 
@@ -66,9 +55,8 @@ namespace Temple.ViewModel
             _applicationDialogService = applicationDialogService;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-            _buttonText = "Populate list with smurfs";
-
             LoadSmurfsCommand = new RelayCommand(async () => await LoadSmurfsAsync());
+            LoadPeopleCommand = new RelayCommand(async () => await LoadPeopleAsync());
 
             CurrentState = _controller.CurrentState.ToString();
 
@@ -97,12 +85,23 @@ namespace Temple.ViewModel
 
         private async Task LoadSmurfsAsync()
         {
-            var smurfs = await _mediator.Send(new List.Query { Params = new SmurfParams() });
+            var smurfDtos = await _mediator.Send(new Application.Smurfs.List.Query { Params = new Application.Smurfs.SmurfParams() });
 
-            Smurfs.Clear();
-            foreach (var smurfDto in smurfs.Value)
+            Items.Clear();
+            foreach (var smurfDto in smurfDtos.Value)
             {
-                Smurfs.Add(smurfDto);
+                Items.Add(smurfDto.Name);
+            }
+        }
+
+        private async Task LoadPeopleAsync()
+        {
+            var personDtos = await _mediator.Send(new Application.People.List.Query { Params = new Application.People.PersonParams() });
+
+            Items.Clear();
+            foreach (var personDto in personDtos.Value)
+            {
+                Items.Add(personDto.FirstName);
             }
         }
 

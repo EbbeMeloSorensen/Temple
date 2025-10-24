@@ -12,6 +12,7 @@ using Temple.Persistence.EFCore.AppData;
 using Temple.ViewModel;
 using Craft.ViewModels.Dialogs;
 using Craft.UIElements.Dialogs;
+using Temple.Application.People;
 
 namespace Temple.UI.WPF
 {
@@ -53,9 +54,7 @@ namespace Temple.UI.WPF
                             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
                             services.AddScoped<IDialogService, DialogService>();
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
-
-                            services.AddMediatR(cfg =>
-                                cfg.RegisterServicesFromAssemblyContaining<List.Query>());
+                            services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
 
                             // Register our ViewModel and View
                             services.AddSingleton<MainWindowViewModel>();

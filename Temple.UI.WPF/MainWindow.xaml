@@ -28,7 +28,8 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
-            <Button Content="{Binding ButtonText}" Command="{Binding LoadSmurfsCommand}"/>
+            <Button Content="Load Smurfs" Command="{Binding LoadSmurfsCommand}"/>
+            <Button Content="Load People" Command="{Binding LoadPeopleCommand}"/>
             <Button Content="Create Person" Command="{Binding CreatePersonCommand}"/>
             <TextBlock Text="Current State:" FontWeight="Bold"/>
             <TextBlock Text="{Binding CurrentState}" FontSize="16" Margin="0,5,0,15" />
@@ -36,13 +37,7 @@
             <Button Content="Shutdown" Command="{Binding ShutdownCommand}" Width="100" Margin="5"/>
         </StackPanel>
 
-        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Smurfs}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Items}"/>
 
         <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentViewModel}"/>
     </Grid>
