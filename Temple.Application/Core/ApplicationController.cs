@@ -91,6 +91,11 @@ public class ApplicationController
         _stateMachine.Fire(ApplicationTrigger.StartNewGame);
     }
 
+    public void ExitState()
+    {
+        _stateMachine.Fire(ApplicationTrigger.ExitState);
+    }
+
     public void GoToSmurfManagement()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToSmurfManagement);

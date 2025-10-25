@@ -24,8 +24,7 @@ public class ApplicationStateMachine
     private void Configure()
     {
         _machine.Configure(ApplicationState.Starting)
-            .Permit(ApplicationTrigger.Initialize, ApplicationState.MainMenu)
-            .OnExit(() => RaiseStateChanged(ApplicationState.Starting, ApplicationState.MainMenu));
+            .Permit(ApplicationTrigger.Initialize, ApplicationState.MainMenu);
 
         _machine.Configure(ApplicationState.MainMenu)
             .Permit(ApplicationTrigger.ShutdownRequested, ApplicationState.ShuttingDown);
@@ -35,9 +34,8 @@ public class ApplicationStateMachine
             .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement)
             .Permit(ApplicationTrigger.StartNewGame, ApplicationState.Intro);
 
-        // Under construction..
         _machine.Configure(ApplicationState.Intro)
-            .OnExit(() => RaiseStateChanged(ApplicationState.Intro, ApplicationState.FirstBattle));
+            .Permit(ApplicationTrigger.ExitState, ApplicationState.FirstBattle);
 
         _machine.Configure(ApplicationState.SmurfManagement)
             .Permit(ApplicationTrigger.GoToHome, ApplicationState.MainMenu);
@@ -46,18 +44,21 @@ public class ApplicationStateMachine
             .Permit(ApplicationTrigger.GoToHome, ApplicationState.MainMenu);
 
         _machine.Configure(ApplicationState.ShuttingDown)
-            .OnEntry(() => RaiseStateChanged(ApplicationState.ShuttingDown, ApplicationState.ShuttingDown))
             .Ignore(ApplicationTrigger.ShutdownRequested);
     }
 
-    public void Fire(ApplicationTrigger trigger)
+    public void Fire(
+        ApplicationTrigger trigger)
     {
         if (_machine.CanFire(trigger))
         {
             var oldState = _state;
             _machine.Fire(trigger);
+
             if (oldState != _state)
+            {
                 RaiseStateChanged(oldState, _state);
+            }
         }
         else
         {
@@ -65,6 +66,8 @@ public class ApplicationStateMachine
         }
     }
 
-    private void RaiseStateChanged(ApplicationState oldState, ApplicationState newState)
+    private void RaiseStateChanged(
+        ApplicationState oldState, 
+        ApplicationState newState)
         => StateChanged?.Invoke(this, new ApplicationStateChangedEventArgs(oldState, newState));
 }

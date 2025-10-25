@@ -29,6 +29,6 @@ public class InterludeViewModel : ViewModelBase
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-        ContinueCommand = new RelayCommand(() => throw new NotImplementedException());
+        ContinueCommand = new RelayCommand(_controller.ExitState);
     }
 }

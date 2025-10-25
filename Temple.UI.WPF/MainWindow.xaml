@@ -21,6 +21,9 @@
         <DataTemplate DataType="{x:Type dd:InterludeViewModel}">
             <dd1:InterludeView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type dd:BattleViewModel}">
+            <dd1:BattleView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type smurfs:MainWindowViewModel_Smurfs}">
             <smurfs1:MainWindow_Smurfs/>
         </DataTemplate>

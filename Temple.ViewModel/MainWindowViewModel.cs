@@ -15,6 +15,7 @@ namespace Temple.ViewModel
         private readonly ApplicationController _controller;
         private string _currentState;
         private InterludeViewModel _interludeViewModel;
+        private BattleViewModel _battleViewModel;
         private MainWindowViewModel_Smurfs _mainWindowViewModel_Smurfs;
         private MainWindowViewModel_PR _mainWindowViewModel_PR;
         private object _currentViewModel;
@@ -28,6 +29,14 @@ namespace Temple.ViewModel
             get
             {
                 return _interludeViewModel ??= new InterludeViewModel(_controller);
+            }
+        }
+
+        public BattleViewModel BattleViewModel
+        {
+            get
+            {
+                return _battleViewModel ??= new BattleViewModel(_controller);
             }
         }
 
@@ -97,6 +106,9 @@ namespace Temple.ViewModel
                     case "Intro":
                         InterludeViewModel.Text = "Din lille gruppe af eventyrere har været ude og fange mosegrise og er nu på vej hjem til byen for at sælge dem på markedet. Men sjovt nok bliver i overfaldet af banditter på vejen. Gør klar til kamp!";
                         CurrentViewModel = InterludeViewModel;
+                        break;
+                    case "FirstBattle":
+                        CurrentViewModel = BattleViewModel;
                         break;
                     default:
                         throw new InvalidOperationException("Invalid operation");
