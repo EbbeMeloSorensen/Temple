@@ -10,6 +10,7 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Home"/>
+            <Button Content="Smurfs.." HorizontalAlignment="Center" Command="{Binding GoToSmurfManagementCommand }"/>
             <Button Content="People.." HorizontalAlignment="Center" Command="{Binding GoToPeopleManagementCommand }"/>
         </StackPanel>
     </Grid>

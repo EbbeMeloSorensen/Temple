@@ -7,6 +7,7 @@ public enum ApplicationState
     Working,
     Error,
     ShuttingDown,
+    SmurfManagement,
     PeopleManagement
 }
 

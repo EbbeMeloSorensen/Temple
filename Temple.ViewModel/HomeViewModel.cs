@@ -8,6 +8,7 @@ namespace Temple.ViewModel
     {
         private readonly ApplicationController _controller;
 
+        public RelayCommand GoToSmurfManagementCommand { get; }
         public RelayCommand GoToPeopleManagementCommand { get; }
 
         public HomeViewModel(
@@ -16,6 +17,7 @@ namespace Temple.ViewModel
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
             GoToPeopleManagementCommand = new RelayCommand(_controller.GoToPeopleManagement);
+            GoToSmurfManagementCommand = new RelayCommand(_controller.GoToSmurfManagement);
         }
     }
 }

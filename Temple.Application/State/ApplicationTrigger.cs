@@ -7,6 +7,7 @@ public enum ApplicationTrigger
     WorkCompleted,
     ErrorOccurred,
     ShutdownRequested,
+    GoToSmurfManagement,
     GoToPeopleManagement,
     GoToHome
 }

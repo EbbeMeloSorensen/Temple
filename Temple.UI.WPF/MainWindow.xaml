@@ -7,18 +7,20 @@
         xmlns:viewModel="clr-namespace:Temple.ViewModel;assembly=Temple.ViewModel"
         xmlns:pr="clr-namespace:Temple.ViewModel.PR;assembly=Temple.ViewModel"
         xmlns:pr1="clr-namespace:Temple.UI.WPF.PR"
+        xmlns:smurfs="clr-namespace:Temple.ViewModel.Smurfs;assembly=Temple.ViewModel"
+        xmlns:smurfs1="clr-namespace:Temple.UI.WPF.Smurfs"
         mc:Ignorable="d"
-        Title="Temple.UI.WPF" Height="450" Width="800">
+        Title="Temple" Height="450" Width="800">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
             <local:HomeView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-            <local:SettingsView/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type pr:MainWindowViewModel_PR}">
             <pr1:MainWindow_PR/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type smurfs:MainWindowViewModel_Smurfs}">
+            <smurfs1:MainWindow_Smurfs/>
         </DataTemplate>
     </Window.Resources>
 

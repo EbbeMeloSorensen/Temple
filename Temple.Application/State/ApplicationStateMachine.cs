@@ -32,7 +32,13 @@ public class ApplicationStateMachine
             .Permit(ApplicationTrigger.ShutdownRequested, ApplicationState.ShuttingDown);
 
         _machine.Configure(ApplicationState.Idle)
+            .Permit(ApplicationTrigger.GoToSmurfManagement, ApplicationState.SmurfManagement);
+
+        _machine.Configure(ApplicationState.Idle)
             .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement);
+
+        _machine.Configure(ApplicationState.SmurfManagement)
+            .Permit(ApplicationTrigger.GoToHome, ApplicationState.Idle);
 
         _machine.Configure(ApplicationState.PeopleManagement)
             .Permit(ApplicationTrigger.GoToHome, ApplicationState.Idle);

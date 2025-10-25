@@ -89,6 +89,11 @@ public class ApplicationController
         _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
     }
 
+    public void GoToSmurfManagement()
+    {
+        _stateMachine.Fire(ApplicationTrigger.GoToSmurfManagement);
+    }
+
     public void GoToPeopleManagement()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToPeopleManagement);

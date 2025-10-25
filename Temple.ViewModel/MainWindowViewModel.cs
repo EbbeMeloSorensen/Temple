@@ -7,6 +7,7 @@ using Craft.ViewModel.Utils;
 using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.ViewModel.PR;
+using Temple.ViewModel.Smurfs;
 
 namespace Temple.ViewModel
 {
@@ -16,8 +17,28 @@ namespace Temple.ViewModel
         private readonly IDialogService _applicationDialogService;
         private readonly ApplicationController _controller;
         private string _currentState;
+        private MainWindowViewModel_Smurfs _mainWindowViewModel_Smurfs;
+        private MainWindowViewModel_PR _mainWindowViewModel_PR;
         private object _currentViewModel;
         private AsyncCommand<object> _createPersonCommand;
+
+        public HomeViewModel HomeViewModel { get; }
+
+        public MainWindowViewModel_Smurfs MainWindowViewModel_Smurfs
+        {
+            get
+            {
+                return _mainWindowViewModel_Smurfs ??= new MainWindowViewModel_Smurfs(_mediator, _controller);
+            }
+        }
+
+        public MainWindowViewModel_PR MainWindowViewModel_PR
+        {
+            get
+            {
+                return _mainWindowViewModel_PR ??= new MainWindowViewModel_PR(_mediator, _controller);
+            }
+        }
 
         public string CurrentState
         {
@@ -56,6 +77,8 @@ namespace Temple.ViewModel
             _applicationDialogService = applicationDialogService;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
+            HomeViewModel = new HomeViewModel(_controller);
+
             LoadSmurfsCommand = new RelayCommand(async () => await LoadSmurfsAsync());
             LoadPeopleCommand = new RelayCommand(async () => await LoadPeopleAsync());
 
@@ -65,17 +88,16 @@ namespace Temple.ViewModel
             {
                 CurrentState = e.NewState.ToString();
 
-                // Det skal nok ikke være nye hele tiden her...
                 switch (CurrentState)
                 {
                     case "Idle":
-                        CurrentViewModel = new HomeViewModel(_controller);
+                        CurrentViewModel = HomeViewModel;
                         break;
-                    case "Working":
-                        CurrentViewModel = new SettingsViewModel();
+                    case "SmurfManagement":
+                        CurrentViewModel = MainWindowViewModel_Smurfs;
                         break;
                     case "PeopleManagement":
-                        CurrentViewModel = new MainWindowViewModel_PR(_controller);
+                        CurrentViewModel = MainWindowViewModel_PR;
                         break;
                     default:
                         throw new InvalidOperationException("Invalid operation");
