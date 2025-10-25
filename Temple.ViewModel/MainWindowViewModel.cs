@@ -58,8 +58,6 @@ namespace Temple.ViewModel
 
         public ObservableCollection<string> Items { get; } = new();
 
-        public RelayCommand LoadSmurfsCommand { get; }
-        public RelayCommand LoadPeopleCommand { get; }
         public RelayCommand StartWorkCommand { get; }
         public RelayCommand ShutdownCommand { get; }
 
@@ -78,9 +76,6 @@ namespace Temple.ViewModel
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
             HomeViewModel = new HomeViewModel(_controller);
-
-            LoadSmurfsCommand = new RelayCommand(async () => await LoadSmurfsAsync());
-            LoadPeopleCommand = new RelayCommand(async () => await LoadPeopleAsync());
 
             CurrentState = _controller.CurrentState.ToString();
 
@@ -108,28 +103,6 @@ namespace Temple.ViewModel
             ShutdownCommand = new RelayCommand(_controller.Shutdown);
 
             CurrentViewModel = new HomeViewModel(_controller);
-        }
-
-        private async Task LoadSmurfsAsync()
-        {
-            var smurfDtos = await _mediator.Send(new Application.Smurfs.List.Query { Params = new Application.Smurfs.SmurfParams() });
-
-            Items.Clear();
-            foreach (var smurfDto in smurfDtos.Value)
-            {
-                Items.Add(smurfDto.Name);
-            }
-        }
-
-        private async Task LoadPeopleAsync()
-        {
-            var personDtos = await _mediator.Send(new Application.People.List.Query { Params = new Application.People.PersonParams() });
-
-            Items.Clear();
-            foreach (var personDto in personDtos.Value)
-            {
-                Items.Add(personDto.FirstName);
-            }
         }
 
         private async Task CreatePerson(
