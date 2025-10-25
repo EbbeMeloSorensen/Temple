@@ -10,7 +10,7 @@
         xmlns:smurfs="clr-namespace:Temple.ViewModel.Smurfs;assembly=Temple.ViewModel"
         xmlns:smurfs1="clr-namespace:Temple.UI.WPF.Smurfs"
         mc:Ignorable="d"
-        Title="Temple" Height="450" Width="800">
+        Title="Temple" Height="450" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
@@ -24,22 +24,13 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
+    <DockPanel DockPanel.Dock="Top">
+        <StatusBar DockPanel.Dock="Bottom" Height="25" Visibility="Hidden">
+            <StatusBarItem>
+                <TextBlock Text="{Binding CurrentState}"/>
+            </StatusBarItem>
+        </StatusBar>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
-            <TextBlock Text="Current State:" FontWeight="Bold"/>
-            <TextBlock Text="{Binding CurrentState}" FontSize="16" Margin="0,5,0,15" />
-            <Button Content="Shutdown" Command="{Binding ShutdownCommand}" Width="100" Margin="5"/>
-        </StackPanel>
-
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentViewModel}"/>
-    </Grid>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+    </DockPanel>
 </Window>
