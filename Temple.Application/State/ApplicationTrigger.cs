@@ -6,6 +6,8 @@ public enum ApplicationTrigger
     WorkRequested,
     WorkCompleted,
     ErrorOccurred,
-    ShutdownRequested
+    ShutdownRequested,
+    GoToPeopleManagement,
+    GoToHome
 }
 

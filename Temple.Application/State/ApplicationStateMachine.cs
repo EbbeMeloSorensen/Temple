@@ -31,6 +31,12 @@ public class ApplicationStateMachine
             .Permit(ApplicationTrigger.WorkRequested, ApplicationState.Working)
             .Permit(ApplicationTrigger.ShutdownRequested, ApplicationState.ShuttingDown);
 
+        _machine.Configure(ApplicationState.Idle)
+            .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement);
+
+        _machine.Configure(ApplicationState.PeopleManagement)
+            .Permit(ApplicationTrigger.GoToHome, ApplicationState.Idle);
+
         _machine.Configure(ApplicationState.Working)
             .Permit(ApplicationTrigger.WorkCompleted, ApplicationState.Idle)
             .Permit(ApplicationTrigger.ErrorOccurred, ApplicationState.Error)

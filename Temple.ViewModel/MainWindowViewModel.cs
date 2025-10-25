@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using Craft.ViewModel.Utils;
 using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
+using Temple.ViewModel.PR;
 
 namespace Temple.ViewModel
 {
@@ -64,24 +65,28 @@ namespace Temple.ViewModel
             {
                 CurrentState = e.NewState.ToString();
 
-                if (CurrentState == "Idle")
+                // Det skal nok ikke være nye hele tiden her...
+                switch (CurrentState)
                 {
-                    ShowHome();
-                }
-                else
-                {
-                    ShowSettings();
+                    case "Idle":
+                        CurrentViewModel = new HomeViewModel(_controller);
+                        break;
+                    case "Working":
+                        CurrentViewModel = new SettingsViewModel();
+                        break;
+                    case "PeopleManagement":
+                        CurrentViewModel = new MainWindowViewModel_PR(_controller);
+                        break;
+                    default:
+                        throw new InvalidOperationException("Invalid operation");
                 }
             };
 
             StartWorkCommand = new RelayCommand(_controller.BeginWork);
             ShutdownCommand = new RelayCommand(_controller.Shutdown);
 
-            ShowHome();
+            CurrentViewModel = new HomeViewModel(_controller);
         }
-
-        public void ShowHome() => CurrentViewModel = new HomeViewModel();
-        public void ShowSettings() => CurrentViewModel = new SettingsViewModel();
 
         private async Task LoadSmurfsAsync()
         {

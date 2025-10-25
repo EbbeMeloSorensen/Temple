@@ -1,21 +1,21 @@
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 
-namespace Temple.ViewModel
+namespace Temple.ViewModel.PR
 {
-    public class HomeViewModel : ViewModelBase
+    public class MainWindowViewModel_PR : ViewModelBase
     {
         private readonly ApplicationController _controller;
 
-        public RelayCommand GoToPeopleManagementCommand { get; }
+        public RelayCommand GoToHomeCommand{ get; }
 
-        public HomeViewModel(
+        public MainWindowViewModel_PR(
             ApplicationController controller)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-            GoToPeopleManagementCommand = new RelayCommand(_controller.GoToPeopleManagement);
+            GoToHomeCommand = new RelayCommand(_controller.GoToHome);
         }
     }
 }

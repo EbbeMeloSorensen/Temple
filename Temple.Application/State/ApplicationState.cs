@@ -6,6 +6,7 @@ public enum ApplicationState
     Idle,
     Working,
     Error,
-    ShuttingDown
+    ShuttingDown,
+    PeopleManagement
 }
 

@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Temple.UI.WPF"
         xmlns:viewModel="clr-namespace:Temple.ViewModel;assembly=Temple.ViewModel"
+        xmlns:pr="clr-namespace:Temple.ViewModel.PR;assembly=Temple.ViewModel"
+        xmlns:pr1="clr-namespace:Temple.UI.WPF.PR"
         mc:Ignorable="d"
         Title="Temple.UI.WPF" Height="450" Width="800">
 
@@ -15,6 +17,9 @@
         <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
             <local:SettingsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type pr:MainWindowViewModel_PR}">
+            <pr1:MainWindow_PR/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -24,7 +29,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">

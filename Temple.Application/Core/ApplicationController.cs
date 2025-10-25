@@ -88,4 +88,14 @@ public class ApplicationController
     {
         _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
     }
+
+    public void GoToPeopleManagement()
+    {
+        _stateMachine.Fire(ApplicationTrigger.GoToPeopleManagement);
+    }
+
+    public void GoToHome()
+    {
+        _stateMachine.Fire(ApplicationTrigger.GoToHome);
+    }
 }

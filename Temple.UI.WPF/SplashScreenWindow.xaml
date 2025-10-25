@@ -18,7 +18,7 @@
         Padding="30">
     <Grid Margin="20">
         <StackPanel VerticalAlignment="Center">
-            <TextBlock Text="Ebbes Cool WPF App" 
+            <TextBlock Text="Temple" 
                        FontSize="24" 
                        FontWeight="Bold" 
                        HorizontalAlignment="Center" 
