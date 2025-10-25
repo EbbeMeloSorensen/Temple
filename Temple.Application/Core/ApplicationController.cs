@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Persistence.EFCore.AppData;
 
@@ -80,8 +81,9 @@ public class ApplicationController
 
     public void ExportStateMachineAsGraph()
     {
-        //using var scope = _scopeFactory.CreateScope();
-        //var stateMachineExporter = scope.ServiceProvider.GetRequiredService<...StateMachineExporter>();
+        using var scope = _scopeFactory.CreateScope();
+        var stateMachineIO = scope.ServiceProvider.GetRequiredService<IStateMachineIO>();
+        stateMachineIO.ExportTheDamnThing(_stateMachine._machine);
     }
 
     public void GoToSmurfManagement()

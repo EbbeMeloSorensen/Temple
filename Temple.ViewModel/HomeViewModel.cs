@@ -10,6 +10,7 @@ namespace Temple.ViewModel
 
         public RelayCommand GoToSmurfManagementCommand { get; }
         public RelayCommand GoToPeopleManagementCommand { get; }
+        public RelayCommand ExportStateMachineCommand { get; }
         public RelayCommand ShutdownCommand { get; }
 
         public HomeViewModel(
@@ -19,6 +20,7 @@ namespace Temple.ViewModel
 
             GoToPeopleManagementCommand = new RelayCommand(_controller.GoToPeopleManagement);
             GoToSmurfManagementCommand = new RelayCommand(_controller.GoToSmurfManagement);
+            ExportStateMachineCommand = new RelayCommand(_controller.ExportStateMachineAsGraph);
             ShutdownCommand = new RelayCommand(_controller.Shutdown);
         }
     }

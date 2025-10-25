@@ -4,7 +4,7 @@ namespace Temple.Application.State;
 
 public class ApplicationStateMachine
 {
-    private readonly StateMachine<ApplicationState, ApplicationTrigger> _machine;
+    internal readonly StateMachine<ApplicationState, ApplicationTrigger> _machine;
     private ApplicationState _state;
 
     public ApplicationState CurrentState => _state;
