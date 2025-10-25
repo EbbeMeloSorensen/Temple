@@ -1,10 +1,10 @@
-﻿using Craft.Domain;
-using Craft.UIElements.Dialogs;
-using Craft.ViewModels.Dialogs;
+﻿using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Windows;
+using Craft.Domain;
+using Craft.UIElements.Dialogs;
+using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.People;

@@ -28,13 +28,10 @@ public class ApplicationStateMachine
             .OnExit(() => RaiseStateChanged(ApplicationState.Starting, ApplicationState.Idle));
 
         _machine.Configure(ApplicationState.Idle)
-            .Permit(ApplicationTrigger.WorkRequested, ApplicationState.Working)
             .Permit(ApplicationTrigger.ShutdownRequested, ApplicationState.ShuttingDown);
 
         _machine.Configure(ApplicationState.Idle)
-            .Permit(ApplicationTrigger.GoToSmurfManagement, ApplicationState.SmurfManagement);
-
-        _machine.Configure(ApplicationState.Idle)
+            .Permit(ApplicationTrigger.GoToSmurfManagement, ApplicationState.SmurfManagement)
             .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement);
 
         _machine.Configure(ApplicationState.SmurfManagement)
@@ -42,15 +39,6 @@ public class ApplicationStateMachine
 
         _machine.Configure(ApplicationState.PeopleManagement)
             .Permit(ApplicationTrigger.GoToHome, ApplicationState.Idle);
-
-        _machine.Configure(ApplicationState.Working)
-            .Permit(ApplicationTrigger.WorkCompleted, ApplicationState.Idle)
-            .Permit(ApplicationTrigger.ErrorOccurred, ApplicationState.Error)
-            .OnExit(() => RaiseStateChanged(ApplicationState.Working, _state));
-
-        _machine.Configure(ApplicationState.Error)
-            .Permit(ApplicationTrigger.ShutdownRequested, ApplicationState.ShuttingDown)
-            .Permit(ApplicationTrigger.Initialize, ApplicationState.Idle);
 
         _machine.Configure(ApplicationState.ShuttingDown)
             .OnEntry(() => RaiseStateChanged(ApplicationState.ShuttingDown, ApplicationState.ShuttingDown))

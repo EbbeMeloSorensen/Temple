@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Temple.UI.WPF.PR"
+             xmlns:pr="clr-namespace:Temple.ViewModel.PR;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance pr:MainWindowViewModel_PR}">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -21,9 +21,14 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0"  Content="Find" Margin="10"
-                    Command="{Binding FindPeopleCommand}"/>
-            <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Items}"/>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <Button Content="New.." Margin="10, 10, 10, 0"
+                        Command="{Binding CreatePersonCommand}"/>
+                <Button Content="Find" Margin="10, 5, 10, 10"
+                        Command="{Binding FindPeopleCommand}"/>
+            </StackPanel>
+            <ListBox Grid.Row="1" Grid.Column="0"
+                     ItemsSource="{Binding Items}"/>
         </Grid>
     </DockPanel>
 </UserControl>

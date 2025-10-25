@@ -13,6 +13,8 @@ namespace Temple.UI.WPF
             InitializeComponent();
 
             DataContext = viewModel;
+
+            viewModel.ShutdownAction = System.Windows.Application.Current.Shutdown;
         }
     }
 }

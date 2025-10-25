@@ -4,8 +4,6 @@ public enum ApplicationState
 {
     Starting,
     Idle,
-    Working,
-    Error,
     ShuttingDown,
     SmurfManagement,
     PeopleManagement
