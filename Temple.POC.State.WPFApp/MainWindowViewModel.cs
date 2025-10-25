@@ -75,7 +75,7 @@ namespace Temple.POC.State.WPFApp
                 }
             };
 
-            StartWorkCommand = new RelayCommand(_controller.BeginWork);
+            //StartWorkCommand = new RelayCommand(_controller.BeginWork);
             ShutdownCommand = new RelayCommand(_controller.Shutdown);
 
             ShowHome();

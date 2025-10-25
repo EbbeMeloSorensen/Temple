@@ -32,12 +32,6 @@ public class ApplicationController
         _logger = logger;
     }
 
-    private void Report(string message)
-    {
-        _logger.LogInformation(message);
-        ProgressChanged?.Invoke(this, message);
-    }
-
     public async Task InitializeAsync()
     {
         _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → (still Starting)
@@ -67,26 +61,27 @@ public class ApplicationController
         }
     }
 
-    public void BeginWork()
-    {
-        _stateMachine.Fire(ApplicationTrigger.WorkRequested);
-        Task.Run(async () =>
-        {
-            try
-            {
-                await Task.Delay(2000); // simulate work
-                _stateMachine.Fire(ApplicationTrigger.WorkCompleted);
-            }
-            catch
-            {
-                _stateMachine.Fire(ApplicationTrigger.ErrorOccurred);
-            }
-        });
-    }
+    //public void BeginWork()
+    //{
+    //    _stateMachine.Fire(ApplicationTrigger.WorkRequested);
+    //    Task.Run(async () =>
+    //    {
+    //        try
+    //        {
+    //            await Task.Delay(2000); // simulate work
+    //            _stateMachine.Fire(ApplicationTrigger.WorkCompleted);
+    //        }
+    //        catch
+    //        {
+    //            _stateMachine.Fire(ApplicationTrigger.ErrorOccurred);
+    //        }
+    //    });
+    //}
 
-    public void Shutdown()
+    public void ExportStateMachineAsGraph()
     {
-        _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
+        //using var scope = _scopeFactory.CreateScope();
+        //var stateMachineExporter = scope.ServiceProvider.GetRequiredService<...StateMachineExporter>();
     }
 
     public void GoToSmurfManagement()
@@ -102,5 +97,17 @@ public class ApplicationController
     public void GoToHome()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToHome);
+    }
+
+    public void Shutdown()
+    {
+        _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
+    }
+
+    private void Report(
+        string message)
+    {
+        _logger.LogInformation(message);
+        ProgressChanged?.Invoke(this, message);
     }
 }

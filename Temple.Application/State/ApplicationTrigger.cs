@@ -3,9 +3,6 @@
 public enum ApplicationTrigger
 {
     Initialize,
-    WorkRequested,
-    WorkCompleted,
-    ErrorOccurred,
     ShutdownRequested,
     GoToSmurfManagement,
     GoToPeopleManagement,
