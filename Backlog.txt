@@ -1,7 +1,11 @@
 Done:
 * Når man ikke sender et navn med, så skal det vises på feltet og ikke under det generelle fejl-felt
 * Der skal ikke laves nye viewmodeller hver gang - man skal bare sætte eksisterende viewmodeller som current
-
-Todo:
 * Operationerne til at manage personer skal flyttes hen på den nye view model
 * Operationerne til at manage smurfs skal flyttes hen på en ny view model
+* Eksportering af state machinen som dot graf fil
+* Tempel-ikon på splasg screenen
+
+Todo:
+* Introducer et settings view, hvor man f.eks. kan angive, om man vil se log og statusbar
+* Introducer et development mode, som kun er synligt, hvis man feks. trykker F12
