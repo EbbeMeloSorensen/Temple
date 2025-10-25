@@ -1,9 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using MediatR;
+﻿using MediatR;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
+using Temple.ViewModel.DD;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
 
@@ -15,6 +14,7 @@ namespace Temple.ViewModel
         private readonly IDialogService _applicationDialogService;
         private readonly ApplicationController _controller;
         private string _currentState;
+        private InterludeViewModel _interludeViewModel;
         private MainWindowViewModel_Smurfs _mainWindowViewModel_Smurfs;
         private MainWindowViewModel_PR _mainWindowViewModel_PR;
         private object _currentViewModel;
@@ -22,6 +22,14 @@ namespace Temple.ViewModel
         public Action? ShutdownAction { get; set; }
 
         public HomeViewModel HomeViewModel { get; }
+
+        public InterludeViewModel InterludeViewModel
+        {
+            get
+            {
+                return _interludeViewModel ??= new InterludeViewModel(_controller);
+            }
+        }
 
         public MainWindowViewModel_Smurfs MainWindowViewModel_Smurfs
         {
@@ -85,6 +93,10 @@ namespace Temple.ViewModel
                         break;
                     case "PeopleManagement":
                         CurrentViewModel = MainWindowViewModel_PR;
+                        break;
+                    case "Intro":
+                        InterludeViewModel.Text = "Din lille gruppe af eventyrere har været ude og fange mosegrise og er nu på vej hjem til byen for at sælge dem på markedet. Men sjovt nok bliver i overfaldet af banditter på vejen. Gør klar til kamp!";
+                        CurrentViewModel = InterludeViewModel;
                         break;
                     default:
                         throw new InvalidOperationException("Invalid operation");

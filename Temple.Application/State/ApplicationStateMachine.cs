@@ -32,7 +32,8 @@ public class ApplicationStateMachine
 
         _machine.Configure(ApplicationState.MainMenu)
             .Permit(ApplicationTrigger.GoToSmurfManagement, ApplicationState.SmurfManagement)
-            .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement);
+            .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement)
+            .Permit(ApplicationTrigger.StartNewGame, ApplicationState.Intro);
 
         _machine.Configure(ApplicationState.SmurfManagement)
             .Permit(ApplicationTrigger.GoToHome, ApplicationState.MainMenu);

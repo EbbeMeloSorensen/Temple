@@ -6,6 +6,7 @@ public enum ApplicationState
     MainMenu,
     ShuttingDown,
     SmurfManagement,
-    PeopleManagement
+    PeopleManagement,
+    Intro
 }
 

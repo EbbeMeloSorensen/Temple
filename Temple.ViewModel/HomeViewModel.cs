@@ -8,6 +8,7 @@ namespace Temple.ViewModel
     {
         private readonly ApplicationController _controller;
 
+        public RelayCommand StartNewGameCommand { get; }
         public RelayCommand GoToSmurfManagementCommand { get; }
         public RelayCommand GoToPeopleManagementCommand { get; }
         public RelayCommand ExportStateMachineCommand { get; }
@@ -18,6 +19,7 @@ namespace Temple.ViewModel
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
+            StartNewGameCommand = new RelayCommand(_controller.StartNewGame);
             GoToPeopleManagementCommand = new RelayCommand(_controller.GoToPeopleManagement);
             GoToSmurfManagementCommand = new RelayCommand(_controller.GoToSmurfManagement);
             ExportStateMachineCommand = new RelayCommand(_controller.ExportStateMachineAsGraph);

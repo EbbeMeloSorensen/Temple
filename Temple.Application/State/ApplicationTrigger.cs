@@ -6,6 +6,7 @@ public enum ApplicationTrigger
     ShutdownRequested,
     GoToSmurfManagement,
     GoToPeopleManagement,
+    StartNewGame,
     GoToHome
 }
 

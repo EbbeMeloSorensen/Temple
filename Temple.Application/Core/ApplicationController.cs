@@ -86,6 +86,11 @@ public class ApplicationController
         stateMachineIO.ExportTheDamnThing(_stateMachine._machine);
     }
 
+    public void StartNewGame()
+    {
+        _stateMachine.Fire(ApplicationTrigger.StartNewGame);
+    }
+
     public void GoToSmurfManagement()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToSmurfManagement);
