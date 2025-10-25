@@ -7,6 +7,7 @@ public enum ApplicationState
     ShuttingDown,
     SmurfManagement,
     PeopleManagement,
-    Intro
+    Intro,
+    FirstBattle
 }
 

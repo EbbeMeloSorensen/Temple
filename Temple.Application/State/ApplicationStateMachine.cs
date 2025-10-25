@@ -35,6 +35,10 @@ public class ApplicationStateMachine
             .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement)
             .Permit(ApplicationTrigger.StartNewGame, ApplicationState.Intro);
 
+        // Under construction..
+        _machine.Configure(ApplicationState.Intro)
+            .OnExit(() => RaiseStateChanged(ApplicationState.Intro, ApplicationState.FirstBattle));
+
         _machine.Configure(ApplicationState.SmurfManagement)
             .Permit(ApplicationTrigger.GoToHome, ApplicationState.MainMenu);
 
