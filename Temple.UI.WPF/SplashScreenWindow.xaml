@@ -16,8 +16,9 @@
         Padding="30">
     <Grid Margin="20">
         <StackPanel VerticalAlignment="Center">
+            <Image Source="Images/Temple.PNG" MaxHeight="64"/>
             <TextBlock Text="Temple" 
-                       FontSize="24" 
+                       FontSize="32" 
                        FontWeight="Bold" 
                        HorizontalAlignment="Center" 
                        Margin="0,0,0,20"/>
