@@ -24,21 +24,21 @@ public class ApplicationStateMachine
     private void Configure()
     {
         _machine.Configure(ApplicationState.Starting)
-            .Permit(ApplicationTrigger.Initialize, ApplicationState.Idle)
-            .OnExit(() => RaiseStateChanged(ApplicationState.Starting, ApplicationState.Idle));
+            .Permit(ApplicationTrigger.Initialize, ApplicationState.MainMenu)
+            .OnExit(() => RaiseStateChanged(ApplicationState.Starting, ApplicationState.MainMenu));
 
-        _machine.Configure(ApplicationState.Idle)
+        _machine.Configure(ApplicationState.MainMenu)
             .Permit(ApplicationTrigger.ShutdownRequested, ApplicationState.ShuttingDown);
 
-        _machine.Configure(ApplicationState.Idle)
+        _machine.Configure(ApplicationState.MainMenu)
             .Permit(ApplicationTrigger.GoToSmurfManagement, ApplicationState.SmurfManagement)
             .Permit(ApplicationTrigger.GoToPeopleManagement, ApplicationState.PeopleManagement);
 
         _machine.Configure(ApplicationState.SmurfManagement)
-            .Permit(ApplicationTrigger.GoToHome, ApplicationState.Idle);
+            .Permit(ApplicationTrigger.GoToHome, ApplicationState.MainMenu);
 
         _machine.Configure(ApplicationState.PeopleManagement)
-            .Permit(ApplicationTrigger.GoToHome, ApplicationState.Idle);
+            .Permit(ApplicationTrigger.GoToHome, ApplicationState.MainMenu);
 
         _machine.Configure(ApplicationState.ShuttingDown)
             .OnEntry(() => RaiseStateChanged(ApplicationState.ShuttingDown, ApplicationState.ShuttingDown))

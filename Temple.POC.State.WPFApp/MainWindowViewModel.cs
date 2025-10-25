@@ -65,7 +65,7 @@ namespace Temple.POC.State.WPFApp
             {
                 CurrentState = e.NewState.ToString();
 
-                if (CurrentState == "Idle")
+                if (CurrentState == "MainMenu")
                 {
                     ShowHome();
                 }

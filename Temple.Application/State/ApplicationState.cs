@@ -3,7 +3,7 @@
 public enum ApplicationState
 {
     Starting,
-    Idle,
+    MainMenu,
     ShuttingDown,
     SmurfManagement,
     PeopleManagement

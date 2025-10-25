@@ -74,7 +74,7 @@ namespace Temple.ViewModel
 
                 switch (CurrentState)
                 {
-                    case "Idle":
+                    case "MainMenu":
                         CurrentViewModel = HomeViewModel;
                         break;
                     case "ShuttingDown":

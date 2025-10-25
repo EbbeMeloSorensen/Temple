@@ -57,7 +57,7 @@ public class ApplicationController
             Report("Finalizing startup...");
             await Task.Delay(500); // Simulate additional initialization
 
-            _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → Idle
+            _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → MainMenu
             Report("Application is ready.");
         }
         catch (Exception ex)
