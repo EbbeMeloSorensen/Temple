@@ -16,6 +16,8 @@ namespace Temple.ViewModel
         private string _currentState;
         private InterludeViewModel _interludeViewModel;
         private BattleViewModel _battleViewModel;
+        private DefeatViewModel _defeatViewModel;
+        private VictoryViewModel _victoryViewModel;
         private MainWindowViewModel_Smurfs _mainWindowViewModel_Smurfs;
         private MainWindowViewModel_PR _mainWindowViewModel_PR;
         private object _currentViewModel;
@@ -37,6 +39,22 @@ namespace Temple.ViewModel
             get
             {
                 return _battleViewModel ??= new BattleViewModel(_controller);
+            }
+        }
+
+        public DefeatViewModel DefeatViewModel
+        {
+            get
+            {
+                return _defeatViewModel ??= new DefeatViewModel(_controller);
+            }
+        }
+
+        public VictoryViewModel VictoryViewModel
+        {
+            get
+            {
+                return _victoryViewModel ??= new VictoryViewModel(_controller);
             }
         }
 
@@ -113,10 +131,10 @@ namespace Temple.ViewModel
                         BattleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
                         break;
                     case "Defeat":
-                        throw new NotImplementedException();
+                        CurrentViewModel = DefeatViewModel;
                         break;
                     case "Victory":
-                        throw new NotImplementedException();
+                        CurrentViewModel = VictoryViewModel;
                         break;
                     default:
                         throw new InvalidOperationException("Invalid operation");

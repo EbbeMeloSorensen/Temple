@@ -11,11 +11,13 @@
   <ItemGroup>
     <None Remove="DD\Images\Archer.PNG" />
     <None Remove="DD\Images\Arrow.png" />
+    <None Remove="DD\Images\Defeat.png" />
     <None Remove="DD\Images\Goblin Archer.PNG" />
     <None Remove="DD\Images\Goblin.PNG" />
     <None Remove="DD\Images\Knight.PNG" />
     <None Remove="DD\Images\NoPreview.png" />
     <None Remove="DD\Images\Sword.png" />
+    <None Remove="DD\Images\Victory.png" />
     <None Remove="DD\Images\Wall.jpg" />
     <None Remove="DD\Images\Water.PNG" />
     <None Remove="Images\interlude.jpg" />
@@ -29,6 +31,7 @@
     <Resource Include="DD\Images\Arrow.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="DD\Images\Defeat.png" />
     <Resource Include="DD\Images\Goblin Archer.PNG">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -47,6 +50,7 @@
     <Resource Include="DD\Images\Sword.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="DD\Images\Victory.png" />
     <Resource Include="DD\Images\Wall.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

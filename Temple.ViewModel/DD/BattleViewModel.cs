@@ -60,7 +60,7 @@ public class BattleViewModel : ViewModelBase
         };
 
         var knight = new CreatureType("Knight",
-            maxHitPoints: 20,
+            maxHitPoints: 8, //20,
             armorClass: 3,
             thaco: 12,
             initiativeModifier: 0,

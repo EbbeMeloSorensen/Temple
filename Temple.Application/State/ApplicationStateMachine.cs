@@ -41,6 +41,12 @@ public class ApplicationStateMachine
             .Permit(ApplicationTrigger.GoToDefeat, ApplicationState.Defeat)
             .Permit(ApplicationTrigger.GoToVictory, ApplicationState.Victory);
 
+        _machine.Configure(ApplicationState.Defeat)
+            .Permit(ApplicationTrigger.ExitState, ApplicationState.MainMenu);
+
+        _machine.Configure(ApplicationState.Victory)
+            .Permit(ApplicationTrigger.ExitState, ApplicationState.MainMenu);
+
         _machine.Configure(ApplicationState.SmurfManagement)
             .Permit(ApplicationTrigger.GoToHome, ApplicationState.MainMenu);
 

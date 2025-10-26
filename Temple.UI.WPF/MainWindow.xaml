@@ -24,6 +24,12 @@
         <DataTemplate DataType="{x:Type dd:BattleViewModel}">
             <dd1:BattleView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type dd:DefeatViewModel}">
+            <dd1:DefeatView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type dd:VictoryViewModel}">
+            <dd1:VictoryView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type smurfs:MainWindowViewModel_Smurfs}">
             <smurfs1:MainWindow_Smurfs/>
         </DataTemplate>
