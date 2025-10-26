@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Craft.Logging;
 using Craft.Utils;
@@ -199,16 +200,31 @@ namespace Temple.ViewModel.DD
 
             selectedScene.PropertyChanged += (s, e) =>
             {
-                _engine.Scene = (s as ObservableObject<Scene>)?.Object;
+                //_engine.Scene = (s as ObservableObject<Scene>)?.Object;
 
-                _engine.InitializeCreatures();
+                //_engine.InitializeCreatures();
 
-                TeamStatsViewModel.Initialize(_engine.Creatures);
+                //TeamStatsViewModel.Initialize(_engine.Creatures);
 
-                _boardViewModel.UpdateCreatureViewModels(
-                    _engine.Creatures,
-                    _engine.CurrentCreature);
+                //_boardViewModel.UpdateCreatureViewModels(
+                //    _engine.Creatures,
+                //    _engine.CurrentCreature);
             };
+        }
+
+        public void InitializeScene(
+            Scene scene)
+        {
+            _engine.Scene = scene;
+            _engine.InitializeCreatures();
+
+            _boardViewModel.LayoutBoard(scene);
+
+            _boardViewModel.UpdateCreatureViewModels(
+                _engine.Creatures,
+                _engine.CurrentCreature);
+
+            TeamStatsViewModel.Initialize(_engine.Creatures);
         }
 
         protected abstract Task Proceed();

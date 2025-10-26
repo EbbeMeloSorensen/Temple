@@ -1,4 +1,5 @@
-﻿using Craft.Utils;
+﻿using System.Collections.ObjectModel;
+using Craft.Utils;
 using Craft.ViewModels.Common;
 using Temple.Domain.Entities.DD;
 using Temple.ViewModel.DD.BusinessLogic;
@@ -38,6 +39,8 @@ namespace Temple.ViewModel.DD
         public override void LayoutBoard(
             Scene scene)
         {
+            _scene = scene;
+
             if (scene == null)
             {
                 Rows = 0;
@@ -66,6 +69,14 @@ namespace Temple.ViewModel.DD
 
                 ApplyTileTextures(scene);
             }
+
+            ObstacleViewModels = new ObservableCollection<ObstacleViewModel>(
+                _scene.Obstacles.Select(o =>
+                {
+                    var left = (o.PositionX + 0.5) * TileCenterSpacing - _obstacleDiameter / 2;
+                    var top = (o.PositionY + 0.5) * TileCenterSpacing - _obstacleDiameter / 2;
+                    return new ObstacleViewModel(o, left, top, _obstacleDiameter);
+                }));
         }
 
         public override void DetermineCanvasPosition(

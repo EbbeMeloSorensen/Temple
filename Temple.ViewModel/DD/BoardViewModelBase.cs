@@ -19,6 +19,7 @@ namespace Temple.ViewModel.DD
             { "DD/Images/Sword.png", -56 },
         };
 
+        protected static double _obstacleDiameter;
         protected static double _creatureDiameter;
         protected static double _weaponDiameter;
 
@@ -261,6 +262,7 @@ namespace Temple.ViewModel.DD
             ScrollOffset = new PointD(0, 0);
 
             TileCenterSpacing = tileCenterSpacing;
+            _obstacleDiameter = obstacleDiameter;
             _creatureDiameter = creatureDiameter;
             _weaponDiameter = weaponDiameter;
 
@@ -272,24 +274,24 @@ namespace Temple.ViewModel.DD
 
             selectedScene.PropertyChanged += (s, e) =>
             {
-                _scene = (s as ObservableObject<Scene>)?.Object;
+                //_scene = (s as ObservableObject<Scene>)?.Object;
 
-                LayoutBoard(_scene);
+                //LayoutBoard(_scene);
 
-                if (_scene == null || _scene.Obstacles.Count == 0)
-                {
-                    ObstacleViewModels = new ObservableCollection<ObstacleViewModel>();
-                }
-                else
-                {
-                    ObstacleViewModels = new ObservableCollection<ObstacleViewModel>(
-                        _scene.Obstacles.Select(o =>
-                        {
-                            var left = (o.PositionX + 0.5) * TileCenterSpacing - obstacleDiameter / 2;
-                            var top = (o.PositionY + 0.5) * TileCenterSpacing - obstacleDiameter / 2;
-                            return new ObstacleViewModel(o, left, top, obstacleDiameter);
-                        }));
-                }
+                //if (_scene == null || _scene.Obstacles.Count == 0)
+                //{
+                //    ObstacleViewModels = new ObservableCollection<ObstacleViewModel>();
+                //}
+                //else
+                //{
+                //    ObstacleViewModels = new ObservableCollection<ObstacleViewModel>(
+                //        _scene.Obstacles.Select(o =>
+                //        {
+                //            var left = (o.PositionX + 0.5) * TileCenterSpacing - obstacleDiameter / 2;
+                //            var top = (o.PositionY + 0.5) * TileCenterSpacing - obstacleDiameter / 2;
+                //            return new ObstacleViewModel(o, left, top, obstacleDiameter);
+                //        }));
+                //}
             };
 
             engine.SquareIndexForCurrentCreature.PropertyChanged += (s, e) =>
