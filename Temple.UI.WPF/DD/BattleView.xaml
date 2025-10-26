@@ -7,6 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button>Battle (Coming soon)</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <local:BoardViewSquares Grid.Column="0"
+                                DataContext="{Binding BoardViewModel}"/>
+
+        <local:ActOutSceneView Grid.Column="1"
+                               DataContext="{Binding ActOutSceneViewModel}"/>
     </Grid>
 </UserControl>

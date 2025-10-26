@@ -55,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Craft.UI.Utils" Version="1.0.7" />
     <PackageReference Include="Craft.UIElements" Version="1.0.7" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
   </ItemGroup>

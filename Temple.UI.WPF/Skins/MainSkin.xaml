@@ -4,6 +4,11 @@
 
     <valueConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <valueConverters:EnumMatchToBooleanConverter x:Key="EnumMatchToBooleanConverter"/>
+    <valueConverters:PixelToBrushConverter x:Key="PixelToBrushConverter"/>
+    <valueConverters:ImagePathConverter x:Key="ImagePathConverter"/>
+    <valueConverters:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
+    <valueConverters:DoubleAdder x:Key="DoubleScaler"/>
+    <valueConverters:DoubleAdder x:Key="DoubleAdder"/>
 
     <ControlTemplate x:Key="errorTemplate">
         <Border BorderBrush="Red" BorderThickness="2">

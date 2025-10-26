@@ -12,7 +12,7 @@
         xmlns:dd="clr-namespace:Temple.ViewModel.DD;assembly=Temple.ViewModel"
         xmlns:dd1="clr-namespace:Temple.UI.WPF.DD"
         mc:Ignorable="d"
-        Title="Temple" Height="450" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
+        Title="Temple" Height="600" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

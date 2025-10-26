@@ -15,8 +15,8 @@ namespace Temple.ViewModel.DD
     {
         private static Dictionary<string, double> _weaponImageBaseRotationAngleMap = new Dictionary<string, double>
         {
-            { "Images/Arrow.png", 162.5 },
-            { "Images/Sword.png", -56 },
+            { "DD/Images/Arrow.png", 162.5 },
+            { "DD/Images/Sword.png", -56 },
         };
 
         protected static double _creatureDiameter;
