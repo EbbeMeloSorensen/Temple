@@ -46,7 +46,7 @@
                     <DataTemplate>
                         <Border BorderBrush="Black"
                                 BorderThickness="0.5"
-                                Background="{Binding Path=Pixel, Converter={StaticResource PixelToBrushConverter}}">
+                                Background="{Binding Path=Pixel, Converter={StaticResource PixelToBrushConverter2}}">
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

@@ -61,11 +61,12 @@ public class BattleViewModel : ViewModelBase
             });
 
         var scene = new Scene("DummyScene", 4, 4);
-        //scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 3));
-        //scene.AddObstacle(new Obstacle(ObstacleType.Water, 1, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 2));
         scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 0, 0);
         scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 3);
-        //scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 2);
 
         dummyScene.Object = scene;
     }

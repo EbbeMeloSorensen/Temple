@@ -91,7 +91,7 @@ namespace Temple.ViewModel.DD
         {
             return _imagePathMap.ContainsKey(creatureTypeName)
                 ? _imagePathMap[creatureTypeName]
-                : "/Images/NoPreview.png";
+                : "DD/Images/NoPreview.png";
         }
     }
 }

@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Temple.UI.WPF.DD"
+             xmlns:dd="clr-namespace:Temple.ViewModel.DD;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance dd:CreatureViewModel}">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -16,13 +17,13 @@
     </UserControl.Resources>
 
     <Grid Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-        <Ellipse Stroke="Black" Width="{Binding Diameter}" Height="{Binding Diameter}"
-                                     Fill="{Binding Path=IsHostile, Converter={StaticResource BooleanToBrushConverter}}"/>
+        <!--<Ellipse Stroke="Black" Width="{Binding Diameter}" Height="{Binding Diameter}"
+                                     Fill="{Binding Path=IsHostile, Converter={StaticResource BooleanToBrushConverter}}"/>-->
         <Image Height="{Binding Diameter}"
                Width="{Binding Diameter}"
                Source="{Binding Path=ImagePath, 
                         UpdateSourceTrigger=PropertyChanged, 
-                        Converter={StaticResource ImagePathConverter}}" />
+                        Converter={StaticResource ImagePathConverter2}}" />
         <Rectangle Margin="0,0,0,4" Fill="Red" Height="10" VerticalAlignment="Bottom"
                    Width="{Binding Diameter}"
                    Visibility="{Binding IsInjured, Converter={StaticResource BooleanToVisibilityConverter}}"/>

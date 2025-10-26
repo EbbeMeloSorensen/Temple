@@ -1,11 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:valueConverters="clr-namespace:Craft.UI.Utils.ValueConverters;assembly=Craft.UI.Utils">
+                    xmlns:valueConverters="clr-namespace:Craft.UI.Utils.ValueConverters;assembly=Craft.UI.Utils"
+                    xmlns:valueConverters1="clr-namespace:Temple.UI.WPF.ValueConverters">
 
     <valueConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <valueConverters:EnumMatchToBooleanConverter x:Key="EnumMatchToBooleanConverter"/>
     <valueConverters:PixelToBrushConverter x:Key="PixelToBrushConverter"/>
+    <valueConverters1:PixelToBrushConverter2 x:Key="PixelToBrushConverter2"/>
     <valueConverters:ImagePathConverter x:Key="ImagePathConverter"/>
+    <valueConverters1:ImagePathConverter2 x:Key="ImagePathConverter2"/>
     <valueConverters:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
     <valueConverters:DoubleAdder x:Key="DoubleScaler"/>
     <valueConverters:DoubleAdder x:Key="DoubleAdder"/>
