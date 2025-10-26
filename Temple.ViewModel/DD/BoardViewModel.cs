@@ -116,8 +116,8 @@ namespace Temple.ViewModel.DD
 
                 PixelViewModels[tileIndex].Pixel.ImagePath = _.ObstacleType switch
                 {
-                    ObstacleType.Wall => "Images/Wall.jpg",
-                    ObstacleType.Water => "Images/Water.PNG",
+                    ObstacleType.Wall => "DD/Images/Wall.jpg",
+                    ObstacleType.Water => "DD/Images/Water.PNG",
                     _ => ""
                 }; ;
             });
