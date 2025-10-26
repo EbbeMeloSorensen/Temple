@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Craft.Algorithms" Version="1.0.7" />
     <PackageReference Include="Craft.UI.Utils" Version="1.0.7" />
     <PackageReference Include="Craft.ViewModel.Utils" Version="1.0.7" />
     <PackageReference Include="Craft.ViewModels" Version="1.0.7" />

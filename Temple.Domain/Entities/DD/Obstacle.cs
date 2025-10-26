@@ -3,8 +3,7 @@
     public enum ObstacleType
     {
         Wall,
-        Water,
-        IronFence
+        Water
     }
 
     public class Obstacle : BoardItem

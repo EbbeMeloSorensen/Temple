@@ -69,10 +69,10 @@ namespace Temple.ViewModel.DD
         {
             _imagePathMap = new Dictionary<string, string>
             {
-                { "Goblin", "Images/Goblin.png" },
-                { "Knight", "Images/Knight.png" },
-                { "Archer", "Images/Archer.png" },
-                { "Goblin Archer", "Images/Goblin Archer.png" }
+                { "Goblin", "DD/Images/Goblin.png" },
+                { "Knight", "DD/Images/Knight.png" },
+                { "Archer", "DD/Images/Archer.png" },
+                { "Goblin Archer", "DD/Images/Goblin Archer.png" }
             };
         }
 
