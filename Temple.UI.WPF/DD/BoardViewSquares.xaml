@@ -116,7 +116,7 @@
                        Width="{Binding WeaponViewModel.Diameter}"
                        Source="{Binding Path=WeaponImagePath,
                             UpdateSourceTrigger=PropertyChanged, 
-                            Converter={StaticResource ImagePathConverter}}">
+                            Converter={StaticResource ImagePathConverter2}}">
                     <Image.RenderTransform>
                         <RotateTransform x:Name="RotateTransform" CenterX="37.5" CenterY="37.5" Angle="{Binding WeaponViewModel.RotationAngle}"/>
                     </Image.RenderTransform>
