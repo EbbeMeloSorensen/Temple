@@ -7,5 +7,6 @@ Done:
 * Tempel-ikon på splasg screenen
 
 Todo:
+* Både ActOutSceneViewModel og BoardViewModel abonnerer på at aktiv scene ændres - det er noget rod og skal slet ikke være eent baseret
 * Introducer et settings view, hvor man f.eks. kan angive, om man vil se log og statusbar
 * Introducer et development mode, som kun er synligt, hvis man feks. trykker F12
