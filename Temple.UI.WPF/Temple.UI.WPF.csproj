@@ -9,17 +9,49 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DD\Images\Archer.PNG" />
+    <None Remove="DD\Images\Arrow.png" />
+    <None Remove="DD\Images\Goblin Archer.PNG" />
+    <None Remove="DD\Images\Goblin.PNG" />
+    <None Remove="DD\Images\Knight.PNG" />
+    <None Remove="DD\Images\Sword.png" />
+    <None Remove="DD\Images\Wall.jpg" />
+    <None Remove="DD\Images\Water.PNG" />
     <None Remove="Images\interlude.jpg" />
     <None Remove="Images\Temple.PNG" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\interlude.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Temple.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="DD\Images\Archer.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Arrow.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Goblin Archer.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Goblin.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\interlude.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Knight.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Sword.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Wall.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Water.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Temple.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
