@@ -109,6 +109,14 @@ namespace Temple.ViewModel
                         break;
                     case "FirstBattle":
                         CurrentViewModel = BattleViewModel;
+                        // Start the battle automatically, so the user doesn't need to click the start button
+                        BattleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
+                        break;
+                    case "Defeat":
+                        throw new NotImplementedException();
+                        break;
+                    case "Victory":
+                        throw new NotImplementedException();
                         break;
                     default:
                         throw new InvalidOperationException("Invalid operation");

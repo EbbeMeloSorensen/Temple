@@ -47,6 +47,18 @@ public class BattleViewModel : ViewModelBase
             dummyScene,
             logger);
 
+        ActOutSceneViewModel.BattleEnded += (s, e) =>
+        {
+            if (e.BattleResult == BattleResult.Defeat)
+            {
+                _controller.GoToDefeat();
+            }
+            else
+            {
+                _controller.GoToVictory();
+            }
+        };
+
         var knight = new CreatureType("Knight",
             maxHitPoints: 20,
             armorClass: 3,

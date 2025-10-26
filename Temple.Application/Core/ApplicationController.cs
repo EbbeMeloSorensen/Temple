@@ -111,6 +111,16 @@ public class ApplicationController
         _stateMachine.Fire(ApplicationTrigger.GoToHome);
     }
 
+    public void GoToDefeat()
+    {
+        _stateMachine.Fire(ApplicationTrigger.GoToDefeat);
+    }
+
+    public void GoToVictory()
+    {
+        _stateMachine.Fire(ApplicationTrigger.GoToVictory);
+    }
+
     public void Shutdown()
     {
         _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);

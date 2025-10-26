@@ -147,6 +147,8 @@ namespace Temple.ViewModel.DD
             }
         }
 
+        public event EventHandler<BattleEndedEventArgs> BattleEnded;
+
         public ActOutSceneViewModelBase(
             IEngine engine,
             BoardViewModelBase boardViewModel,
@@ -188,6 +190,7 @@ namespace Temple.ViewModel.DD
                 if (_engine.BattleDecided)
                 {
                     UpdateCommandStates();
+                    OnBattleDecided(_engine.Creatures.Any(_ => _.IsHostile) ? BattleResult.Defeat : BattleResult.Victory);
                     return;
                 }
 
@@ -359,6 +362,21 @@ namespace Temple.ViewModel.DD
             PassCurrentCreatureCommand.RaiseCanExecuteChanged();
             AutomateCurrentCreatureCommand.RaiseCanExecuteChanged();
             ResetCreaturesCommand.RaiseCanExecuteChanged();
+        }
+
+        private void OnBattleDecided(
+            BattleResult battleResult)
+        {
+            // Make a temporary copy of the event to avoid possibility of
+            // a race condition if the last subscriber unsubscribes
+            // immediately after the null check and before the event is raised.
+            var handler = BattleEnded;
+
+            // Event will be null if there are no subscribers
+            if (handler != null)
+            {
+                handler(this, new BattleEndedEventArgs(battleResult));
+            }
         }
     }
 }

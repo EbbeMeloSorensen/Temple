@@ -8,6 +8,8 @@ public enum ApplicationTrigger
     GoToPeopleManagement,
     StartNewGame,
     ExitState,
-    GoToHome
+    GoToHome,
+    GoToDefeat,
+    GoToVictory
 }
 
