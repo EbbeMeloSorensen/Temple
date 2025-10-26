@@ -183,6 +183,8 @@ namespace Temple.ViewModel.DD
                         _engine.CurrentCreature);
                 }
 
+                TeamStatsViewModel.Update(_engine.Creatures);
+
                 if (_engine.BattleDecided)
                 {
                     UpdateCommandStates();

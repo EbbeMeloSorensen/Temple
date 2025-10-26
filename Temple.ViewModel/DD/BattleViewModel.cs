@@ -107,9 +107,9 @@ public class BattleViewModel : ViewModelBase
         scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 1));
         scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 2));
         scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 0, 0);
-        scene.AddCreature(new Creature(archer, false) { IsAutomatic = false }, 0, 1);
+        //scene.AddCreature(new Creature(archer, false) { IsAutomatic = false }, 0, 1);
         scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 2);
-        scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 3, 3);
+        //scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 3, 3);
 
         dummyScene.Object = scene;
     }
