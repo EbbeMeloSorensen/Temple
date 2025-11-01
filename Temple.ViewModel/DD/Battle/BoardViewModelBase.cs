@@ -5,11 +5,10 @@ using Craft.ViewModels.Geometry2D.Scrolling;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
-using System.Windows.Documents;
 using Temple.Domain.Entities.DD;
 using Temple.ViewModel.DD.BusinessLogic;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Battle
 {
     public abstract class BoardViewModelBase : ImageEditorViewModel
     {
@@ -427,8 +426,8 @@ namespace Temple.ViewModel.DD
         public void PlayerClickedOnBoard()
         {
             // Todo: Determine the index of the square that the user clicked
-            var indexX = (int)System.Math.Floor(MousePositionWorld.Object.X / TileCenterSpacing);
-            var indexY = (int)System.Math.Floor(MousePositionWorld.Object.Y / TileCenterSpacing);
+            var indexX = (int)Math.Floor(MousePositionWorld.Object.X / TileCenterSpacing);
+            var indexY = (int)Math.Floor(MousePositionWorld.Object.Y / TileCenterSpacing);
             var squareIndex = indexY * Columns + indexX;
 
             OnPlayerClickedSquare(squareIndex);

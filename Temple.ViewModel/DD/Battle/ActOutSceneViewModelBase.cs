@@ -7,7 +7,7 @@ using Craft.ViewModel.Utils;
 using Temple.Domain.Entities.DD;
 using Temple.ViewModel.DD.BusinessLogic;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Battle
 {
     public abstract class ActOutSceneViewModelBase : ViewModelBase
     {

@@ -1,6 +1,6 @@
 ﻿using Temple.Domain.Entities.DD;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Battle
 {
     public class ObstacleViewModel : BoardItemViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Battle
 {
     public abstract class BoardItemViewModel : ViewModelBase
     {

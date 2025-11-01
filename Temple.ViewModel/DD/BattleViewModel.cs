@@ -3,6 +3,7 @@ using Craft.Utils;
 using GalaSoft.MvvmLight;
 using Temple.Application.Core;
 using Temple.Domain.Entities.DD;
+using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.BusinessLogic;
 using Temple.ViewModel.DD.BusinessLogic.Complex;
 
