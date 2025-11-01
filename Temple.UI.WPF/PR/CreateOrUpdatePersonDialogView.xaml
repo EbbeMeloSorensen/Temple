@@ -5,14 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Temple.UI.WPF"
              xmlns:viewModel="clr-namespace:Temple.ViewModel;assembly=Temple.ViewModel"
+             xmlns:pr="clr-namespace:Temple.ViewModel.PR;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance viewModel:CreateOrUpdatePersonDialogViewModel}">
+             d:DataContext="{d:DesignInstance pr:CreateOrUpdatePersonDialogViewModel}">
 
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Skins/MainSkin.xaml"/>
+                <ResourceDictionary Source="/Skins/MainSkin.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
