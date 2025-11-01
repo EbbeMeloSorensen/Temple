@@ -2,10 +2,9 @@
 using Craft.Utils;
 using Craft.ViewModels.Common;
 using Temple.Domain.Entities.DD;
-using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.BusinessLogic;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Battle
 {
     public class BoardViewModel : BoardViewModelBase
     {

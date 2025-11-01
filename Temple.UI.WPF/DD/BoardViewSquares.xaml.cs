@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Craft.Utils;
 using Craft.UI.Utils;
-using Temple.ViewModel.DD;
+using Temple.ViewModel.DD.Battle;
 
 namespace Temple.UI.WPF.DD
 {

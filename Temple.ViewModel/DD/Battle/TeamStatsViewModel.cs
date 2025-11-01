@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Temple.Domain.Entities.DD;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Battle
 {
     public class TeamStatsViewModel : ViewModelBase
     {

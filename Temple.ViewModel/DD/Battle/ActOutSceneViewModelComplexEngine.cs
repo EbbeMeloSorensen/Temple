@@ -1,11 +1,10 @@
 ﻿using Craft.Logging;
 using Craft.Utils;
 using Temple.Domain.Entities.DD;
-using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.BusinessLogic;
 using Temple.ViewModel.DD.BusinessLogic.Complex;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Battle
 {
     public class ActOutSceneViewModelComplexEngine : ActOutSceneViewModelBase
     {
