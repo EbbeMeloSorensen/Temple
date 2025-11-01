@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Temple.ViewModel
+namespace Temple.ViewModel.PR
 {
     public static class Helpers
     {

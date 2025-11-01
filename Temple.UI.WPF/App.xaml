@@ -1,12 +1,12 @@
 ﻿<Application x:Class="Temple.UI.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewModel="clr-namespace:Temple.ViewModel;assembly=Temple.ViewModel"
-             xmlns:wpf="clr-namespace:Temple.UI.WPF">
+             xmlns:wpf="clr-namespace:Temple.UI.WPF"
+             xmlns:pr="clr-namespace:Temple.ViewModel.PR;assembly=Temple.ViewModel">
     <Application.Resources>
         <ResourceDictionary>
 
-            <DataTemplate DataType="{x:Type viewModel:CreateOrUpdatePersonDialogViewModel}">
+            <DataTemplate DataType="{x:Type pr:CreateOrUpdatePersonDialogViewModel}">
                 <wpf:CreateOrUpdatePersonDialogView/>
             </DataTemplate>
 

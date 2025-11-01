@@ -10,7 +10,7 @@ using FluentValidation.Validators;
 using Temple.Application.People;
 using Temple.Domain.Entities.PR;
 
-namespace Temple.ViewModel
+namespace Temple.ViewModel.PR
 {
     public enum CreateOrUpdatePersonDialogViewModelMode
     {
