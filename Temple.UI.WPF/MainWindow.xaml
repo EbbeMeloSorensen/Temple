@@ -11,6 +11,7 @@
         xmlns:smurfs1="clr-namespace:Temple.UI.WPF.Smurfs"
         xmlns:dd="clr-namespace:Temple.ViewModel.DD;assembly=Temple.ViewModel"
         xmlns:dd1="clr-namespace:Temple.UI.WPF.DD"
+        xmlns:dd2="clr-namespace:Temple.UI.WPF.DD.Exploration"
         mc:Ignorable="d"
         Title="Temple" Height="600" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
 
@@ -23,6 +24,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type dd:BattleViewModel}">
             <dd1:BattleView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type dd:ExploreAreaViewModel}">
+            <dd2:ExploreAreaView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type dd:DefeatViewModel}">
             <dd1:DefeatView/>

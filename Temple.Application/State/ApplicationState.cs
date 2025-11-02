@@ -8,8 +8,10 @@ public enum ApplicationState
     SmurfManagement,
     PeopleManagement,
     Intro,
-    FirstBattle,
     Defeat,
-    Victory
+    Victory,
+    Battle_First,
+    ExploreArea_AfterFirstBattle,
+    Battle_Final
 }
 

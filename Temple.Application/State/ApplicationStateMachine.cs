@@ -35,11 +35,18 @@ public class ApplicationStateMachine
             .Permit(ApplicationTrigger.StartNewGame, ApplicationState.Intro);
 
         _machine.Configure(ApplicationState.Intro)
-            .Permit(ApplicationTrigger.ExitState, ApplicationState.FirstBattle);
+            .Permit(ApplicationTrigger.ExitState, ApplicationState.Battle_First);
 
-        _machine.Configure(ApplicationState.FirstBattle)
+        _machine.Configure(ApplicationState.Battle_First)
             .Permit(ApplicationTrigger.GoToDefeat, ApplicationState.Defeat)
-            .Permit(ApplicationTrigger.GoToVictory, ApplicationState.Victory);
+            .Permit(ApplicationTrigger.ExitState, ApplicationState.ExploreArea_AfterFirstBattle);
+
+        _machine.Configure(ApplicationState.ExploreArea_AfterFirstBattle)
+            .Permit(ApplicationTrigger.ExitState, ApplicationState.Battle_Final);
+
+        _machine.Configure(ApplicationState.Battle_Final)
+            .Permit(ApplicationTrigger.GoToDefeat, ApplicationState.Defeat)
+            .Permit(ApplicationTrigger.ExitState, ApplicationState.Victory);
 
         _machine.Configure(ApplicationState.Defeat)
             .Permit(ApplicationTrigger.ExitState, ApplicationState.MainMenu);

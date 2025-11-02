@@ -56,7 +56,7 @@ public class BattleViewModel : ViewModelBase
             }
             else
             {
-                _controller.GoToVictory();
+                _controller.ExitState();
             }
         };
     }

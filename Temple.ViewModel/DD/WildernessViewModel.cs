@@ -2,7 +2,7 @@
 
 namespace Temple.ViewModel.DD
 {
-    public class MapViewModel : ViewModelBase
+    public class WildernessViewModel : ViewModelBase
     {
     }
 }
