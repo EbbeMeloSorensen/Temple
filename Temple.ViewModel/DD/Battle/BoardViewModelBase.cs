@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
 using Temple.Domain.Entities.DD;
-using Temple.ViewModel.DD.BusinessLogic;
+using Temple.ViewModel.DD.Battle.BusinessLogic;
 
 namespace Temple.ViewModel.DD.Battle
 {

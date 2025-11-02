@@ -5,7 +5,7 @@ using Craft.Logging;
 using Craft.Utils;
 using Craft.ViewModel.Utils;
 using Temple.Domain.Entities.DD;
-using Temple.ViewModel.DD.BusinessLogic;
+using Temple.ViewModel.DD.Battle.BusinessLogic;
 
 namespace Temple.ViewModel.DD.Battle
 {

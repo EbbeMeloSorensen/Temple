@@ -4,6 +4,7 @@ using Craft.Math;
 using Craft.Utils;
 using Craft.Algorithms;
 using Temple.Domain.Entities.DD;
+using Temple.ViewModel.DD.Battle.BusinessLogic;
 
 namespace Temple.ViewModel.DD.BusinessLogic.Complex
 {

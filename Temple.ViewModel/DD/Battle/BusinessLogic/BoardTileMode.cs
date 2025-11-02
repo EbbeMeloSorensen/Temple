@@ -1,4 +1,4 @@
-﻿namespace Temple.ViewModel.DD.BusinessLogic;
+﻿namespace Temple.ViewModel.DD.Battle.BusinessLogic;
 
 public enum BoardTileMode
 {

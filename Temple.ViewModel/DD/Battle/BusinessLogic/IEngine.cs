@@ -2,7 +2,7 @@
 using Craft.Utils;
 using Temple.Domain.Entities.DD;
 
-namespace Temple.ViewModel.DD.BusinessLogic
+namespace Temple.ViewModel.DD.Battle.BusinessLogic
 {
     public interface IEngine
     {
