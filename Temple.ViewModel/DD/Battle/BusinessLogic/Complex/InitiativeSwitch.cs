@@ -1,6 +1,6 @@
 ﻿using Temple.Domain.Entities.DD;
 
-namespace Temple.ViewModel.DD.BusinessLogic.Complex
+namespace Temple.ViewModel.DD.Battle.BusinessLogic.Complex
 {
     public class InitiativeSwitch : EvasionEvent
     {

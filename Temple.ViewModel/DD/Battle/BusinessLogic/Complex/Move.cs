@@ -1,4 +1,4 @@
-﻿namespace Temple.ViewModel.DD.BusinessLogic.Complex
+﻿namespace Temple.ViewModel.DD.Battle.BusinessLogic.Complex
 {
     public class Move : EvasionEvent
     {
