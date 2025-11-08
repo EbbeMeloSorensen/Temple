@@ -49,7 +49,7 @@ namespace Temple.UI.Console
             }
             catch (Exception exception)
             {
-                System.Console.Write($"\nException thrown: \"{exception.Message}\"\n");
+                System.Console.Write($"\nException thrown when trying to create peron: \"{exception.Message}\"\n");
             }
 
 
@@ -202,6 +202,35 @@ namespace Temple.UI.Console
         public static async Task UpdatePerson(
             Update options)
         {
+            System.Console.Write("Updating Person...\nProgress: ");
+
+            options.TimeOfChange.TryParsingAsDateTime(out var timeOfChange);
+
+            var person = new Domain.Entities.PR.Person()
+            {
+                ID = new Guid(options.ID),
+                FirstName = options.FirstName,
+            };
+
+            try
+            {
+                using var scope = (await GetHost()).Services.CreateScope();
+                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+                var result = await mediator.Send(new Application.People.Edit.Command { Person = person });
+
+                System.Console.Write(result.IsSuccess
+                    ? $"\nPerson: \"{person.FirstName}\" updated successfully\n"
+                    : $"\nPerson: \"{person.FirstName}\" update failed ({result.Error})\n");
+            }
+            catch (Exception exception)
+            {
+                System.Console.Write($"\nException thrown when trying to update peron: \"{exception.Message}\"\n");
+            }
+
+
+            // Old
+
             //    System.Console.Write("Updating Person...\nProgress: ");
 
             //    var person = new Person()
@@ -245,6 +274,27 @@ namespace Temple.UI.Console
         public static async Task DeletePerson(
             Delete options)
         {
+            System.Console.Write("Deleting Person...\nProgress: ");
+
+            try
+            {
+                using var scope = (await GetHost()).Services.CreateScope();
+                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+                var result = await mediator.Send(new Application.People.Delete.Command {Id = new Guid(options.ID)});
+
+                System.Console.Write(result.IsSuccess
+                    ? $"\nPerson with id: \"{options.ID}\" deleted successfully\n"
+                    : $"\nError while trying to delete person with id: \"{options.ID}\" ({result.Error})\n");
+            }
+            catch (Exception exception)
+            {
+                System.Console.Write($"\nException thrown when trying to create peron: \"{exception.Message}\"\n");
+            }
+
+
+
+            // Old
             //System.Console.Write("Deleting...\nProgress: ");
 
             //var id = new Guid(options.ID);
@@ -331,10 +381,10 @@ namespace Temple.UI.Console
                         //connectionString = "Data source=babuska3.db";
 
                         // Postgres - MELO - Basement
-                        connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_Temple_UI_Console";
+                        //connectionString = "Server=localhost;Port=5432;User Id=root;Password=root;Database=DB_Temple_UI_Console";
 
                         // Postgres - Linux in podman
-                        //connectionString = "Server=localhost;Port=5432;User Id=myuser;Password=mypassword;Database=DB_Temple_UI_Console";
+                        connectionString = "Server=localhost;Port=5432;User Id=myuser;Password=mypassword;Database=DB_Temple_UI_Console";
 
                         services.AddAppDataPersistence<PRDbContextBase>(options =>
                         {
