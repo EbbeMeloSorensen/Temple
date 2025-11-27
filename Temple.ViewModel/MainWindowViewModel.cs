@@ -170,13 +170,15 @@ namespace Temple.ViewModel
             var knight = new CreatureType("Knight",
                 maxHitPoints: 8, //20,
                 armorClass: 3,
-                thaco: 12,
+                thaco: 1, //12,
                 initiativeModifier: 0,
                 movement: 4,
                 attacks: new List<Attack>
                 {
-                    new MeleeAttack("Longsword", 10),
-                    new MeleeAttack("Longsword", 10)
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10)
                 });
 
             var goblin = new CreatureType(

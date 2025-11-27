@@ -27,6 +27,11 @@ namespace Temple.UI.WPF.DD.Exploration
         public ExploreAreaView()
         {
             InitializeComponent();
+
+            this.PreviewLostKeyboardFocus += (s, e) =>
+            {
+                e.Handled = true; // Do not allow other controls to gain focus
+            };
         }
 
         private void ExploreAreaView_OnKeyDown(
