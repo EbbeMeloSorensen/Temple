@@ -8,7 +8,7 @@
             "name": "C#: <project-name> Debug",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/Temple.POC.AvaloniaApp/Temple.POC.AvaloniaApp.csproj"
+            "projectPath": "${workspaceFolder}/Temple.UI.Console/Temple.UI.Console.csproj"
         }
 
     ]

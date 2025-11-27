@@ -2,7 +2,7 @@
 
 namespace Temple.UI.Console.Verbs
 {
-    [Verb("update", HelpText = "Update an existing person.")]
+    [Verb("updateperson", HelpText = "Update an existing person.")]
     public sealed class Update
     {
         [Option('i', "id", Required = true, HelpText = "Person ID")]

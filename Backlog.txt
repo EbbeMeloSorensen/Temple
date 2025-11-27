@@ -1,12 +1,30 @@
 Done:
-* NÂr man ikke sender et navn med, sÂ skal det vises pÂ feltet og ikke under det generelle fejl-felt
-* Der skal ikke laves nye viewmodeller hver gang - man skal bare sÊtte eksisterende viewmodeller som current
-* Operationerne til at manage personer skal flyttes hen pÂ den nye view model
-* Operationerne til at manage smurfs skal flyttes hen pÂ en ny view model
+* NÔøΩr man ikke sender et navn med, sÔøΩ skal det vises pÔøΩ feltet og ikke under det generelle fejl-felt
+* Der skal ikke laves nye viewmodeller hver gang - man skal bare sÔøΩtte eksisterende viewmodeller som current
+* Operationerne til at manage personer skal flyttes hen pÔøΩ den nye view model
+* Operationerne til at manage smurfs skal flyttes hen pÔøΩ en ny view model
 * Eksportering af state machinen som dot graf fil
-* Tempel-ikon pÂ splasg screenen
+* Tempel-ikon pÔøΩ splasg screenen
 
 Todo:
-* BÂde ActOutSceneViewModel og BoardViewModel abonnerer pÂ at aktiv scene Êndres - det er noget rod og skal slet ikke vÊre eent baseret
+* BÔøΩde ActOutSceneViewModel og BoardViewModel abonnerer pÔøΩ at aktiv scene ÔøΩndres - det er noget rod og skal slet ikke vÔøΩre event baseret
 * Introducer et settings view, hvor man f.eks. kan angive, om man vil se log og statusbar
 * Introducer et development mode, som kun er synligt, hvis man feks. trykker F12
+
+Todo (People management)
+* List (all) people fra command line app (OK)
+* Create person fra command line app
+  - hvis man giver et firstnam med -> s√• f√•a man lavet en person (OK)
+  - hvis man ikke giver et firstnam med -> s√• f√•r man en valideringsfejl (OK)
+Update person
+
+
+
+
+
+Eksekvering af command line applikationen:
+  "commandLineArgs": "listpeople"
+  "commandLineArgs": "createperson -f \"Kamel\""
+  "commandLineArgs": "createperson -f \"\""
+  "commandLineArgs": "updateperson -i \"00000001-0000-0000-0000-000000000000\" -f \"Max2\""
+  "commandLineArgs": "deleteperson -i \"00000001-0000-0000-0000-000000000000\""
