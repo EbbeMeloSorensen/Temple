@@ -137,6 +137,7 @@ namespace Temple.ViewModel
                         break;
                     case "ExploreArea_AfterFirstBattle":
                         CurrentViewModel = ExploreAreaViewModel;
+                        ExploreAreaViewModel.StartAnimation();
                         break;
                     case "Battle_First":
                         BattleViewModel.ActOutSceneViewModel.InitializeScene(GetSceneFirstBattle());

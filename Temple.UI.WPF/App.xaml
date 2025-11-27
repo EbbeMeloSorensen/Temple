@@ -11,6 +11,7 @@
             </DataTemplate>
 
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Craft.UIElements;component/Geometry2D/ScrollFree/Resources.xaml"/>
                 <ResourceDictionary Source="/Craft.UIElements;component/Dialogs/Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
