@@ -24,5 +24,10 @@ namespace Temple.UI.WPF.DD.Exploration
         {
             InitializeComponent();
         }
+
+        private void ExploreAreaView_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show($"A received {e.Key}");
+        }
     }
 }
