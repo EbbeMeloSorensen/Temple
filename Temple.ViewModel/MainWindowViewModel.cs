@@ -429,7 +429,7 @@ namespace Temple.ViewModel
 
             // Add exits
             scene.AddBoundary(new LineSegment(new Vector2D(-3, -1), new Vector2D(-3, 0), "A"));
-            //scene.AddBoundary(new LineSegment(new Vector2D(0, 3), new Vector2D(-1, 3), "B"));
+            scene.AddBoundary(new LineSegment(new Vector2D(0, -3), new Vector2D(-1, -3), "B"));
 
             scene.PostPropagationCallBack = (propagatedState, boundaryCollisionReports, bodyCollisionReports) =>
             {
