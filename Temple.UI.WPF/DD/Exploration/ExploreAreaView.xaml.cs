@@ -28,6 +28,7 @@ namespace Temple.UI.WPF.DD.Exploration
         {
             InitializeComponent();
 
+            // Er det her nødvendigt?
             this.PreviewLostKeyboardFocus += (s, e) =>
             {
                 e.Handled = true; // Do not allow other controls to gain focus
@@ -38,6 +39,11 @@ namespace Temple.UI.WPF.DD.Exploration
             object sender,
             System.Windows.Input.KeyEventArgs e)
         {
+            if (ViewModel == null)
+            {
+                return;
+            }
+
             if (e.IsRepeat)
             {
                 return;
@@ -67,6 +73,11 @@ namespace Temple.UI.WPF.DD.Exploration
             object sender,
             System.Windows.Input.KeyEventArgs e)
         {
+            if (ViewModel == null)
+            {
+                return;
+            }
+
             switch (e.Key)
             {
                 case Key.Up:
