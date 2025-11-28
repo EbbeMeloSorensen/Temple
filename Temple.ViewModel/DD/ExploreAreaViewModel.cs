@@ -1,10 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Craft.Utils;
-using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
-using Craft.Simulation.Boundaries;
 using Craft.Simulation.Engine;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
@@ -82,6 +80,14 @@ namespace Temple.ViewModel.DD
                 GeometryEditorViewModel,
                 shapeSelectorCallback,
                 shapeUpdateCallback);
+
+            Engine.AnimationCompleted += (s, e) =>
+            {
+                var outcome = Engine.EngineCore.Outcome;
+                var a = 0;
+                ContinueCommand.Execute(null);
+                //_controller.ExitState();
+            };
         }
 
         public void StartAnimation(
