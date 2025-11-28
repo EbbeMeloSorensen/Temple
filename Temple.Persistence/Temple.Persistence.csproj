@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Craft.Logging" Version="1.0.10" />
-    <PackageReference Include="Craft.Persistence" Version="1.0.10" />
+    <PackageReference Include="Craft.Logging" Version="1.0.12" />
+    <PackageReference Include="Craft.Persistence" Version="1.0.12" />
   </ItemGroup>
 
   <ItemGroup>
