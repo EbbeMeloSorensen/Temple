@@ -85,8 +85,8 @@ namespace Temple.ViewModel.DD
             {
                 var outcome = Engine.EngineCore.Outcome;
                 var a = 0;
-                ContinueCommand.Execute(null);
-                //_controller.ExitState();
+                //ContinueCommand.Execute(null);
+                _controller.ExitState();
             };
         }
 
