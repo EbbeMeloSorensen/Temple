@@ -395,12 +395,16 @@ namespace Temple.ViewModel
             // Liniestykker defineres i et normalt xy koordinatsystem
             var lineSegments = new List<LineSegment2D>
             {
-                new(new Point2D(-2, 2), new Point2D(-2, 0)),
-                new(new Point2D(-3, 0), new Point2D(-3, -4)),
-                new(new Point2D(-2, 0), new Point2D(-3, 0)),
-                new(new Point2D(2, 2), new Point2D(-2, 2)),
-                new(new Point2D(2, -2), new Point2D(2, 2)),
-                new(new Point2D(-2, -2), new Point2D(2, -2)),
+                new(new Point2D(-1, 3), new Point2D(-1, 2)),
+                new(new Point2D(-1, 2), new Point2D(-2, 2)),
+                new(new Point2D(-2, 2), new Point2D(-2, 1)),
+                new(new Point2D(-2, 1), new Point2D(-3, 1)),
+                new(new Point2D(-3, 0), new Point2D(-2, 0)),
+                new(new Point2D(-2, 0), new Point2D(-2, -1)),
+                new(new Point2D(-2, -1), new Point2D(1, -1)),
+                new(new Point2D(1, -1), new Point2D(1, 2)),
+                new(new Point2D(1, 2), new Point2D(0, 2)),
+                new(new Point2D(0, 2), new Point2D(0, 3)),
             };
 
             //var group = new Model3DGroup();
@@ -421,6 +425,27 @@ namespace Temple.ViewModel
             }
 
             //Scene3D = group;
+
+
+            // Add exits
+            scene.AddBoundary(new LineSegment(new Vector2D(-3, -1), new Vector2D(-3, 0), "A"));
+            //scene.AddBoundary(new LineSegment(new Vector2D(0, 3), new Vector2D(-1, 3), "B"));
+
+            scene.PostPropagationCallBack = (propagatedState, boundaryCollisionReports, bodyCollisionReports) =>
+            {
+                var response = new PostPropagationResponse();
+
+                if (boundaryCollisionReports.Any())
+                {
+                    var boundary = boundaryCollisionReports.First().Boundary;
+
+                    response.Outcome = boundary.Tag;
+                    response.IndexOfLastState = propagatedState.Index;
+                }
+
+                return response;
+            };
+
 
             return scene;
         }
