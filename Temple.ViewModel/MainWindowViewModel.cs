@@ -1,4 +1,9 @@
-﻿using Craft.ViewModels.Dialogs;
+﻿using Craft.Math;
+using Craft.Simulation;
+using Craft.Simulation.Bodies;
+using Craft.Simulation.BodyStates;
+using Craft.Simulation.Boundaries;
+using Craft.ViewModels.Dialogs;
 using GalaSoft.MvvmLight;
 using MediatR;
 using Temple.Application.Core;
@@ -137,6 +142,7 @@ namespace Temple.ViewModel
                         break;
                     case "ExploreArea_AfterFirstBattle":
                         CurrentViewModel = ExploreAreaViewModel;
+                        ExploreAreaViewModel.StartAnimation(GenerateScene());
                         break;
                     case "Battle_First":
                         BattleViewModel.ActOutSceneViewModel.InitializeScene(GetSceneFirstBattle());
@@ -164,18 +170,20 @@ namespace Temple.ViewModel
             CurrentViewModel = new HomeViewModel(_controller);
         }
 
-        private Scene GetSceneFirstBattle()
+        private Domain.Entities.DD.Scene GetSceneFirstBattle()
         {
             var knight = new CreatureType("Knight",
                 maxHitPoints: 8, //20,
                 armorClass: 3,
-                thaco: 12,
+                thaco: 1, //12,
                 initiativeModifier: 0,
                 movement: 4,
                 attacks: new List<Attack>
                 {
-                    new MeleeAttack("Longsword", 10),
-                    new MeleeAttack("Longsword", 10)
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10)
                 });
 
             var goblin = new CreatureType(
@@ -220,7 +228,7 @@ namespace Temple.ViewModel
                         range: 4)
                 });
 
-            var scene = new Scene("DummyScene", 4, 4);
+            var scene = new Domain.Entities.DD.Scene("DummyScene", 4, 4);
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 1));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 2));
             scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 1));
@@ -233,7 +241,7 @@ namespace Temple.ViewModel
             return scene;
         }
 
-        private Scene GetSceneFinalBattle()
+        private Domain.Entities.DD.Scene GetSceneFinalBattle()
         {
             var knight = new CreatureType("Knight",
                 maxHitPoints: 8, //20,
@@ -289,7 +297,7 @@ namespace Temple.ViewModel
                         range: 4)
                 });
 
-            var scene = new Scene("DummyScene", 4, 4);
+            var scene = new Domain.Entities.DD.Scene("DummyScene", 4, 4);
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 1));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 2));
             scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 1));
@@ -299,6 +307,120 @@ namespace Temple.ViewModel
             //scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 2);
             scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 3, 2);
             scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 3, 3);
+
+            return scene;
+        }
+
+        private Craft.Simulation.Scene GenerateScene()
+        {
+            var ballRadius = 0.16;
+            var initialBallPosition = new Vector2D(0, 0);
+
+            var initialState = new State();
+            initialState.AddBodyState(
+                new BodyStateClassic(new CircularBody(1, ballRadius, 1, false), initialBallPosition)
+                {
+                    Orientation = Math.PI
+                });
+
+            var name = "Exploration";
+            var standardGravity = 0.0;
+            var initialWorldWindowUpperLeft = new Point2D(-1.4, -1.3);
+            var initialWorldWindowLowerRight = new Point2D(5, 3);
+            var gravitationalConstant = 0.0;
+            var coefficientOfFriction = 0.0;
+            var timeFactor = 1.0;
+            var handleBodyCollisions = false;
+            var deltaT = 0.001;
+            var viewMode = SceneViewMode.FocusOnFirstBody;
+
+            var scene = new Craft.Simulation.Scene(
+                name,
+                initialWorldWindowUpperLeft,
+                initialWorldWindowLowerRight,
+                initialState,
+                standardGravity,
+                gravitationalConstant,
+                coefficientOfFriction,
+                timeFactor,
+                handleBodyCollisions,
+                deltaT,
+                viewMode);
+
+            scene.CollisionBetweenBodyAndBoundaryOccuredCallBack =
+                body => OutcomeOfCollisionBetweenBodyAndBoundary.Block;
+
+            scene.InteractionCallBack = (keyboardState, keyboardEvents, mouseClickPosition, collisions, currentState) =>
+            {
+                var currentStateOfMainBody = currentState.BodyStates.First() as BodyStateClassic;
+                var currentRotationalSpeed = currentStateOfMainBody.RotationalSpeed;
+                var currentArtificialSpeed = currentStateOfMainBody.ArtificialVelocity.Length;
+
+                var newRotationalSpeed = 0.0;
+
+                if (keyboardState.LeftArrowDown)
+                {
+                    newRotationalSpeed += Math.PI;
+                }
+
+                if (keyboardState.RightArrowDown)
+                {
+                    newRotationalSpeed -= Math.PI;
+                }
+
+                var newArtificialSpeed = 0.0;
+
+                if (keyboardState.UpArrowDown)
+                {
+                    newArtificialSpeed += 1.5;
+                }
+
+                if (keyboardState.DownArrowDown)
+                {
+                    newArtificialSpeed -= 1.5;
+                }
+
+                currentStateOfMainBody.RotationalSpeed = newRotationalSpeed;
+                currentStateOfMainBody.ArtificialVelocity = new Vector2D(newArtificialSpeed, 0);
+
+                if (Math.Abs(newRotationalSpeed - currentRotationalSpeed) < 0.01 &&
+                    Math.Abs(newArtificialSpeed - currentArtificialSpeed) < 0.01)
+                {
+                    return false;
+                }
+
+                return true;
+            };
+
+            // Liniestykker defineres i et normalt xy koordinatsystem
+            var lineSegments = new List<LineSegment2D>
+            {
+                new(new Point2D(-2, 2), new Point2D(-2, 0)),
+                new(new Point2D(-3, 0), new Point2D(-3, -4)),
+                new(new Point2D(-2, 0), new Point2D(-3, 0)),
+                new(new Point2D(2, 2), new Point2D(-2, 2)),
+                new(new Point2D(2, -2), new Point2D(2, 2)),
+                new(new Point2D(-2, -2), new Point2D(2, -2)),
+            };
+
+            //var group = new Model3DGroup();
+            //var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
+
+            foreach (var lineSegment in lineSegments)
+            {
+                scene.AddBoundary(new LineSegment(
+                    new Vector2D(lineSegment.Point1.X, -lineSegment.Point1.Y),
+                    new Vector2D(lineSegment.Point2.X, -lineSegment.Point2.Y)));
+
+                //var rectangleMesh = CreateWall(
+                //    new Point2D(lineSegment.Point1.Y, lineSegment.Point1.X),
+                //    new Point2D(lineSegment.Point2.Y, lineSegment.Point2.X));
+
+                //var rectangleModel = new GeometryModel3D(rectangleMesh, material);
+                //group.Children.Add(rectangleModel);
+            }
+
+            //Scene3D = group;
 
             return scene;
         }
