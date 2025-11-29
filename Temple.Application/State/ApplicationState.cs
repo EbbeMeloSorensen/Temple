@@ -6,12 +6,12 @@ public enum ApplicationState
     MainMenu,
     ShuttingDown,
     SmurfManagement,
-    PeopleManagement,
-    Intro,
-    Defeat,
-    Victory,
-    Battle_First,
-    ExploreArea_AfterFirstBattle,
-    Battle_Final
+    //PeopleManagement,
+    //Intro,
+    //Defeat,
+    //Victory,
+    //Battle_First,
+    //ExploreArea_AfterFirstBattle,
+    //Battle_Final
 }
 
