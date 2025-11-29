@@ -84,8 +84,6 @@ namespace Temple.ViewModel.DD
             Engine.AnimationCompleted += (s, e) =>
             {
                 var outcome = Engine.EngineCore.Outcome;
-                var a = 0;
-                //ContinueCommand.Execute(null);
                 _controller.ExitState();
             };
         }
