@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Smurfs;
+using Temple.Application.State.NewPrinciple;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
 using Temple.Infrastructure.Pagination;
@@ -59,6 +60,7 @@ namespace Temple.POC.State.WPFApp
 
                             // Register stuff for our state machine
                             services.AddSingleton<ApplicationStateMachine>();
+                            services.AddSingleton<GameStateMachine>();
                             services.AddSingleton<ApplicationController>();
                         })
                         .Build();

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Temple.Application.Interfaces;
+using Temple.Application.State.NewPrinciple;
 using Temple.Application.State.OldPrinciple;
 using Temple.Persistence.EFCore.AppData;
 
@@ -10,6 +11,7 @@ namespace Temple.Application.Core;
 public class ApplicationController
 {
     private readonly ApplicationStateMachine _stateMachine;
+    private readonly GameStateMachine _gameStateMachine;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
@@ -25,10 +27,12 @@ public class ApplicationController
 
     public ApplicationController(
         ApplicationStateMachine stateMachine,
+        GameStateMachine gameStateMachine,
         IServiceScopeFactory scopeFactory,
         ILogger<ApplicationController> logger)
     {
         _stateMachine = stateMachine;
+        _gameStateMachine = gameStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
     }
