@@ -5,10 +5,10 @@ using Microsoft.Extensions.Hosting;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Smurfs;
-using Temple.Application.State;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
 using Temple.Infrastructure.Pagination;
+using Temple.Application.State.OldPrinciple;
 
 namespace Temple.POC.State.WPFApp
 {

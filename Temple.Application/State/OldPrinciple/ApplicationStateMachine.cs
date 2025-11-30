@@ -1,6 +1,6 @@
 ﻿using Stateless;
 
-namespace Temple.Application.State;
+namespace Temple.Application.State.OldPrinciple;
 
 public class ApplicationStateMachine
 {

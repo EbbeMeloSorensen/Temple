@@ -1,5 +1,5 @@
 ﻿using Stateless;
-using Temple.Application.State;
+using Temple.Application.State.OldPrinciple;
 
 namespace Temple.Application.Interfaces;
 

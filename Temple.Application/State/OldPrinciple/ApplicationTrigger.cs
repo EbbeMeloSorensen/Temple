@@ -1,4 +1,4 @@
-﻿namespace Temple.Application.State;
+﻿namespace Temple.Application.State.OldPrinciple;
 
 public enum ApplicationTrigger
 {
