@@ -2,6 +2,8 @@
 {
     public enum SceneType
     {
+        Home,
+        Interlude,
         Exploration,
         Battle,
         Dialog

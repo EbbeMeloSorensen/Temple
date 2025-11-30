@@ -1,10 +1,9 @@
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 
 namespace Temple.ViewModel
 {
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : TempleViewModel
     {
         private readonly ApplicationController _controller;
 

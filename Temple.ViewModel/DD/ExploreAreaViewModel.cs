@@ -10,7 +10,7 @@ using Temple.Application.Core;
 
 namespace Temple.ViewModel.DD
 {
-    public class ExploreAreaViewModel
+    public class ExploreAreaViewModel : TempleViewModel
     {
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;

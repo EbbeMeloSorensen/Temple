@@ -1,6 +1,5 @@
 ﻿using Craft.Logging;
 using Craft.Utils;
-using GalaSoft.MvvmLight;
 using Temple.Application.Core;
 using Temple.Domain.Entities.DD;
 using Temple.ViewModel.DD.Battle;
@@ -9,7 +8,7 @@ using Temple.ViewModel.DD.BusinessLogic.Complex;
 
 namespace Temple.ViewModel.DD;
 
-public class BattleViewModel : ViewModelBase
+public class BattleViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
 

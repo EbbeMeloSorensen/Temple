@@ -4,7 +4,7 @@ using Temple.Application.Core;
 
 namespace Temple.ViewModel.DD;
 
-public class InterludeViewModel : ViewModelBase
+public class InterludeViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
 
