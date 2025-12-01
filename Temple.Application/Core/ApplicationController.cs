@@ -18,6 +18,7 @@ public class ApplicationController
     public event EventHandler<string>? ProgressChanged;
 
     public ApplicationState CurrentState => _stateMachine.CurrentState;
+    public GameScene CurrentGameScene => _gameStateMachine.CurrentScene;
 
     public event EventHandler<ApplicationStateChangedEventArgs> StateChanged
     {
@@ -40,6 +41,7 @@ public class ApplicationController
     public async Task InitializeAsync()
     {
         _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → (still Starting)
+
         Report("Initializing application...");
 
         try
