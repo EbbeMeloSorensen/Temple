@@ -2,8 +2,16 @@
 
 public enum Trigger
 {
-    EncounterEnemy,
-    TalkToNpc,
-    EndBattle,
-    EndDialog
+    Initialize,
+    ShutdownRequested,
+    ExitState,
+    GoToSmurfManagement,
+    GoToPeopleManagement,
+    StartNewGame,
+    GoToDefeat,
+    GoToVictory//,
+    //EncounterEnemy,
+    //TalkToNpc,
+    //EndBattle,
+    //EndDialog
 }

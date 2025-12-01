@@ -27,10 +27,10 @@ namespace Temple.ViewModel
         {
             return scene.Type switch
             {
-                SceneType.Home => _homeFactory().Init(scene.Payload),
-                SceneType.Interlude => _interludeFactory().Init(scene.Payload),
-                SceneType.Battle => _battleFactory().Init(scene.Payload),
-                SceneType.Exploration => _exploreAreaFactory().Init(scene.Payload),
+                SceneType.MainMenu => _homeFactory(),
+                //SceneType.Interlude => _interludeFactory().Init(scene.Payload),
+                //SceneType.Battle => _battleFactory().Init(scene.Payload),
+                //SceneType.Exploration => _exploreAreaFactory().Init(scene.Payload),
                 _ => throw new NotImplementedException()
             };
         }

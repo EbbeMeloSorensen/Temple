@@ -48,6 +48,9 @@
             <StatusBarItem>
                 <TextBlock Text="{Binding CurrentState}"/>
             </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding CurrentScene}"/>
+            </StatusBarItem>
         </StatusBar>
 
         <ContentControl Content="{Binding CurrentViewModel}"

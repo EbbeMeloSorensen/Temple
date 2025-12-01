@@ -20,6 +20,7 @@ namespace Temple.ViewModel
         private readonly IDialogService _applicationDialogService;
         private readonly ApplicationController _controller;
         private string _currentState;
+        private string _currentScene;
         private InterludeViewModel _interludeViewModel;
         private BattleViewModel _battleViewModel;
         private ExploreAreaViewModel _exploreAreaViewModel;
@@ -95,6 +96,12 @@ namespace Temple.ViewModel
             private set => Set(ref _currentState, value);
         }
 
+        public string CurrentScene
+        {
+            get => _currentScene;
+            private set => Set(ref _currentScene, value);
+        }
+
         public object CurrentViewModel
         {
             get => _currentViewModel;
@@ -117,6 +124,12 @@ namespace Temple.ViewModel
             HomeViewModel = new HomeViewModel(_controller);
 
             CurrentState = _controller.CurrentState.ToString();
+            CurrentScene = _controller.CurrentGameScene.Type.ToString();
+
+            _controller.SceneChanged += (newScene) =>
+            {
+                CurrentScene = newScene.Type.ToString();
+            };
 
             _controller.StateChanged += (_, e) =>
             {

@@ -26,6 +26,12 @@ public class ApplicationController
         remove => _stateMachine.StateChanged -= value;
     }
 
+    public event Action<GameScene>? SceneChanged
+    {
+        add => _gameStateMachine.SceneChanged += value;
+        remove => _gameStateMachine.SceneChanged -= value;
+    }
+
     public ApplicationController(
         ApplicationStateMachine stateMachine,
         GameStateMachine gameStateMachine,
@@ -41,6 +47,7 @@ public class ApplicationController
     public async Task InitializeAsync()
     {
         _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → (still Starting)
+        await _gameStateMachine.FireAsync(Trigger.Initialize); // Initialize game state machine
 
         Report("Initializing application...");
 
@@ -95,41 +102,49 @@ public class ApplicationController
     public void StartNewGame()
     {
         _stateMachine.Fire(ApplicationTrigger.StartNewGame);
+        _gameStateMachine.FireAsync(Trigger.StartNewGame);
     }
 
     public void ExitState()
     {
         _stateMachine.Fire(ApplicationTrigger.ExitState);
+        _gameStateMachine.FireAsync(Trigger.ExitState);
     }
 
     public void GoToSmurfManagement()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToSmurfManagement);
+        _gameStateMachine.FireAsync(Trigger.GoToSmurfManagement);
     }
 
     public void GoToPeopleManagement()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToPeopleManagement);
+        _gameStateMachine.FireAsync(Trigger.GoToPeopleManagement);
     }
 
     public void GoToHome()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToHome);
+        _gameStateMachine.FireAsync(Trigger.ExitState);
     }
 
     public void GoToDefeat()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToDefeat);
+        _gameStateMachine.FireAsync(Trigger.GoToDefeat);
     }
 
     public void GoToVictory()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToVictory);
+        _gameStateMachine.FireAsync(Trigger.GoToVictory);
     }
 
     public void Shutdown()
     {
         _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
+        _gameStateMachine.FireAsync(Trigger.ShutdownRequested);
     }
 
     private void Report(
