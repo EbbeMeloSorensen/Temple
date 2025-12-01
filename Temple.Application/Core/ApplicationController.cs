@@ -96,7 +96,7 @@ public class ApplicationController
     {
         using var scope = _scopeFactory.CreateScope();
         var stateMachineIO = scope.ServiceProvider.GetRequiredService<IStateMachineIO>();
-        stateMachineIO.ExportTheDamnThing(_stateMachine._machine);
+        stateMachineIO.ExportTheDamnThing(_gameStateMachine._machine);
     }
 
     public void StartNewGame()

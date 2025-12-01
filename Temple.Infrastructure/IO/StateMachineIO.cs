@@ -1,6 +1,7 @@
 ﻿using Stateless;
 using Stateless.Graph;
 using Temple.Application.Interfaces;
+using Temple.Application.State.NewPrinciple;
 using Temple.Application.State.OldPrinciple;
 
 namespace Temple.Infrastructure.IO
@@ -8,11 +9,11 @@ namespace Temple.Infrastructure.IO
     public class StateMachineIO : IStateMachineIO
     {
         public void ExportTheDamnThing(
-            StateMachine<ApplicationState, ApplicationTrigger> stateMachine)
+            StateMachine<GameScene, Trigger> stateMachine)
         {
             var dot = UmlDotGraph.Format(stateMachine.GetInfo());
 
-            using var outputFile = new StreamWriter(Path.Combine(@"C:\Temp", "StateMachine.dot"));
+            using var outputFile = new StreamWriter(Path.Combine(@"C:\Temp", "StateMachine2.dot"));
             outputFile.WriteLine(dot);
         }
     }

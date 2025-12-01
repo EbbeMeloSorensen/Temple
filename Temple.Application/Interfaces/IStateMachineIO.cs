@@ -1,10 +1,10 @@
 ﻿using Stateless;
-using Temple.Application.State.OldPrinciple;
+using Temple.Application.State.NewPrinciple;
 
 namespace Temple.Application.Interfaces;
 
 public interface IStateMachineIO
 {
     void ExportTheDamnThing(
-        StateMachine<ApplicationState, ApplicationTrigger> stateMachine);
+        StateMachine<GameScene, Trigger> stateMachine);
 }

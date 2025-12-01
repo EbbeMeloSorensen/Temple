@@ -4,7 +4,7 @@ namespace Temple.Application.State.NewPrinciple;
 
 public class GameStateMachine
 {
-    private readonly StateMachine<SceneType, Trigger> _machine;
+    internal readonly StateMachine<GameScene, Trigger> _machine;
 
     public GameScene CurrentScene { get; private set; }
 
@@ -15,162 +15,129 @@ public class GameStateMachine
         CurrentScene = new GameScene(
             SceneType.Starting);
 
-        _machine = new StateMachine<SceneType, Trigger>(
-            () => CurrentScene.Type,
-            s => CurrentScene = CurrentScene with { Type = s }
-        );
+        var starting = new GameScene(SceneType.Starting);
+        var mainMenu = new GameScene(SceneType.MainMenu);
+        var smurfManagement = new GameScene(SceneType.SmurfManagement);
+        var peopleManagement = new GameScene(SceneType.PeopleManagement);
+        var shuttingDown = new GameScene(SceneType.ShuttingDown);
+        var intro = new GameScene(SceneType.Intro);
+        var battleFirst = new GameScene(SceneType.Battle_First);
+        var battleFinal= new GameScene(SceneType.Battle_Final);
+        var exploreAreaAfterFirstBattle = new GameScene(SceneType.ExploreArea_AfterFirstBattle);
+        var defeat = new GameScene(SceneType.Defeat);
+        var victory = new GameScene(SceneType.Victory);
 
-        Configure();
-    }
+        _machine = new StateMachine<GameScene, Trigger>(starting);
 
-    private void Configure()
-    {
-        _machine.Configure(SceneType.Starting)
+        _machine.Configure(starting)
             .PermitDynamic(Trigger.Initialize, () =>
             {
-                var next = new GameScene(SceneType.MainMenu);
+                var next = mainMenu;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.MainMenu)
+        _machine.Configure(mainMenu)
             .PermitDynamic(Trigger.GoToSmurfManagement, () =>
             {
-                var next = new GameScene(SceneType.SmurfManagement);
+                var next = smurfManagement;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             })
             .PermitDynamic(Trigger.GoToPeopleManagement, () =>
             {
-                var next = new GameScene(SceneType.PeopleManagement);
+                var next = peopleManagement;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             })
             .PermitDynamic(Trigger.StartNewGame, () =>
             {
-                var next = new GameScene(SceneType.Intro);
+                var next = intro;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             })
             .PermitDynamic(Trigger.ShutdownRequested, () =>
             {
-                var next = new GameScene(SceneType.ShuttingDown);
+                var next = shuttingDown;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.SmurfManagement)
+        _machine.Configure(smurfManagement)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.MainMenu);
+                var next = mainMenu;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.PeopleManagement)
+        _machine.Configure(peopleManagement)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.MainMenu);
+                var next = mainMenu;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.Intro)
+        _machine.Configure(intro)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.Battle_First);
+                var next = battleFirst;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.Battle_First)
+        _machine.Configure(battleFirst)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.ExploreArea_AfterFirstBattle);
+                var next = exploreAreaAfterFirstBattle;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             })
             .PermitDynamic(Trigger.GoToDefeat, () =>
             {
-                var next = new GameScene(SceneType.Defeat);
+                var next = defeat;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.ExploreArea_AfterFirstBattle)
+        _machine.Configure(exploreAreaAfterFirstBattle)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.Battle_Final);
+                var next = battleFinal;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.Battle_Final)
+        _machine.Configure(battleFinal)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.Victory);
+                var next = victory;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             })
             .PermitDynamic(Trigger.GoToDefeat, () =>
             {
-                var next = new GameScene(SceneType.Defeat);
+                var next = defeat;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.Defeat)
+        _machine.Configure(defeat)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.MainMenu);
+                var next = mainMenu;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
 
-        _machine.Configure(SceneType.Victory)
+        _machine.Configure(victory)
             .PermitDynamic(Trigger.ExitState, () =>
             {
-                var next = new GameScene(SceneType.MainMenu);
+                var next = mainMenu;
                 ChangeScene(next);
-                return next.Type;
+                return next;
             });
-
-
-        //_machine.Configure(SceneType.Exploration)
-        //    .PermitDynamic(Trigger.EncounterEnemy, () =>
-        //    {
-        //        var payload = ScenePayload.ForBattle("Wolves");
-        //        var next = new GameScene(SceneType.Battle, payload);
-        //        ChangeScene(next);
-        //        return next.Type;
-        //    })
-        //    .PermitDynamic(Trigger.TalkToNpc, () =>
-        //    {
-        //        var payload = ScenePayload.ForDialog("ElderNPC");
-        //        var next = new GameScene(SceneType.Dialog, payload);
-        //        ChangeScene(next);
-        //        return next.Type;
-        //    });
-
-        //_machine.Configure(SceneType.Battle)
-        //    .PermitDynamic(Trigger.EndBattle, () =>
-        //    {
-        //        var next = new GameScene(
-        //            SceneType.Exploration,
-        //            ScenePayload.ForExploration("ForestEntry"));
-        //        ChangeScene(next);
-        //        return next.Type;
-        //    });
-
-        //_machine.Configure(SceneType.Dialog)
-        //    .PermitDynamic(Trigger.EndDialog, () =>
-        //    {
-        //        var next = new GameScene(
-        //            SceneType.Exploration,
-        //            ScenePayload.ForExploration("VillageSquare"));
-        //        ChangeScene(next);
-        //        return next.Type;
-        //    });
     }
 
     private void ChangeScene(GameScene scene)
