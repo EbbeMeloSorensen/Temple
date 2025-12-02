@@ -31,6 +31,7 @@ namespace Temple.ViewModel
         private MainWindowViewModel_PR _mainWindowViewModel_PR;
         private object _currentViewModel;
         private ObservableObject<string> _next;
+        private HashSet<string> _challengesCompleted; // (part of state)
 
         public Action? ShutdownAction { get; set; }
 
@@ -60,6 +61,7 @@ namespace Temple.ViewModel
             _applicationDialogService = applicationDialogService;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _next = new ObservableObject<string>();
+            _challengesCompleted = new HashSet<string>();
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
@@ -83,11 +85,11 @@ namespace Temple.ViewModel
                         CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
                     case StateMachineState.Battle:
-                        var battleViewModel = new BattleViewModel(_controller);
+                        var battleViewModel = new BattleViewModel(_controller, _next.Object == "Final Battle");
                         var scene = _next.Object switch
                         {
-                            "A" => GetSceneFirstBattle(),
-                            "B" => GetSceneFinalBattle(),
+                            "Dungeon 1, Room 1, Goblin" => GetSceneFirstBattle(),
+                            "Final Battle" => GetSceneFinalBattle(),
                             _ => throw new InvalidOperationException("Unknown battle")
                         };
                         battleViewModel.ActOutSceneViewModel.InitializeScene(scene);
@@ -115,21 +117,6 @@ namespace Temple.ViewModel
                                 };
                                 break;
                             }
-                            //case StateMachineStateType.Battle:
-                            //{
-                            //    var battleViewModel = new BattleViewModel(_controller);
-                            //    var scene = applicationState.Payload?.EnemyGroup switch
-                            //    {
-                            //        "goblin" => GetSceneFirstBattle(),
-                            //        "final" => GetSceneFinalBattle(),
-                            //        _ => throw new InvalidOperationException("Unknown enemy group")
-                            //    };
-
-                            //    battleViewModel.ActOutSceneViewModel.InitializeScene(scene);
-                            //    battleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
-                            //    CurrentViewModel = battleViewModel;
-                            //    break;
-                            //}
                             case StateMachineStateType.Exploration:
                             {
                                 var exploreAreaViewModel = new ExploreAreaViewModel(_controller, _next);
@@ -635,10 +622,13 @@ namespace Temple.ViewModel
 
             //Scene3D = group;
 
-
             // Add exits
-            scene.AddBoundary(new LineSegment(new Vector2D(-1, -3), new Vector2D(-1, -2), "A"));
-            scene.AddBoundary(new LineSegment(new Vector2D(1, -5), new Vector2D(0, -5), "B"));
+            if (!_challengesCompleted.Contains("Dungeon 1, Room 1, Goblin"))
+            {
+                scene.AddBoundary(new LineSegment(new Vector2D(-1, -3), new Vector2D(-1, -2), "Dungeon 1, Room 1, Goblin"));
+            }
+
+            scene.AddBoundary(new LineSegment(new Vector2D(1, -5), new Vector2D(0, -5), "Final Battle"));
 
             return scene;
         }

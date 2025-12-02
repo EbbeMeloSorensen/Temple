@@ -197,19 +197,6 @@ namespace Temple.ViewModel.DD.Battle
 
                 await Proceed();
             };
-
-            selectedScene.PropertyChanged += (s, e) =>
-            {
-                //_engine.Scene = (s as ObservableObject<Scene>)?.Object;
-
-                //_engine.InitializeCreatures();
-
-                //TeamStatsViewModel.Initialize(_engine.Creatures);
-
-                //_boardViewModel.UpdateCreatureViewModels(
-                //    _engine.Creatures,
-                //    _engine.CurrentCreature);
-            };
         }
 
         public void InitializeScene(

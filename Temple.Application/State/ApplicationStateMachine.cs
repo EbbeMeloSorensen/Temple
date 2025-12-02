@@ -61,17 +61,8 @@ public class ApplicationStateMachine
                 UpdateApplicationState(applicationState);
             })
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.ExploreArea_Dungeon1)
-            .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat);
-
-        _machine.Configure(StateMachineState.Battle_Final)
-            .OnEntry(() =>
-            {
-                var payload = new ApplicationStatePayload { EnemyGroup = "final" };
-                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Battle, payload);
-                UpdateApplicationState(applicationState);
-            })
-            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Victory)
-            .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat);
+            .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat)
+            .Permit(ApplicationStateShiftTrigger.GoToVictory, StateMachineState.Victory);
 
         _machine.Configure(StateMachineState.Defeat)
             .OnEntry(() => UpdateApplicationState())
