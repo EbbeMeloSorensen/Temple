@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Temple.Application.Interfaces;
-using Temple.Application.State.NewPrinciple;
+using Temple.Application.State;
 using Temple.Persistence.EFCore.AppData;
 
 namespace Temple.Application.Core;

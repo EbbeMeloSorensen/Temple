@@ -1,6 +1,6 @@
 ﻿using Stateless;
 
-namespace Temple.Application.State.NewPrinciple;
+namespace Temple.Application.State;
 
 public class GameStateMachine
 {

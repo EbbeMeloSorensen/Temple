@@ -9,7 +9,7 @@ using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.People;
 using Temple.Application.Smurfs;
-using Temple.Application.State.NewPrinciple;
+using Temple.Application.State;
 using Temple.Domain.BusinessRules.PR;
 using Temple.Infrastructure.IO;
 using Temple.Infrastructure.Pagination;

@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using Temple.Application.State.NewPrinciple;
+using Temple.Application.State;
 
 namespace Temple.ViewModel
 {
