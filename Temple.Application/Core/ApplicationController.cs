@@ -15,12 +15,12 @@ public class ApplicationController
 
     public event EventHandler<string>? ProgressChanged;
 
-    public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentScene;
+    public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentState;
 
     public event Action<ApplicationState>? SceneChanged
     {
-        add => _applicationStateMachine.SceneChanged += value;
-        remove => _applicationStateMachine.SceneChanged -= value;
+        add => _applicationStateMachine.StateChanged += value;
+        remove => _applicationStateMachine.StateChanged -= value;
     }
 
     public ApplicationController(
@@ -35,7 +35,7 @@ public class ApplicationController
 
     public async Task InitializeAsync()
     {
-        _applicationStateMachine.Fire(Trigger.Initialize); // Initialize game state machine
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.Initialize); // Initialize game state machine
 
         Report("Initializing application...");
 
@@ -53,7 +53,7 @@ public class ApplicationController
             Report("Finalizing startup...");
             await Task.Delay(500); // Simulate additional initialization
 
-            _applicationStateMachine.Fire(Trigger.Initialize); // Starting → MainMenu
+            _applicationStateMachine.Fire(ApplicationStateShiftTrigger.Initialize); // Starting → MainMenu
             Report("Application is ready.");
         }
         catch (Exception ex)
@@ -72,42 +72,42 @@ public class ApplicationController
 
     public void StartNewGame()
     {
-        _applicationStateMachine.Fire(Trigger.StartNewGame);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.StartNewGame);
     }
 
     public void ExitState()
     {
-        _applicationStateMachine.Fire(Trigger.ExitState);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ExitState);
     }
 
     public void GoToSmurfManagement()
     {
-        _applicationStateMachine.Fire(Trigger.GoToSmurfManagement);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToSmurfManagement);
     }
 
     public void GoToPeopleManagement()
     {
-        _applicationStateMachine.Fire(Trigger.GoToPeopleManagement);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToPeopleManagement);
     }
 
     public void GoToHome()
     {
-        _applicationStateMachine.Fire(Trigger.ExitState);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ExitState);
     }
 
     public void GoToDefeat()
     {
-        _applicationStateMachine.Fire(Trigger.GoToDefeat);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToDefeat);
     }
 
     public void GoToVictory()
     {
-        _applicationStateMachine.Fire(Trigger.GoToVictory);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToVictory);
     }
 
     public void Shutdown()
     {
-        _applicationStateMachine.Fire(Trigger.ShutdownRequested);
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ShutdownRequested);
     }
 
     private void Report(

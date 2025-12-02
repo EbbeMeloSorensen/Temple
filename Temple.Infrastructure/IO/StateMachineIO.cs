@@ -8,7 +8,7 @@ namespace Temple.Infrastructure.IO
     public class StateMachineIO : IStateMachineIO
     {
         public void ExportTheDamnThing(
-            StateMachine<ApplicationStateType, Trigger> stateMachine)
+            StateMachine<ApplicationStateType, ApplicationStateShiftTrigger> stateMachine)
         {
             var dot = UmlDotGraph.Format(stateMachine.GetInfo());
 

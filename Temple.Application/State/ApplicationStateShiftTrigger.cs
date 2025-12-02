@@ -1,6 +1,6 @@
 ﻿namespace Temple.Application.State;
 
-public enum Trigger
+public enum ApplicationStateShiftTrigger
 {
     Initialize,
     ShutdownRequested,

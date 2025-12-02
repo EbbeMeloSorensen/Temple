@@ -4,72 +4,72 @@ namespace Temple.Application.State;
 
 public class ApplicationStateMachine
 {
-    internal readonly StateMachine<ApplicationStateType, Trigger> _machine;
+    internal readonly StateMachine<ApplicationStateType, ApplicationStateShiftTrigger> _machine;
 
-    public ApplicationState CurrentScene { get; private set; }
+    public ApplicationState CurrentState { get; private set; }
 
-    public event Action<ApplicationState>? SceneChanged;
+    public event Action<ApplicationState>? StateChanged;
 
     public ApplicationStateMachine()
     {
-        _machine = new StateMachine<ApplicationStateType, Trigger>(ApplicationStateType.Starting);
+        _machine = new StateMachine<ApplicationStateType, ApplicationStateShiftTrigger>(ApplicationStateType.Starting);
 
         _machine.Configure(ApplicationStateType.Starting)
-            .Permit(Trigger.Initialize, ApplicationStateType.MainMenu);
+            .Permit(ApplicationStateShiftTrigger.Initialize, ApplicationStateType.MainMenu);
 
         _machine.Configure(ApplicationStateType.MainMenu)
-            .Permit(Trigger.GoToSmurfManagement, ApplicationStateType.SmurfManagement)
-            .Permit(Trigger.GoToPeopleManagement, ApplicationStateType.PeopleManagement)
-            .Permit(Trigger.StartNewGame, ApplicationStateType.Intro)
-            .Permit(Trigger.ShutdownRequested, ApplicationStateType.ShuttingDown);
+            .Permit(ApplicationStateShiftTrigger.GoToSmurfManagement, ApplicationStateType.SmurfManagement)
+            .Permit(ApplicationStateShiftTrigger.GoToPeopleManagement, ApplicationStateType.PeopleManagement)
+            .Permit(ApplicationStateShiftTrigger.StartNewGame, ApplicationStateType.Intro)
+            .Permit(ApplicationStateShiftTrigger.ShutdownRequested, ApplicationStateType.ShuttingDown);
 
         _machine.Configure(ApplicationStateType.SmurfManagement)
-            .Permit(Trigger.ExitState, ApplicationStateType.MainMenu);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
 
         _machine.Configure(ApplicationStateType.PeopleManagement)
-            .Permit(Trigger.ExitState, ApplicationStateType.MainMenu);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
 
         _machine.Configure(ApplicationStateType.Intro)
-            .Permit(Trigger.ExitState, ApplicationStateType.Battle_First);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.Battle_First);
 
         _machine.Configure(ApplicationStateType.Battle_First)
-            .Permit(Trigger.ExitState, ApplicationStateType.ExploreArea_AfterFirstBattle)
-            .Permit(Trigger.GoToDefeat, ApplicationStateType.Defeat);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.ExploreArea_AfterFirstBattle)
+            .Permit(ApplicationStateShiftTrigger.GoToDefeat, ApplicationStateType.Defeat);
 
         _machine.Configure(ApplicationStateType.ExploreArea_AfterFirstBattle)
-            .Permit(Trigger.ExitState, ApplicationStateType.Battle_Final);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.Battle_Final);
 
         _machine.Configure(ApplicationStateType.Battle_Final)
-            .Permit(Trigger.ExitState, ApplicationStateType.Victory)
-            .Permit(Trigger.GoToDefeat, ApplicationStateType.Defeat);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.Victory)
+            .Permit(ApplicationStateShiftTrigger.GoToDefeat, ApplicationStateType.Defeat);
 
         _machine.Configure(ApplicationStateType.Defeat)
-            .Permit(Trigger.ExitState, ApplicationStateType.MainMenu);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
 
         _machine.Configure(ApplicationStateType.Victory)
-            .Permit(Trigger.ExitState, ApplicationStateType.MainMenu);
+            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
 
-        CurrentScene = new ApplicationState(
+        CurrentState = new ApplicationState(
             _machine.State);
     }
 
     private void ChangeScene(ApplicationState scene)
     {
-        CurrentScene = scene;
-        SceneChanged?.Invoke(scene);
+        CurrentState = scene;
+        StateChanged?.Invoke(scene);
     }
 
-    public void Fire(Trigger trigger)
+    public void Fire(ApplicationStateShiftTrigger applicationStateShiftTrigger)
     {
-        if (_machine.CanFire(trigger))
+        if (_machine.CanFire(applicationStateShiftTrigger))
         {
-            _machine.Fire(trigger);
+            _machine.Fire(applicationStateShiftTrigger);
 
             ChangeScene(new ApplicationState(_machine.State));
         }
         else
         {
-            Console.WriteLine($"Ignored trigger {trigger} in state {_machine.State}");
+            Console.WriteLine($"Ignored trigger {applicationStateShiftTrigger} in state {_machine.State}");
         }
     }
 }
