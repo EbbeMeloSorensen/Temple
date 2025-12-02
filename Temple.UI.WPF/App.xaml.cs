@@ -67,7 +67,7 @@ namespace Temple.UI.WPF
                             services.AddTransient<MainWindow>();
 
                             // Register stuff for our state machine
-                            services.AddSingleton<GameStateMachine>();
+                            services.AddSingleton<ApplicationStateMachine>();
                             services.AddSingleton<ApplicationController>();
                         })
                         .Build();

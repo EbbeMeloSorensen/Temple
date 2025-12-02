@@ -19,8 +19,7 @@ namespace Temple.ViewModel
         private readonly IMediator _mediator;
         private readonly IDialogService _applicationDialogService;
         private readonly ApplicationController _controller;
-        private string _currentState;
-        private string _currentScene;
+        private string _currentApplicationStateAsText;
         private InterludeViewModel _interludeViewModel;
         private BattleViewModel _battleViewModel;
         private ExploreAreaViewModel _exploreAreaViewModel;
@@ -90,10 +89,10 @@ namespace Temple.ViewModel
             }
         }
 
-        public string CurrentScene
+        public string CurrentApplicationStateAsText
         {
-            get => _currentScene;
-            private set => Set(ref _currentScene, value);
+            get => _currentApplicationStateAsText;
+            private set => Set(ref _currentApplicationStateAsText, value);
         }
 
         public object CurrentViewModel
@@ -117,13 +116,13 @@ namespace Temple.ViewModel
 
             HomeViewModel = new HomeViewModel(_controller);
 
-            CurrentScene = _controller.CurrentGameScene.Type.ToString();
+            CurrentApplicationStateAsText = _controller.CurrentApplicationState.Type.ToString();
 
             _controller.SceneChanged += (newScene) =>
             {
-                CurrentScene = newScene.Type.ToString();
+                CurrentApplicationStateAsText = newScene.Type.ToString();
 
-                switch (CurrentScene)
+                switch (CurrentApplicationStateAsText)
                 {
                     case "MainMenu":
                         CurrentViewModel = HomeViewModel;

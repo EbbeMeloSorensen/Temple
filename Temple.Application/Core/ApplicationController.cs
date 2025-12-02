@@ -9,33 +9,33 @@ namespace Temple.Application.Core;
 
 public class ApplicationController
 {
-    private readonly GameStateMachine _gameStateMachine;
+    private readonly ApplicationStateMachine _applicationStateMachine;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
     public event EventHandler<string>? ProgressChanged;
 
-    public GameScene CurrentGameScene => _gameStateMachine.CurrentScene;
+    public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentScene;
 
-    public event Action<GameScene>? SceneChanged
+    public event Action<ApplicationState>? SceneChanged
     {
-        add => _gameStateMachine.SceneChanged += value;
-        remove => _gameStateMachine.SceneChanged -= value;
+        add => _applicationStateMachine.SceneChanged += value;
+        remove => _applicationStateMachine.SceneChanged -= value;
     }
 
     public ApplicationController(
-        GameStateMachine gameStateMachine,
+        ApplicationStateMachine applicationStateMachine,
         IServiceScopeFactory scopeFactory,
         ILogger<ApplicationController> logger)
     {
-        _gameStateMachine = gameStateMachine;
+        _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
     }
 
     public async Task InitializeAsync()
     {
-        _gameStateMachine.Fire(Trigger.Initialize); // Initialize game state machine
+        _applicationStateMachine.Fire(Trigger.Initialize); // Initialize game state machine
 
         Report("Initializing application...");
 
@@ -53,7 +53,7 @@ public class ApplicationController
             Report("Finalizing startup...");
             await Task.Delay(500); // Simulate additional initialization
 
-            _gameStateMachine.Fire(Trigger.Initialize); // Starting → MainMenu
+            _applicationStateMachine.Fire(Trigger.Initialize); // Starting → MainMenu
             Report("Application is ready.");
         }
         catch (Exception ex)
@@ -67,47 +67,47 @@ public class ApplicationController
     {
         using var scope = _scopeFactory.CreateScope();
         var stateMachineIO = scope.ServiceProvider.GetRequiredService<IStateMachineIO>();
-        stateMachineIO.ExportTheDamnThing(_gameStateMachine._machine);
+        stateMachineIO.ExportTheDamnThing(_applicationStateMachine._machine);
     }
 
     public void StartNewGame()
     {
-        _gameStateMachine.Fire(Trigger.StartNewGame);
+        _applicationStateMachine.Fire(Trigger.StartNewGame);
     }
 
     public void ExitState()
     {
-        _gameStateMachine.Fire(Trigger.ExitState);
+        _applicationStateMachine.Fire(Trigger.ExitState);
     }
 
     public void GoToSmurfManagement()
     {
-        _gameStateMachine.Fire(Trigger.GoToSmurfManagement);
+        _applicationStateMachine.Fire(Trigger.GoToSmurfManagement);
     }
 
     public void GoToPeopleManagement()
     {
-        _gameStateMachine.Fire(Trigger.GoToPeopleManagement);
+        _applicationStateMachine.Fire(Trigger.GoToPeopleManagement);
     }
 
     public void GoToHome()
     {
-        _gameStateMachine.Fire(Trigger.ExitState);
+        _applicationStateMachine.Fire(Trigger.ExitState);
     }
 
     public void GoToDefeat()
     {
-        _gameStateMachine.Fire(Trigger.GoToDefeat);
+        _applicationStateMachine.Fire(Trigger.GoToDefeat);
     }
 
     public void GoToVictory()
     {
-        _gameStateMachine.Fire(Trigger.GoToVictory);
+        _applicationStateMachine.Fire(Trigger.GoToVictory);
     }
 
     public void Shutdown()
     {
-        _gameStateMachine.Fire(Trigger.ShutdownRequested);
+        _applicationStateMachine.Fire(Trigger.ShutdownRequested);
     }
 
     private void Report(

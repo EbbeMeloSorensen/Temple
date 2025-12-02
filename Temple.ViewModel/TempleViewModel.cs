@@ -5,6 +5,6 @@ namespace Temple.ViewModel
 {
     public abstract class TempleViewModel : ViewModelBase
     {
-        public virtual TempleViewModel Init(ScenePayload payload) => this;
+        public virtual TempleViewModel Init(ApplicationStatePayload payload) => this;
     }
 }

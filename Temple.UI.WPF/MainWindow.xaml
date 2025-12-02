@@ -46,7 +46,7 @@
     <DockPanel DockPanel.Dock="Top">
         <StatusBar DockPanel.Dock="Bottom" Height="25" Visibility="Visible">
             <StatusBarItem>
-                <TextBlock Text="{Binding CurrentScene}"/>
+                <TextBlock Text="{Binding CurrentApplicationStateAsText}"/>
             </StatusBarItem>
         </StatusBar>
 

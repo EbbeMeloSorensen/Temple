@@ -23,11 +23,11 @@ namespace Temple.ViewModel
             _exploreAreaFactory = exploreAreaFactory ?? throw new ArgumentNullException(nameof(exploreAreaFactory));
         }
 
-        public ViewModelBase CreateViewModel(GameScene scene)
+        public ViewModelBase CreateViewModel(ApplicationState scene)
         {
             return scene.Type switch
             {
-                SceneType.MainMenu => _homeFactory(),
+                ApplicationStateType.MainMenu => _homeFactory(),
                 //SceneType.Interlude => _interludeFactory().Init(scene.Payload),
                 //SceneType.Battle => _battleFactory().Init(scene.Payload),
                 //SceneType.Exploration => _exploreAreaFactory().Init(scene.Payload),

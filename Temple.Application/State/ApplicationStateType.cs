@@ -1,6 +1,6 @@
 ﻿namespace Temple.Application.State
 {
-    public enum SceneType
+    public enum ApplicationStateType
     {
         Starting,
         MainMenu,
