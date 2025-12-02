@@ -36,8 +36,19 @@ public class ApplicationStateMachine
         _machine.Configure(StateMachineState.Intro)
             .OnEntry(() =>
             {
+                // Denne payload skal specificere, at det er intro-prelude, der skal vises
                 var dummyPayload = new ApplicationStatePayload();
                 var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Interlude, dummyPayload);
+                UpdateApplicationState(applicationState);
+            })
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.ExploreArea_Dungeon1);
+
+        _machine.Configure(StateMachineState.ExploreArea_Dungeon1)
+            .OnEntry(() =>
+            {
+                // Denne payload skal specificere, at det er dungeon1-mappet, der skal vises
+                var dummyPayload = new ApplicationStatePayload();
+                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Exploration, dummyPayload);
                 UpdateApplicationState(applicationState);
             })
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle_First);
@@ -45,21 +56,12 @@ public class ApplicationStateMachine
         _machine.Configure(StateMachineState.Battle_First)
             .OnEntry(() =>
             {
-                var payload = new ApplicationStatePayload{ EnemyGroup = "goblin"};
+                var payload = new ApplicationStatePayload { EnemyGroup = "goblin" };
                 var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Battle, payload);
                 UpdateApplicationState(applicationState);
             })
-            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.ExploreArea_AfterFirstBattle)
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.ExploreArea_Dungeon1)
             .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat);
-
-        _machine.Configure(StateMachineState.ExploreArea_AfterFirstBattle)
-            .OnEntry(() =>
-            {
-                var dummyPayload = new ApplicationStatePayload();
-                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Exploration, dummyPayload);
-                UpdateApplicationState(applicationState);
-            })
-            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle_Final);
 
         _machine.Configure(StateMachineState.Battle_Final)
             .OnEntry(() =>

@@ -118,7 +118,8 @@ namespace Temple.ViewModel
                             case StateMachineStateType.Exploration:
                             {
                                 var exploreAreaViewModel = new ExploreAreaViewModel(_controller);
-                                exploreAreaViewModel.StartAnimation(GenerateScene());
+                                //exploreAreaViewModel.StartAnimation(GenerateScene1());
+                                exploreAreaViewModel.StartAnimation(GenerateScene2());
                                 CurrentViewModel = exploreAreaViewModel;
                                 break;
                             }
@@ -194,15 +195,37 @@ namespace Temple.ViewModel
                         range: 4)
                 });
 
-            var scene = new Domain.Entities.DD.Scene("DummyScene", 4, 4);
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 2));
-            scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 0, 0);
-            //scene.AddCreature(new Creature(archer, false) { IsAutomatic = false }, 0, 1);
-            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 2);
-            //scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 3, 3);
+            var scene = new Domain.Entities.DD.Scene("DummyScene", 8, 7);
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 6));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 6));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 2));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 1));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 2));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 1));
+            scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 5, 3);
+            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 4);
 
             return scene;
         }
@@ -277,7 +300,7 @@ namespace Temple.ViewModel
             return scene;
         }
 
-        private Craft.Simulation.Scene GenerateScene()
+        private Craft.Simulation.Scene GenerateScene1()
         {
             var ballRadius = 0.16;
             var initialBallPosition = new Vector2D(0, 0);
@@ -412,6 +435,151 @@ namespace Temple.ViewModel
                 return response;
             };
 
+
+            return scene;
+        }
+
+        private Craft.Simulation.Scene GenerateScene2()
+        {
+            var ballRadius = 0.16;
+            var initialBallPosition = new Vector2D(0.5, -0.5);
+
+            var initialState = new State();
+            initialState.AddBodyState(
+                new BodyStateClassic(new CircularBody(1, ballRadius, 1, false), initialBallPosition)
+                {
+                    Orientation = 0.5 * Math.PI
+                });
+
+            var name = "Exploration";
+            var standardGravity = 0.0;
+            var initialWorldWindowUpperLeft = new Point2D(-1.4, -1.3);
+            var initialWorldWindowLowerRight = new Point2D(5, 3);
+            var gravitationalConstant = 0.0;
+            var coefficientOfFriction = 0.0;
+            var timeFactor = 1.0;
+            var handleBodyCollisions = false;
+            var deltaT = 0.001;
+            var viewMode = SceneViewMode.FocusOnFirstBody;
+
+            var scene = new Craft.Simulation.Scene(
+                name,
+                initialWorldWindowUpperLeft,
+                initialWorldWindowLowerRight,
+                initialState,
+                standardGravity,
+                gravitationalConstant,
+                coefficientOfFriction,
+                timeFactor,
+                handleBodyCollisions,
+                deltaT,
+                viewMode);
+
+            scene.CollisionBetweenBodyAndBoundaryOccuredCallBack =
+                body => OutcomeOfCollisionBetweenBodyAndBoundary.Block;
+
+            scene.InteractionCallBack = (keyboardState, keyboardEvents, mouseClickPosition, collisions, currentState) =>
+            {
+                var currentStateOfMainBody = currentState.BodyStates.First() as BodyStateClassic;
+                var currentRotationalSpeed = currentStateOfMainBody.RotationalSpeed;
+                var currentArtificialSpeed = currentStateOfMainBody.ArtificialVelocity.Length;
+
+                var newRotationalSpeed = 0.0;
+
+                if (keyboardState.LeftArrowDown)
+                {
+                    newRotationalSpeed += Math.PI;
+                }
+
+                if (keyboardState.RightArrowDown)
+                {
+                    newRotationalSpeed -= Math.PI;
+                }
+
+                var newArtificialSpeed = 0.0;
+
+                if (keyboardState.UpArrowDown)
+                {
+                    newArtificialSpeed += 3.0;
+                }
+
+                if (keyboardState.DownArrowDown)
+                {
+                    newArtificialSpeed -= 3.0;
+                }
+
+                currentStateOfMainBody.RotationalSpeed = newRotationalSpeed;
+                currentStateOfMainBody.ArtificialVelocity = new Vector2D(newArtificialSpeed, 0);
+
+                if (Math.Abs(newRotationalSpeed - currentRotationalSpeed) < 0.01 &&
+                    Math.Abs(newArtificialSpeed - currentArtificialSpeed) < 0.01)
+                {
+                    return false;
+                }
+
+                return true;
+            };
+
+            scene.PostPropagationCallBack = (propagatedState, boundaryCollisionReports, bodyCollisionReports) =>
+            {
+                var response = new PostPropagationResponse();
+
+                if (!boundaryCollisionReports.Any()) return response;
+
+                var boundary = boundaryCollisionReports.First().Boundary;
+
+                if (string.IsNullOrEmpty(boundary.Tag)) return response;
+
+                response.Outcome = boundary.Tag;
+                response.IndexOfLastState = propagatedState.Index;
+
+                return response;
+            };
+
+            // Liniestykker defineres i et normalt xy koordinatsystem
+            var lineSegments = new List<LineSegment2D>
+            {
+                new(new Point2D(0, 2), new Point2D(0, 0)),
+                new(new Point2D(0, 0), new Point2D(1, 0)),
+                new(new Point2D(1, 0), new Point2D(1, 5)),
+                new(new Point2D(1, 5), new Point2D(3, 5)),
+                new(new Point2D(3, 5), new Point2D(3, 9)),
+                new(new Point2D(3, 9), new Point2D(-2, 9)),
+                new(new Point2D(-2, 9), new Point2D(-2, 5)),
+                new(new Point2D(-2, 5), new Point2D(0, 5)),
+                new(new Point2D(0, 5), new Point2D(0, 3)),
+                new(new Point2D(0, 3), new Point2D(-1, 3)),
+                new(new Point2D(-1, 3), new Point2D(-1, 4)),
+                new(new Point2D(-1, 4), new Point2D(-3, 4)),
+                new(new Point2D(-3, 4), new Point2D(-3, 1)),
+                new(new Point2D(-3, 1), new Point2D(-1, 1)),
+                new(new Point2D(-1, 1), new Point2D(-1, 2)),
+                new(new Point2D(-1, 2), new Point2D(0, 2)),
+            };
+
+            //var group = new Model3DGroup();
+            //var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
+
+            foreach (var lineSegment in lineSegments)
+            {
+                scene.AddBoundary(new LineSegment(
+                    new Vector2D(lineSegment.Point1.X, -lineSegment.Point1.Y),
+                    new Vector2D(lineSegment.Point2.X, -lineSegment.Point2.Y)));
+
+                //var rectangleMesh = CreateWall(
+                //    new Point2D(lineSegment.Point1.Y, lineSegment.Point1.X),
+                //    new Point2D(lineSegment.Point2.Y, lineSegment.Point2.X));
+
+                //var rectangleModel = new GeometryModel3D(rectangleMesh, material);
+                //group.Children.Add(rectangleModel);
+            }
+
+            //Scene3D = group;
+
+
+            // Add exits
+            scene.AddBoundary(new LineSegment(new Vector2D(-1, -3), new Vector2D(-1, -2), "A"));
+            scene.AddBoundary(new LineSegment(new Vector2D(1, -5), new Vector2D(0, -5), "B"));
 
             return scene;
         }

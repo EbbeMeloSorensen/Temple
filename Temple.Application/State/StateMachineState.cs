@@ -13,7 +13,7 @@
         Defeat,
         Victory,
         Battle_First,
-        ExploreArea_AfterFirstBattle,
+        ExploreArea_Dungeon1,
         Battle_Final
     }
 }
