@@ -47,7 +47,7 @@ public class ApplicationController
     public async Task InitializeAsync()
     {
         _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → (still Starting)
-        await _gameStateMachine.FireAsync(Trigger.Initialize); // Initialize game state machine
+        _gameStateMachine.Fire(Trigger.Initialize); // Initialize game state machine
 
         Report("Initializing application...");
 
@@ -102,49 +102,49 @@ public class ApplicationController
     public void StartNewGame()
     {
         _stateMachine.Fire(ApplicationTrigger.StartNewGame);
-        _gameStateMachine.FireAsync(Trigger.StartNewGame);
+        _gameStateMachine.Fire(Trigger.StartNewGame);
     }
 
     public void ExitState()
     {
         _stateMachine.Fire(ApplicationTrigger.ExitState);
-        _gameStateMachine.FireAsync(Trigger.ExitState);
+        _gameStateMachine.Fire(Trigger.ExitState);
     }
 
     public void GoToSmurfManagement()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToSmurfManagement);
-        _gameStateMachine.FireAsync(Trigger.GoToSmurfManagement);
+        _gameStateMachine.Fire(Trigger.GoToSmurfManagement);
     }
 
     public void GoToPeopleManagement()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToPeopleManagement);
-        _gameStateMachine.FireAsync(Trigger.GoToPeopleManagement);
+        _gameStateMachine.Fire(Trigger.GoToPeopleManagement);
     }
 
     public void GoToHome()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToHome);
-        _gameStateMachine.FireAsync(Trigger.ExitState);
+        _gameStateMachine.Fire(Trigger.ExitState);
     }
 
     public void GoToDefeat()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToDefeat);
-        _gameStateMachine.FireAsync(Trigger.GoToDefeat);
+        _gameStateMachine.Fire(Trigger.GoToDefeat);
     }
 
     public void GoToVictory()
     {
         _stateMachine.Fire(ApplicationTrigger.GoToVictory);
-        _gameStateMachine.FireAsync(Trigger.GoToVictory);
+        _gameStateMachine.Fire(Trigger.GoToVictory);
     }
 
     public void Shutdown()
     {
         _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
-        _gameStateMachine.FireAsync(Trigger.ShutdownRequested);
+        _gameStateMachine.Fire(Trigger.ShutdownRequested);
     }
 
     private void Report(

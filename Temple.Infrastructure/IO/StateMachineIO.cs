@@ -9,7 +9,7 @@ namespace Temple.Infrastructure.IO
     public class StateMachineIO : IStateMachineIO
     {
         public void ExportTheDamnThing(
-            StateMachine<GameScene, Trigger> stateMachine)
+            StateMachine<SceneType, Trigger> stateMachine)
         {
             var dot = UmlDotGraph.Format(stateMachine.GetInfo());
 

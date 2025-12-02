@@ -1,10 +1,12 @@
-﻿using Stateless;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Stateless;
+using Stateless.Graph;
 
 namespace Temple.Application.State.NewPrinciple;
 
 public class GameStateMachine
 {
-    internal readonly StateMachine<GameScene, Trigger> _machine;
+    internal readonly StateMachine<SceneType, Trigger> _machine;
 
     public GameScene CurrentScene { get; private set; }
 
@@ -12,132 +14,45 @@ public class GameStateMachine
 
     public GameStateMachine()
     {
+        _machine = new StateMachine<SceneType, Trigger>(SceneType.Starting);
+
+        _machine.Configure(SceneType.Starting)
+            .Permit(Trigger.Initialize, SceneType.MainMenu);
+
+        _machine.Configure(SceneType.MainMenu)
+            .Permit(Trigger.GoToSmurfManagement, SceneType.SmurfManagement)
+            .Permit(Trigger.GoToPeopleManagement, SceneType.PeopleManagement)
+            .Permit(Trigger.StartNewGame, SceneType.Intro)
+            .Permit(Trigger.ShutdownRequested, SceneType.ShuttingDown);
+
+        _machine.Configure(SceneType.SmurfManagement)
+            .Permit(Trigger.ExitState, SceneType.MainMenu);
+
+        _machine.Configure(SceneType.PeopleManagement)
+            .Permit(Trigger.ExitState, SceneType.MainMenu);
+
+        _machine.Configure(SceneType.Intro)
+            .Permit(Trigger.ExitState, SceneType.Battle_First);
+
+        _machine.Configure(SceneType.Battle_First)
+            .Permit(Trigger.ExitState, SceneType.ExploreArea_AfterFirstBattle)
+            .Permit(Trigger.GoToDefeat, SceneType.Defeat);
+
+        _machine.Configure(SceneType.ExploreArea_AfterFirstBattle)
+            .Permit(Trigger.ExitState, SceneType.Battle_Final);
+
+        _machine.Configure(SceneType.Battle_Final)
+            .Permit(Trigger.ExitState, SceneType.Victory)
+            .Permit(Trigger.GoToDefeat, SceneType.Defeat);
+
+        _machine.Configure(SceneType.Defeat)
+            .Permit(Trigger.ExitState, SceneType.MainMenu);
+
+        _machine.Configure(SceneType.Victory)
+            .Permit(Trigger.ExitState, SceneType.MainMenu);
+
         CurrentScene = new GameScene(
-            SceneType.Starting);
-
-        var starting = new GameScene(SceneType.Starting);
-        var mainMenu = new GameScene(SceneType.MainMenu);
-        var smurfManagement = new GameScene(SceneType.SmurfManagement);
-        var peopleManagement = new GameScene(SceneType.PeopleManagement);
-        var shuttingDown = new GameScene(SceneType.ShuttingDown);
-        var intro = new GameScene(SceneType.Intro);
-        var battleFirst = new GameScene(SceneType.Battle_First);
-        var battleFinal= new GameScene(SceneType.Battle_Final);
-        var exploreAreaAfterFirstBattle = new GameScene(SceneType.ExploreArea_AfterFirstBattle);
-        var defeat = new GameScene(SceneType.Defeat);
-        var victory = new GameScene(SceneType.Victory);
-
-        _machine = new StateMachine<GameScene, Trigger>(starting);
-
-        _machine.Configure(starting)
-            .PermitDynamic(Trigger.Initialize, () =>
-            {
-                var next = mainMenu;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(mainMenu)
-            .PermitDynamic(Trigger.GoToSmurfManagement, () =>
-            {
-                var next = smurfManagement;
-                ChangeScene(next);
-                return next;
-            })
-            .PermitDynamic(Trigger.GoToPeopleManagement, () =>
-            {
-                var next = peopleManagement;
-                ChangeScene(next);
-                return next;
-            })
-            .PermitDynamic(Trigger.StartNewGame, () =>
-            {
-                var next = intro;
-                ChangeScene(next);
-                return next;
-            })
-            .PermitDynamic(Trigger.ShutdownRequested, () =>
-            {
-                var next = shuttingDown;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(smurfManagement)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = mainMenu;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(peopleManagement)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = mainMenu;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(intro)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = battleFirst;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(battleFirst)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = exploreAreaAfterFirstBattle;
-                ChangeScene(next);
-                return next;
-            })
-            .PermitDynamic(Trigger.GoToDefeat, () =>
-            {
-                var next = defeat;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(exploreAreaAfterFirstBattle)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = battleFinal;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(battleFinal)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = victory;
-                ChangeScene(next);
-                return next;
-            })
-            .PermitDynamic(Trigger.GoToDefeat, () =>
-            {
-                var next = defeat;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(defeat)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = mainMenu;
-                ChangeScene(next);
-                return next;
-            });
-
-        _machine.Configure(victory)
-            .PermitDynamic(Trigger.ExitState, () =>
-            {
-                var next = mainMenu;
-                ChangeScene(next);
-                return next;
-            });
+            _machine.State);
     }
 
     private void ChangeScene(GameScene scene)
@@ -146,5 +61,17 @@ public class GameStateMachine
         SceneChanged?.Invoke(scene);
     }
 
-    public Task FireAsync(Trigger t) => _machine.FireAsync(t);
+    public void Fire(Trigger trigger)
+    {
+        if (_machine.CanFire(trigger))
+        {
+            _machine.Fire(trigger);
+
+            ChangeScene(new GameScene(_machine.State));
+        }
+        else
+        {
+            Console.WriteLine($"Ignored trigger {trigger} in state {_machine.State}");
+        }
+    }
 }
