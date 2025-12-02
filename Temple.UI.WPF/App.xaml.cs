@@ -10,7 +10,6 @@ using Temple.Application.Interfaces;
 using Temple.Application.People;
 using Temple.Application.Smurfs;
 using Temple.Application.State.NewPrinciple;
-using Temple.Application.State.OldPrinciple;
 using Temple.Domain.BusinessRules.PR;
 using Temple.Infrastructure.IO;
 using Temple.Infrastructure.Pagination;
@@ -68,7 +67,6 @@ namespace Temple.UI.WPF
                             services.AddTransient<MainWindow>();
 
                             // Register stuff for our state machine
-                            services.AddSingleton<ApplicationStateMachine>();
                             services.AddSingleton<GameStateMachine>();
                             services.AddSingleton<ApplicationController>();
                         })

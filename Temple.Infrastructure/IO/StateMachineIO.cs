@@ -2,7 +2,6 @@
 using Stateless.Graph;
 using Temple.Application.Interfaces;
 using Temple.Application.State.NewPrinciple;
-using Temple.Application.State.OldPrinciple;
 
 namespace Temple.Infrastructure.IO
 {

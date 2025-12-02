@@ -3,28 +3,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Temple.Application.Interfaces;
 using Temple.Application.State.NewPrinciple;
-using Temple.Application.State.OldPrinciple;
 using Temple.Persistence.EFCore.AppData;
 
 namespace Temple.Application.Core;
 
 public class ApplicationController
 {
-    private readonly ApplicationStateMachine _stateMachine;
     private readonly GameStateMachine _gameStateMachine;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
     public event EventHandler<string>? ProgressChanged;
 
-    public ApplicationState CurrentState => _stateMachine.CurrentState;
     public GameScene CurrentGameScene => _gameStateMachine.CurrentScene;
-
-    public event EventHandler<ApplicationStateChangedEventArgs> StateChanged
-    {
-        add => _stateMachine.StateChanged += value;
-        remove => _stateMachine.StateChanged -= value;
-    }
 
     public event Action<GameScene>? SceneChanged
     {
@@ -33,12 +24,10 @@ public class ApplicationController
     }
 
     public ApplicationController(
-        ApplicationStateMachine stateMachine,
         GameStateMachine gameStateMachine,
         IServiceScopeFactory scopeFactory,
         ILogger<ApplicationController> logger)
     {
-        _stateMachine = stateMachine;
         _gameStateMachine = gameStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
@@ -46,7 +35,6 @@ public class ApplicationController
 
     public async Task InitializeAsync()
     {
-        _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → (still Starting)
         _gameStateMachine.Fire(Trigger.Initialize); // Initialize game state machine
 
         Report("Initializing application...");
@@ -65,7 +53,7 @@ public class ApplicationController
             Report("Finalizing startup...");
             await Task.Delay(500); // Simulate additional initialization
 
-            _stateMachine.Fire(ApplicationTrigger.Initialize); // Starting → MainMenu
+            _gameStateMachine.Fire(Trigger.Initialize); // Starting → MainMenu
             Report("Application is ready.");
         }
         catch (Exception ex)
@@ -74,23 +62,6 @@ public class ApplicationController
             // Optionally: add a Failed state in your state machine
         }
     }
-
-    //public void BeginWork()
-    //{
-    //    _stateMachine.Fire(ApplicationTrigger.WorkRequested);
-    //    Task.Run(async () =>
-    //    {
-    //        try
-    //        {
-    //            await Task.Delay(2000); // simulate work
-    //            _stateMachine.Fire(ApplicationTrigger.WorkCompleted);
-    //        }
-    //        catch
-    //        {
-    //            _stateMachine.Fire(ApplicationTrigger.ErrorOccurred);
-    //        }
-    //    });
-    //}
 
     public void ExportStateMachineAsGraph()
     {
@@ -101,49 +72,41 @@ public class ApplicationController
 
     public void StartNewGame()
     {
-        _stateMachine.Fire(ApplicationTrigger.StartNewGame);
         _gameStateMachine.Fire(Trigger.StartNewGame);
     }
 
     public void ExitState()
     {
-        _stateMachine.Fire(ApplicationTrigger.ExitState);
         _gameStateMachine.Fire(Trigger.ExitState);
     }
 
     public void GoToSmurfManagement()
     {
-        _stateMachine.Fire(ApplicationTrigger.GoToSmurfManagement);
         _gameStateMachine.Fire(Trigger.GoToSmurfManagement);
     }
 
     public void GoToPeopleManagement()
     {
-        _stateMachine.Fire(ApplicationTrigger.GoToPeopleManagement);
         _gameStateMachine.Fire(Trigger.GoToPeopleManagement);
     }
 
     public void GoToHome()
     {
-        _stateMachine.Fire(ApplicationTrigger.GoToHome);
         _gameStateMachine.Fire(Trigger.ExitState);
     }
 
     public void GoToDefeat()
     {
-        _stateMachine.Fire(ApplicationTrigger.GoToDefeat);
         _gameStateMachine.Fire(Trigger.GoToDefeat);
     }
 
     public void GoToVictory()
     {
-        _stateMachine.Fire(ApplicationTrigger.GoToVictory);
         _gameStateMachine.Fire(Trigger.GoToVictory);
     }
 
     public void Shutdown()
     {
-        _stateMachine.Fire(ApplicationTrigger.ShutdownRequested);
         _gameStateMachine.Fire(Trigger.ShutdownRequested);
     }
 

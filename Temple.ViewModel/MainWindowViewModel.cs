@@ -90,12 +90,6 @@ namespace Temple.ViewModel
             }
         }
 
-        public string CurrentState
-        {
-            get => _currentState;
-            private set => Set(ref _currentState, value);
-        }
-
         public string CurrentScene
         {
             get => _currentScene;
@@ -123,19 +117,13 @@ namespace Temple.ViewModel
 
             HomeViewModel = new HomeViewModel(_controller);
 
-            CurrentState = _controller.CurrentState.ToString();
             CurrentScene = _controller.CurrentGameScene.Type.ToString();
 
             _controller.SceneChanged += (newScene) =>
             {
                 CurrentScene = newScene.Type.ToString();
-            };
 
-            _controller.StateChanged += (_, e) =>
-            {
-                CurrentState = e.NewState.ToString();
-
-                switch (CurrentState)
+                switch (CurrentScene)
                 {
                     case "MainMenu":
                         CurrentViewModel = HomeViewModel;
