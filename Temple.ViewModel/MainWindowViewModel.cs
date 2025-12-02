@@ -7,6 +7,7 @@ using Craft.ViewModels.Dialogs;
 using GalaSoft.MvvmLight;
 using MediatR;
 using Temple.Application.Core;
+using Temple.Application.State;
 using Temple.Domain.Entities.DD;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.PR;
@@ -31,64 +32,7 @@ namespace Temple.ViewModel
 
         public Action? ShutdownAction { get; set; }
 
-        public HomeViewModel HomeViewModel { get; }
-
-        public InterludeViewModel InterludeViewModel
-        {
-            get
-            {
-                return _interludeViewModel ??= new InterludeViewModel(_controller);
-            }
-        }
-
-        public BattleViewModel BattleViewModel
-        {
-            get
-            {
-                return _battleViewModel ??= new BattleViewModel(_controller);
-            }
-        }
-
-        public ExploreAreaViewModel ExploreAreaViewModel
-        {
-            get
-            {
-                return _exploreAreaViewModel ??= new ExploreAreaViewModel(_controller);
-            }
-        }
-
-        public DefeatViewModel DefeatViewModel
-        {
-            get
-            {
-                return _defeatViewModel ??= new DefeatViewModel(_controller);
-            }
-        }
-
-        public VictoryViewModel VictoryViewModel
-        {
-            get
-            {
-                return _victoryViewModel ??= new VictoryViewModel(_controller);
-            }
-        }
-
-        public MainWindowViewModel_Smurfs MainWindowViewModel_Smurfs
-        {
-            get
-            {
-                return _mainWindowViewModel_Smurfs ??= new MainWindowViewModel_Smurfs(_mediator, _controller);
-            }
-        }
-
-        public MainWindowViewModel_PR MainWindowViewModel_PR
-        {
-            get
-            {
-                return _mainWindowViewModel_PR ??= new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
-            }
-        }
-
+        // This is just to show the current application state in the statusbar
         public string CurrentApplicationStateAsText
         {
             get => _currentApplicationStateAsText;
@@ -114,56 +58,78 @@ namespace Temple.ViewModel
             _applicationDialogService = applicationDialogService;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-            HomeViewModel = new HomeViewModel(_controller);
+            CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
-            CurrentApplicationStateAsText = _controller.CurrentApplicationState.Type.ToString();
-
-            _controller.SceneChanged += (newScene) =>
+            _controller.ApplicationStateChanged += (applicationState) =>
             {
-                CurrentApplicationStateAsText = newScene.Type.ToString();
+                CurrentApplicationStateAsText = applicationState.StateMachineState.ToString();
 
-                switch (CurrentApplicationStateAsText)
+                switch (applicationState.StateMachineState)
                 {
-                    case "MainMenu":
-                        CurrentViewModel = HomeViewModel;
+                    // Har vi at gøre med en state, som har sin egen viewmodel?
+                    case StateMachineState.MainMenu:
+                        CurrentViewModel = new HomeViewModel(_controller);
                         break;
-                    case "ShuttingDown":
+                    case StateMachineState.ShuttingDown:
                         ShutdownAction?.Invoke();
                         break;
-                    case "SmurfManagement":
-                        CurrentViewModel = MainWindowViewModel_Smurfs;
+                    case StateMachineState.SmurfManagement:
+                        CurrentViewModel = new MainWindowViewModel_Smurfs(_mediator, _controller);
                         break;
-                    case "PeopleManagement":
-                        CurrentViewModel = MainWindowViewModel_PR;
+                    case StateMachineState.PeopleManagement:
+                        CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
-                    case "Intro":
-                        InterludeViewModel.Text = "Din lille gruppe af eventyrere har været ude og fange mosegrise og er nu på vej hjem til byen for at sælge dem på markedet. Men sjovt nok bliver i overfaldet af banditter på vejen. Gør klar til kamp!";
-                        CurrentViewModel = InterludeViewModel;
+                    case StateMachineState.Defeat:
+                        CurrentViewModel = new DefeatViewModel(_controller);
                         break;
-                    case "ExploreArea_AfterFirstBattle":
-                        CurrentViewModel = ExploreAreaViewModel;
-                        ExploreAreaViewModel.StartAnimation(GenerateScene());
-                        break;
-                    case "Battle_First":
-                        BattleViewModel.ActOutSceneViewModel.InitializeScene(GetSceneFirstBattle());
-                        CurrentViewModel = BattleViewModel;
-                        // Start the battle automatically, so the user doesn't need to click the start button
-                        BattleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
-                        break;
-                    case "Battle_Final":
-                        BattleViewModel.ActOutSceneViewModel.InitializeScene(GetSceneFinalBattle());
-                        CurrentViewModel = BattleViewModel;
-                        // Start the battle automatically, so the user doesn't need to click the start button
-                        BattleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
-                        break;
-                    case "Defeat":
-                        CurrentViewModel = DefeatViewModel;
-                        break;
-                    case "Victory":
-                        CurrentViewModel = VictoryViewModel;
+                    case StateMachineState.Victory:
+                        CurrentViewModel = new VictoryViewModel(_controller);
                         break;
                     default:
-                        throw new InvalidOperationException("Invalid operation");
+                    {
+                        // Nej, så har vi nok at gøre med en state, hvis type afgør, hvilken viewmodel der skal bruges
+                        var stateType = applicationState.Type;
+
+                        switch (stateType)
+                        {
+                            case StateMachineStateType.Interlude:
+                            {
+                                CurrentViewModel = new InterludeViewModel(_controller)
+                                {
+                                    Text = "Din lille gruppe af eventyrere har været ude og fange mosegrise og er nu på vej hjem til byen for at sælge dem på markedet. Men sjovt nok bliver i overfaldet af banditter på vejen. Gør klar til kamp!"
+                                };
+                                break;
+                            }
+                            case StateMachineStateType.Battle:
+                            {
+                                var battleViewModel = new BattleViewModel(_controller);
+                                var scene = applicationState.Payload?.EnemyGroup switch
+                                {
+                                    "goblin" => GetSceneFirstBattle(),
+                                    "final" => GetSceneFinalBattle(),
+                                    _ => throw new InvalidOperationException("Unknown enemy group")
+                                };
+
+                                battleViewModel.ActOutSceneViewModel.InitializeScene(scene);
+                                battleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
+                                CurrentViewModel = battleViewModel;
+                                break;
+                            }
+                            case StateMachineStateType.Exploration:
+                            {
+                                var exploreAreaViewModel = new ExploreAreaViewModel(_controller);
+                                exploreAreaViewModel.StartAnimation(GenerateScene());
+                                CurrentViewModel = exploreAreaViewModel;
+                                break;
+                            }
+                            default:
+                            {
+                                throw new InvalidOperationException("Invalid operation");
+                            }
+                        }
+
+                        break;
+                    }
                 }
             };
 

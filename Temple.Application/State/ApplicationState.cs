@@ -1,5 +1,6 @@
 ﻿namespace Temple.Application.State;
 
 public record ApplicationState(
-    ApplicationStateType Type,
+    StateMachineState StateMachineState,
+    StateMachineStateType? Type = null,
     ApplicationStatePayload? Payload = null);

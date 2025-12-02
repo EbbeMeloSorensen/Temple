@@ -6,5 +6,5 @@ namespace Temple.Application.Interfaces;
 public interface IStateMachineIO
 {
     void ExportTheDamnThing(
-        StateMachine<ApplicationStateType, ApplicationStateShiftTrigger> stateMachine);
+        StateMachine<StateMachineState, ApplicationStateShiftTrigger> stateMachine);
 }

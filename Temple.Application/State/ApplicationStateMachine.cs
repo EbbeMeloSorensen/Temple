@@ -4,7 +4,7 @@ namespace Temple.Application.State;
 
 public class ApplicationStateMachine
 {
-    internal readonly StateMachine<ApplicationStateType, ApplicationStateShiftTrigger> _machine;
+    internal readonly StateMachine<StateMachineState, ApplicationStateShiftTrigger> _machine;
 
     public ApplicationState CurrentState { get; private set; }
 
@@ -12,51 +12,82 @@ public class ApplicationStateMachine
 
     public ApplicationStateMachine()
     {
-        _machine = new StateMachine<ApplicationStateType, ApplicationStateShiftTrigger>(ApplicationStateType.Starting);
+        _machine = new StateMachine<StateMachineState, ApplicationStateShiftTrigger>(StateMachineState.Starting);
 
-        _machine.Configure(ApplicationStateType.Starting)
-            .Permit(ApplicationStateShiftTrigger.Initialize, ApplicationStateType.MainMenu);
+        _machine.Configure(StateMachineState.Starting)
+            .OnEntry(() => UpdateApplicationState())
+            .Permit(ApplicationStateShiftTrigger.Initialize, StateMachineState.MainMenu);
 
-        _machine.Configure(ApplicationStateType.MainMenu)
-            .Permit(ApplicationStateShiftTrigger.GoToSmurfManagement, ApplicationStateType.SmurfManagement)
-            .Permit(ApplicationStateShiftTrigger.GoToPeopleManagement, ApplicationStateType.PeopleManagement)
-            .Permit(ApplicationStateShiftTrigger.StartNewGame, ApplicationStateType.Intro)
-            .Permit(ApplicationStateShiftTrigger.ShutdownRequested, ApplicationStateType.ShuttingDown);
+        _machine.Configure(StateMachineState.MainMenu)
+            .OnEntry(() => UpdateApplicationState())
+            .Permit(ApplicationStateShiftTrigger.GoToSmurfManagement, StateMachineState.SmurfManagement)
+            .Permit(ApplicationStateShiftTrigger.GoToPeopleManagement, StateMachineState.PeopleManagement)
+            .Permit(ApplicationStateShiftTrigger.StartNewGame, StateMachineState.Intro)
+            .Permit(ApplicationStateShiftTrigger.ShutdownRequested, StateMachineState.ShuttingDown);
 
-        _machine.Configure(ApplicationStateType.SmurfManagement)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
+        _machine.Configure(StateMachineState.SmurfManagement)
+            .OnEntry(() => UpdateApplicationState())
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
-        _machine.Configure(ApplicationStateType.PeopleManagement)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
+        _machine.Configure(StateMachineState.PeopleManagement)
+            .OnEntry(() => UpdateApplicationState())
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
-        _machine.Configure(ApplicationStateType.Intro)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.Battle_First);
+        _machine.Configure(StateMachineState.Intro)
+            .OnEntry(() =>
+            {
+                var dummyPayload = new ApplicationStatePayload();
+                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Interlude, dummyPayload);
+                UpdateApplicationState(applicationState);
+            })
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle_First);
 
-        _machine.Configure(ApplicationStateType.Battle_First)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.ExploreArea_AfterFirstBattle)
-            .Permit(ApplicationStateShiftTrigger.GoToDefeat, ApplicationStateType.Defeat);
+        _machine.Configure(StateMachineState.Battle_First)
+            .OnEntry(() =>
+            {
+                var payload = new ApplicationStatePayload{ EnemyGroup = "goblin"};
+                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Battle, payload);
+                UpdateApplicationState(applicationState);
+            })
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.ExploreArea_AfterFirstBattle)
+            .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat);
 
-        _machine.Configure(ApplicationStateType.ExploreArea_AfterFirstBattle)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.Battle_Final);
+        _machine.Configure(StateMachineState.ExploreArea_AfterFirstBattle)
+            .OnEntry(() =>
+            {
+                var dummyPayload = new ApplicationStatePayload();
+                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Exploration, dummyPayload);
+                UpdateApplicationState(applicationState);
+            })
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle_Final);
 
-        _machine.Configure(ApplicationStateType.Battle_Final)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.Victory)
-            .Permit(ApplicationStateShiftTrigger.GoToDefeat, ApplicationStateType.Defeat);
+        _machine.Configure(StateMachineState.Battle_Final)
+            .OnEntry(() =>
+            {
+                var payload = new ApplicationStatePayload { EnemyGroup = "final" };
+                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Battle, payload);
+                UpdateApplicationState(applicationState);
+            })
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Victory)
+            .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat);
 
-        _machine.Configure(ApplicationStateType.Defeat)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
+        _machine.Configure(StateMachineState.Defeat)
+            .OnEntry(() => UpdateApplicationState())
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
-        _machine.Configure(ApplicationStateType.Victory)
-            .Permit(ApplicationStateShiftTrigger.ExitState, ApplicationStateType.MainMenu);
+        _machine.Configure(StateMachineState.Victory)
+            .OnEntry(() => UpdateApplicationState())
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
         CurrentState = new ApplicationState(
             _machine.State);
     }
 
-    private void ChangeScene(ApplicationState scene)
+    private void UpdateApplicationState(ApplicationState? state = null)
     {
-        CurrentState = scene;
-        StateChanged?.Invoke(scene);
+        state ??= new ApplicationState(_machine.State);
+        CurrentState = state;
+        StateChanged?.Invoke(state);
     }
 
     public void Fire(ApplicationStateShiftTrigger applicationStateShiftTrigger)
@@ -64,8 +95,6 @@ public class ApplicationStateMachine
         if (_machine.CanFire(applicationStateShiftTrigger))
         {
             _machine.Fire(applicationStateShiftTrigger);
-
-            ChangeScene(new ApplicationState(_machine.State));
         }
         else
         {

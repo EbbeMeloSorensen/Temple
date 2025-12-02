@@ -25,9 +25,9 @@ namespace Temple.ViewModel
 
         public ViewModelBase CreateViewModel(ApplicationState scene)
         {
-            return scene.Type switch
+            return scene.StateMachineState switch
             {
-                ApplicationStateType.MainMenu => _homeFactory(),
+                StateMachineState.MainMenu => _homeFactory(),
                 //SceneType.Interlude => _interludeFactory().Init(scene.Payload),
                 //SceneType.Battle => _battleFactory().Init(scene.Payload),
                 //SceneType.Exploration => _exploreAreaFactory().Init(scene.Payload),

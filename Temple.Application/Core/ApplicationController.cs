@@ -17,7 +17,7 @@ public class ApplicationController
 
     public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentState;
 
-    public event Action<ApplicationState>? SceneChanged
+    public event Action<ApplicationState>? ApplicationStateChanged
     {
         add => _applicationStateMachine.StateChanged += value;
         remove => _applicationStateMachine.StateChanged -= value;

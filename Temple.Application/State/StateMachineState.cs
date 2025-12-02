@@ -1,6 +1,8 @@
 ﻿namespace Temple.Application.State
 {
-    public enum ApplicationStateType
+    // These are all the states of the state machine. They should be enums in order to work with Stateless.
+
+    public enum StateMachineState
     {
         Starting,
         MainMenu,
@@ -12,10 +14,6 @@
         Victory,
         Battle_First,
         ExploreArea_AfterFirstBattle,
-        Battle_Final,
-        //Interlude,
-        //Exploration,
-        //Battle,
-        //Dialog
+        Battle_Final
     }
 }
