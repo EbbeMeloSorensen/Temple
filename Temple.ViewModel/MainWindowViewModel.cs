@@ -1,11 +1,12 @@
-﻿using Craft.Math;
+﻿using GalaSoft.MvvmLight;
+using MediatR;
+using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Boundaries;
+using Craft.Utils;
 using Craft.ViewModels.Dialogs;
-using GalaSoft.MvvmLight;
-using MediatR;
 using Temple.Application.Core;
 using Temple.Application.State;
 using Temple.Domain.Entities.DD;
@@ -29,6 +30,7 @@ namespace Temple.ViewModel
         private MainWindowViewModel_Smurfs _mainWindowViewModel_Smurfs;
         private MainWindowViewModel_PR _mainWindowViewModel_PR;
         private object _currentViewModel;
+        private ObservableObject<string> _next;
 
         public Action? ShutdownAction { get; set; }
 
@@ -57,6 +59,7 @@ namespace Temple.ViewModel
             _mediator = mediator;
             _applicationDialogService = applicationDialogService;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            _next = new ObservableObject<string>();
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
@@ -79,6 +82,18 @@ namespace Temple.ViewModel
                     case StateMachineState.PeopleManagement:
                         CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
+                    case StateMachineState.Battle:
+                        var battleViewModel = new BattleViewModel(_controller);
+                        var scene = _next.Object switch
+                        {
+                            "A" => GetSceneFirstBattle(),
+                            "B" => GetSceneFinalBattle(),
+                            _ => throw new InvalidOperationException("Unknown battle")
+                        };
+                        battleViewModel.ActOutSceneViewModel.InitializeScene(scene);
+                        battleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
+                        CurrentViewModel = battleViewModel;
+                        break;
                     case StateMachineState.Defeat:
                         CurrentViewModel = new DefeatViewModel(_controller);
                         break;
@@ -100,24 +115,24 @@ namespace Temple.ViewModel
                                 };
                                 break;
                             }
-                            case StateMachineStateType.Battle:
-                            {
-                                var battleViewModel = new BattleViewModel(_controller);
-                                var scene = applicationState.Payload?.EnemyGroup switch
-                                {
-                                    "goblin" => GetSceneFirstBattle(),
-                                    "final" => GetSceneFinalBattle(),
-                                    _ => throw new InvalidOperationException("Unknown enemy group")
-                                };
+                            //case StateMachineStateType.Battle:
+                            //{
+                            //    var battleViewModel = new BattleViewModel(_controller);
+                            //    var scene = applicationState.Payload?.EnemyGroup switch
+                            //    {
+                            //        "goblin" => GetSceneFirstBattle(),
+                            //        "final" => GetSceneFinalBattle(),
+                            //        _ => throw new InvalidOperationException("Unknown enemy group")
+                            //    };
 
-                                battleViewModel.ActOutSceneViewModel.InitializeScene(scene);
-                                battleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
-                                CurrentViewModel = battleViewModel;
-                                break;
-                            }
+                            //    battleViewModel.ActOutSceneViewModel.InitializeScene(scene);
+                            //    battleViewModel.ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
+                            //    CurrentViewModel = battleViewModel;
+                            //    break;
+                            //}
                             case StateMachineStateType.Exploration:
                             {
-                                var exploreAreaViewModel = new ExploreAreaViewModel(_controller);
+                                var exploreAreaViewModel = new ExploreAreaViewModel(_controller, _next);
                                 //exploreAreaViewModel.StartAnimation(GenerateScene1());
                                 exploreAreaViewModel.StartAnimation(GenerateScene2());
                                 CurrentViewModel = exploreAreaViewModel;
@@ -235,13 +250,15 @@ namespace Temple.ViewModel
             var knight = new CreatureType("Knight",
                 maxHitPoints: 8, //20,
                 armorClass: 3,
-                thaco: 12,
+                thaco: 1, //12,
                 initiativeModifier: 0,
                 movement: 4,
                 attacks: new List<Attack>
                 {
-                    new MeleeAttack("Longsword", 10),
-                    new MeleeAttack("Longsword", 10)
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10),
+                    new MeleeAttack("Longsword", 100),// 10)
                 });
 
             var goblin = new CreatureType(
@@ -286,16 +303,58 @@ namespace Temple.ViewModel
                         range: 4)
                 });
 
-            var scene = new Domain.Entities.DD.Scene("DummyScene", 4, 4);
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Water, 2, 2));
-            scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 0, 0);
-            //scene.AddCreature(new Creature(archer, false) { IsAutomatic = false }, 0, 1);
-            //scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 2);
-            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 3, 2);
-            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 3, 3);
+            var scene = new Domain.Entities.DD.Scene("DummyScene", 11, 12);
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 1));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 2));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 3));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 4));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 6));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 7));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 8));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 8));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 9));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 10));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 10));
+            scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 6, 9);
+            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
+            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 7, 1);
 
             return scene;
         }

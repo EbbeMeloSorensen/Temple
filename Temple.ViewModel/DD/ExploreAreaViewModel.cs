@@ -14,6 +14,7 @@ namespace Temple.ViewModel.DD
     {
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
+        private ObservableObject<string> _next;
 
         public Engine Engine { get; }
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
@@ -21,9 +22,11 @@ namespace Temple.ViewModel.DD
         public RelayCommand ContinueCommand { get; }
 
         public ExploreAreaViewModel(
-            ApplicationController controller)
+            ApplicationController controller,
+            ObservableObject<string> next)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            _next = next ?? throw new ArgumentNullException(nameof(next));
 
             ContinueCommand = new RelayCommand(() =>
             {
@@ -83,7 +86,7 @@ namespace Temple.ViewModel.DD
 
             Engine.AnimationCompleted += (s, e) =>
             {
-                var outcome = Engine.EngineCore.Outcome;
+                _next.Object = Engine.EngineCore.Outcome;
                 _controller.ExitState();
             };
         }

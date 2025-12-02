@@ -51,9 +51,9 @@ public class ApplicationStateMachine
                 var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Exploration, dummyPayload);
                 UpdateApplicationState(applicationState);
             })
-            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle_First);
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle);
 
-        _machine.Configure(StateMachineState.Battle_First)
+        _machine.Configure(StateMachineState.Battle)
             .OnEntry(() =>
             {
                 var payload = new ApplicationStatePayload { EnemyGroup = "goblin" };

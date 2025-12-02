@@ -14,6 +14,7 @@
         xmlns:dd2="clr-namespace:Temple.UI.WPF.DD.Exploration"
         xmlns:behaviors="clr-namespace:Temple.UI.WPF.Behaviors"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="Temple" Height="600" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
 
     <Window.Resources>

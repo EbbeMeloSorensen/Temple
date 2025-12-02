@@ -12,7 +12,7 @@
         Intro,
         Defeat,
         Victory,
-        Battle_First,
+        Battle,
         ExploreArea_Dungeon1,
         Battle_Final
     }
