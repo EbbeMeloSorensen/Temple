@@ -85,7 +85,7 @@ namespace Temple.ViewModel
                         CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
                     case StateMachineState.Battle:
-                        var battleViewModel = new BattleViewModel(_controller, _next.Object == "Final Battle");
+                        var battleViewModel = new BattleViewModel(_controller);
                         var scene = _next.Object switch
                         {
                             "Dungeon 1, Room 1, Goblin" => GetSceneFirstBattle(),

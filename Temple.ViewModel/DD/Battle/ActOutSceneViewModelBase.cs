@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Craft.Logging;
 using Craft.Utils;

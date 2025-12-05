@@ -11,18 +11,15 @@ namespace Temple.ViewModel.DD;
 public class BattleViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
-    private readonly bool _finalBattle;
 
     public BoardViewModelBase BoardViewModel { get; }
 
     public ActOutSceneViewModelBase ActOutSceneViewModel { get; }
 
     public BattleViewModel(
-        ApplicationController controller,
-        bool finalBattle)
+        ApplicationController controller)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-        _finalBattle = finalBattle;
 
         ILogger logger = null;
         var engine = new ComplexEngine(logger);
@@ -58,14 +55,8 @@ public class BattleViewModel : TempleViewModel
             }
             else
             {
-                if (_finalBattle)
-                {
-                    _controller.GoToVictory();
-                }
-                else
-                {
-                    _controller.ExitState();
-                }
+                //_controller.GoToVictory();
+                _controller.ExitState();
             }
         };
     }

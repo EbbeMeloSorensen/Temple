@@ -1,20 +1,22 @@
 Done:
-* N�r man ikke sender et navn med, s� skal det vises p� feltet og ikke under det generelle fejl-felt
-* Der skal ikke laves nye viewmodeller hver gang - man skal bare s�tte eksisterende viewmodeller som current
-* Operationerne til at manage personer skal flyttes hen p� den nye view model
-* Operationerne til at manage smurfs skal flyttes hen p� en ny view model
+* Når man ikke sender et navn med, så skal det vises på feltet og ikke under det generelle fejl-felt
+* Der skal ikke laves nye viewmodeller hver gang - man skal bare sætte eksisterende viewmodeller som current (jo)
+* Operationerne til at manage personer skal flyttes hen på den nye view model
+* Operationerne til at manage smurfs skal flyttes hen på en ny view model
 * Eksportering af state machinen som dot graf fil
-* Tempel-ikon p� splasg screenen
+* Tempel-ikon på splash screenen
+* Både ActOutSceneViewModel og BoardViewModel abonnerer på at aktiv scene ændres - det er noget rod og skal slet ikke være event baseret
 
 Todo:
-* B�de ActOutSceneViewModel og BoardViewModel abonnerer p� at aktiv scene �ndres - det er noget rod og skal slet ikke v�re event baseret
+* Få det med payload til at virke som anvist af ChatGPT
+  - outcome, som jo nu kan være et objekt, skal være en payload
 * Introducer et settings view, hvor man f.eks. kan angive, om man vil se log og statusbar
 * Introducer et development mode, som kun er synligt, hvis man feks. trykker F12
 
 Todo (People management)
 * List (all) people fra command line app (OK)
 * Create person fra command line app
-  - hvis man giver et firstnam med -> så fåa man lavet en person (OK)
+  - hvis man giver et firstnam med -> så får man lavet en person (OK)
   - hvis man ikke giver et firstnam med -> så får man en valideringsfejl (OK)
 Update person
 
