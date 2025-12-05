@@ -86,7 +86,8 @@ namespace Temple.ViewModel.DD
 
             Engine.AnimationCompleted += (s, e) =>
             {
-                _next.Object = Engine.EngineCore.Outcome;
+                // Todo: Ikke antag, at det er en string
+                _next.Object = Engine.EngineCore.Outcome as string;
                 _controller.ExitState();
             };
         }
