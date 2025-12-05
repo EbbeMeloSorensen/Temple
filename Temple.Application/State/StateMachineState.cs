@@ -13,6 +13,6 @@
         Defeat,
         Victory,
         Battle,
-        ExploreArea_Dungeon1
+        Exploration
     }
 }

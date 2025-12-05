@@ -84,6 +84,7 @@ namespace Temple.ViewModel
                     case StateMachineState.PeopleManagement:
                         CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
+                        break;
                     case StateMachineState.Battle:
                         var battleViewModel = new BattleViewModel(_controller);
                         var scene = _next.Object switch
