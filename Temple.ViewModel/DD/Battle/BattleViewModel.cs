@@ -11,6 +11,7 @@ namespace Temple.ViewModel.DD.Battle;
 public class BattleViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
+    private string _battleId;
     private ApplicationStatePayload _payloadForNextState;
 
     public BoardViewModelBase BoardViewModel { get; }
@@ -56,7 +57,15 @@ public class BattleViewModel : TempleViewModel
             }
             else
             {
-                _controller.GoToNextApplicationState(_payloadForNextState);
+                // Victory
+                if (_battleId == "Final Battle")
+                {
+                    _controller.GoToVictory();
+                }
+                else
+                {
+                    _controller.GoToNextApplicationState(_payloadForNextState);
+                }
             }
         };
     }
@@ -67,6 +76,7 @@ public class BattleViewModel : TempleViewModel
         var battlePayload = payload as BattlePayload
                             ?? throw new ArgumentException("Payload is not of type BattlePayload", nameof(payload));
 
+        _battleId = battlePayload.BattleId;
         _payloadForNextState = battlePayload.PayloadForNextStateInCasePartyWins;
         ActOutSceneViewModel.InitializeScene(BattleSceneFactory.GetBattleScene(battlePayload.BattleId));
         ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
