@@ -7,6 +7,7 @@ using Craft.Simulation.Engine;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using Temple.Application.Core;
+using Temple.Application.State;
 
 namespace Temple.ViewModel.DD
 {
@@ -90,6 +91,19 @@ namespace Temple.ViewModel.DD
                 _next.Object = Engine.EngineCore.Outcome as string;
                 _controller.ExitState();
             };
+        }
+
+        public override TempleViewModel Init(
+            ApplicationStatePayload payload)
+        {
+            var interludePayload = payload as ExplorationPayload
+                                   ?? throw new ArgumentException("Payload is not of type ExplorationPayload", nameof(payload));
+
+            //Text = interludePayload.Text;
+
+            //_payloadForNextState = interludePayload.PayloadForNextState;
+
+            return this;
         }
 
         public void StartAnimation(

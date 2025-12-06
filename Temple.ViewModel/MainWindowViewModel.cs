@@ -91,8 +91,8 @@ namespace Temple.ViewModel
                     case StateMachineState.Exploration:
                         var exploreAreaViewModel = new ExploreAreaViewModel(_controller, _next);
                         //exploreAreaViewModel.StartAnimation(GenerateScene1());
-                        exploreAreaViewModel.StartAnimation(GenerateScene2());
-                        CurrentViewModel = exploreAreaViewModel;
+                        //exploreAreaViewModel.StartAnimation(GenerateScene2());
+                        CurrentViewModel = exploreAreaViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Battle:
                         var battleViewModel = new BattleViewModel(_controller);

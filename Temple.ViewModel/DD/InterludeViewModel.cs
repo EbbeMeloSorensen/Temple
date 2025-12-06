@@ -7,7 +7,7 @@ namespace Temple.ViewModel.DD;
 public class InterludeViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
-    private ApplicationStatePayload _payLoadForNextState;
+    private ApplicationStatePayload _payloadForNextState;
 
     private string _text;
 
@@ -32,10 +32,13 @@ public class InterludeViewModel : TempleViewModel
 
         ContinueCommand = new RelayCommand(() =>
         {
-            switch (_payLoadForNextState)
+            switch (_payloadForNextState)
             {
                 case ExplorationPayload:
                     _controller.GoToExploration();
+                    break;
+                case BattlePayload:
+                    _controller.GoToBattle();
                     break;
                 default:
                     throw new InvalidOperationException("Unknown payload");
@@ -53,7 +56,7 @@ public class InterludeViewModel : TempleViewModel
 
         Text = interludePayload.Text;
 
-        _payLoadForNextState = payload.PayloadForNextState;
+        _payloadForNextState = interludePayload.PayloadForNextState;
 
         return this;
     }
