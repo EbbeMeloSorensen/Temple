@@ -4,6 +4,8 @@ using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.State;
 using Temple.ViewModel.DD;
+using Temple.ViewModel.DD.Battle;
+using Temple.ViewModel.DD.Exploration;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
 

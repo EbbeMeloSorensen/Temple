@@ -11,7 +11,7 @@ using Craft.ViewModels.Simulation;
 using Temple.Application.Core;
 using Temple.Application.State;
 
-namespace Temple.ViewModel.DD
+namespace Temple.ViewModel.DD.Exploration
 {
     public class ExplorationViewModel : TempleViewModel
     {
@@ -136,7 +136,7 @@ namespace Temple.ViewModel.DD
             var deltaT = 0.001;
             var viewMode = SceneViewMode.FocusOnFirstBody;
 
-            var scene = new Craft.Simulation.Scene(
+            var scene = new Scene(
                 null,
                 initialWorldWindowUpperLeft,
                 initialWorldWindowLowerRight,

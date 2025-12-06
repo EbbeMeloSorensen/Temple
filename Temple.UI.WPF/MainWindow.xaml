@@ -13,6 +13,8 @@
         xmlns:dd1="clr-namespace:Temple.UI.WPF.DD"
         xmlns:dd2="clr-namespace:Temple.UI.WPF.DD.Exploration"
         xmlns:behaviors="clr-namespace:Temple.UI.WPF.Behaviors"
+        xmlns:battle="clr-namespace:Temple.ViewModel.DD.Battle;assembly=Temple.ViewModel"
+        xmlns:exploration="clr-namespace:Temple.ViewModel.DD.Exploration;assembly=Temple.ViewModel"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Temple" Height="600" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
@@ -24,10 +26,10 @@
         <DataTemplate DataType="{x:Type dd:InterludeViewModel}">
             <dd1:InterludeView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type dd:BattleViewModel}">
+        <DataTemplate DataType="{x:Type battle:BattleViewModel}">
             <dd1:BattleView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type dd:ExplorationViewModel}">
+        <DataTemplate DataType="{x:Type exploration:ExplorationViewModel}">
             <dd2:ExploreAreaView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type dd:DefeatViewModel}">
