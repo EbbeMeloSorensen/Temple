@@ -7,6 +7,7 @@ public class ApplicationStateMachine
     internal readonly StateMachine<StateMachineState, ApplicationStateShiftTrigger> _machine;
 
     public ApplicationState CurrentState { get; private set; }
+    public ApplicationStatePayload NextPayload { get; internal set; }
 
     public event Action<ApplicationState>? StateChanged;
 
@@ -15,64 +16,63 @@ public class ApplicationStateMachine
         _machine = new StateMachine<StateMachineState, ApplicationStateShiftTrigger>(StateMachineState.Starting);
 
         _machine.Configure(StateMachineState.Starting)
-            .OnEntry(() => UpdateApplicationState())
+            .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.Initialize, StateMachineState.MainMenu);
 
         _machine.Configure(StateMachineState.MainMenu)
-            .OnEntry(() => UpdateApplicationState())
+            .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.GoToSmurfManagement, StateMachineState.SmurfManagement)
             .Permit(ApplicationStateShiftTrigger.GoToPeopleManagement, StateMachineState.PeopleManagement)
-            .Permit(ApplicationStateShiftTrigger.StartNewGame, StateMachineState.Intro)
+            .Permit(ApplicationStateShiftTrigger.StartNewGame, StateMachineState.Interlude)
             .Permit(ApplicationStateShiftTrigger.ShutdownRequested, StateMachineState.ShuttingDown);
 
         _machine.Configure(StateMachineState.SmurfManagement)
-            .OnEntry(() => UpdateApplicationState())
+            .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
         _machine.Configure(StateMachineState.PeopleManagement)
-            .OnEntry(() => UpdateApplicationState())
+            .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
-        _machine.Configure(StateMachineState.Intro)
-            .OnEntry(() =>
-            {
-                // Denne payload skal specificere, at det er intro-prelude, der skal vises
-                var dummyPayload = new ApplicationStatePayload {JustAString = "Intro"};
-                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Interlude, dummyPayload);
-                UpdateApplicationState(applicationState);
-            })
-            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Exploration);
+        _machine.Configure(StateMachineState.Interlude)
+            .OnEntry(UpdateApplicationState)
+            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration)
+            .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle);
 
         _machine.Configure(StateMachineState.Exploration)
-            .OnEntry(() =>
-            {
-                var dummyPayload = new ApplicationStatePayload{JustAString = "Dungeon1"};
-                var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Exploration, dummyPayload);
-                UpdateApplicationState(applicationState);
-            })
+            .OnEntry(UpdateApplicationState)
+            //.OnEntry(() =>
+            //{
+            //    var dummyPayload = new ApplicationStatePayload{JustAString = "Dungeon1"};
+            //    var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Exploration, dummyPayload);
+            //    UpdateApplicationState(applicationState);
+            //})
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle);
 
         _machine.Configure(StateMachineState.Battle)
-            .OnEntry(() => UpdateApplicationState())
+            .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Exploration)
             .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat)
             .Permit(ApplicationStateShiftTrigger.GoToVictory, StateMachineState.Victory);
 
         _machine.Configure(StateMachineState.Defeat)
-            .OnEntry(() => UpdateApplicationState())
+            .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
         _machine.Configure(StateMachineState.Victory)
-            .OnEntry(() => UpdateApplicationState())
+            .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
         CurrentState = new ApplicationState(
             _machine.State);
     }
 
-    private void UpdateApplicationState(ApplicationState? state = null)
+    private void UpdateApplicationState()
     {
-        state ??= new ApplicationState(_machine.State);
+        // Her skal vi have fat i den næste payload. Den kommunikeres fra ...
+        // I første omgang hardkoder vi lige en
+ 
+        var state = new ApplicationState(_machine.State, NextPayload);
         CurrentState = state;
         StateChanged?.Invoke(state);
     }

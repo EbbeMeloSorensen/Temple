@@ -9,7 +9,7 @@
         ShuttingDown,
         SmurfManagement,
         PeopleManagement,
-        Intro,
+        Interlude,
         Defeat,
         Victory,
         Battle,

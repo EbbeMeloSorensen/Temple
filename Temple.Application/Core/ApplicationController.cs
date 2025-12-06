@@ -72,6 +72,11 @@ public class ApplicationController
 
     public void StartNewGame()
     {
+        _applicationStateMachine.NextPayload = new ApplicationStatePayload
+        {
+            JustAString = "Intro"
+        };
+
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.StartNewGame);
     }
 
@@ -93,6 +98,16 @@ public class ApplicationController
     public void GoToHome()
     {
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ExitState);
+    }
+
+    public void GoToExploration()
+    {
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToExploration);
+    }
+
+    public void GoToBattle()
+    {
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToBattle);
     }
 
     public void GoToDefeat()

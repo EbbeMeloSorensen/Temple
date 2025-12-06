@@ -71,7 +71,6 @@ namespace Temple.ViewModel
 
                 switch (applicationState.StateMachineState)
                 {
-                    // Har vi at gøre med en state, som har sin egen viewmodel?
                     case StateMachineState.MainMenu:
                         CurrentViewModel = new HomeViewModel(_controller);
                         break;
@@ -84,6 +83,16 @@ namespace Temple.ViewModel
                     case StateMachineState.PeopleManagement:
                         CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
+                    case StateMachineState.Interlude:
+                        // Todo: Lav det her som factory, som ChatGPT foreslår
+                        var interludeViewModel = new InterludeViewModel(_controller);
+                        CurrentViewModel = interludeViewModel.Init(applicationState.Payload);
+                        break;
+                    case StateMachineState.Exploration:
+                        var exploreAreaViewModel = new ExploreAreaViewModel(_controller, _next);
+                        //exploreAreaViewModel.StartAnimation(GenerateScene1());
+                        exploreAreaViewModel.StartAnimation(GenerateScene2());
+                        CurrentViewModel = exploreAreaViewModel;
                         break;
                     case StateMachineState.Battle:
                         var battleViewModel = new BattleViewModel(_controller);
@@ -105,34 +114,36 @@ namespace Temple.ViewModel
                         break;
                     default:
                     {
+                        throw new InvalidOperationException("Vi kører et andet princip nu");
+
                         // Nej, så har vi nok at gøre med en state, hvis type afgør, hvilken viewmodel der skal bruges
-                        var stateType = applicationState.Type;
+                        //var stateType = applicationState.Type;
 
-                        switch (stateType)
-                        {
-                            case StateMachineStateType.Interlude:
-                            {
-                                CurrentViewModel = new InterludeViewModel(_controller)
-                                {
-                                    Text = "Din lille gruppe af eventyrere har været ude og fange mosegrise og er nu på vej hjem til byen for at sælge dem på markedet. Men sjovt nok bliver i overfaldet af banditter på vejen. Gør klar til kamp!"
-                                };
-                                break;
-                            }
-                            case StateMachineStateType.Exploration:
-                            {
-                                var exploreAreaViewModel = new ExploreAreaViewModel(_controller, _next);
-                                //exploreAreaViewModel.StartAnimation(GenerateScene1());
-                                exploreAreaViewModel.StartAnimation(GenerateScene2());
-                                CurrentViewModel = exploreAreaViewModel;
-                                break;
-                            }
-                            default:
-                            {
-                                throw new InvalidOperationException("Invalid operation");
-                            }
-                        }
+                        //switch (stateType)
+                        //{
+                        //    case StateMachineStateType.Interlude:
+                        //    {
+                        //        CurrentViewModel = new InterludeViewModel(_controller)
+                        //        {
+                        //            Text = "Din lille gruppe af eventyrere har været ude og fange mosegrise og er nu på vej hjem til byen for at sælge dem på markedet. Men sjovt nok bliver i overfaldet af banditter på vejen. Gør klar til kamp!"
+                        //        };
+                        //        break;
+                        //    }
+                        //    case StateMachineStateType.Exploration:
+                        //    {
+                        //        var exploreAreaViewModel = new ExploreAreaViewModel(_controller, _next);
+                        //        //exploreAreaViewModel.StartAnimation(GenerateScene1());
+                        //        exploreAreaViewModel.StartAnimation(GenerateScene2());
+                        //        CurrentViewModel = exploreAreaViewModel;
+                        //        break;
+                        //    }
+                        //    default:
+                        //    {
+                        //        throw new InvalidOperationException("Invalid operation");
+                        //    }
+                        //}
 
-                        break;
+                        //break;
                     }
                 }
             };

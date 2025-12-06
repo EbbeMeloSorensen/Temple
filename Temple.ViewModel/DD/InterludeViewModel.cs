@@ -1,6 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
+using Temple.Application.State;
 
 namespace Temple.ViewModel.DD;
 
@@ -29,6 +29,23 @@ public class InterludeViewModel : TempleViewModel
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-        ContinueCommand = new RelayCommand(_controller.ExitState);
+        //ContinueCommand = new RelayCommand(_controller.GoToBattle);
+        ContinueCommand = new RelayCommand(_controller.GoToExploration);
+    }
+
+    public override TempleViewModel Init(
+        ApplicationStatePayload payload)
+    {
+        switch (payload.JustAString)
+        {
+            case "Intro":
+                Text = "Welcome to the adventure! Your journey begins now.";
+                break;
+            default:
+                Text = "An unknown interlude has occurred.";
+                break;
+        }
+
+        return this;
     }
 }

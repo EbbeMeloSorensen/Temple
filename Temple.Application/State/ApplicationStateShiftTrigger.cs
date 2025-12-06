@@ -8,10 +8,8 @@ public enum ApplicationStateShiftTrigger
     GoToSmurfManagement,
     GoToPeopleManagement,
     StartNewGame,
+    GoToExploration,
+    GoToBattle,
     GoToDefeat,
-    GoToVictory//,
-    //EncounterEnemy,
-    //TalkToNpc,
-    //EndBattle,
-    //EndDialog
+    GoToVictory,
 }
