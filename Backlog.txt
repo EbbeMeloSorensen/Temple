@@ -6,10 +6,12 @@ Done:
 * Eksportering af state machinen som dot graf fil
 * Tempel-ikon på splash screenen
 * Både ActOutSceneViewModel og BoardViewModel abonnerer på at aktiv scene ændres - det er noget rod og skal slet ikke være event baseret
+* Få det med payload til at virke som anvist af ChatGPT
 
 Todo:
-* Få det med payload til at virke som anvist af ChatGPT
-  - outcome, som jo nu kan være et objekt, skal være en payload
+* Lav det sådan at ens position gemmes, når man går ind i en battle
+* Lav det sådan at man ikke skal tage samme battle flere gange
+* Lav en shopping state, som man kan komme til fra exploration
 * Introducer et settings view, hvor man f.eks. kan angive, om man vil se log og statusbar
 * Introducer et development mode, som kun er synligt, hvis man feks. trykker F12
 

@@ -64,6 +64,7 @@ public class BattleViewModel : TempleViewModel
                 }
                 else
                 {
+                    _controller.BattlesWon.Add(_battleId);
                     _controller.GoToNextApplicationState(_payloadForNextState);
                 }
             }

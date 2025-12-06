@@ -5,6 +5,7 @@ using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Boundaries;
+using Craft.Simulation.Boundaries.Interfaces;
 using Craft.Simulation.Engine;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
@@ -251,10 +252,23 @@ namespace Temple.ViewModel.DD.Exploration
             //Scene3D = group;
 
             // Add exits
-            scene.AddBoundary(new LineSegment(new Vector2D(-1, -3), new Vector2D(-1, -2), "Dungeon 1, Room 1, Goblin"));
-            scene.AddBoundary(new LineSegment(new Vector2D(1, -5), new Vector2D(0, -5), "Final Battle"));
+
+            AddBattleUnlessWon("Dungeon 1, Room 1, Goblin", scene, new Vector2D(-1, -3), new Vector2D(-1, -2));
+            AddBattleUnlessWon("Final Battle", scene, new Vector2D(1, -5), new Vector2D(0, -5));
 
             return scene;
+        }
+
+        private void AddBattleUnlessWon(
+            string battleId,
+            Scene scene,
+            Vector2D point1,
+            Vector2D point2)
+        {
+            if (!_controller.BattlesWon.Contains(battleId))
+            {
+                scene.AddBoundary(new LineSegment(point1, point2, battleId));
+            }
         }
     }
 }

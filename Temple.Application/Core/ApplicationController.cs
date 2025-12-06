@@ -17,6 +17,8 @@ public class ApplicationController
 
     public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentState;
 
+    public HashSet<string> BattlesWon { get; }
+
     public event Action<ApplicationState>? ApplicationStateChanged
     {
         add => _applicationStateMachine.StateChanged += value;
@@ -31,6 +33,8 @@ public class ApplicationController
         _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
+
+        BattlesWon = new HashSet<string>();
     }
 
     public async Task InitializeAsync()
@@ -117,11 +121,6 @@ public class ApplicationController
             default:
                 throw new InvalidOperationException("Unknown payload type");
         }
-    }
-
-    public void GoToBattle(
-        BattlePayload payload)
-    {
     }
 
     public void GoToDefeat()
