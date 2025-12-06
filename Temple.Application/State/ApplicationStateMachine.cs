@@ -41,17 +41,11 @@ public class ApplicationStateMachine
 
         _machine.Configure(StateMachineState.Exploration)
             .OnEntry(UpdateApplicationState)
-            //.OnEntry(() =>
-            //{
-            //    var dummyPayload = new ApplicationStatePayload{JustAString = "Dungeon1"};
-            //    var applicationState = new ApplicationState(_machine.State, StateMachineStateType.Exploration, dummyPayload);
-            //    UpdateApplicationState(applicationState);
-            //})
-            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Battle);
+            .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle);
 
         _machine.Configure(StateMachineState.Battle)
             .OnEntry(UpdateApplicationState)
-            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Exploration)
+            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration)
             .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat)
             .Permit(ApplicationStateShiftTrigger.GoToVictory, StateMachineState.Victory);
 

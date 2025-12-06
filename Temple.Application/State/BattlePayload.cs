@@ -2,5 +2,6 @@
 
 public class BattlePayload : ApplicationStatePayload
 {
-    public string Name { get; set; }
+    public string BattleId { get; set; }
+    public ApplicationStatePayload PayloadForNextStateInCasePartyWins { get; set; }
 }

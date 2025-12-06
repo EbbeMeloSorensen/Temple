@@ -101,14 +101,27 @@ public class ApplicationController
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ExitState);
     }
 
-    public void GoToExploration()
+    public void GoToNextApplicationState(
+        ApplicationStatePayload payload)
     {
-        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToExploration);
+        _applicationStateMachine.NextPayload = payload;
+
+        switch (payload)
+        {
+            case ExplorationPayload:
+                _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToExploration);
+                break;
+            case BattlePayload:
+                _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToBattle);
+                break;
+            default:
+                throw new InvalidOperationException("Unknown payload type");
+        }
     }
 
-    public void GoToBattle()
+    public void GoToBattle(
+        BattlePayload payload)
     {
-        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToBattle);
     }
 
     public void GoToDefeat()

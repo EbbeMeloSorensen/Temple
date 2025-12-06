@@ -27,7 +27,7 @@
         <DataTemplate DataType="{x:Type dd:BattleViewModel}">
             <dd1:BattleView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type dd:ExploreAreaViewModel}">
+        <DataTemplate DataType="{x:Type dd:ExplorationViewModel}">
             <dd2:ExploreAreaView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type dd:DefeatViewModel}">

@@ -22,7 +22,7 @@ namespace Temple.UI.WPF.DD.Exploration
     /// </summary>
     public partial class ExploreAreaView : UserControl
     {
-        private ExploreAreaViewModel ViewModel { get { return DataContext as ExploreAreaViewModel; }}
+        private ExplorationViewModel ViewModel { get { return DataContext as ExplorationViewModel; }}
 
         public ExploreAreaView()
         {

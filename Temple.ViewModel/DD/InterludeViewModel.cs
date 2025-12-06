@@ -32,19 +32,7 @@ public class InterludeViewModel : TempleViewModel
 
         ContinueCommand = new RelayCommand(() =>
         {
-            switch (_payloadForNextState)
-            {
-                case ExplorationPayload:
-                    _controller.GoToExploration();
-                    break;
-                case BattlePayload:
-                    _controller.GoToBattle();
-                    break;
-                default:
-                    throw new InvalidOperationException("Unknown payload");
-            }
-
-            _controller.GoToExploration();
+            _controller.GoToNextApplicationState(_payloadForNextState);
         });
     }
 

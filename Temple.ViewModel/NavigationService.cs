@@ -9,13 +9,13 @@ namespace Temple.ViewModel
         private readonly Func<HomeViewModel> _homeFactory;
         private readonly Func<InterludeViewModel> _interludeFactory;
         private readonly Func<BattleViewModel> _battleFactory;
-        private readonly Func<ExploreAreaViewModel> _exploreAreaFactory;
+        private readonly Func<ExplorationViewModel> _exploreAreaFactory;
 
         public NavigationService(
             Func<HomeViewModel> homeFactory,
             Func<InterludeViewModel> interludeFactory,
             Func<BattleViewModel> battleFactory,
-            Func<ExploreAreaViewModel> exploreAreaFactory)
+            Func<ExplorationViewModel> exploreAreaFactory)
         {
             _homeFactory = homeFactory ?? throw new ArgumentNullException(nameof(homeFactory));
             _interludeFactory = interludeFactory ?? throw new ArgumentNullException(nameof(interludeFactory));
