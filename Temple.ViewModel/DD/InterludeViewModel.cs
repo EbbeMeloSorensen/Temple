@@ -7,6 +7,7 @@ namespace Temple.ViewModel.DD;
 public class InterludeViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
+    private ApplicationStatePayload _payLoadForNextState;
 
     private string _text;
 
@@ -29,22 +30,30 @@ public class InterludeViewModel : TempleViewModel
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-        //ContinueCommand = new RelayCommand(_controller.GoToBattle);
-        ContinueCommand = new RelayCommand(_controller.GoToExploration);
+        ContinueCommand = new RelayCommand(() =>
+        {
+            switch (_payLoadForNextState)
+            {
+                case ExplorationPayload:
+                    _controller.GoToExploration();
+                    break;
+                default:
+                    throw new InvalidOperationException("Unknown payload");
+            }
+
+            _controller.GoToExploration();
+        });
     }
 
     public override TempleViewModel Init(
         ApplicationStatePayload payload)
     {
-        switch (payload.JustAString)
-        {
-            case "Intro":
-                Text = "Welcome to the adventure! Your journey begins now.";
-                break;
-            default:
-                Text = "An unknown interlude has occurred.";
-                break;
-        }
+        var interludePayload = payload as InterludePayload
+            ?? throw new ArgumentException("Payload is not of type InterludePayload", nameof(payload));
+
+        Text = interludePayload.Text;
+
+        _payLoadForNextState = payload.PayloadForNextState;
 
         return this;
     }

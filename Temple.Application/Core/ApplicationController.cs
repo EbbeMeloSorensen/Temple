@@ -72,9 +72,10 @@ public class ApplicationController
 
     public void StartNewGame()
     {
-        _applicationStateMachine.NextPayload = new ApplicationStatePayload
+        _applicationStateMachine.NextPayload = new InterludePayload
         {
-            JustAString = "Intro"
+            Text = "Så går eventyret i gang",
+            PayloadForNextState = new ExplorationPayload{Area = "Dungeon1"}
         };
 
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.StartNewGame);
