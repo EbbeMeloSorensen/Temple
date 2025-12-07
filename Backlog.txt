@@ -15,7 +15,12 @@ Done:
 * Hit points forbliver reducerede mellem kampe
 
 Todo:
-* Lav en shopping state, som man kan komme til fra exploration
+* Få 3D på banen igen
+* Sørg for at den lukker ordentligt ned, hvis man lukker applikationen under Exploration
+* Introducer et Wilderness mode
+  - I første omgang skal det være ret simpelt og blot facilitere, at man kan bevæge sig mellem sites
+* Introducer et inventory mode, hvor man f.eks. kan bruge healing potions
+* Introducer et shopping mode, som man kan komme til fra exploration
 * Introducer et settings view, hvor man f.eks. kan angive, om man vil se log og statusbar
 * Introducer et development mode, som kun er synligt, hvis man feks. trykker F12
 

@@ -20,7 +20,7 @@ public class ApplicationController
 
     public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentState;
 
-    public ApplicationData Data { get; }
+    public ApplicationData Data { get; private set; }
 
     public event Action<ApplicationState>? ApplicationStateChanged
     {
@@ -79,10 +79,7 @@ public class ApplicationController
 
     public void StartNewGame()
     {
-        Data.Party.Clear();
-        Data.BattlesWon.Clear();
-        Data.ExplorationPosition = new Vector2D(0.5, -0.5);
-        Data.ExplorationOrientation = 0.5 * Math.PI;
+        Data = new ApplicationData();
 
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
