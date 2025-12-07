@@ -229,27 +229,7 @@ namespace Temple.ViewModel.DD.Exploration
                 return response;
             };
 
-            // Liniestykker defineres i et normalt xy koordinatsystem
-            var lineSegments = new List<LineSegment2D>
-            {
-                new(new Point2D(0, 2), new Point2D(0, 0)),
-                new(new Point2D(0, 0), new Point2D(1, 0)),
-                new(new Point2D(1, 0), new Point2D(1, 5)),
-                new(new Point2D(1, 5), new Point2D(3, 5)),
-                new(new Point2D(3, 5), new Point2D(3, 9)),
-                new(new Point2D(3, 9), new Point2D(-2, 9)),
-                new(new Point2D(-2, 9), new Point2D(-2, 5)),
-                new(new Point2D(-2, 5), new Point2D(0, 5)),
-                new(new Point2D(0, 5), new Point2D(0, 3)),
-                new(new Point2D(0, 3), new Point2D(-1, 3)),
-                new(new Point2D(-1, 3), new Point2D(-1, 4)),
-                new(new Point2D(-1, 4), new Point2D(-3, 4)),
-                new(new Point2D(-3, 4), new Point2D(-3, 1)),
-                new(new Point2D(-3, 1), new Point2D(-1, 1)),
-                new(new Point2D(-1, 1), new Point2D(-1, 2)),
-                new(new Point2D(-1, 2), new Point2D(0, 2)),
-            };
-
+            // polylines defineres i et normalt xy koordinatsystem
             var wallPolyLines = new List<List<Point2D>>
             {
                 new()
