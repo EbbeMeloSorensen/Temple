@@ -16,6 +16,7 @@ Done:
 
 Todo:
 * Få 3D på banen igen
+* Vægge behøver ikke være så pisse tykke i dungeons
 * Sørg for at den lukker ordentligt ned, hvis man lukker applikationen under Exploration
 * Introducer et Wilderness mode
   - I første omgang skal det være ret simpelt og blot facilitere, at man kan bevæge sig mellem sites
