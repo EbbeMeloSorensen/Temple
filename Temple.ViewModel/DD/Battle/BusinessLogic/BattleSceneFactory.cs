@@ -1,35 +1,25 @@
-﻿using Temple.Domain.Entities.DD;
+﻿using Craft.Math;
+using Temple.Domain.Entities.DD;
 
 namespace Temple.ViewModel.DD.Battle.BusinessLogic
 {
     public static class BattleSceneFactory
     {
-        public static Scene GetBattleScene(string battleSceneId)
+        public static Scene SetupBattleScene(
+            string battleSceneId,
+            List<Creature> party)
         {
             return battleSceneId switch
             {
-                "Dungeon 1, Room 1, Goblin" => GetSceneFirstBattle(),
-                "Final Battle" => GetSceneFinalBattle(),
+                "Dungeon 1, Room 1, Goblin" => GetSceneFirstBattle(party),
+                "Final Battle" => GetSceneFinalBattle(party),
                 _ => throw new ArgumentException($"Unknown battle scene ID: {battleSceneId}", nameof(battleSceneId))
             };
         }
 
-        private static Scene GetSceneFirstBattle()
+        private static Scene GetSceneFirstBattle(
+            List<Creature> party)
         {
-            var knight = new CreatureType("Knight",
-                maxHitPoints: 8, //20,
-                armorClass: 3,
-                thaco: 1, //12,
-                initiativeModifier: 0,
-                movement: 4,
-                attacks: new List<Attack>
-                {
-                    new MeleeAttack("Longsword", 100),// 10),
-                    new MeleeAttack("Longsword", 100),// 10),
-                    new MeleeAttack("Longsword", 100),// 10),
-                    new MeleeAttack("Longsword", 100),// 10)
-                });
-
             var goblin = new CreatureType(
                 name: "Goblin",
                 maxHitPoints: 12,
@@ -42,37 +32,9 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
                     new MeleeAttack("Short sword", 6)
                 });
 
-            var archer = new CreatureType(
-                name: "Archer",
-                maxHitPoints: 12,
-                armorClass: 6,
-                thaco: 14,
-                initiativeModifier: 10,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new RangedAttack(
-                        name: "Bow & Arrow",
-                        maxDamage: 4,
-                        range: 5)
-                });
-
-            var goblinArcher = new CreatureType(
-                name: "Goblin Archer",
-                maxHitPoints: 20,
-                armorClass: 7,
-                thaco: 13,
-                initiativeModifier: 0,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new RangedAttack(
-                        name: "Bow & Arrow",
-                        maxDamage: 4,
-                        range: 4)
-                });
-
             var scene = new Scene("DummyScene", 8, 7);
+
+            // Obstacles
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
@@ -101,55 +63,36 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 1));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 2));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 1));
-            scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 5, 3);
+
+            // Enemies
             scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 4);
+            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 5);
+
+            // Party
+
+            // Dette bør være en egenskab ved scenen
+            var adventurerPositions = new List<Tuple<int, int>>
+            {
+                new (5, 3),
+                new (5, 4),
+                new (6, 3),
+                new (6, 4)
+           };
+
+            adventurerPositions
+                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer})
+                .ToList()
+                .ForEach(_ =>
+                {
+                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+                });
 
             return scene;
         }
 
-        private static Scene GetSceneFinalBattle()
+        private static Scene GetSceneFinalBattle(
+            List<Creature> party)
         {
-            var knight = new CreatureType("Knight",
-                maxHitPoints: 8, //20,
-                armorClass: 3,
-                thaco: 1, //12,
-                initiativeModifier: 0,
-                movement: 4,
-                attacks: new List<Attack>
-                {
-                    new MeleeAttack("Longsword", 100),// 10),
-                    new MeleeAttack("Longsword", 100),// 10),
-                    new MeleeAttack("Longsword", 100),// 10),
-                    new MeleeAttack("Longsword", 100),// 10)
-                });
-
-            var goblin = new CreatureType(
-                name: "Goblin",
-                maxHitPoints: 12,
-                armorClass: 5,
-                thaco: 20,
-                initiativeModifier: 0,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new MeleeAttack("Short sword", 6)
-                });
-
-            var archer = new CreatureType(
-                name: "Archer",
-                maxHitPoints: 12,
-                armorClass: 6,
-                thaco: 14,
-                initiativeModifier: 10,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new RangedAttack(
-                        name: "Bow & Arrow",
-                        maxDamage: 4,
-                        range: 5)
-                });
-
             var goblinArcher = new CreatureType(
                 name: "Goblin Archer",
                 maxHitPoints: 20,
@@ -214,9 +157,29 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 10));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 10));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 10));
-            scene.AddCreature(new Creature(knight, false) { IsAutomatic = false }, 6, 9);
+
+            // Enemies
             scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
             scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 7, 1);
+
+            // Party
+
+            // Dette bør være en egenskab ved scenen
+            var adventurerPositions = new List<Tuple<int, int>>
+            {
+                new (6, 9),
+                new (5, 9),
+                new (6, 10),
+                new (5, 10)
+            };
+
+            adventurerPositions
+                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+                .ToList()
+                .ForEach(_ =>
+                {
+                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+                });
 
             return scene;
         }

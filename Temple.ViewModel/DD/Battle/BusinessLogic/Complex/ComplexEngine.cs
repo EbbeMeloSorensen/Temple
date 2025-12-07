@@ -1,8 +1,9 @@
-﻿using Craft.DataStructures.Graph;
+﻿using AutoMapper.Features;
+using Craft.Algorithms;
+using Craft.DataStructures.Graph;
 using Craft.Logging;
 using Craft.Math;
 using Craft.Utils;
-using Craft.Algorithms;
 using Temple.Domain.Entities.DD;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 using Temple.ViewModel.DD.Battle.BusinessLogic.Complex;
@@ -591,7 +592,7 @@ namespace Temple.ViewModel.DD.BusinessLogic.Complex
             BattleHasEnded.Object = false;
 
             _actingOrder.Clear();
-            Creatures = _scene?.Creatures.Select(c => c.Clone()).ToList();
+            Creatures = new List<Creature>(_scene?.Creatures);
 
             InitializeCreatureIdMap();
 
