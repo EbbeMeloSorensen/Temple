@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Craft.Math;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Application.State.Payloads;
 using Temple.Persistence.EFCore.AppData;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Temple.Application.Core;
 
@@ -18,7 +20,7 @@ public class ApplicationController
 
     public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentState;
 
-    public HashSet<string> BattlesWon { get; }
+    public ApplicationData Data { get; }
 
     public event Action<ApplicationState>? ApplicationStateChanged
     {
@@ -35,7 +37,7 @@ public class ApplicationController
         _scopeFactory = scopeFactory;
         _logger = logger;
 
-        BattlesWon = new HashSet<string>();
+        Data = new ApplicationData();
     }
 
     public async Task InitializeAsync()
@@ -77,10 +79,17 @@ public class ApplicationController
 
     public void StartNewGame()
     {
+        Data.BattlesWon.Clear();
+        Data.ExplorationPosition = new Vector2D(0.5, -0.5);
+        Data.ExplorationOrientation = 0.5 * Math.PI;
+
         _applicationStateMachine.NextPayload = new InterludePayload
         {
             Text = "Så går eventyret i gang",
-            PayloadForNextState = new ExplorationPayload{Area = "Dungeon1"}
+            PayloadForNextState = new ExplorationPayload
+            {
+                Area = "Dungeon1"
+            }
         };
 
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.StartNewGame);

@@ -92,7 +92,15 @@ namespace Temple.ViewModel.DD.Exploration
             var explorationPayload = payload as ExplorationPayload
                                      ?? throw new ArgumentException("Payload is not of type ExplorationPayload", nameof(payload));
 
-            var scene = GenerateScene();
+            if (_controller.Data.ExplorationPosition == null ||
+                _controller.Data.ExplorationOrientation == null)
+            {
+                throw new InvalidOperationException("Position and orientation needed here");
+            }
+
+            var scene = GenerateScene(
+                _controller.Data.ExplorationPosition,
+                _controller.Data.ExplorationOrientation.Value);
 
             StartAnimation(scene);
 
@@ -112,17 +120,18 @@ namespace Temple.ViewModel.DD.Exploration
             Engine.StartOrResumeAnimation();
         }
 
-        private Scene GenerateScene()
+        private Scene GenerateScene(
+            Vector2D initialPositionOfParty,
+            double initialOrientationOfParty)
         {
             var ballRadius = 0.16;
-            var initialBallPosition = new Vector2D(0.5, -0.5);
 
             var initialState = new State();
 
             initialState.AddBodyState(
-                new BodyStateClassic(new CircularBody(1, ballRadius, 1, false), initialBallPosition)
+                new BodyStateClassic(new CircularBody(1, ballRadius, 1, false), position: initialPositionOfParty)
                 {
-                    Orientation = 0.5 * Math.PI
+                    Orientation = initialOrientationOfParty
                 });
 
             var standardGravity = 0.0;
@@ -195,6 +204,16 @@ namespace Temple.ViewModel.DD.Exploration
 
             scene.PostPropagationCallBack = (propagatedState, boundaryCollisionReports, bodyCollisionReports) =>
             {
+                var currentStateOfMainBody = propagatedState.TryGetBodyState(1) as BodyStateClassic;
+
+                if (currentStateOfMainBody == null)
+                {
+                    throw new InvalidOperationException("Expected a bodystate here");
+                }
+
+                _controller.Data.ExplorationPosition = currentStateOfMainBody.Position;
+                _controller.Data.ExplorationOrientation = currentStateOfMainBody.Orientation;
+
                 var response = new PostPropagationResponse();
 
                 if (!boundaryCollisionReports.Any()) return response;
@@ -249,8 +268,6 @@ namespace Temple.ViewModel.DD.Exploration
 
             //Scene3D = group;
 
-            // Add exits
-
             AddBattleUnlessWon("Dungeon 1, Room 1, Goblin", scene, new Vector2D(-1, -3), new Vector2D(-1, -2));
             AddBattleUnlessWon("Final Battle", scene, new Vector2D(1, -5), new Vector2D(0, -5));
 
@@ -263,7 +280,7 @@ namespace Temple.ViewModel.DD.Exploration
             Vector2D point1,
             Vector2D point2)
         {
-            if (!_controller.BattlesWon.Contains(battleId))
+            if (!_controller.Data.BattlesWon.Contains(battleId))
             {
                 scene.AddBoundary(new LineSegment(point1, point2, battleId));
             }
