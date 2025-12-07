@@ -1,16 +1,14 @@
 ﻿using Craft.Math;
-using GalaSoft.MvvmLight.Command;
 using Craft.Utils;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Boundaries;
-using Craft.Simulation.Boundaries.Interfaces;
 using Craft.Simulation.Engine;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using Temple.Application.Core;
-using Temple.Application.State;
+using Temple.Application.State.Payloads;
 
 namespace Temple.ViewModel.DD.Exploration
 {

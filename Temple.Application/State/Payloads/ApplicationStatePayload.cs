@@ -1,4 +1,4 @@
-﻿namespace Temple.Application.State;
+﻿namespace Temple.Application.State.Payloads;
 
 public abstract class ApplicationStatePayload
 {

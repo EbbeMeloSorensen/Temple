@@ -1,7 +1,7 @@
 ﻿using Craft.Logging;
 using Craft.Utils;
 using Temple.Application.Core;
-using Temple.Application.State;
+using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 using Temple.ViewModel.DD.BusinessLogic.Complex;

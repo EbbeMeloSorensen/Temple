@@ -1,6 +1,7 @@
 ﻿namespace Temple.Application.State
 {
     // These are all the states of the state machine. They should be enums in order to work with Stateless.
+    // Most of these correspond to a viewmodel
 
     public enum StateMachineState
     {

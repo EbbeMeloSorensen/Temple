@@ -1,4 +1,5 @@
 ﻿using Stateless;
+using Temple.Application.State.Payloads;
 
 namespace Temple.Application.State;
 
