@@ -9,10 +9,12 @@ Done:
 * Få det med payload til at virke som anvist af ChatGPT
 * Lav det sådan at ens position gemmes løbende gemmes, så den kan bruges, når man går fra battle og tilbage til exploration
 * Lav det sådan at man ikke skal tage samme battle flere gange ved at vedligeholde en liste over kampe, der er klaret
-
-Todo:
 * Protagonistens stats skal være en del af data
 * Der skal være et helt party og ikke bare en enkelt adventurer
+* Døde adventurers (hp < 0) kommer ikke med i flere kampe
+* Hit points forbliver reducerede mellem kampe
+
+Todo:
 * Lav en shopping state, som man kan komme til fra exploration
 * Introducer et settings view, hvor man f.eks. kan angive, om man vil se log og statusbar
 * Introducer et development mode, som kun er synligt, hvis man feks. trykker F12
