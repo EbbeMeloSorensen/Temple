@@ -5,6 +5,7 @@ using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Boundaries;
 using Craft.Simulation.Engine;
+using Craft.Utils.Linq;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using Temple.Application.Core;
@@ -249,22 +250,78 @@ namespace Temple.ViewModel.DD.Exploration
                 new(new Point2D(-1, 2), new Point2D(0, 2)),
             };
 
+            var wallPolyLines = new List<List<Point2D>>
+            {
+                new()
+                {
+                    new (0, 0),
+                    new (1, 0),
+                    new (1, 2),
+                    new (2, 2),
+                    new (2, 1),
+                    new (4, 1),
+                    new (4, 2),
+                    new (5, 2),
+                    new (5, 1),
+                    new (7, 1),
+                    new (7, 6),
+                    new (8, 6),
+                    new (8, 9),
+                    new (5, 9),
+                    new (5, 7),
+                    new (3, 7),
+                    new (3, 9),
+                    new (-2, 9),
+                    new (-2, 5),
+                    new (0, 5),
+                    new (0, 3),
+                    new (-1, 3),
+                    new (-1, 4),
+                    new (-3, 4),
+                    new (-3, 1),
+                    new (-1, 1),
+                    new (-1, 2),
+                    new (0, 2),
+                    new (0, 0)
+                },
+                new ()
+                {
+                    new (1, 3),
+                    new (1, 5),
+                    new (3, 5),
+                    new (3, 6),
+                    new (6, 6),
+                    new (6, 5),
+                    new (5, 5),
+                    new (5, 3),
+                    new (4, 3),
+                    new (4, 4),
+                    new (2, 4),
+                    new (2, 3),
+                    new (1, 3),
+                }
+            };
+
             //var group = new Model3DGroup();
             //var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
 
-            foreach (var lineSegment in lineSegments)
+            wallPolyLines.ForEach(wallPolyLine =>
             {
-                scene.AddBoundary(new LineSegment(
-                    new Vector2D(lineSegment.Point1.X, -lineSegment.Point1.Y),
-                    new Vector2D(lineSegment.Point2.X, -lineSegment.Point2.Y)));
+                wallPolyLine.AdjacentPairs().ToList().ForEach(_ =>
+                {
+                    scene.AddBoundary(new LineSegment(
+                        new Vector2D(_.Item1.X, -_.Item1.Y),
+                        new Vector2D(_.Item2.X, -_.Item2.Y)));
 
-                //var rectangleMesh = CreateWall(
-                //    new Point2D(lineSegment.Point1.Y, lineSegment.Point1.X),
-                //    new Point2D(lineSegment.Point2.Y, lineSegment.Point2.X));
+                    //var rectangleMesh = CreateWall(
+                    //    new Point2D(lineSegment.Point1.Y, lineSegment.Point1.X),
+                    //    new Point2D(lineSegment.Point2.Y, lineSegment.Point2.X));
 
-                //var rectangleModel = new GeometryModel3D(rectangleMesh, material);
-                //group.Children.Add(rectangleModel);
-            }
+                    //var rectangleModel = new GeometryModel3D(rectangleMesh, material);
+                    //group.Children.Add(rectangleModel);
+                });
+            });
+
 
             //Scene3D = group;
 
