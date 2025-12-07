@@ -130,9 +130,7 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 4));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 5));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 6));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 7));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 8));
