@@ -16,6 +16,7 @@ Done:
 
 Todo:
 * Håndter rum, som har flere indgange
+* Lav en algoritme, som laver et bord ud fra et udsnit af dungeonen - den skal nok have en image repræsentation somehow
 * Få 3D på banen igen
 * Vægge behøver ikke være så pisse tykke i dungeons
 * Sørg for at den lukker ordentligt ned, hvis man lukker applikationen under Exploration
