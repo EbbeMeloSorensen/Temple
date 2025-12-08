@@ -1,4 +1,4 @@
-﻿using Craft.Math;
+﻿using Temple.Application.State;
 using Temple.Domain.Entities.DD;
 
 namespace Temple.ViewModel.DD.Battle.BusinessLogic
@@ -6,13 +6,14 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
     public static class BattleSceneFactory
     {
         public static Scene SetupBattleScene(
+            List<Creature> party,
             string battleSceneId,
-            List<Creature> party)
+            string? entranceId)
         {
             return battleSceneId switch
             {
                 "Dungeon 1, Room 1, Goblin" => GetSceneFirstBattle(party),
-                "Final Battle" => GetSceneFinalBattle(party),
+                "Final Battle" => GetSceneFinalBattle(party, entranceId),
                 _ => throw new ArgumentException($"Unknown battle scene ID: {battleSceneId}", nameof(battleSceneId))
             };
         }
@@ -69,8 +70,6 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
             scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 5);
 
             // Party
-
-            // Dette bør være en egenskab ved scenen
             var adventurerPositions = new List<Tuple<int, int>>
             {
                 new (5, 3),
@@ -91,8 +90,14 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
         }
 
         private static Scene GetSceneFinalBattle(
-            List<Creature> party)
+            IEnumerable<Creature> party,
+            string? entranceId)
         {
+            if (entranceId == null)
+            {
+                throw new InvalidOperationException("Entrance Id needed");
+            }
+
             var goblinArcher = new CreatureType(
                 name: "Goblin Archer",
                 maxHitPoints: 20,
@@ -108,7 +113,7 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
                         range: 4)
                 });
 
-            var scene = new Scene("DummyScene", 11, 12);
+            var scene = new Scene("DummyScene", 10, 12);
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
@@ -145,30 +150,29 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 9));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 9));
             scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 10));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 10));
 
             // Enemies
             scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
             scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 7, 1);
 
             // Party
-
-            // Dette bør være en egenskab ved scenen
-            var adventurerPositions = new List<Tuple<int, int>>
+            var adventurerPositions = entranceId switch
             {
-                new (6, 9),
-                new (5, 9),
-                new (6, 10),
-                new (5, 10)
+                "South" => new List<Tuple<int, int>>
+                {
+                    new (6, 8),
+                    new (5, 8),
+                    new (6, 9),
+                    new (5, 9)
+                },
+                "East" => new List<Tuple<int, int>>
+                {
+                    new (10, 5),
+                    new (10, 6),
+                    new (11, 5),
+                    new (11, 6)
+                },
+                _ => throw new InvalidOperationException()
             };
 
             adventurerPositions

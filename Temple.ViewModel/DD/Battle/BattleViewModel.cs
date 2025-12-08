@@ -81,8 +81,9 @@ public class BattleViewModel : TempleViewModel
         _payloadForNextState = battlePayload.PayloadForNextStateInCasePartyWins;
 
         ActOutSceneViewModel.InitializeScene(BattleSceneFactory.SetupBattleScene(
+            _controller.Data.Party,
             battlePayload.BattleId,
-            _controller.Data.Party));
+            battlePayload.EntranceId));
 
         ActOutSceneViewModel.StartBattleCommand.ExecuteAsync();
 

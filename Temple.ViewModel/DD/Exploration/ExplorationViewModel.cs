@@ -77,10 +77,31 @@ namespace Temple.ViewModel.DD.Exploration
 
             Engine.AnimationCompleted += (s, e) =>
             {
+                var outcome = Engine.EngineCore.Outcome as string;
+
+                string battleId;
+                string? entranceId;
+
+                if (outcome.Contains(';'))
+                {
+                    var separatorIndex = outcome.IndexOf(';');
+                    battleId = outcome.Substring(0, separatorIndex);
+                    entranceId = outcome.Substring(separatorIndex + 1);
+                }
+                else
+                {
+                    battleId = outcome;
+                    entranceId = null;
+                }
+
                 var payload = new BattlePayload
                 {
-                    BattleId = Engine.EngineCore.Outcome as string,
-                    PayloadForNextStateInCasePartyWins = new ExplorationPayload{Area = "Dungeon1"}
+                    BattleId = battleId,
+                    EntranceId = entranceId,
+                    PayloadForNextStateInCasePartyWins = new ExplorationPayload
+                    {
+                        //Area = "Dungeon1" 
+                    }
                 };
 
                 _controller.GoToNextApplicationState(payload);
@@ -305,22 +326,30 @@ namespace Temple.ViewModel.DD.Exploration
 
             //Scene3D = group;
 
-            AddBattleUnlessWon("Dungeon 1, Room 1, Goblin", scene, new Vector2D(-1, -3), new Vector2D(-1, -2));
-            AddBattleUnlessWon("Final Battle", scene, new Vector2D(1, -5), new Vector2D(0, -5));
+            AddBattleUnlessWon(scene, new Vector2D(-1, -3), new Vector2D(-1, -2), "Dungeon 1, Room 1, Goblin");
+            AddBattleUnlessWon(scene, new Vector2D(1, -5), new Vector2D(0, -5), "Final Battle", "South");
+            AddBattleUnlessWon(scene, new Vector2D(3, -7), new Vector2D(3, -6), "Final Battle", "East");
 
             return scene;
         }
 
         private void AddBattleUnlessWon(
-            string battleId,
             Scene scene,
             Vector2D point1,
-            Vector2D point2)
+            Vector2D point2,
+            string battleId,
+            string? entranceId = null)
         {
-            if (!_controller.Data.BattlesWon.Contains(battleId))
+            if (_controller.Data.BattlesWon.Contains(battleId)) return;
+
+            var tag = battleId;
+
+            if (entranceId != null)
             {
-                scene.AddBoundary(new LineSegment(point1, point2, battleId));
+                tag = $"{tag};{entranceId}";
             }
+
+            scene.AddBoundary(new LineSegment(point1, point2, tag));
         }
     }
 }

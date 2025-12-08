@@ -89,7 +89,7 @@ public class ApplicationController
             Text = "Så går eventyret i gang",
             PayloadForNextState = new ExplorationPayload
             {
-                Area = "Dungeon1"
+                //Area = "Dungeon1"
             }
         };
 
