@@ -326,7 +326,9 @@ namespace Temple.ViewModel.DD.Exploration
 
             //Scene3D = group;
 
-            AddBattleUnlessWon(scene, new Vector2D(-1, -3), new Vector2D(-1, -2), "Dungeon 1, Room 1, Goblin");
+            AddBattleUnlessWon(scene, new Vector2D(-1, -3), new Vector2D(-1, -2), "Dungeon 1, Room A, Goblin");
+            AddBattleUnlessWon(scene, new Vector2D(2, -3), new Vector2D(2, -2), "Dungeon 1, Room B, Goblin", "West");
+            AddBattleUnlessWon(scene, new Vector2D(4, -3), new Vector2D(4, -2), "Dungeon 1, Room B, Goblin", "East");
             AddBattleUnlessWon(scene, new Vector2D(1, -5), new Vector2D(0, -5), "Final Battle", "South");
             AddBattleUnlessWon(scene, new Vector2D(3, -7), new Vector2D(3, -6), "Final Battle", "East");
 
