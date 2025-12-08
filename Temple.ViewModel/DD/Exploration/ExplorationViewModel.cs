@@ -1,15 +1,19 @@
-﻿using Craft.Math;
+﻿using System.Windows.Media;
+using System.Windows.Media.Media3D;
+using Craft.Math;
 using Craft.Utils;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
-using Craft.Simulation.Boundaries;
 using Craft.Simulation.Engine;
 using Craft.Utils.Linq;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
+using LineSegment = Craft.Simulation.Boundaries.LineSegment;
+using Point3D = System.Windows.Media.Media3D.Point3D;
+using Vector3D = System.Windows.Media.Media3D.Vector3D;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -18,8 +22,53 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
 
+        private Model3DGroup _scene3D;
+        private Point3D _cameraPosition;
+        private Point3D _lightPosition;
+        private Vector3D _lookDirection;
+
         public Engine Engine { get; }
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
+
+        public Model3DGroup Scene3D
+        {
+            get => _scene3D;
+            private set
+            {
+                _scene3D = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Point3D CameraPosition
+        {
+            get => _cameraPosition;
+            set
+            {
+                _cameraPosition = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Point3D LightPosition
+        {
+            get => _lightPosition;
+            set
+            {
+                _lightPosition = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Vector3D LookDirection
+        {
+            get => _lookDirection;
+            set
+            {
+                _lookDirection = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public ExplorationViewModel(
             ApplicationController controller)
@@ -139,6 +188,28 @@ namespace Temple.ViewModel.DD.Exploration
 
             _sceneViewController.ActiveScene = scene;
 
+            Engine.CurrentStateChanged += (s, e) =>
+            {
+                var bodyStateOfProtagonist = e.State.BodyStates.First() as BodyStateClassic;
+                var position = bodyStateOfProtagonist.Position;
+                var orientation = bodyStateOfProtagonist.Orientation;
+
+                _controller.Data.ExplorationPosition = position;
+                _controller.Data.ExplorationOrientation = orientation;
+
+                CameraPosition = new Point3D(
+                    -position.Y,
+                    0.5,
+                    position.X);
+
+                LightPosition = new Point3D(
+                    -position.Y,
+                    0.5,
+                    position.X);
+
+                LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
+            };
+
             Engine.StartOrResumeAnimation();
         }
 
@@ -233,9 +304,6 @@ namespace Temple.ViewModel.DD.Exploration
                     throw new InvalidOperationException("Expected a bodystate here");
                 }
 
-                _controller.Data.ExplorationPosition = currentStateOfMainBody.Position;
-                _controller.Data.ExplorationOrientation = currentStateOfMainBody.Orientation;
-
                 var response = new PostPropagationResponse();
 
                 if (!boundaryCollisionReports.Any()) return response;
@@ -303,8 +371,8 @@ namespace Temple.ViewModel.DD.Exploration
                 }
             };
 
-            //var group = new Model3DGroup();
-            //var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
+            var group = new Model3DGroup();
+            var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
 
             wallPolyLines.ForEach(wallPolyLine =>
             {
@@ -314,17 +382,16 @@ namespace Temple.ViewModel.DD.Exploration
                         new Vector2D(_.Item1.X, -_.Item1.Y),
                         new Vector2D(_.Item2.X, -_.Item2.Y)));
 
-                    //var rectangleMesh = CreateWall(
-                    //    new Point2D(lineSegment.Point1.Y, lineSegment.Point1.X),
-                    //    new Point2D(lineSegment.Point2.Y, lineSegment.Point2.X));
+                    var rectangleMesh = CreateWall(
+                        new Point2D(_.Item1.Y, _.Item1.X),
+                        new Point2D(_.Item2.Y, _.Item2.X));
 
-                    //var rectangleModel = new GeometryModel3D(rectangleMesh, material);
-                    //group.Children.Add(rectangleModel);
+                    var rectangleModel = new GeometryModel3D(rectangleMesh, material);
+                    group.Children.Add(rectangleModel);
                 });
             });
 
-
-            //Scene3D = group;
+            Scene3D = group;
 
             AddBattleUnlessWon(scene, new Vector2D(-1, -3), new Vector2D(-1, -2), "Dungeon 1, Room A, Goblin");
             AddBattleUnlessWon(scene, new Vector2D(2, -3), new Vector2D(2, -2), "Dungeon 1, Room B, Goblin", "West");
@@ -352,6 +419,17 @@ namespace Temple.ViewModel.DD.Exploration
             }
 
             scene.AddBoundary(new LineSegment(point1, point2, tag));
+        }
+
+        private MeshGeometry3D CreateWall(
+            Point2D p1,
+            Point2D p2)
+        {
+            return MeshBuilder.CreateQuad(
+                new Point3D(p1.X, 1, p1.Y),
+                new Point3D(p2.X, 1, p2.Y),
+                new Point3D(p2.X, 0, p2.Y),
+                new Point3D(p1.X, 0, p1.Y));
         }
     }
 }

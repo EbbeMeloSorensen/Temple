@@ -11,11 +11,37 @@
              KeyDown="ExploreAreaView_OnKeyDown"
              KeyUp="ExploreAreaView_OnKeyUp">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <scrollFree:GeometryEditorView Grid.Row="0" Grid.Column="0" DataContext="{Binding GeometryEditorViewModel}"/>
+        <scrollFree:GeometryEditorView Grid.Column="0" DataContext="{Binding GeometryEditorViewModel}"/>
+
+        <Viewport3D Grid.Column="1" Name="viewport">
+
+            <Viewport3D.Camera>
+                <PerspectiveCamera
+                    Position="{Binding CameraPosition}"
+                    LookDirection="{Binding LookDirection}"
+                    UpDirection="0,1,0"
+                    FieldOfView="45"/>
+            </Viewport3D.Camera>
+
+            <!-- Player light -->
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <PointLight Color="white"
+                                Range="10"
+                                ConstantAttenuation="1"
+                                LinearAttenuation="0.05"
+                                QuadraticAttenuation="0.05"
+                                Position="{Binding LightPosition}" />
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+
+            <ModelVisual3D Content="{Binding Scene3D}"/>
+
+        </Viewport3D>
     </Grid>
 </UserControl>
