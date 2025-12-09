@@ -4,5 +4,5 @@ namespace Temple.Application.State.Payloads;
 
 public class ExplorationPayload : ApplicationStatePayload
 {
-    //public string Area { get; set; }
+    public string Site { get; set; }
 }

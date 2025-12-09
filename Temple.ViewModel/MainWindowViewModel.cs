@@ -1,11 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Craft.ViewModels.Dialogs;
+using GalaSoft.MvvmLight;
 using MediatR;
-using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.State;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Exploration;
+using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
 
@@ -82,6 +83,9 @@ namespace Temple.ViewModel
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
 
+                    case StateMachineState.Wilderness:
+                        CurrentViewModel = new WildernessViewModel(_controller);
+                        break;
                     case StateMachineState.Defeat:
                         CurrentViewModel = new DefeatViewModel(_controller);
                         break;
@@ -90,7 +94,7 @@ namespace Temple.ViewModel
                         break;
                     default:
                     {
-                        throw new InvalidOperationException("Vi kører et andet princip nu");
+                        throw new InvalidOperationException("Unknown state");
                     }
                 }
             };

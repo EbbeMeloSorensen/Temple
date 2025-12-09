@@ -15,6 +15,8 @@
         xmlns:behaviors="clr-namespace:Temple.UI.WPF.Behaviors"
         xmlns:battle="clr-namespace:Temple.ViewModel.DD.Battle;assembly=Temple.ViewModel"
         xmlns:exploration="clr-namespace:Temple.ViewModel.DD.Exploration;assembly=Temple.ViewModel"
+        xmlns:wilderness="clr-namespace:Temple.ViewModel.DD.Wilderness;assembly=Temple.ViewModel"
+        xmlns:wilderness1="clr-namespace:Temple.UI.WPF.DD.Wilderness"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Temple" Height="600" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
@@ -31,6 +33,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type exploration:ExplorationViewModel}">
             <dd2:ExploreAreaView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type wilderness:WildernessViewModel}">
+            <wilderness1:WildernessView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type dd:DefeatViewModel}">
             <dd1:DefeatView/>

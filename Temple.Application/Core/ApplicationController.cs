@@ -134,6 +134,11 @@ public class ApplicationController
         }
     }
 
+    public void GoToWilderness()
+    {
+        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToWilderness);
+    }
+
     public void GoToDefeat()
     {
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToDefeat);

@@ -128,32 +128,36 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 var outcome = Engine.EngineCore.Outcome as string;
 
-                string battleId;
-                string? entranceId;
-
-                if (outcome.Contains(';'))
+                if (outcome == "Exit_To_Wilderness")
                 {
-                    var separatorIndex = outcome.IndexOf(';');
-                    battleId = outcome.Substring(0, separatorIndex);
-                    entranceId = outcome.Substring(separatorIndex + 1);
+                    _controller.GoToWilderness();
                 }
                 else
                 {
-                    battleId = outcome;
-                    entranceId = null;
-                }
+                    string battleId;
+                    string? entranceId;
 
-                var payload = new BattlePayload
-                {
-                    BattleId = battleId,
-                    EntranceId = entranceId,
-                    PayloadForNextStateInCasePartyWins = new ExplorationPayload
+                    if (outcome.Contains(';'))
                     {
-                        //Area = "Dungeon1" 
+                        var separatorIndex = outcome.IndexOf(';');
+                        battleId = outcome.Substring(0, separatorIndex);
+                        entranceId = outcome.Substring(separatorIndex + 1);
                     }
-                };
+                    else
+                    {
+                        battleId = outcome;
+                        entranceId = null;
+                    }
 
-                _controller.GoToNextApplicationState(payload);
+                    var payload = new BattlePayload
+                    {
+                        BattleId = battleId,
+                        EntranceId = entranceId,
+                        PayloadForNextStateInCasePartyWins = new ExplorationPayload()
+                    };
+
+                    _controller.GoToNextApplicationState(payload);
+                }
             };
         }
 
@@ -323,7 +327,6 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 new()
                 {
-                    new (0, 0),
                     new (1, 0),
                     new (1, 2),
                     new (2, 2),
@@ -398,6 +401,8 @@ namespace Temple.ViewModel.DD.Exploration
             AddBattleUnlessWon(scene, new Vector2D(4, -3), new Vector2D(4, -2), "Dungeon 1, Room B, Goblin", "East");
             AddBattleUnlessWon(scene, new Vector2D(1, -5), new Vector2D(0, -5), "Final Battle", "South");
             AddBattleUnlessWon(scene, new Vector2D(3, -7), new Vector2D(3, -6), "Final Battle", "East");
+
+            scene.AddBoundary(new LineSegment(new Vector2D(0, 0), new Vector2D(1, 0), "Exit_To_Wilderness"));
 
             return scene;
         }

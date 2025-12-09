@@ -37,16 +37,22 @@ public class ApplicationStateMachine
 
         _machine.Configure(StateMachineState.Interlude)
             .OnEntry(UpdateApplicationState)
-            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration)
-            .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle);
+            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration);
 
         _machine.Configure(StateMachineState.Exploration)
             .OnEntry(UpdateApplicationState)
-            .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle);
+            .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle)
+            .Permit(ApplicationStateShiftTrigger.GoToWilderness, StateMachineState.Wilderness);
+
+        _machine.Configure(StateMachineState.Wilderness)
+            .OnEntry(UpdateApplicationState)
+            .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle)
+            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration);
 
         _machine.Configure(StateMachineState.Battle)
             .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration)
+            .Permit(ApplicationStateShiftTrigger.GoToWilderness, StateMachineState.Wilderness)
             .Permit(ApplicationStateShiftTrigger.GoToDefeat, StateMachineState.Defeat)
             .Permit(ApplicationStateShiftTrigger.GoToVictory, StateMachineState.Victory);
 

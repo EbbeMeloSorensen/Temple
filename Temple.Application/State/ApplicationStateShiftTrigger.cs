@@ -10,6 +10,7 @@ public enum ApplicationStateShiftTrigger
     StartNewGame,
     GoToExploration,
     GoToBattle,
+    GoToWilderness,
     GoToDefeat,
     GoToVictory,
 }

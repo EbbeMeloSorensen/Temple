@@ -14,6 +14,7 @@
         Defeat,
         Victory,
         Battle,
-        Exploration
+        Exploration,
+        Wilderness
     }
 }
