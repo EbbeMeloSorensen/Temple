@@ -1,6 +1,5 @@
 ﻿using Craft.Math;
 using Temple.Domain.Entities.DD;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Temple.Application.State;
 
@@ -8,6 +7,7 @@ public class ApplicationData
 {
     public List<Creature> Party { get; set; }
     public HashSet<string> BattlesWon { get; }
+    public string CurrentSite { get; set; }
     public Vector2D? ExplorationPosition { get; set; }
     public double? ExplorationOrientation { get; set; }
 

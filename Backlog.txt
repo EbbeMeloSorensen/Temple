@@ -13,11 +13,11 @@ Done:
 * Der skal være et helt party og ikke bare en enkelt adventurer
 * Døde adventurers (hp < 0) kommer ikke med i flere kampe
 * Hit points forbliver reducerede mellem kampe
+* Håndter rum, som har flere indgange
+* Få 3D på banen igen
 
 Todo:
-* Håndter rum, som har flere indgange
 * Lav en algoritme, som laver et bord ud fra et udsnit af dungeonen - den skal nok have en image repræsentation somehow
-* Få 3D på banen igen
 * Vægge behøver ikke være så pisse tykke i dungeons
 * Sørg for at den lukker ordentligt ned, hvis man lukker applikationen under Exploration
 * Introducer et Wilderness mode

@@ -84,12 +84,14 @@ public class ApplicationController
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
 
+        Data.CurrentSite = "Mine";
+
         _applicationStateMachine.NextPayload = new InterludePayload
         {
             Text = "Så går eventyret i gang",
             PayloadForNextState = new ExplorationPayload
             {
-                //Area = "Dungeon1"
+                Site = Data.CurrentSite
             }
         };
 

@@ -8,26 +8,20 @@ namespace Temple.ViewModel.DD.Wilderness
     {
         private readonly ApplicationController _controller;
 
-        public RelayCommand GoToSite_Mine { get; }
-        public RelayCommand GoToSite_Graveyard { get; }
-        public RelayCommand GoToSite_Village { get; }
+        public RelayCommand GoToSite_Mine_Command { get; }
+        public RelayCommand GoToSite_Village_Command { get; }
 
         public WildernessViewModel(
             ApplicationController controller)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-            GoToSite_Mine = new RelayCommand(() =>
+            GoToSite_Mine_Command = new RelayCommand(() =>
             {
                 _controller.GoToNextApplicationState(new ExplorationPayload { Site = "Mine" });
             });
 
-            GoToSite_Graveyard = new RelayCommand(() =>
-            {
-                _controller.GoToNextApplicationState(new ExplorationPayload { Site = "Graveyard" });
-            });
-
-            GoToSite_Village = new RelayCommand(() =>
+            GoToSite_Village_Command = new RelayCommand(() =>
             {
                 _controller.GoToNextApplicationState(new ExplorationPayload { Site = "Village" });
             });

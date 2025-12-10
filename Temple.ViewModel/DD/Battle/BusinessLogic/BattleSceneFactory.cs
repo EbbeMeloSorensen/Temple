@@ -62,7 +62,6 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
 
             // Enemies
             scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 4);
-            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 5);
 
             // Party
             var adventurerPositions = new List<Tuple<int, int>>
