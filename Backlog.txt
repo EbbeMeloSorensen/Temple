@@ -17,7 +17,7 @@ Done:
 * Få 3D på banen igen
 
 Todo:
-* Lav en state med noget dialog med en npc - den skal kunne nås fra village sitet
+* Lav en state med noget dialog med en npc - den skal kunne nås fra village sitet - gerne på en måde, der ikke ligner lort
 * Lav en state med noget shopping - den skal kunne nås fra village sitet
 * Lav en state med equipment - den skal kunne nås fra exploration og evt andre states
 * Tilføj mulighed for at kaste spells, men på en måde hvor du ikke overkomplicerer battle enginen
