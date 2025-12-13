@@ -1,10 +1,10 @@
-﻿using Craft.Math;
+﻿using System.Windows.Media;
+using System.Windows.Media.Media3D;
+using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Utils.Linq;
-using System.Windows.Media;
-using System.Windows.Media.Media3D;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
@@ -13,89 +13,172 @@ namespace Temple.ViewModel.DD.Exploration;
 
 public static class ExplorationSceneFactory
 {
-    public static List<List<Point2D>> GetWallPolyLines(
-        string site)
+    public static SiteSpecs GetSiteSpecs(
+        string siteID)
     {
-        switch (site)
+        return siteID switch
         {
-            case "Mine":
-                return new List<List<Point2D>>
+            "Mine" => new SiteSpecs(new List<List<Point2D>>
+            {
+                new()
                 {
-                    new()
-                    {
-                        new (1, 0),
-                        new (1, 2),
-                        new (2, 2),
-                        new (2, 1),
-                        new (4, 1),
-                        new (4, 2),
-                        new (5, 2),
-                        new (5, 1),
-                        new (7, 1),
-                        new (7, 6),
-                        new (8, 6),
-                        new (8, 9),
-                        new (5, 9),
-                        new (5, 7),
-                        new (3, 7),
-                        new (3, 9),
-                        new (-2, 9),
-                        new (-2, 5),
-                        new (0, 5),
-                        new (0, 3),
-                        new (-1, 3),
-                        new (-1, 4),
-                        new (-3, 4),
-                        new (-3, 1),
-                        new (-1, 1),
-                        new (-1, 2),
-                        new (0, 2),
-                        new (0, 0)
-                    },
-                    new ()
-                    {
-                        new (1, 3),
-                        new (1, 5),
-                        new (3, 5),
-                        new (3, 6),
-                        new (6, 6),
-                        new (6, 5),
-                        new (5, 5),
-                        new (5, 3),
-                        new (4, 3),
-                        new (4, 4),
-                        new (2, 4),
-                        new (2, 3),
-                        new (1, 3),
-                    }
-                };
-            case "Village":
-                return new List<List<Point2D>>
+                    new (1, 0),
+                    new (1, 2),
+                    new (2, 2),
+                    new (2, 1),
+                    new (4, 1),
+                    new (4, 2),
+                    new (5, 2),
+                    new (5, 1),
+                    new (7, 1),
+                    new (7, 6),
+                    new (8, 6),
+                    new (8, 9),
+                    new (5, 9),
+                    new (5, 7),
+                    new (3, 7),
+                    new (3, 9),
+                    new (-2, 9),
+                    new (-2, 5),
+                    new (0, 5),
+                    new (0, 3),
+                    new (-1, 3),
+                    new (-1, 4),
+                    new (-3, 4),
+                    new (-3, 1),
+                    new (-1, 1),
+                    new (-1, 2),
+                    new (0, 2),
+                    new (0, 0)
+                },
+                new ()
                 {
-                    new ()
-                    {
-                        new (1, 3),
-                        new (1, 5),
-                        new (3, 5),
-                        new (3, 6),
-                        new (6, 6),
-                        new (6, 5),
-                        new (5, 5),
-                        new (5, 3),
-                        new (4, 3),
-                        new (4, 4),
-                        new (2, 4),
-                        new (2, 3),
-                        new (1, 3),
-                    }
-                };
-        }
+                    new (1, 3),
+                    new (1, 5),
+                    new (3, 5),
+                    new (3, 6),
+                    new (6, 6),
+                    new (6, 5),
+                    new (5, 5),
+                    new (5, 3),
+                    new (4, 3),
+                    new (4, 4),
+                    new (2, 4),
+                    new (2, 3),
+                    new (1, 3),
+                }
+            }, new List<ExplorationEventTrigger>
+            {
+                new LeaveSiteEventTrigger
+                {
+                    Point1 = new Point2D(0, 0),
+                    Point2 = new Point2D(1, 0),
+                    EventID = "Exit_To_Wilderness"
+                },
+                new ScriptedBattleEventTrigger
+                {
+                    Point1 = new Point2D(-1, 3),
+                    Point2 = new Point2D(-1, 2),
+                    EventID = "Dungeon 1, Room A, Goblin"
+                },
+                new ScriptedBattleEventTrigger
+                {
+                    Point1 = new Point2D(2, 3),
+                    Point2 = new Point2D(2, 2),
+                    EventID = "Dungeon 1, Room B, Goblin",
+                    EntranceID = "West"
+                },
+                new ScriptedBattleEventTrigger
+                {
+                    Point1 = new Point2D(4, 3),
+                    Point2 = new Point2D(4, 2),
+                    EventID = "Dungeon 1, Room B, Goblin",
+                    EntranceID = "East"
+                },
+                new ScriptedBattleEventTrigger
+                {
+                    Point1 = new Point2D(1, 5),
+                    Point2 = new Point2D(0, 5),
+                    EventID = "Final Battle",
+                    EntranceID = "South"
+                },
+                new ScriptedBattleEventTrigger
+                {
+                    Point1 = new Point2D(3, 7),
+                    Point2 = new Point2D(3, 6),
+                    EventID = "Final Battle",
+                    EntranceID = "East"
+                },
+            }),
+            "Village" => new SiteSpecs(new List<List<Point2D>>
+            {
+                new ()
+                {
+                    new (11, 9),
+                    new (10, 9),
+                    new (10, 11),
+                    new (13, 11),
+                    new (13, 9),
+                    new (12, 9),
+                    new (13, 9),
+                    new (13, 11),
+                    new (10, 11),
+                    new (10, 9),
+                    new (11, 9),
+                },
+                new ()
+                {
+                    new (12, 6),
+                    new (13, 6),
+                    new (13, 4),
+                    new (10, 4),
+                    new (10, 6),
+                    new (11, 6),
+                    new (10, 6),
+                    new (10, 4),
+                    new (13, 4),
+                    new (13, 6),
+                    new (12, 6)
 
-        throw new NotImplementedException("Unknown site");
+                },
+                new ()
+                {
+                    new (8, 7),
+                    new (8, 4),
+                    new (4, 4),
+                    new (4, 11),
+                    new (8, 11),
+                    new (8, 8),
+                    new (8, 11),
+                    new (4, 11),
+                    new (4, 4),
+                    new (8, 4),
+                    new (8, 7)
+                },
+                new ()
+                {
+                    new (15, 8),
+                    new (15, 12),
+                    new (3, 12),
+                    new (3, 3),
+                    new (15, 3),
+                    new (15, 7),
+                }
+            }, new List<ExplorationEventTrigger>
+            {
+                new LeaveSiteEventTrigger
+                {
+                    Point1 = new Point2D(15, 8),
+                    Point2 = new Point2D(15, 7),
+                    EventID = "Exit_To_Wilderness"
+                },
+            }),
+            _ => throw new InvalidOperationException("Unknown SiteID")
+        };
     }
 
     public static Scene GenerateScene(
-        List<List<Point2D>> wallPolyLines,
+        SiteSpecs siteSpecs,
         Vector2D initialPositionOfParty,
         double initialOrientationOfParty,
         IReadOnlySet<string> battlesWon)
@@ -201,7 +284,7 @@ public static class ExplorationSceneFactory
             return response;
         };
 
-        wallPolyLines.ForEach(wallPolyLine =>
+        siteSpecs.WallPolyLines.ForEach(wallPolyLine =>
         {
             wallPolyLine.AdjacentPairs().ToList().ForEach(_ =>
             {
@@ -211,13 +294,26 @@ public static class ExplorationSceneFactory
             });
         });
 
-        AddBattleUnlessWon(scene, new Vector2D(-1, 3), new Vector2D(-1, 2), "Dungeon 1, Room A, Goblin", battlesWon);
-        AddBattleUnlessWon(scene, new Vector2D(2, 3), new Vector2D(2, 2), "Dungeon 1, Room B, Goblin", battlesWon, "West");
-        AddBattleUnlessWon(scene, new Vector2D(4, 3), new Vector2D(4, 2), "Dungeon 1, Room B, Goblin", battlesWon, "East");
-        AddBattleUnlessWon(scene, new Vector2D(1, 5), new Vector2D(0, 5), "Final Battle", battlesWon, "South");
-        AddBattleUnlessWon(scene, new Vector2D(3, 7), new Vector2D(3, 6), "Final Battle", battlesWon, "East");
-
-        scene.AddBoundary(new LineSegment(new Vector2D(0, 0), new Vector2D(1, 0), "Exit_To_Wilderness"));
+        siteSpecs.ExplorationEventTriggers.ForEach(explorationEventTrigger =>
+        {
+            switch (explorationEventTrigger)
+            {
+                case LeaveSiteEventTrigger leaveSiteEventTrigger:
+                    scene.AddBoundary(new LineSegment(
+                        new Vector2D(leaveSiteEventTrigger.Point1.X, -leaveSiteEventTrigger.Point1.Y), 
+                        new Vector2D(leaveSiteEventTrigger.Point2.X, -leaveSiteEventTrigger.Point2.Y),
+                        leaveSiteEventTrigger.EventID));
+                    break;
+                case ScriptedBattleEventTrigger scriptedBattleEventTrigger:
+                    AddBattleUnlessWon(scene,
+                        scriptedBattleEventTrigger.Point1,
+                        scriptedBattleEventTrigger.Point2,
+                        scriptedBattleEventTrigger.EventID,
+                        scriptedBattleEventTrigger.EntranceID,
+                        battlesWon);
+                    break;
+            }
+        });
 
         return scene;
     }
@@ -252,19 +348,19 @@ public static class ExplorationSceneFactory
             });
         });
 
-        group.Children.Add(new GeometryModel3D(floorMesh, material));
-        group.Children.Add(new GeometryModel3D(ceilingMesh, material));
+        //group.Children.Add(new GeometryModel3D(floorMesh, material));
+        //group.Children.Add(new GeometryModel3D(ceilingMesh, material));
 
         return group;
     }
 
     private static void AddBattleUnlessWon(
         Scene scene,
-        Vector2D point1,
-        Vector2D point2,
+        Point2D point1,
+        Point2D point2,
         string battleId,
-        IReadOnlySet<string> battlesWon,
-        string? entranceId = null)
+        string? entranceId,
+        IReadOnlySet<string> battlesWon)
     {
         if (battlesWon.Contains(battleId)) return;
 

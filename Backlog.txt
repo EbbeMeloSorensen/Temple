@@ -17,6 +17,8 @@ Done:
 * Få 3D på banen igen
 
 Todo:
+* SiteSpecs skal loades fra filressourcer, gerne som json i første omgang - så vidt muligt ikke hardkodes
+* Lav det lidt mere interessant med det der 3D grafik, f.eks. ved at tilføje døre
 * Lav en algoritme, som laver et bord ud fra et udsnit af dungeonen - den skal nok have en image repræsentation somehow
 * Vægge behøver ikke være så pisse tykke i dungeons
 * Sørg for at den lukker ordentligt ned, hvis man lukker applikationen under Exploration

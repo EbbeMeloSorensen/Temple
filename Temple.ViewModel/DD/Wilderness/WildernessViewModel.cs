@@ -26,7 +26,7 @@ namespace Temple.ViewModel.DD.Wilderness
 
             GoToSite_Village_Command = new RelayCommand(() =>
             {
-                _controller.Data.ExplorationPosition = new Vector2D(0.5, -0.5);
+                _controller.Data.ExplorationPosition = new Vector2D(14.5, -7.5);
                 _controller.Data.ExplorationOrientation = 1.0 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { Site = "Village" });
             });

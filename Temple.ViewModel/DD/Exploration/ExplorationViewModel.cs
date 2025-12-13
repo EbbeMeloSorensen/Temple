@@ -169,13 +169,13 @@ namespace Temple.ViewModel.DD.Exploration
                 throw new InvalidOperationException("Position and orientation needed here");
             }
 
-            var wallPolyLines = ExplorationSceneFactory.GetWallPolyLines(explorationPayload.Site);
+            var siteSpecs = ExplorationSceneFactory.GetSiteSpecs(explorationPayload.Site);
 
             Scene3D = ExplorationSceneFactory.Generate3DScene(
-                wallPolyLines);
+                siteSpecs.WallPolyLines);
 
             var scene = ExplorationSceneFactory.GenerateScene(
-                wallPolyLines,
+                siteSpecs,
                 _controller.Data.ExplorationPosition,
                 _controller.Data.ExplorationOrientation.Value,
                 _controller.Data.BattlesWon);
