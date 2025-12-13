@@ -17,6 +17,10 @@ Done:
 * Få 3D på banen igen
 
 Todo:
+* Lav en state med noget dialog med en npc - den skal kunne nås fra village sitet
+* Lav en state med noget shopping - den skal kunne nås fra village sitet
+* Lav en state med equipment - den skal kunne nås fra exploration og evt andre states
+* Tilføj mulighed for at kaste spells, men på en måde hvor du ikke overkomplicerer battle enginen
 * SiteSpecs skal loades fra filressourcer, gerne som json i første omgang - så vidt muligt ikke hardkodes
 * Lav det lidt mere interessant med det der 3D grafik, f.eks. ved at tilføje døre
 * Lav en algoritme, som laver et bord ud fra et udsnit af dungeonen - den skal nok have en image repræsentation somehow
