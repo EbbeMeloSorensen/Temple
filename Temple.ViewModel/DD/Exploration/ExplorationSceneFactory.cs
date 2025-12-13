@@ -211,11 +211,11 @@ public static class ExplorationSceneFactory
             });
         });
 
-        AddBattleUnlessWon(scene, new Vector2D(-1, -3), new Vector2D(-1, -2), "Dungeon 1, Room A, Goblin", battlesWon);
-        AddBattleUnlessWon(scene, new Vector2D(2, -3), new Vector2D(2, -2), "Dungeon 1, Room B, Goblin", battlesWon, "West");
-        AddBattleUnlessWon(scene, new Vector2D(4, -3), new Vector2D(4, -2), "Dungeon 1, Room B, Goblin", battlesWon, "East");
-        AddBattleUnlessWon(scene, new Vector2D(1, -5), new Vector2D(0, -5), "Final Battle", battlesWon, "South");
-        AddBattleUnlessWon(scene, new Vector2D(3, -7), new Vector2D(3, -6), "Final Battle", battlesWon, "East");
+        AddBattleUnlessWon(scene, new Vector2D(-1, 3), new Vector2D(-1, 2), "Dungeon 1, Room A, Goblin", battlesWon);
+        AddBattleUnlessWon(scene, new Vector2D(2, 3), new Vector2D(2, 2), "Dungeon 1, Room B, Goblin", battlesWon, "West");
+        AddBattleUnlessWon(scene, new Vector2D(4, 3), new Vector2D(4, 2), "Dungeon 1, Room B, Goblin", battlesWon, "East");
+        AddBattleUnlessWon(scene, new Vector2D(1, 5), new Vector2D(0, 5), "Final Battle", battlesWon, "South");
+        AddBattleUnlessWon(scene, new Vector2D(3, 7), new Vector2D(3, 6), "Final Battle", battlesWon, "East");
 
         scene.AddBoundary(new LineSegment(new Vector2D(0, 0), new Vector2D(1, 0), "Exit_To_Wilderness"));
 
@@ -260,8 +260,8 @@ public static class ExplorationSceneFactory
 
     private static void AddBattleUnlessWon(
         Scene scene,
-        Craft.Math.Vector2D point1,
-        Craft.Math.Vector2D point2,
+        Vector2D point1,
+        Vector2D point2,
         string battleId,
         IReadOnlySet<string> battlesWon,
         string? entranceId = null)
@@ -275,12 +275,15 @@ public static class ExplorationSceneFactory
             tag = $"{tag};{entranceId}";
         }
 
-        scene.AddBoundary(new LineSegment(point1, point2, tag));
+        scene.AddBoundary(new LineSegment(
+            new Vector2D(point1.X, -point1.Y),
+            new Vector2D(point2.X, -point2.Y),
+            tag));
     }
 
     private static MeshGeometry3D CreateWall(
-        Craft.Math.Point2D p1,
-        Craft.Math.Point2D p2)
+        Point2D p1,
+        Point2D p2)
     {
         return MeshBuilder.CreateQuad(
             new Point3D(p1.X, 1, p1.Y),

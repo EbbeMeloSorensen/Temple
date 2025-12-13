@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using Craft.Math;
+using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
 
@@ -18,11 +19,15 @@ namespace Temple.ViewModel.DD.Wilderness
 
             GoToSite_Mine_Command = new RelayCommand(() =>
             {
+                _controller.Data.ExplorationPosition = new Vector2D(0.5, -0.5);
+                _controller.Data.ExplorationOrientation = 0.5 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { Site = "Mine" });
             });
 
             GoToSite_Village_Command = new RelayCommand(() =>
             {
+                _controller.Data.ExplorationPosition = new Vector2D(0.5, -0.5);
+                _controller.Data.ExplorationOrientation = 1.0 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { Site = "Village" });
             });
         }

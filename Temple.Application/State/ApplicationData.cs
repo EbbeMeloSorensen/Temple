@@ -15,9 +15,6 @@ public class ApplicationData
     {
         Party = new List<Creature>();
         BattlesWon = new HashSet<string>();
-
-        ExplorationPosition = new Vector2D(0.5, -0.5);
-        ExplorationOrientation = 0.5 * Math.PI;
     }
 }
 

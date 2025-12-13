@@ -101,5 +101,13 @@ namespace Temple.ViewModel
 
             CurrentViewModel = new HomeViewModel(_controller);
         }
+
+        public void ShutDownEngineIfRunning()
+        {
+            if (CurrentViewModel is ExplorationViewModel explorationViewModel)
+            {
+                explorationViewModel.Engine.HandleClosing();
+            }
+        }
     }
 }

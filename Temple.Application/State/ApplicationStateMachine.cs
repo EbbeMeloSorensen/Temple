@@ -64,6 +64,9 @@ public class ApplicationStateMachine
             .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
 
+        _machine.Configure(StateMachineState.ShuttingDown)
+            .OnEntry(UpdateApplicationState);
+
         CurrentState = new ApplicationState(
             _machine.State);
     }

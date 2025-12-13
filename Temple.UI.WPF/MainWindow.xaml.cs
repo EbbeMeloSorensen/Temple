@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using Temple.ViewModel;
 
 namespace Temple.UI.WPF
@@ -8,13 +9,28 @@ namespace Temple.UI.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(MainWindowViewModel viewModel)
+        private MainWindowViewModel _viewModel;
+
+        public MainWindow(
+            MainWindowViewModel viewModel)
         {
             InitializeComponent();
 
+            _viewModel = viewModel;
             DataContext = viewModel;
 
-            viewModel.ShutdownAction = System.Windows.Application.Current.Shutdown;
+            viewModel.ShutdownAction = () =>
+            {
+                _viewModel.ShutDownEngineIfRunning();
+                System.Windows.Application.Current.Shutdown();
+            };
+        }
+
+        private void MainWindow_OnClosing(
+            object? sender,
+            CancelEventArgs e)
+        {
+            _viewModel.ShutdownAction!();
         }
     }
 }

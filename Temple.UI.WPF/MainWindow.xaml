@@ -19,7 +19,9 @@
         xmlns:wilderness1="clr-namespace:Temple.UI.WPF.DD.Wilderness"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="Temple" Height="600" Width="800" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
+        Title="Temple" Height="600" Width="800"
+        d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}"
+        Closing="MainWindow_OnClosing">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

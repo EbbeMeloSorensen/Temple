@@ -1,10 +1,7 @@
-﻿using Craft.Math;
-using Craft.Simulation;
-using Craft.Simulation.Bodies;
+﻿using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Engine;
 using Craft.Utils;
-using Craft.Utils.Linq;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using System.Windows.Media.Media3D;
