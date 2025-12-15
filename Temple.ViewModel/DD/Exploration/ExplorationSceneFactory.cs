@@ -18,7 +18,7 @@ public static class ExplorationSceneFactory
     {
         return siteID switch
         {
-            "Mine" => new SiteSpecs(new List<List<Point2D>>
+            "Mine" => new SiteSpecs("Mine", new List<List<Point2D>>
             {
                 new()
                 {
@@ -110,37 +110,36 @@ public static class ExplorationSceneFactory
                     EntranceID = "East"
                 },
             }),
-            "Village" => new SiteSpecs(new List<List<Point2D>>
+            "Village" => new SiteSpecs("Village", new List<List<Point2D>>
             {
-                new ()
-                {
-                    new (11, 9),
-                    new (10, 9),
-                    new (10, 11),
-                    new (13, 11),
-                    new (13, 9),
-                    new (12, 9),
-                    new (13, 9),
-                    new (13, 11),
-                    new (10, 11),
-                    new (10, 9),
-                    new (11, 9),
-                },
-                new ()
-                {
-                    new (12, 6),
-                    new (13, 6),
-                    new (13, 4),
-                    new (10, 4),
-                    new (10, 6),
-                    new (11, 6),
-                    new (10, 6),
-                    new (10, 4),
-                    new (13, 4),
-                    new (13, 6),
-                    new (12, 6)
-
-                },
+                //new ()
+                //{
+                //    new (11, 9),
+                //    new (10, 9),
+                //    new (10, 11),
+                //    new (13, 11),
+                //    new (13, 9),
+                //    new (12, 9),
+                //    new (13, 9),
+                //    new (13, 11),
+                //    new (10, 11),
+                //    new (10, 9),
+                //    new (11, 9),
+                //},
+                //new ()
+                //{
+                //    new (12, 6),
+                //    new (13, 6),
+                //    new (13, 4),
+                //    new (10, 4),
+                //    new (10, 6),
+                //    new (11, 6),
+                //    new (10, 6),
+                //    new (10, 4),
+                //    new (13, 4),
+                //    new (13, 6),
+                //    new (12, 6)
+                //},
                 new ()
                 {
                     new (8, 7),
@@ -319,7 +318,7 @@ public static class ExplorationSceneFactory
     }
 
     public static Model3DGroup Generate3DScene(
-        List<List<Point2D>> wallPolyLines)
+        SiteSpecs siteSpecs)
     {
         var floorMesh = MeshBuilder.CreateQuad(
             new Point3D(0, 0, -10),
@@ -336,7 +335,7 @@ public static class ExplorationSceneFactory
         var group = new Model3DGroup();
         var material = new DiffuseMaterial(new SolidColorBrush(Colors.Gray));
 
-        wallPolyLines.ForEach(wallPolyLine =>
+        siteSpecs.WallPolyLines.ForEach(wallPolyLine =>
         {
             wallPolyLine.AdjacentPairs().ToList().ForEach(_ =>
             {
@@ -350,6 +349,11 @@ public static class ExplorationSceneFactory
 
         //group.Children.Add(new GeometryModel3D(floorMesh, material));
         //group.Children.Add(new GeometryModel3D(ceilingMesh, material));
+
+        //if (siteSpecs.)
+        //{
+
+        //}
 
         return group;
     }

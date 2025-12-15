@@ -172,7 +172,7 @@ namespace Temple.ViewModel.DD.Exploration
             var siteSpecs = ExplorationSceneFactory.GetSiteSpecs(explorationPayload.Site);
 
             Scene3D = ExplorationSceneFactory.Generate3DScene(
-                siteSpecs.WallPolyLines);
+                siteSpecs);
 
             var scene = ExplorationSceneFactory.GenerateScene(
                 siteSpecs,
