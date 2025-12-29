@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temple.Infrastructure.Presentation", "Temple.Infrastructure.Presentation\Temple.Infrastructure.Presentation.csproj", "{129AEE29-5061-4335-8E5F-0D65EEEF93A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{39E90974-44C1-49B3-8799-03C4C078EF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E90974-44C1-49B3-8799-03C4C078EF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39E90974-44C1-49B3-8799-03C4C078EF1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{129AEE29-5061-4335-8E5F-0D65EEEF93A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{129AEE29-5061-4335-8E5F-0D65EEEF93A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{129AEE29-5061-4335-8E5F-0D65EEEF93A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{129AEE29-5061-4335-8E5F-0D65EEEF93A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

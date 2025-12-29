@@ -72,6 +72,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Temple.Application\Temple.Application.csproj" />
+    <ProjectReference Include="..\Temple.Infrastructure.Presentation\Temple.Infrastructure.Presentation.csproj" />
     <ProjectReference Include="..\Temple.Infrastructure\Temple.Infrastructure.csproj" />
     <ProjectReference Include="..\Temple.Persistence.EFCore.AppData\Temple.Persistence.EFCore.AppData.csproj" />
     <ProjectReference Include="..\Temple.Persistence.EFCore.Dummies\Temple.Persistence.EFCore.Dummies.csproj" />
