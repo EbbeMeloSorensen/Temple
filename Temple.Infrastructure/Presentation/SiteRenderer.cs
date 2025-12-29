@@ -2,7 +2,7 @@
 
 namespace Temple.Infrastructure.Presentation;
 
-public class SceneRenderer : ISceneRenderer
+public class SiteRenderer : ISiteRenderer
 {
 }
 
