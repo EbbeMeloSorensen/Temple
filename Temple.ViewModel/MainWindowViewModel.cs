@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using MediatR;
 using Temple.Application.Core;
+using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
@@ -16,6 +17,7 @@ namespace Temple.ViewModel
     {
         private readonly IMediator _mediator;
         private readonly IDialogService _applicationDialogService;
+        private readonly ISceneRenderer _sceneRenderer;
         private readonly ApplicationController _controller;
         private string _currentApplicationStateAsText;
         private object _currentViewModel;
@@ -42,10 +44,12 @@ namespace Temple.ViewModel
         public MainWindowViewModel(
             IMediator mediator,
             IDialogService applicationDialogService,
+            ISceneRenderer sceneRenderer,
             ApplicationController controller)
         {
             _mediator = mediator;
             _applicationDialogService = applicationDialogService;
+            _sceneRenderer = sceneRenderer;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
@@ -75,7 +79,7 @@ namespace Temple.ViewModel
                         CurrentViewModel = interludeViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Exploration:
-                        var explorationViewModel = new ExplorationViewModel(_controller);
+                        var explorationViewModel = new ExplorationViewModel(_controller, _sceneRenderer);
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Battle:

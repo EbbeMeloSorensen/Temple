@@ -13,6 +13,7 @@ using Temple.Application.State;
 using Temple.Domain.BusinessRules.PR;
 using Temple.Infrastructure.IO;
 using Temple.Infrastructure.Pagination;
+using Temple.Infrastructure.Presentation;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
 using Temple.ViewModel;
@@ -61,6 +62,7 @@ namespace Temple.UI.WPF
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
                             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
                             services.AddScoped<IStateMachineIO, StateMachineIO>();
+                            services.AddScoped<ISceneRenderer, SceneRenderer>();
 
                             // Register our ViewModel and View
                             services.AddSingleton<MainWindowViewModel>();

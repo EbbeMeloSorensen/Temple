@@ -6,6 +6,7 @@ using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using System.Windows.Media.Media3D;
 using Temple.Application.Core;
+using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
@@ -17,6 +18,7 @@ namespace Temple.ViewModel.DD.Exploration
     {
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
+        private readonly ISceneRenderer _sceneRenderer;
 
         private Model3DGroup _scene3D;
         private Point3D _cameraPosition;
@@ -67,9 +69,11 @@ namespace Temple.ViewModel.DD.Exploration
         }
 
         public ExplorationViewModel(
-            ApplicationController controller)
+            ApplicationController controller,
+            ISceneRenderer sceneRenderer)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            _sceneRenderer = sceneRenderer ?? throw new ArgumentNullException(nameof(sceneRenderer));
 
             Engine = new Engine(null);
 
