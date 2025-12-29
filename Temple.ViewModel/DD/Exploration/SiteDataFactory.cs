@@ -172,6 +172,8 @@ public static class SiteDataFactory
                     new (11, 9),
                 });
 
+                siteData.AddBarrel(new Point2D(10.5, 8.5));
+
                 siteData.AddEventTrigger_LeaveSite(
                     new Point2D(15, 8),
                     new Point2D(15, 7),

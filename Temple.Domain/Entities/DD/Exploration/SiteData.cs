@@ -39,6 +39,16 @@ public class SiteData
         });
     }
 
+    public void AddBarrel(
+        Point2D position,
+        double height = 0)
+    {
+        _siteComponents.Add(new Barrel("barrel")
+        {
+            Position = new Vector3D(position.Y, height, position.X)
+        });
+    }
+
     public void AddEventTrigger_LeaveSite(
         Point2D point1,
         Point2D point2,

@@ -133,6 +133,27 @@ public static class ExplorationSceneFactory
                     });
                     break;
                 }
+                case Barrel barrel:
+                {
+                    var nBoundarySegments = 8;
+                    var barrelRadius = 0.2;
+
+                    Enumerable.Range(0, nBoundarySegments + 1)
+                        .Select(_ => _ * 2 * Math.PI / nBoundarySegments)
+                        .Select(angle => new Vector2D(
+                            barrel.Position.Z + barrelRadius * Math.Sin(angle),
+                            -barrel.Position.X + barrelRadius * Math.Cos(angle)))
+                        .AdjacentPairs()
+                        .ToList()
+                        .ForEach(_ =>
+                        {
+                            scene.AddBoundary(new LineSegment(
+                                _.Item1,
+                                _.Item2));
+                        });
+
+                        break;
+                }
                 case EventTrigger_LeaveSite leaveSiteEventTrigger:
                 {
                     scene.AddBoundary(new LineSegment(

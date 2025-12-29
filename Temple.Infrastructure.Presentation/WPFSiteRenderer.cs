@@ -26,7 +26,7 @@ namespace Temple.Infrastructure.Presentation
                 {
                     "quad" => GenerateQuad(siteComponent),
                     "wall" => GenerateWall(siteComponent),
-                    //"barrel" => GenerateBarrel(scenePart),
+                    "barrel" => GenerateBarrel(siteComponent),
                     //"ball" => GenerateBall(scenePart),
                     //"human male" => GenerateHumanMale(scenePart),
                     //"human female" => GenerateHumanFemale(scenePart),
@@ -99,6 +99,92 @@ namespace Temple.Infrastructure.Presentation
             });
 
             return group;
+        }
+
+        private Model3D GenerateBarrel(
+            SiteComponent siteComponent)
+        {
+            if (siteComponent is not SiteComponent_Placeable sc)
+            {
+                throw new InvalidOperationException("Must be a rotatable site component");
+            }
+
+            var barrelRadius = 0.2;
+
+            var mesh = MeshBuilder.CreateCylinder(new Point3D(0, 0.2, 0), barrelRadius, 0.4, 8);
+
+            var material = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
+
+            var model = new GeometryModel3D
+            {
+                Geometry = mesh,
+                Material = material,
+                BackMaterial = material
+            };
+
+            // Position in this scene
+            model.Translate(
+                sc.Position.X,
+                sc.Position.Y,
+                sc.Position.Z);
+
+            return model;
+        }
+
+        private Model3D GenerateHumanMale(
+            SiteComponent siteComponent)
+        {
+            if (siteComponent is not SiteComponent_Rotatable rotatableScenePart)
+            {
+                throw new InvalidOperationException("Must be a rotatable site component");
+            }
+
+            return ImportMeshFromFile(
+                @"Assets\male.stl",
+                new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
+                new Vector3D(1, 0, 0),
+                -90,
+                new Vector3D(0, 0, 0),
+                0.003,
+                new Vector3D(
+                    rotatableScenePart.Position.X,
+                    rotatableScenePart.Position.Y,
+                    rotatableScenePart.Position.Z),
+                rotatableScenePart.Orientation);
+        }
+
+        private GeometryModel3D ImportMeshFromFile(
+            string path,
+            Material material,
+            Vector3D basicRotationAxis,
+            double basicRotationAngle,
+            Vector3D basicTranslation,
+            double basicScaleFactor,
+            Vector3D position,
+            double orientation = 0)
+        {
+            var mesh = StlMeshLoader.Load(path);
+
+            var model = new GeometryModel3D
+            {
+                Geometry = mesh,
+                Material = material
+            };
+
+            // Basic transform to normalize the model in this coordinate system
+            model.Rotate(basicRotationAxis, basicRotationAngle);
+            model.Translate(basicTranslation.X, basicTranslation.Y, basicTranslation.Z);
+            model.Scale(basicScaleFactor, basicScaleFactor, basicScaleFactor);
+
+            // Position in this scene
+            if (Math.Abs(orientation) > 0.00001)
+            {
+                model.Rotate(new Vector3D(0, 1, 0), orientation);
+            }
+
+            model.Translate(position.X, position.Y, position.Z);
+
+            return model;
         }
     }
 }
