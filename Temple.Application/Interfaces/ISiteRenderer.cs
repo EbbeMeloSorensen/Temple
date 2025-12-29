@@ -1,6 +1,8 @@
-﻿namespace Temple.Application.Interfaces;
+﻿using Temple.Domain.Entities.DD.Exploration;
+
+namespace Temple.Application.Interfaces;
 
 public interface ISiteRenderer
 {
-    ISiteModel Build();
+    ISiteModel Build(SiteData siteData);
 }

@@ -4,7 +4,7 @@ using Craft.DataStructures.Graph;
 using Craft.Logging;
 using Craft.Math;
 using Craft.Utils;
-using Temple.Domain.Entities.DD;
+using Temple.Domain.Entities.DD.Battle;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 using Temple.ViewModel.DD.Battle.BusinessLogic.Complex;
 

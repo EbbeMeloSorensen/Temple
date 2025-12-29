@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
-using Temple.Domain.Entities.DD;
+using Temple.Domain.Entities.DD.Battle;
 
 namespace Temple.ViewModel.DD.Battle
 {

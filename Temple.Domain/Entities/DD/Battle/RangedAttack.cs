@@ -1,4 +1,4 @@
-﻿namespace Temple.Domain.Entities.DD;
+﻿namespace Temple.Domain.Entities.DD.Battle;
 
 public class RangedAttack : Attack
 {

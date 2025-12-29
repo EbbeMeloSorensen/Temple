@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Temple.Application\Temple.Application.csproj" />
+    <ProjectReference Include="..\Temple.Infrastructure.Presentation\Temple.Infrastructure.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

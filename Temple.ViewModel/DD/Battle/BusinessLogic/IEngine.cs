@@ -1,6 +1,6 @@
 ﻿using Craft.Logging;
 using Craft.Utils;
-using Temple.Domain.Entities.DD;
+using Temple.Domain.Entities.DD.Battle;
 
 namespace Temple.ViewModel.DD.Battle.BusinessLogic
 {

@@ -8,6 +8,8 @@ using System.Windows.Media.Media3D;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Exploration;
+using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
@@ -20,7 +22,7 @@ namespace Temple.ViewModel.DD.Exploration
         private SceneViewController _sceneViewController;
         private readonly ISiteRenderer _siteRenderer;
 
-        private Model3DGroup _scene3D;
+        private Model3D _scene3D;
         private Point3D _cameraPosition;
         private Point3D _lightPosition;
         private Vector3D _lookDirection;
@@ -28,7 +30,7 @@ namespace Temple.ViewModel.DD.Exploration
         public Engine Engine { get; }
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
 
-        public Model3DGroup Scene3D
+        public Model3D Scene3D
         {
             get => _scene3D;
             private set
@@ -173,13 +175,12 @@ namespace Temple.ViewModel.DD.Exploration
                 throw new InvalidOperationException("Position and orientation needed here");
             }
 
-            var siteSpecs = ExplorationSceneFactory.GetSiteSpecs(explorationPayload.Site);
+            var siteData = SiteDataFactory.GenerateSiteData(explorationPayload.Site);
 
-            Scene3D = ExplorationSceneFactory.Generate3DScene(
-                siteSpecs);
+            Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 
             var scene = ExplorationSceneFactory.GenerateScene(
-                siteSpecs,
+                siteData,
                 _controller.Data.ExplorationPosition,
                 _controller.Data.ExplorationOrientation.Value,
                 _controller.Data.BattlesWon);

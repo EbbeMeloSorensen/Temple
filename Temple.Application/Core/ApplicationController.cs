@@ -7,6 +7,7 @@ using Temple.Application.State;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD;
 using Temple.Persistence.EFCore.AppData;
+using Temple.Domain.Entities.DD.Battle;
 
 namespace Temple.Application.Core;
 

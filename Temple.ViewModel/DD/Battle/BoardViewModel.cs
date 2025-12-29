@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Craft.Utils;
 using Craft.ViewModels.Common;
-using Temple.Domain.Entities.DD;
+using Temple.Domain.Entities.DD.Battle;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 
 namespace Temple.ViewModel.DD.Battle

@@ -3,11 +3,11 @@ using Temple.Application.Interfaces;
 
 namespace Temple.Infrastructure.Presentation;
 
-public class WpfSceneModel : ISiteModel
+public class WpfSiteModel : ISiteModel
 {
     public Model3D Model3D { get; }
 
-    public WpfSceneModel(
+    public WpfSiteModel(
         Model3D model3D)
     {
         Model3D = model3D;
