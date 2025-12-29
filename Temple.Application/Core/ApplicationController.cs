@@ -85,9 +85,9 @@ public class ApplicationController
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
 
-        Data.CurrentSite = "Mine";
-        Data.ExplorationPosition = new Vector2D(0.5, -0.5);
-        Data.ExplorationOrientation = 0.5 * Math.PI;
+        Data.CurrentSite = "Village";
+        Data.ExplorationPosition = new Vector2D(14.5, -7.5);
+        Data.ExplorationOrientation = 1.0 * Math.PI;
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {
