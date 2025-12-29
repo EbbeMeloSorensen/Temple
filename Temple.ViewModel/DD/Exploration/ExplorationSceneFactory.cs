@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-using System.Windows.Media.Media3D;
-using Craft.Math;
+﻿using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
@@ -8,7 +6,6 @@ using Craft.Utils.Linq;
 using Temple.Domain.Entities.DD.Exploration;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
-using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 
 namespace Temple.ViewModel.DD.Exploration;
