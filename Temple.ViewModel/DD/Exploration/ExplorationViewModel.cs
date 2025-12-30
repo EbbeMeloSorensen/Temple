@@ -147,7 +147,11 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 var outcome = Engine.EngineCore.Outcome as string;
 
-                if (outcome == "Exit_To_Wilderness")
+                if (outcome.Length >= 3 && outcome.Substring(0, 3) == "NPC")
+                {
+                    throw new NotImplementedException();
+                }
+                else if (outcome == "Exit_Wilderness")
                 {
                     _controller.GoToWilderness();
                 }
@@ -185,6 +189,8 @@ namespace Temple.ViewModel.DD.Exploration
         {
             var explorationPayload = payload as ExplorationPayload
                                      ?? throw new ArgumentException("Payload is not of type ExplorationPayload", nameof(payload));
+
+            _controller.Data.CurrentSite = explorationPayload.Site;
 
             if (_controller.Data.ExplorationPosition == null ||
                 _controller.Data.ExplorationOrientation == null)

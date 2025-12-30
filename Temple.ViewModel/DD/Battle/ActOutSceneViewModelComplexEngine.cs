@@ -11,11 +11,9 @@ namespace Temple.ViewModel.DD.Battle
         public ActOutSceneViewModelComplexEngine(
             IEngine engine,
             BoardViewModelBase boardViewModel,
-            ObservableObject<Scene> selectedScene,
             ILogger logger) : base(
                 engine,
                 boardViewModel,
-                selectedScene,
                 logger)
         {
             boardViewModel.PlayerClickedSquare += async (s, e) =>

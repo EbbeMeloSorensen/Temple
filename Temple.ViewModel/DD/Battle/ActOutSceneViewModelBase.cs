@@ -152,7 +152,6 @@ namespace Temple.ViewModel.DD.Battle
         public ActOutSceneViewModelBase(
             IEngine engine,
             BoardViewModelBase boardViewModel,
-            ObservableObject<Scene> selectedScene,
             ILogger logger)
         {
             _updateBoard = true;

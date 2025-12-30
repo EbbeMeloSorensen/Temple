@@ -25,14 +25,12 @@ namespace Temple.ViewModel.DD.Battle
             double tileCenterSpacing,
             double obstacleDiameter,
             double creatureDiameter,
-            double weaponDiameter,
-            ObservableObject<Scene> selectedScene) : base(
+            double weaponDiameter) : base(
             engine,
             tileCenterSpacing,
             obstacleDiameter,
             creatureDiameter,
-            weaponDiameter,
-            selectedScene)
+            weaponDiameter)
         {
         }
 

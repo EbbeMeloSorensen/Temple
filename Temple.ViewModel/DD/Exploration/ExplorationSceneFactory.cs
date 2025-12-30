@@ -169,7 +169,7 @@ public static class ExplorationSceneFactory
                     ? bcr.Body1.Tag
                     : bcr.Body2.Tag;
 
-                response.Outcome = tag;
+                response.Outcome = $"NPC_{tag}";
                 response.IndexOfLastState = propagatedState.Index + 10;
                 return response;
             }

@@ -80,7 +80,7 @@ public static class SiteDataFactory
                 siteData.AddEventTrigger_LeaveSite(
                     new Point2D(0, 0),
                     new Point2D(1, 0),
-                    "Exit_To_Wilderness");
+                    "Exit_Wilderness");
 
                 siteData.AddEventTrigger_ScriptedBattle(
                     new Point2D(-1, 3),
@@ -175,12 +175,13 @@ public static class SiteDataFactory
                 siteData.AddBarrel(new Point2D(10.5, 8.5));
 
                 siteData.AddCharacter("human male", "Adam", new Point2D(8.5, 6.5));
+                siteData.AddCharacter("human male", "Boris", new Point2D(12.5, 7.5));
                 siteData.AddCharacter("human female", "Eve", new Point2D(11.5, 5.5), 90);
 
-                    siteData.AddEventTrigger_LeaveSite(
-                    new Point2D(15, 8),
-                    new Point2D(15, 7),
-                    "Exit_To_Wilderness");
+                siteData.AddEventTrigger_LeaveSite(
+                new Point2D(15, 8),
+                new Point2D(15, 7),
+                "Exit_Wilderness");
 
                 return siteData;
             }

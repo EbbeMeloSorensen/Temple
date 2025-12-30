@@ -1,8 +1,6 @@
 ﻿using Craft.Logging;
-using Craft.Utils;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
-using Temple.Domain.Entities.DD.Battle;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 using Temple.ViewModel.DD.BusinessLogic.Complex;
 
@@ -32,21 +30,17 @@ public class BattleViewModel : TempleViewModel
         var creatureDiameter = 75;
         var projectileDiameter = 75;
 
-        var dummyScene = new ObservableObject<Scene>();
-
         BoardViewModel = 
             new BoardViewModel(
                 engine: engine,
                 tileCenterSpacing,
                 obstacleDiameter,
                 creatureDiameter,
-                projectileDiameter,
-                dummyScene);
+                projectileDiameter);
 
         ActOutSceneViewModel = new ActOutSceneViewModelComplexEngine(
             engine,
             BoardViewModel,
-            dummyScene,
             logger);
 
         ActOutSceneViewModel.BattleEnded += (s, e) =>

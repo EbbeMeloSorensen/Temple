@@ -1,11 +1,10 @@
-﻿using Craft.Math;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Text;
+using Craft.Math;
 using Craft.Utils;
 using Craft.ViewModels.Common;
 using Craft.ViewModels.Geometry2D.Scrolling;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Text;
-using Temple.Domain.Entities.DD;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 
@@ -255,8 +254,7 @@ namespace Temple.ViewModel.DD.Battle
             double tileCenterSpacing,
             double obstacleDiameter,
             double creatureDiameter,
-            double weaponDiameter,
-            ObservableObject<Scene> selectedScene) : base(0, 0)
+            double weaponDiameter) : base(0, 0)
         {
             ScrollableOffset = new PointD(0, 0);
             ScrollOffset = new PointD(0, 0);
@@ -271,29 +269,7 @@ namespace Temple.ViewModel.DD.Battle
             {
                 IsVisible = false
             };
-
-            selectedScene.PropertyChanged += (s, e) =>
-            {
-                //_scene = (s as ObservableObject<Scene>)?.Object;
-
-                //LayoutBoard(_scene);
-
-                //if (_scene == null || _scene.Obstacles.Count == 0)
-                //{
-                //    ObstacleViewModels = new ObservableCollection<ObstacleViewModel>();
-                //}
-                //else
-                //{
-                //    ObstacleViewModels = new ObservableCollection<ObstacleViewModel>(
-                //        _scene.Obstacles.Select(o =>
-                //        {
-                //            var left = (o.PositionX + 0.5) * TileCenterSpacing - obstacleDiameter / 2;
-                //            var top = (o.PositionY + 0.5) * TileCenterSpacing - obstacleDiameter / 2;
-                //            return new ObstacleViewModel(o, left, top, obstacleDiameter);
-                //        }));
-                //}
-            };
-
+            
             engine.SquareIndexForCurrentCreature.PropertyChanged += (s, e) =>
             {
                 var squareIndex = (s as ObservableObject<int?>)?.Object;
