@@ -6,6 +6,7 @@ using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
+using Temple.ViewModel.DD.Dialogue;
 using Temple.ViewModel.DD.Exploration;
 using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
@@ -87,8 +88,10 @@ namespace Temple.ViewModel
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Dialogue:
-                        throw new NotImplementedException("Coming soon: NPC Dialogue");
+                        var dialogueViewModel = new DialogueViewModel(_controller);
+                        CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);
                         break;
+
                     case StateMachineState.Wilderness:
                         CurrentViewModel = new WildernessViewModel(_controller);
                         break;

@@ -1,5 +1,5 @@
-﻿using Craft.Math;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
+using Craft.Math;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
 
