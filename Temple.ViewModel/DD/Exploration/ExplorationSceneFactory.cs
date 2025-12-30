@@ -4,6 +4,7 @@ using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Utils.Linq;
 using Temple.Domain.Entities.DD.Exploration;
+using Temple.ViewModel.DD.Exploration.Bodies;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
 using NPC = Temple.Domain.Entities.DD.Exploration.NPC;
@@ -24,7 +25,7 @@ public static class ExplorationSceneFactory
         var initialState = new State();
 
         initialState.AddBodyState(
-            new BodyStateClassic(new CircularBody(1, ballRadius, 1, false), position: initialPositionOfParty)
+            new BodyStateClassic(new Player(1, ballRadius), position: initialPositionOfParty)
             {
                 Orientation = initialOrientationOfParty
             });
@@ -35,7 +36,7 @@ public static class ExplorationSceneFactory
         var gravitationalConstant = 0.0;
         var coefficientOfFriction = 0.0;
         var timeFactor = 1.0;
-        var handleBodyCollisions = false;
+        var handleBodyCollisions = true;
         var deltaT = 0.001;
         var viewMode = SceneViewMode.FocusOnFirstBody;
 
@@ -52,11 +53,35 @@ public static class ExplorationSceneFactory
             deltaT,
             viewMode);
 
+        // Denne callback returnerer en værdi, der angiver, hvad der skal ske, når en body kolliderer med en boundary
         scene.CollisionBetweenBodyAndBoundaryOccuredCallBack =
             body => OutcomeOfCollisionBetweenBodyAndBoundary.Block;
 
+        // Denne callback returnerer en værdi, der angiver, hvad der skal ske, når to bodies kolliderer
+        scene.CollisionBetweenTwoBodiesOccuredCallBack =
+            (body1, body2) => OutcomeOfCollisionBetweenTwoBodies.Ignore;
+
+        scene.CheckForCollisionBetweenBodiesCallback = (body1, body2) =>
+        {
+            // Vi checker for om en probe rammer en NPC
+            if (body1 is Bodies.NPC || body2 is Bodies.NPC)
+            {
+                if (body1 is Probe || body2 is Probe)
+                {
+                    return true;
+                }
+            }
+
+            // Ellers foretages ikke noget check
+            return false;
+        };
+
+        var spaceKeyWasPressed = false;
+
         scene.InteractionCallBack = (keyboardState, keyboardEvents, mouseClickPosition, collisions, currentState) =>
         {
+            spaceKeyWasPressed = keyboardEvents.SpaceDown && keyboardState.SpaceDown;
+
             var currentStateOfMainBody = currentState.BodyStates.First() as BodyStateClassic;
             var currentRotationalSpeed = currentStateOfMainBody.RotationalSpeed;
             var currentArtificialSpeed = currentStateOfMainBody.ArtificialVelocity.Length;
@@ -97,17 +122,59 @@ public static class ExplorationSceneFactory
             return true;
         };
 
+        var nextBodyId = 2;
+        var bodyDisposalMap = new Dictionary<int, int>();
+
         scene.PostPropagationCallBack = (propagatedState, boundaryCollisionReports, bodyCollisionReports) =>
         {
-            var currentStateOfMainBody = propagatedState.TryGetBodyState(1) as BodyStateClassic;
-
-            if (currentStateOfMainBody == null)
+            // Possibly remove probe
+            if (bodyDisposalMap.ContainsKey(propagatedState.Index))
             {
-                throw new InvalidOperationException("Expected a bodystate here");
+                var probe = propagatedState.TryGetBodyState(bodyDisposalMap[propagatedState.Index]);
+                propagatedState?.RemoveBodyState(probe);
+            }
+
+            var currentStateOfPlayer = propagatedState.TryGetBodyState(1) as BodyStateClassic;
+
+            if (currentStateOfPlayer == null)
+            {
+                throw new InvalidOperationException("Expected a BodyStateClassic here");
+            }
+
+            // Determine if a probe should be launched (for initiating an npc dialog)
+            if (spaceKeyWasPressed)
+            {
+                spaceKeyWasPressed = false;
+
+                var lookDirection = new Vector2D(
+                    Math.Cos(currentStateOfPlayer!.Orientation),
+                    -Math.Sin(currentStateOfPlayer!.Orientation));
+
+                bodyDisposalMap[propagatedState.Index + 100] = nextBodyId;
+
+                propagatedState.AddBodyState(new BodyState(
+                    new Probe(nextBodyId++, 0.05), currentStateOfPlayer!.Position)
+                {
+                    NaturalVelocity = 3.0 * lookDirection
+                });
             }
 
             var response = new PostPropagationResponse();
 
+            // Determine if we triggered a dialog with an npc
+            if (bodyCollisionReports.Any())
+            {
+                var bcr = bodyCollisionReports.First();
+                var tag = bcr.Body1 is Bodies.NPC
+                    ? bcr.Body1.Tag
+                    : bcr.Body2.Tag;
+
+                response.Outcome = tag;
+                response.IndexOfLastState = propagatedState.Index + 10;
+                return response;
+            }
+
+            // Determine if we triggered an event such as leaving the site or starting a scripted battle
             if (!boundaryCollisionReports.Any()) return response;
 
             var boundary = boundaryCollisionReports.First().Boundary;
@@ -119,8 +186,6 @@ public static class ExplorationSceneFactory
 
             return response;
         };
-
-        var nextBodyId = 2;
 
         siteData.SiteComponents.ToList().ForEach(siteComponent =>
         {
