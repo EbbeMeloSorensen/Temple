@@ -15,10 +15,10 @@ Done:
 * Hit points forbliver reducerede mellem kampe
 * Håndter rum, som har flere indgange
 * Få 3D på banen igen
+* Lav en state med noget dialog med en npc - den skal kunne nås fra village sitet - gerne på en måde, der ikke ligner lort
 
 Todo:
-* Lav en state med noget dialog med en npc - den skal kunne nås fra village sitet - gerne på en måde, der ikke ligner lort
-  - Det er måske en mulighed at klare det i Battle mode
+* Nogle NPC'er skal have et udråbstegn over sig for at indikere, at de har noget vigtigt at sige
 * Prøv at lave et mode, der ligner det fra Dark Alliance, som alternativ til dit nuværende doom mode.
 * Lav en state med noget shopping - den skal kunne nås fra village sitet
 * Lav en state med equipment - den skal kunne nås fra exploration og evt andre states
