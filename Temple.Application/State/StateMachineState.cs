@@ -11,10 +11,11 @@
         SmurfManagement,
         PeopleManagement,
         Interlude,
-        Defeat,
-        Victory,
-        Battle,
         Exploration,
-        Wilderness
+        Dialogue,
+        Battle,
+        Wilderness,
+        Defeat,
+        Victory
     }
 }

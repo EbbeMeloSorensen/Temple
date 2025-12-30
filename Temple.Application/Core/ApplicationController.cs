@@ -131,6 +131,9 @@ public class ApplicationController
             case ExplorationPayload:
                 _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToExploration);
                 break;
+            case DialoguePayload:
+                _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToDialogue);
+                break;
             case BattlePayload:
                 _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToBattle);
                 break;

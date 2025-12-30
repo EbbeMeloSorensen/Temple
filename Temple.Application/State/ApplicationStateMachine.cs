@@ -41,8 +41,13 @@ public class ApplicationStateMachine
 
         _machine.Configure(StateMachineState.Exploration)
             .OnEntry(UpdateApplicationState)
+            .Permit(ApplicationStateShiftTrigger.GoToDialogue, StateMachineState.Dialogue)
             .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle)
             .Permit(ApplicationStateShiftTrigger.GoToWilderness, StateMachineState.Wilderness);
+
+        _machine.Configure(StateMachineState.Dialogue)
+            .OnEntry(UpdateApplicationState)
+            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration);
 
         _machine.Configure(StateMachineState.Wilderness)
             .OnEntry(UpdateApplicationState)

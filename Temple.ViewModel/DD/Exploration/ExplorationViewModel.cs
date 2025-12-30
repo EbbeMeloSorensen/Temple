@@ -149,7 +149,12 @@ namespace Temple.ViewModel.DD.Exploration
 
                 if (outcome.Length >= 3 && outcome.Substring(0, 3) == "NPC")
                 {
-                    throw new NotImplementedException();
+                    var payload = new DialoguePayload
+                    {
+                        DialogueId = outcome.Substring(4)
+                    };
+
+                    _controller.GoToNextApplicationState(payload);
                 }
                 else if (outcome == "Exit_Wilderness")
                 {

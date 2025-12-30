@@ -86,7 +86,9 @@ namespace Temple.ViewModel
                         var battleViewModel = new BattleViewModel(_controller);
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
-
+                    case StateMachineState.Dialogue:
+                        throw new NotImplementedException("Coming soon: NPC Dialogue");
+                        break;
                     case StateMachineState.Wilderness:
                         CurrentViewModel = new WildernessViewModel(_controller);
                         break;
