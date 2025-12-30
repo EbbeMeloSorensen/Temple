@@ -28,8 +28,8 @@ namespace Temple.Infrastructure.Presentation
                     "wall" => GenerateWall(siteComponent),
                     "barrel" => GenerateBarrel(siteComponent),
                     //"ball" => GenerateBall(scenePart),
-                    //"human male" => GenerateHumanMale(scenePart),
-                    //"human female" => GenerateHumanFemale(scenePart),
+                    "human male" => GenerateHumanMale(siteComponent),
+                    "human female" => GenerateHumanFemale(siteComponent),
                     _ => throw new NotSupportedException($"Unknown Model ID '{siteComponent.ModelId}'.")
                 };
 
@@ -111,7 +111,7 @@ namespace Temple.Infrastructure.Presentation
 
             var barrelRadius = 0.2;
 
-            var mesh = MeshBuilder.CreateCylinder(new Point3D(0, 0.2, 0), barrelRadius, 0.4, 8);
+            var mesh = MeshBuilder.CreateCylinder(new Point3D(0, 0.2, 0), barrelRadius, 0.4, 16);
 
             var material = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
 
@@ -140,12 +140,34 @@ namespace Temple.Infrastructure.Presentation
             }
 
             return ImportMeshFromFile(
-                @"Assets\male.stl",
+                @"DD\Assets\male.stl",
                 new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
                 new Vector3D(1, 0, 0),
                 -90,
                 new Vector3D(0, 0, 0),
                 0.003,
+                new Vector3D(
+                    rotatableScenePart.Position.X,
+                    rotatableScenePart.Position.Y,
+                    rotatableScenePart.Position.Z),
+                rotatableScenePart.Orientation);
+        }
+
+        private Model3D GenerateHumanFemale(
+            SiteComponent siteComponent)
+        {
+            if (siteComponent is not SiteComponent_Rotatable rotatableScenePart)
+            {
+                throw new InvalidOperationException("Must be a rotatable site component");
+            }
+
+            return ImportMeshFromFile(
+                @"DD\Assets\female.stl",
+                new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
+                new Vector3D(1, 0, 0),
+                -90,
+                new Vector3D(-132.5, 0, 101),
+                0.015,
                 new Vector3D(
                     rotatableScenePart.Position.X,
                     rotatableScenePart.Position.Y,

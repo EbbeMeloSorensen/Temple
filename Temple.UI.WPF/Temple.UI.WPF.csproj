@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DD\Assets\female.stl" />
+    <None Remove="DD\Assets\male.stl" />
     <None Remove="DD\Images\Archer.PNG" />
     <None Remove="DD\Images\Arrow.png" />
     <None Remove="DD\Images\Defeat.png" />
@@ -23,6 +25,15 @@
     <None Remove="DD\Images\Water.PNG" />
     <None Remove="Images\interlude.jpg" />
     <None Remove="Images\Temple.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DD\Assets\female.stl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DD\Assets\male.stl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

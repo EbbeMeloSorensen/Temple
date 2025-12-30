@@ -6,6 +6,7 @@ using Craft.Utils.Linq;
 using Temple.Domain.Entities.DD.Exploration;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
+using NPC = Temple.Domain.Entities.DD.Exploration.NPC;
 using Scene = Craft.Simulation.Scene;
 
 namespace Temple.ViewModel.DD.Exploration;
@@ -119,9 +120,11 @@ public static class ExplorationSceneFactory
             return response;
         };
 
-        siteData.SiteComponents.ToList().ForEach(sceneComponent =>
+        var nextBodyId = 2;
+
+        siteData.SiteComponents.ToList().ForEach(siteComponent =>
         {
-            switch (sceneComponent)
+            switch (siteComponent)
             {
                 case Barrier barrier:
                 {
@@ -135,24 +138,28 @@ public static class ExplorationSceneFactory
                 }
                 case Barrel barrel:
                 {
-                    var nBoundarySegments = 8;
-                    var barrelRadius = 0.2;
+                    AddCircularBoundary(
+                        scene, 
+                        new Point2D(
+                            barrel.Position.Z,
+                            barrel.Position.X),
+                        0.2);
 
-                    Enumerable.Range(0, nBoundarySegments + 1)
-                        .Select(_ => _ * 2 * Math.PI / nBoundarySegments)
-                        .Select(angle => new Vector2D(
-                            barrel.Position.Z + barrelRadius * Math.Sin(angle),
-                            -barrel.Position.X + barrelRadius * Math.Cos(angle)))
-                        .AdjacentPairs()
-                        .ToList()
-                        .ForEach(_ =>
-                        {
-                            scene.AddBoundary(new LineSegment(
-                                _.Item1,
-                                _.Item2));
-                        });
+                    break;
+                }
+                case NPC npc:
+                {
+                    initialState.AddBodyState(
+                        new BodyState(new Bodies.NPC(nextBodyId++, 0.16, npc.Tag), new Vector2D(npc.Position.Z, -npc.Position.X)));
 
-                        break;
+                    AddCircularBoundary(
+                    scene,
+                    new Point2D(
+                        npc.Position.Z,
+                        npc.Position.X),
+                    0.16);
+
+                    break;
                 }
                 case EventTrigger_LeaveSite leaveSiteEventTrigger:
                 {
@@ -200,6 +207,28 @@ public static class ExplorationSceneFactory
             new Vector2D(point1.X, -point1.Y),
             new Vector2D(point2.X, -point2.Y),
             tag));
+    }
+
+    private static void AddCircularBoundary(
+        Scene scene,
+        Point2D center,
+        double radius,
+        int segments = 8)
+    {
+        Enumerable.Range(0, segments + 1)
+            .Select(_ => _ * 2 * Math.PI / segments)
+            .Select(angle => new Vector2D(
+                center.X + radius * Math.Sin(angle),
+                -center.Y + radius * Math.Cos(angle)))
+            .AdjacentPairs()
+            .ToList()
+            .ForEach(_ =>
+            {
+                scene.AddBoundary(new LineSegment(
+                    _.Item1,
+                    _.Item2));
+            });
+
     }
 }
 

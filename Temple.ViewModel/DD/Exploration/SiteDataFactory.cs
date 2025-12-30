@@ -174,7 +174,10 @@ public static class SiteDataFactory
 
                 siteData.AddBarrel(new Point2D(10.5, 8.5));
 
-                siteData.AddEventTrigger_LeaveSite(
+                siteData.AddCharacter("human male", "Adam", new Point2D(8.5, 6.5));
+                siteData.AddCharacter("human female", "Eve", new Point2D(11.5, 5.5), 90);
+
+                    siteData.AddEventTrigger_LeaveSite(
                     new Point2D(15, 8),
                     new Point2D(15, 7),
                     "Exit_To_Wilderness");

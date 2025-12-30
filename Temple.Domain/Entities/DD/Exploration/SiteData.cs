@@ -4,14 +4,9 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class SiteData
 {
-    private List<SiteComponent> _siteComponents;
+    private readonly List<SiteComponent> _siteComponents = new();
 
     public IReadOnlyList<SiteComponent> SiteComponents => _siteComponents;
-
-    public SiteData()
-    {
-        _siteComponents = new List<SiteComponent>();
-    }
 
     public void AddQuad(
         Point3D point1,
@@ -19,8 +14,6 @@ public class SiteData
         Point3D point3,
         Point3D point4)
     {
-        var pt1 = new Vector3D(point1.Y, point1.Z, point1.X);
-
         _siteComponents.Add(new Quad("quad")
         {
             Point1 = new Vector3D(point1.Y, point1.Z, point1.X),
@@ -46,6 +39,21 @@ public class SiteData
         _siteComponents.Add(new Barrel("barrel")
         {
             Position = new Vector3D(position.Y, height, position.X)
+        });
+    }
+
+    public void AddCharacter(
+        string modelId,
+        string tag,
+        Point2D position,
+        double orientation = 0,
+        double height = 0)
+    {
+        _siteComponents.Add(new NPC(modelId)
+        {
+            Tag = tag,
+            Position = new Vector3D(position.Y, height, position.X),
+            Orientation = orientation
         });
     }
 

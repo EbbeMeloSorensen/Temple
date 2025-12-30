@@ -93,15 +93,32 @@ namespace Temple.ViewModel.DD.Exploration
 
                 var circularBody = bs.Body as CircularBody;
 
-                var bsc = bs as BodyStateClassic;
-                var orientation = bsc == null ? 0 : bsc.Orientation;
-
-                return new RotatableEllipseViewModel
+                switch (bs)
                 {
-                    Width = 2 * circularBody.Radius,
-                    Height = 2 * circularBody.Radius,
-                    Orientation = orientation
-                };
+                    case BodyStateClassic bsc:
+                    {
+                        var orientation = bsc.Orientation;
+
+                        return new RotatableEllipseViewModel
+                        {
+                            Width = 2 * circularBody.Radius,
+                            Height = 2 * circularBody.Radius,
+                            Orientation = orientation
+                        };
+                    }
+                    case BodyState:
+                    {
+                        return new EllipseViewModel
+                        {
+                            Width = 2 * circularBody.Radius,
+                            Height = 2 * circularBody.Radius,
+                        };
+                    }
+                    default:
+                    {
+                        throw new NotSupportedException();
+                    }
+                }
             };
 
             ShapeUpdateCallback shapeUpdateCallback = (shapeViewModel, bs) =>
