@@ -47,11 +47,13 @@ public class SiteData
         string tag,
         Point2D position,
         double orientation = 0,
-        double height = 0)
+        double height = 0,
+        string? questId = null)
     {
         _siteComponents.Add(new NPC(modelId)
         {
             Tag = tag,
+            QuestId = questId,
             Position = new Vector3D(position.Y, height, position.X),
             Orientation = orientation
         });

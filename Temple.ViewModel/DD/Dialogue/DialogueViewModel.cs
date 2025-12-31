@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
+using Temple.Application.State.Payloads;
 
 namespace Temple.ViewModel.DD.Dialogue;
 
@@ -17,7 +18,7 @@ public class DialogueViewModel : TempleViewModel
 
         Leave_Command = new RelayCommand(() =>
         {
-            throw new NotImplementedException();
+            _controller.GoToNextApplicationState(new ExplorationPayload { Site = _controller.Data.CurrentSite });
         });
 
         TakeQuest_Command = new RelayCommand(() =>

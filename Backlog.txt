@@ -16,9 +16,16 @@ Done:
 * Håndter rum, som har flere indgange
 * Få 3D på banen igen
 * Lav en state med noget dialog med en npc - den skal kunne nås fra village sitet - gerne på en måde, der ikke ligner lort
+* Når man leaver en dialogue, skal man komme tilbage til exploration (ækvivalent til Wilderness)
 
 Todo:
+* Mulighed for at tegne en kugle i scenen
+* Mulighed for at tegne et udråbstegn i scenen (som en sammensætning af en kugle og en cylinder)
+* Generaliser cylinder, så man kan specificere radius
 * Nogle NPC'er skal have et udråbstegn over sig for at indikere, at de har noget vigtigt at sige
+  - Ikke alle NPC'er har noget at sige (hvordan gøres det i Dark Alliance og i Baldurs Gate III?)
+  - Nogle har noget trivielt at sige (hvordan gøres det i Dark Alliance og i Baldurs Gate III)
+  - I første omgang skal det bare være sådan, at man får en quest, når man klikker på "Take Quest" knappen
 * Prøv at lave et mode, der ligner det fra Dark Alliance, som alternativ til dit nuværende doom mode.
 * Lav en state med noget shopping - den skal kunne nås fra village sitet
 * Lav en state med equipment - den skal kunne nås fra exploration og evt andre states

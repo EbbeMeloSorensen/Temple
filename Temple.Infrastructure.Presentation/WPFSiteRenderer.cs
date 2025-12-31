@@ -131,6 +131,36 @@ namespace Temple.Infrastructure.Presentation
             return model;
         }
 
+        private Model3D GenerateSphere(
+            SiteComponent siteComponent)
+        {
+            if (siteComponent is not SiteComponent_Placeable sc)
+            {
+                throw new InvalidOperationException("Must be a rotatable site component");
+            }
+
+            var sphereRadius = 0.2;
+
+            var mesh = MeshBuilder.CreateSphere(new Point3D(0, 0.0, 0), sphereRadius, 8, 8);
+
+            var material = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
+
+            var model = new GeometryModel3D
+            {
+                Geometry = mesh,
+                Material = material,
+                BackMaterial = material
+            };
+
+            // Position in this scene
+            model.Translate(
+                sc.Position.X,
+                sc.Position.Y,
+                sc.Position.Z);
+
+            return model;
+        }
+
         private Model3D GenerateHumanMale(
             SiteComponent siteComponent)
         {
