@@ -172,7 +172,7 @@ public static class SiteDataFactory
                     new (11, 9),
                 });
 
-                siteData.AddCylinder(new Point2D(10.5, 8.5), 0.2, 0.4);
+                siteData.AddCylinder(new Point2D(10.5, 8.5), 0.1, 0.4);
 
                 siteData.AddSphere(new Point2D(10.5, 8.5), 0.1, 0.4);
 

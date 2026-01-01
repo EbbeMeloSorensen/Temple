@@ -1,6 +1,5 @@
 ﻿using Craft.Math;
 using Craft.Simulation;
-using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Utils.Linq;
 using Temple.Domain.Entities.DD.Exploration;
@@ -208,7 +207,7 @@ public static class ExplorationSceneFactory
                         new Point2D(
                             cylinder.Position.Z,
                             cylinder.Position.X),
-                        0.2);
+                        cylinder.Radius);
 
                     break;
                 }
