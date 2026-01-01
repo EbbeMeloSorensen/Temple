@@ -172,7 +172,9 @@ public static class SiteDataFactory
                     new (11, 9),
                 });
 
-                siteData.AddBarrel(new Point2D(10.5, 8.5));
+                siteData.AddCylinder(new Point2D(10.5, 8.5), 0.2, 0.4);
+
+                siteData.AddSphere(new Point2D(10.5, 8.5), 0.1, 0.4);
 
                 siteData.AddCharacter("human male", "Adam", new Point2D(8.5, 6.5));
                 siteData.AddCharacter("human male", "Boris", new Point2D(12.5, 7.5), 0, 0, "Quest1");

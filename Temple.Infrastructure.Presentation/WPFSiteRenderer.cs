@@ -26,8 +26,8 @@ namespace Temple.Infrastructure.Presentation
                 {
                     "quad" => GenerateQuad(siteComponent),
                     "wall" => GenerateWall(siteComponent),
-                    "barrel" => GenerateBarrel(siteComponent),
-                    //"ball" => GenerateBall(scenePart),
+                    "cylinder" => GenerateCylinder(siteComponent),
+                    "sphere" => GenerateSphere(siteComponent),
                     "human male" => GenerateHumanMale(siteComponent),
                     "human female" => GenerateHumanFemale(siteComponent),
                     _ => throw new NotSupportedException($"Unknown Model ID '{siteComponent.ModelId}'.")
@@ -101,17 +101,15 @@ namespace Temple.Infrastructure.Presentation
             return group;
         }
 
-        private Model3D GenerateBarrel(
+        private Model3D GenerateCylinder(
             SiteComponent siteComponent)
         {
-            if (siteComponent is not SiteComponent_Placeable sc)
+            if (siteComponent is not Cylinder cylinder)
             {
-                throw new InvalidOperationException("Must be a rotatable site component");
+                throw new InvalidOperationException("Must be a cylinder");
             }
 
-            var barrelRadius = 0.2;
-
-            var mesh = MeshBuilder.CreateCylinder(new Point3D(0, 0.2, 0), barrelRadius, 0.4, 16);
+            var mesh = MeshBuilder.CreateCylinder(new Point3D(0, cylinder.Length / 2, 0), cylinder.Radius, cylinder.Length, 16);
 
             var material = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
 
@@ -124,9 +122,9 @@ namespace Temple.Infrastructure.Presentation
 
             // Position in this scene
             model.Translate(
-                sc.Position.X,
-                sc.Position.Y,
-                sc.Position.Z);
+                cylinder.Position.X,
+                cylinder.Position.Y,
+                cylinder.Position.Z);
 
             return model;
         }
@@ -134,16 +132,14 @@ namespace Temple.Infrastructure.Presentation
         private Model3D GenerateSphere(
             SiteComponent siteComponent)
         {
-            if (siteComponent is not SiteComponent_Placeable sc)
+            if (siteComponent is not Sphere sphere)
             {
-                throw new InvalidOperationException("Must be a rotatable site component");
+                throw new InvalidOperationException("Must be a sphere");
             }
 
-            var sphereRadius = 0.2;
+            var mesh = MeshBuilder.CreateSphere(new Point3D(0, sphere.Radius, 0), sphere.Radius, 8, 8);
 
-            var mesh = MeshBuilder.CreateSphere(new Point3D(0, 0.0, 0), sphereRadius, 8, 8);
-
-            var material = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
+            var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
 
             var model = new GeometryModel3D
             {
@@ -154,9 +150,9 @@ namespace Temple.Infrastructure.Presentation
 
             // Position in this scene
             model.Translate(
-                sc.Position.X,
-                sc.Position.Y,
-                sc.Position.Z);
+                sphere.Position.X,
+                sphere.Position.Y,
+                sphere.Position.Z);
 
             return model;
         }

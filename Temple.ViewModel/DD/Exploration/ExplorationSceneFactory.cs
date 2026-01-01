@@ -201,13 +201,13 @@ public static class ExplorationSceneFactory
                     });
                     break;
                 }
-                case Barrel barrel:
+                case Cylinder cylinder:
                 {
                     AddCircularBoundary(
                         scene, 
                         new Point2D(
-                            barrel.Position.Z,
-                            barrel.Position.X),
+                            cylinder.Position.Z,
+                            cylinder.Position.X),
                         0.2);
 
                     break;

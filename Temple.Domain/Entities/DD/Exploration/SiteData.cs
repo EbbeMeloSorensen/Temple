@@ -1,4 +1,5 @@
 ﻿using Craft.Math;
+using Temple.Domain.Entities.C2IEDM.ObjectItems;
 
 namespace Temple.Domain.Entities.DD.Exploration;
 
@@ -23,6 +24,18 @@ public class SiteData
         });
     }
 
+    public void AddSphere(
+        Point2D position,
+        double radius,
+        double height = 0)
+    {
+        _siteComponents.Add(new Sphere("sphere")
+        {
+            Position = new Vector3D(position.Y, height, position.X),
+            Radius = radius
+        });
+    }
+
     public void AddWall(
         IEnumerable<Point2D> wallPoints)
     {
@@ -32,13 +45,17 @@ public class SiteData
         });
     }
 
-    public void AddBarrel(
+    public void AddCylinder(
         Point2D position,
+        double radius,
+        double length,
         double height = 0)
     {
-        _siteComponents.Add(new Barrel("barrel")
+        _siteComponents.Add(new Cylinder("cylinder")
         {
-            Position = new Vector3D(position.Y, height, position.X)
+            Position = new Vector3D(position.Y, height, position.X),
+            Radius = radius,
+            Length = length
         });
     }
 
