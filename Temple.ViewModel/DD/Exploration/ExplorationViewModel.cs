@@ -8,7 +8,6 @@ using System.Windows.Media.Media3D;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
-using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
@@ -24,8 +23,10 @@ namespace Temple.ViewModel.DD.Exploration
 
         private Model3D _scene3D;
         private Point3D _cameraPosition;
-        private Point3D _lightPosition;
         private Vector3D _lookDirection;
+        private Point3D _playerLightPosition;
+        private Vector3D _directionalLight1;
+        private Vector3D _directionalLight2;
 
         public Engine Engine { get; }
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
@@ -50,22 +51,42 @@ namespace Temple.ViewModel.DD.Exploration
             }
         }
 
-        public Point3D LightPosition
-        {
-            get => _lightPosition;
-            set
-            {
-                _lightPosition = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public Vector3D LookDirection
         {
             get => _lookDirection;
             set
             {
                 _lookDirection = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Point3D PlayerLightPosition
+        {
+            get => _playerLightPosition;
+            set
+            {
+                _playerLightPosition = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Vector3D DirectionalLight1
+        {
+            get => _directionalLight1;
+            set
+            {
+                _directionalLight1 = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Vector3D DirectionalLight2
+        {
+            get => _directionalLight2;
+            set
+            {
+                _directionalLight2 = value;
                 RaisePropertyChanged();
             }
         }
@@ -242,12 +263,9 @@ namespace Temple.ViewModel.DD.Exploration
                     0.5,
                     position.X);
 
-                LightPosition = new Point3D(
-                    -position.Y,
-                    0.5,
-                    position.X);
-
                 LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
+                DirectionalLight1 = LookDirection + new Vector3D(0, -0.5, 0);
+                PlayerLightPosition = CameraPosition + LookDirection * 3 + new Vector3D(0, -1, 0);
             };
 
             Engine.StartOrResumeAnimation();
