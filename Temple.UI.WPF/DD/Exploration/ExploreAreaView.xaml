@@ -39,7 +39,7 @@
             <ModelVisual3D>
                 <ModelVisual3D.Content>
                     <DirectionalLight Color="#666666"
-                                      Direction="{Binding DirectionalLight1}"/>
+                                      Direction="{Binding DirectionalLight}"/>
                 </ModelVisual3D.Content>
             </ModelVisual3D>
 

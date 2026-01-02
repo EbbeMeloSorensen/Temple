@@ -25,8 +25,7 @@ namespace Temple.ViewModel.DD.Exploration
         private Point3D _cameraPosition;
         private Vector3D _lookDirection;
         private Point3D _playerLightPosition;
-        private Vector3D _directionalLight1;
-        private Vector3D _directionalLight2;
+        private Vector3D _directionalLight;
 
         public Engine Engine { get; }
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
@@ -71,22 +70,12 @@ namespace Temple.ViewModel.DD.Exploration
             }
         }
 
-        public Vector3D DirectionalLight1
+        public Vector3D DirectionalLight
         {
-            get => _directionalLight1;
+            get => _directionalLight;
             set
             {
-                _directionalLight1 = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public Vector3D DirectionalLight2
-        {
-            get => _directionalLight2;
-            set
-            {
-                _directionalLight2 = value;
+                _directionalLight = value;
                 RaisePropertyChanged();
             }
         }
@@ -264,7 +253,7 @@ namespace Temple.ViewModel.DD.Exploration
                     position.X);
 
                 LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
-                DirectionalLight1 = LookDirection + new Vector3D(0, -0.5, 0);
+                DirectionalLight = LookDirection + new Vector3D(0, -0.5, 0);
                 PlayerLightPosition = CameraPosition + LookDirection * 3 + new Vector3D(0, -1, 0);
             };
 
