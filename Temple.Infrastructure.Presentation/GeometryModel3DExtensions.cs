@@ -4,8 +4,8 @@ namespace Temple.Infrastructure.Presentation;
 
 public static class GeometryModel3DExtensions
 {
-    public static GeometryModel3D Translate(
-        this GeometryModel3D model,
+    public static Model3D Translate(
+        this Model3D model,
         double x,
         double y,
         double z)
@@ -18,8 +18,8 @@ public static class GeometryModel3DExtensions
         return model;
     }
 
-    public static GeometryModel3D Scale(
-        this GeometryModel3D model,
+    public static Model3D Scale(
+        this Model3D model,
         double x,
         double y,
         double z)
@@ -32,8 +32,8 @@ public static class GeometryModel3DExtensions
         return model;
     }
 
-    public static GeometryModel3D Rotate(
-        this GeometryModel3D model,
+    public static Model3D Rotate(
+        this Model3D model,
         Vector3D axis,
         double angleDegrees)
     {
@@ -47,7 +47,7 @@ public static class GeometryModel3DExtensions
     }
 
     private static Transform3DGroup EnsureTransformGroup(
-        this GeometryModel3D model)
+        this Model3D model)
     {
         if (model.Transform is Transform3DGroup group)
             return group;

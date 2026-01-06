@@ -36,15 +36,6 @@ public class SiteData
         });
     }
 
-    public void AddWall(
-        IEnumerable<Point2D> wallPoints)
-    {
-        _siteComponents.Add(new Barrier("wall")
-        {
-            BarrierPoints = wallPoints.Select(_ => new Vector3D(_.Y, 0, _.X)).ToList()
-        });
-    }
-
     public void AddCylinder(
         Point2D position,
         double radius,
@@ -56,6 +47,25 @@ public class SiteData
             Position = new Vector3D(position.Y, height, position.X),
             Radius = radius,
             Length = length
+        });
+    }
+
+    public void AddExclamationMark(
+        Point2D position,
+        double height = 0)
+    {
+        _siteComponents.Add(new ExclamationMark("exclamation mark")
+        {
+            Position = new Vector3D(position.Y, height, position.X)
+        });
+    }
+
+    public void AddWall(
+        IEnumerable<Point2D> wallPoints)
+    {
+        _siteComponents.Add(new Barrier("wall")
+        {
+            BarrierPoints = wallPoints.Select(_ => new Vector3D(_.Y, 0, _.X)).ToList()
         });
     }
 
@@ -74,6 +84,17 @@ public class SiteData
             Position = new Vector3D(position.Y, height, position.X),
             Orientation = orientation
         });
+
+        if (questId != null)
+        {
+            _siteComponents.Add(new ExclamationMark("exclamation mark")
+            {
+                Position = new Vector3D(
+                    position.Y,
+                    height + 0.6,
+                    position.X)
+            });
+        }
     }
 
     public void AddEventTrigger_LeaveSite(

@@ -28,6 +28,7 @@ namespace Temple.Infrastructure.Presentation
                     "wall" => GenerateWall(siteComponent),
                     "cylinder" => GenerateCylinder(siteComponent),
                     "sphere" => GenerateSphere(siteComponent),
+                    "exclamation mark" => GenerateExclamationMark(siteComponent),
                     "human male" => GenerateHumanMale(siteComponent),
                     "human female" => GenerateHumanFemale(siteComponent),
                     _ => throw new NotSupportedException($"Unknown Model ID '{siteComponent.ModelId}'.")
@@ -155,6 +156,42 @@ namespace Temple.Infrastructure.Presentation
                 sphere.Position.Z);
 
             return model;
+        }
+
+        private Model3D GenerateExclamationMark(
+            SiteComponent siteComponent)
+        {
+            if (siteComponent is not ExclamationMark exclamationMark)
+            {
+                throw new InvalidOperationException("Must be an exclamation mark");
+            }
+
+            var radius = 0.01;
+            var cylinderHeight = 0.08;
+            var material = new DiffuseMaterial(new SolidColorBrush(Colors.DarkSlateGray));
+            var group = new Model3DGroup();
+
+            group.Children.Add(new GeometryModel3D
+            {
+                Geometry = MeshBuilder.CreateSphere(new Point3D(0, radius, 0), radius, 8, 8),
+                Material = material,
+                BackMaterial = material
+            });
+
+            group.Children.Add(new GeometryModel3D
+            {
+                Geometry = MeshBuilder.CreateCylinder(new Point3D(0, 2 * radius + cylinderHeight / 2 + 0.005, 0), radius, cylinderHeight, 8),
+                Material = material,
+                BackMaterial = material
+            });
+
+            // Position in this scene
+            group.Translate(
+                exclamationMark.Position.X,
+                exclamationMark.Position.Y,
+                exclamationMark.Position.Z);
+
+            return group;
         }
 
         private Model3D GenerateHumanMale(
