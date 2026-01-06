@@ -2,7 +2,7 @@
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
-using Temple.ViewModel.DD.BusinessLogic.Complex;
+using Temple.ViewModel.DD.Battle.BusinessLogic.Complex;
 
 namespace Temple.ViewModel.DD.Battle;
 

@@ -1,6 +1,6 @@
 ﻿using Temple.Domain.Entities.DD.Battle;
 
-namespace Temple.ViewModel.DD.BusinessLogic.Complex
+namespace Temple.ViewModel.DD.Battle.BusinessLogic.Complex
 {
     public static class BoardItemExtensions
     {
