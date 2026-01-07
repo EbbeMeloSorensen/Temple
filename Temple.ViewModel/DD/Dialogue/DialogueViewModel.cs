@@ -18,7 +18,7 @@ public class DialogueViewModel : TempleViewModel
 
         Leave_Command = new RelayCommand(() =>
         {
-            _controller.GoToNextApplicationState(new ExplorationPayload { Site = _controller.Data.CurrentSite });
+            _controller.GoToNextApplicationState(new ExplorationPayload { Site = _controller.ApplicationData.CurrentSite });
         });
 
         TakeQuest_Command = new RelayCommand(() =>

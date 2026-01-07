@@ -16,12 +16,13 @@ public class ApplicationController
     private readonly ApplicationStateMachine _applicationStateMachine;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
+    private readonly IQuestTree _questTree;
 
     public event EventHandler<string>? ProgressChanged;
 
     public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentState;
 
-    public ApplicationData Data { get; private set; }
+    public ApplicationData ApplicationData { get; private set; }
 
     public event Action<ApplicationState>? ApplicationStateChanged
     {
@@ -32,13 +33,15 @@ public class ApplicationController
     public ApplicationController(
         ApplicationStateMachine applicationStateMachine,
         IServiceScopeFactory scopeFactory,
-        ILogger<ApplicationController> logger)
+        ILogger<ApplicationController> logger,
+        IQuestTree questTree)
     {
         _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
+        _questTree = questTree;
 
-        Data = new ApplicationData();
+        ApplicationData = new ApplicationData(_questTree);
     }
 
     public async Task InitializeAsync()
@@ -80,21 +83,21 @@ public class ApplicationController
 
     public void StartNewGame()
     {
-        Data = new ApplicationData();
+        ApplicationData.Reset();
 
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
 
-        Data.CurrentSite = "Village";
-        Data.ExplorationPosition = new Vector2D(14.5, -7.5);
-        Data.ExplorationOrientation = 1.0 * Math.PI;
+        ApplicationData.CurrentSite = "Village";
+        ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
+        ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {
             Text = "Så går eventyret i gang",
             PayloadForNextState = new ExplorationPayload
             {
-                Site = Data.CurrentSite
+                Site = ApplicationData.CurrentSite
             }
         };
 
@@ -205,7 +208,7 @@ public class ApplicationController
         var adventurer1 = new Creature(knight, false);
         var adventurer2 = new Creature(archer, false);
 
-        Data.Party.Add(adventurer1);
-        Data.Party.Add(adventurer2);
+        ApplicationData.Party.Add(adventurer1);
+        ApplicationData.Party.Add(adventurer2);
     }
 }

@@ -191,7 +191,7 @@ namespace Temple.ViewModel.DD.Exploration
                     {
                         BattleId = battleId,
                         EntranceId = entranceId,
-                        PayloadForNextStateInCasePartyWins = new ExplorationPayload { Site = _controller.Data.CurrentSite }
+                        PayloadForNextStateInCasePartyWins = new ExplorationPayload { Site = _controller.ApplicationData.CurrentSite }
                     };
 
                     _controller.GoToNextApplicationState(payload);
@@ -205,10 +205,10 @@ namespace Temple.ViewModel.DD.Exploration
             var explorationPayload = payload as ExplorationPayload
                                      ?? throw new ArgumentException("Payload is not of type ExplorationPayload", nameof(payload));
 
-            _controller.Data.CurrentSite = explorationPayload.Site;
+            _controller.ApplicationData.CurrentSite = explorationPayload.Site;
 
-            if (_controller.Data.ExplorationPosition == null ||
-                _controller.Data.ExplorationOrientation == null)
+            if (_controller.ApplicationData.ExplorationPosition == null ||
+                _controller.ApplicationData.ExplorationOrientation == null)
             {
                 throw new InvalidOperationException("Position and orientation needed here");
             }
@@ -219,9 +219,9 @@ namespace Temple.ViewModel.DD.Exploration
 
             var scene = ExplorationSceneFactory.GenerateScene(
                 siteData,
-                _controller.Data.ExplorationPosition,
-                _controller.Data.ExplorationOrientation.Value,
-                _controller.Data.BattlesWon);
+                _controller.ApplicationData.ExplorationPosition,
+                _controller.ApplicationData.ExplorationOrientation.Value,
+                _controller.ApplicationData.BattlesWon);
 
             StartAnimation(scene);
 
@@ -244,8 +244,8 @@ namespace Temple.ViewModel.DD.Exploration
                 var position = bodyStateOfProtagonist.Position;
                 var orientation = bodyStateOfProtagonist.Orientation;
 
-                _controller.Data.ExplorationPosition = position;
-                _controller.Data.ExplorationOrientation = orientation;
+                _controller.ApplicationData.ExplorationPosition = position;
+                _controller.ApplicationData.ExplorationOrientation = orientation;
 
                 CameraPosition = new Point3D(
                     -position.Y,

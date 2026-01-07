@@ -58,7 +58,7 @@ public class BattleViewModel : TempleViewModel
                 }
                 else
                 {
-                    _controller.Data.BattlesWon.Add(_battleId);
+                    _controller.ApplicationData.BattlesWon.Add(_battleId);
                     _controller.GoToNextApplicationState(_payloadForNextState);
                 }
             }
@@ -75,7 +75,7 @@ public class BattleViewModel : TempleViewModel
         _payloadForNextState = battlePayload.PayloadForNextStateInCasePartyWins;
 
         ActOutSceneViewModel.InitializeScene(BattleSceneFactory.SetupBattleScene(
-            _controller.Data.Party,
+            _controller.ApplicationData.Party,
             battlePayload.BattleId,
             battlePayload.EntranceId));
 
