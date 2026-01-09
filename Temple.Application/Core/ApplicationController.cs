@@ -2,12 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Craft.Math;
+using Temple.Domain.Entities.DD.Battle;
+using Temple.Persistence.EFCore.AppData;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Application.State.Payloads;
-using Temple.Domain.Entities.DD;
-using Temple.Persistence.EFCore.AppData;
-using Temple.Domain.Entities.DD.Battle;
 
 namespace Temple.Application.Core;
 
