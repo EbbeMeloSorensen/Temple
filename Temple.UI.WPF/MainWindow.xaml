@@ -19,6 +19,8 @@
         xmlns:wilderness1="clr-namespace:Temple.UI.WPF.DD.Wilderness"
         xmlns:dialogue="clr-namespace:Temple.ViewModel.DD.Dialogue;assembly=Temple.ViewModel"
         xmlns:dialogue1="clr-namespace:Temple.UI.WPF.DD.Dialogue"
+        xmlns:inGameMenu="clr-namespace:Temple.ViewModel.DD.InGameMenu;assembly=Temple.ViewModel"
+        xmlns:inGameMenu1="clr-namespace:Temple.UI.WPF.DD.InGameMenu"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Temple" Height="600" Width="800"
@@ -31,6 +33,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type dd:InterludeViewModel}">
             <dd1:InterludeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type inGameMenu:InGameMenuViewModel}">
+            <inGameMenu1:InGameMenuView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type battle:BattleViewModel}">
             <dd1:BattleView/>

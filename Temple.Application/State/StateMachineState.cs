@@ -12,6 +12,7 @@
         PeopleManagement,
         Interlude,
         Exploration,
+        InGameMenu,
         Dialogue,
         Battle,
         Wilderness,

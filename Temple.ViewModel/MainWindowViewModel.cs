@@ -8,6 +8,7 @@ using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
 using Temple.ViewModel.DD.Exploration;
+using Temple.ViewModel.DD.InGameMenu;
 using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
@@ -92,6 +93,9 @@ namespace Temple.ViewModel
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);
                         break;
 
+                    case StateMachineState.InGameMenu:
+                        CurrentViewModel = new InGameMenuViewModel(_controller);
+                        break;
                     case StateMachineState.Wilderness:
                         CurrentViewModel = new WildernessViewModel(_controller);
                         break;

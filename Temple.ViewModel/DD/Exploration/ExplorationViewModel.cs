@@ -5,6 +5,7 @@ using Craft.Utils;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using System.Windows.Media.Media3D;
+using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -80,6 +81,8 @@ namespace Temple.ViewModel.DD.Exploration
             }
         }
 
+        public RelayCommand GoToInGameMenu_Command { get; }
+
         public ExplorationViewModel(
             ApplicationController controller,
             ISiteRenderer siteRenderer)
@@ -88,6 +91,12 @@ namespace Temple.ViewModel.DD.Exploration
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
 
             Engine = new Engine(null);
+
+            GoToInGameMenu_Command = new RelayCommand(() =>
+            {
+                Engine.HandleClosing();
+                _controller.GoToInGameMenu();
+            });
 
             GeometryEditorViewModel = new GeometryEditorViewModel(1)
             {

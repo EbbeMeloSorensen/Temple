@@ -22,6 +22,7 @@ Done:
 * Mulighed for at tegne et udråbstegn i scenen (som en sammensætning af en kugle og en cylinder)
 
 Todo:
+* Introducer et view til Quests, Inventory, Spells etc
 * Det at populere et site med characters og quests, som de har, skal afhænge af, hvor langt man er nået i spillet
 * Spillets quests skal vedligeholdes som en graf, hvor nogle quests er afhængige af, at andre quests er fuldført først
 * Nogle NPC'er skal have et udråbstegn over sig for at indikere, at de har noget vigtigt at sige
