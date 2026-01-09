@@ -6,8 +6,14 @@
              xmlns:local="clr-namespace:Temple.UI.WPF.DD.Wilderness"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignData WildernessViewModel}">
-    <StackPanel>
-        <Button Margin="20" Width="100" Content="Go to Mine" Command="{Binding GoToSite_Mine_Command}"/>
-        <Button Margin="20" Width="100" Content="Go to Village" Command="{Binding GoToSite_Village_Command}"/>
-    </StackPanel>
+    <Grid>
+        <StackPanel>
+            <Button Margin="20" Width="100" Content="Go to Mine" Command="{Binding GoToSite_Mine_Command}"/>
+            <Button Margin="20" Width="100" Content="Go to Village" Command="{Binding GoToSite_Village_Command}"/>
+        </StackPanel>
+
+        <Button Content="In-Game Menu" Width="120" Height ="30"
+                VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20"
+                Command="{Binding GoToInGameMenu_Command}"/>
+    </Grid>
 </UserControl>

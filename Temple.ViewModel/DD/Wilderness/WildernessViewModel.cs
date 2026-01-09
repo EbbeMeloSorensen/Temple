@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Craft.Math;
+﻿using Craft.Math;
+using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
 
@@ -9,6 +9,7 @@ namespace Temple.ViewModel.DD.Wilderness
     {
         private readonly ApplicationController _controller;
 
+        public RelayCommand GoToInGameMenu_Command { get; }
         public RelayCommand GoToSite_Mine_Command { get; }
         public RelayCommand GoToSite_Village_Command { get; }
 
@@ -16,6 +17,11 @@ namespace Temple.ViewModel.DD.Wilderness
             ApplicationController controller)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+
+            GoToInGameMenu_Command = new RelayCommand(() =>
+            {
+                _controller.GoToInGameMenu();
+            });
 
             GoToSite_Mine_Command = new RelayCommand(() =>
             {

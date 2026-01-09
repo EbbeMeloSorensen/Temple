@@ -48,7 +48,8 @@ public class ApplicationStateMachine
 
         _machine.Configure(StateMachineState.InGameMenu)
             .OnEntry(UpdateApplicationState)
-            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration);
+            .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration)
+            .Permit(ApplicationStateShiftTrigger.GoToWilderness, StateMachineState.Wilderness);
 
         _machine.Configure(StateMachineState.Dialogue)
             .OnEntry(UpdateApplicationState)
@@ -56,6 +57,7 @@ public class ApplicationStateMachine
 
         _machine.Configure(StateMachineState.Wilderness)
             .OnEntry(UpdateApplicationState)
+            .Permit(ApplicationStateShiftTrigger.GoToInGameMenu, StateMachineState.InGameMenu)
             .Permit(ApplicationStateShiftTrigger.GoToBattle, StateMachineState.Battle)
             .Permit(ApplicationStateShiftTrigger.GoToExploration, StateMachineState.Exploration);
 

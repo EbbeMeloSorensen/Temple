@@ -17,10 +17,12 @@ public class InGameMenuViewModel : TempleViewModel
 
         Exit_Command = new RelayCommand(() =>
         {
-            _controller.GoToNextApplicationState(new ExplorationPayload
-            {
-                Site = _controller.ApplicationData.CurrentSite
-            });
+            _controller.GoToWilderness();
+
+            //_controller.GoToNextApplicationState(new ExplorationPayload
+            //{
+            //    Site = _controller.ApplicationData.CurrentSite
+            //});
         });
     }
 }
