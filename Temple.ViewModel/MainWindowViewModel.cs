@@ -92,10 +92,11 @@ namespace Temple.ViewModel
                         var dialogueViewModel = new DialogueViewModel(_controller);
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);
                         break;
-
                     case StateMachineState.InGameMenu:
-                        CurrentViewModel = new InGameMenuViewModel(_controller);
+                        var inGameMenuViewModel = new InGameMenuViewModel(_controller);
+                        CurrentViewModel = inGameMenuViewModel.Init(applicationState.Payload);
                         break;
+
                     case StateMachineState.Wilderness:
                         CurrentViewModel = new WildernessViewModel(_controller);
                         break;

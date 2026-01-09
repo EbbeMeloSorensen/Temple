@@ -130,6 +130,9 @@ public class ApplicationController
 
         switch (payload)
         {
+            case InGameMenuPayload:
+                _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToInGameMenu);
+                break;
             case ExplorationPayload:
                 _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToExploration);
                 break;
@@ -139,15 +142,18 @@ public class ApplicationController
             case BattlePayload:
                 _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToBattle);
                 break;
+            case WildernessPayload:
+                _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToWilderness);
+                break;
             default:
                 throw new InvalidOperationException("Unknown payload type");
         }
     }
 
-    public void GoToInGameMenu()
-    {
-        _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToInGameMenu);
-    }
+    //public void GoToInGameMenu()
+    //{
+    //    _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToInGameMenu);
+    //}
 
     public void GoToWilderness()
     {

@@ -20,7 +20,12 @@ namespace Temple.ViewModel.DD.Wilderness
 
             GoToInGameMenu_Command = new RelayCommand(() =>
             {
-                _controller.GoToInGameMenu();
+                var payload = new InGameMenuPayload
+                {
+                    PayloadForNextState = new WildernessPayload()
+                };
+
+                _controller.GoToNextApplicationState(payload);
             });
 
             GoToSite_Mine_Command = new RelayCommand(() =>

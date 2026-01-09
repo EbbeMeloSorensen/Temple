@@ -95,7 +95,16 @@ namespace Temple.ViewModel.DD.Exploration
             GoToInGameMenu_Command = new RelayCommand(() =>
             {
                 Engine.HandleClosing();
-                _controller.GoToInGameMenu();
+
+                var payload = new InGameMenuPayload
+                {
+                    PayloadForNextState = new ExplorationPayload
+                    {
+                        Site = _controller.ApplicationData.CurrentSite 
+                    }
+                };
+
+                _controller.GoToNextApplicationState(payload);
             });
 
             GeometryEditorViewModel = new GeometryEditorViewModel(1)
