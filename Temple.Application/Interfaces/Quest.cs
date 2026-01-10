@@ -9,7 +9,7 @@
         Failed
     }
 
-    public class Quest
+    public abstract class Quest
     {
         public int Id { get; set; }
         public string Title { get; set; }

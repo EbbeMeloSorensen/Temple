@@ -13,47 +13,67 @@ public class QuestManager : IQuestManager
         {
             new()
             {
-                Quest = new Quest
+                Quest = new NPCRequest()
                 {
                     Id = 0,
                     Title = "Clear cellar",
                     Description = "Clear cellar of The Yawning Portal of rats.",
-                    Status = QuestStatus.Available
+                    Status = QuestStatus.Available,
+                    ModelId = "human female",
+                    NPCName = "Innkeeper Cynthia",
+                    Position = new Craft.Math.Point2D(11.5, 5.5),
+                    Orientation = 90,
+                    Height = 0
                 }
             },
             new()
             {
-                Quest = new Quest
+                Quest = new NPCRequest()
                 {
                     Id = 1,
-                    Title = "Report back to the innkeeper Eve",
-                    Description = "Report to the innkeeper Eve that the cellar was cleared successfully of rats.",
-                    Status = QuestStatus.Unavailable
+                    Title = "Report back to the innkeeper Cynthia",
+                    Description = "Report to the innkeeper Cynthia that the cellar was cleared successfully of rats.",
+                    Status = QuestStatus.Unavailable,
+                    ModelId = "human female",
+                    NPCName = "Innkeeper Cynthia",
+                    Position = new Craft.Math.Point2D(11.5, 5.5),
+                    Orientation = 90,
+                    Height = 0
                 }
             },
             new()
             {
-                Quest = new Quest
+                Quest = new NPCRequest()
                 {
                     Id = 2,
                     Title = "Investigate what happened to the town guard patrol",
                     Description = "A patrol of the town guard that was supposed to return two days ago is missing. The town guard Captain Boris wants you to investigate what happened to the patrol.",
-                    Status = QuestStatus.Available
+                    Status = QuestStatus.Available,
+                    ModelId = "human male",
+                    NPCName = "Captain Boris",
+                    Position = new Craft.Math.Point2D(12.5, 7.5),
+                    Orientation = 0,
+                    Height = 0
                 }
             },
             new()
             {
-                Quest = new Quest
+                Quest = new NPCRequest()
                 {
                     Id = 3,
                     Title = "Report back to Captain Boris",
                     Description = "Report the findings of the investigation of the fate of the town guard patrol to Captain Boris.",
-                    Status = QuestStatus.Unavailable
+                    Status = QuestStatus.Unavailable,
+                    ModelId = "human male",
+                    NPCName = "Captain Boris",
+                    Position = new Craft.Math.Point2D(12.5, 7.5),
+                    Orientation = 0,
+                    Height = 0
                 }
             },
             new()
             {
-                Quest = new Quest
+                Quest = new NPCRequest()
                 {
                     Id = 4,
                     Title = "Talk with the wizard Cyrus",
@@ -63,7 +83,7 @@ public class QuestManager : IQuestManager
             },
             new()
             {
-                Quest = new Quest
+                Quest = new NPCRequest()
                 {
                     Id = 5,
                     Title = "Investigate the tower ruins",
@@ -83,7 +103,15 @@ public class QuestManager : IQuestManager
 
     public IEnumerable<Quest> GetAllQuests()
     {
-        return _graph.Vertices.Select(v => v.Quest);
+        return _graph.Vertices
+            .Select(v => v.Quest);
+    }
+
+    public IEnumerable<Quest> GetAvailableQuests()
+    {
+        return _graph.Vertices
+            .Select(_ => _.Quest)
+            .Where(_ => _.Status == QuestStatus.Available);
     }
 
     public IEnumerable<Quest> GetSubsequentQuests(

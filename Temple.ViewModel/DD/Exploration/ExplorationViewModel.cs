@@ -231,7 +231,7 @@ namespace Temple.ViewModel.DD.Exploration
                 throw new InvalidOperationException("Position and orientation needed here");
             }
 
-            var siteData = SiteDataFactory.GenerateSiteData(explorationPayload.Site);
+            var siteData = SiteDataFactory.GenerateSiteData(explorationPayload.Site, _controller.QuestManager);
 
             Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 

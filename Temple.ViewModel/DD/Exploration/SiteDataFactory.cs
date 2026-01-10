@@ -1,4 +1,5 @@
 ﻿using Craft.Math;
+using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Exploration;
 
 namespace Temple.ViewModel.DD.Exploration;
@@ -6,7 +7,8 @@ namespace Temple.ViewModel.DD.Exploration;
 public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
-        string siteId)
+        string siteId,
+        IQuestManager questManager)
     {
         switch (siteId)
         {
@@ -177,13 +179,30 @@ public static class SiteDataFactory
                 siteData.AddSphere(new Point2D(10.5, 8.5), 0.1, 0.4);
 
                 siteData.AddCharacter("human male", "Adam", new Point2D(8.5, 6.5));
-                siteData.AddCharacter("human male", "Boris", new Point2D(12.5, 7.5), 0, 0, "Quest1");
-                siteData.AddCharacter("human female", "Eve", new Point2D(11.5, 5.5), 90);
 
                 siteData.AddEventTrigger_LeaveSite(
-                new Point2D(15, 8),
-                new Point2D(15, 7),
-                "Exit_Wilderness");
+                    new Point2D(15, 8),
+                    new Point2D(15, 7),
+                    "Exit_Wilderness");
+
+                // Add npcs with quests, if any
+                questManager.GetAvailableQuests().ToList().ForEach(quest =>
+                {
+                    switch (quest)
+                    {
+                        case NPCRequest npcRequest:
+                            siteData.AddCharacter(
+                                npcRequest.ModelId,
+                                npcRequest.NPCName,
+                                npcRequest.Position,
+                                npcRequest.Orientation,
+                                npcRequest.Height,
+                                $"{npcRequest.Id}");
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unknown quest type");
+                    }
+                });
 
                 return siteData;
             }
