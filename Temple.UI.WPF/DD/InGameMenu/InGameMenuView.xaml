@@ -4,10 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:inGameMenu="clr-namespace:Temple.ViewModel.DD.InGameMenu;assembly=Temple.ViewModel"
+             xmlns:inventory="clr-namespace:Temple.UI.WPF.DD.InGameMenu"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance inGameMenu:InGameMenuViewModel }">
     <Grid>
+        <TabControl SelectedIndex="1">
+            <TabItem Header="Inventory">
+                <inventory:InventoryView DataContext="{Binding InventoryViewModel}"/>
+            </TabItem>
+            <TabItem Header="Quests">
+                <inventory:QuestCollectionView DataContext="{Binding QuestCollectionViewModel}"/>
+            </TabItem>
+        </TabControl>
+
         <Button Width="120" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20"
                 Content="Back to game" Command="{Binding Exit_Command}"/>
     </Grid>

@@ -9,6 +9,9 @@ public class InGameMenuViewModel : TempleViewModel
     private readonly ApplicationController _controller;
     private ApplicationStatePayload _payloadForNextState;
 
+    public InventoryViewModel InventoryViewModel { get; } = new();
+    public QuestCollectionViewModel QuestCollectionViewModel { get; } = new();
+
     public RelayCommand Exit_Command { get; }
 
     public InGameMenuViewModel(
@@ -18,13 +21,6 @@ public class InGameMenuViewModel : TempleViewModel
 
         Exit_Command = new RelayCommand(() =>
         {
-            //_controller.GoToWilderness();
-
-            //_controller.GoToNextApplicationState(new ExplorationPayload
-            //{
-            //    Site = _controller.ApplicationData.CurrentSite
-            //});
-
             _controller.GoToNextApplicationState(_payloadForNextState);
         });
     }
