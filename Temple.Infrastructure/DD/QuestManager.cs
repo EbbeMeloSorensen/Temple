@@ -86,8 +86,17 @@ public class QuestManager : IQuestManager
         return _graph.Vertices.Select(v => v.Quest);
     }
 
-    public IEnumerable<Quest> GetSubsequentQuests(Quest quest)
+    public IEnumerable<Quest> GetSubsequentQuests(
+        Quest quest)
     {
-        throw new NotImplementedException();
+        var questVertex = _graph.Vertices.FirstOrDefault(_ => _.Quest.Equals(quest));
+
+        if (questVertex == null)
+        {
+            throw new InvalidOperationException("unknown quest");
+        }
+
+        return _graph.NeighborIds(questVertex.Id)
+            .Select(neighborId => ((QuestVertex)_graph.GetVertex(neighborId)).Quest);
     }
 }

@@ -40,8 +40,16 @@ namespace Temple.ViewModel.DD.InGameMenu
 
             var graph = new GraphAdjacencyList<LabelledVertex, EmptyEdge>(vertices, directed:true);
 
-            // Generate edges
-            //graph.AddEdge();
+            questManager.GetAllQuests()
+                .ToList()
+                .ForEach(quest =>
+                {
+                    questManager.GetSubsequentQuests(quest)
+                        .ToList().ForEach(subsequentQuest =>
+                        {
+                            graph.AddEdge(quest.Id, subsequentQuest.Id);
+                        });
+                });
 
             return graph;
         }
