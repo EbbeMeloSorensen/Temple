@@ -18,7 +18,7 @@ namespace Temple.Infrastructure.DD
                         Id = 0,
                         Title = "Clear cellar",
                         Description = "Clear cellar of The Yawning Portal of rats.",
-                        Status = QuestStatus.NotStarted
+                        Status = QuestStatus.Available
                     }
                 },
                 new()
@@ -28,7 +28,7 @@ namespace Temple.Infrastructure.DD
                         Id = 1,
                         Title = "Report back to Eve",
                         Description = "Report to the innkeeper Eve that the cellar was cleared successfully of rats.",
-                        Status = QuestStatus.NotStarted
+                        Status = QuestStatus.Unavailable
                     }
                 },
                 new()
@@ -38,7 +38,7 @@ namespace Temple.Infrastructure.DD
                         Id = 2,
                         Title = "Investigate what happened to the town guard patrol",
                         Description = "A patrol of the town guard that was supposed to return two days ago is missing. The town guard Captain Boris wants you to investigate what happened to the patrol.",
-                        Status = QuestStatus.NotStarted
+                        Status = QuestStatus.Available
                     }
                 },
                 new()
@@ -48,7 +48,7 @@ namespace Temple.Infrastructure.DD
                         Id = 3,
                         Title = "Report back to Boris",
                         Description = "Report the findings of the investigation of the fate of the town guard patrol to Captain Boris.",
-                        Status = QuestStatus.NotStarted
+                        Status = QuestStatus.Unavailable
                     }
                 },
                 new()
@@ -58,7 +58,7 @@ namespace Temple.Infrastructure.DD
                         Id = 4,
                         Title = "Talk with the wizard Cyrus",
                         Description = "Talk with the wizard Cyrus, as suggested by Captain Boris",
-                        Status = QuestStatus.NotStarted
+                        Status = QuestStatus.Unavailable
                     }
                 },
                 new()
@@ -68,7 +68,7 @@ namespace Temple.Infrastructure.DD
                         Id = 5,
                         Title = "Investigate the tower ruins",
                         Description = "Investigate the tower ruins, as suggested by the wizard Cyrus",
-                        Status = QuestStatus.NotStarted
+                        Status = QuestStatus.Unavailable
                     }
                 }
             };

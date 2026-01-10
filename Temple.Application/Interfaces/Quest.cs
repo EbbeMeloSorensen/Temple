@@ -2,8 +2,9 @@
 {
     public enum QuestStatus
     {
-        NotStarted,
-        InProgress,
+        Unavailable,
+        Available,
+        Started,
         Completed,
         Failed
     }
