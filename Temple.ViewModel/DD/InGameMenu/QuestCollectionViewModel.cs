@@ -40,6 +40,9 @@ namespace Temple.ViewModel.DD.InGameMenu
 
             var graph = new GraphAdjacencyList<LabelledVertex, EmptyEdge>(vertices, directed:true);
 
+            // Generate edges
+            //graph.AddEdge();
+
             return graph;
         }
 
