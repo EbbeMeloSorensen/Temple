@@ -15,7 +15,8 @@ public class ApplicationController
     private readonly ApplicationStateMachine _applicationStateMachine;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
-    private readonly IQuestTree _questTree;
+
+    public IQuestTree QuestTree { get; }
 
     public event EventHandler<string>? ProgressChanged;
 
@@ -38,9 +39,10 @@ public class ApplicationController
         _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
-        _questTree = questTree;
 
-        ApplicationData = new ApplicationData(_questTree);
+        QuestTree = questTree;
+
+        ApplicationData = new ApplicationData();
     }
 
     public async Task InitializeAsync()
@@ -82,7 +84,7 @@ public class ApplicationController
 
     public void StartNewGame()
     {
-        ApplicationData.Reset();
+        ApplicationData = new ApplicationData();
 
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();

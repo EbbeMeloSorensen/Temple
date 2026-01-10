@@ -3,6 +3,4 @@
 public interface IQuestTree
 {
     IEnumerable<Quest> GetAllQuests();
-
-    void Reset();
 }

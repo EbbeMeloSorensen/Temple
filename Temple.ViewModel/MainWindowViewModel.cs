@@ -47,6 +47,7 @@ namespace Temple.ViewModel
             IMediator mediator,
             IDialogService applicationDialogService,
             ISiteRenderer siteRenderer,
+            IQuestTree questTree,
             ApplicationController controller)
         {
             _mediator = mediator;

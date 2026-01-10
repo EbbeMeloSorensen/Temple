@@ -12,19 +12,8 @@ public class ApplicationData
     public Vector2D? ExplorationPosition { get; set; }
     public double? ExplorationOrientation { get; set; }
 
-    public IQuestTree QuestTree { get; }
-
-    public ApplicationData(
-        IQuestTree questTree)
+    public ApplicationData()
     {
-        QuestTree = questTree;
-        Party = new List<Creature>();
-        BattlesWon = new HashSet<string>();
-    }
-
-    public void Reset()
-    {
-        QuestTree.Reset();
         Party = new List<Creature>();
         BattlesWon = new HashSet<string>();
     }

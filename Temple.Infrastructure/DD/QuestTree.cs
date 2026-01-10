@@ -8,9 +8,5 @@ namespace Temple.Infrastructure.DD
         {
             throw new NotImplementedException();
         }
-
-        public void Reset()
-        {
-        }
     }
 }

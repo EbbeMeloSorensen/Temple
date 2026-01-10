@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
+using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 
 namespace Temple.ViewModel.DD.InGameMenu;
@@ -10,7 +11,7 @@ public class InGameMenuViewModel : TempleViewModel
     private ApplicationStatePayload _payloadForNextState;
 
     public InventoryViewModel InventoryViewModel { get; } = new();
-    public QuestCollectionViewModel QuestCollectionViewModel { get; } = new();
+    public QuestCollectionViewModel QuestCollectionViewModel { get; }
 
     public RelayCommand Exit_Command { get; }
 
@@ -18,6 +19,8 @@ public class InGameMenuViewModel : TempleViewModel
         ApplicationController controller)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+
+        QuestCollectionViewModel = new QuestCollectionViewModel(controller.QuestTree);
 
         Exit_Command = new RelayCommand(() =>
         {

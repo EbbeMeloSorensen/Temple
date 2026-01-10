@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using Craft.DataStructures.Graph;
 using Craft.Utils;
 using Craft.ViewModels.Graph;
+using Temple.Application.Interfaces;
 
 namespace Temple.ViewModel.DD.InGameMenu
 {
@@ -17,7 +18,16 @@ namespace Temple.ViewModel.DD.InGameMenu
 
         public GraphViewModel GraphViewModel { get; }
 
-        public QuestCollectionViewModel()
+        public QuestCollectionViewModel(
+            IQuestTree questTree)
+        {
+            var graph = GenerateGraph();
+
+            GraphViewModel = new GraphViewModel(graph, 1200, 900);
+            StyleGraph();
+        }
+
+        private GraphAdjacencyList<LabelledVertex, EmptyEdge> GenerateGraph()
         {
             var vertices = new List<LabelledVertex>
             {
@@ -162,8 +172,7 @@ namespace Temple.ViewModel.DD.InGameMenu
             graph.AddEdge(39, 41);
             graph.AddEdge(40, 41);
 
-            GraphViewModel = new GraphViewModel(graph, 1200, 900);
-            StyleGraph();
+            return graph;
         }
 
         private void StyleGraph()
