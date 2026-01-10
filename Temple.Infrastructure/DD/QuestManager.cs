@@ -3,11 +3,11 @@ using Temple.Application.Interfaces;
 
 namespace Temple.Infrastructure.DD
 {
-    public class QuestTree : IQuestTree
+    public class QuestManager : IQuestManager
     {
         private GraphAdjacencyList<QuestVertex, EmptyEdge> _graph;
 
-        public QuestTree()
+        public QuestManager()
         {
             var vertices = new List<QuestVertex>
             {
@@ -26,7 +26,7 @@ namespace Temple.Infrastructure.DD
                     Quest = new Quest
                     {
                         Id = 1,
-                        Title = "Report back to Eve",
+                        Title = "Report back to the innkeeper Eve",
                         Description = "Report to the innkeeper Eve that the cellar was cleared successfully of rats.",
                         Status = QuestStatus.Unavailable
                     }
@@ -46,7 +46,7 @@ namespace Temple.Infrastructure.DD
                     Quest = new Quest
                     {
                         Id = 3,
-                        Title = "Report back to Boris",
+                        Title = "Report back to Captain Boris",
                         Description = "Report the findings of the investigation of the fate of the town guard patrol to Captain Boris.",
                         Status = QuestStatus.Unavailable
                     }

@@ -63,7 +63,7 @@ namespace Temple.UI.WPF
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
                             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
                             services.AddScoped<IStateMachineIO, StateMachineIO>();
-                            services.AddScoped<IQuestTree, QuestTree>();
+                            services.AddScoped<IQuestManager, QuestManager>();
                             services.AddScoped<ISiteRenderer, WPFSiteRenderer>();
 
                             // Register our ViewModel and View

@@ -1,6 +1,6 @@
 ﻿namespace Temple.Application.Interfaces;
 
-public interface IQuestTree
+public interface IQuestManager
 {
     int GetQuestCount();
 

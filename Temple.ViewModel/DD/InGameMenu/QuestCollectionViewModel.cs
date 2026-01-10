@@ -9,6 +9,8 @@ namespace Temple.ViewModel.DD.InGameMenu
 {
     public class QuestCollectionViewModel : ViewModelBase
     {
+        private Dictionary<int, Quest> _questMap = new();
+
         private readonly Brush _unavailableQuestBrush = new SolidColorBrush(Colors.IndianRed);
         private readonly Brush _availableQuestBrush = new SolidColorBrush(Colors.Orange);
         private readonly Brush _startedQuestBrush = new SolidColorBrush(Colors.DarkGreen);
@@ -18,18 +20,23 @@ namespace Temple.ViewModel.DD.InGameMenu
         public GraphViewModel GraphViewModel { get; }
 
         public QuestCollectionViewModel(
-            IQuestTree questTree)
+            IQuestManager questManager)
         {
-            var graph = GenerateGraph(questTree);
+            foreach (var quest in questManager.GetAllQuests())
+            {
+                _questMap[quest.Id] = quest;
+            }
+
+            var graph = GenerateGraph(questManager);
 
             GraphViewModel = new GraphViewModel(graph, 1200, 900);
             StyleGraph(graph);
         }
 
         private GraphAdjacencyList<LabelledVertex, EmptyEdge> GenerateGraph(
-            IQuestTree questTree)
+            IQuestManager questManager)
         {
-            var vertices = questTree.GetAllQuests().Select(quest => new LabelledVertex(quest.Title));
+            var vertices = questManager.GetAllQuests().Select(quest => new LabelledVertex(string.Empty));
 
             var graph = new GraphAdjacencyList<LabelledVertex, EmptyEdge>(vertices, directed:true);
 
@@ -46,20 +53,22 @@ namespace Temple.ViewModel.DD.InGameMenu
             GraphViewModel.PlacePoint(4, new PointD(400, 150));
             GraphViewModel.PlacePoint(5, new PointD(400, 200));
 
-            graph.Vertices.ForEach(v => GraphViewModel.StylePoint(v.Id, _availableQuestBrush, v.Label));
+            graph.Vertices.ForEach(v => GraphViewModel.StylePoint(v.Id, GetBrush(v.Id), _questMap[v.Id].Title));
         }
 
         private Brush GetBrush(
-            QuestStatus questStatus)
+            int questId)
         {
-            return questStatus switch
+            var quest = _questMap[questId];
+
+            return quest.Status switch
             {
                 QuestStatus.Unavailable => _unavailableQuestBrush,
                 QuestStatus.Available => _availableQuestBrush,
                 QuestStatus.Started => _startedQuestBrush,
                 QuestStatus.Completed => _completedQuestBrush,
                 QuestStatus.Failed => _failedQuestBrush,
-                _ => throw new NotSupportedException($"Unknown quest status '{questStatus}'.")
+                _ => throw new NotSupportedException($"Unknown quest status '{quest.Status}'.")
             };
         }
     }

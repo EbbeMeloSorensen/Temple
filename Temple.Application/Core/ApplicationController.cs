@@ -16,7 +16,7 @@ public class ApplicationController
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
-    public IQuestTree QuestTree { get; }
+    public IQuestManager QuestManager { get; }
 
     public event EventHandler<string>? ProgressChanged;
 
@@ -34,13 +34,13 @@ public class ApplicationController
         ApplicationStateMachine applicationStateMachine,
         IServiceScopeFactory scopeFactory,
         ILogger<ApplicationController> logger,
-        IQuestTree questTree)
+        IQuestManager questManager)
     {
         _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
 
-        QuestTree = questTree;
+        QuestManager = questManager;
 
         ApplicationData = new ApplicationData();
     }
