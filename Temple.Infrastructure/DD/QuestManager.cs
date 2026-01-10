@@ -107,11 +107,17 @@ public class QuestManager : IQuestManager
             .Select(v => v.Quest);
     }
 
-    public IEnumerable<Quest> GetAvailableQuests()
+    public IEnumerable<Quest> GetAvailableAndStartedQuests()
     {
         return _graph.Vertices
             .Select(_ => _.Quest)
-            .Where(_ => _.Status == QuestStatus.Available);
+            .Where(_ => _.Status is QuestStatus.Available or QuestStatus.Started);
+    }
+
+    public Quest GetQuestById(
+        int questId)
+    {
+        return ((QuestVertex)_graph.GetVertex(questId)).Quest;
     }
 
     public IEnumerable<Quest> GetSubsequentQuests(

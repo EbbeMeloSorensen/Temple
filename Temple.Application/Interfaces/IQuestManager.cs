@@ -4,7 +4,11 @@ public interface IQuestManager
 {
     IEnumerable<Quest> GetAllQuests();
 
-    IEnumerable<Quest> GetAvailableQuests();
+    IEnumerable<Quest> GetAvailableAndStartedQuests();
 
-    IEnumerable<Quest> GetSubsequentQuests(Quest quest);
+    Quest GetQuestById(
+        int questId);
+
+    IEnumerable<Quest> GetSubsequentQuests(
+        Quest quest);
 }

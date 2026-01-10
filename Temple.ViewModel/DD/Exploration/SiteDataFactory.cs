@@ -186,7 +186,7 @@ public static class SiteDataFactory
                     "Exit_Wilderness");
 
                 // Add npcs with quests, if any
-                questManager.GetAvailableQuests().ToList().ForEach(quest =>
+                questManager.GetAvailableAndStartedQuests().ToList().ForEach(quest =>
                 {
                     switch (quest)
                     {
@@ -197,7 +197,9 @@ public static class SiteDataFactory
                                 npcRequest.Position,
                                 npcRequest.Orientation,
                                 npcRequest.Height,
-                                $"{npcRequest.Id}");
+                                quest.Status == QuestStatus.Available
+                                    ? $"{npcRequest.Id}"
+                                    : null);
                             break;
                         default:
                             throw new InvalidOperationException("Unknown quest type");

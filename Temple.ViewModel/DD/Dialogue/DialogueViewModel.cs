@@ -1,15 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
-using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
-using Temple.Infrastructure.Presentation;
-using Temple.ViewModel.DD.Exploration;
 
 namespace Temple.ViewModel.DD.Dialogue;
 
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
+    private int? _questId;
 
     public RelayCommand Leave_Command { get; }
     public RelayCommand TakeQuest_Command { get; }
@@ -29,7 +27,12 @@ public class DialogueViewModel : TempleViewModel
 
         TakeQuest_Command = new RelayCommand(() =>
         {
-            throw new NotImplementedException();
+            _controller.StartQuest(_questId!.Value);
+
+            _controller.GoToNextApplicationState(new ExplorationPayload
+            {
+                Site = _controller.ApplicationData.CurrentSite
+            });
         });
     }
 
@@ -41,8 +44,7 @@ public class DialogueViewModel : TempleViewModel
 
         if (dialoguePayload.DialogueId.Contains('_'))
         {
-            var questId = dialoguePayload.DialogueId.Split('_')[1];
-            var continueHere = 0;
+            _questId = int.Parse(dialoguePayload.DialogueId.Split('_')[1]);
         }
         else
         {

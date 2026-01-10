@@ -20,11 +20,12 @@ Done:
 * Mulighed for at tegne en kugle i scenen
 * Generaliser cylinder, så man kan specificere radius
 * Mulighed for at tegne et udråbstegn i scenen (som en sammensætning af en kugle og en cylinder)
-
-Todo:
 * Introducer et view til Quests, Inventory, Spells etc
 * Det at populere et site med characters og quests, som de har, skal afhænge af, hvor langt man er nået i spillet
 * Spillets quests skal vedligeholdes som en graf, hvor nogle quests er afhængige af, at andre quests er fuldført først
+
+Todo:
+* NPC'erne skal også være i scenen efter at man har "taget" deres quest, men udråbstegnet skal forsvinde"
 * Nogle NPC'er skal have et udråbstegn over sig for at indikere, at de har noget vigtigt at sige
   - Ikke alle NPC'er har noget at sige (hvordan gøres det i Dark Alliance og i Baldurs Gate III?)
   - Nogle har noget trivielt at sige (hvordan gøres det i Dark Alliance og i Baldurs Gate III)

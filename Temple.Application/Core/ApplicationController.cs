@@ -177,6 +177,12 @@ public class ApplicationController
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ShutdownRequested);
     }
 
+    public void StartQuest(
+        int questId)
+    {
+        QuestManager.GetQuestById(questId).Status = QuestStatus.Started;
+    }
+
     private void Report(
         string message)
     {
