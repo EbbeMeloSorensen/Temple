@@ -164,13 +164,16 @@ public static class ExplorationSceneFactory
             if (bodyCollisionReports.Any())
             {
                 var bcr = bodyCollisionReports.First();
-                var tag = bcr.Body1 is Bodies.NPC
-                    ? bcr.Body1.Tag
-                    : bcr.Body2.Tag;
+                var npc = bcr.Body1 as Bodies.NPC ?? bcr.Body2 as Bodies.NPC;
+                var tag = npc!.Tag;
 
-                response.Outcome = $"NPC_{tag}";
-                response.IndexOfLastState = propagatedState.Index + 10;
-                return response;
+                if (tag.Contains('_'))
+                {
+                    // Det er en npc, som har en quest, derfor afslutter vi exploration animationen og starter en dialog
+                    response.Outcome = $"NPC_{tag}";
+                    response.IndexOfLastState = propagatedState.Index + 10;
+                    return response;
+                }
             }
 
             // Determine if we triggered an event such as leaving the site or starting a scripted battle
@@ -213,8 +216,15 @@ public static class ExplorationSceneFactory
                 }
                 case NPC npc:
                 {
+                    var tag = npc.Name;
+
+                    if (npc.QuestId is not null)
+                    {
+                        tag = $"{tag}_{npc.QuestId}";
+                    }
+
                     initialState.AddBodyState(
-                        new BodyState(new Bodies.NPC(nextBodyId++, 0.16, npc.Tag), new Vector2D(npc.Position.Z, -npc.Position.X)));
+                        new BodyState(new Bodies.NPC(nextBodyId++, 0.16, tag), new Vector2D(npc.Position.Z, -npc.Position.X)));
 
                     AddCircularBoundary(
                     scene,

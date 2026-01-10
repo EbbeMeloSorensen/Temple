@@ -71,7 +71,7 @@ public class SiteData
 
     public void AddCharacter(
         string modelId,
-        string tag,
+        string name,
         Point2D position,
         double orientation = 0,
         double height = 0,
@@ -79,7 +79,7 @@ public class SiteData
     {
         _siteComponents.Add(new NPC(modelId)
         {
-            Tag = tag,
+            Name = name,
             QuestId = questId,
             Position = new Vector3D(position.Y, height, position.X),
             Orientation = orientation

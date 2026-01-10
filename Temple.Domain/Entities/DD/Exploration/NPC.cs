@@ -2,7 +2,7 @@
 {
     public class NPC : SiteComponent_Rotatable
     {
-        public string Tag { get; set; }
+        public string Name { get; set; }
         public string? QuestId { get; set; }
 
         public NPC(
