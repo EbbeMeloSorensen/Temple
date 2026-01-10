@@ -85,23 +85,5 @@ namespace Temple.Infrastructure.DD
         {
             return _graph.Vertices.Select(v => v.Quest);
         }
-
-        public int GetQuestCount()
-        {
-            return _graph.Vertices.Count;
-        }
-
-        public Quest GetQuestById(
-            int id)
-        {
-            var vertex = _graph.Vertices.FirstOrDefault(v => v.Quest.Id == id);
-
-            if (vertex == null)
-            {
-                throw new ArgumentException($"Quest with id {id} not found.");
-            }
-
-            return vertex.Quest;
-        }
     }
 }
