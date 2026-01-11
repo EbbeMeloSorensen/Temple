@@ -220,6 +220,7 @@ public static class SiteDataFactory
                         quest.SiteIdForQuestExecution == siteId)
                     {
                         // Add a trigger for executing the quest
+                        // Vi hardkoder det lige i første omgang, men ellers skal data skal komme fra quest objektet
                         siteData.AddEventTrigger_ScriptedBattle(
                             new Point2D(12, 9),
                             new Point2D(11, 9),
