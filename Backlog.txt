@@ -23,9 +23,13 @@ Done:
 * Introducer et view til Quests, Inventory, Spells etc
 * Det at populere et site med characters og quests, som de har, skal afhænge af, hvor langt man er nået i spillet
 * Spillets quests skal vedligeholdes som en graf, hvor nogle quests er afhængige af, at andre quests er fuldført først
+* NPC'erne skal også være i scenen efter at man har "taget" deres quest, men udråbstegnet skal forsvinde"
 
 Todo:
-* NPC'erne skal også være i scenen efter at man har "taget" deres quest, men udråbstegnet skal forsvinde"
+* Det at tage en quest skal gøre, at sites gøres tilgængelige i Wilderness mode. Minen skal f.eks. ikke være tilgængelig fra starten.
+  Det at tage en quest kan også foranledige, at nye triggers dukker op i sites
+  1) Lav et scripted battle i byen i det andet hus - det kunne jo være et varehus, som er overrendt af rotter
+  2) Lav det sådan, at triggeren til kampen kun placeres, når man har taget questen fra NPC'en i det første hus
 * Nogle NPC'er skal have et udråbstegn over sig for at indikere, at de har noget vigtigt at sige
   - Ikke alle NPC'er har noget at sige (hvordan gøres det i Dark Alliance og i Baldurs Gate III?)
   - Nogle har noget trivielt at sige (hvordan gøres det i Dark Alliance og i Baldurs Gate III)

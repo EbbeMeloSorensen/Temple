@@ -24,7 +24,7 @@ namespace Temple.ViewModel.DD.InGameMenu
         {
             foreach (var quest in questManager.GetAllQuests())
             {
-                _questMap[quest.Id] = quest;
+                _questMap[quest.QuestId] = quest;
             }
 
             var graph = GenerateGraph(questManager);
@@ -47,7 +47,7 @@ namespace Temple.ViewModel.DD.InGameMenu
                     questManager.GetSubsequentQuests(quest)
                         .ToList().ForEach(subsequentQuest =>
                         {
-                            graph.AddEdge(quest.Id, subsequentQuest.Id);
+                            graph.AddEdge(quest.QuestId, subsequentQuest.QuestId);
                         });
                 });
 

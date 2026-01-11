@@ -11,9 +11,15 @@
 
     public abstract class Quest
     {
-        public int Id { get; set; }
+        public int QuestId { get; set; }
+
+        public string SiteIdForQuestAcquisition { get; set; }
+        public string SiteIdForQuestExecution { get; set; }
+
         public string Title { get; set; }
+
         public string Description { get; set; }
+
         public QuestStatus Status { get; set; }
     }
 }

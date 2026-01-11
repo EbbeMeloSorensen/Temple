@@ -12,6 +12,7 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
         {
             return battleSceneId switch
             {
+                "Warehouse" => GetSceneWarehouse(party),
                 "Dungeon 1, Room A, Goblin" => GetSceneA(party),
                 "Dungeon 1, Room B, Goblin" => GetSceneB(party, entranceId),
                 "Final Battle" => GetSceneF(party, entranceId),
@@ -19,8 +20,70 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
             };
         }
 
+        private static Scene GetSceneWarehouse(
+            IEnumerable<Creature> party)
+        {
+            var goblin = new CreatureType(
+                name: "Goblin",
+                maxHitPoints: 12,
+                armorClass: 5,
+                thaco: 20,
+                initiativeModifier: 0,
+                movement: 6,
+                attacks: new List<Attack>
+                {
+                    new MeleeAttack("Short sword", 6)
+                });
+
+            var scene = new Scene("DummyScene", 6, 8);
+
+            // Obstacles
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 1));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 2));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 3));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 4));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 5));
+            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 5));
+
+            // Enemies
+            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 1);
+
+            // Party
+            var adventurerPositions = new List<Tuple<int, int>>
+            {
+                new (4, 5),
+                new (3, 5)
+            };
+
+            adventurerPositions
+                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+                .ToList()
+                .ForEach(_ =>
+                {
+                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+                });
+
+            return scene;
+        }
+
         private static Scene GetSceneA(
-            List<Creature> party)
+            IEnumerable<Creature> party)
         {
             var goblin = new CreatureType(
                 name: "Goblin",
@@ -84,7 +147,7 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
         }
 
         private static Scene GetSceneB(
-            List<Creature> party,
+            IEnumerable<Creature> party,
             string? entranceId)
         {
             var goblin = new CreatureType(

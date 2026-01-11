@@ -15,7 +15,9 @@ public class QuestManager : IQuestManager
             {
                 Quest = new NPCRequest()
                 {
-                    Id = 0,
+                    QuestId = 0,
+                    SiteIdForQuestAcquisition = "Village",
+                    SiteIdForQuestExecution = "Village",
                     Title = "Clear cellar",
                     Description = "Clear cellar of The Yawning Portal of rats.",
                     Status = QuestStatus.Available,
@@ -30,7 +32,9 @@ public class QuestManager : IQuestManager
             {
                 Quest = new NPCRequest()
                 {
-                    Id = 1,
+                    QuestId = 1,
+                    SiteIdForQuestAcquisition = "Village",
+                    SiteIdForQuestExecution = "Village",
                     Title = "Report back to the innkeeper Cynthia",
                     Description = "Report to the innkeeper Cynthia that the cellar was cleared successfully of rats.",
                     Status = QuestStatus.Unavailable,
@@ -45,7 +49,9 @@ public class QuestManager : IQuestManager
             {
                 Quest = new NPCRequest()
                 {
-                    Id = 2,
+                    QuestId = 2,
+                    SiteIdForQuestAcquisition = "Village",
+                    SiteIdForQuestExecution = "Mine",
                     Title = "Investigate what happened to the town guard patrol",
                     Description = "A patrol of the town guard that was supposed to return two days ago is missing. The town guard Captain Boris wants you to investigate what happened to the patrol.",
                     Status = QuestStatus.Available,
@@ -60,7 +66,9 @@ public class QuestManager : IQuestManager
             {
                 Quest = new NPCRequest()
                 {
-                    Id = 3,
+                    QuestId = 3,
+                    SiteIdForQuestAcquisition = "Village",
+                    SiteIdForQuestExecution = "Mine",
                     Title = "Report back to Captain Boris",
                     Description = "Report the findings of the investigation of the fate of the town guard patrol to Captain Boris.",
                     Status = QuestStatus.Unavailable,
@@ -75,7 +83,9 @@ public class QuestManager : IQuestManager
             {
                 Quest = new NPCRequest()
                 {
-                    Id = 4,
+                    QuestId = 4,
+                    SiteIdForQuestAcquisition = "Village",
+                    SiteIdForQuestExecution = "Village",
                     Title = "Talk with the wizard Cyrus",
                     Description = "Talk with the wizard Cyrus, as suggested by Captain Boris",
                     Status = QuestStatus.Unavailable
@@ -85,7 +95,9 @@ public class QuestManager : IQuestManager
             {
                 Quest = new NPCRequest()
                 {
-                    Id = 5,
+                    QuestId = 5,
+                    SiteIdForQuestAcquisition = "Village",
+                    SiteIdForQuestExecution = "Tower ruins",
                     Title = "Investigate the tower ruins",
                     Description = "Investigate the tower ruins, as suggested by the wizard Cyrus",
                     Status = QuestStatus.Unavailable

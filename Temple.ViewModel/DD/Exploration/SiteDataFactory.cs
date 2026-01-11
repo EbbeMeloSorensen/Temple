@@ -10,12 +10,12 @@ public static class SiteDataFactory
         string siteId,
         IQuestManager questManager)
     {
+        var siteData = new SiteData();
+
         switch (siteId)
         {
             case "Mine":
             {
-                var siteData = new SiteData();
-
                 var siteExtent = 20.0;
 
                 siteData.AddQuad(
@@ -113,12 +113,10 @@ public static class SiteDataFactory
                     "Final Battle",
                     "East");
 
-                return siteData;
+                break;
             }
             case "Village":
             {
-                var siteData = new SiteData();
-
                 siteData.AddWall(new List<Point2D>
                 {
                     new (8, 7),
@@ -185,34 +183,56 @@ public static class SiteDataFactory
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
-                // Add npcs with quests, if any
-                questManager.GetAvailableAndStartedQuests().ToList().ForEach(quest =>
-                {
-                    switch (quest)
-                    {
-                        case NPCRequest npcRequest:
-                            siteData.AddCharacter(
-                                npcRequest.ModelId,
-                                npcRequest.NPCName,
-                                npcRequest.Position,
-                                npcRequest.Orientation,
-                                npcRequest.Height,
-                                quest.Status == QuestStatus.Available
-                                    ? $"{npcRequest.Id}"
-                                    : null);
-                            break;
-                        default:
-                            throw new InvalidOperationException("Unknown quest type");
-                    }
-                });
+                siteData.AddEventTrigger_ScriptedBattle(
+                    new Point2D(-1, 3),
+                    new Point2D(-1, 2),
+                    "Dungeon 1, Room A, Goblin");
 
-                return siteData;
+                break;
             }
             default:
             {
                 throw new InvalidOperationException($"Unknown site id: {siteId}");
             }
         }
+
+        questManager.GetAvailableAndStartedQuests().ToList().ForEach(quest =>
+        {
+            switch (quest)
+            {
+                case NPCRequest npcRequest:
+
+                    if (quest.SiteIdForQuestAcquisition == siteId)
+                    {
+                        // Add the npc that provides the quest
+                        siteData.AddCharacter(
+                            npcRequest.ModelId,
+                            npcRequest.NPCName,
+                            npcRequest.Position,
+                            npcRequest.Orientation,
+                            npcRequest.Height,
+                            quest.Status == QuestStatus.Available
+                                ? $"{npcRequest.QuestId}"
+                                : null);
+                    }
+
+                    if (quest.Status == QuestStatus.Started &&
+                        quest.SiteIdForQuestExecution == siteId)
+                    {
+                        // Add a trigger for executing the quest
+                        siteData.AddEventTrigger_ScriptedBattle(
+                            new Point2D(12, 9),
+                            new Point2D(11, 9),
+                            "Warehouse");
+                    }
+
+                    break;
+                default:
+                    throw new InvalidOperationException("Unknown quest type");
+            }
+        });
+
+        return siteData;
     }
 }
 
