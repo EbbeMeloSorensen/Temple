@@ -114,6 +114,7 @@ public class SiteData
         Point2D point1,
         Point2D point2,
         string eventId,
+        int? questId = null,
         string? entranceId = null)
     {
         _siteComponents.Add(new EventTrigger_ScriptedBattle("event trigger")
@@ -121,6 +122,7 @@ public class SiteData
             Point1 = point1,
             Point2 = point2,
             EventID = eventId,
+            QuestID = questId,
             EntranceID = entranceId
         });
     }

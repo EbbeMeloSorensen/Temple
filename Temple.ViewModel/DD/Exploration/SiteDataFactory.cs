@@ -93,24 +93,28 @@ public static class SiteDataFactory
                     new Point2D(2, 3),
                     new Point2D(2, 2),
                     "Dungeon 1, Room B, Goblin",
+                    null,
                     "West");
 
                 siteData.AddEventTrigger_ScriptedBattle(
                     new Point2D(4, 3),
                     new Point2D(4, 2),
                     "Dungeon 1, Room B, Goblin",
+                    null,
                     "East");
 
                 siteData.AddEventTrigger_ScriptedBattle(
                     new Point2D(1, 5),
                     new Point2D(0, 5),
                     "Final Battle",
+                    null,
                     "South");
 
                 siteData.AddEventTrigger_ScriptedBattle(
                     new Point2D(3, 7),
                     new Point2D(3, 6),
                     "Final Battle",
+                    null,
                     "East");
 
                 break;
@@ -186,7 +190,7 @@ public static class SiteDataFactory
                 siteData.AddEventTrigger_ScriptedBattle(
                     new Point2D(-1, 3),
                     new Point2D(-1, 2),
-                    "Dungeon 1, Room A, Goblin");
+                    "Cellar");
 
                 break;
             }
