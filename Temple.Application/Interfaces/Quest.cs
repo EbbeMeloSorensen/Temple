@@ -14,6 +14,7 @@
         public int QuestId { get; set; }
 
         public string SiteIdForQuestAcquisition { get; set; }
+
         public string SiteIdForQuestExecution { get; set; }
 
         public string Title { get; set; }

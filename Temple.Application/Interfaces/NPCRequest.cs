@@ -12,5 +12,4 @@ public class NPCRequest : Quest
     public Point2D Position { get; set; }
     public double Orientation { get; set; }
     public double Height { get; set; }
-
 }
