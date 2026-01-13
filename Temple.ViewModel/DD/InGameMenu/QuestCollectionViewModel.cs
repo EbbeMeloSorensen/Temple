@@ -59,10 +59,6 @@ namespace Temple.ViewModel.DD.InGameMenu
         {
             GraphViewModel.PlacePoint(0, new PointD(200, 50));
             GraphViewModel.PlacePoint(1, new PointD(200, 100));
-            GraphViewModel.PlacePoint(2, new PointD(400, 50));
-            GraphViewModel.PlacePoint(3, new PointD(400, 100));
-            GraphViewModel.PlacePoint(4, new PointD(400, 150));
-            GraphViewModel.PlacePoint(5, new PointD(400, 200));
 
             graph.Vertices.ForEach(v => GraphViewModel.StylePoint(v.Id, GetBrush(v.Id), _questMap[v.Id].Title));
         }
