@@ -5,6 +5,7 @@ namespace Temple.Infrastructure.DD;
 
 public class QuestManager : IQuestManager
 {
+    // Deprecated
     private GraphAdjacencyList<QuestVertex, EmptyEdge> _graph;
 
     public QuestManager()
@@ -52,12 +53,14 @@ public class QuestManager : IQuestManager
         _graph.AddEdge(0, 1);
     }
 
+    // Deprecated
     public IEnumerable<Quest> GetAllQuests()
     {
         return _graph.Vertices
             .Select(v => v.Quest);
     }
 
+    // Deprecated
     public IEnumerable<Quest> GetAvailableAndStartedQuests()
     {
         return _graph.Vertices
@@ -65,12 +68,14 @@ public class QuestManager : IQuestManager
             .Where(_ => _.Status is QuestStatus.Available or QuestStatus.Started);
     }
 
+    // Deprecated
     public Quest GetQuestById(
         int questId)
     {
         return ((QuestVertex)_graph.GetVertex(questId)).Quest;
     }
 
+    // Deprecated
     public IEnumerable<Quest> GetSubsequentQuests(
         Quest quest)
     {
