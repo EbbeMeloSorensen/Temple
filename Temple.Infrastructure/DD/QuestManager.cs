@@ -21,7 +21,7 @@ public class QuestManager : IQuestManager
                     SiteIdForQuestExecution = "Village",
                     Title = "Clear cellar",
                     Description = "Clear cellar of The Yawning Portal of rats.",
-                    Status = QuestStatus.Available,
+                    StatusOld = QuestStatusOld.Available,
                     ModelId = "human female",
                     NPCName = "Innkeeper Cynthia",
                     Position = new Craft.Math.Point2D(11.5, 5.5),
@@ -38,7 +38,7 @@ public class QuestManager : IQuestManager
                     SiteIdForQuestExecution = "Village",
                     Title = "Report back to the innkeeper Cynthia",
                     Description = "Report to the innkeeper Cynthia that the cellar was cleared successfully of rats.",
-                    Status = QuestStatus.Unavailable,
+                    StatusOld = QuestStatusOld.Unavailable,
                     ModelId = "human female",
                     NPCName = "Innkeeper Cynthia",
                     Position = new Craft.Math.Point2D(11.5, 5.5),
@@ -65,7 +65,7 @@ public class QuestManager : IQuestManager
     {
         return _graph.Vertices
             .Select(_ => _.QuestOld)
-            .Where(_ => _.Status is QuestStatus.Available or QuestStatus.Started);
+            .Where(_ => _.StatusOld is QuestStatusOld.Available or QuestStatusOld.Started);
     }
 
     // Deprecated

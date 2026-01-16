@@ -215,12 +215,12 @@ public static class SiteDataFactory
                             npcRequest.Position,
                             npcRequest.Orientation,
                             npcRequest.Height,
-                            quest.Status == QuestStatus.Available
+                            quest.StatusOld == QuestStatusOld.Available
                                 ? $"{npcRequest.QuestId}"
                                 : null);
                     }
 
-                    if (quest.Status == QuestStatus.Started &&
+                    if (quest.StatusOld == QuestStatusOld.Started &&
                         quest.SiteIdForQuestExecution == siteId)
                     {
                         // Add a trigger for executing the quest

@@ -1,6 +1,6 @@
 ﻿namespace Temple.Application.Interfaces
 {
-    public enum QuestStatus
+    public enum QuestStatusOld
     {
         Unavailable,
         Available,
@@ -21,6 +21,6 @@
 
         public string Description { get; set; }
 
-        public QuestStatus Status { get; set; }
+        public QuestStatusOld StatusOld { get; set; }
     }
 }

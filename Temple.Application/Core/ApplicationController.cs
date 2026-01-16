@@ -180,7 +180,7 @@ public class ApplicationController
     public void StartQuest(
         int questId)
     {
-        QuestManager.GetQuestById(questId).Status = QuestStatus.Started;
+        QuestManager.GetQuestById(questId).StatusOld = QuestStatusOld.Started;
     }
 
     private void Report(

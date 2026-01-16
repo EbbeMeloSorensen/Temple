@@ -68,14 +68,14 @@ namespace Temple.ViewModel.DD.InGameMenu
         {
             var quest = _questMap[questId];
 
-            return quest.Status switch
+            return quest.StatusOld switch
             {
-                QuestStatus.Unavailable => _unavailableQuestBrush,
-                QuestStatus.Available => _availableQuestBrush,
-                QuestStatus.Started => _startedQuestBrush,
-                QuestStatus.Completed => _completedQuestBrush,
-                QuestStatus.Failed => _failedQuestBrush,
-                _ => throw new NotSupportedException($"Unknown quest status '{quest.Status}'.")
+                QuestStatusOld.Unavailable => _unavailableQuestBrush,
+                QuestStatusOld.Available => _availableQuestBrush,
+                QuestStatusOld.Started => _startedQuestBrush,
+                QuestStatusOld.Completed => _completedQuestBrush,
+                QuestStatusOld.Failed => _failedQuestBrush,
+                _ => throw new NotSupportedException($"Unknown quest status '{quest.StatusOld}'.")
             };
         }
     }
