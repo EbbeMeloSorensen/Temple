@@ -5,7 +5,7 @@ namespace Temple.Application.Interfaces;
 /// <summary>
 /// En NPC request fås under dialog med en NPC, som vises i et site med et udråbstegn over sig
 /// </summary>
-public class NPCRequest : Quest
+public class NPCRequestOld : QuestOld
 {
     public string ModelId { get; set; }
     public string NPCName { get; set; }

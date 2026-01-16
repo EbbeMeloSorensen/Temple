@@ -5,5 +5,5 @@ namespace Temple.Infrastructure.DD;
 
 public class QuestVertex : EmptyVertex
 {
-    public Quest Quest { get; set; }
+    public QuestOld QuestOld { get; set; }
 }

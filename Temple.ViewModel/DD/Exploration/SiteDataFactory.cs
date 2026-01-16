@@ -204,7 +204,7 @@ public static class SiteDataFactory
         {
             switch (quest)
             {
-                case NPCRequest npcRequest:
+                case NPCRequestOld npcRequest:
 
                     if (quest.SiteIdForQuestAcquisition == siteId)
                     {

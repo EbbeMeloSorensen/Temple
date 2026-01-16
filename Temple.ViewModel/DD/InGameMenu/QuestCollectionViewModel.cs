@@ -9,7 +9,7 @@ namespace Temple.ViewModel.DD.InGameMenu
 {
     public class QuestCollectionViewModel : ViewModelBase
     {
-        private Dictionary<int, Quest> _questMap = new();
+        private Dictionary<int, QuestOld> _questMap = new();
 
         private readonly Brush _unavailableQuestBrush = new SolidColorBrush(Colors.IndianRed);
         private readonly Brush _availableQuestBrush = new SolidColorBrush(Colors.Orange);

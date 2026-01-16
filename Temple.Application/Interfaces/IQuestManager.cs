@@ -2,13 +2,13 @@
 
 public interface IQuestManager
 {
-    IEnumerable<Quest> GetAllQuests();
+    IEnumerable<QuestOld> GetAllQuests();
 
-    IEnumerable<Quest> GetAvailableAndStartedQuests();
+    IEnumerable<QuestOld> GetAvailableAndStartedQuests();
 
-    Quest GetQuestById(
+    QuestOld GetQuestById(
         int questId);
 
-    IEnumerable<Quest> GetSubsequentQuests(
-        Quest quest);
+    IEnumerable<QuestOld> GetSubsequentQuests(
+        QuestOld questOld);
 }

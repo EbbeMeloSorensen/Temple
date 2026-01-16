@@ -14,7 +14,7 @@ public class QuestManager : IQuestManager
         {
             new()
             {
-                Quest = new NPCRequest()
+                QuestOld = new NPCRequestOld()
                 {
                     QuestId = 0,
                     SiteIdForQuestAcquisition = "Village",
@@ -31,7 +31,7 @@ public class QuestManager : IQuestManager
             },
             new()
             {
-                Quest = new NPCRequest()
+                QuestOld = new NPCRequestOld()
                 {
                     QuestId = 1,
                     SiteIdForQuestAcquisition = "Village",
@@ -54,32 +54,32 @@ public class QuestManager : IQuestManager
     }
 
     // Deprecated
-    public IEnumerable<Quest> GetAllQuests()
+    public IEnumerable<QuestOld> GetAllQuests()
     {
         return _graph.Vertices
-            .Select(v => v.Quest);
+            .Select(v => v.QuestOld);
     }
 
     // Deprecated
-    public IEnumerable<Quest> GetAvailableAndStartedQuests()
+    public IEnumerable<QuestOld> GetAvailableAndStartedQuests()
     {
         return _graph.Vertices
-            .Select(_ => _.Quest)
+            .Select(_ => _.QuestOld)
             .Where(_ => _.Status is QuestStatus.Available or QuestStatus.Started);
     }
 
     // Deprecated
-    public Quest GetQuestById(
+    public QuestOld GetQuestById(
         int questId)
     {
-        return ((QuestVertex)_graph.GetVertex(questId)).Quest;
+        return ((QuestVertex)_graph.GetVertex(questId)).QuestOld;
     }
 
     // Deprecated
-    public IEnumerable<Quest> GetSubsequentQuests(
-        Quest quest)
+    public IEnumerable<QuestOld> GetSubsequentQuests(
+        QuestOld questOld)
     {
-        var questVertex = _graph.Vertices.FirstOrDefault(_ => _.Quest.Equals(quest));
+        var questVertex = _graph.Vertices.FirstOrDefault(_ => _.QuestOld.Equals(questOld));
 
         if (questVertex == null)
         {
@@ -87,6 +87,6 @@ public class QuestManager : IQuestManager
         }
 
         return _graph.NeighborIds(questVertex.Id)
-            .Select(neighborId => ((QuestVertex)_graph.GetVertex(neighborId)).Quest);
+            .Select(neighborId => ((QuestVertex)_graph.GetVertex(neighborId)).QuestOld);
     }
 }
