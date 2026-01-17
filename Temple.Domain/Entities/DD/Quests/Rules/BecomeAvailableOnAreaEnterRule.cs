@@ -2,14 +2,14 @@
 
 namespace Temple.Domain.Entities.DD.Quests.Rules;
 
-public sealed class BecomeAvailableOnDialogueRule : IQuestRule
+public sealed class BecomeAvailableOnAreaEnterRule : IQuestRule
 {
-    private readonly string _npcId;
+    private readonly string _siteId;
 
-    public BecomeAvailableOnDialogueRule(
-        string npcId)
+    public BecomeAvailableOnAreaEnterRule(
+        string siteId)
     {
-        _npcId = npcId;
+        _siteId = siteId;
     }
 
     public void Apply(
@@ -17,8 +17,8 @@ public sealed class BecomeAvailableOnDialogueRule : IQuestRule
         IGameEvent e)
     {
         if (quest.State == QuestState.Hidden &&
-            e is DialogueEvent d &&
-            d.NpcId == _npcId)
+            e is SiteEnteredEvent entered &&
+            entered.SiteId == _siteId)
         {
             quest.TransitionTo(QuestState.Available);
         }

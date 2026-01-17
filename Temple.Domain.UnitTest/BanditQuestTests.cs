@@ -39,7 +39,7 @@ namespace Temple.Domain.UnitTest
             // --------------------
 
             // Talk to mayor => quest becomes available
-            eventBus.Publish(new DialogueCompletedEvent("mayor"));
+            eventBus.Publish(new DialogueEvent("mayor"));
             Assert.Equal(QuestState.Available, quest.State);
 
             // Player accepts quest
@@ -51,7 +51,7 @@ namespace Temple.Domain.UnitTest
             Assert.Equal(QuestState.Active, quest.State); // still active, but ready to turn in
 
             // Talk to mayor again => quest completes
-            eventBus.Publish(new DialogueCompletedEvent("mayor"));
+            eventBus.Publish(new DialogueEvent("mayor"));
             Assert.Equal(QuestState.Completed, quest.State);
         }
     }

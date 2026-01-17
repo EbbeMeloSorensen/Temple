@@ -46,8 +46,7 @@ public class ApplicationController
         // Deprecated
         QuestManager = questManager;
 
-        // Her hardkoder vi nogle quests. Senere læser vi dem fra fil
-
+        // Her hardkoder vi bare en enkelt quest. Senere laver vi flere, og endnu senere læser vi dem fra fil
         var quest = new Quest(id: "bandit_trouble", rules: new List<IQuestRule>
         {
             // Talk to mayor → quest becomes available
