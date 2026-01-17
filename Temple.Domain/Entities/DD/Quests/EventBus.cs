@@ -23,26 +23,31 @@ public sealed class EventBus
     public void Publish<TEvent>(TEvent gameEvent)
         where TEvent : IGameEvent
     {
-        if (!_handlers.TryGetValue(typeof(TEvent), out var list))
-            return;
+        var eventType = gameEvent.GetType();
 
-        foreach (var handler in list.Cast<Action<TEvent>>())
+        foreach (var (key, handlers) in _handlers)
         {
-            handler(gameEvent);
+            if (!key.IsAssignableFrom(eventType))
+                continue;
+
+            foreach (var handler in handlers.Cast<Action<TEvent>>())
+            {
+                handler(gameEvent);
+            }
         }
     }
 
-    // Optional convenience overload
-    public void Publish(IGameEvent gameEvent)
-    {
-        var type = gameEvent.GetType();
+    //// Optional convenience overload
+    //public void Publish(IGameEvent gameEvent)
+    //{
+    //    var type = gameEvent.GetType();
 
-        if (!_handlers.TryGetValue(type, out var list))
-            return;
+    //    if (!_handlers.TryGetValue(type, out var list))
+    //        return;
 
-        foreach (var handler in list)
-        {
-            handler.DynamicInvoke(gameEvent);
-        }
-    }
+    //    foreach (var handler in list)
+    //    {
+    //        handler.DynamicInvoke(gameEvent);
+    //    }
+    //}
 }

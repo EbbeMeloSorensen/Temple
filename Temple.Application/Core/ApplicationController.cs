@@ -70,7 +70,7 @@ public class ApplicationController
 
         var eventBus = new EventBus();
 
-        // (This object exists for its side effects)
+        // (This object exists for its side effects, i.e. it is not an unused variable)
         _ = new QuestRuntime(quests, eventBus);
 
         QuestStatusView = new QuestStatusView(eventBus);

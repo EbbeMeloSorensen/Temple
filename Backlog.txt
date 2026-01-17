@@ -29,6 +29,9 @@ Done:
   2) Lav det sådan, at triggeren til kampen kun placeres, når man har taget questen fra NPC'en i det første hus
 
 Todo:
+* Til en start (indtil du har nogle mechanics for dialog), kan du operere med, at et givet site bare altid populeres med de samme npc'er.
+  Så spørger du (som ChatGpt lægger op til) om, der er en quest for en given npc...
+
 * Det at vinde en battle kan foranledige, at en quest markeres som fuldført
 * Det at tage en quest skal gøre, at sites gøres tilgængelige i Wilderness mode. Minen skal f.eks. ikke være tilgængelig fra starten.
 * Nogle NPC'er skal have et udråbstegn over sig for at indikere, at de har noget vigtigt at sige
