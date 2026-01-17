@@ -4,12 +4,12 @@ using Temple.Domain.Entities.DD.Quests.Events;
 namespace Temple.ViewModel.DD.Quests;
 
 // Denne klasse overvåger ændringer i quest-tilstande. Den er bindeled mellem quest-logikken og brugergrænsefladen.
-public sealed class QuestStatusView
+public sealed class QuestStatusReadModel
 {
     private readonly Dictionary<string, QuestStatus> _quests =
         new Dictionary<string, QuestStatus>();
 
-    public QuestStatusView(
+    public QuestStatusReadModel(
         EventBus eventBus)
     {
         eventBus.Subscribe<QuestStateChangedEvent>(OnQuestStateChanged);
