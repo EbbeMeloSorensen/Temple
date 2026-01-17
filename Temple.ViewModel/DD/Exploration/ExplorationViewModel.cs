@@ -10,6 +10,7 @@ using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 using Temple.Infrastructure.Presentation;
+using Temple.ViewModel.DD.Quests;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
@@ -27,6 +28,8 @@ namespace Temple.ViewModel.DD.Exploration
         private Vector3D _lookDirection;
         private Point3D _playerLightPosition;
         private Vector3D _directionalLight;
+
+        public QuestStatusView QuestStatusView { get; }
 
         public Engine Engine { get; }
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
@@ -89,6 +92,8 @@ namespace Temple.ViewModel.DD.Exploration
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
+
+            QuestStatusView = new QuestStatusView(controller.EventBus);
 
             Engine = new Engine(null);
 
@@ -232,8 +237,7 @@ namespace Temple.ViewModel.DD.Exploration
             }
 
             var siteData = SiteDataFactory.GenerateSiteData(
-                explorationPayload.Site,
-                _controller.QuestStatusView);
+                explorationPayload.Site);
 
             Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 

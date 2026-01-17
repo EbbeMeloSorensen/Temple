@@ -28,7 +28,6 @@ namespace Temple.Application.UnitTest
             var eventBus = new EventBus();
 
             _ = new QuestRuntime(new[] { quest }, eventBus);
-            var questStatusView = new QuestStatusView(eventBus);
 
             // Initial sanity check
             Assert.Equal(QuestState.Hidden, quest.State);

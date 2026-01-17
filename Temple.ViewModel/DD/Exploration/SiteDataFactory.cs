@@ -1,14 +1,13 @@
 ﻿using Craft.Math;
 using Temple.Domain.Entities.DD.Exploration;
-using Temple.Domain.Entities.DD.Quests;
+using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Exploration;
 
 public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
-        string siteId,
-        QuestStatusView questStatusView)
+        string siteId)
     {
         var siteData = new SiteData();
 
