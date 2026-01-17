@@ -2,6 +2,6 @@
 {
     public class DialoguePayload : ApplicationStatePayload
     {
-        public string DialogueId { get; set; }
+        public string NPCId { get; set; }
     }
 }

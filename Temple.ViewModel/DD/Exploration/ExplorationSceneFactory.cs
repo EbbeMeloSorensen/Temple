@@ -167,13 +167,10 @@ public static class ExplorationSceneFactory
                 var npc = bcr.Body1 as Bodies.NPC ?? bcr.Body2 as Bodies.NPC;
                 var tag = npc!.Tag;
 
-                if (tag.Contains('_'))
-                {
-                    // Det er en npc, som har en quest, derfor afslutter vi exploration animationen og starter en dialog
-                    response.Outcome = $"NPC_{tag}";
-                    response.IndexOfLastState = propagatedState.Index + 10;
-                    return response;
-                }
+                // Det er en npc (MULIGVIS med en quest - det ved vi ikke her). Derfor afslutter vi exploration animationen og starter en dialog
+                response.Outcome = $"NPC_{tag}";
+                response.IndexOfLastState = propagatedState.Index + 10;
+                return response;
             }
 
             // Determine if we triggered an event such as leaving the site or starting a scripted battle
@@ -217,11 +214,6 @@ public static class ExplorationSceneFactory
                 case NPC npc:
                 {
                     var tag = npc.Name;
-
-                    if (npc.QuestId is not null)
-                    {
-                        tag = $"{tag}_{npc.QuestId}";
-                    }
 
                     initialState.AddBodyState(
                         new BodyState(new Bodies.NPC(nextBodyId++, 0.16, tag), new Vector2D(npc.Position.Z, -npc.Position.X)));

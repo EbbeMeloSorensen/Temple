@@ -179,7 +179,7 @@ namespace Temple.ViewModel.DD.Exploration
                 {
                     var payload = new DialoguePayload
                     {
-                        DialogueId = outcome.Substring(4)
+                        NPCId = outcome.Substring(4)
                     };
 
                     _controller.GoToNextApplicationState(payload);

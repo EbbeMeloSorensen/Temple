@@ -7,7 +7,6 @@ namespace Temple.ViewModel.DD.Dialogue;
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
-    private int? _questId;
 
     public RelayCommand Leave_Command { get; }
     public RelayCommand TakeQuest_Command { get; }
@@ -27,7 +26,7 @@ public class DialogueViewModel : TempleViewModel
 
         TakeQuest_Command = new RelayCommand(() =>
         {
-            _controller.StartQuest(_questId!.Value);
+            //_controller.StartQuest(_questId!.Value);
 
             _controller.GoToNextApplicationState(new ExplorationPayload
             {
@@ -42,14 +41,14 @@ public class DialogueViewModel : TempleViewModel
         var dialoguePayload = payload as DialoguePayload
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
-        if (dialoguePayload.DialogueId.Contains('_'))
-        {
-            _questId = int.Parse(dialoguePayload.DialogueId.Split('_')[1]);
-        }
-        else
-        {
-            throw new InvalidOperationException("We expect the Dialog id to include a quest id");
-        }
+        //if (dialoguePayload.DialogueId.Contains('_'))
+        //{
+        //    _questId = int.Parse(dialoguePayload.DialogueId.Split('_')[1]);
+        //}
+        //else
+        //{
+        //    throw new InvalidOperationException("We expect the Dialog id to include a quest id");
+        //}
 
         return this;
     }

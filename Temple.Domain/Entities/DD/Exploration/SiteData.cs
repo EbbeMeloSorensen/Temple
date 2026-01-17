@@ -74,27 +74,14 @@ public class SiteData
         string name,
         Point2D position,
         double orientation = 0,
-        double height = 0,
-        string? questId = null)
+        double height = 0)
     {
         _siteComponents.Add(new NPC(modelId)
         {
             Name = name,
-            QuestId = questId,
             Position = new Vector3D(position.Y, height, position.X),
             Orientation = orientation
         });
-
-        if (questId != null)
-        {
-            _siteComponents.Add(new ExclamationMark("exclamation mark")
-            {
-                Position = new Vector3D(
-                    position.Y,
-                    height + 0.6,
-                    position.X)
-            });
-        }
     }
 
     public void AddEventTrigger_LeaveSite(

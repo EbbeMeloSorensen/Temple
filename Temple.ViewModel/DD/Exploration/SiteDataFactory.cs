@@ -217,10 +217,7 @@ public static class SiteDataFactory
                             npcRequest.NPCName,
                             npcRequest.Position,
                             npcRequest.Orientation,
-                            npcRequest.Height,
-                            quest.StatusOld == QuestStatusOld.Available
-                                ? $"{npcRequest.QuestId}"
-                                : null);
+                            npcRequest.Height);
                     }
 
                     if (quest.StatusOld == QuestStatusOld.Started &&
