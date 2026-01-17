@@ -1,4 +1,6 @@
-﻿namespace Temple.Domain.Entities.DD.Quests;
+﻿using Temple.Domain.Entities.DD.Quests;
+
+namespace Temple.ViewModel.DD.Quests;
 
 public sealed class QuestStatus
 {
