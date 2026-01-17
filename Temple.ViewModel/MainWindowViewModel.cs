@@ -9,6 +9,7 @@ using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
 using Temple.ViewModel.DD.Exploration;
 using Temple.ViewModel.DD.InGameMenu;
+using Temple.ViewModel.DD.Quests;
 using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
@@ -21,6 +22,8 @@ namespace Temple.ViewModel
         private readonly IDialogService _applicationDialogService;
         private readonly ISiteRenderer _siteRenderer;
         private readonly ApplicationController _controller;
+        private readonly QuestStatusReadModel _questStatusReadModel;
+
         private string _currentApplicationStateAsText;
         private object _currentViewModel;
 
@@ -53,6 +56,7 @@ namespace Temple.ViewModel
             _applicationDialogService = applicationDialogService;
             _siteRenderer = siteRenderer;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
@@ -89,7 +93,7 @@ namespace Temple.ViewModel
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Dialogue:
-                        var dialogueViewModel = new DialogueViewModel(_controller);
+                        var dialogueViewModel = new DialogueViewModel(_controller, _questStatusReadModel);
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.InGameMenu:

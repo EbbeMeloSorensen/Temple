@@ -1,12 +1,15 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Dialogue;
 
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
+    private readonly QuestStatusReadModel _questStatusReadModel;
 
     public bool TakeQuestPossible { get; }
 
@@ -14,9 +17,11 @@ public class DialogueViewModel : TempleViewModel
     public RelayCommand TakeQuest_Command { get; }
 
     public DialogueViewModel(
-        ApplicationController controller)
+        ApplicationController controller,
+        QuestStatusReadModel questStatusReadModel)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+        _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
 
         Leave_Command = new RelayCommand(() =>
         {
@@ -45,6 +50,7 @@ public class DialogueViewModel : TempleViewModel
         // Til en start gør vi dog bare det at den ene quest, der er i spillet bliver tilgængelig, og så skal vi abonnere på at den faktisk
         // bliver det, så vi kan sætte TakeQuestPossible til true og dermed vise knappen i UI'et.
 
+        _controller.EventBus.Publish(new DialogueEvent("mayor"));
 
         return this;
     }
