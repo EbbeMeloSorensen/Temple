@@ -18,7 +18,6 @@ public class ApplicationController
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
-    public IQuestManager QuestManager { get; }
     public QuestStatusView QuestStatusView { get; }
 
     public event EventHandler<string>? ProgressChanged;
@@ -36,15 +35,11 @@ public class ApplicationController
     public ApplicationController(
         ApplicationStateMachine applicationStateMachine,
         IServiceScopeFactory scopeFactory,
-        ILogger<ApplicationController> logger,
-        IQuestManager questManager)
+        ILogger<ApplicationController> logger)
     {
         _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
-
-        // Deprecated
-        QuestManager = questManager;
 
         // Her hardkoder vi bare en enkelt quest. Senere laver vi flere, og endnu senere læser vi dem fra fil
         var quest = new Quest(id: "bandit_trouble", rules: new List<IQuestRule>
@@ -207,12 +202,6 @@ public class ApplicationController
     public void Shutdown()
     {
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ShutdownRequested);
-    }
-
-    public void StartQuest(
-        int questId)
-    {
-        QuestManager.GetQuestById(questId).StatusOld = QuestStatusOld.Started;
     }
 
     private void Report(

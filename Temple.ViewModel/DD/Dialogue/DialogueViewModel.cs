@@ -8,6 +8,8 @@ public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
 
+    public bool TakeQuestPossible { get; }
+
     public RelayCommand Leave_Command { get; }
     public RelayCommand TakeQuest_Command { get; }
 
@@ -26,13 +28,10 @@ public class DialogueViewModel : TempleViewModel
 
         TakeQuest_Command = new RelayCommand(() =>
         {
-            //_controller.StartQuest(_questId!.Value);
-
-            _controller.GoToNextApplicationState(new ExplorationPayload
-            {
-                Site = _controller.ApplicationData.CurrentSite
-            });
+            throw new NotImplementedException();
         });
+
+        TakeQuestPossible = false;
     }
 
     public override TempleViewModel Init(

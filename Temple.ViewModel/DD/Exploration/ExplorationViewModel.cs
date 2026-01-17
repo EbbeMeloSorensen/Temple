@@ -233,7 +233,6 @@ namespace Temple.ViewModel.DD.Exploration
 
             var siteData = SiteDataFactory.GenerateSiteData(
                 explorationPayload.Site,
-                _controller.QuestManager,
                 _controller.QuestStatusView);
 
             Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
