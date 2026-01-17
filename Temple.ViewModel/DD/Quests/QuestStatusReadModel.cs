@@ -10,6 +10,8 @@ public sealed class QuestStatusReadModel
     private readonly Dictionary<string, QuestStatus> _quests =
         new Dictionary<string, QuestStatus>();
 
+    public event EventHandler<QuestStatusChangedEventArgs>? QuestStatusChanged;
+
     public QuestStatusReadModel(
         QuestEventBus eventBus)
     {
@@ -29,34 +31,34 @@ public sealed class QuestStatusReadModel
             status.UpdateState(e.NewState);
         }
 
-        UpdateUI(status);
+        //UpdateUI(status);
     }
 
-    private void UpdateUI(
-        QuestStatus status)
-    {
-        switch (status.State)
-        {
-            case QuestState.Available:
-                ShowAvailable(status.QuestId);
-                break;
+    //private void UpdateUI(
+    //    QuestStatus status)
+    //{
+    //    switch (status.State)
+    //    {
+    //        case QuestState.Available:
+    //            ShowAvailable(status.QuestId);
+    //            break;
 
-            case QuestState.Active:
-                ShowActive(status.QuestId);
-                break;
+    //        case QuestState.Active:
+    //            ShowActive(status.QuestId);
+    //            break;
 
-            case QuestState.Completed:
-                ShowCompleted(status.QuestId);
-                break;
-        }
-    }
+    //        case QuestState.Completed:
+    //            ShowCompleted(status.QuestId);
+    //            break;
+    //    }
+    //}
 
-    private void ShowAvailable(string questId)
-        => Console.WriteLine($"Quest available: {questId}");
+    //private void ShowAvailable(string questId)
+    //    => Console.WriteLine($"Quest available: {questId}");
 
-    private void ShowActive(string questId)
-        => Console.WriteLine($"Quest active: {questId}");
+    //private void ShowActive(string questId)
+    //    => Console.WriteLine($"Quest active: {questId}");
 
-    private void ShowCompleted(string questId)
-        => Console.WriteLine($"Quest completed: {questId}");
+    //private void ShowCompleted(string questId)
+    //    => Console.WriteLine($"Quest completed: {questId}");
 }
