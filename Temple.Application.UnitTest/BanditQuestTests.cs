@@ -25,7 +25,7 @@ namespace Temple.Application.UnitTest
                 }
             );
 
-            var eventBus = new EventBus();
+            var eventBus = new QuestEventBus();
 
             _ = new QuestRuntime(new[] { quest }, eventBus);
 

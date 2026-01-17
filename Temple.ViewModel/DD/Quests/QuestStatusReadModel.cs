@@ -11,7 +11,7 @@ public sealed class QuestStatusReadModel
         new Dictionary<string, QuestStatus>();
 
     public QuestStatusReadModel(
-        EventBus eventBus)
+        QuestEventBus eventBus)
     {
         eventBus.Subscribe<QuestStateChangedEvent>(OnQuestStateChanged);
     }

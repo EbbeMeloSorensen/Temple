@@ -18,7 +18,7 @@ public class ApplicationController
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
-    public EventBus EventBus { get; }
+    public QuestEventBus EventBus { get; }
 
     public event EventHandler<string>? ProgressChanged;
 
@@ -62,7 +62,7 @@ public class ApplicationController
             quest
         };
 
-        EventBus = new EventBus();
+        EventBus = new QuestEventBus();
 
         // (The QuestRuntime exists for its side effects, i.e. it is not an unused variable)
         _ = new QuestRuntime(quests, EventBus);

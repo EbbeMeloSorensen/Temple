@@ -8,11 +8,11 @@ namespace Temple.Application.Core;
 public sealed class QuestRuntime
 {
     private readonly IReadOnlyList<Quest> _quests;
-    private readonly EventBus _eventBus;
+    private readonly QuestEventBus _eventBus;
 
     public QuestRuntime(
         IEnumerable<Quest> quests,
-        EventBus eventBus)
+        QuestEventBus eventBus)
     {
         _quests = quests.ToList();
         _eventBus = eventBus;

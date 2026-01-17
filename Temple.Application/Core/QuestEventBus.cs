@@ -7,7 +7,7 @@ namespace Temple.Application.Core;
 // Her er det blot quests, der notificeres, og de kan så agere ved at ændre tilstand, hvilket
 // QuestStatusView objektet overvåger og formidler til de komponenter, der styrer brugergrænsensefladen,
 // såsom SiteDataFactory
-public sealed class EventBus
+public sealed class QuestEventBus
 {
     private readonly Dictionary<Type, List<Delegate>> _handlers = new();
 
