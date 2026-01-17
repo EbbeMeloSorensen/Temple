@@ -1,4 +1,5 @@
-﻿using Temple.Domain.Entities.DD.Quests;
+﻿using Temple.Application.Core;
+using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
 
 namespace Temple.ViewModel.DD.Quests;
