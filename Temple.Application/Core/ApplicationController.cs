@@ -1,12 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Craft.Math;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Craft.Math;
-using Temple.Domain.Entities.DD.Battle;
-using Temple.Persistence.EFCore.AppData;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Battle;
+using Temple.Domain.Entities.DD.Quests;
+using Temple.Domain.Entities.DD.Quests.Rules;
+using Temple.Persistence.EFCore.AppData;
 
 namespace Temple.Application.Core;
 
@@ -17,6 +19,7 @@ public class ApplicationController
     private readonly ILogger<ApplicationController> _logger;
 
     public IQuestManager QuestManager { get; }
+    public QuestStatusView QuestStatusView { get; }
 
     public event EventHandler<string>? ProgressChanged;
 
@@ -40,7 +43,37 @@ public class ApplicationController
         _scopeFactory = scopeFactory;
         _logger = logger;
 
+        // Deprecated
         QuestManager = questManager;
+
+        // Her hardkoder vi nogle quests. Senere læser vi dem fra fil
+
+        var quest = new Quest(id: "bandit_trouble", rules: new List<IQuestRule>
+        {
+            // Talk to mayor → quest becomes available
+            new BecomeAvailableOnDialogueRule("mayor"),
+
+            // Player accepts quest
+            new AcceptQuestRule(),
+
+            // Kill bandit leader → objectives completed
+            new CompleteOnEnemyDefeatedRule("bandit_leader"),
+
+            // Talk to mayor again → quest completed
+            new TurnInOnDialogueRule("mayor")
+        });
+
+        var quests = new List<Quest>
+        {
+            quest
+        };
+
+        var eventBus = new EventBus();
+
+        // (This object exists for its side effects)
+        _ = new QuestRuntime(quests, eventBus);
+
+        QuestStatusView = new QuestStatusView(eventBus);
 
         ApplicationData = new ApplicationData();
     }

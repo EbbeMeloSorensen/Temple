@@ -1,6 +1,7 @@
 ﻿using Craft.Math;
 using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Exploration;
+using Temple.Domain.Entities.DD.Quests;
 
 namespace Temple.ViewModel.DD.Exploration;
 
@@ -8,7 +9,8 @@ public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
         string siteId,
-        IQuestManager questManager)
+        IQuestManager questManager,
+        QuestStatusView questStatusView)
     {
         var siteData = new SiteData();
 
