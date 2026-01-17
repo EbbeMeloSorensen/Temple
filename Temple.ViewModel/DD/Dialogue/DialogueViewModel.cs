@@ -40,14 +40,11 @@ public class DialogueViewModel : TempleViewModel
         var dialoguePayload = payload as DialoguePayload
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
-        //if (dialoguePayload.DialogueId.Contains('_'))
-        //{
-        //    _questId = int.Parse(dialoguePayload.DialogueId.Split('_')[1]);
-        //}
-        //else
-        //{
-        //    throw new InvalidOperationException("We expect the Dialog id to include a quest id");
-        //}
+        // På sigt skal det være sådan at det at bevæge sig ned i et dialog tree kan gøre at visse quests gøres tilgængeligt (available),
+        // og i øvrigt at tilgængelige quests kan gøres aktive.
+        // Til en start gør vi dog bare det at den ene quest, der er i spillet bliver tilgængelig, og så skal vi abonnere på at den faktisk
+        // bliver det, så vi kan sætte TakeQuestPossible til true og dermed vise knappen i UI'et.
+
 
         return this;
     }
