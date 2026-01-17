@@ -2,6 +2,8 @@
 
 namespace Temple.Domain.Entities.DD.Quests;
 
+// Dette er en klasse, som kun opererer i kraft af sine sideeffekter, som  er at lade alle quests i en collection
+// subscribe til events fra en event bus. Derudover lytter den på events fra event bus'en og lader hver quest håndtere eventet.
 public sealed class QuestRuntime
 {
     private readonly IReadOnlyList<Quest> _quests;

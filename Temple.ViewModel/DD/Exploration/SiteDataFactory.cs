@@ -202,6 +202,7 @@ public static class SiteDataFactory
             }
         }
 
+        // Deprecated
         questManager.GetAvailableAndStartedQuests().ToList().ForEach(quest =>
         {
             switch (quest)

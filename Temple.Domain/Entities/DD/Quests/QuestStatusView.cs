@@ -1,5 +1,6 @@
 ﻿namespace Temple.Domain.Entities.DD.Quests;
 
+// Denne klasse overvåger ændringer i quest-tilstande. Den er bindeled mellem quest-logikken og brugergrænsefladen.
 public sealed class QuestStatusView
 {
     private readonly Dictionary<string, QuestStatus> _quests =

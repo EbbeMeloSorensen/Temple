@@ -32,6 +32,8 @@ namespace Temple.Domain.UnitTest
             // Initial sanity check
             Assert.Equal(QuestState.Hidden, quest.State);
 
+            //questStatusView...
+
             // --------------------
             // Act & Assert (stepwise)
             // --------------------
