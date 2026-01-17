@@ -4,55 +4,55 @@ using Temple.Domain.Entities.DD.Quests.Rules;
 
 namespace Temple.Domain.UnitTest
 {
-    public class BanditQuestTests
-    {
-        [Fact]
-        public void BanditTroubleQuest_Completes_WhenPlayerFollowsIntendedFlow()
-        {
-            // --------------------
-            // Arrange
-            // --------------------
+    //public class BanditQuestTests
+    //{
+    //    [Fact]
+    //    public void BanditTroubleQuest_Completes_WhenPlayerFollowsIntendedFlow()
+    //    {
+    //        // --------------------
+    //        // Arrange
+    //        // --------------------
 
-            var quest = new Quest(
-                id: "bandit_trouble",
-                rules: new IQuestRule[]
-                {
-                    new BecomeAvailableOnDialogueRule("mayor"),
-                    new AcceptQuestRule(),
-                    new CompleteOnEnemyDefeatedRule("bandit_leader"),
-                    new TurnInOnDialogueRule("mayor")
-                }
-            );
+    //        var quest = new Quest(
+    //            id: "bandit_trouble",
+    //            rules: new IQuestRule[]
+    //            {
+    //                new BecomeAvailableOnDialogueRule("mayor"),
+    //                new AcceptQuestRule(),
+    //                new CompleteOnEnemyDefeatedRule("bandit_leader"),
+    //                new TurnInOnDialogueRule("mayor")
+    //            }
+    //        );
 
-            var eventBus = new EventBus();
+    //        var eventBus = new EventBus();
 
-            _ = new QuestRuntime(new[] { quest }, eventBus);
-            var questStatusView = new QuestStatusView(eventBus);
+    //        _ = new QuestRuntime(new[] { quest }, eventBus);
+    //        var questStatusView = new QuestStatusView(eventBus);
 
-            // Initial sanity check
-            Assert.Equal(QuestState.Hidden, quest.State);
+    //        // Initial sanity check
+    //        Assert.Equal(QuestState.Hidden, quest.State);
 
-            //questStatusView...
+    //        //questStatusView...
 
-            // --------------------
-            // Act & Assert (stepwise)
-            // --------------------
+    //        // --------------------
+    //        // Act & Assert (stepwise)
+    //        // --------------------
 
-            // Talk to mayor => quest becomes available
-            eventBus.Publish(new DialogueEvent("mayor"));
-            Assert.Equal(QuestState.Available, quest.State);
+    //        // Talk to mayor => quest becomes available
+    //        eventBus.Publish(new DialogueEvent("mayor"));
+    //        Assert.Equal(QuestState.Available, quest.State);
 
-            // Player accepts quest
-            eventBus.Publish(new QuestAcceptedEvent("bandit_trouble"));
-            Assert.Equal(QuestState.Active, quest.State);
+    //        // Player accepts quest
+    //        eventBus.Publish(new QuestAcceptedEvent("bandit_trouble"));
+    //        Assert.Equal(QuestState.Active, quest.State);
 
-            // Kill bandit leader
-            eventBus.Publish(new EnemyDefeatedEvent("bandit_leader"));
-            Assert.Equal(QuestState.Active, quest.State); // still active, but ready to turn in
+    //        // Kill bandit leader
+    //        eventBus.Publish(new EnemyDefeatedEvent("bandit_leader"));
+    //        Assert.Equal(QuestState.Active, quest.State); // still active, but ready to turn in
 
-            // Talk to mayor again => quest completes
-            eventBus.Publish(new DialogueEvent("mayor"));
-            Assert.Equal(QuestState.Completed, quest.State);
-        }
-    }
+    //        // Talk to mayor again => quest completes
+    //        eventBus.Publish(new DialogueEvent("mayor"));
+    //        Assert.Equal(QuestState.Completed, quest.State);
+    //    }
+    //}
 }

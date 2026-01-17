@@ -1,6 +1,4 @@
-﻿using Temple.Domain.Entities.DD.Quests.Events;
-
-namespace Temple.Domain.Entities.DD.Quests;
+﻿namespace Temple.Domain.Entities.DD.Quests.Events;
 
 public sealed class QuestStateChangedEvent : IGameEvent
 {

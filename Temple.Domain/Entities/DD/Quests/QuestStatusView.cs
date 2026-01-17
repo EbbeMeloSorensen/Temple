@@ -1,4 +1,6 @@
-﻿namespace Temple.Domain.Entities.DD.Quests;
+﻿using Temple.Domain.Entities.DD.Quests.Events;
+
+namespace Temple.Domain.Entities.DD.Quests;
 
 // Denne klasse overvåger ændringer i quest-tilstande. Den er bindeled mellem quest-logikken og brugergrænsefladen.
 public sealed class QuestStatusView
@@ -6,12 +8,14 @@ public sealed class QuestStatusView
     private readonly Dictionary<string, QuestStatus> _quests =
         new Dictionary<string, QuestStatus>();
 
-    public QuestStatusView(EventBus eventBus)
+    public QuestStatusView(
+        EventBus eventBus)
     {
         eventBus.Subscribe<QuestStateChangedEvent>(OnQuestStateChanged);
     }
 
-    private void OnQuestStateChanged(QuestStateChangedEvent e)
+    private void OnQuestStateChanged(
+        QuestStateChangedEvent e)
     {
         if (!_quests.TryGetValue(e.QuestId, out var status))
         {
@@ -26,7 +30,8 @@ public sealed class QuestStatusView
         UpdateUI(status);
     }
 
-    private void UpdateUI(QuestStatus status)
+    private void UpdateUI(
+        QuestStatus status)
     {
         switch (status.State)
         {
