@@ -30,17 +30,16 @@ Done:
 * Man skal kunne gå i dialog med alle NPC'er. Dvs du fjerner lige det med at nogle af dem har et udråbstegn over sig
 * Når man ER i dialogue mode, skal man fyre noget af på Eventbussen for at flippe nogle quests fra hidden til available.
   Dialogue viewmodellen skal samtidig subscribe til events om at quests aktiveres, så den f.eks. kan aktivere en "Take Quest" knap
+* Til en start (indtil du har nogle mechanics for dialog), kan du operere med, at et givet site bare altid populeres med de samme npc'er.
 * Det er kun, når man snakker med innkeeper, at man kan tage en quest
-
-Todo:
 * Når man har fået sin quest, skal det givne site opdateres med en trigger til en battle.
   -> Det betyder, at SiteDataFactory skal kunne spørge QuestStateReadModel, om en given quest er aktiv
   -> og derfor skal ExplorationViewModel have adgang til QuestStateReadModel, lige som DialogueViewModel allerede har
 * Man skal kunne løse en quest ved at besejre en fjende
-* Aktive quests skal vises i GameMenu
 
-* Til en start (indtil du har nogle mechanics for dialog), kan du operere med, at et givet site bare altid populeres med de samme npc'er.
-  Så spørger du (som ChatGpt lægger op til) om, der er en quest for en given npc...
+Todo:
+* Aktive quests skal vises i GameMenu
+* Kaptajnen skal have en quest, der handler om at tage hen til et andet site og besejre en fjende der
 
 * Det at vinde en battle kan foranledige, at en quest markeres som fuldført
 * Det at tage en quest skal gøre, at sites gøres tilgængelige i Wilderness mode. Minen skal f.eks. ikke være tilgængelig fra starten.
