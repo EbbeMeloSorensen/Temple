@@ -27,11 +27,12 @@ Done:
 * Det at tage en quest tages, kan foranledige, at nye triggers dukker op i sites
   1) Lav et scripted battle i byen i det andet hus - specifikt et varehus, som er overrendt af rotter
   2) Lav det sådan, at triggeren til kampen kun placeres, når man har taget questen fra NPC'en i det første hus
-
-Todo:
 * Man skal kunne gå i dialog med alle NPC'er. Dvs du fjerner lige det med at nogle af dem har et udråbstegn over sig
 * Når man ER i dialogue mode, skal man fyre noget af på Eventbussen for at flippe nogle quests fra hidden til available.
   Dialogue viewmodellen skal samtidig subscribe til events om at quests aktiveres, så den f.eks. kan aktivere en "Take Quest" knap
+
+Todo:
+* Pt antager dialog view modellen bare, at det er mayer, som man snakker med  - det skal indkorporeres i payload
 
 * Udbyg din unit test for quest mechanics med den der QuestStatusView
 * Til en start (indtil du har nogle mechanics for dialog), kan du operere med, at et givet site bare altid populeres med de samme npc'er.
