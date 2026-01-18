@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Temple.UI.WPF.DD.Dialogue"
              xmlns:dialogue="clr-namespace:Temple.ViewModel.DD.Dialogue;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance dialogue:DialogueViewModel}">
@@ -18,7 +17,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -26,13 +25,12 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0" Grid.Column="0" Source="/DD/Images/Innkeeper.png"/>
-        <Image Grid.Row="0" Grid.Column="0" Source="{Binding Path=ImagePath, 
+        <Image Grid.Row="0" Grid.Column="0" Source="{Binding Path=NPCPortraitPath, 
                         UpdateSourceTrigger=PropertyChanged, 
                         Converter={StaticResource ImagePathConverter2}}"/>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="50" FontWeight="Bold"
-                   Text="Talking with"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="50" FontWeight="Bold" Margin="20, 0, 10, 10"
+                   Text="{Binding Title}"/>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Button Margin="20" Width="100" Content="Leave"

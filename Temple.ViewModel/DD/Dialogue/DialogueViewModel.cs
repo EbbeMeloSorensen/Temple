@@ -11,15 +11,26 @@ public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
     private readonly QuestStatusReadModel _questStatusReadModel;
-    private string _imagePath;
+    private string _title;
+    private string _npcPortraitPath;
     private bool _takeQuestPossible;
 
-    public string ImagePath
+    public string Title
     {
-        get { return _imagePath; }
+        get => _title;
         set
         {
-            _imagePath = value;
+            _title = value;
+            RaisePropertyChanged();
+        }
+    }
+
+    public string NPCPortraitPath
+    {
+        get { return _npcPortraitPath; }
+        set
+        {
+            _npcPortraitPath = value;
             RaisePropertyChanged();
         }
     }
@@ -56,7 +67,7 @@ public class DialogueViewModel : TempleViewModel
 
         TakeQuest_Command = new RelayCommand(() =>
         {
-            _controller.EventBus.Publish(new QuestAcceptedEvent("bandit_trouble"));
+            _controller.EventBus.Publish(new QuestAcceptedEvent("rat_infestation"));
         });
 
         TakeQuestPossible = false;
@@ -66,7 +77,7 @@ public class DialogueViewModel : TempleViewModel
         object? sender,
         QuestStatusChangedEventArgs e)
     {
-        if (e.QuestId == "bandit_trouble")
+        if (e.QuestId == "rat_infestation")
         {
             TakeQuestPossible = e.QuestState == QuestState.Available;
         }
@@ -78,14 +89,17 @@ public class DialogueViewModel : TempleViewModel
         var dialoguePayload = payload as DialoguePayload
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
-        ImagePath = "DD/Images/Innkeeper.png";
+        var dialogueData = DialogueDataFactory.GenerateDialogueData(dialoguePayload.NPCId);
+
+        Title = dialoguePayload.NPCId;
+        NPCPortraitPath = dialogueData.NPCPortraitPath;
 
         // På sigt skal det være sådan at det at bevæge sig ned i et dialog tree kan gøre at visse quests gøres tilgængeligt (available),
         // og i øvrigt at tilgængelige quests kan gøres aktive.
         // Til en start gør vi dog bare det at den ene quest, der er i spillet bliver tilgængelig, og så skal vi abonnere på at den faktisk
         // bliver det, så vi kan sætte TakeQuestPossible til true og dermed vise knappen i UI'et.
 
-        _controller.EventBus.Publish(new DialogueEvent("mayor"));
+        _controller.EventBus.Publish(new DialogueEvent("innkeeper"));
 
         return this;
     }

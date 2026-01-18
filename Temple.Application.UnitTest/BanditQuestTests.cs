@@ -15,13 +15,13 @@ namespace Temple.Application.UnitTest
             // --------------------
 
             var quest = new Quest(
-                id: "bandit_trouble",
+                id: "rat_infestation",
                 rules: new IQuestRule[]
                 {
-                    new BecomeAvailableOnDialogueRule("mayor"),
+                    new BecomeAvailableOnDialogueRule("innkeeper"),
                     new AcceptQuestRule(),
-                    new CompleteOnEnemyDefeatedRule("bandit_leader"),
-                    new TurnInOnDialogueRule("mayor")
+                    new CompleteOnEnemyDefeatedRule("rats_in_warehouse"),
+                    new TurnInOnDialogueRule("innkeeper")
                 }
             );
 
@@ -36,20 +36,20 @@ namespace Temple.Application.UnitTest
             // Act & Assert (stepwise)
             // --------------------
 
-            // Talk to mayor => quest becomes available
-            eventBus.Publish(new DialogueEvent("mayor"));
+            // Talk to innkeeper => quest becomes available
+            eventBus.Publish(new DialogueEvent("innkeeper"));
             Assert.Equal(QuestState.Available, quest.State);
 
-            // Player accepts quest
-            eventBus.Publish(new QuestAcceptedEvent("bandit_trouble"));
+            // Player accepts quest => quest becomes active
+            eventBus.Publish(new QuestAcceptedEvent("rat_infestation"));
             Assert.Equal(QuestState.Active, quest.State);
 
-            // Kill bandit leader
-            eventBus.Publish(new EnemyDefeatedEvent("bandit_leader"));
+            // Kill rats in warehouse => quest objectives completed
+            eventBus.Publish(new EnemyDefeatedEvent("rats_in_warehouse"));
             Assert.Equal(QuestState.Active, quest.State); // still active, but ready to turn in
 
-            // Talk to mayor again => quest completes
-            eventBus.Publish(new DialogueEvent("mayor"));
+            // Talk to innkeeper again => quest completes
+            eventBus.Publish(new DialogueEvent("innkeeper"));
             Assert.Equal(QuestState.Completed, quest.State);
         }
     }

@@ -213,7 +213,7 @@ public static class ExplorationSceneFactory
                 }
                 case NPC npc:
                 {
-                    var tag = npc.Name;
+                    var tag = npc.Id;
 
                     initialState.AddBodyState(
                         new BodyState(new Bodies.NPC(nextBodyId++, 0.16, tag), new Vector2D(npc.Position.Z, -npc.Position.X)));

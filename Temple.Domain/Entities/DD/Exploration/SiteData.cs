@@ -1,5 +1,4 @@
 ﻿using Craft.Math;
-using Temple.Domain.Entities.C2IEDM.ObjectItems;
 
 namespace Temple.Domain.Entities.DD.Exploration;
 
@@ -71,14 +70,14 @@ public class SiteData
 
     public void AddCharacter(
         string modelId,
-        string name,
+        string npcId,
         Point2D position,
         double orientation = 0,
         double height = 0)
     {
         _siteComponents.Add(new NPC(modelId)
         {
-            Name = name,
+            Id = npcId,
             Position = new Vector3D(position.Y, height, position.X),
             Orientation = orientation
         });

@@ -1,6 +1,5 @@
 ﻿using Craft.Math;
 using Temple.Domain.Entities.DD.Exploration;
-using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Exploration;
 
@@ -180,10 +179,11 @@ public static class SiteDataFactory
                 siteData.AddSphere(new Point2D(10.5, 8.5), 0.1, 0.4);
 
                 siteData.AddCharacter("human male", "Guard", new Point2D(8.5, 6.5));
-                siteData.AddCharacter("human female", "Innkeeper", new Point2D(11.5, 5.5), 90);
-                siteData.AddCharacter("human male", "Mayor", new Point2D(12.5, 7.5));
+                //siteData.AddCharacter("human female", "Innkeeper", new Point2D(11.5, 5.5), 90);
+                siteData.AddCharacter("human male", "Captain", new Point2D(12.5, 7.9));
+                siteData.AddCharacter("human female", "Innkeeper", new Point2D(12.5, 7.5));
 
-                    siteData.AddEventTrigger_LeaveSite(
+                siteData.AddEventTrigger_LeaveSite(
                     new Point2D(15, 8),
                     new Point2D(15, 7),
                     "Exit_Wilderness");
@@ -200,41 +200,6 @@ public static class SiteDataFactory
                 throw new InvalidOperationException($"Unknown site id: {siteId}");
             }
         }
-
-        // Deprecated
-        //questManager.GetAvailableAndStartedQuests().ToList().ForEach(quest =>
-        //{
-        //    switch (quest)
-        //    {
-        //        case NPCRequestOld npcRequest:
-
-        //            if (quest.SiteIdForQuestAcquisition == siteId)
-        //            {
-        //                // Add the npc that provides the quest
-        //                siteData.AddCharacter(
-        //                    npcRequest.ModelId,
-        //                    npcRequest.NPCName,
-        //                    npcRequest.Position,
-        //                    npcRequest.Orientation,
-        //                    npcRequest.Height);
-        //            }
-
-        //            if (quest.StatusOld == QuestStatusOld.Started &&
-        //                quest.SiteIdForQuestExecution == siteId)
-        //            {
-        //                // Add a trigger for executing the quest
-        //                // Vi hardkoder det lige i første omgang, men ellers skal data skal komme fra quest objektet
-        //                siteData.AddEventTrigger_ScriptedBattle(
-        //                    new Point2D(12, 9),
-        //                    new Point2D(11, 9),
-        //                    "Warehouse");
-        //            }
-
-        //            break;
-        //        default:
-        //            throw new InvalidOperationException("Unknown quest type");
-        //    }
-        //});
 
         return siteData;
     }

@@ -18,6 +18,7 @@
     <None Remove="DD\Images\Explore_concept.png" />
     <None Remove="DD\Images\Goblin Archer.PNG" />
     <None Remove="DD\Images\Goblin.PNG" />
+    <None Remove="DD\Images\Guard.jpg" />
     <None Remove="DD\Images\Innkeeper.png" />
     <None Remove="DD\Images\Knight.PNG" />
     <None Remove="DD\Images\NoPreview.png" />
@@ -54,6 +55,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="DD\Images\Goblin.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Guard.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="DD\Images\Innkeeper.png">

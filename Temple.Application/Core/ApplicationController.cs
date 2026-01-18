@@ -42,19 +42,19 @@ public class ApplicationController
         _logger = logger;
 
         // Her hardkoder vi bare en enkelt quest. Senere laver vi flere, og endnu senere læser vi dem fra fil
-        var quest = new Quest(id: "bandit_trouble", rules: new List<IQuestRule>
+        var quest = new Quest(id: "rat_infestation", rules: new List<IQuestRule>
         {
-            // Talk to mayor → quest becomes available
-            new BecomeAvailableOnDialogueRule("mayor"),
+            // Talk to innkeeper => quest becomes available
+            new BecomeAvailableOnDialogueRule("innkeeper"),
 
             // Player accepts quest
             new AcceptQuestRule(),
 
-            // Kill bandit leader → objectives completed
-            new CompleteOnEnemyDefeatedRule("bandit_leader"),
+            // Kill bandit leader => objectives completed
+            new CompleteOnEnemyDefeatedRule("rats_in_warehouse"),
 
-            // Talk to mayor again → quest completed
-            new TurnInOnDialogueRule("mayor")
+            // Talk to innkeeper again => quest completed
+            new TurnInOnDialogueRule("innkeeper")
         });
 
         var quests = new List<Quest>
