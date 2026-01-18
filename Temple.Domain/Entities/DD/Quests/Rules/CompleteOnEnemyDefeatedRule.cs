@@ -2,20 +2,20 @@
 
 namespace Temple.Domain.Entities.DD.Quests.Rules;
 
-public sealed class CompleteOnEnemyDefeatedRule : IQuestRule
+public sealed class CompleteOnBattleWonRule : IQuestRule
 {
-    private readonly string _enemyId;
+    private readonly string _battleId;
 
-    public CompleteOnEnemyDefeatedRule(string enemyId)
+    public CompleteOnBattleWonRule(string battleId)
     {
-        _enemyId = enemyId;
+        _battleId = battleId;
     }
 
     public void Apply(Quest quest, IGameEvent e)
     {
         if (quest.State == QuestState.Active &&
-            e is EnemyDefeatedEvent d &&
-            d.EnemyId == _enemyId)
+            e is BattleWonEvent d &&
+            d.BattleId == _battleId)
         {
             quest.MarkObjectivesCompleted();
         }

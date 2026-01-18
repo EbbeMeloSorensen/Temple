@@ -51,7 +51,7 @@ public class ApplicationController
             new AcceptQuestRule(),
 
             // Kill warehouse rats => objectives completed
-            new CompleteOnEnemyDefeatedRule("rats_in_warehouse"),
+            new CompleteOnBattleWonRule("rats_in_warehouse"),
 
             // Talk to innkeeper again => quest completed
             new TurnInOnDialogueRule("innkeeper")

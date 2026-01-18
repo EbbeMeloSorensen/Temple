@@ -191,7 +191,6 @@ public static class SiteDataFactory
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
-                // Dette skal kun ske, hvis der er en accepted quest om at slå rotterne i varehuset ihjel
                 if (questStateReadModel.GetQuestState("rat_infestation") == QuestState.Active)
                 {
                     siteData.AddEventTrigger_ScriptedBattle(

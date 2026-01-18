@@ -20,7 +20,7 @@ namespace Temple.Application.UnitTest
                 {
                     new BecomeAvailableOnDialogueRule("innkeeper"),
                     new AcceptQuestRule(),
-                    new CompleteOnEnemyDefeatedRule("rats_in_warehouse"),
+                    new CompleteOnBattleWonRule("rats_in_warehouse"),
                     new TurnInOnDialogueRule("innkeeper")
                 }
             );
@@ -45,7 +45,7 @@ namespace Temple.Application.UnitTest
             Assert.Equal(QuestState.Active, quest.State);
 
             // Kill rats in warehouse => quest objectives completed
-            eventBus.Publish(new EnemyDefeatedEvent("rats_in_warehouse"));
+            eventBus.Publish(new BattleWonEvent("rats_in_warehouse"));
             Assert.Equal(QuestState.Active, quest.State); // still active, but ready to turn in
 
             // Talk to innkeeper again => quest completes

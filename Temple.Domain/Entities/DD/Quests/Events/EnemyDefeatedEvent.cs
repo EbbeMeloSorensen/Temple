@@ -1,11 +1,12 @@
 ﻿namespace Temple.Domain.Entities.DD.Quests.Events;
 
-public sealed class EnemyDefeatedEvent : IGameEvent
+public sealed class BattleWonEvent : IGameEvent
 {
-    public string EnemyId { get; }
+    public string BattleId { get; }
 
-    public EnemyDefeatedEvent(string enemyId)
+    public BattleWonEvent(
+        string battleId)
     {
-        EnemyId = enemyId;
+        BattleId = battleId;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Craft.Logging;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 using Temple.ViewModel.DD.Battle.BusinessLogic.Complex;
 
@@ -59,6 +60,12 @@ public class BattleViewModel : TempleViewModel
                 else
                 {
                     _controller.ApplicationData.BattlesWon.Add(_battleId);
+
+                    if (false)
+                    {
+                        _controller.EventBus.Publish(new BattleWonEvent(""));
+                    }
+
                     _controller.GoToNextApplicationState(_payloadForNextState);
                 }
             }
