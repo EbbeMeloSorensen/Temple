@@ -30,9 +30,11 @@ Done:
 * Man skal kunne gå i dialog med alle NPC'er. Dvs du fjerner lige det med at nogle af dem har et udråbstegn over sig
 * Når man ER i dialogue mode, skal man fyre noget af på Eventbussen for at flippe nogle quests fra hidden til available.
   Dialogue viewmodellen skal samtidig subscribe til events om at quests aktiveres, så den f.eks. kan aktivere en "Take Quest" knap
+* Det er kun, når man snakker med innkeeper, at man kan tage en quest
 
 Todo:
-* Pt antager dialog view modellen bare, at det er mayer, som man snakker med  - det skal indkorporeres i payload
+* Er der virkelig brug for at have båda QuestState og QuestStatus?
+* Aktive quests skal vises i GameMenu
 
 * Udbyg din unit test for quest mechanics med den der QuestStatusView
 * Til en start (indtil du har nogle mechanics for dialog), kan du operere med, at et givet site bare altid populeres med de samme npc'er.

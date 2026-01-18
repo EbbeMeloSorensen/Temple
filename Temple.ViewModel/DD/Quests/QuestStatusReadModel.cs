@@ -20,6 +20,39 @@ public sealed class QuestStatusReadModel
         eventBus.Subscribe<QuestStateChangedEvent>(HandleQuestStateChanged);
     }
 
+    public bool IsQuestAvailable(
+        string questId)
+    {
+        if (_quests.TryGetValue(questId, out QuestStatus status))
+        {
+            return status.State == QuestState.Available;
+        }
+
+        return false;
+    }
+
+    public bool IsQuestActive(
+        string questId)
+    {
+        if (_quests.TryGetValue(questId, out QuestStatus status))
+        {
+            return status.State == QuestState.Active;
+        }
+
+        return false;
+    }
+
+    public bool IsQuestCompleted(
+        string questId)
+    {
+        if (_quests.TryGetValue(questId, out QuestStatus status))
+        {
+            return status.State == QuestState.Completed;
+        }
+
+        return false;
+    }
+
     private void HandleQuestStateChanged(
         QuestStateChangedEvent e)
     {

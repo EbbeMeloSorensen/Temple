@@ -11,15 +11,20 @@ public static class DialogueDataFactory
 
         switch (npcId)
         {
-            case "Innkeeper":
+            case "innkeeper":
                 dialogueData.NPCPortraitPath = "DD/Images/Innkeeper.png";
+                dialogueData.QuestId = "rat_infestation";
                 break;
-            case "Guard":
+            case "guard":
                 dialogueData.NPCPortraitPath = "DD/Images/Guard.jpg";
+                dialogueData.QuestId = null;
                 break;
-            case "Captain":
+            case "captain":
                 dialogueData.NPCPortraitPath = "DD/Images/Captain.png";
+                dialogueData.QuestId = null;
                 break;
+            default:
+                throw new InvalidOperationException("Unknown npcId");
         }
 
         return dialogueData;

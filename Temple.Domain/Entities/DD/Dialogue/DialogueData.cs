@@ -3,4 +3,6 @@
 public class DialogueData
 {
     public string NPCPortraitPath { get; set; }
+
+    public string? QuestId { get; set; }
 }
