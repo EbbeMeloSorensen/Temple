@@ -60,12 +60,7 @@ public class BattleViewModel : TempleViewModel
                 else
                 {
                     _controller.ApplicationData.BattlesWon.Add(_battleId);
-
-                    if (false)
-                    {
-                        _controller.EventBus.Publish(new BattleWonEvent(""));
-                    }
-
+                    _controller.EventBus.Publish(new BattleWonEvent(_battleId));
                     _controller.GoToNextApplicationState(_payloadForNextState);
                 }
             }

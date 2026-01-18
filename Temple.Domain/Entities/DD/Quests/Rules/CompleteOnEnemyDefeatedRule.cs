@@ -14,8 +14,8 @@ public sealed class CompleteOnBattleWonRule : IQuestRule
     public void Apply(Quest quest, IGameEvent e)
     {
         if (quest.State == QuestState.Active &&
-            e is BattleWonEvent d &&
-            d.BattleId == _battleId)
+            e is BattleWonEvent @event &&
+            @event.BattleId == _battleId)
         {
             quest.MarkObjectivesCompleted();
         }

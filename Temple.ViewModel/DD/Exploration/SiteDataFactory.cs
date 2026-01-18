@@ -196,7 +196,7 @@ public static class SiteDataFactory
                     siteData.AddEventTrigger_ScriptedBattle(
                         new Point2D(12, 9),
                         new Point2D(11, 9),
-                        "Warehouse");
+                        "rats_in_warehouse");
                 }
 
                 break;

@@ -12,7 +12,7 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
         {
             return battleSceneId switch
             {
-                "Warehouse" => GetSceneWarehouse(party),
+                "rats_in_warehouse" => GetSceneWarehouse(party),
                 "Dungeon 1, Room A, Goblin" => GetSceneA(party),
                 "Dungeon 1, Room B, Goblin" => GetSceneB(party, entranceId),
                 "Final Battle" => GetSceneF(party, entranceId),
