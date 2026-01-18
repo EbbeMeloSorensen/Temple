@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.ViewModel.DD.Quests;
 
@@ -10,8 +11,17 @@ public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
     private readonly QuestStatusReadModel _questStatusReadModel;
+    private bool _takeQuestPossible;
 
-    public bool TakeQuestPossible { get; }
+    public bool TakeQuestPossible
+    {
+        get => _takeQuestPossible;
+        private set
+        {
+            _takeQuestPossible = value;
+            RaisePropertyChanged();
+        }
+    }
 
     public RelayCommand Leave_Command { get; }
     public RelayCommand TakeQuest_Command { get; }
@@ -22,6 +32,8 @@ public class DialogueViewModel : TempleViewModel
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
         _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
+
+        _questStatusReadModel.QuestStatusChanged += HandleQuestStatusChanged;
 
         Leave_Command = new RelayCommand(() =>
         {
@@ -39,6 +51,16 @@ public class DialogueViewModel : TempleViewModel
         TakeQuestPossible = false;
     }
 
+    private void HandleQuestStatusChanged(
+        object? sender,
+        QuestStatusChangedEventArgs e)
+    {
+        if (e.QuestId == "bandit_trouble" && e.QuestState == QuestState.Available)
+        {
+            TakeQuestPossible = true;
+        }
+    }
+
     public override TempleViewModel Init(
         ApplicationStatePayload payload)
     {
@@ -53,5 +75,12 @@ public class DialogueViewModel : TempleViewModel
         _controller.EventBus.Publish(new DialogueEvent("mayor"));
 
         return this;
+    }
+
+    public override void Cleanup()
+    {
+        // Unsubscribe to prevent memory leaks
+        _questStatusReadModel.QuestStatusChanged -= HandleQuestStatusChanged;
+        base.Cleanup();
     }
 }
