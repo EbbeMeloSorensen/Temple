@@ -89,7 +89,7 @@ public class DialogueViewModel : TempleViewModel
 
     private void HandleQuestStatusChanged(
         object? sender,
-        QuestStatusChangedEventArgs e)
+        QuestStateChangedEventArgs e)
     {
         if (_questId != null && e.QuestId == _questId)
         {

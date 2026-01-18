@@ -5,7 +5,7 @@ namespace Temple.Application.Core;
 // Simpel event bus for quest events. Det fungerer lige som på et "bus netværk", hvor events "broadcastes"
 // fra en server til alle andre servere på pågældende bus, hvor servere så kan ignorere et event eller agere.
 // Her er det blot quests, der notificeres, og de kan så agere ved at ændre tilstand, hvilket
-// QuestStatusView objektet overvåger og formidler til de komponenter, der styrer brugergrænsensefladen,
+// QuestStateReadModel objektet overvåger og formidler til de komponenter, der styrer brugergrænsensefladen,
 // såsom SiteDataFactory
 public sealed class QuestEventBus
 {

@@ -67,8 +67,6 @@ public class ApplicationController
         // (The QuestRuntime exists for its side effects, i.e. it is not an unused variable)
         _ = new QuestRuntime(quests, EventBus);
 
-        //QuestStatusView = new QuestStatusView(eventBus);
-
         ApplicationData = new ApplicationData();
     }
 

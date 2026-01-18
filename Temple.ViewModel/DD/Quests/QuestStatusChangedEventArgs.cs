@@ -2,12 +2,12 @@
 
 namespace Temple.ViewModel.DD.Quests;
 
-public class QuestStatusChangedEventArgs : EventArgs
+public class QuestStateChangedEventArgs : EventArgs
 {
     public string QuestId { get; }
     public QuestState QuestState { get; }
 
-    public QuestStatusChangedEventArgs(
+    public QuestStateChangedEventArgs(
         string questId,
         QuestState questState)
     {

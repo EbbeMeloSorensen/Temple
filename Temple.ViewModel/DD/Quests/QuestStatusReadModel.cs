@@ -1,7 +1,6 @@
 ﻿using Temple.Application.Core;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.ViewModel.DD.Battle.BusinessLogic;
 
 namespace Temple.ViewModel.DD.Quests;
 
@@ -9,10 +8,10 @@ namespace Temple.ViewModel.DD.Quests;
 // Den publicerer et event, der bruges i forbindelse med opdatering af brugergrænsefladen
 public sealed class QuestStatusReadModel
 {
-    private readonly Dictionary<string, QuestStatus> _quests =
-        new Dictionary<string, QuestStatus>();
+    private readonly Dictionary<string, QuestState> _quests =
+        new Dictionary<string, QuestState>();
 
-    public event EventHandler<QuestStatusChangedEventArgs>? QuestStatusChanged;
+    public event EventHandler<QuestStateChangedEventArgs>? QuestStatusChanged;
 
     public QuestStatusReadModel(
         QuestEventBus eventBus)
@@ -23,9 +22,9 @@ public sealed class QuestStatusReadModel
     public bool IsQuestAvailable(
         string questId)
     {
-        if (_quests.TryGetValue(questId, out QuestStatus status))
+        if (_quests.TryGetValue(questId, out QuestState state))
         {
-            return status.State == QuestState.Available;
+            return state == QuestState.Available;
         }
 
         return false;
@@ -34,9 +33,9 @@ public sealed class QuestStatusReadModel
     public bool IsQuestActive(
         string questId)
     {
-        if (_quests.TryGetValue(questId, out QuestStatus status))
+        if (_quests.TryGetValue(questId, out QuestState state))
         {
-            return status.State == QuestState.Active;
+            return state == QuestState.Active;
         }
 
         return false;
@@ -45,9 +44,9 @@ public sealed class QuestStatusReadModel
     public bool IsQuestCompleted(
         string questId)
     {
-        if (_quests.TryGetValue(questId, out QuestStatus status))
+        if (_quests.TryGetValue(questId, out QuestState state))
         {
-            return status.State == QuestState.Completed;
+            return state == QuestState.Completed;
         }
 
         return false;
@@ -58,12 +57,11 @@ public sealed class QuestStatusReadModel
     {
         if (!_quests.TryGetValue(e.QuestId, out var status))
         {
-            status = new QuestStatus(e.QuestId, e.NewState);
-            _quests.Add(e.QuestId, status);
+            _quests.Add(e.QuestId, e.NewState);
         }
         else
         {
-            status.UpdateState(e.NewState);
+            _quests[e.QuestId] = e.NewState;
         }
 
         OnQuestStatusChanged(e.QuestId, e.NewState);
@@ -73,6 +71,6 @@ public sealed class QuestStatusReadModel
         string questId,
         QuestState questState)
     {
-        QuestStatusChanged?.Invoke(this, new QuestStatusChangedEventArgs(questId, questState));
+        QuestStatusChanged?.Invoke(this, new QuestStateChangedEventArgs(questId, questState));
     }
 }
