@@ -33,6 +33,10 @@ Done:
 * Det er kun, når man snakker med innkeeper, at man kan tage en quest
 
 Todo:
+* Når man har fået sin quest, skal det givne site opdateres med en trigger til en battle.
+  -> Det betyder, at SiteDataFactory skal kunne spørge QuestStateReadModel, om en given quest er aktiv
+  -> og derfor skal ExplorationViewModel have adgang til QuestStateReadModel, lige som DialogueViewModel allerede har
+* Man skal kunne løse en quest ved at besejre en fjende
 * Aktive quests skal vises i GameMenu
 
 * Til en start (indtil du har nogle mechanics for dialog), kan du operere med, at et givet site bare altid populeres med de samme npc'er.

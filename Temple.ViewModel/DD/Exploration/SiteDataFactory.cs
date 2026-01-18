@@ -188,10 +188,14 @@ public static class SiteDataFactory
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
-                siteData.AddEventTrigger_ScriptedBattle(
-                    new Point2D(-1, 3),
-                    new Point2D(-1, 2),
-                    "Cellar");
+                // Dette skal kun ske, hvis der er en accepted quest om at slå rotterne i varehuset ihjel
+                if (false)
+                {
+                    siteData.AddEventTrigger_ScriptedBattle(
+                        new Point2D(12, 9),
+                        new Point2D(11, 9),
+                        "Warehouse");
+                }
 
                 break;
             }

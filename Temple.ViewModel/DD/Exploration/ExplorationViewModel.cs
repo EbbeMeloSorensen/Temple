@@ -1,15 +1,16 @@
-﻿using Craft.Simulation.Bodies;
+﻿using System.Windows.Media.Media3D;
+using GalaSoft.MvvmLight.Command;
+using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Engine;
 using Craft.Utils;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
-using System.Windows.Media.Media3D;
-using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 using Temple.Infrastructure.Presentation;
+using Temple.ViewModel.DD.Quests;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
@@ -21,6 +22,7 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
         private readonly ISiteRenderer _siteRenderer;
+        private readonly QuestStateReadModel _questStateReadModel;
 
         private Model3D _scene3D;
         private Point3D _cameraPosition;
@@ -29,6 +31,7 @@ namespace Temple.ViewModel.DD.Exploration
         private Vector3D _directionalLight;
 
         public Engine Engine { get; }
+
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
 
         public Model3D Scene3D
@@ -85,9 +88,11 @@ namespace Temple.ViewModel.DD.Exploration
 
         public ExplorationViewModel(
             ApplicationController controller,
+            QuestStateReadModel questStateReadModel,
             ISiteRenderer siteRenderer)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            _questStateReadModel = questStateReadModel ?? throw new ArgumentNullException(nameof(questStateReadModel));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
 
             Engine = new Engine(null);

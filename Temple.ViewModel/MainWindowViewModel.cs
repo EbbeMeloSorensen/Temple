@@ -85,7 +85,7 @@ namespace Temple.ViewModel
                         CurrentViewModel = interludeViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Exploration:
-                        var explorationViewModel = new ExplorationViewModel(_controller, _siteRenderer);
+                        var explorationViewModel = new ExplorationViewModel(_controller, _questStateReadModel, _siteRenderer);
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Battle:

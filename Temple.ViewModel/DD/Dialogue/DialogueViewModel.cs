@@ -112,24 +112,20 @@ public class DialogueViewModel : TempleViewModel
         {
             _questId = dialogueData.QuestId;
 
-            // Det er muligt at questen allerede er gjort available i en tidligere dialog med denne npc, men uden at den er accepteret
+            var questState = _questStateReadModel.GetQuestState(_questId);
 
-            if (_questStateReadModel.IsQuestActive(dialogueData.QuestId))
+            Message = questState switch
             {
-                Message = "Thank you for completing my quest!";
-            }
-            if (_questStateReadModel.IsQuestActive(dialogueData.QuestId))
+                QuestState.Hidden => "Greetings adventurer! I have a quest for you. Will you take it?",
+                QuestState.Available => "Hello again, do you want the quest, after all?",
+                QuestState.Active => "Good luck in handling the quest!",
+                QuestState.Completed => "Thank you for completing my quest!",
+                _ => Message
+            };
+
+            if (questState == QuestState.Available)
             {
-                Message = "Good luck in handling the quest!";
-            }
-            else if (_questStateReadModel.IsQuestAvailable(dialogueData.QuestId))
-            {
-                Message = "Hello again, do you want the quest, after all?";
                 TakeQuestPossible = true;
-            }
-            else
-            {
-                Message = "Greetings adventurer! I have a quest for you. Will you take it?";
             }
         }
         else
