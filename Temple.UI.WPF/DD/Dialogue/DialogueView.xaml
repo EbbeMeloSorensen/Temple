@@ -6,12 +6,28 @@
              xmlns:local="clr-namespace:Temple.UI.WPF.DD.Dialogue"
              xmlns:dialogue="clr-namespace:Temple.ViewModel.DD.Dialogue;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance dialogue:DialogueViewModel }">
-    <StackPanel>
-        <Button Margin="20" Width="100" Content="Leave"
-                Command="{Binding Leave_Command}"/>
-        <Button Margin="20" Width="100" Content="Take Quest"
-                Command="{Binding TakeQuest_Command}"
-                Visibility="{Binding TakeQuestPossible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-    </StackPanel>
+             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance dialogue:DialogueViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.Column="0" Source="/DD/Images/Innkeeper.png"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="50" FontWeight="Bold"
+                   Text="Talking with"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button Margin="20" Width="100" Content="Leave"
+                    Command="{Binding Leave_Command}"/>
+            <Button Margin="20" Width="100" Content="Take Quest"
+                    Command="{Binding TakeQuest_Command}"
+                    Visibility="{Binding TakeQuestPossible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </StackPanel>
+    </Grid>
 </UserControl>

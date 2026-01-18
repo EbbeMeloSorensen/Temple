@@ -13,10 +13,12 @@
     <None Remove="DD\Assets\male.stl" />
     <None Remove="DD\Images\Archer.PNG" />
     <None Remove="DD\Images\Arrow.png" />
+    <None Remove="DD\Images\Captain.png" />
     <None Remove="DD\Images\Defeat.png" />
     <None Remove="DD\Images\Explore_concept.png" />
     <None Remove="DD\Images\Goblin Archer.PNG" />
     <None Remove="DD\Images\Goblin.PNG" />
+    <None Remove="DD\Images\Innkeeper.png" />
     <None Remove="DD\Images\Knight.PNG" />
     <None Remove="DD\Images\NoPreview.png" />
     <None Remove="DD\Images\Sword.png" />
@@ -43,12 +45,18 @@
     <Resource Include="DD\Images\Arrow.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="DD\Images\Captain.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="DD\Images\Defeat.png" />
     <Resource Include="DD\Images\Explore_concept.png" />
     <Resource Include="DD\Images\Goblin Archer.PNG">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="DD\Images\Goblin.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\Innkeeper.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="DD\Images\interlude.jpg">
