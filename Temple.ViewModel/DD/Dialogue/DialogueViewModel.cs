@@ -82,18 +82,25 @@ public class DialogueViewModel : TempleViewModel
         {
             Message = "Awesome. Good luck!";
             _controller.EventBus.Publish(new QuestAcceptedEvent("rat_infestation"));
+            TakeQuestPossible = false;
         });
-
-        TakeQuestPossible = false;
     }
 
     private void HandleQuestStateChanged(
         object? sender,
         QuestStateChangedEventArgs e)
     {
-        if (_questId != null && e.QuestId == _questId)
+        if (_questId == null || e.QuestId != _questId) return;
+
+        switch (e.QuestState)
         {
-            TakeQuestPossible = e.QuestState == QuestState.Available;
+            case QuestState.Available:
+                Message = "Greetings adventurer! I have a quest for you. Will you take it?";
+                TakeQuestPossible = true;
+                break;
+            case QuestState.Completed:
+                Message = "Welcome back. I see you completed my quest. Here is your reward";
+                break;
         }
     }
 
@@ -114,9 +121,9 @@ public class DialogueViewModel : TempleViewModel
 
             var questState = _questStateReadModel.GetQuestState(_questId);
 
+            // HVIS status er en af disse 3, så opdaterer vi beskeden
             Message = questState switch
             {
-                QuestState.Hidden => "Greetings adventurer! I have a quest for you. Will you take it?",
                 QuestState.Available => "Hello again, do you want the quest, after all?",
                 QuestState.Active => "Good luck in handling the quest!",
                 QuestState.Completed => "Thank you for completing my quest!",
@@ -127,15 +134,15 @@ public class DialogueViewModel : TempleViewModel
             {
                 TakeQuestPossible = true;
             }
+
+            // Her poster vi et event til bussen om at der er en dialog i gang med en given pc.
+            // Det trigger så, at en givne quest gøres tilgængelig ELLER (hvis objectives er klaret) at den markeres som fuldført
+            _controller.EventBus.Publish(new DialogueEvent(dialoguePayload.NPCId));
         }
         else
         {
             Message = "Leave me alone";
         }
-
-        // Her poster vi et event til bussen om at der er en dialog i gang med en given pc.
-        // Det trigger så, at en givne quest gøres tilgængelig
-        _controller.EventBus.Publish(new DialogueEvent(dialoguePayload.NPCId));
 
         return this;
     }
