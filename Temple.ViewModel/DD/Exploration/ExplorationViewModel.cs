@@ -105,7 +105,7 @@ namespace Temple.ViewModel.DD.Exploration
                 {
                     PayloadForNextState = new ExplorationPayload
                     {
-                        Site = _controller.ApplicationData.CurrentSite 
+                        SiteId = _controller.ApplicationData.CurrentSiteId
                     }
                 };
 
@@ -214,7 +214,7 @@ namespace Temple.ViewModel.DD.Exploration
                     {
                         BattleId = battleId,
                         EntranceId = entranceId,
-                        PayloadForNextStateInCasePartyWins = new ExplorationPayload { Site = _controller.ApplicationData.CurrentSite }
+                        PayloadForNextStateInCasePartyWins = new ExplorationPayload { SiteId = _controller.ApplicationData.CurrentSiteId }
                     };
 
                     _controller.GoToNextApplicationState(payload);
@@ -228,7 +228,7 @@ namespace Temple.ViewModel.DD.Exploration
             var explorationPayload = payload as ExplorationPayload
                                      ?? throw new ArgumentException("Payload is not of type ExplorationPayload", nameof(payload));
 
-            _controller.ApplicationData.CurrentSite = explorationPayload.Site;
+            _controller.ApplicationData.CurrentSiteId = explorationPayload.SiteId;
 
             if (_controller.ApplicationData.ExplorationPosition == null ||
                 _controller.ApplicationData.ExplorationOrientation == null)
@@ -237,7 +237,8 @@ namespace Temple.ViewModel.DD.Exploration
             }
 
             var siteData = SiteDataFactory.GenerateSiteData(
-                explorationPayload.Site);
+                explorationPayload.SiteId,
+                _questStateReadModel);
 
             Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 

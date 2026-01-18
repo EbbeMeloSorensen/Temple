@@ -50,7 +50,7 @@ public class ApplicationController
             // Player accepts quest
             new AcceptQuestRule(),
 
-            // Kill bandit leader => objectives completed
+            // Kill warehouse rats => objectives completed
             new CompleteOnEnemyDefeatedRule("rats_in_warehouse"),
 
             // Talk to innkeeper again => quest completed
@@ -114,7 +114,7 @@ public class ApplicationController
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
 
-        ApplicationData.CurrentSite = "Village";
+        ApplicationData.CurrentSiteId = "Village";
         ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
         ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
 
@@ -123,7 +123,7 @@ public class ApplicationController
             Text = "Så går eventyret i gang",
             PayloadForNextState = new ExplorationPayload
             {
-                Site = ApplicationData.CurrentSite
+                SiteId = ApplicationData.CurrentSiteId
             }
         };
 

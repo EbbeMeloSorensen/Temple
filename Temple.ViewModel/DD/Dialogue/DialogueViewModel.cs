@@ -74,7 +74,7 @@ public class DialogueViewModel : TempleViewModel
         {
             _controller.GoToNextApplicationState(new ExplorationPayload
             {
-                Site = _controller.ApplicationData.CurrentSite 
+                SiteId = _controller.ApplicationData.CurrentSiteId
             });
         });
 

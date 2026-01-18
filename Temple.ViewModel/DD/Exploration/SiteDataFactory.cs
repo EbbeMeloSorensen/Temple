@@ -1,12 +1,15 @@
 ﻿using Craft.Math;
 using Temple.Domain.Entities.DD.Exploration;
+using Temple.Domain.Entities.DD.Quests;
+using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Exploration;
 
 public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
-        string siteId)
+        string siteId,
+        QuestStateReadModel questStateReadModel)
     {
         var siteData = new SiteData();
 
@@ -189,7 +192,7 @@ public static class SiteDataFactory
                     "Exit_Wilderness");
 
                 // Dette skal kun ske, hvis der er en accepted quest om at slå rotterne i varehuset ihjel
-                if (false)
+                if (questStateReadModel.GetQuestState("rat_infestation") == QuestState.Active)
                 {
                     siteData.AddEventTrigger_ScriptedBattle(
                         new Point2D(12, 9),
