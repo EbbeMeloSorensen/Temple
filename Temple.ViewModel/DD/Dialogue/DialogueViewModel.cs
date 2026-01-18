@@ -45,7 +45,7 @@ public class DialogueViewModel : TempleViewModel
 
         TakeQuest_Command = new RelayCommand(() =>
         {
-            throw new NotImplementedException();
+            _controller.EventBus.Publish(new QuestAcceptedEvent("bandit_trouble"));
         });
 
         TakeQuestPossible = false;
@@ -55,9 +55,9 @@ public class DialogueViewModel : TempleViewModel
         object? sender,
         QuestStatusChangedEventArgs e)
     {
-        if (e.QuestId == "bandit_trouble" && e.QuestState == QuestState.Available)
+        if (e.QuestId == "bandit_trouble")
         {
-            TakeQuestPossible = true;
+            TakeQuestPossible = e.QuestState == QuestState.Available;
         }
     }
 
