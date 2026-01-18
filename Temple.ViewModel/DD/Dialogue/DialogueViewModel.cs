@@ -10,7 +10,7 @@ namespace Temple.ViewModel.DD.Dialogue;
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
-    private readonly QuestStatusReadModel _questStatusReadModel;
+    private readonly QuestStateReadModel _questStateReadModel;
     private string _title;
     private string _npcPortraitPath;
     private string _message;
@@ -63,12 +63,12 @@ public class DialogueViewModel : TempleViewModel
 
     public DialogueViewModel(
         ApplicationController controller,
-        QuestStatusReadModel questStatusReadModel)
+        QuestStateReadModel questStateReadModel)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-        _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
+        _questStateReadModel = questStateReadModel ?? throw new ArgumentNullException(nameof(questStateReadModel));
 
-        _questStatusReadModel.QuestStatusChanged += HandleQuestStatusChanged;
+        _questStateReadModel.QuestStateChanged += HandleQuestStateChanged;
 
         Leave_Command = new RelayCommand(() =>
         {
@@ -87,7 +87,7 @@ public class DialogueViewModel : TempleViewModel
         TakeQuestPossible = false;
     }
 
-    private void HandleQuestStatusChanged(
+    private void HandleQuestStateChanged(
         object? sender,
         QuestStateChangedEventArgs e)
     {
@@ -114,15 +114,15 @@ public class DialogueViewModel : TempleViewModel
 
             // Det er muligt at questen allerede er gjort available i en tidligere dialog med denne npc, men uden at den er accepteret
 
-            if (_questStatusReadModel.IsQuestActive(dialogueData.QuestId))
+            if (_questStateReadModel.IsQuestActive(dialogueData.QuestId))
             {
                 Message = "Thank you for completing my quest!";
             }
-            if (_questStatusReadModel.IsQuestActive(dialogueData.QuestId))
+            if (_questStateReadModel.IsQuestActive(dialogueData.QuestId))
             {
                 Message = "Good luck in handling the quest!";
             }
-            else if (_questStatusReadModel.IsQuestAvailable(dialogueData.QuestId))
+            else if (_questStateReadModel.IsQuestAvailable(dialogueData.QuestId))
             {
                 Message = "Hello again, do you want the quest, after all?";
                 TakeQuestPossible = true;
@@ -147,7 +147,7 @@ public class DialogueViewModel : TempleViewModel
     public override void Cleanup()
     {
         // Unsubscribe to prevent memory leaks
-        _questStatusReadModel.QuestStatusChanged -= HandleQuestStatusChanged;
+        _questStateReadModel.QuestStateChanged -= HandleQuestStateChanged;
         base.Cleanup();
     }
 }
