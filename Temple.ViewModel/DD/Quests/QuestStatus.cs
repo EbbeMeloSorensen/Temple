@@ -2,6 +2,7 @@
 
 namespace Temple.ViewModel.DD.Quests;
 
+// Dette er ikke det samme som QuestState. Det bruges til at notificere UI-laget om ændringer i quest-tilstande.
 public sealed class QuestStatus
 {
     public string QuestId { get; }

@@ -1,10 +1,12 @@
 ﻿using Temple.Application.Core;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.ViewModel.DD.Battle.BusinessLogic;
 
 namespace Temple.ViewModel.DD.Quests;
 
 // Denne klasse overvåger ændringer i quest-tilstande. Den er bindeled mellem quest-logikken og brugergrænsefladen.
+// Den publicerer et event, der bruges i forbindelse med opdatering af brugergrænsefladen
 public sealed class QuestStatusReadModel
 {
     private readonly Dictionary<string, QuestStatus> _quests =
@@ -15,10 +17,10 @@ public sealed class QuestStatusReadModel
     public QuestStatusReadModel(
         QuestEventBus eventBus)
     {
-        eventBus.Subscribe<QuestStateChangedEvent>(OnQuestStateChanged);
+        eventBus.Subscribe<QuestStateChangedEvent>(HandleQuestStateChanged);
     }
 
-    private void OnQuestStateChanged(
+    private void HandleQuestStateChanged(
         QuestStateChangedEvent e)
     {
         if (!_quests.TryGetValue(e.QuestId, out var status))
@@ -31,34 +33,13 @@ public sealed class QuestStatusReadModel
             status.UpdateState(e.NewState);
         }
 
-        //UpdateUI(status);
+        OnQuestStatusChanged(e.QuestId, e.NewState);
     }
 
-    //private void UpdateUI(
-    //    QuestStatus status)
-    //{
-    //    switch (status.State)
-    //    {
-    //        case QuestState.Available:
-    //            ShowAvailable(status.QuestId);
-    //            break;
-
-    //        case QuestState.Active:
-    //            ShowActive(status.QuestId);
-    //            break;
-
-    //        case QuestState.Completed:
-    //            ShowCompleted(status.QuestId);
-    //            break;
-    //    }
-    //}
-
-    //private void ShowAvailable(string questId)
-    //    => Console.WriteLine($"Quest available: {questId}");
-
-    //private void ShowActive(string questId)
-    //    => Console.WriteLine($"Quest active: {questId}");
-
-    //private void ShowCompleted(string questId)
-    //    => Console.WriteLine($"Quest completed: {questId}");
+    private void OnQuestStatusChanged(
+        string questId,
+        QuestState questState)
+    {
+        QuestStatusChanged?.Invoke(this, new QuestStatusChangedEventArgs(questId, questState));
+    }
 }

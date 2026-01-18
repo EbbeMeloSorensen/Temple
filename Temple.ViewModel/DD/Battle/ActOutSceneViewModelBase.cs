@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Craft.Logging;
-using Craft.Utils;
 using Craft.ViewModel.Utils;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 using Temple.Domain.Entities.DD.Battle;
@@ -147,7 +146,7 @@ namespace Temple.ViewModel.DD.Battle
             }
         }
 
-        public event EventHandler<BattleEndedEventArgs> BattleEnded;
+        public event EventHandler<BattleEndedEventArgs>? BattleEnded;
 
         public ActOutSceneViewModelBase(
             IEngine engine,
@@ -368,16 +367,7 @@ namespace Temple.ViewModel.DD.Battle
         private void OnBattleDecided(
             BattleResult battleResult)
         {
-            // Make a temporary copy of the event to avoid possibility of
-            // a race condition if the last subscriber unsubscribes
-            // immediately after the null check and before the event is raised.
-            var handler = BattleEnded;
-
-            // Event will be null if there are no subscribers
-            if (handler != null)
-            {
-                handler(this, new BattleEndedEventArgs(battleResult));
-            }
+            BattleEnded?.Invoke(this, new BattleEndedEventArgs(battleResult));
         }
     }
 }

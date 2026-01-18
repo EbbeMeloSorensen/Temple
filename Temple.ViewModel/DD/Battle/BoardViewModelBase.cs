@@ -410,13 +410,13 @@ namespace Temple.ViewModel.DD.Battle
             OnPlayerClickedSquare(squareIndex);
         }
 
-        public event EventHandler<PlayerClickedSquareEventArgs> PlayerClickedSquare;
+        public event EventHandler<PlayerClickedSquareEventArgs>? PlayerClickedSquare;
 
         // Used to inform the host (ActOutSceneViewModel) that an animation is completed
-        public event EventHandler MoveCreatureAnimationCompleted;
+        public event EventHandler? MoveCreatureAnimationCompleted;
 
         // Used to inform the host (ActOutSceneViewModel) that an animation is completed
-        public event EventHandler AttackAnimationCompleted;
+        public event EventHandler? AttackAnimationCompleted;
 
         protected PixelViewModel GeneratePixel(
             int index,
@@ -488,16 +488,7 @@ namespace Temple.ViewModel.DD.Battle
         // Used to inform the host (ActOutSceneViewModel) that the user clicked the board
         private void OnPlayerClickedSquare(int squareIndex)
         {
-            // Make a temporary copy of the event to avoid possibility of
-            // a race condition if the last subscriber unsubscribes
-            // immediately after the null check and before the event is raised.
-            var handler = PlayerClickedSquare;
-
-            // Event will be null if there are no subscribers
-            if (handler != null)
-            {
-                handler(this, new PlayerClickedSquareEventArgs(squareIndex));
-            }
+            PlayerClickedSquare?.Invoke(this, new PlayerClickedSquareEventArgs(squareIndex));
         }
 
         private void UpdateCreatureViewModels()
@@ -546,31 +537,13 @@ namespace Temple.ViewModel.DD.Battle
         // Used to inform the host (ActOutSceneViewModel) that an animation is completed
         private void OnMoveAnimationCompleted()
         {
-            // Make a temporary copy of the event to avoid possibility of
-            // a race condition if the last subscriber unsubscribes
-            // immediately after the null check and before the event is raised.
-            var handler = MoveCreatureAnimationCompleted;
-
-            // Event will be null if there are no subscribers
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            MoveCreatureAnimationCompleted?.Invoke(this, EventArgs.Empty);
         }
 
         // Used to inform the host (ActOutSceneViewModel) that an animation is completed
         private void OnAttackAnimationCompleted()
         {
-            // Make a temporary copy of the event to avoid possibility of
-            // a race condition if the last subscriber unsubscribes
-            // immediately after the null check and before the event is raised.
-            var handler = AttackAnimationCompleted;
-
-            // Event will be null if there are no subscribers
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            AttackAnimationCompleted?.Invoke(this, EventArgs.Empty);
         }
     }
 }
