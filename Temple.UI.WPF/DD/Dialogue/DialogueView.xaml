@@ -7,6 +7,15 @@
              xmlns:dialogue="clr-namespace:Temple.ViewModel.DD.Dialogue;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance dialogue:DialogueViewModel}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Skins/MainSkin.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -18,6 +27,9 @@
         </Grid.ColumnDefinitions>
 
         <Image Grid.Row="0" Grid.Column="0" Source="/DD/Images/Innkeeper.png"/>
+        <Image Grid.Row="0" Grid.Column="0" Source="{Binding Path=ImagePath, 
+                        UpdateSourceTrigger=PropertyChanged, 
+                        Converter={StaticResource ImagePathConverter2}}"/>
 
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="50" FontWeight="Bold"
                    Text="Talking with"/>

@@ -11,7 +11,18 @@ public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
     private readonly QuestStatusReadModel _questStatusReadModel;
+    private string _imagePath;
     private bool _takeQuestPossible;
+
+    public string ImagePath
+    {
+        get { return _imagePath; }
+        set
+        {
+            _imagePath = value;
+            RaisePropertyChanged();
+        }
+    }
 
     public bool TakeQuestPossible
     {
@@ -66,6 +77,8 @@ public class DialogueViewModel : TempleViewModel
     {
         var dialoguePayload = payload as DialoguePayload
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
+
+        ImagePath = "DD/Images/Innkeeper.png";
 
         // På sigt skal det være sådan at det at bevæge sig ned i et dialog tree kan gøre at visse quests gøres tilgængeligt (available),
         // og i øvrigt at tilgængelige quests kan gøres aktive.
