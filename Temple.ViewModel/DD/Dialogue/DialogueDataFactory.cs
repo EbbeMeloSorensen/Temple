@@ -21,7 +21,7 @@ public static class DialogueDataFactory
                 break;
             case "captain":
                 dialogueData.NPCPortraitPath = "DD/Images/Captain.png";
-                dialogueData.QuestId = null;
+                dialogueData.QuestId = "skeleton_trouble";
                 break;
             default:
                 throw new InvalidOperationException("Unknown npcId");

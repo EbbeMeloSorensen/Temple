@@ -81,7 +81,7 @@ public class DialogueViewModel : TempleViewModel
         TakeQuest_Command = new RelayCommand(() =>
         {
             Message = "Awesome. Good luck!";
-            _controller.EventBus.Publish(new QuestAcceptedEvent("rat_infestation"));
+            _controller.EventBus.Publish(new QuestAcceptedEvent(_questId));
             TakeQuestPossible = false;
         });
     }

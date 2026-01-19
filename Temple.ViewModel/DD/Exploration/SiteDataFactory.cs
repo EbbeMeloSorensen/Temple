@@ -218,6 +218,14 @@ public static class SiteDataFactory
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
+                if (questStateReadModel.GetQuestState("skeleton_trouble") == QuestState.Active)
+                {
+                    siteData.AddEventTrigger_ScriptedBattle(
+                        new Point2D(12, 9),
+                        new Point2D(11, 9),
+                        "skeletons_in_graveyard");
+                }
+
                 break;
             }
             default:

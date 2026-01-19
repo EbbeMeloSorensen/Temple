@@ -41,8 +41,8 @@ public class ApplicationController
         _scopeFactory = scopeFactory;
         _logger = logger;
 
-        // Her hardkoder vi bare en enkelt quest. Senere laver vi flere, og endnu senere læser vi dem fra fil
-        var quest = new Quest(id: "rat_infestation", rules: new List<IQuestRule>
+        // Her hardkoder vi bare et par quests. Senere læser vi dem fra fil
+        var quest1 = new Quest(id: "rat_infestation", rules: new List<IQuestRule>
         {
             // Talk to innkeeper => quest becomes available
             new BecomeAvailableOnDialogueRule("innkeeper"),
@@ -57,9 +57,25 @@ public class ApplicationController
             new TurnInOnDialogueRule("innkeeper")
         });
 
+        var quest2 = new Quest(id: "skeleton_trouble", rules: new List<IQuestRule>
+        {
+            // Talk to captain => quest becomes available
+            new BecomeAvailableOnDialogueRule("captain"),
+
+            // Player accepts quest
+            new AcceptQuestRule(),
+
+            // Kill skeletons in graveyard => objectives completed
+            new CompleteOnBattleWonRule("skeletons_in_graveyard"),
+
+            // Talk to captain again => quest completed
+            new TurnInOnDialogueRule("captain")
+        });
+
         var quests = new List<Quest>
         {
-            quest
+            quest1,
+            quest2
         };
 
         EventBus = new QuestEventBus();
