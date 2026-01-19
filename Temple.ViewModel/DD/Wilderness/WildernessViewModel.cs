@@ -12,6 +12,7 @@ namespace Temple.ViewModel.DD.Wilderness
         public RelayCommand GoToInGameMenu_Command { get; }
         public RelayCommand GoToSite_Mine_Command { get; }
         public RelayCommand GoToSite_Village_Command { get; }
+        public RelayCommand GoToSite_Graveyard_Command { get; }
 
         public WildernessViewModel(
             ApplicationController controller)
@@ -40,6 +41,13 @@ namespace Temple.ViewModel.DD.Wilderness
                 _controller.ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
                 _controller.ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "Village" });
+            });
+
+            GoToSite_Graveyard_Command = new RelayCommand(() =>
+            {
+                _controller.ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
+                _controller.ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
+                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "Graveyard" });
             });
         }
     }

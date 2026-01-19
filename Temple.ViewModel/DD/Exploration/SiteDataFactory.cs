@@ -201,6 +201,25 @@ public static class SiteDataFactory
 
                 break;
             }
+            case "Graveyard":
+            {
+                siteData.AddWall(new List<Point2D>
+                {
+                    new (15, 8),
+                    new (15, 12),
+                    new (3, 12),
+                    new (3, 3),
+                    new (15, 3),
+                    new (15, 7),
+                });
+
+                siteData.AddEventTrigger_LeaveSite(
+                    new Point2D(15, 8),
+                    new Point2D(15, 7),
+                    "Exit_Wilderness");
+
+                break;
+            }
             default:
             {
                 throw new InvalidOperationException($"Unknown site id: {siteId}");
