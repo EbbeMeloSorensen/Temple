@@ -1,6 +1,6 @@
-﻿using Craft.ViewModels.Dialogs;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using MediatR;
+using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
@@ -21,6 +21,7 @@ namespace Temple.ViewModel
         private readonly IMediator _mediator;
         private readonly IDialogService _applicationDialogService;
         private readonly ISiteRenderer _siteRenderer;
+        private readonly IDialogueSessionFactory _dialogueSessionFactory;
         private readonly ApplicationController _controller;
         private readonly QuestStateReadModel _questStateReadModel;
 
@@ -50,11 +51,13 @@ namespace Temple.ViewModel
             IMediator mediator,
             IDialogService applicationDialogService,
             ISiteRenderer siteRenderer,
+            IDialogueSessionFactory dialogueSessionFactory,
             ApplicationController controller)
         {
             _mediator = mediator;
             _applicationDialogService = applicationDialogService;
             _siteRenderer = siteRenderer;
+            _dialogueSessionFactory = dialogueSessionFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _questStateReadModel = new QuestStateReadModel(controller.EventBus);
 
@@ -93,7 +96,7 @@ namespace Temple.ViewModel
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Dialogue:
-                        var dialogueViewModel = new DialogueViewModel(_controller, _questStateReadModel);
+                        var dialogueViewModel = new DialogueViewModel(_controller, _questStateReadModel, _dialogueSessionFactory);
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.InGameMenu:

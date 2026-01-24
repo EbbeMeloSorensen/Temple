@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
+using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
@@ -11,6 +12,7 @@ public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
     private readonly QuestStateReadModel _questStateReadModel;
+    private readonly IDialogueSessionFactory _dialogueSessionFactory;
     private string _title;
     private string _npcPortraitPath;
     private string _message;
@@ -63,10 +65,12 @@ public class DialogueViewModel : TempleViewModel
 
     public DialogueViewModel(
         ApplicationController controller,
-        QuestStateReadModel questStateReadModel)
+        QuestStateReadModel questStateReadModel,
+        IDialogueSessionFactory dialogueSessionFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
         _questStateReadModel = questStateReadModel ?? throw new ArgumentNullException(nameof(questStateReadModel));
+        _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
         _questStateReadModel.QuestStateChanged += HandleQuestStateChanged;
 
@@ -115,6 +119,9 @@ public class DialogueViewModel : TempleViewModel
         Title = dialoguePayload.NPCId;
         NPCPortraitPath = dialogueData.NPCPortraitPath;
 
+        var dialogueSession = _dialogueSessionFactory.GetDialogueSession(dialoguePayload.NPCId);
+
+        // Old (one size fits all)
         if (dialogueData.QuestId != null)
         {
             _questId = dialogueData.QuestId;

@@ -36,10 +36,15 @@ Done:
   -> Det betyder, at SiteDataFactory skal kunne spørge QuestStateReadModel, om en given quest er aktiv
   -> og derfor skal ExplorationViewModel have adgang til QuestStateReadModel, lige som DialogueViewModel allerede har
 * Man skal kunne løse en quest ved at besejre en fjende
+* Kaptajnen skal have en quest, der handler om at tage hen til et andet site og besejre en fjende der
 
 Todo:
+* Erstat one size fits all dialogen med noget specifikke dialoger
+  - Ikke noget med én dialog pr npc - der skal være en quest manager, der vælger en dialog baseret på f.eks. quest state
+  - Dialoger skal repræsenteres explicit som acykliske grafer
+  - Lav en hardkodet dialoggraf i dialogue view modellen i første omgang
+  - Du bør nok operere med en abstraktion for Dialogtræet, så du ikke introducerer en afhængighed til 
 * Aktive quests skal vises i GameMenu
-* Kaptajnen skal have en quest, der handler om at tage hen til et andet site og besejre en fjende der
 
 * Det at vinde en battle kan foranledige, at en quest markeres som fuldført
 * Det at tage en quest skal gøre, at sites gøres tilgængelige i Wilderness mode. Minen skal f.eks. ikke være tilgængelig fra starten.

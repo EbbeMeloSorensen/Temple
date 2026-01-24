@@ -193,11 +193,6 @@ public class ApplicationController
         }
     }
 
-    //public void GoToInGameMenu()
-    //{
-    //    _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToInGameMenu);
-    //}
-
     public void GoToWilderness()
     {
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToWilderness);

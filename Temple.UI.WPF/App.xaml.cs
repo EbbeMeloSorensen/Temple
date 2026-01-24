@@ -11,6 +11,7 @@ using Temple.Application.People;
 using Temple.Application.Smurfs;
 using Temple.Application.State;
 using Temple.Domain.BusinessRules.PR;
+using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.IO;
 using Temple.Infrastructure.Pagination;
 using Temple.Infrastructure.Presentation;
@@ -62,7 +63,7 @@ namespace Temple.UI.WPF
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
                             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
                             services.AddScoped<IStateMachineIO, StateMachineIO>();
-                            //services.AddScoped<IQuestManager, QuestManager>();
+                            services.AddScoped<IDialogueSessionFactory, DialogueSessionFactory>();
                             services.AddScoped<ISiteRenderer, WPFSiteRenderer>();
 
                             // Register our ViewModel and View
