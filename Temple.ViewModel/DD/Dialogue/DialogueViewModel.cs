@@ -121,6 +121,8 @@ public class DialogueViewModel : TempleViewModel
 
         var dialogueSession = _dialogueSessionFactory.GetDialogueSession(dialoguePayload.NPCId);
 
+        var text = dialogueSession.CurrentNPCText;
+
         // Old (one size fits all)
         if (dialogueData.QuestId != null)
         {
