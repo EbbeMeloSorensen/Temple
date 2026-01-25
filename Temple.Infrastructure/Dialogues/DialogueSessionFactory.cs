@@ -9,6 +9,6 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         QuestEventBus eventBus,
         string npcId)
     {
-        return new DialogueSession(eventBus);
+        return new DialogueSession(eventBus, npcId);
     }
 }

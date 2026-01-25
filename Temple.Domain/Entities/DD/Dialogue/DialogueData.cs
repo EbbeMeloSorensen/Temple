@@ -1,8 +1,6 @@
-﻿namespace Temple.Domain.Entities.DD.Dialogue;
+﻿//namespace Temple.Domain.Entities.DD.Dialogue;
 
-public class DialogueData
-{
-    public string NPCPortraitPath { get; set; }
-
-    public string? QuestId { get; set; }
-}
+//public class DialogueData
+//{
+//    public string NPCPortraitPath { get; set; }
+//}

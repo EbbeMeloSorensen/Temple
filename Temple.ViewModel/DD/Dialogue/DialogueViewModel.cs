@@ -107,12 +107,10 @@ public class DialogueViewModel : TempleViewModel
         var dialoguePayload = payload as DialoguePayload
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
-        var dialogueData = DialogueDataFactory.GenerateDialogueData(dialoguePayload.NPCId);
+        _dialogueSession = _dialogueSessionFactory.GetDialogueSession(_controller.EventBus, dialoguePayload.NPCId);
 
         Title = dialoguePayload.NPCId;
-        NPCPortraitPath = dialogueData.NPCPortraitPath;
-
-        _dialogueSession = _dialogueSessionFactory.GetDialogueSession(_controller.EventBus, dialoguePayload.NPCId);
+        NPCPortraitPath = _dialogueSession.NPCPortraitPath;
 
         Update();
 

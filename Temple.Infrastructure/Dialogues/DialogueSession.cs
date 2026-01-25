@@ -12,6 +12,8 @@ public class DialogueSession : IDialogueSession
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> _graph;
     private int _activeVertexId;
 
+    public string NPCPortraitPath { get; }
+
     public string CurrentNPCText => ((DialogueVertex) _graph.GetVertex(_activeVertexId)).Text;
 
     public IReadOnlyList<DialogueChoice> AvailableChoices
@@ -29,9 +31,18 @@ public class DialogueSession : IDialogueSession
     }
 
     public DialogueSession(
-        QuestEventBus eventBus)
+        QuestEventBus eventBus,
+        string npcId)
     {
         _eventBus = eventBus;
+
+        NPCPortraitPath = npcId switch
+        {
+            "innkeeper" => "DD/Images/Innkeeper.png",
+            "guard" => "DD/Images/Guard.jpg",
+            "captain" => "DD/Images/Captain.png",
+            _ => throw new InvalidOperationException("Unknown npcId")
+        };
 
         var vertices = new List<DialogueVertex>
         {

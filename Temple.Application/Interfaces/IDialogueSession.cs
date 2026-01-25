@@ -4,6 +4,8 @@ namespace Temple.Application.Interfaces;
 
 public interface IDialogueSession
 {
+    string NPCPortraitPath { get; }
+
     string CurrentNPCText { get; }
 
     IReadOnlyList<DialogueChoice> AvailableChoices { get; }
