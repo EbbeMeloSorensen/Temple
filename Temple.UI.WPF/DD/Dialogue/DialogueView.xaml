@@ -49,7 +49,7 @@
         </StackPanel>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" FontWeight="Bold"
-                   Margin="0"  
+                   Margin="0" TextWrapping="Wrap" 
                    Text="{Binding MessageNew}"/>
 
         <ItemsControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="Yellow"
@@ -61,11 +61,11 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Width="50" Height="50"
+                        <Button Grid.Column="0" Width="50" Height="50" VerticalAlignment="Top" Margin="11"
                                 Command="{Binding DataContext.SelectOption_Command,
                                     RelativeSource={RelativeSource AncestorType=UserControl}}"
                                 CommandParameter="{Binding OptionId}"/>
-                        <TextBlock Grid.Column="1" FontSize="50"
+                        <TextBlock Grid.Column="1" FontSize="50" TextWrapping="Wrap"
                                    Text="{Binding Text}"/>
                     </Grid>
                 </DataTemplate>

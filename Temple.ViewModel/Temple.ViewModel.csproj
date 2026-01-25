@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Temple.Application\Temple.Application.csproj" />
     <ProjectReference Include="..\Temple.Infrastructure.Presentation\Temple.Infrastructure.Presentation.csproj" />
+    <ProjectReference Include="..\Temple.Infrastructure\Temple.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

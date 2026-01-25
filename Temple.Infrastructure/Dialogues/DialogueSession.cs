@@ -1,5 +1,4 @@
 ﻿using Craft.DataStructures.Graph;
-using System.Collections.Generic;
 using Temple.Application.DD;
 using Temple.Application.Interfaces;
 
@@ -47,7 +46,8 @@ public class DialogueSession : IDialogueSession
             new("Only this past week. If those thieves are using the sewers to move around Baldur's Gate, they may have driven the rats out."),
             new("Luck be with you... and watch those rats. Some of them can be vicious when backed in a corner"),
             new(""),
-            new("Get out of my inn, you ignorant!")
+            new("What an ignorant! Wanna kill rats?"),
+            new("Ok, then get out of my inn, rat lover!")
         };
 
         _graph = new GraphAdjacencyList<LabelledVertex, LabelledEdge>(vertices, true);
@@ -74,7 +74,9 @@ public class DialogueSession : IDialogueSession
         _graph.AddEdge(new LabelledEdge(13, 16, "I'll go speak to him, then."));
         _graph.AddEdge(new LabelledEdge(14, 15, "I'll go get the key from Ethon and see about taking care of those rats, then."));
         _graph.AddEdge(new LabelledEdge(15, 16, "OK"));
-        _graph.AddEdge(new LabelledEdge(17, 16, "OK"));
+        _graph.AddEdge(new LabelledEdge(17, 18, "No, I think rats are cute"));
+        _graph.AddEdge(new LabelledEdge(17, 15, "Sure, why not"));
+        _graph.AddEdge(new LabelledEdge(18, 16, "OK"));
 
         _activeVertexId = 0;
     }
@@ -82,8 +84,8 @@ public class DialogueSession : IDialogueSession
     public void SelectChoice(
         int choiceId)
     {
-        throw new NotImplementedException();
+        _activeVertexId = choiceId;
     }
 
-    public bool IsFinished { get; }
+    public bool IsFinished => !AvailableChoices.Any();
 }

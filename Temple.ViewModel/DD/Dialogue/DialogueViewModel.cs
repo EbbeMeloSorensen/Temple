@@ -14,6 +14,7 @@ public class DialogueViewModel : TempleViewModel
     private readonly ApplicationController _controller;
     private readonly QuestStateReadModel _questStateReadModel;
     private readonly IDialogueSessionFactory _dialogueSessionFactory;
+    private IDialogueSession _dialogueSession;
     private string _title;
     private string _npcPortraitPath;
     private string _message;
@@ -106,9 +107,19 @@ public class DialogueViewModel : TempleViewModel
 
         SelectOption_Command = new RelayCommand<int>(optionId =>
         {
-            //MessageNew = 
+            _dialogueSession.SelectChoice(optionId);
 
-            throw new NotImplementedException();
+            if (_dialogueSession.IsFinished)
+            {
+                _controller.GoToNextApplicationState(new ExplorationPayload
+                {
+                    SiteId = _controller.ApplicationData.CurrentSiteId
+                });
+            }
+            else
+            {
+                Update();
+            }
         });
 
         Options = new ObservableCollection<DialogueOptionViewModel>();
@@ -132,6 +143,17 @@ public class DialogueViewModel : TempleViewModel
         }
     }
 
+    private void Update()
+    {
+        Options.Clear();
+        MessageNew = _dialogueSession.CurrentNPCText;
+
+        _dialogueSession.AvailableChoices.ToList().ForEach(option =>
+        {
+            Options.Add(new DialogueOptionViewModel(option.Id, option.Text));
+        });
+    }
+
     public override TempleViewModel Init(
         ApplicationStatePayload payload)
     {
@@ -143,14 +165,9 @@ public class DialogueViewModel : TempleViewModel
         Title = dialoguePayload.NPCId;
         NPCPortraitPath = dialogueData.NPCPortraitPath;
 
-        var dialogueSession = _dialogueSessionFactory.GetDialogueSession(dialoguePayload.NPCId);
+        _dialogueSession = _dialogueSessionFactory.GetDialogueSession(dialoguePayload.NPCId);
 
-        MessageNew = dialogueSession.CurrentNPCText;
-
-        dialogueSession.AvailableChoices.ToList().ForEach(option =>
-        {
-            Options.Add(new DialogueOptionViewModel(option.Id, option.Text));
-        });
+        Update();
 
         // Old (one size fits all)
         if (dialogueData.QuestId != null)
