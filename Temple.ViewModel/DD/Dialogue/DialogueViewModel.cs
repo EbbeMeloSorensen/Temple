@@ -76,7 +76,7 @@ public class DialogueViewModel : TempleViewModel
 
     public RelayCommand Leave_Command { get; }
     public RelayCommand TakeQuest_Command { get; }
-    public RelayCommand SelectOption_Command { get; }
+    public RelayCommand<int> SelectOption_Command { get; }
 
     public DialogueViewModel(
         ApplicationController controller,
@@ -104,8 +104,10 @@ public class DialogueViewModel : TempleViewModel
             TakeQuestPossible = false;
         });
 
-        SelectOption_Command = new RelayCommand(() =>
+        SelectOption_Command = new RelayCommand<int>(optionId =>
         {
+            //MessageNew = 
+
             throw new NotImplementedException();
         });
 

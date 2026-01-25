@@ -63,7 +63,8 @@
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" Width="50" Height="50"
                                 Command="{Binding DataContext.SelectOption_Command,
-                                    RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                    RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                CommandParameter="{Binding OptionId}"/>
                         <TextBlock Grid.Column="1" FontSize="50"
                                    Text="{Binding Text}"/>
                     </Grid>
