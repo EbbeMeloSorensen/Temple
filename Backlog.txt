@@ -37,13 +37,16 @@ Done:
   -> og derfor skal ExplorationViewModel have adgang til QuestStateReadModel, lige som DialogueViewModel allerede har
 * Man skal kunne løse en quest ved at besejre en fjende
 * Kaptajnen skal have en quest, der handler om at tage hen til et andet site og besejre en fjende der
+* Lav DialogueSession generel istedet for den hardkodede der.
+* Erstat one size fits all dialogen med noget specifikke dialoger
+  - Ikke noget med én dialog pr npc - der skal være en dialogue factory, der vælger en dialog baseret på f.eks. quest state (ok)
+  - Dialoger skal repræsenteres explicit som acykliske grafer (ok)
+  - Lav en hardkodet dialoggraf i dialogue view modellen i første omgang (ok)
+  - Du bør operere med en abstraktion for DialogueSessionFactory, så du ikke introducerer en afhængighed til din graf
 
 Todo:
-* Erstat one size fits all dialogen med noget specifikke dialoger
-  - Ikke noget med én dialog pr npc - der skal være en quest manager, der vælger en dialog baseret på f.eks. quest state
-  - Dialoger skal repræsenteres explicit som acykliske grafer
-  - Lav en hardkodet dialoggraf i dialogue view modellen i første omgang
-  - Du bør nok operere med en abstraktion for Dialogtræet, så du ikke introducerer en afhængighed til 
+* DialogueSessions skal ikke hardkodes men læses fra fil, gerne let editerbart format som f.eks. dot eller mermaid
+* Når man har fået en quest og så snakker med den samme NPC igen, så skal det være en ny dialog.
 * Aktive quests skal vises i GameMenu
 
 * Det at vinde en battle kan foranledige, at en quest markeres som fuldført
