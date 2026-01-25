@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
-using Temple.Domain.Entities.DD.Quests;
 using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Dialogue;
@@ -16,7 +15,7 @@ public class DialogueViewModel : TempleViewModel
     private IDialogueSession _dialogueSession;
     private string _title;
     private string _npcPortraitPath;
-    private string _messageNew;
+    private string _npcText;
 
     public string Title
     {
@@ -38,12 +37,12 @@ public class DialogueViewModel : TempleViewModel
         }
     }
 
-    public string MessageNew
+    public string NPCText
     {
-        get { return _messageNew; }
+        get { return _npcText; }
         set
         {
-            _messageNew = value;
+            _npcText = value;
             RaisePropertyChanged();
         }
     }
@@ -61,6 +60,7 @@ public class DialogueViewModel : TempleViewModel
         _questStateReadModel = questStateReadModel ?? throw new ArgumentNullException(nameof(questStateReadModel));
         _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
+        // Dette er ikke længere nødvendigt, men vi holder det lige indtil vi er helt færdige med dialogsystemet
         _questStateReadModel.QuestStateChanged += HandleQuestStateChanged;
 
         SelectOption_Command = new RelayCommand<int>(optionId =>
@@ -87,24 +87,13 @@ public class DialogueViewModel : TempleViewModel
         object? sender,
         QuestStateChangedEventArgs e)
     {
-        //if (_questId == null || e.QuestId != _questId) return;
-
-        //switch (e.QuestState)
-        //{
-        //    case QuestState.Available:
-        //        Message = "Greetings adventurer! I have a quest for you. Will you take it?";
-        //        TakeQuestPossible = true;
-        //        break;
-        //    case QuestState.Completed:
-        //        Message = "Welcome back. I see you completed my quest. Here is your reward";
-        //        break;
-        //}
+        // Dette er ikke længere nødvendigt
     }
 
     private void Update()
     {
         Options.Clear();
-        MessageNew = _dialogueSession.CurrentNPCText;
+        NPCText = _dialogueSession.CurrentNPCText;
 
         _dialogueSession.AvailableChoices.ToList().ForEach(option =>
         {
@@ -126,36 +115,6 @@ public class DialogueViewModel : TempleViewModel
         _dialogueSession = _dialogueSessionFactory.GetDialogueSession(_controller.EventBus, dialoguePayload.NPCId);
 
         Update();
-
-        // Old (one size fits all)
-        //if (dialogueData.QuestId != null)
-        //{
-        //    _questId = dialogueData.QuestId;
-
-        //    var questState = _questStateReadModel.GetQuestState(_questId);
-
-        //    // HVIS status er en af disse 3, så opdaterer vi beskeden
-        //    Message = questState switch
-        //    {
-        //        QuestState.Available => "Hello again, do you want the quest, after all?",
-        //        QuestState.Active => "Good luck in handling the quest!",
-        //        QuestState.Completed => "Thank you for completing my quest!",
-        //        _ => Message
-        //    };
-
-        //    if (questState == QuestState.Available)
-        //    {
-        //        TakeQuestPossible = true;
-        //    }
-
-        //    // Her poster vi et event til bussen om at der er en dialog i gang med en given pc.
-        //    // Det trigger så, at en givne quest gøres tilgængelig ELLER (hvis objectives er klaret) at den markeres som fuldført
-        //    _controller.EventBus.Publish(new DialogueEvent(dialoguePayload.NPCId));
-        //}
-        //else
-        //{
-        //    Message = "Leave me alone";
-        //}
 
         return this;
     }

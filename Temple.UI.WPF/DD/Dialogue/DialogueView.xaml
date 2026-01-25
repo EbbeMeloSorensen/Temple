@@ -35,7 +35,7 @@
 
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="50"
                    Margin="20" TextWrapping="Wrap" 
-                   Text="{Binding MessageNew}"/>
+                   Text="{Binding NPCText}"/>
 
         <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                       ItemsSource="{Binding Options}">
