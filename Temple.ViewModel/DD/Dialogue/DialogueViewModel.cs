@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -16,6 +17,7 @@ public class DialogueViewModel : TempleViewModel
     private string _title;
     private string _npcPortraitPath;
     private string _message;
+    private string _messageNew;
     private string? _questId;
     private bool _takeQuestPossible;
 
@@ -50,6 +52,18 @@ public class DialogueViewModel : TempleViewModel
         }
     }
 
+    public string MessageNew
+    {
+        get { return _messageNew; }
+        set
+        {
+            _messageNew = value;
+            RaisePropertyChanged();
+        }
+    }
+
+    public ObservableCollection<DialogueOptionViewModel> Options { get; }
+
     public bool TakeQuestPossible
     {
         get => _takeQuestPossible;
@@ -62,6 +76,7 @@ public class DialogueViewModel : TempleViewModel
 
     public RelayCommand Leave_Command { get; }
     public RelayCommand TakeQuest_Command { get; }
+    public RelayCommand SelectOption_Command { get; }
 
     public DialogueViewModel(
         ApplicationController controller,
@@ -88,6 +103,13 @@ public class DialogueViewModel : TempleViewModel
             _controller.EventBus.Publish(new QuestAcceptedEvent(_questId));
             TakeQuestPossible = false;
         });
+
+        SelectOption_Command = new RelayCommand(() =>
+        {
+            throw new NotImplementedException();
+        });
+
+        Options = new ObservableCollection<DialogueOptionViewModel>();
     }
 
     private void HandleQuestStateChanged(
@@ -121,7 +143,12 @@ public class DialogueViewModel : TempleViewModel
 
         var dialogueSession = _dialogueSessionFactory.GetDialogueSession(dialoguePayload.NPCId);
 
-        var text = dialogueSession.CurrentNPCText;
+        MessageNew = dialogueSession.CurrentNPCText;
+
+        dialogueSession.AvailableChoices.ToList().ForEach(option =>
+        {
+            Options.Add(new DialogueOptionViewModel(option.Id, option.Text));
+        });
 
         // Old (one size fits all)
         if (dialogueData.QuestId != null)
