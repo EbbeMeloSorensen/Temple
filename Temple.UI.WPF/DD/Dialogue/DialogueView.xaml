@@ -19,7 +19,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,25 +33,11 @@
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="50" FontWeight="Bold" Margin="20, 0, 10, 10"
                    Text="{Binding Title}"/>
 
-        <!--Deprecated-->
-        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" FontWeight="Bold"
-                   Margin="0" Background="Gray" 
-                   Text="{Binding Message}"/>
-
-        <!--Deprecated-->
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Margin="20" Width="300" Height="100" FontSize="30" FontWeight="Bold"  Content="Take Quest"
-                    Command="{Binding TakeQuest_Command}"
-                    Visibility="{Binding TakeQuestPossible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Button Margin="20" Width="300" Height="100" FontSize="30" FontWeight="Bold" Content="Leave"
-                    Command="{Binding Leave_Command}"/>
-        </StackPanel>
-
-        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" FontWeight="Bold"
-                   Margin="0" TextWrapping="Wrap" 
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="50"
+                   Margin="20" TextWrapping="Wrap" 
                    Text="{Binding MessageNew}"/>
 
-        <ItemsControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="Yellow"
+        <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                       ItemsSource="{Binding Options}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -65,7 +50,7 @@
                                 Command="{Binding DataContext.SelectOption_Command,
                                     RelativeSource={RelativeSource AncestorType=UserControl}}"
                                 CommandParameter="{Binding OptionId}"/>
-                        <TextBlock Grid.Column="1" FontSize="50" TextWrapping="Wrap"
+                        <TextBlock Grid.Column="1" FontSize="50" FontStyle="Italic" TextWrapping="Wrap"
                                    Text="{Binding Text}"/>
                     </Grid>
                 </DataTemplate>

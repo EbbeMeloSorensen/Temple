@@ -45,7 +45,10 @@ public class ApplicationController
         var quest1 = new Quest(id: "rat_infestation", rules: new List<IQuestRule>
         {
             // Talk to innkeeper => quest becomes available
-            new BecomeAvailableOnDialogueRule("innkeeper"),
+            //new BecomeAvailableOnDialogueRule("innkeeper"),
+
+            // During dialogue with innkeeper
+            new BecomeAvailableOnQuestDiscoveredRule(),
 
             // Player accepts quest
             new AcceptQuestRule(),
