@@ -1,4 +1,5 @@
 ﻿using Temple.Application.Core;
+using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
 
@@ -6,7 +7,7 @@ namespace Temple.ViewModel.DD.Quests;
 
 // Denne klasse overvåger ændringer i quest-tilstande. Den er bindeled mellem quest-logikken og brugergrænsefladen.
 // Den publicerer et event, der bruges i forbindelse med opdatering af brugergrænsefladen
-public sealed class QuestStateReadModel
+public sealed class QuestStateReadModel : IQuestStateReadModel
 {
     private readonly Dictionary<string, QuestState> _quests =
         new Dictionary<string, QuestState>();

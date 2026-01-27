@@ -1,18 +1,20 @@
 ﻿using Craft.DataStructures.Graph;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
+using Temple.Domain.Entities.DD.Quests;
 
 namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
     public IDialogueSession GetDialogueSession(
+        IQuestStateReadModel questStateReadModel,
         QuestEventBus eventBus,
         string npcId)
     {
         var graph = npcId switch
         {
-            "innkeeper" => GenerateGraph_Innkeeper_1st_Dialogue(),
+            "innkeeper" => GenerateGraph_Innkeeper_Dialogue(questStateReadModel),
             "captain" => GenerateGraph_Captain_1st_Dialogue(),
             _ => throw new InvalidOperationException("Unknown npcId")
         };
@@ -20,9 +22,15 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return new DialogueSession(eventBus, npcId, graph);
     }
 
-    private IDialogueSession Generate_Innkeeper_Dialogue()
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue(
+        IQuestStateReadModel questStateReadModel)
     {
-        throw new NotImplementedException();
+        if (questStateReadModel.GetQuestState("rat_infestation") == QuestState.Hidden)
+        {
+            return GenerateGraph_Innkeeper_1st_Dialogue();
+        }
+
+        return GenerateGraph_Innkeeper_2nd_Dialogue();
     }
 
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_1st_Dialogue()
