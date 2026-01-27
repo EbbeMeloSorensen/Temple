@@ -20,6 +20,11 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return new DialogueSession(eventBus, npcId, graph);
     }
 
+    private IDialogueSession Generate_Innkeeper_Dialogue()
+    {
+        throw new NotImplementedException();
+    }
+
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_1st_Dialogue()
     {
         var vertices = new List<DialogueVertex>
@@ -84,6 +89,23 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         graph.AddEdge(new LabelledEdge(17, 18, "No, I think rats are cute"));
         graph.AddEdge(new LabelledEdge(17, 15, "Sure, why not"));
         graph.AddEdge(new LabelledEdge(18, 16, "OK"));
+
+        return graph;
+    }
+
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_2nd_Dialogue()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("Have you taken care of those rats yet? I'm not giving you the key to the sewers until they're all wiped out."),
+            new("Well, I'd prefer you get to it before they change the name of this tavern to the Rat's Nest. Talk to Ethon if you don't have the key to the cellar yet."),
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
+        graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
 
         return graph;
     }
