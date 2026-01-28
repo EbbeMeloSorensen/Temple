@@ -7,6 +7,7 @@ using Temple.Application.State;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
+using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Domain.Entities.DD.Quests.Rules;
 using Temple.Persistence.EFCore.AppData;
 
@@ -87,6 +88,8 @@ public class ApplicationController
         _ = new QuestRuntime(quests, EventBus);
 
         ApplicationData = new ApplicationData();
+
+        EventBus.Subscribe<IGameEvent>(HandleGameEvent);
     }
 
     public async Task InitializeAsync()
@@ -261,5 +264,12 @@ public class ApplicationController
 
         ApplicationData.Party.Add(adventurer1);
         ApplicationData.Party.Add(adventurer2);
+    }
+
+    private void HandleGameEvent(
+        IGameEvent e)
+    {
+        // Controlleren subscriber på events, så den kan opdatere state, såsom hvilke sites der er låst op, hvilke quests der er løst/aktive osv
+        var a = 0;
     }
 }
