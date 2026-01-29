@@ -1,8 +1,13 @@
-﻿using System.Windows.Media;
-using GalaSoft.MvvmLight;
-using Craft.DataStructures.Graph;
+﻿using Craft.DataStructures.Graph;
 using Craft.Utils;
 using Craft.ViewModels.Graph;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Extensions.Options;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
+using Temple.ViewModel.DD.Dialogue;
+using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.InGameMenu
 {
@@ -16,12 +21,32 @@ namespace Temple.ViewModel.DD.InGameMenu
 
         public GraphViewModel GraphViewModel { get; }
 
-        public QuestCollectionViewModel()
+        public ObservableCollection<QuestViewModel> Quests { get; }
+
+        public RelayCommand<string> CheatCompleteQuest_Command { get; }
+
+        public QuestCollectionViewModel(
+            QuestStateReadModel questStateReadModel)
         {
             var graph = GenerateGraph();
 
             GraphViewModel = new GraphViewModel(graph, 1200, 900);
             StyleGraph(graph);
+
+            Quests = new ObservableCollection<QuestViewModel>();
+
+            questStateReadModel.Quests.ToList().ForEach(quest =>
+            {
+                Quests.Add(new QuestViewModel
+                {
+                    Title = quest
+                });
+            });
+
+            CheatCompleteQuest_Command = new RelayCommand<string>(questId =>
+            {
+                throw new NotImplementedException();
+            });
         }
 
         private GraphAdjacencyList<LabelledVertex, EmptyEdge> GenerateGraph()

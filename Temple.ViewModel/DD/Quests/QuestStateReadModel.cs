@@ -26,6 +26,8 @@ public sealed class QuestStateReadModel : IQuestStateReadModel
         return _quests.TryGetValue(questId, out QuestState state) ? state : QuestState.Hidden;
     }
 
+    public IEnumerable<string> Quests => _quests.Select(kvp => $"{kvp.Key}: {kvp.Value}");
+
     private void HandleQuestStateChanged(
         QuestStateChangedEvent e)
     {

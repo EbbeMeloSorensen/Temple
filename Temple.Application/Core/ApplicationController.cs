@@ -64,7 +64,8 @@ public class ApplicationController
         var quest2 = new Quest(id: "skeleton_trouble", rules: new List<IQuestRule>
         {
             // Talk to captain => quest becomes available
-            new BecomeAvailableOnDialogueRule("captain"),
+            //new BecomeAvailableOnDialogueRule("captain"),
+            new BecomeAvailableOnQuestDiscoveredRule(),
 
             // Player accepts quest
             new AcceptQuestRule(),

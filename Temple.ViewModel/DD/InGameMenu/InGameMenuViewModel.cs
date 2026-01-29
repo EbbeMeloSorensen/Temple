@@ -2,6 +2,7 @@
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
+using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.InGameMenu;
 
@@ -16,11 +17,12 @@ public class InGameMenuViewModel : TempleViewModel
     public RelayCommand Exit_Command { get; }
 
     public InGameMenuViewModel(
-        ApplicationController controller)
+        ApplicationController controller,
+        QuestStateReadModel questStateReadModel)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-        QuestCollectionViewModel = new QuestCollectionViewModel();
+        QuestCollectionViewModel = new QuestCollectionViewModel(questStateReadModel);
 
         Exit_Command = new RelayCommand(() =>
         {

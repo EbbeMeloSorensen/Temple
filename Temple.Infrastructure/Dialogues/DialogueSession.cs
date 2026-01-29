@@ -47,13 +47,21 @@ public class DialogueSession : IDialogueSession
         };
 
         _activeVertexId = 0;
+        PossiblySwitchQuestState();
+
     }
 
     public void SelectChoice(
         int choiceId)
     {
         _activeVertexId = choiceId;
+        PossiblySwitchQuestState();
+    }
 
+    public bool IsFinished => !AvailableChoices.Any();
+
+    private void PossiblySwitchQuestState()
+    {
         switch (((DialogueVertex)_graph.GetVertex(_activeVertexId)).GameEventTrigger)
         {
             case QuestDiscoveredEventTrigger questDiscoveredEventTrigger:
@@ -64,6 +72,4 @@ public class DialogueSession : IDialogueSession
                 break;
         }
     }
-
-    public bool IsFinished => !AvailableChoices.Any();
 }

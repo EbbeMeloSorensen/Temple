@@ -125,12 +125,12 @@ public class DialogueSessionFactory : IDialogueSessionFactory
             new()
             {
                 Text = "Hello there. Please slay some skeletons for me, will ya?",
-                GameEventTrigger = new QuestDiscoveredEventTrigger("skeletons_in_graveyard")
+                GameEventTrigger = new QuestDiscoveredEventTrigger("skeleton_trouble")
             },
             new()
             {
                 Text = "Great, they are on the graveyard outside of the village. Good luck",
-                GameEventTrigger = new QuestAcceptedEventTrigger("skeletons_in_graveyard")
+                GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
             },
             new("Ok, then fuck off, skeleton lover!"),
             new(""),
