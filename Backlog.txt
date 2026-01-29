@@ -45,6 +45,9 @@ Done:
   - Du bør operere med en abstraktion for DialogueSessionFactory, så du ikke introducerer en afhængighed til din graf
 
 Todo:
+* Lav det, som ChatGPT foreslår, med at Controlleren lytter på alle Game Events og vedligeholder "authoritative game state"
+  og ja, QuestReadModellen gør det samme, men den er altså bare en cache/projektion, og når splilleren loader et spil,
+  så skal den bygges op fra den authoritative game state i controlleren
 * DialogueSessions skal ikke hardkodes men læses fra fil, gerne let editerbart format som f.eks. dot eller mermaid
 * Når man har fået en quest og så snakker med den samme NPC igen, så skal det være en ny dialog.
 * Aktive quests skal vises i GameMenu
