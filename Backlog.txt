@@ -45,6 +45,7 @@ Done:
   - Du bør operere med en abstraktion for DialogueSessionFactory, så du ikke introducerer en afhængighed til din graf
 
 Todo:
+* Fix lige det med at man klarer en quest ved at besejre en fjende - det holdt op med at virke, da du refaktorerede
 * Lav det, som ChatGPT foreslår, med at Controlleren lytter på alle Game Events og vedligeholder "authoritative game state"
   og ja, QuestReadModellen gør det samme, men den er altså bare en cache/projektion, og når splilleren loader et spil,
   så skal den bygges op fra den authoritative game state i controlleren

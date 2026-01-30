@@ -1,8 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
+using System.Collections.ObjectModel;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Dialogue;
@@ -60,7 +61,7 @@ public class DialogueViewModel : TempleViewModel
         _questStateReadModel = questStateReadModel ?? throw new ArgumentNullException(nameof(questStateReadModel));
         _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
-        // Dette er ikke længere nødvendigt, men vi holder det lige indtil vi er helt færdige med dialogsystemet
+        // Dette er ikke længere nødvendigt, men vi holder det lige, indtil vi er helt færdige med dialogsystemet
         _questStateReadModel.QuestStateChanged += HandleQuestStateChanged;
 
         SelectOption_Command = new RelayCommand<int>(optionId =>
@@ -114,6 +115,8 @@ public class DialogueViewModel : TempleViewModel
 
         Title = dialoguePayload.NPCId;
         NPCPortraitPath = _dialogueSession.NPCPortraitPath;
+
+        _controller.EventBus.Publish(new DialogueEvent(dialoguePayload.NPCId));
 
         Update();
 

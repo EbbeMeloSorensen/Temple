@@ -22,7 +22,9 @@ public class InGameMenuViewModel : TempleViewModel
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
-        QuestCollectionViewModel = new QuestCollectionViewModel(questStateReadModel);
+        QuestCollectionViewModel = new QuestCollectionViewModel(
+            questStateReadModel,
+            controller.EventBus);
 
         Exit_Command = new RelayCommand(() =>
         {

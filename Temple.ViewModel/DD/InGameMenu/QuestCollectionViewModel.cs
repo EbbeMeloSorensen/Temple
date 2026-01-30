@@ -1,12 +1,11 @@
-﻿using Craft.DataStructures.Graph;
-using Craft.Utils;
-using Craft.ViewModels.Graph;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Media;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.Extensions.Options;
-using System.Collections.ObjectModel;
-using System.Windows.Media;
-using Temple.ViewModel.DD.Dialogue;
+using Craft.DataStructures.Graph;
+using Craft.Utils;
+using Craft.ViewModels.Graph;
+using Temple.Application.Core;
 using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.InGameMenu
@@ -26,7 +25,8 @@ namespace Temple.ViewModel.DD.InGameMenu
         public RelayCommand<string> CheatCompleteQuest_Command { get; }
 
         public QuestCollectionViewModel(
-            QuestStateReadModel questStateReadModel)
+            QuestStateReadModel questStateReadModel,
+            QuestEventBus eventBus)
         {
             var graph = GenerateGraph();
 
@@ -45,6 +45,7 @@ namespace Temple.ViewModel.DD.InGameMenu
 
             CheatCompleteQuest_Command = new RelayCommand<string>(questId =>
             {
+                //eventBus.Publish(new Quest);
                 throw new NotImplementedException();
             });
         }

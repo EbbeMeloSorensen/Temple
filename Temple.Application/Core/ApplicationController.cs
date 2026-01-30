@@ -1,7 +1,7 @@
-﻿using Craft.Math;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Craft.Math;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Application.State.Payloads;

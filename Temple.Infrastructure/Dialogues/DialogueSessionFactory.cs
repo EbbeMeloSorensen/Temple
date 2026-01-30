@@ -25,9 +25,20 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue(
         IQuestStateReadModel questStateReadModel)
     {
-        if (questStateReadModel.GetQuestState("rat_infestation") == QuestState.Hidden)
+        var questState = questStateReadModel.GetQuestState("rat_infestation");
+
+        if (questState == QuestState.Hidden)
         {
             return GenerateGraph_Innkeeper_1st_Dialogue();
+        }
+
+        if (questState == QuestState.Active)
+        {
+            // Todo: Man skal kunne spørge read modellen om complete condition er opfyldt
+            // (husk, at en quest ud over en state har en IsCompletionConditionMet property,
+            // som flipper til true, når objective er mødt, og som skal VÆRE true for at man
+            // kan flippe questens state til Completed)
+            throw new NotImplementedException("Innkeeper dialogue for active quest with completed objectives not implemented yet");
         }
 
         return GenerateGraph_Innkeeper_2nd_Dialogue();
