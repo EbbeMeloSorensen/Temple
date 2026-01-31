@@ -8,8 +8,9 @@ using System.Windows.Media;
 using Temple.Application.Core;
 using Temple.Application.DD;
 using Temple.Application.Interfaces;
+using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.ViewModel.DD.Quests;
+using Temple.Infrastructure.Dialogues;
 
 namespace Temple.ViewModel.DD.InGameMenu
 {
@@ -52,10 +53,9 @@ namespace Temple.ViewModel.DD.InGameMenu
 
             _questStatusReadModel.QuestStatusChanged += HandleQuestStatusChanged;
 
-            CheatCompleteQuest_Command = new RelayCommand<string>(questId =>
+            CheatCompleteQuest_Command = new RelayCommand<string>(_ =>
             {
                 throw new NotImplementedException();
-                eventBus.Publish(new BattleWonEvent("rats_in_warehouse"));
             });
         }
 
