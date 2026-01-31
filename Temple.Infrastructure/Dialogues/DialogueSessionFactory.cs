@@ -164,6 +164,40 @@ public class DialogueSessionFactory : IDialogueSessionFactory
             },
             new()
             {
+                Priority = 100.0,
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Captain_SkeletonQuestActive()
+            },
+            new()
+            {
+                Priority = 100.0,
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = true
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Captain_SkeletonQuestTurnIn()
+            },
+            new()
+            {
                 Priority = 0.0,
                 Graph = GenerateGraph_Captain_SmallTalkDialogue()
             }
@@ -358,6 +392,36 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         graph.AddEdge(new LabelledEdge(0, 2, "Ok then. I'll kill'em for you."));
         graph.AddEdge(new LabelledEdge(1, 3, "Ok"));
         graph.AddEdge(new LabelledEdge(2, 3, "Thanks. See you later"));
+
+        return graph;
+    }
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestActive()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("Have you taken care of those skeletons yet?"),
+            new("Well, then get to it."),
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
+        graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
+
+        return graph;
+    }
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestTurnIn()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("Way to go, my friend - you smacked them skeletons up good. Here you have 100 coins in reward."),
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "Thanks, man."));
 
         return graph;
     }
