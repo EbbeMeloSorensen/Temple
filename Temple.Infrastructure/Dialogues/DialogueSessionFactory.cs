@@ -25,23 +25,29 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue(
         IQuestStatusReadModel questStatusReadModel)
     {
-        var questState = questStatusReadModel.GetQuestStatus("rat_infestation").QuestState;
+        var questStatus = questStatusReadModel.GetQuestStatus("rat_infestation");
 
-        if (questState == QuestState.Hidden)
+        if (questStatus.QuestState == QuestState.Hidden)
         {
             return GenerateGraph_Innkeeper_1st_Dialogue();
         }
 
-        if (questState == QuestState.Active)
+        if (questStatus.QuestState == QuestState.Available)
         {
-            // Todo: Man skal kunne spørge read modellen om complete condition er opfyldt
-            // (husk, at en quest ud over en state har en IsCompletionConditionMet property,
-            // som flipper til true, når objective er mødt, og som skal VÆRE true for at man
-            // kan flippe questens state til Completed)
-            throw new NotImplementedException("Innkeeper dialogue for active quest with completed objectives not implemented yet");
+            return GenerateGraph_Innkeeper_4th_Dialogue();
         }
 
-        return GenerateGraph_Innkeeper_2nd_Dialogue();
+        if (questStatus.QuestState == QuestState.Active)
+        {
+            if (questStatus.AreCompletionCriteriaSatisfied)
+            {
+                return GenerateGraph_Innkeeper_3rd_Dialogue();
+            }
+            
+            return GenerateGraph_Innkeeper_2nd_Dialogue();
+        }
+
+        return GenerateGraph_Innkeeper_SmallTalkDialogue();
     }
 
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_1st_Dialogue()
@@ -125,6 +131,64 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
         graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
         graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
+
+        return graph;
+    }
+
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_4th_Dialogue()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("Hi again, you ignorant rat lover. Do you want to kill them for me after all?"),
+            new("Then fuck off, will ya?"),
+            new()
+            {
+                Text = "Ok then, best of luck!",
+                GameEventTrigger = new QuestAcceptedEventTrigger("rat_infestation")
+            },
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "No. As I said, I think rats are cute"));
+        graph.AddEdge(new LabelledEdge(0, 2, "Ok then. I'll kill those critters for you."));
+        graph.AddEdge(new LabelledEdge(1, 3, "Ok"));
+        graph.AddEdge(new LabelledEdge(2, 3, "Thanks. See you later"));
+
+        return graph;
+    }
+
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_3rd_Dialogue()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("You're back! Did you see Ethon down there?"),
+            new("He followed you down there not long ago, and I fear he may have gotten lost in the cellar... or worse, he may have wandered into the sewers. I tried to stop him..."),
+            new("Thank you... but before you go, please take these coins -- in payment for all you've done so far. And as promised, here's the key to the sewer gate. Be careful down there - there's bound to be worse things than sewer rats in those tunnels."),
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "In the cellar? No I didn't see him."));
+        graph.AddEdge(new LabelledEdge(1, 2, "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him."));
+        graph.AddEdge(new LabelledEdge(2, 3, "I'll be careful. Thanks, Alyth."));
+
+        return graph;
+    }
+
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_SmallTalkDialogue()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("Nice weather today, huh?"),
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "Sure"));
 
         return graph;
     }

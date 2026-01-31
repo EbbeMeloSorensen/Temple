@@ -8,7 +8,9 @@ using System.Windows.Media;
 using Temple.Application.Core;
 using Temple.Application.DD;
 using Temple.Application.Interfaces;
+using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.InGameMenu
 {
@@ -27,7 +29,7 @@ namespace Temple.ViewModel.DD.InGameMenu
 
         public ObservableCollection<QuestViewModel> Quests { get; }
 
-        public RelayCommand<string> CheatCompleteQuest_Command { get; }
+        public RelayCommand<string> Cheat_Command { get; }
 
         public QuestCollectionViewModel(
             IQuestStatusReadModel questStatusReadModel,
@@ -45,9 +47,9 @@ namespace Temple.ViewModel.DD.InGameMenu
             
             _questStatusReadModel.QuestStatusChanged += HandleQuestStatusChanged;
 
-            CheatCompleteQuest_Command = new RelayCommand<string>(_ =>
+            Cheat_Command = new RelayCommand<string>(questId =>
             {
-                _eventBus.Publish(new BattleWonEvent("rats_in_warehouse"));
+                _eventBus.Publish(new AdvanceQuestByCheatingEvent(questId));
             });
 
             Update();
@@ -91,11 +93,22 @@ namespace Temple.ViewModel.DD.InGameMenu
 
         private void Update()
         {
-            _questStatusReadModel.Quests.ToList().ForEach(quest =>
+            _questStatusReadModel.QuestIds.ToList().ForEach(questId =>
             {
+                var status = _questStatusReadModel.GetQuestStatus(questId);
+
+                var title = $"{questId}: {status.QuestState}";
+
+                if (status.QuestState == QuestState.Active && status.AreCompletionCriteriaSatisfied)
+                {
+                    title = $"{title} (completion criteria satisfied)";
+                }
+
                 Quests.Add(new QuestViewModel
                 {
-                    Title = quest
+                    Id = questId,
+                    Title = title,
+                    CheatButtonVisible = status.QuestState != QuestState.Completed,
                 });
             });
         }

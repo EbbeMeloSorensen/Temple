@@ -20,7 +20,7 @@ namespace Temple.Application.UnitTest
                 {
                     new BecomeAvailableOnDialogueRule("innkeeper"),
                     new AcceptQuestRule(),
-                    new CompleteOnBattleWonRule("rats_in_warehouse"),
+                    new SatisfyOnBattleWonRule("rats_in_warehouse"),
                     new TurnInOnDialogueRule("innkeeper")
                 }
             );

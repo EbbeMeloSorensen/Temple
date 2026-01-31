@@ -28,10 +28,11 @@
                                    Margin="20,10,10,10" TextWrapping="Wrap"
                                    Text="{Binding Title}"/>
                         <Button Grid.Column="1" Width="100" Height="50" VerticalAlignment="Top"
-                                Margin="11" Content="Cheat complete"
-                                Command="{Binding DataContext.CheatCompleteQuest_Command,
+                                Margin="11" Content="Cheat"
+                                Command="{Binding DataContext.Cheat_Command,
                                     RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                CommandParameter="{Binding Title}"/>
+                                CommandParameter="{Binding Id}"
+                                Visibility="{Binding CheatButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

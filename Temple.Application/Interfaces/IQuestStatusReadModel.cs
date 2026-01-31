@@ -5,7 +5,7 @@ namespace Temple.Application.Interfaces;
 
 public interface IQuestStatusReadModel
 {
-    IEnumerable<string> Quests { get; }
+    IEnumerable<string> QuestIds { get; }
 
     event EventHandler<QuestStatusChangedEventArgs>? QuestStatusChanged;
 

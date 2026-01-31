@@ -46,8 +46,10 @@ public sealed class QuestStatusReadModel : IQuestStatusReadModel
         } ;
     }
 
-    public IEnumerable<string> Quests => _quests.Select(kvp =>
+    public IEnumerable<string> QuestIds => _quests.Select(kvp =>
     {
+        return kvp.Key;
+
         var questStatus = kvp.Value;
         var result = $"{kvp.Key}: {questStatus.QuestState}";
 

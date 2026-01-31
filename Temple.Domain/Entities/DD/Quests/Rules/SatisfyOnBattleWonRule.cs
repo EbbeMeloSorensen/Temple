@@ -2,11 +2,11 @@
 
 namespace Temple.Domain.Entities.DD.Quests.Rules;
 
-public sealed class CompleteOnBattleWonRule : IQuestRule
+public sealed class SatisfyOnBattleWonRule : IQuestRule
 {
     private readonly string _battleId;
 
-    public CompleteOnBattleWonRule(string battleId)
+    public SatisfyOnBattleWonRule(string battleId)
     {
         _battleId = battleId;
     }

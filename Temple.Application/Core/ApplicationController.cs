@@ -46,14 +46,16 @@ public class ApplicationController
         // Todo: Her hardkoder vi bare et par quests. Senere læser vi dem fra fil
         var quest1 = new Quest(id: "rat_infestation", rules: new List<IQuestRule>
         {
+            new AdvanceOnCheatRule(),
+
             // During dialogue with innkeeper
             new BecomeAvailableOnQuestDiscoveredRule(),
 
             // Player accepts quest
             new AcceptQuestRule(),
 
-            // Kill warehouse rats => objectives completed
-            new CompleteOnBattleWonRule("rats_in_warehouse"),
+            // Kill warehouse rats => completion criteria satisfied
+            new SatisfyOnBattleWonRule("rats_in_warehouse"),
 
             // Talk to innkeeper again => quest completed
             new TurnInOnDialogueRule("innkeeper")
@@ -61,15 +63,16 @@ public class ApplicationController
 
         var quest2 = new Quest(id: "skeleton_trouble", rules: new List<IQuestRule>
         {
+            new AdvanceOnCheatRule(),
+
             // Talk to captain => quest becomes available
-            //new BecomeAvailableOnDialogueRule("captain"),
             new BecomeAvailableOnQuestDiscoveredRule(),
 
             // Player accepts quest
             new AcceptQuestRule(),
 
-            // Kill skeletons in graveyard => objectives completed
-            new CompleteOnBattleWonRule("skeletons_in_graveyard"),
+            // Kill skeletons in graveyard => completion criteria satisfied
+            new SatisfyOnBattleWonRule("skeletons_in_graveyard"),
 
             // Talk to captain again => quest completed
             new TurnInOnDialogueRule("captain")
