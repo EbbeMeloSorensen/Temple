@@ -1,4 +1,5 @@
 ﻿using Craft.Math;
+using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.ViewModel.DD.Quests;
@@ -9,7 +10,7 @@ public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
         string siteId,
-        QuestStatusReadModel questStatusReadModel)
+        IQuestStatusReadModel questStatusReadModel)
     {
         var siteData = new SiteData();
 

@@ -22,8 +22,8 @@ namespace Temple.ViewModel
         private readonly IDialogService _applicationDialogService;
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
+        private readonly IQuestStatusReadModel _questStatusReadModel;
         private readonly ApplicationController _controller;
-        private readonly QuestStatusReadModel _questStatusReadModel;
 
         private string _currentApplicationStateAsText;
         private object _currentViewModel;

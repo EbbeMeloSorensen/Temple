@@ -10,7 +10,6 @@ using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 using Temple.Infrastructure.Presentation;
-using Temple.ViewModel.DD.Quests;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
@@ -22,7 +21,7 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
         private readonly ISiteRenderer _siteRenderer;
-        private readonly QuestStatusReadModel _questStatusReadModel;
+        private readonly IQuestStatusReadModel _questStatusReadModel;
 
         private Model3D _scene3D;
         private Point3D _cameraPosition;
@@ -88,7 +87,7 @@ namespace Temple.ViewModel.DD.Exploration
 
         public ExplorationViewModel(
             ApplicationController controller,
-            QuestStatusReadModel questStatusReadModel,
+            IQuestStatusReadModel questStatusReadModel,
             ISiteRenderer siteRenderer)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));

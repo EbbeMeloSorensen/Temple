@@ -18,7 +18,7 @@ public class InGameMenuViewModel : TempleViewModel
 
     public InGameMenuViewModel(
         ApplicationController controller,
-        QuestStatusReadModel questStatusReadModel)
+        IQuestStatusReadModel questStatusReadModel)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
