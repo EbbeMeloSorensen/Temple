@@ -7,7 +7,7 @@ public sealed class Quest
 {
     public string Id { get; }
     public QuestState State { get; private set; }
-    public bool IsCompletionConditionMet { get; private set; }
+    public bool AreCompletionCriteriaSatisfied { get; private set; }
 
     private readonly List<IQuestRule> _rules;
 
@@ -17,7 +17,7 @@ public sealed class Quest
     {
         Id = id;
         State = QuestState.Hidden;
-        IsCompletionConditionMet = false;
+        AreCompletionCriteriaSatisfied = false;
         _rules = rules.ToList();
     }
 
@@ -37,6 +37,6 @@ public sealed class Quest
 
     public void MarkObjectivesCompleted()
     {
-        IsCompletionConditionMet = true;
+        AreCompletionCriteriaSatisfied = true;
     }
 }

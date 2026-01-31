@@ -14,7 +14,7 @@ public sealed class TurnInOnDialogueRule : IQuestRule
     public void Apply(Quest quest, IGameEvent e)
     {
         if (quest.State == QuestState.Active &&
-            quest.IsCompletionConditionMet &&
+            quest.AreCompletionCriteriaSatisfied &&
             e is DialogueEvent d &&
             d.NpcId == _npcId)
         {

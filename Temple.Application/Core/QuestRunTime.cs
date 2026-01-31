@@ -22,19 +22,32 @@ public sealed class QuestRuntime
 
     private void OnGameEvent(IGameEvent e)
     {
+        // Der er sket noget, så dribl alle quests igennem
         foreach (var quest in _quests)
         {
-            var oldState = quest.State;
+            var stateBefore = quest.State;
+            var completionCriteriaSatisfiedBefore = quest.AreCompletionCriteriaSatisfied;
 
+            // Få hver quest til at håndtere eventet. Dette kan få nogle af dem til at skifte state
             quest.HandleEvent(e);
 
-            if (quest.State != oldState)
+            if (quest.State != stateBefore)
             {
+                // Informer subscribers, f.eks. readmodeller, om quests, der har skiftet state
                 _eventBus.Publish(
                     new QuestStateChangedEvent(
                         quest.Id,
-                        oldState,
+                        stateBefore,
                         quest.State));
+            }
+
+            // Informer subscribers, f.eks. readmodeller, om quests, hvor det, om deres acceptkriterier er opfyldt, har ændret sig
+            if (quest.AreCompletionCriteriaSatisfied != completionCriteriaSatisfiedBefore)
+            {
+                _eventBus.Publish(
+                    new QuestSatisfactionOfCompletionCriteriaChangedEvent(
+                        quest.Id,
+                        quest.AreCompletionCriteriaSatisfied));
             }
         }
     }

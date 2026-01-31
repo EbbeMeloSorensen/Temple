@@ -25,7 +25,7 @@ namespace Temple.ViewModel.DD.InGameMenu
         public RelayCommand<string> CheatCompleteQuest_Command { get; }
 
         public QuestCollectionViewModel(
-            QuestStateReadModel questStateReadModel,
+            QuestStatusReadModel questStatusReadModel,
             QuestEventBus eventBus)
         {
             var graph = GenerateGraph();
@@ -35,7 +35,7 @@ namespace Temple.ViewModel.DD.InGameMenu
 
             Quests = new ObservableCollection<QuestViewModel>();
 
-            questStateReadModel.Quests.ToList().ForEach(quest =>
+            questStatusReadModel.Quests.ToList().ForEach(quest =>
             {
                 Quests.Add(new QuestViewModel
                 {
@@ -60,7 +60,6 @@ namespace Temple.ViewModel.DD.InGameMenu
             };
 
             var graph = new GraphAdjacencyList<LabelledVertex, EmptyEdge>(vertices, directed:true);
-
 
             return graph;
         }

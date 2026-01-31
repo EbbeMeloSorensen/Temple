@@ -8,13 +8,13 @@ namespace Temple.Infrastructure.Dialogues;
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
     public IDialogueSession GetDialogueSession(
-        IQuestStateReadModel questStateReadModel,
+        IQuestStatusReadModel questStatusReadModel,
         QuestEventBus eventBus,
         string npcId)
     {
         var graph = npcId switch
         {
-            "innkeeper" => GenerateGraph_Innkeeper_Dialogue(questStateReadModel),
+            "innkeeper" => GenerateGraph_Innkeeper_Dialogue(questStatusReadModel),
             "captain" => GenerateGraph_Captain_1st_Dialogue(),
             _ => throw new InvalidOperationException("Unknown npcId")
         };
@@ -23,9 +23,9 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     }
 
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue(
-        IQuestStateReadModel questStateReadModel)
+        IQuestStatusReadModel questStatusReadModel)
     {
-        var questState = questStateReadModel.GetQuestState("rat_infestation");
+        var questState = questStatusReadModel.GetQuestStatus("rat_infestation").QuestState;
 
         if (questState == QuestState.Hidden)
         {

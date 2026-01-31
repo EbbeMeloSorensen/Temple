@@ -45,6 +45,9 @@ Done:
   - Du bør operere med en abstraktion for DialogueSessionFactory, så du ikke introducerer en afhængighed til din graf
 
 Todo:
+* Lav et event til at informere QuestRead-modellen om at completion condition er fuldført
+* Få QuestReadModellen til at gemme disse boolske og udstille dem til subscribers
+* Få dialog factoryen til at bruge det
 * Fix lige det med at man klarer en quest ved at besejre en fjende - det holdt op med at virke, da du refaktorerede
 * Lav det, som ChatGPT foreslår, med at Controlleren lytter på alle Game Events og vedligeholder "authoritative game state"
   og ja, QuestReadModellen gør det samme, men den er altså bare en cache/projektion, og når splilleren loader et spil,

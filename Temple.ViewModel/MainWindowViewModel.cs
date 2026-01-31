@@ -23,7 +23,7 @@ namespace Temple.ViewModel
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
         private readonly ApplicationController _controller;
-        private readonly QuestStateReadModel _questStateReadModel;
+        private readonly QuestStatusReadModel _questStatusReadModel;
 
         private string _currentApplicationStateAsText;
         private object _currentViewModel;
@@ -59,7 +59,7 @@ namespace Temple.ViewModel
             _siteRenderer = siteRenderer;
             _dialogueSessionFactory = dialogueSessionFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _questStateReadModel = new QuestStateReadModel(controller.EventBus);
+            _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
@@ -88,7 +88,7 @@ namespace Temple.ViewModel
                         CurrentViewModel = interludeViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Exploration:
-                        var explorationViewModel = new ExplorationViewModel(_controller, _questStateReadModel, _siteRenderer);
+                        var explorationViewModel = new ExplorationViewModel(_controller, _questStatusReadModel, _siteRenderer);
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Battle:
@@ -96,11 +96,11 @@ namespace Temple.ViewModel
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.Dialogue:
-                        var dialogueViewModel = new DialogueViewModel(_controller, _questStateReadModel, _dialogueSessionFactory);
+                        var dialogueViewModel = new DialogueViewModel(_controller, _questStatusReadModel, _dialogueSessionFactory);
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);
                         break;
                     case StateMachineState.InGameMenu:
-                        var inGameMenuViewModel = new InGameMenuViewModel(_controller, _questStateReadModel);
+                        var inGameMenuViewModel = new InGameMenuViewModel(_controller, _questStatusReadModel);
                         CurrentViewModel = inGameMenuViewModel.Init(applicationState.Payload);
                         break;
 

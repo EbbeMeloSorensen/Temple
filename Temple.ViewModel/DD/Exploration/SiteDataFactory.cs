@@ -9,7 +9,7 @@ public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
         string siteId,
-        QuestStateReadModel questStateReadModel)
+        QuestStatusReadModel questStatusReadModel)
     {
         var siteData = new SiteData();
 
@@ -191,7 +191,7 @@ public static class SiteDataFactory
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
-                if (questStateReadModel.GetQuestState("rat_infestation") == QuestState.Active)
+                if (questStatusReadModel.GetQuestStatus("rat_infestation").QuestState == QuestState.Active)
                 {
                     siteData.AddEventTrigger_ScriptedBattle(
                         new Point2D(12, 9),
@@ -218,7 +218,7 @@ public static class SiteDataFactory
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
-                if (questStateReadModel.GetQuestState("skeleton_trouble") == QuestState.Active)
+                if (questStatusReadModel.GetQuestStatus("skeleton_trouble").QuestState == QuestState.Active)
                 {
                     siteData.AddEventTrigger_ScriptedBattle(
                         new Point2D(12, 9),

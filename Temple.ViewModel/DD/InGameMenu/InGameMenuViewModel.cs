@@ -18,12 +18,12 @@ public class InGameMenuViewModel : TempleViewModel
 
     public InGameMenuViewModel(
         ApplicationController controller,
-        QuestStateReadModel questStateReadModel)
+        QuestStatusReadModel questStatusReadModel)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
         QuestCollectionViewModel = new QuestCollectionViewModel(
-            questStateReadModel,
+            questStatusReadModel,
             controller.EventBus);
 
         Exit_Command = new RelayCommand(() =>

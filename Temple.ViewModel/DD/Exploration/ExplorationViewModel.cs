@@ -22,7 +22,7 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
         private readonly ISiteRenderer _siteRenderer;
-        private readonly QuestStateReadModel _questStateReadModel;
+        private readonly QuestStatusReadModel _questStatusReadModel;
 
         private Model3D _scene3D;
         private Point3D _cameraPosition;
@@ -88,11 +88,11 @@ namespace Temple.ViewModel.DD.Exploration
 
         public ExplorationViewModel(
             ApplicationController controller,
-            QuestStateReadModel questStateReadModel,
+            QuestStatusReadModel questStatusReadModel,
             ISiteRenderer siteRenderer)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _questStateReadModel = questStateReadModel ?? throw new ArgumentNullException(nameof(questStateReadModel));
+            _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
 
             Engine = new Engine(null);
@@ -238,7 +238,7 @@ namespace Temple.ViewModel.DD.Exploration
 
             var siteData = SiteDataFactory.GenerateSiteData(
                 explorationPayload.SiteId,
-                _questStateReadModel);
+                _questStatusReadModel);
 
             Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 

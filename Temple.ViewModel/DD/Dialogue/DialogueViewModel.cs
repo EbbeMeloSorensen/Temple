@@ -11,7 +11,7 @@ namespace Temple.ViewModel.DD.Dialogue;
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
-    private readonly QuestStateReadModel _questStateReadModel;
+    private readonly IQuestStatusReadModel _questStatusReadModel;
     private readonly IDialogueSessionFactory _dialogueSessionFactory;
     private IDialogueSession _dialogueSession;
     private string _title;
@@ -54,15 +54,15 @@ public class DialogueViewModel : TempleViewModel
 
     public DialogueViewModel(
         ApplicationController controller,
-        QuestStateReadModel questStateReadModel,
+        IQuestStatusReadModel questStatusReadModel,
         IDialogueSessionFactory dialogueSessionFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-        _questStateReadModel = questStateReadModel ?? throw new ArgumentNullException(nameof(questStateReadModel));
+        _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
         _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
         // Dette er ikke længere nødvendigt, men vi holder det lige, indtil vi er helt færdige med dialogsystemet
-        _questStateReadModel.QuestStateChanged += HandleQuestStateChanged;
+        //_questStateReadModel.QuestStateChanged += HandleQuestStateChanged;
 
         SelectOption_Command = new RelayCommand<int>(optionId =>
         {
@@ -84,12 +84,12 @@ public class DialogueViewModel : TempleViewModel
         Options = new ObservableCollection<DialogueOptionViewModel>();
     }
 
-    private void HandleQuestStateChanged(
-        object? sender,
-        QuestStateChangedEventArgs e)
-    {
-        // Dette er ikke længere nødvendigt
-    }
+    //private void HandleQuestStateChanged(
+    //    object? sender,
+    //    QuestStateChangedEventArgs e)
+    //{
+    //    // Dette er ikke længere nødvendigt
+    //}
 
     private void Update()
     {
@@ -109,7 +109,7 @@ public class DialogueViewModel : TempleViewModel
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
         _dialogueSession = _dialogueSessionFactory.GetDialogueSession(
-            _questStateReadModel,
+            _questStatusReadModel,
             _controller.EventBus,
             dialoguePayload.NPCId);
 
@@ -126,7 +126,7 @@ public class DialogueViewModel : TempleViewModel
     public override void Cleanup()
     {
         // Unsubscribe to prevent memory leaks
-        _questStateReadModel.QuestStateChanged -= HandleQuestStateChanged;
+        //_questStateReadModel.QuestStateChanged -= HandleQuestStateChanged;
         base.Cleanup();
     }
 }

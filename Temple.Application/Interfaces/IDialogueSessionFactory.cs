@@ -5,7 +5,7 @@ namespace Temple.Application.Interfaces;
 public interface IDialogueSessionFactory
 {
     public IDialogueSession GetDialogueSession(
-        IQuestStateReadModel questStateReadModel,
+        IQuestStatusReadModel questStatusReadModel,
         QuestEventBus eventBus,
         string npcId);
 }
