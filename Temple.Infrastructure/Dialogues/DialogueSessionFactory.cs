@@ -7,14 +7,18 @@ namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
+    private IQuestStatusReadModel _questStatusReadModel;
+
     public IDialogueSession GetDialogueSession(
         IQuestStatusReadModel questStatusReadModel,
         QuestEventBus eventBus,
         string npcId)
     {
+        _questStatusReadModel = questStatusReadModel;
+
         var graph = npcId switch
         {
-            "innkeeper" => GenerateGraph_Innkeeper_Dialogue(questStatusReadModel),
+            "innkeeper" => GenerateGraph_Innkeeper_Dialogue(),
             "captain" => GenerateGraph_Captain_1st_Dialogue(),
             _ => throw new InvalidOperationException("Unknown npcId")
         };
@@ -22,10 +26,13 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return new DialogueSession(eventBus, npcId, graph);
     }
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue(
-        IQuestStatusReadModel questStatusReadModel)
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue()
     {
-        var questStatus = questStatusReadModel.GetQuestStatus("rat_infestation");
+        // New
+        var dialogueGraphCollection = GetDialogueGraphCollectionForInnKeeper();
+
+        // Deprecated
+        var questStatus = _questStatusReadModel.GetQuestStatus("rat_infestation");
 
         if (questStatus.QuestState == QuestState.Hidden)
         {
@@ -219,5 +226,32 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         graph.AddEdge(new LabelledEdge(2, 3, "OK"));
 
         return graph;
+    }
+
+    private DialogueGraphCollection GetDialogueGraphCollectionForInnKeeper()
+    {
+        var graph1 = GenerateGraph_Innkeeper_1st_Dialogue();
+        var graph2 = GenerateGraph_Innkeeper_SmallTalkDialogue();
+
+        var dialogueGraphs = new List<DialogueGraph>
+        {
+            new DialogueGraph()
+            {
+                Priority = 100.0,
+                Graph = graph1
+            },
+            new DialogueGraph
+            {
+                Priority = 0,
+                Graph = graph2
+            }
+        };
+
+        return new DialogueGraphCollection(dialogueGraphs);
+    }
+
+    private bool DialogueGraphMeetsConditions()
+    {
+        return false;
     }
 }

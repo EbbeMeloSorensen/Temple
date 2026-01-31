@@ -45,9 +45,11 @@ Done:
   - Du bør operere med en abstraktion for DialogueSessionFactory, så du ikke introducerer en afhængighed til din graf
 * Lav et event til at informere QuestRead-modellen om at completion condition er fuldført
 * Få QuestReadModellen til at gemme disse boolske og udstille dem til subscribers
+* Lav en bedre QuestViewModel, der kan bruges til test
 
 Todo:
-* Lav en bedre QuestViewModel, der kan bruges til test
+* Lav dialogues sådan som ChatGpt foreslår, hvor det baseres på prioriteter og quest state frem for det der if/then/else helvede
+* Læs quest collections fra fil
 * Lav det sådan at QuestReadModel, som jo er en cache, kan populeres fra autoritative data i Controlleren
   ..så kan man jo i diagnostic mode populere den med alle de hidden quests også
 * Få dialog factoryen til at bruge det
