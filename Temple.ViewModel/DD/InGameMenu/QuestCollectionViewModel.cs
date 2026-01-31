@@ -8,15 +8,14 @@ using System.Windows.Media;
 using Temple.Application.Core;
 using Temple.Application.DD;
 using Temple.Application.Interfaces;
-using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.Infrastructure.Dialogues;
 
 namespace Temple.ViewModel.DD.InGameMenu
 {
     public class QuestCollectionViewModel : ViewModelBase
     {
         private IQuestStatusReadModel _questStatusReadModel;
+        private QuestEventBus _eventBus;
 
         private readonly Brush _unavailableQuestBrush = new SolidColorBrush(Colors.IndianRed);
         private readonly Brush _availableQuestBrush = new SolidColorBrush(Colors.Orange);
@@ -35,6 +34,7 @@ namespace Temple.ViewModel.DD.InGameMenu
             QuestEventBus eventBus)
         {
             _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
+            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
 
             var graph = GenerateGraph();
 
@@ -42,28 +42,23 @@ namespace Temple.ViewModel.DD.InGameMenu
             StyleGraph(graph);
 
             Quests = new ObservableCollection<QuestViewModel>();
-
-            _questStatusReadModel.Quests.ToList().ForEach(quest =>
-            {
-                Quests.Add(new QuestViewModel
-                {
-                    Title = quest
-                });
-            });
-
+            
             _questStatusReadModel.QuestStatusChanged += HandleQuestStatusChanged;
 
             CheatCompleteQuest_Command = new RelayCommand<string>(_ =>
             {
-                throw new NotImplementedException();
+                _eventBus.Publish(new BattleWonEvent("rats_in_warehouse"));
             });
+
+            Update();
         }
 
         private void HandleQuestStatusChanged(
             object? sender,
             QuestStatusChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            Quests.Clear();
+            Update();
         }
 
         private GraphAdjacencyList<LabelledVertex, EmptyEdge> GenerateGraph()
@@ -92,6 +87,17 @@ namespace Temple.ViewModel.DD.InGameMenu
             // Unsubscribe to prevent memory leaks
             _questStatusReadModel.QuestStatusChanged -= HandleQuestStatusChanged;
             base.Cleanup();
+        }
+
+        private void Update()
+        {
+            _questStatusReadModel.Quests.ToList().ForEach(quest =>
+            {
+                Quests.Add(new QuestViewModel
+                {
+                    Title = quest
+                });
+            });
         }
     }
 }
