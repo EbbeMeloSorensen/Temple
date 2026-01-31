@@ -147,6 +147,23 @@ public class DialogueSessionFactory : IDialogueSessionFactory
             },
             new()
             {
+                Priority = 100.0,
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Available,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Captain_SkeletonQuestAvailable()
+            },
+            new()
+            {
                 Priority = 0.0,
                 Graph = GenerateGraph_Captain_SmallTalkDialogue()
             }
@@ -222,22 +239,6 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
         return graph;
     }
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestActive()
-    {
-        var vertices = new List<DialogueVertex>
-        {
-            new("Have you taken care of those rats yet? I'm not giving you the key to the sewers until they're all wiped out."),
-            new("Well, I'd prefer you get to it before they change the name of this tavern to the Rat's Nest. Talk to Ethon if you don't have the key to the cellar yet."),
-            new(""),
-        };
-
-        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
-
-        graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
-        graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
-
-        return graph;
-    }
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestAvailable()
     {
         var vertices = new List<DialogueVertex>
@@ -258,6 +259,22 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         graph.AddEdge(new LabelledEdge(0, 2, "Ok then. I'll kill those critters for you."));
         graph.AddEdge(new LabelledEdge(1, 3, "Ok"));
         graph.AddEdge(new LabelledEdge(2, 3, "Thanks. See you later"));
+
+        return graph;
+    }
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestActive()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("Have you taken care of those rats yet? I'm not giving you the key to the sewers until they're all wiped out."),
+            new("Well, I'd prefer you get to it before they change the name of this tavern to the Rat's Nest. Talk to Ethon if you don't have the key to the cellar yet."),
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
+        graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
 
         return graph;
     }
@@ -318,6 +335,29 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         graph.AddEdge(new LabelledEdge(0, 1, "Sure, why not"));
         graph.AddEdge(new LabelledEdge(1, 3, "OK"));
         graph.AddEdge(new LabelledEdge(2, 3, "OK"));
+
+        return graph;
+    }
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestAvailable()
+    {
+        var vertices = new List<DialogueVertex>
+        {
+            new("Hi again, skeleton lover. Do you want to kill them for me after all?"),
+            new("Then fuck off, dude"),
+            new()
+            {
+                Text = "Ok then, best of luck!",
+                GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
+            },
+            new(""),
+        };
+
+        var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+        graph.AddEdge(new LabelledEdge(0, 1, "No. As I said, I think skeletons are cute"));
+        graph.AddEdge(new LabelledEdge(0, 2, "Ok then. I'll kill'em for you."));
+        graph.AddEdge(new LabelledEdge(1, 3, "Ok"));
+        graph.AddEdge(new LabelledEdge(2, 3, "Thanks. See you later"));
 
         return graph;
     }
