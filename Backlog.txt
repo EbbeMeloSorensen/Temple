@@ -43,10 +43,13 @@ Done:
   - Dialoger skal repræsenteres explicit som acykliske grafer (ok)
   - Lav en hardkodet dialoggraf i dialogue view modellen i første omgang (ok)
   - Du bør operere med en abstraktion for DialogueSessionFactory, så du ikke introducerer en afhængighed til din graf
-
-Todo:
 * Lav et event til at informere QuestRead-modellen om at completion condition er fuldført
 * Få QuestReadModellen til at gemme disse boolske og udstille dem til subscribers
+
+Todo:
+* Lav en bedre QuestViewModel, der kan bruges til test
+* Lav det sådan at QuestReadModel, som jo er en cache, kan populeres fra autoritative data i Controlleren
+  ..så kan man jo i diagnostic mode populere den med alle de hidden quests også
 * Få dialog factoryen til at bruge det
 * Fix lige det med at man klarer en quest ved at besejre en fjende - det holdt op med at virke, da du refaktorerede
 * Lav det, som ChatGPT foreslår, med at Controlleren lytter på alle Game Events og vedligeholder "authoritative game state"
