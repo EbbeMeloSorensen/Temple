@@ -13,7 +13,6 @@ public sealed class QuestStatusReadModel : IQuestStatusReadModel
     private readonly Dictionary<string, QuestStatus> _quests =
         new Dictionary<string, QuestStatus>();
 
-    //public event EventHandler<QuestStateChangedEventArgs>? QuestStateChanged;
     public event EventHandler<QuestStatusChangedEventArgs>? QuestStatusChanged;
 
     public QuestStatusReadModel(

@@ -1,10 +1,9 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
+using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
-using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Dialogue;
 
@@ -61,9 +60,6 @@ public class DialogueViewModel : TempleViewModel
         _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
         _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
-        // Dette er ikke længere nødvendigt, men vi holder det lige, indtil vi er helt færdige med dialogsystemet
-        //_questStateReadModel.QuestStateChanged += HandleQuestStateChanged;
-
         SelectOption_Command = new RelayCommand<int>(optionId =>
         {
             _dialogueSession.SelectChoice(optionId);
@@ -83,13 +79,6 @@ public class DialogueViewModel : TempleViewModel
 
         Options = new ObservableCollection<DialogueOptionViewModel>();
     }
-
-    //private void HandleQuestStateChanged(
-    //    object? sender,
-    //    QuestStateChangedEventArgs e)
-    //{
-    //    // Dette er ikke længere nødvendigt
-    //}
 
     private void Update()
     {
@@ -121,12 +110,5 @@ public class DialogueViewModel : TempleViewModel
         Update();
 
         return this;
-    }
-
-    public override void Cleanup()
-    {
-        // Unsubscribe to prevent memory leaks
-        //_questStateReadModel.QuestStateChanged -= HandleQuestStateChanged;
-        base.Cleanup();
     }
 }
