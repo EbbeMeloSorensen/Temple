@@ -1,5 +1,6 @@
 ﻿using Craft.DataStructures.Graph;
 using Temple.Application.Core;
+using Temple.Application.DD;
 using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Quests;
 
@@ -18,7 +19,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
         var graph = npcId switch
         {
-            "innkeeper" => GenerateGraph_Innkeeper_Dialogue(),
+            "innkeeper" => GenerateGraph_Innkeeper_Dialogue(npcId),
             "captain" => GenerateGraph_Captain_1st_Dialogue(),
             _ => throw new InvalidOperationException("Unknown npcId")
         };
@@ -26,38 +27,30 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return new DialogueSession(eventBus, npcId, graph);
     }
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue()
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_Dialogue(
+        string npcId)
     {
-        // New
+        if (npcId != "innkeeper")
+        {
+            throw new NotImplementedException("Currently only innkeeper is supported");
+        }
+
+        // Den her skal læses fra fil
         var dialogueGraphCollection = GetDialogueGraphCollectionForInnKeeper();
 
-        // Deprecated
-        var questStatus = _questStatusReadModel.GetQuestStatus("rat_infestation");
+        // Filtrer de grafer fra, som ikke kvalificerer
+        dialogueGraphCollection = new DialogueGraphCollection(
+            dialogueGraphCollection.DialogueGraphs.Where(DialogueGraphMeetsConditions));
 
-        if (questStatus.QuestState == QuestState.Hidden)
-        {
-            return GenerateGraph_Innkeeper_1st_Dialogue();
-        }
+        // Returner den af de kvalificerende grafer, som har den højeste prioritet
+        var dialogueGraph = dialogueGraphCollection.DialogueGraphs
+            .OrderByDescending(_ => _.Priority)
+            .First();
 
-        if (questStatus.QuestState == QuestState.Available)
-        {
-            return GenerateGraph_Innkeeper_4th_Dialogue();
-        }
-
-        if (questStatus.QuestState == QuestState.Active)
-        {
-            if (questStatus.AreCompletionCriteriaSatisfied)
-            {
-                return GenerateGraph_Innkeeper_3rd_Dialogue();
-            }
-            
-            return GenerateGraph_Innkeeper_2nd_Dialogue();
-        }
-
-        return GenerateGraph_Innkeeper_SmallTalkDialogue();
+        return dialogueGraph.Graph;
     }
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_1st_Dialogue()
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestHidden()
     {
         var vertices = new List<DialogueVertex>
         {
@@ -125,7 +118,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return graph;
     }
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_2nd_Dialogue()
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestActive()
     {
         var vertices = new List<DialogueVertex>
         {
@@ -142,7 +135,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return graph;
     }
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_4th_Dialogue()
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestAvailable()
     {
         var vertices = new List<DialogueVertex>
         {
@@ -166,7 +159,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return graph;
     }
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_3rd_Dialogue()
+    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestTurnIn()
     {
         var vertices = new List<DialogueVertex>
         {
@@ -230,28 +223,104 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
     private DialogueGraphCollection GetDialogueGraphCollectionForInnKeeper()
     {
-        var graph1 = GenerateGraph_Innkeeper_1st_Dialogue();
-        var graph2 = GenerateGraph_Innkeeper_SmallTalkDialogue();
-
         var dialogueGraphs = new List<DialogueGraph>
         {
-            new DialogueGraph()
+            new()
             {
                 Priority = 100.0,
-                Graph = graph1
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = true
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Innkeeper_RatQuestTurnIn()
             },
-            new DialogueGraph
+            new()
+            {
+                Priority = 100.0,
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Innkeeper_RatQuestActive()
+            },
+            new()
+            {
+                Priority = 100.0,
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Available,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Innkeeper_RatQuestAvailable()
+            },
+            new()
+            {
+                Priority = 100.0,
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Hidden,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Innkeeper_RatQuestHidden()
+            },
+            new()
             {
                 Priority = 0,
-                Graph = graph2
+                Graph = GenerateGraph_Innkeeper_SmallTalkDialogue()
             }
         };
 
         return new DialogueGraphCollection(dialogueGraphs);
     }
 
-    private bool DialogueGraphMeetsConditions()
+    private bool DialogueGraphMeetsConditions(
+        DialogueGraph graph)
     {
-        return false;
+        if (graph.Conditions == null || !graph.Conditions.Any())
+        {
+            return true;
+        }
+
+        foreach (var condition in graph.Conditions)
+        {
+            var status = _questStatusReadModel.GetQuestStatus(condition.QuestId);
+
+            if (!status.Equals(condition.RequiredStatus))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

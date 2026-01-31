@@ -2,10 +2,10 @@
 
 public class DialogueGraphCollection
 {
-    public List<DialogueGraph> DialogueGraphs { get; }
+    public IEnumerable<DialogueGraph> DialogueGraphs { get; }
 
     public DialogueGraphCollection(
-        List<DialogueGraph> dialogueGraphs)
+        IEnumerable<DialogueGraph> dialogueGraphs)
     {
         DialogueGraphs = dialogueGraphs;
     }
