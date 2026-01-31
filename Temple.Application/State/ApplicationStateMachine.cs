@@ -24,7 +24,8 @@ public class ApplicationStateMachine
             .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.GoToSmurfManagement, StateMachineState.SmurfManagement)
             .Permit(ApplicationStateShiftTrigger.GoToPeopleManagement, StateMachineState.PeopleManagement)
-            .Permit(ApplicationStateShiftTrigger.StartNewGame, StateMachineState.Interlude)
+            //.Permit(ApplicationStateShiftTrigger.StartNewGame, StateMachineState.Interlude)
+            .Permit(ApplicationStateShiftTrigger.StartNewGame, StateMachineState.GameStartup)
             .Permit(ApplicationStateShiftTrigger.ShutdownRequested, StateMachineState.ShuttingDown);
 
         _machine.Configure(StateMachineState.SmurfManagement)
@@ -34,6 +35,10 @@ public class ApplicationStateMachine
         _machine.Configure(StateMachineState.PeopleManagement)
             .OnEntry(UpdateApplicationState)
             .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.MainMenu);
+
+        _machine.Configure(StateMachineState.GameStartup)
+            .OnEntry(UpdateApplicationState)
+            .Permit(ApplicationStateShiftTrigger.ExitState, StateMachineState.Interlude);
 
         _machine.Configure(StateMachineState.Interlude)
             .OnEntry(UpdateApplicationState)

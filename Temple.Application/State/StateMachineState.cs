@@ -10,6 +10,7 @@
         ShuttingDown,
         SmurfManagement,
         PeopleManagement,
+        GameStartup,
         Interlude,
         Exploration,
         InGameMenu,

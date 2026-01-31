@@ -7,7 +7,6 @@ using Temple.Application.State;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
-using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Domain.Entities.DD.Quests.Rules;
 using Temple.Persistence.EFCore.AppData;
 
@@ -18,6 +17,8 @@ public class ApplicationController
     private readonly ApplicationStateMachine _applicationStateMachine;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
+
+    public IReadOnlyCollection<Quest> Quests { get; }
 
     public QuestEventBus EventBus { get; }
 
@@ -42,12 +43,9 @@ public class ApplicationController
         _scopeFactory = scopeFactory;
         _logger = logger;
 
-        // Her hardkoder vi bare et par quests. Senere læser vi dem fra fil
+        // Todo: Her hardkoder vi bare et par quests. Senere læser vi dem fra fil
         var quest1 = new Quest(id: "rat_infestation", rules: new List<IQuestRule>
         {
-            // Talk to innkeeper => quest becomes available
-            //new BecomeAvailableOnDialogueRule("innkeeper"),
-
             // During dialogue with innkeeper
             new BecomeAvailableOnQuestDiscoveredRule(),
 
@@ -77,7 +75,7 @@ public class ApplicationController
             new TurnInOnDialogueRule("captain")
         });
 
-        var quests = new List<Quest>
+        Quests = new List<Quest>
         {
             quest1,
             quest2
@@ -86,7 +84,7 @@ public class ApplicationController
         EventBus = new QuestEventBus();
 
         // (The QuestRuntime exists for its side effects, i.e. it is not an unused variable)
-        _ = new QuestRuntime(quests, EventBus);
+        _ = new QuestRuntime(Quests, EventBus);
 
         ApplicationData = new ApplicationData();
     }
@@ -109,7 +107,7 @@ public class ApplicationController
             await Seeding.SeedDatabase(db);
 
             Report("Finalizing startup...");
-            await Task.Delay(500); // Simulate additional initialization
+            await Task.Delay(100); // Simulate additional initialization
 
             _applicationStateMachine.Fire(ApplicationStateShiftTrigger.Initialize); // Starting → MainMenu
             Report("Application is ready.");

@@ -22,6 +22,20 @@ public sealed class QuestStatusReadModel : IQuestStatusReadModel
         eventBus.Subscribe<QuestSatisfactionOfCompletionCriteriaChangedEvent>(HandleQuestSatisfactionOfCompletionCriteriaChanged);
     }
 
+    // Det her er sådan list en diagnostisk ting, da cachen sædvanligvis er tom ved opstart
+    public void Initialize(
+        IReadOnlyCollection<Quest> quests)
+    {
+        quests.ToList().ForEach(quest =>
+        {
+            _quests[quest.Id] = new QuestStatus
+            {
+                QuestState = quest.State,
+                AreCompletionCriteriaSatisfied = quest.AreCompletionCriteriaSatisfied
+            };
+        });
+    }
+
     public QuestStatus GetQuestStatus(
         string questId)
     {

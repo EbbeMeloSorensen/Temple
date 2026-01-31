@@ -82,6 +82,11 @@ namespace Temple.ViewModel
                         CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
 
+                    case StateMachineState.GameStartup:
+                        _questStatusReadModel.Initialize(_controller.Quests);
+                        _controller.ExitState();
+                        break;
+
                     // Todo: Lav evt de 3 næste som factory, som ChatGPT foreslår
                     case StateMachineState.Interlude:
                         var interludeViewModel = new InterludeViewModel(_controller);
