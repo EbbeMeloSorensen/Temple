@@ -14,17 +14,30 @@ namespace Temple.Infrastructure.UnitTest
             var vertices = new List<DialogueVertex>
             {
                 new("Nice weather today, huh?"),
+                new()
+                {
+                    Text = "Wanna kill rats?",
+                    GameEventTrigger = new QuestDiscoveredEventTrigger("rat_infestation")
+                },
+                new("Then good luck"),
+                new("Then fuck off, rat lover"),
                 new(""),
             };
 
             var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            graph.AddEdge(new LabelledEdge(0, 1, "Yep super nice"));
+            graph.AddEdge(new LabelledEdge(1, 2, "Oh yes, I hate rats"));
+            graph.AddEdge(new LabelledEdge(1, 3, "No, rats are cute"));
+            graph.AddEdge(new LabelledEdge(2, 4, "Thanks, see you later"));
+            graph.AddEdge(new LabelledEdge(3, 4, "Ok"));
 
             var jsonResolver = new ContractResolver();
 
             var settings = new JsonSerializerSettings
             {
+                ContractResolver = jsonResolver,
                 NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = jsonResolver
+                TypeNameHandling = TypeNameHandling.Auto
             };
 
             var json = JsonConvert.SerializeObject(
@@ -47,10 +60,28 @@ namespace Temple.Infrastructure.UnitTest
             using var streamReader = new StreamReader(@"C:\Temp\serializedGraph.json");
             var json = streamReader.ReadToEnd();
 
+            var jsonResolver = new ContractResolver();
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = jsonResolver,
+                NullValueHandling = NullValueHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Auto,
+                SerializationBinder = new KnownTypesBinder
+                {
+                    KnownTypes = new[]
+                    {
+                        typeof(QuestDiscoveredEventTrigger),
+                        //typeof(QuestAcceptedEventTrigger)
+                    }
+                }
+            };
+
             // Act
-            var a = JsonConvert.DeserializeObject<GraphAdjacencyList<DialogueVertex, LabelledEdge>>(json);
+            var a = JsonConvert.DeserializeObject<GraphAdjacencyList<DialogueVertex, LabelledEdge>>(json, settings);
 
             // Assert
+            a = null;
         }
     }
 }
