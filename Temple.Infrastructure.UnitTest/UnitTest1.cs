@@ -1,10 +1,22 @@
 using Craft.DataStructures.Graph;
 using Craft.IO.Utils;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Temple.Infrastructure.Dialogues;
 
 namespace Temple.Infrastructure.UnitTest
 {
+    public class IgnoreVertexCountResolver : DefaultContractResolver
+    {
+        protected override IList<JsonProperty> CreateProperties(
+            Type type,
+            MemberSerialization memberSerialization)
+        {
+            return base.CreateProperties(type, memberSerialization)
+                .Where(p => p.PropertyName != "VertexCount")
+                .ToList();
+        }
+    }
     public class UnitTest1
     {
         [Fact]
@@ -31,13 +43,21 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new LabelledEdge(2, 4, "Thanks, see you later"));
             graph.AddEdge(new LabelledEdge(3, 4, "Ok"));
 
-            var jsonResolver = new ContractResolver();
+            var jsonResolver = new IgnoreVertexCountResolver();
 
             var settings = new JsonSerializerSettings
             {
                 ContractResolver = jsonResolver,
                 NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = TypeNameHandling.Auto,
+                SerializationBinder = new KnownTypesBinder
+                {
+                    KnownTypes = new[]
+                    {
+                        typeof(QuestDiscoveredEventTrigger),
+                        //typeof(QuestAcceptedEventTrigger)
+                    }
+                }
             };
 
             var json = JsonConvert.SerializeObject(
@@ -60,7 +80,7 @@ namespace Temple.Infrastructure.UnitTest
             using var streamReader = new StreamReader(@"C:\Temp\serializedGraph.json");
             var json = streamReader.ReadToEnd();
 
-            var jsonResolver = new ContractResolver();
+            var jsonResolver = new IgnoreVertexCountResolver();
 
             var settings = new JsonSerializerSettings
             {
