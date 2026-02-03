@@ -1,5 +1,4 @@
 using Craft.DataStructures.Graph;
-using Craft.IO.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Temple.Infrastructure.Dialogues;
@@ -17,6 +16,7 @@ namespace Temple.Infrastructure.UnitTest
                 .ToList();
         }
     }
+
     public class UnitTest1
     {
         [Fact]
