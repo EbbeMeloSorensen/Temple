@@ -1,6 +1,6 @@
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json.Serialization;
 
-namespace Temple.Infrastructure.UnitTest;
+namespace Temple.Infrastructure.Dialogues;
 
 public class KnownTypesBinder : ISerializationBinder
 {

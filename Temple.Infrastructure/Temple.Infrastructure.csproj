@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Craft.DataStructures" Version="1.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Stateless.Visualization" Version="1.0.0" />
   </ItemGroup>
 

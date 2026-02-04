@@ -1,4 +1,5 @@
-﻿using Craft.DataStructures.Graph;
+﻿using Newtonsoft.Json;
+using Craft.DataStructures.Graph;
 using Temple.Application.Core;
 using Temple.Application.DD;
 using Temple.Application.Interfaces;
@@ -9,6 +10,8 @@ namespace Temple.Infrastructure.Dialogues;
 public class DialogueSession : IDialogueSession
 {
     private QuestEventBus _eventBus;
+
+    [JsonProperty("Graph")]
     private GraphAdjacencyList<DialogueVertex, LabelledEdge> _graph;
     private int _activeVertexId;
 
