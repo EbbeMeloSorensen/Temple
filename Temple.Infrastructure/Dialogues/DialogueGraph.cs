@@ -2,7 +2,6 @@
 
 namespace Temple.Infrastructure.Dialogues;
 
-// Den her skal kunne serialiseres til/fra json
 public class DialogueGraph
 {
     public double Priority { get; set; }

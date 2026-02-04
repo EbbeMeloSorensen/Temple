@@ -94,7 +94,7 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
-        public void SerializeADialogueSessionToJsonFile()
+        public void SerializeADialogueGraphToJsonFile()
         {
             // Arrange
             var vertices = new List<DialogueVertex>
@@ -117,7 +117,11 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new LabelledEdge(2, 4, "Thanks, see you later"));
             graph.AddEdge(new LabelledEdge(3, 4, "Ok"));
 
-            var dialogueSession = new DialogueSession(new QuestEventBus(), "innkeeper", graph);
+            var dialogueGraph = new DialogueGraph
+            {
+                Priority = 90.0,
+                Graph = graph
+            };
 
             var jsonResolver = new IgnoreVertexCountResolver();
 
@@ -137,11 +141,11 @@ namespace Temple.Infrastructure.UnitTest
             };
 
             var json = JsonConvert.SerializeObject(
-                dialogueSession,
+                dialogueGraph,
                 Formatting.Indented,
                 settings);
 
-            using var streamWriter = new StreamWriter(@"C:\Temp\serializedDialogueSession.json");
+            using var streamWriter = new StreamWriter(@"C:\Temp\serializedDialogueGraph.json");
 
             streamWriter.WriteLine(json);
 
