@@ -27,7 +27,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         // Dette skal læses fra fil på lidt længere sigt
         var dialogueGraphs = npcId switch
         {
-            "innkeeper" => GetDialogueGraphCollectionForInnKeeper(),
+            "alyth" => GetDialogueGraphCollectionForInnKeeper(),
             "captain" => GetDialogueGraphCollectionForCaptain(),
             _ => throw new InvalidOperationException("Unknown npc id")
         };

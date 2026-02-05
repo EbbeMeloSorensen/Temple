@@ -191,7 +191,7 @@ namespace Temple.Infrastructure.UnitTest
                             }
                         }
                     },
-                    Graph = GenerateGraph_Innkeeper_RatQuestHidden()
+                    Graph = GenerateGraph_Alyth_RatQuestHidden()
                 },
                 new DialogueGraph
                 {
@@ -208,7 +208,7 @@ namespace Temple.Infrastructure.UnitTest
                             }
                         }
                     },
-                    Graph = GenerateGraph_Innkeeper_RatQuestAvailable()
+                    Graph = GenerateGraph_Alyth_RatQuestAvailable()
                 },
                 new DialogueGraph
                 {
@@ -225,7 +225,7 @@ namespace Temple.Infrastructure.UnitTest
                             }
                         }
                     },
-                    Graph = GenerateGraph_Innkeeper_RatQuestActive()
+                    Graph = GenerateGraph_Alyth_RatQuestActive()
                 },
                 new DialogueGraph
                 {
@@ -242,12 +242,12 @@ namespace Temple.Infrastructure.UnitTest
                             }
                         }
                     },
-                    Graph = GenerateGraph_Innkeeper_RatQuestTurnIn()
+                    Graph = GenerateGraph_Alyth_RatQuestTurnIn()
                 },
                 new DialogueGraph
                 {
                     Priority = 0,
-                    Graph = GenerateGraph_Innkeeper_SmallTalkDialogue()
+                    Graph = GenerateGraph_Alyth_SmallTalkDialogue()
                 }
             };
 
@@ -294,7 +294,7 @@ namespace Temple.Infrastructure.UnitTest
             var a = 0;
         }
 
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestHidden()
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestHidden()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -361,7 +361,7 @@ namespace Temple.Infrastructure.UnitTest
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestAvailable()
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestAvailable()
         {
             var vertices = new List<DialogueVertex>
             {
@@ -384,7 +384,7 @@ namespace Temple.Infrastructure.UnitTest
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestActive()
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestActive()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -400,7 +400,7 @@ namespace Temple.Infrastructure.UnitTest
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_RatQuestTurnIn()
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestTurnIn()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -418,7 +418,7 @@ namespace Temple.Infrastructure.UnitTest
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Innkeeper_SmallTalkDialogue()
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_SmallTalkDialogue()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -432,5 +432,101 @@ namespace Temple.Infrastructure.UnitTest
 
             return graph;
         }
+
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestHidden()
+        {
+            var vertices = new List<DialogueVertex>
+        {
+            new()
+            {
+                Text = "Hello there. Please slay some skeletons for me, will ya?",
+                GameEventTrigger = new QuestDiscoveredEventTrigger("skeleton_trouble")
+            },
+            new()
+            {
+                Text = "Great, they are on the graveyard outside of the village. Good luck",
+                GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
+            },
+            new("Ok, then fuck off, skeleton lover!"),
+            new(""),
+        };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+            graph.AddEdge(new LabelledEdge(0, 2, "No, I think skeletons are cute"));
+            graph.AddEdge(new LabelledEdge(0, 1, "Sure, why not"));
+            graph.AddEdge(new LabelledEdge(1, 3, "OK"));
+            graph.AddEdge(new LabelledEdge(2, 3, "OK"));
+
+            return graph;
+        }
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestAvailable()
+        {
+            var vertices = new List<DialogueVertex>
+        {
+            new("Hi again, skeleton lover. Do you want to kill them for me after all?"),
+            new("Then fuck off, dude"),
+            new()
+            {
+                Text = "Ok then, best of luck!",
+                GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
+            },
+            new(""),
+        };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+            graph.AddEdge(new LabelledEdge(0, 1, "No. As I said, I think skeletons are cute"));
+            graph.AddEdge(new LabelledEdge(0, 2, "Ok then. I'll kill'em for you."));
+            graph.AddEdge(new LabelledEdge(1, 3, "Ok"));
+            graph.AddEdge(new LabelledEdge(2, 3, "Thanks. See you later"));
+
+            return graph;
+        }
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestActive()
+        {
+            var vertices = new List<DialogueVertex>
+        {
+            new("Have you taken care of those skeletons yet?"),
+            new("Well, then get to it."),
+            new(""),
+        };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+            graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
+            graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
+
+            return graph;
+        }
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestTurnIn()
+        {
+            var vertices = new List<DialogueVertex>
+        {
+            new("Way to go, my friend - you smacked them skeletons up good. Here you have 100 coins in reward."),
+            new(""),
+        };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+            graph.AddEdge(new LabelledEdge(0, 1, "Thanks, man."));
+
+            return graph;
+        }
+        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SmallTalkDialogue()
+        {
+            var vertices = new List<DialogueVertex>
+        {
+            new("Terrible weather today, huh?"),
+            new(""),
+        };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+
+            graph.AddEdge(new LabelledEdge(0, 1, "Nah I think the weather is nice"));
+
+            return graph;
+        }
+
     }
 }

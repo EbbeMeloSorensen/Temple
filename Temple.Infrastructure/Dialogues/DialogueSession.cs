@@ -41,7 +41,7 @@ public class DialogueSession : IDialogueSession
 
         NPCPortraitPath = npcId switch
         {
-            "innkeeper" => "DD/Images/Innkeeper.png",
+            "alyth" => "DD/Images/Innkeeper.png",
             "guard" => "DD/Images/Guard.jpg",
             "captain" => "DD/Images/Captain.png",
             _ => throw new InvalidOperationException("Unknown npcId")

@@ -18,10 +18,10 @@ namespace Temple.Application.UnitTest
                 id: "rat_infestation",
                 rules: new IQuestRule[]
                 {
-                    new BecomeAvailableOnDialogueRule("innkeeper"),
+                    new BecomeAvailableOnDialogueRule("alyth"),
                     new AcceptQuestRule(),
                     new SatisfyOnBattleWonRule("rats_in_warehouse"),
-                    new TurnInOnDialogueRule("innkeeper")
+                    new TurnInOnDialogueRule("alyth")
                 }
             );
 
@@ -37,7 +37,7 @@ namespace Temple.Application.UnitTest
             // --------------------
 
             // Talk to innkeeper => quest becomes available
-            eventBus.Publish(new DialogueEvent("innkeeper"));
+            eventBus.Publish(new DialogueEvent("alyth"));
             Assert.Equal(QuestState.Available, quest.State);
 
             // Player accepts quest => quest becomes active
@@ -49,7 +49,7 @@ namespace Temple.Application.UnitTest
             Assert.Equal(QuestState.Active, quest.State); // still active, but ready to turn in
 
             // Talk to innkeeper again => quest completes
-            eventBus.Publish(new DialogueEvent("innkeeper"));
+            eventBus.Publish(new DialogueEvent("alyth"));
             Assert.Equal(QuestState.Completed, quest.State);
         }
     }

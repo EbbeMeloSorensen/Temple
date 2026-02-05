@@ -46,12 +46,14 @@ Done:
 * Lav et event til at informere QuestRead-modellen om at completion condition er fuldført
 * Få QuestReadModellen til at gemme disse boolske og udstille dem til subscribers
 * Lav en bedre QuestViewModel, der kan bruges til test
-
-Todo:
 * Lav dialogues sådan som ChatGpt foreslår, hvor det baseres på prioriteter og quest state frem for det der if/then/else helvede
 * Læs quest collections fra fil
 * Lav det sådan at QuestReadModel, som jo er en cache, kan populeres fra autoritative data i Controlleren
-  ..så kan man jo i diagnostic mode populere den med alle de hidden quests også
+
+Todo:
+* Implementer noget mere dialog fra Dark Alliance
+* Implementer noget interlude snak fra Dark Alliance
+* Lav det sådan at quests læses fra fil i stedet for at blive hardkodet
 * Få dialog factoryen til at bruge det
 * Fix lige det med at man klarer en quest ved at besejre en fjende - det holdt op med at virke, da du refaktorerede
 * Lav det, som ChatGPT foreslår, med at Controlleren lytter på alle Game Events og vedligeholder "authoritative game state"

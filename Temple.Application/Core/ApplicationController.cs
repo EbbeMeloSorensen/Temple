@@ -48,7 +48,7 @@ public class ApplicationController
         {
             new AdvanceOnCheatRule(),
 
-            // During dialogue with innkeeper
+            // During dialogue with Alyth
             new BecomeAvailableOnQuestDiscoveredRule(),
 
             // Player accepts quest
@@ -58,7 +58,7 @@ public class ApplicationController
             new SatisfyOnBattleWonRule("rats_in_warehouse"),
 
             // Talk to innkeeper again => quest completed
-            new TurnInOnDialogueRule("innkeeper")
+            new TurnInOnDialogueRule("alyth")
         });
 
         var quest2 = new Quest(id: "skeleton_trouble", rules: new List<IQuestRule>
@@ -77,6 +77,24 @@ public class ApplicationController
             // Talk to captain again => quest completed
             new TurnInOnDialogueRule("captain")
         });
+
+        var quest3 = new Quest(id: "resque_ethon", rules: new List<IQuestRule>
+        {
+            new AdvanceOnCheatRule(),
+
+            // During dialogue with Alyth
+            new BecomeAvailableOnQuestDiscoveredRule(),
+
+            // Player accepts quest
+            new AcceptQuestRule(),
+
+            // Kill warehouse rats => completion criteria satisfied
+            new SatisfyOnBattleWonRule("rats_in_warehouse"),
+
+            // Talk to innkeeper again => quest completed
+            new TurnInOnDialogueRule("alyth")
+        });
+
 
         Quests = new List<Quest>
         {
