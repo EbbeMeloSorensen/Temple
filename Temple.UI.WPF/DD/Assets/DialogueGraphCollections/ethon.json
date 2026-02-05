@@ -1,0 +1,104 @@
+[
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "rat_infestation",
+        "RequiredStatus": {
+          "QuestState": 0,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Welcome, friend -- I saw you come in - nasty bump on the head you've got there. Something I can do for you?",
+          "Id": 0
+        },
+        {
+          "Text": "I do, we locked the door to the cellar once the rats started swarming around down there. Did you need it for something?",
+          "Id": 1
+        },
+        {
+          "Text": "Aye, I did. I'm sure there are other things lying around down there; the Elfsong's sheltered many thieves and cutthroats over the years. That's probably why there's that gate to the sewers down there. There's bound to be plenty of boltholes in the cellar and the sewers. I found the beholder in one of them, in a secret door behind some barrels in the far corner of the cellar.",
+          "Id": 2
+        },
+        {
+          "Text": "",
+          "Id": 4
+        },
+        {
+          "Text": "For your sake, I hope you're not planning to go after those thieves that attacked you?",
+          "Id": 5
+        },
+        {
+          "Text": "I overheard your conversation with Alyth - look, friend, you've met them once and escaped with your life; don't test your luck twice.",
+          "Id": 6
+        },
+        {
+          "Text": "Well, if the thieves won't keep you from going down there, then maybe the rats will.",
+          "Id": 7
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "Alyth, the bartender, said you had the key to the cellar.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "I hear you're the one that found that stuffed beholder.",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Label": "Nothing. Sorry to disturb you.",
+          "VertexId1": 0,
+          "VertexId2": 3
+        },
+        {
+          "Label": "I'll keep an eye out for them. Farewell, Ethon.",
+          "VertexId1": 2,
+          "VertexId2": 4
+        },
+        {
+          "Label": "Alyth asked me to take care of this tavern's rat problem. I need to get into the cellar.",
+          "VertexId1": 1,
+          "VertexId2": 9999
+        },
+        {
+          "Label": "I need to get to the sewer gate down in the cellar, but I need your key first.",
+          "VertexId1": 1,
+          "VertexId2": 9999
+        },
+        {
+          "Label": "None of your business. Give me the key, old man.",
+          "VertexId1": 1,
+          "VertexId2": 5
+        },
+        {
+          "Label": "What do you know about that?",
+          "VertexId1": 5,
+          "VertexId2": 6
+        },
+        {
+          "Label": "I have to find them. They stole every last coin from me, and I aim to get what they stole back.",
+          "VertexId1": 6,
+          "VertexId2": 7
+        },
+        {
+          "Label": "Rats don't concern me. Just give me the key.",
+          "VertexId1": 7,
+          "VertexId2": 9999
+        },
+        {
+          "Label": "What about the rats?",
+          "VertexId1": 7,
+          "VertexId2": 9999
+        }
+      ]
+    }
+  }
+]
