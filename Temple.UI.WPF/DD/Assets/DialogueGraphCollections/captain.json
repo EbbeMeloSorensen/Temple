@@ -1,0 +1,220 @@
+[
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "skeleton_trouble",
+        "RequiredStatus": {
+          "QuestState": 0,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Hello there. Please slay some skeletons for me, will ya?",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger, Temple.Infrastructure",
+            "QuestId": "skeleton_trouble"
+          },
+          "Id": 0
+        },
+        {
+          "Text": "Great, they are on the graveyard outside of the village. Good luck",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "QuestId": "skeleton_trouble"
+          },
+          "Id": 1
+        },
+        {
+          "Text": "Ok, then fuck off, skeleton lover!",
+          "Id": 2
+        },
+        {
+          "Text": "",
+          "Id": 3
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "No, I think skeletons are cute",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Label": "Sure, why not",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "OK",
+          "VertexId1": 1,
+          "VertexId2": 3
+        },
+        {
+          "Label": "OK",
+          "VertexId1": 2,
+          "VertexId2": 3
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "skeleton_trouble",
+        "RequiredStatus": {
+          "QuestState": 1,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Hi again, skeleton lover. Do you want to kill them for me after all?",
+          "Id": 0
+        },
+        {
+          "Text": "Then fuck off, dude",
+          "Id": 1
+        },
+        {
+          "Text": "Ok then, best of luck!",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "QuestId": "skeleton_trouble"
+          },
+          "Id": 2
+        },
+        {
+          "Text": "",
+          "Id": 3
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "No. As I said, I think skeletons are cute",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "Ok then. I'll kill'em for you.",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Label": "Ok",
+          "VertexId1": 1,
+          "VertexId2": 3
+        },
+        {
+          "Label": "Thanks. See you later",
+          "VertexId1": 2,
+          "VertexId2": 3
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "skeleton_trouble",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Have you taken care of those skeletons yet?",
+          "Id": 0
+        },
+        {
+          "Text": "Well, then get to it.",
+          "Id": 1
+        },
+        {
+          "Text": "",
+          "Id": 2
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "No, not yet.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "Very well.",
+          "VertexId1": 1,
+          "VertexId2": 2
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "skeleton_trouble",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": true
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Way to go, my friend - you smacked them skeletons up good. Here you have 100 coins in reward.",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "Thanks, man.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Terrible weather today, huh?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "Nah I think the weather is nice",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  }
+]

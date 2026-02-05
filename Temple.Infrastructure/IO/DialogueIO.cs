@@ -4,40 +4,9 @@ using Temple.Infrastructure.Dialogues;
 
 namespace Temple.Infrastructure.IO
 {
-    public class DialogueIO
+    public static class DialogueIO
     {
-        public DialogueGraph ReadDialogueGraphFromFile(string fileName)
-        {
-            using var streamReader = new StreamReader(fileName);
-            var json = streamReader.ReadToEnd();
-
-            var jsonResolver = new IgnoreVertexCountResolver();
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = jsonResolver,
-                Converters =
-                {
-                    new GraphJsonConverter()
-                },
-                NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new KnownTypesBinder
-                {
-                    KnownTypes = new[]
-                    {
-                        typeof(QuestDiscoveredEventTrigger),
-                        //typeof(QuestAcceptedEventTrigger)
-                    }
-                }
-            };
-
-            var graph = JsonConvert.DeserializeObject<DialogueGraph>(json, settings);
-
-            return graph;
-        }
-
-        public List<DialogueGraph> ReadDialogueGraphListFromFile(string fileName)
+        public static IEnumerable<DialogueGraph> ReadDialogueGraphListFromFile(string fileName)
         {
             using var streamReader = new StreamReader(fileName);
             var json = streamReader.ReadToEnd();

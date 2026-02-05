@@ -1,0 +1,407 @@
+[
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "rat_infestation",
+        "RequiredStatus": {
+          "QuestState": 0,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Beautiful song, isn't it? I've heard her sing a hundred times, and each time, it still moves me.",
+          "Id": 0
+        },
+        {
+          "Text": "It's the spirit of an elven woman; she haunts this tavern, singing once every couple of nights.",
+          "Id": 1
+        },
+        {
+          "Text": "No one truly knows. Her spirit was here when I first bought this tavern. Some say she sings for a lost love, a soldier who died defending Baldur's Gate. They say she sings in the hope he will her her voice and return home. Still, that's nothing but hearsay and tales - welcome to the Elfsong Tavern. What can I get you?",
+          "Id": 2
+        },
+        {
+          "Text": "That's a stuffed beholder... a small version of the species, I'm told, not that I've seen many of them. One of my regulars, Ethon, found it in the cellar.",
+          "Id": 3
+        },
+        {
+          "Text": "They're also called eye tyrants, if that name's any more familiar to you. Beholders are beasts that float above the ground and can cast terrible spells from their eyes. Evil things... I wouldn't want to meet one, and neither would you.",
+          "Id": 4
+        },
+        {
+          "Text": "Hmmm. Sounds like members of that new thieves' guild I've been hearing about. You're lucky to be alive. Word is, they're responsible for the murder of two city watchmen and the \"disappearance\" of several thieves from the old guild.",
+          "Id": 5
+        },
+        {
+          "Text": "Yes... Look, I wouldn't cross blades with those thugs if I were you. Just stay clear of them unless you want to end up dead in an alley, all right?",
+          "Id": 6
+        },
+        {
+          "Text": "Well, no one knows where their guild hall is. Still, if you're determined to find them, try the sewers.",
+          "Id": 7
+        },
+        {
+          "Text": "I'' wager they've been using them to move around Baldur's Gate. It's probably what's been driving all those sewer rats up to the surface.",
+          "Id": 8
+        },
+        {
+          "Text": "Well, there's a gate to the sewers in the cellar of this tavern; I locked it up a long time ago, before the guild war began.",
+          "Id": 9
+        },
+        {
+          "Text": "Well, there's a problem with that... hmmm, Actually, maybe we can help each other out.",
+          "Id": 10
+        },
+        {
+          "Text": "Well, we've had to lock up the cellar because of the horde of rats that suddenly showed up down there. Clear them out for me, and I'll give you the key to the sewer gate and a little gold to help you get back on your feet. What do you say?",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger, Temple.Infrastructure",
+            "QuestId": "rat_infestation"
+          },
+          "Id": 11
+        },
+        {
+          "Text": "The door to the cellar's locked, so you'll need to get the key from Ethon over in the corner there.",
+          "Id": 12
+        },
+        {
+          "Text": "Ethon's one of our regulars. He usually fetches wine from the cellar for me, but he hasn't been able to go down there since the rats appeared.",
+          "Id": 13
+        },
+        {
+          "Text": "Only this past week. If those thieves are using the sewers to move around Baldur's Gate, they may have driven the rats out.",
+          "Id": 14
+        },
+        {
+          "Text": "Luck be with you... and watch those rats. Some of them can be vicious when backed in a corner",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "QuestId": "rat_infestation"
+          },
+          "Id": 15
+        },
+        {
+          "Text": "",
+          "Id": 16
+        },
+        {
+          "Text": "What an ignorant! Wanna kill rats?",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger, Temple.Infrastructure",
+            "QuestId": "rat_infestation"
+          },
+          "Id": 17
+        },
+        {
+          "Text": "Ok, then get out of my inn, rat lover!",
+          "Id": 18
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "It is beautiful... but where's the voice coming from?",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "I think it sounds rather lame",
+          "VertexId1": 0,
+          "VertexId2": 17
+        },
+        {
+          "Label": "Why does she sing?",
+          "VertexId1": 1,
+          "VertexId2": 2
+        },
+        {
+          "Label": "What's that thing hanging over the fireplace?",
+          "VertexId1": 2,
+          "VertexId2": 3
+        },
+        {
+          "Label": "What's a beholder?",
+          "VertexId1": 3,
+          "VertexId2": 4
+        },
+        {
+          "Label": "I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
+          "VertexId1": 2,
+          "VertexId2": 5
+        },
+        {
+          "Label": "Actually, I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
+          "VertexId1": 3,
+          "VertexId2": 5
+        },
+        {
+          "Label": "I see. Look, I came here because I was attacked on the streets by a band of thieves, and I'm looking to find them.",
+          "VertexId1": 4,
+          "VertexId2": 5
+        },
+        {
+          "Label": "So this new guild's at war with the old guild?",
+          "VertexId1": 5,
+          "VertexId2": 6
+        },
+        {
+          "Label": "I don't have much choice; they stole every last coin I had. If you know where I can find them, tell me.",
+          "VertexId1": 6,
+          "VertexId2": 7
+        },
+        {
+          "Label": "Do you know where I can find these thieves?",
+          "VertexId1": 5,
+          "VertexId2": 7
+        },
+        {
+          "Label": "Why the sewers?",
+          "VertexId1": 7,
+          "VertexId2": 8
+        },
+        {
+          "Label": "All right. How do I get into the sewers?",
+          "VertexId1": 8,
+          "VertexId2": 9
+        },
+        {
+          "Label": "Could I use the gate?",
+          "VertexId1": 9,
+          "VertexId2": 10
+        },
+        {
+          "Label": "What do you mean?",
+          "VertexId1": 10,
+          "VertexId2": 11
+        },
+        {
+          "Label": "It's a deal.",
+          "VertexId1": 11,
+          "VertexId2": 12
+        },
+        {
+          "Label": "Who's Ethon",
+          "VertexId1": 12,
+          "VertexId2": 13
+        },
+        {
+          "Label": "I'll go speak to him, then.",
+          "VertexId1": 12,
+          "VertexId2": 15
+        },
+        {
+          "Label": "When did they start appearing?",
+          "VertexId1": 13,
+          "VertexId2": 14
+        },
+        {
+          "Label": "I'll go speak to him, then.",
+          "VertexId1": 13,
+          "VertexId2": 15
+        },
+        {
+          "Label": "I'll go get the key from Ethon and see about taking care of those rats, then.",
+          "VertexId1": 14,
+          "VertexId2": 15
+        },
+        {
+          "Label": "OK",
+          "VertexId1": 15,
+          "VertexId2": 16
+        },
+        {
+          "Label": "No, I think rats are cute",
+          "VertexId1": 17,
+          "VertexId2": 18
+        },
+        {
+          "Label": "Sure, why not",
+          "VertexId1": 17,
+          "VertexId2": 15
+        },
+        {
+          "Label": "OK",
+          "VertexId1": 18,
+          "VertexId2": 16
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "rat_infestation",
+        "RequiredStatus": {
+          "QuestState": 1,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Hi again, you ignorant rat lover. Do you want to kill them for me after all?",
+          "Id": 0
+        },
+        {
+          "Text": "Then fuck off, will ya?",
+          "Id": 1
+        },
+        {
+          "Text": "Ok then, best of luck!",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "QuestId": "rat_infestation"
+          },
+          "Id": 2
+        },
+        {
+          "Text": "",
+          "Id": 3
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "No. As I said, I think rats are cute",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "Ok then. I'll kill those critters for you.",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Label": "Ok",
+          "VertexId1": 1,
+          "VertexId2": 3
+        },
+        {
+          "Label": "Thanks. See you later",
+          "VertexId1": 2,
+          "VertexId2": 3
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "rat_infestation",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Have you taken care of those rats yet? I'm not giving you the key to the sewers until they're all wiped out.",
+          "Id": 0
+        },
+        {
+          "Text": "Well, I'd prefer you get to it before they change the name of this tavern to the Rat's Nest. Talk to Ethon if you don't have the key to the cellar yet.",
+          "Id": 1
+        },
+        {
+          "Text": "",
+          "Id": 2
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "No, not yet.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "Very well.",
+          "VertexId1": 1,
+          "VertexId2": 2
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "QuestId": "rat_infestation",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": true
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "You're back! Did you see Ethon down there?",
+          "Id": 0
+        },
+        {
+          "Text": "He followed you down there not long ago, and I fear he may have gotten lost in the cellar... or worse, he may have wandered into the sewers. I tried to stop him...",
+          "Id": 1
+        },
+        {
+          "Text": "Thank you... but before you go, please take these coins -- in payment for all you've done so far. And as promised, here's the key to the sewer gate. Be careful down there - there's bound to be worse things than sewer rats in those tunnels.",
+          "Id": 2
+        },
+        {
+          "Text": "",
+          "Id": 3
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "In the cellar? No I didn't see him.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Label": "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him.",
+          "VertexId1": 1,
+          "VertexId2": 2
+        },
+        {
+          "Label": "I'll be careful. Thanks, Alyth.",
+          "VertexId1": 2,
+          "VertexId2": 3
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Nice weather today, huh?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "Sure",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  }
+]

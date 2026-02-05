@@ -51,7 +51,10 @@ Done:
 * Lav det sådan at QuestReadModel, som jo er en cache, kan populeres fra autoritative data i Controlleren
 
 Todo:
+* DialogueGraphList filer skal tilføjes til projektet som ressource-filer
+* Lav noget visualisering af en DialogueGraph
 * Implementer noget mere dialog fra Dark Alliance
+  - Ethon
 * Implementer noget interlude snak fra Dark Alliance
 * Lav det sådan at quests læses fra fil i stedet for at blive hardkodet
 * Få dialog factoryen til at bruge det

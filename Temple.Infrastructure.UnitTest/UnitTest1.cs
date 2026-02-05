@@ -158,20 +158,7 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
-        public void DeserializeADialogueGraphFromJsonFile()
-        {
-            // Arrange
-            var dialogueIO = new DialogueIO();
-
-            // Act
-            var dialogueGraph = dialogueIO.ReadDialogueGraphFromFile(@"C:\Temp\serializedDialogueGraph.json");
-
-            // Assert
-            var a = 0;
-        }
-
-        [Fact]
-        public void SerializeListOfDialogueGraphsToJsonFile()
+        public void GenerateDialogueGraphCollectionForAlythToJsonFile()
         {
             // Arrange
             var dialogueGraphs = new List<DialogueGraph>
@@ -273,7 +260,7 @@ namespace Temple.Infrastructure.UnitTest
                 Formatting.Indented,
                 settings);
 
-            using var streamWriter = new StreamWriter(@"C:\Temp\dialogueGraphs_alyth.json");
+            using var streamWriter = new StreamWriter(@"C:\Temp\alyth.json");
 
             streamWriter.WriteLine(json);
 
@@ -282,16 +269,103 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
-        public void DeserializeAListOfDialogueGraphFromJsonFile()
+        public void GenerateDialogueGraphCollectionForCaptainToJsonFile()
         {
             // Arrange
-            var dialogueIO = new DialogueIO();
+            var dialogueGraphs = new List<DialogueGraph>
+            {
+                new DialogueGraph
+                {
+                    Priority = 100,
+                    Conditions = new List<DialogueGraphCondition>
+                    {
+                        new()
+                        {
+                            QuestId = "skeleton_trouble",
+                            RequiredStatus = new QuestStatus
+                            {
+                                QuestState = QuestState.Hidden,
+                                AreCompletionCriteriaSatisfied = false
+                            }
+                        }
+                    },
+                    Graph = GenerateGraph_Captain_SkeletonQuestHidden()
+                },
+                new DialogueGraph
+                {
+                    Priority = 100,
+                    Conditions = new List<DialogueGraphCondition>
+                    {
+                        new()
+                        {
+                            QuestId = "skeleton_trouble",
+                            RequiredStatus = new QuestStatus
+                            {
+                                QuestState = QuestState.Available,
+                                AreCompletionCriteriaSatisfied = false
+                            }
+                        }
+                    },
+                    Graph = GenerateGraph_Captain_SkeletonQuestAvailable()
+                },
+                new DialogueGraph
+                {
+                    Priority = 100,
+                    Conditions = new List<DialogueGraphCondition>
+                    {
+                        new()
+                        {
+                            QuestId = "skeleton_trouble",
+                            RequiredStatus = new QuestStatus
+                            {
+                                QuestState = QuestState.Active,
+                                AreCompletionCriteriaSatisfied = false
+                            }
+                        }
+                    },
+                    Graph = GenerateGraph_Captain_SkeletonQuestActive()
+                },
+                new DialogueGraph
+                {
+                    Priority = 100,
+                    Conditions = new List<DialogueGraphCondition>
+                    {
+                        new()
+                        {
+                            QuestId = "skeleton_trouble",
+                            RequiredStatus = new QuestStatus
+                            {
+                                QuestState = QuestState.Active,
+                                AreCompletionCriteriaSatisfied = true
+                            }
+                        }
+                    },
+                    Graph = GenerateGraph_Captain_SkeletonQuestTurnIn()
+                },
+                new DialogueGraph
+                {
+                    Priority = 0,
+                    Graph = GenerateGraph_Captain_SmallTalkDialogue()
+                }
+            };
 
-            // Act
-            var dialogueGraph = dialogueIO.ReadDialogueGraphListFromFile(@"C:\Temp\dialogueGraphs_alyth.json");
+            var jsonResolver = new IgnoreVertexCountResolver();
 
-            // Assert
-            var a = 0;
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = jsonResolver,
+                NullValueHandling = NullValueHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Auto,
+            };
+
+            var json = JsonConvert.SerializeObject(
+                dialogueGraphs,
+                Formatting.Indented,
+                settings);
+
+            using var streamWriter = new StreamWriter(@"C:\Temp\captain.json");
+
+            streamWriter.WriteLine(json);
         }
 
         private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestHidden()
