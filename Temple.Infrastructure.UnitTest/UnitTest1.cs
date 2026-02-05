@@ -152,5 +152,37 @@ namespace Temple.Infrastructure.UnitTest
             // Act
             // Assert
         }
+
+        [Fact]
+        public void DeserializeADialogueGraphFromJsonFile()
+        {
+            // Arrange
+            using var streamReader = new StreamReader(@"C:\Temp\serializedDialogueGraph.json");
+            var json = streamReader.ReadToEnd();
+
+            var jsonResolver = new IgnoreVertexCountResolver();
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = jsonResolver,
+                NullValueHandling = NullValueHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Auto,
+                SerializationBinder = new KnownTypesBinder
+                {
+                    KnownTypes = new[]
+                    {
+                        typeof(QuestDiscoveredEventTrigger),
+                        //typeof(QuestAcceptedEventTrigger)
+                    }
+                }
+            };
+
+            // Act
+            var a = JsonConvert.DeserializeObject<DialogueGraph>(json, settings);
+
+            // Assert
+            a = null;
+        }
+
     }
 }
