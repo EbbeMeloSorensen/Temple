@@ -6,7 +6,8 @@ namespace Temple.Infrastructure.IO
 {
     public static class DialogueIO
     {
-        public static IEnumerable<DialogueGraph> ReadDialogueGraphListFromFile(string fileName)
+        public static IEnumerable<DialogueGraph> ReadDialogueGraphListFromFile(
+            string fileName)
         {
             using var streamReader = new StreamReader(fileName);
             var json = streamReader.ReadToEnd();
