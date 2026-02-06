@@ -1,0 +1,25 @@
+[
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Leave me alone",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "OK",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  }
+]

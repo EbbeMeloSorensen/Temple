@@ -41,7 +41,9 @@ public class DialogueSession : IDialogueSession
 
         NPCPortraitPath = npcId switch
         {
-            "alyth" => "DD/Images/Innkeeper.png",
+            "innkeeper" => "DD/Images/Innkeeper.png",
+            "alyth" => "DD/Images/Alyth.png",
+            "ethon" => "DD/Images/Ethon.png",
             "guard" => "DD/Images/Guard.jpg",
             "captain" => "DD/Images/Captain.png",
             _ => throw new InvalidOperationException("Unknown npcId")
@@ -49,7 +51,6 @@ public class DialogueSession : IDialogueSession
 
         _activeVertexId = 0;
         PossiblySwitchQuestState();
-
     }
 
     public void SelectChoice(

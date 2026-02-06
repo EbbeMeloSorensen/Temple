@@ -49,9 +49,9 @@ Done:
 * Lav dialogues sådan som ChatGpt foreslår, hvor det baseres på prioriteter og quest state frem for det der if/then/else helvede
 * Læs quest collections fra fil
 * Lav det sådan at QuestReadModel, som jo er en cache, kan populeres fra autoritative data i Controlleren
+* DialogueGraphList filer skal tilføjes til projektet som ressource-filer
 
 Todo:
-* DialogueGraphList filer skal tilføjes til projektet som ressource-filer
 * Lav noget visualisering af en DialogueGraph
 * Implementer noget mere dialog fra Dark Alliance
   - Ethon

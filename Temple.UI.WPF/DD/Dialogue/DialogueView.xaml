@@ -17,12 +17,11 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -33,29 +32,38 @@
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="50" FontWeight="Bold" Margin="20, 0, 10, 10"
                    Text="{Binding Title}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="50"
-                   Margin="20" TextWrapping="Wrap" 
-                   Text="{Binding NPCText}"/>
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                      ItemsSource="{Binding Options}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Width="50" Height="50" VerticalAlignment="Top" Margin="11"
-                                Command="{Binding DataContext.SelectOption_Command,
+                <TextBlock Grid.Row="0" FontSize="50"
+                           Margin="20" TextWrapping="Wrap" 
+                           Text="{Binding NPCText}"/>
+
+                <ItemsControl Grid.Row="1"
+                              ItemsSource="{Binding Options}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Width="50" Height="50" VerticalAlignment="Top" Margin="11"
+                                        Command="{Binding DataContext.SelectOption_Command,
                                     RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                CommandParameter="{Binding OptionId}"/>
-                        <TextBlock Grid.Column="1" FontSize="50" FontStyle="Italic" TextWrapping="Wrap"
-                                   Text="{Binding Text}"/>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                        CommandParameter="{Binding OptionId}"/>
+                                <TextBlock Grid.Column="1" FontSize="50" FontStyle="Italic" TextWrapping="Wrap"
+                                           Text="{Binding Text}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
 
+        </ScrollViewer>
     </Grid>
 </UserControl>

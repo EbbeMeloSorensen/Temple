@@ -5,7 +5,7 @@
       {
         "QuestId": "rat_infestation",
         "RequiredStatus": {
-          "QuestState": 0,
+          "QuestState": 2,
           "AreCompletionCriteriaSatisfied": false
         }
       }
@@ -27,19 +27,31 @@
         },
         {
           "Text": "",
-          "Id": 4
+          "Id": 3
         },
         {
           "Text": "For your sake, I hope you're not planning to go after those thieves that attacked you?",
-          "Id": 5
+          "Id": 4
         },
         {
           "Text": "I overheard your conversation with Alyth - look, friend, you've met them once and escaped with your life; don't test your luck twice.",
-          "Id": 6
+          "Id": 5
         },
         {
           "Text": "Well, if the thieves won't keep you from going down there, then maybe the rats will.",
+          "Id": 6
+        },
+        {
+          "Text": "The smallest one's the length of my arm. HUGE rats, and they're swarming all over the place down there. Vicious little monsters; each one could kill a man, easy.",
           "Id": 7
+        },
+        {
+          "Text": "They showed up about a week ago; if those thieves that attacked you are using the sewers to move around, then they probably drove the rats out of the sewers.",
+          "Id": 8
+        },
+        {
+          "Text": "All right, then; I won't say I didn't warn you. Here's the key to the cellar door - don't be too long, or else I'll have to come down and get you. Oh, and before you go, take this dagger - it's not much, but it might do you some good.",
+          "Id": 9
         }
       ],
       "Edges": [
@@ -61,42 +73,95 @@
         {
           "Label": "I'll keep an eye out for them. Farewell, Ethon.",
           "VertexId1": 2,
-          "VertexId2": 4
+          "VertexId2": 3
         },
         {
           "Label": "Alyth asked me to take care of this tavern's rat problem. I need to get into the cellar.",
           "VertexId1": 1,
-          "VertexId2": 9999
+          "VertexId2": 3
         },
         {
           "Label": "I need to get to the sewer gate down in the cellar, but I need your key first.",
           "VertexId1": 1,
-          "VertexId2": 9999
+          "VertexId2": 3
         },
         {
           "Label": "None of your business. Give me the key, old man.",
           "VertexId1": 1,
-          "VertexId2": 5
+          "VertexId2": 4
         },
         {
           "Label": "What do you know about that?",
+          "VertexId1": 4,
+          "VertexId2": 5
+        },
+        {
+          "Label": "I have to find them. They stole every last coin from me, and I aim to get what they stole back.",
           "VertexId1": 5,
           "VertexId2": 6
         },
         {
-          "Label": "I have to find them. They stole every last coin from me, and I aim to get what they stole back.",
+          "Label": "Rats don't concern me. Just give me the key.",
+          "VertexId1": 6,
+          "VertexId2": 3
+        },
+        {
+          "Label": "What about the rats?",
           "VertexId1": 6,
           "VertexId2": 7
         },
         {
-          "Label": "Rats don't concern me. Just give me the key.",
+          "Label": "Where did the rats come from?",
           "VertexId1": 7,
-          "VertexId2": 9999
+          "VertexId2": 8
         },
         {
-          "Label": "What about the rats?",
+          "Label": "I'm still heading down there.",
           "VertexId1": 7,
-          "VertexId2": 9999
+          "VertexId2": 3
+        },
+        {
+          "Label": "Then I'll have to be extra careful, then.",
+          "VertexId1": 7,
+          "VertexId2": 3
+        },
+        {
+          "Label": "Whatever the dangers, I'm still heading down there.",
+          "VertexId1": 8,
+          "VertexId2": 9
+        },
+        {
+          "Label": "Before I go, Alyth told me you were the one that found that stuffed beholder over the fireplace.",
+          "VertexId1": 9,
+          "VertexId2": 2
+        },
+        {
+          "Label": "I'll be careful. Thanks for the key.",
+          "VertexId1": 9,
+          "VertexId2": 3
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Do you like my brown sweater, huh?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Label": "Sure, Ethon",
+          "VertexId1": 0,
+          "VertexId2": 1
         }
       ]
     }
