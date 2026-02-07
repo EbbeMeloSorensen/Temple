@@ -368,6 +368,34 @@ namespace Temple.Infrastructure.UnitTest
             streamWriter.WriteLine(json);
         }
 
+        [Fact]
+        public void WriteDialogueGraphToJsonFile()
+        {
+            // Arrange
+            var dialogueGraph = new DialogueGraph
+            {
+                Priority = 100,
+                Conditions = new List<DialogueGraphCondition>
+                {
+                    new()
+                    {
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Hidden,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    }
+                },
+                Graph = GenerateGraph_Alyth_RatQuestHidden()
+            };
+
+            // Act
+            dialogueGraph.WriteToDotFile(@"C:\Temp\MyDialogueGraph.dot");
+
+            // Assert
+        }
+
         private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestHidden()
         {
             var vertices = new List<DialogueVertex>

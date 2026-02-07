@@ -1,0 +1,11 @@
+Commands:
+
+Generer et png billede ud fra en dotfil under anvendelse af "dot" layout engine:
+
+  dot -Tpng MyDotFile.dot -o MyGraphImage.png
+
+Generer et png billede ud fra en dotfil under anvendelse af "neato" layout engine:
+
+  neato -Tpng MyDotFile.dot -o MyGraphImage.png
+
+Image viewer, som automatisk opdaterer: Honeyview 5.53
