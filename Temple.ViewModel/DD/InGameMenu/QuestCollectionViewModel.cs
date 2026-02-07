@@ -10,7 +10,6 @@ using Temple.Application.DD;
 using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.InGameMenu
 {

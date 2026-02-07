@@ -9,7 +9,7 @@ using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
 using Temple.ViewModel.DD.Exploration;
 using Temple.ViewModel.DD.InGameMenu;
-using Temple.ViewModel.DD.Quests;
+using Temple.ViewModel.DD.ReadModels;
 using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;

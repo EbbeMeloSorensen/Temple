@@ -2,7 +2,6 @@
 using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
-using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.Exploration;
 

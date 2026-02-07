@@ -4,7 +4,7 @@ using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
 
-namespace Temple.ViewModel.DD.Quests;
+namespace Temple.ViewModel.DD.ReadModels;
 
 // Denne klasse overvåger ændringer i quest-tilstande. Den er bindeled mellem quest-logikken og brugergrænsefladen.
 // Den publicerer et event, der bruges i forbindelse med opdatering af brugergrænsefladen

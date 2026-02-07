@@ -2,7 +2,6 @@
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
-using Temple.ViewModel.DD.Quests;
 
 namespace Temple.ViewModel.DD.InGameMenu;
 
