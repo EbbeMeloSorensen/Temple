@@ -432,13 +432,18 @@ namespace Temple.Infrastructure.UnitTest
                 Text = "What an ignorant! Wanna kill rats?",
                 GameEventTrigger = new QuestDiscoveredEventTrigger("rat_infestation")
             },
-            new("Ok, then get out of my inn, rat lover!")
+            new("Ok, then get out of my inn, rat lover!"),
+            new("How wonderful, I love strawberries.")
         };
 
             var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
             graph.AddEdge(new DialogueEdge(0, 1, "It is beautiful... but where's the voice coming from?"));
             graph.AddEdge(new DialogueEdge(0, 17, "I think it sounds rather lame"));
+            graph.AddEdge(new DialogueEdge(0, 19, "I brought you some strawberries")
+            {
+                KnowledgeRequired = "alyth_likes_strawberries"
+            });
             graph.AddEdge(new DialogueEdge(1, 2, "Why does she sing?"));
             graph.AddEdge(new DialogueEdge(2, 3, "What's that thing hanging over the fireplace?"));
             graph.AddEdge(new DialogueEdge(3, 4, "What's a beholder?"));
@@ -462,6 +467,7 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new DialogueEdge(17, 18, "No, I think rats are cute"));
             graph.AddEdge(new DialogueEdge(17, 15, "Sure, why not"));
             graph.AddEdge(new DialogueEdge(18, 16, "OK"));
+            graph.AddEdge(new DialogueEdge(19, 16, "See you later.."));
 
             return graph;
         }

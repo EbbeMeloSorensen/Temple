@@ -8,6 +8,7 @@ public class DialogueEdge : IEdge
     public int VertexId2 { get; }
 
     public string Text { get; set; }
+    public string? KnowledgeRequired { get; set; }
 
     public DialogueEdge(
         int vertexId1,

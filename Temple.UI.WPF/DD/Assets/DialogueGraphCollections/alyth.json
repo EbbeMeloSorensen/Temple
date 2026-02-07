@@ -104,133 +104,148 @@
         {
           "Text": "Ok, then get out of my inn, rat lover!",
           "Id": 18
+        },
+        {
+          "Text": "How wonderful, I love strawberries.",
+          "Id": 19
         }
       ],
       "Edges": [
         {
-          "Text": "It is beautiful... but where's the voice coming from?",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "It is beautiful... but where's the voice coming from?"
         },
         {
-          "Text": "I think it sounds rather lame",
           "VertexId1": 0,
-          "VertexId2": 17
+          "VertexId2": 17,
+          "Text": "I think it sounds rather lame"
         },
         {
-          "Text": "Why does she sing?",
+          "VertexId1": 0,
+          "VertexId2": 19,
+          "Text": "I brought you some strawberries",
+          "KnowledgeRequired": "alyth_likes_strawberries"
+        },
+        {
           "VertexId1": 1,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "Text": "Why does she sing?"
         },
         {
-          "Text": "What's that thing hanging over the fireplace?",
           "VertexId1": 2,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "What's that thing hanging over the fireplace?"
         },
         {
-          "Text": "What's a beholder?",
           "VertexId1": 3,
-          "VertexId2": 4
+          "VertexId2": 4,
+          "Text": "What's a beholder?"
         },
         {
-          "Text": "I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
           "VertexId1": 2,
-          "VertexId2": 5
+          "VertexId2": 5,
+          "Text": "I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them."
         },
         {
-          "Text": "Actually, I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
           "VertexId1": 3,
-          "VertexId2": 5
+          "VertexId2": 5,
+          "Text": "Actually, I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them."
         },
         {
-          "Text": "I see. Look, I came here because I was attacked on the streets by a band of thieves, and I'm looking to find them.",
           "VertexId1": 4,
-          "VertexId2": 5
+          "VertexId2": 5,
+          "Text": "I see. Look, I came here because I was attacked on the streets by a band of thieves, and I'm looking to find them."
         },
         {
-          "Text": "So this new guild's at war with the old guild?",
           "VertexId1": 5,
-          "VertexId2": 6
+          "VertexId2": 6,
+          "Text": "So this new guild's at war with the old guild?"
         },
         {
-          "Text": "I don't have much choice; they stole every last coin I had. If you know where I can find them, tell me.",
           "VertexId1": 6,
-          "VertexId2": 7
+          "VertexId2": 7,
+          "Text": "I don't have much choice; they stole every last coin I had. If you know where I can find them, tell me."
         },
         {
-          "Text": "Do you know where I can find these thieves?",
           "VertexId1": 5,
-          "VertexId2": 7
+          "VertexId2": 7,
+          "Text": "Do you know where I can find these thieves?"
         },
         {
-          "Text": "Why the sewers?",
           "VertexId1": 7,
-          "VertexId2": 8
+          "VertexId2": 8,
+          "Text": "Why the sewers?"
         },
         {
-          "Text": "All right. How do I get into the sewers?",
           "VertexId1": 8,
-          "VertexId2": 9
+          "VertexId2": 9,
+          "Text": "All right. How do I get into the sewers?"
         },
         {
-          "Text": "Could I use the gate?",
           "VertexId1": 9,
-          "VertexId2": 10
+          "VertexId2": 10,
+          "Text": "Could I use the gate?"
         },
         {
-          "Text": "What do you mean?",
           "VertexId1": 10,
-          "VertexId2": 11
+          "VertexId2": 11,
+          "Text": "What do you mean?"
         },
         {
-          "Text": "It's a deal.",
           "VertexId1": 11,
-          "VertexId2": 12
+          "VertexId2": 12,
+          "Text": "It's a deal."
         },
         {
-          "Text": "Who's Ethon",
           "VertexId1": 12,
-          "VertexId2": 13
+          "VertexId2": 13,
+          "Text": "Who's Ethon"
         },
         {
-          "Text": "I'll go speak to him, then.",
           "VertexId1": 12,
-          "VertexId2": 15
+          "VertexId2": 15,
+          "Text": "I'll go speak to him, then."
         },
         {
-          "Text": "When did they start appearing?",
           "VertexId1": 13,
-          "VertexId2": 14
+          "VertexId2": 14,
+          "Text": "When did they start appearing?"
         },
         {
-          "Text": "I'll go speak to him, then.",
           "VertexId1": 13,
-          "VertexId2": 15
+          "VertexId2": 15,
+          "Text": "I'll go speak to him, then."
         },
         {
-          "Text": "I'll go get the key from Ethon and see about taking care of those rats, then.",
           "VertexId1": 14,
-          "VertexId2": 15
+          "VertexId2": 15,
+          "Text": "I'll go get the key from Ethon and see about taking care of those rats, then."
         },
         {
-          "Text": "OK",
           "VertexId1": 15,
-          "VertexId2": 16
+          "VertexId2": 16,
+          "Text": "OK"
         },
         {
-          "Text": "No, I think rats are cute",
           "VertexId1": 17,
-          "VertexId2": 18
+          "VertexId2": 18,
+          "Text": "No, I think rats are cute"
         },
         {
-          "Text": "Sure, why not",
           "VertexId1": 17,
-          "VertexId2": 15
+          "VertexId2": 15,
+          "Text": "Sure, why not"
         },
         {
-          "Text": "OK",
           "VertexId1": 18,
-          "VertexId2": 16
+          "VertexId2": 16,
+          "Text": "OK"
+        },
+        {
+          "VertexId1": 19,
+          "VertexId2": 16,
+          "Text": "See you later.."
         }
       ]
     }
@@ -272,24 +287,24 @@
       ],
       "Edges": [
         {
-          "Text": "No. As I said, I think rats are cute",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "No. As I said, I think rats are cute"
         },
         {
-          "Text": "Ok then. I'll kill those critters for you.",
           "VertexId1": 0,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "Text": "Ok then. I'll kill those critters for you."
         },
         {
-          "Text": "Ok",
           "VertexId1": 1,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "Ok"
         },
         {
-          "Text": "Thanks. See you later",
           "VertexId1": 2,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "Thanks. See you later"
         }
       ]
     }
@@ -323,14 +338,14 @@
       ],
       "Edges": [
         {
-          "Text": "No, not yet.",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "No, not yet."
         },
         {
-          "Text": "Very well.",
           "VertexId1": 1,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "Text": "Very well."
         }
       ]
     }
@@ -368,19 +383,19 @@
       ],
       "Edges": [
         {
-          "Text": "In the cellar? No I didn't see him.",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "In the cellar? No I didn't see him."
         },
         {
-          "Text": "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him.",
           "VertexId1": 1,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "Text": "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him."
         },
         {
-          "Text": "I'll be careful. Thanks, Alyth.",
           "VertexId1": 2,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "I'll be careful. Thanks, Alyth."
         }
       ]
     }
@@ -401,9 +416,9 @@
       ],
       "Edges": [
         {
-          "Text": "Sure",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "Sure"
         }
       ]
     }

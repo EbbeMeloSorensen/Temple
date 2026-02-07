@@ -21,7 +21,9 @@ public class DialogueSession : IDialogueSession
     {
         get
         {
+            // Denne skal have adgang til en readmodel for, hvilken knowledge, der er
             return _graph.OutgoingEdges(_activeVertexId)
+                .Where(_ => ((DialogueEdge)_).KnowledgeRequired == null)
                 .Select(_ => new DialogueChoice
                 {
                     Id = _.VertexId2,
