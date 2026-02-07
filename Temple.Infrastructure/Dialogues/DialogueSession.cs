@@ -10,7 +10,7 @@ public class DialogueSession : IDialogueSession
 {
     private QuestEventBus _eventBus;
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> _graph;
+    private GraphAdjacencyList<DialogueVertex, DialogueEdge> _graph;
     private int _activeVertexId;
 
     public string NPCPortraitPath { get; }
@@ -25,7 +25,7 @@ public class DialogueSession : IDialogueSession
                 .Select(_ => new DialogueChoice
                 {
                     Id = _.VertexId2,
-                    Text = ((LabelledEdge)_).Label
+                    Text = ((DialogueEdge)_).Text
                 })
                 .ToList();
         }
@@ -34,7 +34,7 @@ public class DialogueSession : IDialogueSession
     public DialogueSession(
         QuestEventBus eventBus,
         string npcId,
-        GraphAdjacencyList<DialogueVertex, LabelledEdge> graph)
+        GraphAdjacencyList<DialogueVertex, DialogueEdge> graph)
     {
         _eventBus = eventBus;
         _graph = graph;

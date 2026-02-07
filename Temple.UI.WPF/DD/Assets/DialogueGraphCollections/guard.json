@@ -15,7 +15,7 @@
       ],
       "Edges": [
         {
-          "Label": "OK",
+          "Text": "OK",
           "VertexId1": 0,
           "VertexId2": 1
         }

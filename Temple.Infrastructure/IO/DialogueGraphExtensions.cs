@@ -48,7 +48,7 @@ public static class DialogueGraphExtensions
         // Add edges to graph
         graph.Edges.ForEach(edge =>
         {
-            var text = edge.Label;
+            var text = edge.Text;
             text = text.Replace("\"", "\\\"");
             text = WrapByMaxLength(text, 30);
             streamWriter.WriteLine($"  {edge.VertexId1}->{edge.VertexId2} [label=\"{text}\"]");

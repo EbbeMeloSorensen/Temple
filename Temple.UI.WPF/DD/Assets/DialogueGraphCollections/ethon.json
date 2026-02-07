@@ -56,87 +56,87 @@
       ],
       "Edges": [
         {
-          "Label": "Alyth, the bartender, said you had the key to the cellar.",
+          "Text": "Alyth, the bartender, said you had the key to the cellar.",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "I hear you're the one that found that stuffed beholder.",
+          "Text": "I hear you're the one that found that stuffed beholder.",
           "VertexId1": 0,
           "VertexId2": 2
         },
         {
-          "Label": "Nothing. Sorry to disturb you.",
+          "Text": "Nothing. Sorry to disturb you.",
           "VertexId1": 0,
           "VertexId2": 3
         },
         {
-          "Label": "I'll keep an eye out for them. Farewell, Ethon.",
+          "Text": "I'll keep an eye out for them. Farewell, Ethon.",
           "VertexId1": 2,
           "VertexId2": 3
         },
         {
-          "Label": "Alyth asked me to take care of this tavern's rat problem. I need to get into the cellar.",
+          "Text": "Alyth asked me to take care of this tavern's rat problem. I need to get into the cellar.",
           "VertexId1": 1,
           "VertexId2": 3
         },
         {
-          "Label": "I need to get to the sewer gate down in the cellar, but I need your key first.",
+          "Text": "I need to get to the sewer gate down in the cellar, but I need your key first.",
           "VertexId1": 1,
           "VertexId2": 3
         },
         {
-          "Label": "None of your business. Give me the key, old man.",
+          "Text": "None of your business. Give me the key, old man.",
           "VertexId1": 1,
           "VertexId2": 4
         },
         {
-          "Label": "What do you know about that?",
+          "Text": "What do you know about that?",
           "VertexId1": 4,
           "VertexId2": 5
         },
         {
-          "Label": "I have to find them. They stole every last coin from me, and I aim to get what they stole back.",
+          "Text": "I have to find them. They stole every last coin from me, and I aim to get what they stole back.",
           "VertexId1": 5,
           "VertexId2": 6
         },
         {
-          "Label": "Rats don't concern me. Just give me the key.",
+          "Text": "Rats don't concern me. Just give me the key.",
           "VertexId1": 6,
           "VertexId2": 3
         },
         {
-          "Label": "What about the rats?",
+          "Text": "What about the rats?",
           "VertexId1": 6,
           "VertexId2": 7
         },
         {
-          "Label": "Where did the rats come from?",
+          "Text": "Where did the rats come from?",
           "VertexId1": 7,
           "VertexId2": 8
         },
         {
-          "Label": "I'm still heading down there.",
+          "Text": "I'm still heading down there.",
           "VertexId1": 7,
           "VertexId2": 3
         },
         {
-          "Label": "Then I'll have to be extra careful, then.",
+          "Text": "Then I'll have to be extra careful, then.",
           "VertexId1": 7,
           "VertexId2": 3
         },
         {
-          "Label": "Whatever the dangers, I'm still heading down there.",
+          "Text": "Whatever the dangers, I'm still heading down there.",
           "VertexId1": 8,
           "VertexId2": 9
         },
         {
-          "Label": "Before I go, Alyth told me you were the one that found that stuffed beholder over the fireplace.",
+          "Text": "Before I go, Alyth told me you were the one that found that stuffed beholder over the fireplace.",
           "VertexId1": 9,
           "VertexId2": 2
         },
         {
-          "Label": "I'll be careful. Thanks for the key.",
+          "Text": "I'll be careful. Thanks for the key.",
           "VertexId1": 9,
           "VertexId2": 3
         }
@@ -159,7 +159,7 @@
       ],
       "Edges": [
         {
-          "Label": "Sure, Ethon",
+          "Text": "Sure, Ethon",
           "VertexId1": 0,
           "VertexId2": 1
         }

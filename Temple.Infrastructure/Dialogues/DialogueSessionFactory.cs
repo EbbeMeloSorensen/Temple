@@ -22,7 +22,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         return new DialogueSession(eventBus, npcId, GenerateGraph_Dialogue(npcId));
     }
 
-    private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Dialogue(
+    private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Dialogue(
         string npcId)
     {
         var dialogueGraphs =

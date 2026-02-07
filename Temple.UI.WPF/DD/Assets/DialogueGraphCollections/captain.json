@@ -30,7 +30,11 @@
           "Id": 1
         },
         {
-          "Text": "Ok, then fuck off, skeleton lover!",
+          "Text": "Ok, then fuck off, skeleton lover! By the way, Alyth likes strawberries.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger, Temple.Infrastructure",
+            "KnowledgeId": "alyth_likes_strawberries"
+          },
           "Id": 2
         },
         {
@@ -40,22 +44,22 @@
       ],
       "Edges": [
         {
-          "Label": "No, I think skeletons are cute",
+          "Text": "No, I think skeletons are cute",
           "VertexId1": 0,
           "VertexId2": 2
         },
         {
-          "Label": "Sure, why not",
+          "Text": "Sure, why not",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "OK",
+          "Text": "OK",
           "VertexId1": 1,
           "VertexId2": 3
         },
         {
-          "Label": "OK",
+          "Text": "OK",
           "VertexId1": 2,
           "VertexId2": 3
         }
@@ -99,22 +103,22 @@
       ],
       "Edges": [
         {
-          "Label": "No. As I said, I think skeletons are cute",
+          "Text": "No. As I said, I think skeletons are cute",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "Ok then. I'll kill'em for you.",
+          "Text": "Ok then. I'll kill'em for you.",
           "VertexId1": 0,
           "VertexId2": 2
         },
         {
-          "Label": "Ok",
+          "Text": "Ok",
           "VertexId1": 1,
           "VertexId2": 3
         },
         {
-          "Label": "Thanks. See you later",
+          "Text": "Thanks. See you later",
           "VertexId1": 2,
           "VertexId2": 3
         }
@@ -150,12 +154,12 @@
       ],
       "Edges": [
         {
-          "Label": "No, not yet.",
+          "Text": "No, not yet.",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "Very well.",
+          "Text": "Very well.",
           "VertexId1": 1,
           "VertexId2": 2
         }
@@ -187,7 +191,7 @@
       ],
       "Edges": [
         {
-          "Label": "Thanks, man.",
+          "Text": "Thanks, man.",
           "VertexId1": 0,
           "VertexId2": 1
         }
@@ -210,7 +214,7 @@
       ],
       "Edges": [
         {
-          "Label": "Nah I think the weather is nice",
+          "Text": "Nah I think the weather is nice",
           "VertexId1": 0,
           "VertexId2": 1
         }

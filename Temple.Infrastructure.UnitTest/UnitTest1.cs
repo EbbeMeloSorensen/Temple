@@ -29,12 +29,12 @@ namespace Temple.Infrastructure.UnitTest
                 new(""),
             };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
-            graph.AddEdge(new LabelledEdge(0, 1, "Yep super nice"));
-            graph.AddEdge(new LabelledEdge(1, 2, "Oh yes, I hate rats"));
-            graph.AddEdge(new LabelledEdge(1, 3, "No, rats are cute"));
-            graph.AddEdge(new LabelledEdge(2, 4, "Thanks, see you later"));
-            graph.AddEdge(new LabelledEdge(3, 4, "Ok"));
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
+            graph.AddEdge(new DialogueEdge(0, 1, "Yep super nice"));
+            graph.AddEdge(new DialogueEdge(1, 2, "Oh yes, I hate rats"));
+            graph.AddEdge(new DialogueEdge(1, 3, "No, rats are cute"));
+            graph.AddEdge(new DialogueEdge(2, 4, "Thanks, see you later"));
+            graph.AddEdge(new DialogueEdge(3, 4, "Ok"));
 
             var jsonResolver = new IgnoreVertexCountResolver();
 
@@ -91,7 +91,7 @@ namespace Temple.Infrastructure.UnitTest
             };
 
             // Act
-            var a = JsonConvert.DeserializeObject<GraphAdjacencyList<DialogueVertex, LabelledEdge>>(json, settings);
+            var a = JsonConvert.DeserializeObject<GraphAdjacencyList<DialogueVertex, DialogueEdge>>(json, settings);
 
             // Assert
             a = null;
@@ -114,12 +114,12 @@ namespace Temple.Infrastructure.UnitTest
                 new(""),
             };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
-            graph.AddEdge(new LabelledEdge(0, 1, "Yep super nice"));
-            graph.AddEdge(new LabelledEdge(1, 2, "Oh yes, I hate rats"));
-            graph.AddEdge(new LabelledEdge(1, 3, "No, rats are cute"));
-            graph.AddEdge(new LabelledEdge(2, 4, "Thanks, see you later"));
-            graph.AddEdge(new LabelledEdge(3, 4, "Ok"));
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
+            graph.AddEdge(new DialogueEdge(0, 1, "Yep super nice"));
+            graph.AddEdge(new DialogueEdge(1, 2, "Oh yes, I hate rats"));
+            graph.AddEdge(new DialogueEdge(1, 3, "No, rats are cute"));
+            graph.AddEdge(new DialogueEdge(2, 4, "Thanks, see you later"));
+            graph.AddEdge(new DialogueEdge(3, 4, "Ok"));
 
             var dialogueGraph = new DialogueGraph
             {
@@ -394,7 +394,7 @@ namespace Temple.Infrastructure.UnitTest
             dialogueGraph.WriteToDotFile(@"C:\Temp\MyDialogueGraph.dot");
         }
 
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestHidden()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_RatQuestHidden()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -435,37 +435,37 @@ namespace Temple.Infrastructure.UnitTest
             new("Ok, then get out of my inn, rat lover!")
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "It is beautiful... but where's the voice coming from?"));
-            graph.AddEdge(new LabelledEdge(0, 17, "I think it sounds rather lame"));
-            graph.AddEdge(new LabelledEdge(1, 2, "Why does she sing?"));
-            graph.AddEdge(new LabelledEdge(2, 3, "What's that thing hanging over the fireplace?"));
-            graph.AddEdge(new LabelledEdge(3, 4, "What's a beholder?"));
-            graph.AddEdge(new LabelledEdge(2, 5, "I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them."));
-            graph.AddEdge(new LabelledEdge(3, 5, "Actually, I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them."));
-            graph.AddEdge(new LabelledEdge(4, 5, "I see. Look, I came here because I was attacked on the streets by a band of thieves, and I'm looking to find them."));
-            graph.AddEdge(new LabelledEdge(5, 6, "So this new guild's at war with the old guild?"));
-            graph.AddEdge(new LabelledEdge(6, 7, "I don't have much choice; they stole every last coin I had. If you know where I can find them, tell me."));
-            graph.AddEdge(new LabelledEdge(5, 7, "Do you know where I can find these thieves?"));
-            graph.AddEdge(new LabelledEdge(7, 8, "Why the sewers?"));
-            graph.AddEdge(new LabelledEdge(8, 9, "All right. How do I get into the sewers?"));
-            graph.AddEdge(new LabelledEdge(9, 10, "Could I use the gate?"));
-            graph.AddEdge(new LabelledEdge(10, 11, "What do you mean?"));
-            graph.AddEdge(new LabelledEdge(11, 12, "It's a deal."));
-            graph.AddEdge(new LabelledEdge(12, 13, "Who's Ethon"));
-            graph.AddEdge(new LabelledEdge(12, 15, "I'll go speak to him, then."));
-            graph.AddEdge(new LabelledEdge(13, 14, "When did they start appearing?"));
-            graph.AddEdge(new LabelledEdge(13, 15, "I'll go speak to him, then."));
-            graph.AddEdge(new LabelledEdge(14, 15, "I'll go get the key from Ethon and see about taking care of those rats, then."));
-            graph.AddEdge(new LabelledEdge(15, 16, "OK"));
-            graph.AddEdge(new LabelledEdge(17, 18, "No, I think rats are cute"));
-            graph.AddEdge(new LabelledEdge(17, 15, "Sure, why not"));
-            graph.AddEdge(new LabelledEdge(18, 16, "OK"));
+            graph.AddEdge(new DialogueEdge(0, 1, "It is beautiful... but where's the voice coming from?"));
+            graph.AddEdge(new DialogueEdge(0, 17, "I think it sounds rather lame"));
+            graph.AddEdge(new DialogueEdge(1, 2, "Why does she sing?"));
+            graph.AddEdge(new DialogueEdge(2, 3, "What's that thing hanging over the fireplace?"));
+            graph.AddEdge(new DialogueEdge(3, 4, "What's a beholder?"));
+            graph.AddEdge(new DialogueEdge(2, 5, "I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them."));
+            graph.AddEdge(new DialogueEdge(3, 5, "Actually, I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them."));
+            graph.AddEdge(new DialogueEdge(4, 5, "I see. Look, I came here because I was attacked on the streets by a band of thieves, and I'm looking to find them."));
+            graph.AddEdge(new DialogueEdge(5, 6, "So this new guild's at war with the old guild?"));
+            graph.AddEdge(new DialogueEdge(6, 7, "I don't have much choice; they stole every last coin I had. If you know where I can find them, tell me."));
+            graph.AddEdge(new DialogueEdge(5, 7, "Do you know where I can find these thieves?"));
+            graph.AddEdge(new DialogueEdge(7, 8, "Why the sewers?"));
+            graph.AddEdge(new DialogueEdge(8, 9, "All right. How do I get into the sewers?"));
+            graph.AddEdge(new DialogueEdge(9, 10, "Could I use the gate?"));
+            graph.AddEdge(new DialogueEdge(10, 11, "What do you mean?"));
+            graph.AddEdge(new DialogueEdge(11, 12, "It's a deal."));
+            graph.AddEdge(new DialogueEdge(12, 13, "Who's Ethon"));
+            graph.AddEdge(new DialogueEdge(12, 15, "I'll go speak to him, then."));
+            graph.AddEdge(new DialogueEdge(13, 14, "When did they start appearing?"));
+            graph.AddEdge(new DialogueEdge(13, 15, "I'll go speak to him, then."));
+            graph.AddEdge(new DialogueEdge(14, 15, "I'll go get the key from Ethon and see about taking care of those rats, then."));
+            graph.AddEdge(new DialogueEdge(15, 16, "OK"));
+            graph.AddEdge(new DialogueEdge(17, 18, "No, I think rats are cute"));
+            graph.AddEdge(new DialogueEdge(17, 15, "Sure, why not"));
+            graph.AddEdge(new DialogueEdge(18, 16, "OK"));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestAvailable()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_RatQuestAvailable()
         {
             var vertices = new List<DialogueVertex>
             {
@@ -479,16 +479,16 @@ namespace Temple.Infrastructure.UnitTest
                 new(""),
             };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "No. As I said, I think rats are cute"));
-            graph.AddEdge(new LabelledEdge(0, 2, "Ok then. I'll kill those critters for you."));
-            graph.AddEdge(new LabelledEdge(1, 3, "Ok"));
-            graph.AddEdge(new LabelledEdge(2, 3, "Thanks. See you later"));
+            graph.AddEdge(new DialogueEdge(0, 1, "No. As I said, I think rats are cute"));
+            graph.AddEdge(new DialogueEdge(0, 2, "Ok then. I'll kill those critters for you."));
+            graph.AddEdge(new DialogueEdge(1, 3, "Ok"));
+            graph.AddEdge(new DialogueEdge(2, 3, "Thanks. See you later"));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestActive()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_RatQuestActive()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -497,14 +497,14 @@ namespace Temple.Infrastructure.UnitTest
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
-            graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
+            graph.AddEdge(new DialogueEdge(0, 1, "No, not yet."));
+            graph.AddEdge(new DialogueEdge(1, 2, "Very well."));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestTurnIn()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_RatQuestTurnIn()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -514,15 +514,15 @@ namespace Temple.Infrastructure.UnitTest
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "In the cellar? No I didn't see him."));
-            graph.AddEdge(new LabelledEdge(1, 2, "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him."));
-            graph.AddEdge(new LabelledEdge(2, 3, "I'll be careful. Thanks, Alyth."));
+            graph.AddEdge(new DialogueEdge(0, 1, "In the cellar? No I didn't see him."));
+            graph.AddEdge(new DialogueEdge(1, 2, "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him."));
+            graph.AddEdge(new DialogueEdge(2, 3, "I'll be careful. Thanks, Alyth."));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_SmallTalkDialogue()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_SmallTalkDialogue()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -530,14 +530,14 @@ namespace Temple.Infrastructure.UnitTest
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "Sure"));
+            graph.AddEdge(new DialogueEdge(0, 1, "Sure"));
 
             return graph;
         }
 
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestHidden()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SkeletonQuestHidden()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -551,20 +551,24 @@ namespace Temple.Infrastructure.UnitTest
                 Text = "Great, they are on the graveyard outside of the village. Good luck",
                 GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
             },
-            new("Ok, then fuck off, skeleton lover!"),
+            new()
+            {
+                Text = "Ok, then fuck off, skeleton lover! By the way, Alyth likes strawberries.",
+                GameEventTrigger = new KnowledgeGainedEventTrigger("alyth_likes_strawberries")
+            },
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 2, "No, I think skeletons are cute"));
-            graph.AddEdge(new LabelledEdge(0, 1, "Sure, why not"));
-            graph.AddEdge(new LabelledEdge(1, 3, "OK"));
-            graph.AddEdge(new LabelledEdge(2, 3, "OK"));
+            graph.AddEdge(new DialogueEdge(0, 2, "No, I think skeletons are cute"));
+            graph.AddEdge(new DialogueEdge(0, 1, "Sure, why not"));
+            graph.AddEdge(new DialogueEdge(1, 3, "OK"));
+            graph.AddEdge(new DialogueEdge(2, 3, "OK"));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestAvailable()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SkeletonQuestAvailable()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -578,16 +582,16 @@ namespace Temple.Infrastructure.UnitTest
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "No. As I said, I think skeletons are cute"));
-            graph.AddEdge(new LabelledEdge(0, 2, "Ok then. I'll kill'em for you."));
-            graph.AddEdge(new LabelledEdge(1, 3, "Ok"));
-            graph.AddEdge(new LabelledEdge(2, 3, "Thanks. See you later"));
+            graph.AddEdge(new DialogueEdge(0, 1, "No. As I said, I think skeletons are cute"));
+            graph.AddEdge(new DialogueEdge(0, 2, "Ok then. I'll kill'em for you."));
+            graph.AddEdge(new DialogueEdge(1, 3, "Ok"));
+            graph.AddEdge(new DialogueEdge(2, 3, "Thanks. See you later"));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestActive()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SkeletonQuestActive()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -596,14 +600,14 @@ namespace Temple.Infrastructure.UnitTest
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "No, not yet."));
-            graph.AddEdge(new LabelledEdge(1, 2, "Very well."));
+            graph.AddEdge(new DialogueEdge(0, 1, "No, not yet."));
+            graph.AddEdge(new DialogueEdge(1, 2, "Very well."));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SkeletonQuestTurnIn()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SkeletonQuestTurnIn()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -611,13 +615,13 @@ namespace Temple.Infrastructure.UnitTest
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "Thanks, man."));
+            graph.AddEdge(new DialogueEdge(0, 1, "Thanks, man."));
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Captain_SmallTalkDialogue()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SmallTalkDialogue()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -625,9 +629,9 @@ namespace Temple.Infrastructure.UnitTest
             new(""),
         };
 
-            var graph = new GraphAdjacencyList<DialogueVertex, LabelledEdge>(vertices, true);
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new LabelledEdge(0, 1, "Nah I think the weather is nice"));
+            graph.AddEdge(new DialogueEdge(0, 1, "Nah I think the weather is nice"));
 
             return graph;
         }

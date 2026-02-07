@@ -108,127 +108,127 @@
       ],
       "Edges": [
         {
-          "Label": "It is beautiful... but where's the voice coming from?",
+          "Text": "It is beautiful... but where's the voice coming from?",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "I think it sounds rather lame",
+          "Text": "I think it sounds rather lame",
           "VertexId1": 0,
           "VertexId2": 17
         },
         {
-          "Label": "Why does she sing?",
+          "Text": "Why does she sing?",
           "VertexId1": 1,
           "VertexId2": 2
         },
         {
-          "Label": "What's that thing hanging over the fireplace?",
+          "Text": "What's that thing hanging over the fireplace?",
           "VertexId1": 2,
           "VertexId2": 3
         },
         {
-          "Label": "What's a beholder?",
+          "Text": "What's a beholder?",
           "VertexId1": 3,
           "VertexId2": 4
         },
         {
-          "Label": "I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
+          "Text": "I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
           "VertexId1": 2,
           "VertexId2": 5
         },
         {
-          "Label": "Actually, I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
+          "Text": "Actually, I was hoping you could help me. I was robbed on the streets by a band of thieves, and I'm looking to find them.",
           "VertexId1": 3,
           "VertexId2": 5
         },
         {
-          "Label": "I see. Look, I came here because I was attacked on the streets by a band of thieves, and I'm looking to find them.",
+          "Text": "I see. Look, I came here because I was attacked on the streets by a band of thieves, and I'm looking to find them.",
           "VertexId1": 4,
           "VertexId2": 5
         },
         {
-          "Label": "So this new guild's at war with the old guild?",
+          "Text": "So this new guild's at war with the old guild?",
           "VertexId1": 5,
           "VertexId2": 6
         },
         {
-          "Label": "I don't have much choice; they stole every last coin I had. If you know where I can find them, tell me.",
+          "Text": "I don't have much choice; they stole every last coin I had. If you know where I can find them, tell me.",
           "VertexId1": 6,
           "VertexId2": 7
         },
         {
-          "Label": "Do you know where I can find these thieves?",
+          "Text": "Do you know where I can find these thieves?",
           "VertexId1": 5,
           "VertexId2": 7
         },
         {
-          "Label": "Why the sewers?",
+          "Text": "Why the sewers?",
           "VertexId1": 7,
           "VertexId2": 8
         },
         {
-          "Label": "All right. How do I get into the sewers?",
+          "Text": "All right. How do I get into the sewers?",
           "VertexId1": 8,
           "VertexId2": 9
         },
         {
-          "Label": "Could I use the gate?",
+          "Text": "Could I use the gate?",
           "VertexId1": 9,
           "VertexId2": 10
         },
         {
-          "Label": "What do you mean?",
+          "Text": "What do you mean?",
           "VertexId1": 10,
           "VertexId2": 11
         },
         {
-          "Label": "It's a deal.",
+          "Text": "It's a deal.",
           "VertexId1": 11,
           "VertexId2": 12
         },
         {
-          "Label": "Who's Ethon",
+          "Text": "Who's Ethon",
           "VertexId1": 12,
           "VertexId2": 13
         },
         {
-          "Label": "I'll go speak to him, then.",
+          "Text": "I'll go speak to him, then.",
           "VertexId1": 12,
           "VertexId2": 15
         },
         {
-          "Label": "When did they start appearing?",
+          "Text": "When did they start appearing?",
           "VertexId1": 13,
           "VertexId2": 14
         },
         {
-          "Label": "I'll go speak to him, then.",
+          "Text": "I'll go speak to him, then.",
           "VertexId1": 13,
           "VertexId2": 15
         },
         {
-          "Label": "I'll go get the key from Ethon and see about taking care of those rats, then.",
+          "Text": "I'll go get the key from Ethon and see about taking care of those rats, then.",
           "VertexId1": 14,
           "VertexId2": 15
         },
         {
-          "Label": "OK",
+          "Text": "OK",
           "VertexId1": 15,
           "VertexId2": 16
         },
         {
-          "Label": "No, I think rats are cute",
+          "Text": "No, I think rats are cute",
           "VertexId1": 17,
           "VertexId2": 18
         },
         {
-          "Label": "Sure, why not",
+          "Text": "Sure, why not",
           "VertexId1": 17,
           "VertexId2": 15
         },
         {
-          "Label": "OK",
+          "Text": "OK",
           "VertexId1": 18,
           "VertexId2": 16
         }
@@ -272,22 +272,22 @@
       ],
       "Edges": [
         {
-          "Label": "No. As I said, I think rats are cute",
+          "Text": "No. As I said, I think rats are cute",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "Ok then. I'll kill those critters for you.",
+          "Text": "Ok then. I'll kill those critters for you.",
           "VertexId1": 0,
           "VertexId2": 2
         },
         {
-          "Label": "Ok",
+          "Text": "Ok",
           "VertexId1": 1,
           "VertexId2": 3
         },
         {
-          "Label": "Thanks. See you later",
+          "Text": "Thanks. See you later",
           "VertexId1": 2,
           "VertexId2": 3
         }
@@ -323,12 +323,12 @@
       ],
       "Edges": [
         {
-          "Label": "No, not yet.",
+          "Text": "No, not yet.",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "Very well.",
+          "Text": "Very well.",
           "VertexId1": 1,
           "VertexId2": 2
         }
@@ -368,17 +368,17 @@
       ],
       "Edges": [
         {
-          "Label": "In the cellar? No I didn't see him.",
+          "Text": "In the cellar? No I didn't see him.",
           "VertexId1": 0,
           "VertexId2": 1
         },
         {
-          "Label": "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him.",
+          "Text": "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him.",
           "VertexId1": 1,
           "VertexId2": 2
         },
         {
-          "Label": "I'll be careful. Thanks, Alyth.",
+          "Text": "I'll be careful. Thanks, Alyth.",
           "VertexId1": 2,
           "VertexId2": 3
         }
@@ -401,7 +401,7 @@
       ],
       "Edges": [
         {
-          "Label": "Sure",
+          "Text": "Sure",
           "VertexId1": 0,
           "VertexId2": 1
         }
