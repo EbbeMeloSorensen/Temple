@@ -4,12 +4,14 @@ using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
+using Temple.ViewModel.DD.ReadModels;
 
 namespace Temple.ViewModel.DD.Dialogue;
 
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
+    private readonly IKnowledgeGainedReadModel _knowledgeGainedReadModel;
     private readonly IQuestStatusReadModel _questStatusReadModel;
     private readonly IDialogueSessionFactory _dialogueSessionFactory;
     private IDialogueSession _dialogueSession;
@@ -53,10 +55,12 @@ public class DialogueViewModel : TempleViewModel
 
     public DialogueViewModel(
         ApplicationController controller,
+        IKnowledgeGainedReadModel knowledgeGainedReadModel,
         IQuestStatusReadModel questStatusReadModel,
         IDialogueSessionFactory dialogueSessionFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+        _knowledgeGainedReadModel = knowledgeGainedReadModel ?? throw new ArgumentNullException(nameof(knowledgeGainedReadModel));
         _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
         _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
@@ -98,6 +102,7 @@ public class DialogueViewModel : TempleViewModel
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
         _dialogueSession = _dialogueSessionFactory.GetDialogueSession(
+            _knowledgeGainedReadModel,
             _questStatusReadModel,
             _controller.EventBus,
             dialoguePayload.NPCId);

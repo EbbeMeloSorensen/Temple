@@ -23,6 +23,7 @@ namespace Temple.ViewModel
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
         private readonly IQuestStatusReadModel _questStatusReadModel;
+        private readonly KnowledgeGainedReadModel _knowledgeGainedReadModel;
         private readonly ApplicationController _controller;
 
         private string _currentApplicationStateAsText;
@@ -60,6 +61,7 @@ namespace Temple.ViewModel
             _dialogueSessionFactory = dialogueSessionFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
+            _knowledgeGainedReadModel = new KnowledgeGainedReadModel();
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
@@ -72,12 +74,15 @@ namespace Temple.ViewModel
                     case StateMachineState.MainMenu:
                         CurrentViewModel = new HomeViewModel(_controller);
                         break;
+
                     case StateMachineState.ShuttingDown:
                         ShutdownAction?.Invoke();
                         break;
+
                     case StateMachineState.SmurfManagement:
                         CurrentViewModel = new MainWindowViewModel_Smurfs(_mediator, _controller);
                         break;
+
                     case StateMachineState.PeopleManagement:
                         CurrentViewModel = new MainWindowViewModel_PR(_mediator, _applicationDialogService, _controller);
                         break;
@@ -87,23 +92,31 @@ namespace Temple.ViewModel
                         _controller.ExitState();
                         break;
 
-                    // Todo: Lav evt de 3 næste som factory, som ChatGPT foreslår
                     case StateMachineState.Interlude:
                         var interludeViewModel = new InterludeViewModel(_controller);
                         CurrentViewModel = interludeViewModel.Init(applicationState.Payload);
                         break;
+
                     case StateMachineState.Exploration:
                         var explorationViewModel = new ExplorationViewModel(_controller, _questStatusReadModel, _siteRenderer);
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;
+
                     case StateMachineState.Battle:
                         var battleViewModel = new BattleViewModel(_controller);
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
+
                     case StateMachineState.Dialogue:
-                        var dialogueViewModel = new DialogueViewModel(_controller, _questStatusReadModel, _dialogueSessionFactory);
+                        var dialogueViewModel = new DialogueViewModel(
+                            _controller,
+                            _knowledgeGainedReadModel,
+                            _questStatusReadModel,
+                            _dialogueSessionFactory);
+
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);
                         break;
+
                     case StateMachineState.InGameMenu:
                         var inGameMenuViewModel = new InGameMenuViewModel(_controller, _questStatusReadModel);
                         CurrentViewModel = inGameMenuViewModel.Init(applicationState.Payload);
@@ -112,12 +125,15 @@ namespace Temple.ViewModel
                     case StateMachineState.Wilderness:
                         CurrentViewModel = new WildernessViewModel(_controller);
                         break;
+
                     case StateMachineState.Defeat:
                         CurrentViewModel = new DefeatViewModel(_controller);
                         break;
+
                     case StateMachineState.Victory:
                         CurrentViewModel = new VictoryViewModel(_controller);
                         break;
+
                     default:
                     {
                         throw new InvalidOperationException("Unknown state");

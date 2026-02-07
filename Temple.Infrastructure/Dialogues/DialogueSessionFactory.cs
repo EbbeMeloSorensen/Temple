@@ -1,22 +1,23 @@
 ﻿using Craft.DataStructures.Graph;
 using Craft.DataStructures.IO;
 using Temple.Application.Core;
-using Temple.Application.DD;
 using Temple.Application.Interfaces;
-using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.IO;
 
 namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
+    private IKnowledgeGainedReadModel _knowledgeGainedReadModel;
     private IQuestStatusReadModel _questStatusReadModel;
 
     public IDialogueSession GetDialogueSession(
+        IKnowledgeGainedReadModel knowledgeGainedReadModel,
         IQuestStatusReadModel questStatusReadModel,
         QuestEventBus eventBus,
         string npcId)
     {
+        _knowledgeGainedReadModel = knowledgeGainedReadModel;
         _questStatusReadModel = questStatusReadModel;
 
         return new DialogueSession(eventBus, npcId, GenerateGraph_Dialogue(npcId));
