@@ -392,8 +392,6 @@ namespace Temple.Infrastructure.UnitTest
 
             // Act
             dialogueGraph.WriteToDotFile(@"C:\Temp\MyDialogueGraph.dot");
-
-            // Assert
         }
 
         private GraphAdjacencyList<DialogueVertex, LabelledEdge> GenerateGraph_Alyth_RatQuestHidden()
@@ -633,6 +631,5 @@ namespace Temple.Infrastructure.UnitTest
 
             return graph;
         }
-
     }
 }
