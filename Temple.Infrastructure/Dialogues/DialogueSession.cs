@@ -72,6 +72,9 @@ public class DialogueSession : IDialogueSession
             case QuestAcceptedEventTrigger questAcceptedEventTrigger:
                 _eventBus.Publish(new QuestAcceptedEvent(questAcceptedEventTrigger.QuestId));
                 break;
+            case KnowledgeGainedEventTrigger knowledgeGainedEventTrigger:
+                _eventBus.Publish(new KnowledgeGainedEvent(knowledgeGainedEventTrigger.KnowledgeId));
+                break;
         }
     }
 }

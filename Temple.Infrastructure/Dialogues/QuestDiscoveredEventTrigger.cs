@@ -8,4 +8,9 @@ public class QuestDiscoveredEventTrigger : IGameEventTrigger
     {
         QuestId = questId;
     }
+
+    public override string ToString()
+    {
+        return $"Quest discovered: {QuestId}";
+    }
 }

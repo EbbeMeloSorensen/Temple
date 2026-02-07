@@ -52,7 +52,12 @@ Done:
 * DialogueGraphList filer skal tilføjes til projektet som ressource-filer
 
 Todo:
+* Lav det der med at man kun kan spørge til beholderen, hvis man først har spurgt Alyth om det - baseret på knowledge
+  - det skal afgøre, om edges ud af dialogue graph vertices er tilladte.
+* Er det at få en nøgle af Ethon en quest i sig selv? Egentlig burde det jo bare være en del af questen om at slå rotter ihjel...
 * Lav noget visualisering af en DialogueGraph
+  - Visualiseringen skal omfatte game event triggers
+  - Der skal være en game event trigger, der handler om, at der etableres et fact
 * Implementer noget mere dialog fra Dark Alliance
   - Ethon
 * Implementer noget interlude snak fra Dark Alliance

@@ -27,6 +27,10 @@
         },
         {
           "Text": "That's a stuffed beholder... a small version of the species, I'm told, not that I've seen many of them. One of my regulars, Ethon, found it in the cellar.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger, Temple.Infrastructure",
+            "KnowledgeId": "ethon_found_beholder"
+          },
           "Id": 3
         },
         {

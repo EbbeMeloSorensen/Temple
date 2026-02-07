@@ -369,7 +369,7 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
-        public void WriteDialogueGraphToJsonFile()
+        public void WriteDialogueGraphToDotFile()
         {
             // Arrange
             var dialogueGraph = new DialogueGraph
@@ -403,7 +403,11 @@ namespace Temple.Infrastructure.UnitTest
             new("Beautiful song, isn't it? I've heard her sing a hundred times, and each time, it still moves me."),
             new("It's the spirit of an elven woman; she haunts this tavern, singing once every couple of nights."),
             new("No one truly knows. Her spirit was here when I first bought this tavern. Some say she sings for a lost love, a soldier who died defending Baldur's Gate. They say she sings in the hope he will her her voice and return home. Still, that's nothing but hearsay and tales - welcome to the Elfsong Tavern. What can I get you?"),
-            new("That's a stuffed beholder... a small version of the species, I'm told, not that I've seen many of them. One of my regulars, Ethon, found it in the cellar."),
+            new()
+            {
+                Text = "That's a stuffed beholder... a small version of the species, I'm told, not that I've seen many of them. One of my regulars, Ethon, found it in the cellar.",
+                GameEventTrigger = new KnowledgeGainedEventTrigger("ethon_found_beholder")
+            },
             new("They're also called eye tyrants, if that name's any more familiar to you. Beholders are beasts that float above the ground and can cast terrible spells from their eyes. Evil things... I wouldn't want to meet one, and neither would you."),
             new("Hmmm. Sounds like members of that new thieves' guild I've been hearing about. You're lucky to be alive. Word is, they're responsible for the murder of two city watchmen and the \"disappearance\" of several thieves from the old guild."),
             new("Yes... Look, I wouldn't cross blades with those thugs if I were you. Just stay clear of them unless you want to end up dead in an alley, all right?"),

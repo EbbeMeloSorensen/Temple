@@ -1,8 +1,5 @@
-﻿using Craft.DataStructures.IO;
-using Craft.DataStructures.IO.graphml;
-using System.Text;
+﻿using System.Text;
 using Temple.Infrastructure.Dialogues;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Temple.Infrastructure.IO;
 
@@ -25,12 +22,20 @@ public static class DialogueGraphExtensions
         // Add vertices to graph
         for (var vertexId = 0; vertexId < graph.VertexCount; vertexId++)
         {
-            var text = ((DialogueVertex)graph.GetVertex(vertexId)).Text;
+            var vertex = (DialogueVertex) graph.GetVertex(vertexId);
+
+            var text = vertex.Text;
 
             text = text.Replace("\"", "\\\"");
 
             //text = WrapForEllipse(text, 40, 3); // Doesn't work
             text = WrapByMaxLength(text, 40);
+
+            // Add Game event trigger
+            if (vertex.GameEventTrigger != null)
+            {
+                text = $"{text}\\n\\n{vertex.GameEventTrigger}";
+            }
 
             streamWriter.WriteLine($"  {vertexId} [label=\"{text}\"];");
 
@@ -151,6 +156,6 @@ public static class DialogueGraphExtensions
         if (currentLine.Length > 0)
             lines.Add(currentLine.ToString());
 
-        return string.Join("\n", lines);
+        return string.Join("\\n", lines);
     }
 }

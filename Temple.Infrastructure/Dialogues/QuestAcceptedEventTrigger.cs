@@ -8,4 +8,9 @@ public class QuestAcceptedEventTrigger : IGameEventTrigger
     {
         QuestId = questId;
     }
+
+    public override string ToString()
+    {
+        return $"Quest accepted: {QuestId}";
+    }
 }

@@ -59,7 +59,7 @@ public class BattleViewModel : TempleViewModel
                 }
                 else
                 {
-                    _controller.ApplicationData.BattlesWon.Add(_battleId);
+                    //_controller.ApplicationData.BattlesWon.Add(_battleId);
                     _controller.EventBus.Publish(new BattleWonEvent(_battleId));
                     _controller.GoToNextApplicationState(_payloadForNextState);
                 }

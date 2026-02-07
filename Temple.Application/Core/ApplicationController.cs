@@ -1,12 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Craft.Math;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Craft.Math;
+using Temple.Application.DD;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
+using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Domain.Entities.DD.Quests.Rules;
 using Temple.Persistence.EFCore.AppData;
 
@@ -108,6 +110,9 @@ public class ApplicationController
         _ = new QuestRuntime(Quests, EventBus);
 
         ApplicationData = new ApplicationData();
+
+        EventBus.Subscribe<KnowledgeGainedEvent>(HandleKnowledgeGained);
+        EventBus.Subscribe<BattleWonEvent>(HandleBattleWon);
     }
 
     public async Task InitializeAsync()
@@ -282,5 +287,17 @@ public class ApplicationController
 
         ApplicationData.Party.Add(adventurer1);
         ApplicationData.Party.Add(adventurer2);
+    }
+
+    private void HandleKnowledgeGained(
+        KnowledgeGainedEvent e)
+    {
+        ApplicationData.KnowledgeGained.Add(e.KnowledgeId);
+    }
+
+    private void HandleBattleWon(
+        BattleWonEvent e)
+    {
+        ApplicationData.BattlesWon.Add(e.BattleId);
     }
 }
