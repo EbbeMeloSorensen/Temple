@@ -397,7 +397,7 @@ namespace Temple.Infrastructure.UnitTest
             foreach (var dialogueGraph in dialogueGraphs)
             {
                 count++;
-                var outputFileName = $@"C:\Temp\DialogueGrapg_{npcId}_{count}.dot";
+                var outputFileName = $@"C:\Temp\DialogueGraph_{npcId}_{count}.dot";
                 dialogueGraph.WriteToDotFile(outputFileName);
             }
         }
