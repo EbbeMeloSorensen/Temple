@@ -45,40 +45,16 @@
           "Id": 9
         },
         {
-          "Text": "",
+          "Text": "The gate to the sewers? What do you want to get to that rusty thing for? It's been sealed for years.",
           "Id": 10
         },
         {
-          "Text": "",
+          "Text": "Are you sure it was the rat problem or are you thinking of hunting down those thieves that attacked you?",
           "Id": 11
         },
         {
-          "Text": "",
-          "Id": 12
-        },
-        {
-          "Text": "",
-          "Id": 13
-        },
-        {
-          "Text": "",
-          "Id": 14
-        },
-        {
-          "Text": "The gate to the sewers? What do you want to get to that rusty thing for? It's been sealed for years.",
-          "Id": 15
-        },
-        {
-          "Text": "Are you sure it was the rat problem or are you thinking of hunting down those thieves that attacked you?",
-          "Id": 16
-        },
-        {
-          "Text": "",
-          "Id": 17
-        },
-        {
           "Text": "Friend, if I were you, I'd leave well enough alone. They let you live - once - no sense in tryingyour luck twice. Let them go.",
-          "Id": 18
+          "Id": 12
         }
       ],
       "Edges": [
@@ -107,12 +83,12 @@
         {
           "Text": "Alyth asked me to take care of this tavern's rat problem. I need to get into the cellar.",
           "VertexId1": 1,
-          "VertexId2": 16
+          "VertexId2": 11
         },
         {
           "Text": "I need to get to the sewer gate down in the cellar, but I need your key first.",
           "VertexId1": 1,
-          "VertexId2": 15
+          "VertexId2": 10
         },
         {
           "Text": "None of your business. Give me the key, old man.",
@@ -147,7 +123,7 @@
         {
           "Text": "I'm still heading down there.",
           "VertexId1": 7,
-          "VertexId2": 13
+          "VertexId2": 9
         },
         {
           "Text": "Then I'll have to be extra careful, then.",
@@ -162,7 +138,7 @@
         {
           "Text": "Then I'll have to be extra careful, then.",
           "VertexId1": 8,
-          "VertexId2": 10
+          "VertexId2": 9
         },
         {
           "Text": "Before I go, Alyth told me you were the one that found that stuffed beholder over the fireplace.",
@@ -176,22 +152,22 @@
         },
         {
           "Text": "What do you know about that?",
-          "VertexId1": 16,
+          "VertexId1": 11,
           "VertexId2": 5
         },
         {
           "Text": "My business is my own. I need the key to the cellar.",
-          "VertexId1": 15,
+          "VertexId1": 10,
           "VertexId2": 4
         },
         {
           "Text": "I was robbed on the streets by a number of thieves who may be using the sewers to move through Baldur's Gate. I aim to track them down.",
-          "VertexId1": 15,
-          "VertexId2": 18
+          "VertexId1": 10,
+          "VertexId2": 12
         },
         {
           "Text": "I can't; they stole every last coin from me, and I aim to get what they stole back.",
-          "VertexId1": 18,
+          "VertexId1": 12,
           "VertexId2": 6
         }
       ]
