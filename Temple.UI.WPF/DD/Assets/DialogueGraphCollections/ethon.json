@@ -77,7 +77,7 @@
           "Id": 17
         },
         {
-          "Text": "",
+          "Text": "Friend, if I were you, I'd leave well enough alone. They let you live - once - no sense in tryingyour luck twice. Let them go.",
           "Id": 18
         }
       ],
@@ -152,7 +152,7 @@
         {
           "Text": "Then I'll have to be extra careful, then.",
           "VertexId1": 7,
-          "VertexId2": 12
+          "VertexId2": 9
         },
         {
           "Text": "Whatever the dangers, I'm still heading down there.",
@@ -188,6 +188,11 @@
           "Text": "I was robbed on the streets by a number of thieves who may be using the sewers to move through Baldur's Gate. I aim to track them down.",
           "VertexId1": 15,
           "VertexId2": 18
+        },
+        {
+          "Text": "I can't; they stole every last coin from me, and I aim to get what they stole back.",
+          "VertexId1": 18,
+          "VertexId2": 6
         }
       ]
     }
