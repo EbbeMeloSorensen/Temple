@@ -43,6 +43,34 @@
         {
           "Text": "All right, then; I won't say I didn't warn you. Here's the key to the cellar door - don't be too long, or else I'll have to come down and get you. Oh, and before you go, take this dagger - it's not much, but it might do you some good.",
           "Id": 9
+        },
+        {
+          "Text": "",
+          "Id": 10
+        },
+        {
+          "Text": "",
+          "Id": 11
+        },
+        {
+          "Text": "",
+          "Id": 12
+        },
+        {
+          "Text": "",
+          "Id": 13
+        },
+        {
+          "Text": "",
+          "Id": 14
+        },
+        {
+          "Text": "",
+          "Id": 15
+        },
+        {
+          "Text": "",
+          "Id": 16
         }
       ],
       "Edges": [
@@ -71,12 +99,12 @@
         {
           "Text": "Alyth asked me to take care of this tavern's rat problem. I need to get into the cellar.",
           "VertexId1": 1,
-          "VertexId2": 3
+          "VertexId2": 16
         },
         {
           "Text": "I need to get to the sewer gate down in the cellar, but I need your key first.",
           "VertexId1": 1,
-          "VertexId2": 3
+          "VertexId2": 15
         },
         {
           "Text": "None of your business. Give me the key, old man.",
@@ -96,7 +124,7 @@
         {
           "Text": "Rats don't concern me. Just give me the key.",
           "VertexId1": 6,
-          "VertexId2": 3
+          "VertexId2": 14
         },
         {
           "Text": "What about the rats?",
@@ -111,17 +139,22 @@
         {
           "Text": "I'm still heading down there.",
           "VertexId1": 7,
-          "VertexId2": 3
+          "VertexId2": 13
         },
         {
           "Text": "Then I'll have to be extra careful, then.",
           "VertexId1": 7,
-          "VertexId2": 3
+          "VertexId2": 12
         },
         {
           "Text": "Whatever the dangers, I'm still heading down there.",
           "VertexId1": 8,
           "VertexId2": 9
+        },
+        {
+          "Text": "Then I'll have to be extra careful, then.",
+          "VertexId1": 8,
+          "VertexId2": 10
         },
         {
           "Text": "Before I go, Alyth told me you were the one that found that stuffed beholder over the fireplace.",
@@ -131,7 +164,7 @@
         {
           "Text": "I'll be careful. Thanks for the key.",
           "VertexId1": 9,
-          "VertexId2": 3
+          "VertexId2": 11
         }
       ]
     }
