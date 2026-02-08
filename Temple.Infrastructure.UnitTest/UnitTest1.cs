@@ -386,6 +386,23 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
+        public void ReadDialogueGraphCollectionforEthonFromJsonFileThenExportAsDotFile()
+        {
+            var npcId = "ethon";
+
+            var dialogueGraphs =
+                DialogueIO.ReadDialogueGraphListFromFile($@"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\DialogueGraphCollections\{npcId}.json");
+
+            var count = 0;
+            foreach (var dialogueGraph in dialogueGraphs)
+            {
+                count++;
+                var outputFileName = $@"C:\Temp\DialogueGrapg_{npcId}_{count}.dot";
+                dialogueGraph.WriteToDotFile(outputFileName);
+            }
+        }
+
+        [Fact]
         public void WriteDialogueGraphToDotFile()
         {
             // Arrange
@@ -435,7 +452,11 @@ namespace Temple.Infrastructure.UnitTest
                 Text = "Well, we've had to lock up the cellar because of the horde of rats that suddenly showed up down there. Clear them out for me, and I'll give you the key to the sewer gate and a little gold to help you get back on your feet. What do you say?",
                 GameEventTrigger = new QuestDiscoveredEventTrigger("rat_infestation")
             },
-            new("The door to the cellar's locked, so you'll need to get the key from Ethon over in the corner there."),
+            new()
+            {
+                Text = "The door to the cellar's locked, so you'll need to get the key from Ethon over in the corner there.",
+                GameEventTrigger = new KnowledgeGainedEventTrigger("ethon_has_key_to_cellar")
+            },
             new("Ethon's one of our regulars. He usually fetches wine from the cellar for me, but he hasn't been able to go down there since the rats appeared."),
             new("Only this past week. If those thieves are using the sewers to move around Baldur's Gate, they may have driven the rats out."),
             new()

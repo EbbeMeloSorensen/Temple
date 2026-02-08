@@ -1,15 +1,6 @@
 [
   {
     "Priority": 100.0,
-    "Conditions": [
-      {
-        "QuestId": "rat_infestation",
-        "RequiredStatus": {
-          "QuestState": 2,
-          "AreCompletionCriteriaSatisfied": false
-        }
-      }
-    ],
     "Graph": {
       "IsDirected": true,
       "Vertices": [
@@ -58,12 +49,14 @@
         {
           "Text": "Alyth, the bartender, said you had the key to the cellar.",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "KnowledgeRequired": "ethon_has_key_to_cellar"
         },
         {
           "Text": "I hear you're the one that found that stuffed beholder.",
           "VertexId1": 0,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "KnowledgeRequired": "ethon_found_beholder"
         },
         {
           "Text": "Nothing. Sorry to disturb you.",
@@ -139,29 +132,6 @@
           "Text": "I'll be careful. Thanks for the key.",
           "VertexId1": 9,
           "VertexId2": 3
-        }
-      ]
-    }
-  },
-  {
-    "Priority": 0.0,
-    "Graph": {
-      "IsDirected": true,
-      "Vertices": [
-        {
-          "Text": "Do you like my brown sweater, huh?",
-          "Id": 0
-        },
-        {
-          "Text": "",
-          "Id": 1
-        }
-      ],
-      "Edges": [
-        {
-          "Text": "Sure, Ethon",
-          "VertexId1": 0,
-          "VertexId2": 1
         }
       ]
     }

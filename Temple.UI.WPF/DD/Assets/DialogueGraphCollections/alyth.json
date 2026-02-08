@@ -71,6 +71,10 @@
         },
         {
           "Text": "The door to the cellar's locked, so you'll need to get the key from Ethon over in the corner there.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger, Temple.Infrastructure",
+            "KnowledgeId": "ethon_has_key_to_cellar"
+          },
           "Id": 12
         },
         {
