@@ -65,12 +65,20 @@
           "Id": 14
         },
         {
-          "Text": "",
+          "Text": "The gate to the sewers? What do you want to get to that rusty thing for? It's been sealed for years.",
           "Id": 15
         },
         {
-          "Text": "",
+          "Text": "Are you sure it was the rat problem or are you thinking of hunting down those thieves that attacked you?",
           "Id": 16
+        },
+        {
+          "Text": "",
+          "Id": 17
+        },
+        {
+          "Text": "",
+          "Id": 18
         }
       ],
       "Edges": [
@@ -124,7 +132,7 @@
         {
           "Text": "Rats don't concern me. Just give me the key.",
           "VertexId1": 6,
-          "VertexId2": 14
+          "VertexId2": 9
         },
         {
           "Text": "What about the rats?",
@@ -164,7 +172,22 @@
         {
           "Text": "I'll be careful. Thanks for the key.",
           "VertexId1": 9,
-          "VertexId2": 11
+          "VertexId2": 3
+        },
+        {
+          "Text": "What do you know about that?",
+          "VertexId1": 16,
+          "VertexId2": 5
+        },
+        {
+          "Text": "My business is my own. I need the key to the cellar.",
+          "VertexId1": 15,
+          "VertexId2": 4
+        },
+        {
+          "Text": "I was robbed on the streets by a number of thieves who may be using the sewers to move through Baldur's Gate. I aim to track them down.",
+          "VertexId1": 15,
+          "VertexId2": 18
         }
       ]
     }
