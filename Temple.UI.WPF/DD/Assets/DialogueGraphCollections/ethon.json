@@ -172,5 +172,56 @@
         }
       ]
     }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Take care of those rats yet?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        },
+        {
+          "Text": "Well, I keep my ear to the cobbles, friend, and that new guild that's come to Baldur's Gate is a terror. They're butchers, not thieves. They've killed some of the city watch, and they're said to have left their mark on the bodies. What kind of thieves kill the law and don't even take care to cover their hand in it? Fools, all of them... or powerful fools.",
+          "Id": 2
+        },
+        {
+          "Text": "That's the other thing. They just came out of the shadows a few weeks ago, and no one can place their faces. Not a one of them is local talent. They have a different way of doing things, and it usually involves a dagger between your ribs rather than lifting your purse. They're killers, not thives.",
+          "Id": 3
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "I'm still working on it."
+        },
+        {
+          "VertexId1": 0,
+          "VertexId2": 2,
+          "Text": "Not yet. Can you tell me anything about this new thieves guild?"
+        },
+        {
+          "VertexId1": 2,
+          "VertexId2": 3,
+          "Text": "Do you know where this new guild came from?"
+        },
+        {
+          "VertexId1": 2,
+          "VertexId2": 1,
+          "Text": "I'll be careful. Farewell, Ethon."
+        },
+        {
+          "VertexId1": 3,
+          "VertexId2": 1,
+          "Text": "I'll be careful. Thanks for the information, Ethon."
+        }
+      ]
+    }
   }
 ]
