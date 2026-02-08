@@ -2,4 +2,5 @@
 
 public interface IKnowledgeGainedReadModel
 {
+    public IEnumerable<string> KnowledgeGained { get; }
 }

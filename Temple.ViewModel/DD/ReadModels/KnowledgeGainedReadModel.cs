@@ -1,7 +1,26 @@
-﻿using Temple.Application.Interfaces;
+﻿using Temple.Application.Core;
+using Temple.Application.DD;
+using Temple.Application.Interfaces;
+using Temple.Domain.Entities.DD.Quests;
+using Temple.Domain.Entities.DD.Quests.Events;
 
 namespace Temple.ViewModel.DD.ReadModels;
 
 public class KnowledgeGainedReadModel : IKnowledgeGainedReadModel
 {
+    private readonly HashSet<string> _knowledgeGained = new HashSet<string>();
+
+    public IEnumerable<string> KnowledgeGained => _knowledgeGained;
+
+    public KnowledgeGainedReadModel(
+        QuestEventBus eventBus)
+    {
+        eventBus.Subscribe<KnowledgeGainedEvent>(HandleKnowledgeGained);
+    }
+
+    private void HandleKnowledgeGained(
+        KnowledgeGainedEvent e)
+    {
+        _knowledgeGained.Add(e.KnowledgeId);
+    }
 }

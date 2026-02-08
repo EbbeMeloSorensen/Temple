@@ -61,7 +61,7 @@ namespace Temple.ViewModel
             _dialogueSessionFactory = dialogueSessionFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
-            _knowledgeGainedReadModel = new KnowledgeGainedReadModel();
+            _knowledgeGainedReadModel = new KnowledgeGainedReadModel(controller.EventBus);
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 

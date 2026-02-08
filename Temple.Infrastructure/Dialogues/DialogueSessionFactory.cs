@@ -8,7 +8,6 @@ namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
-    private IKnowledgeGainedReadModel _knowledgeGainedReadModel;
     private IQuestStatusReadModel _questStatusReadModel;
 
     public IDialogueSession GetDialogueSession(
@@ -17,10 +16,13 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         QuestEventBus eventBus,
         string npcId)
     {
-        _knowledgeGainedReadModel = knowledgeGainedReadModel;
         _questStatusReadModel = questStatusReadModel;
 
-        return new DialogueSession(eventBus, npcId, GenerateGraph_Dialogue(npcId));
+        return new DialogueSession(
+            knowledgeGainedReadModel,
+            eventBus,
+            npcId,
+            GenerateGraph_Dialogue(npcId));
     }
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Dialogue(
