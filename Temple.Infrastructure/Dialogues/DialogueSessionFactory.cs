@@ -8,31 +8,28 @@ namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
-    private IQuestStatusReadModel _questStatusReadModel;
-
     public IDialogueSession GetDialogueSession(
         IKnowledgeGainedReadModel knowledgeGainedReadModel,
         IQuestStatusReadModel questStatusReadModel,
         QuestEventBus eventBus,
         string npcId)
     {
-        _questStatusReadModel = questStatusReadModel;
-
         return new DialogueSession(
             knowledgeGainedReadModel,
             eventBus,
             npcId,
-            GenerateGraph_Dialogue(npcId));
+            GenerateGraph_Dialogue(questStatusReadModel, npcId));
     }
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Dialogue(
+        IQuestStatusReadModel questStatusReadModel,
         string npcId)
     {
         var dialogueGraphs =
             DialogueIO.ReadDialogueGraphListFromFile($"DD//Assets//DialogueGraphCollections//{npcId}.json");
 
         // Filtrer de grafer fra, som ikke kvalificerer
-        dialogueGraphs = dialogueGraphs.Where(DialogueGraphMeetsConditions);
+        dialogueGraphs = dialogueGraphs.Where(graph => DialogueGraphMeetsConditions(graph, questStatusReadModel));
 
         // Returner den af de kvalificerende grafer, som har den højeste prioritet
         var result = dialogueGraphs
@@ -45,7 +42,8 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     }
 
     private bool DialogueGraphMeetsConditions(
-        DialogueGraph graph)
+        DialogueGraph graph,
+        IQuestStatusReadModel questStatusReadModel)
     {
         if (graph.Conditions == null || !graph.Conditions.Any())
         {
@@ -54,7 +52,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
         foreach (var condition in graph.Conditions)
         {
-            var status = _questStatusReadModel.GetQuestStatus(condition.QuestId);
+            var status = questStatusReadModel.GetQuestStatus(condition.QuestId);
 
             if (!status.Equals(condition.RequiredStatus))
             {
