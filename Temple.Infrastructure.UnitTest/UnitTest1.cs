@@ -158,7 +158,7 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
-        public void GenerateDialogueGraphCollectionForAlythToJsonFile()
+        public void GenerateDialogueGraphCollectionForAlythThenWriteToJsonFile()
         {
             // Arrange
             var dialogueGraphs = new List<DialogueGraph>
@@ -269,7 +269,7 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
-        public void GenerateDialogueGraphCollectionForCaptainToJsonFile()
+        public void GenerateDialogueGraphCollectionForCaptainThenWriteToJsonFile()
         {
             // Arrange
             var dialogueGraphs = new List<DialogueGraph>
@@ -366,6 +366,23 @@ namespace Temple.Infrastructure.UnitTest
             using var streamWriter = new StreamWriter(@"C:\Temp\captain.json");
 
             streamWriter.WriteLine(json);
+        }
+
+        [Fact]
+        public void ReadDialogueGraphCollectionforAlythFromJsonFileThenExportAsDotFile()
+        {
+            var npcId = "alyth";
+
+            var dialogueGraphs =
+                DialogueIO.ReadDialogueGraphListFromFile($@"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\DialogueGraphCollections\{npcId}.json");
+
+            var count = 0;
+            foreach (var dialogueGraph in dialogueGraphs)
+            {
+                count++;
+                var outputFileName = $@"C:\Temp\DialogueGrapg_{npcId}_{count}.dot";
+                dialogueGraph.WriteToDotFile(outputFileName);
+            }
         }
 
         [Fact]
