@@ -1,4 +1,5 @@
 ﻿using Craft.DataStructures.Graph;
+using Temple.Infrastructure.Dialogues.GameEventTriggers;
 
 namespace Temple.Infrastructure.Dialogues;
 

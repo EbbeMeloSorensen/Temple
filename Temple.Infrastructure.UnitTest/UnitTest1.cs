@@ -7,6 +7,8 @@ using Temple.Application.DD;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.IO;
+using Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+using Temple.Infrastructure.Dialogues.GameEventTriggers;
 
 namespace Temple.Infrastructure.UnitTest
 {

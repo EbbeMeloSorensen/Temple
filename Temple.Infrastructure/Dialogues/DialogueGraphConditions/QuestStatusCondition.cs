@@ -1,6 +1,6 @@
 ﻿using Temple.Application.DD;
 
-namespace Temple.Infrastructure.Dialogues;
+namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
 
 public class QuestStatusCondition : IDialogueGraphCondition
 {

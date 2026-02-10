@@ -1,6 +1,8 @@
 ﻿using Craft.DataStructures.IO;
 using Newtonsoft.Json;
 using Temple.Infrastructure.Dialogues;
+using Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+using Temple.Infrastructure.Dialogues.GameEventTriggers;
 
 namespace Temple.Infrastructure.IO
 {

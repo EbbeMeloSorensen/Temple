@@ -3,6 +3,7 @@ using Temple.Application.Core;
 using Temple.Application.DD;
 using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.Infrastructure.Dialogues.GameEventTriggers;
 
 namespace Temple.Infrastructure.Dialogues;
 

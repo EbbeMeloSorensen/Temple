@@ -1,4 +1,4 @@
-﻿namespace Temple.Infrastructure.Dialogues;
+﻿namespace Temple.Infrastructure.Dialogues.GameEventTriggers;
 
 public class QuestAcceptedEventTrigger : IGameEventTrigger
 {
