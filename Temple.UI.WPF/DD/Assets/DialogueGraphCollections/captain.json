@@ -3,6 +3,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 0,
@@ -44,24 +45,24 @@
       ],
       "Edges": [
         {
-          "Text": "No, I think skeletons are cute",
           "VertexId1": 0,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "Text": "No, I think skeletons are cute"
         },
         {
-          "Text": "Sure, why not",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "Sure, why not"
         },
         {
-          "Text": "OK",
           "VertexId1": 1,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "OK"
         },
         {
-          "Text": "OK",
           "VertexId1": 2,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "OK"
         }
       ]
     }
@@ -70,6 +71,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 1,
@@ -103,24 +105,24 @@
       ],
       "Edges": [
         {
-          "Text": "No. As I said, I think skeletons are cute",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "No. As I said, I think skeletons are cute"
         },
         {
-          "Text": "Ok then. I'll kill'em for you.",
           "VertexId1": 0,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "Text": "Ok then. I'll kill'em for you."
         },
         {
-          "Text": "Ok",
           "VertexId1": 1,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "Ok"
         },
         {
-          "Text": "Thanks. See you later",
           "VertexId1": 2,
-          "VertexId2": 3
+          "VertexId2": 3,
+          "Text": "Thanks. See you later"
         }
       ]
     }
@@ -129,6 +131,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 2,
@@ -154,14 +157,14 @@
       ],
       "Edges": [
         {
-          "Text": "No, not yet.",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "No, not yet."
         },
         {
-          "Text": "Very well.",
           "VertexId1": 1,
-          "VertexId2": 2
+          "VertexId2": 2,
+          "Text": "Very well."
         }
       ]
     }
@@ -170,6 +173,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 2,
@@ -191,9 +195,9 @@
       ],
       "Edges": [
         {
-          "Text": "Thanks, man.",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "Thanks, man."
         }
       ]
     }
@@ -214,9 +218,9 @@
       ],
       "Edges": [
         {
-          "Text": "Nah I think the weather is nice",
           "VertexId1": 0,
-          "VertexId2": 1
+          "VertexId2": 1,
+          "Text": "Nah I think the weather is nice"
         }
       ]
     }

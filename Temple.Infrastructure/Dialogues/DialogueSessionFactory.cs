@@ -52,11 +52,17 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
         foreach (var condition in graph.Conditions)
         {
-            var status = questStatusReadModel.GetQuestStatus(condition.QuestId);
-
-            if (!status.Equals(condition.RequiredStatus))
+            switch (condition)
             {
-                return false;
+                case QuestStatusCondition questStatusCondition:
+                    if (!questStatusReadModel.GetQuestStatus(questStatusCondition.QuestId)
+                            .Equals(questStatusCondition.RequiredStatus))
+                    {
+                        return false;
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
         }
 

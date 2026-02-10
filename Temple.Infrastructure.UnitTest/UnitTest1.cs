@@ -166,9 +166,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "rat_infestation",
                             RequiredStatus = new QuestStatus
@@ -183,9 +183,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "rat_infestation",
                             RequiredStatus = new QuestStatus
@@ -200,9 +200,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "rat_infestation",
                             RequiredStatus = new QuestStatus
@@ -217,9 +217,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "rat_infestation",
                             RequiredStatus = new QuestStatus
@@ -245,14 +245,14 @@ namespace Temple.Infrastructure.UnitTest
                 ContractResolver = jsonResolver,
                 NullValueHandling = NullValueHandling.Ignore,
                 TypeNameHandling = TypeNameHandling.Auto,
-                //SerializationBinder = new KnownTypesBinder
-                //{
-                //    KnownTypes = new[]
-                //    {
-                //        typeof(QuestDiscoveredEventTrigger),
-                //        typeof(QuestAcceptedEventTrigger)
-                //    }
-                //}
+                SerializationBinder = new KnownTypesBinder
+                {
+                    KnownTypes = new[]
+                    {
+                        typeof(QuestDiscoveredEventTrigger),
+                        typeof(QuestAcceptedEventTrigger)
+                    }
+                }
             };
 
             var json = JsonConvert.SerializeObject(
@@ -277,9 +277,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "skeleton_trouble",
                             RequiredStatus = new QuestStatus
@@ -294,9 +294,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "skeleton_trouble",
                             RequiredStatus = new QuestStatus
@@ -311,9 +311,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "skeleton_trouble",
                             RequiredStatus = new QuestStatus
@@ -328,9 +328,9 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<DialogueGraphCondition>
+                    Conditions = new List<IDialogueGraphCondition>
                     {
-                        new()
+                        new QuestStatusCondition()
                         {
                             QuestId = "skeleton_trouble",
                             RequiredStatus = new QuestStatus
@@ -409,9 +409,9 @@ namespace Temple.Infrastructure.UnitTest
             var dialogueGraph = new DialogueGraph
             {
                 Priority = 100,
-                Conditions = new List<DialogueGraphCondition>
+                Conditions = new List<IDialogueGraphCondition>
                 {
-                    new()
+                    new QuestStatusCondition()
                     {
                         QuestId = "rat_infestation",
                         RequiredStatus = new QuestStatus

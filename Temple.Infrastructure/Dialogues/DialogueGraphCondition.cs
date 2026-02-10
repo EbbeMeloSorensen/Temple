@@ -1,9 +1,5 @@
-﻿using Temple.Application.DD;
+﻿namespace Temple.Infrastructure.Dialogues;
 
-namespace Temple.Infrastructure.Dialogues;
-
-public class DialogueGraphCondition
+public interface IDialogueGraphCondition
 {
-    public string QuestId { get; set; }
-    public QuestStatus RequiredStatus { get; set; }
 }

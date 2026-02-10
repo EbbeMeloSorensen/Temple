@@ -3,6 +3,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition",
         "QuestId": "rat_infestation",
         "RequiredStatus": {
           "QuestState": 0,
@@ -28,7 +29,7 @@
         {
           "Text": "That's a stuffed beholder... a small version of the species, I'm told, not that I've seen many of them. One of my regulars, Ethon, found it in the cellar.",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger",
             "KnowledgeId": "ethon_found_beholder"
           },
           "Id": 3
@@ -64,7 +65,7 @@
         {
           "Text": "Well, we've had to lock up the cellar because of the horde of rats that suddenly showed up down there. Clear them out for me, and I'll give you the key to the sewer gate and a little gold to help you get back on your feet. What do you say?",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger",
             "QuestId": "rat_infestation"
           },
           "Id": 11
@@ -72,7 +73,7 @@
         {
           "Text": "The door to the cellar's locked, so you'll need to get the key from Ethon over in the corner there.",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger",
             "KnowledgeId": "ethon_has_key_to_cellar"
           },
           "Id": 12
@@ -88,7 +89,7 @@
         {
           "Text": "Luck be with you... and watch those rats. Some of them can be vicious when backed in a corner",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger",
             "QuestId": "rat_infestation"
           },
           "Id": 15
@@ -100,7 +101,7 @@
         {
           "Text": "What an ignorant! Wanna kill rats?",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger",
             "QuestId": "rat_infestation"
           },
           "Id": 17
@@ -258,6 +259,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition",
         "QuestId": "rat_infestation",
         "RequiredStatus": {
           "QuestState": 1,
@@ -279,7 +281,7 @@
         {
           "Text": "Ok then, best of luck!",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger",
             "QuestId": "rat_infestation"
           },
           "Id": 2
@@ -317,6 +319,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition",
         "QuestId": "rat_infestation",
         "RequiredStatus": {
           "QuestState": 2,
@@ -358,6 +361,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
+        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition",
         "QuestId": "rat_infestation",
         "RequiredStatus": {
           "QuestState": 2,
