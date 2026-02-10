@@ -1,5 +1,5 @@
 ﻿using Temple.Application.Core;
-using Temple.Application.Interfaces;
+using Temple.Application.Interfaces.Readers;
 using Temple.Domain.Entities.DD.Quests.Events;
 
 namespace Temple.ViewModel.DD.ReadModels;

@@ -13,6 +13,7 @@ using Temple.ViewModel.DD.ReadModels;
 using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
+using Temple.Application.Interfaces.Readers;
 
 namespace Temple.ViewModel
 {
@@ -22,8 +23,10 @@ namespace Temple.ViewModel
         private readonly IDialogService _applicationDialogService;
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
+        private readonly IFactsEstablishedReader _factsEstablishedReader;
+        private readonly IKnowledgeGainedReader _knowledgeGainedReadModel;
         private readonly IQuestStatusReader _questStatusReadModel;
-        private readonly KnowledgeGainedReadModel _knowledgeGainedReadModel;
+        private readonly ISitesUnlockedReader _sitesUnlockedReader;
         private readonly ApplicationController _controller;
 
         private string _currentApplicationStateAsText;
@@ -60,8 +63,10 @@ namespace Temple.ViewModel
             _siteRenderer = siteRenderer;
             _dialogueSessionFactory = dialogueSessionFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
+            _factsEstablishedReader = new FactsEstablishedReadModel(controller.EventBus);
             _knowledgeGainedReadModel = new KnowledgeGainedReadModel(controller.EventBus);
+            _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
+            _sitesUnlockedReader = new SitesUnlockedReadModel(controller.EventBus);
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
@@ -110,8 +115,10 @@ namespace Temple.ViewModel
                     case StateMachineState.Dialogue:
                         var dialogueViewModel = new DialogueViewModel(
                             _controller,
+                            _factsEstablishedReader,
                             _knowledgeGainedReadModel,
                             _questStatusReadModel,
+                            _sitesUnlockedReader,
                             _dialogueSessionFactory);
 
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);

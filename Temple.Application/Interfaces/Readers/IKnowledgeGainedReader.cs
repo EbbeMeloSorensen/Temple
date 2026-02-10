@@ -1,4 +1,4 @@
-﻿namespace Temple.Application.Interfaces;
+﻿namespace Temple.Application.Interfaces.Readers;
 
 public interface IKnowledgeGainedReader
 {

@@ -1,5 +1,5 @@
 ﻿using Craft.Math;
-using Temple.Application.Interfaces;
+using Temple.Application.Interfaces.Readers;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
 

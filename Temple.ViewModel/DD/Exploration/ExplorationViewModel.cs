@@ -13,6 +13,7 @@ using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
+using Temple.Application.Interfaces.Readers;
 
 namespace Temple.ViewModel.DD.Exploration
 {

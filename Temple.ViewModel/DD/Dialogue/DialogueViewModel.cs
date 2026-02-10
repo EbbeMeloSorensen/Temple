@@ -4,15 +4,18 @@ using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
+using Temple.Application.Interfaces.Readers;
 
 namespace Temple.ViewModel.DD.Dialogue;
 
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
+    private readonly IFactsEstablishedReader _factsEstablishedReader;
     private readonly IKnowledgeGainedReader _knowledgeGainedReadModel;
     private readonly IQuestStatusReader _questStatusReadModel;
     private readonly IDialogueSessionFactory _dialogueSessionFactory;
+    private readonly ISitesUnlockedReader _sitesUnlockedReader;
     private IDialogueSession _dialogueSession;
     private string _title;
     private string _npcPortraitPath;
@@ -54,13 +57,15 @@ public class DialogueViewModel : TempleViewModel
 
     public DialogueViewModel(
         ApplicationController controller,
-        IKnowledgeGainedReader knowledgeGainedReadModel,
-        IQuestStatusReader questStatusReadModel,
+        IFactsEstablishedReader factsEstablishedReader,
+        IKnowledgeGainedReader knowledgeGainedReader,
+        IQuestStatusReader questStatusReader,
+        ISitesUnlockedReader sitesUnlockedReader,
         IDialogueSessionFactory dialogueSessionFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-        _knowledgeGainedReadModel = knowledgeGainedReadModel ?? throw new ArgumentNullException(nameof(knowledgeGainedReadModel));
-        _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
+        _knowledgeGainedReadModel = knowledgeGainedReader ?? throw new ArgumentNullException(nameof(knowledgeGainedReader));
+        _questStatusReadModel = questStatusReader ?? throw new ArgumentNullException(nameof(questStatusReader));
         _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
         SelectOption_Command = new RelayCommand<int>(optionId =>
@@ -101,8 +106,10 @@ public class DialogueViewModel : TempleViewModel
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
         _dialogueSession = _dialogueSessionFactory.GetDialogueSession(
+            _factsEstablishedReader,
             _knowledgeGainedReadModel,
             _questStatusReadModel,
+            _sitesUnlockedReader,
             _controller.EventBus,
             dialoguePayload.NPCId);
 

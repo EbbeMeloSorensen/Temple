@@ -2,6 +2,7 @@
 using Craft.DataStructures.IO;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
+using Temple.Application.Interfaces.Readers;
 using Temple.Infrastructure.Dialogues.DialogueGraphConditions;
 using Temple.Infrastructure.IO;
 
@@ -10,8 +11,10 @@ namespace Temple.Infrastructure.Dialogues;
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
     public IDialogueSession GetDialogueSession(
+        IFactsEstablishedReader factsEstablishedReader,
         IKnowledgeGainedReader knowledgeGainedReadModel,
         IQuestStatusReader questStatusReadModel,
+        ISitesUnlockedReader sitesUnlockedReader,
         QuestEventBus eventBus,
         string npcId)
     {

@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
-using Temple.Application.Interfaces;
+using Temple.Application.Interfaces.Readers;
 using Temple.Application.State.Payloads;
 
 namespace Temple.ViewModel.DD.InGameMenu;

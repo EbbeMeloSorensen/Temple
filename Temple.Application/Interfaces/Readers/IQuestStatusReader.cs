@@ -1,7 +1,7 @@
 ﻿using Temple.Application.DD;
 using Temple.Domain.Entities.DD.Quests;
 
-namespace Temple.Application.Interfaces;
+namespace Temple.Application.Interfaces.Readers;
 
 public interface IQuestStatusReader
 {
