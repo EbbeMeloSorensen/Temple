@@ -42,6 +42,10 @@
         },
         {
           "Text": "All right, then; I won't say I didn't warn you. Here's the key to the cellar door - don't be too long, or else I'll have to come down and get you. Oh, and before you go, take this dagger - it's not much, but it might do you some good.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "got_key_to_cellar_door_from_ethon"
+          },
           "Id": 9
         },
         {
