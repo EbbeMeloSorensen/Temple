@@ -1,17 +1,17 @@
 ﻿namespace Temple.Infrastructure.Dialogues.GameEventTriggers;
 
-public class KnowledgeGainedEventTrigger : IGameEventTrigger
+public class FactEstablishedEventTrigger : IGameEventTrigger
 {
-    public string KnowledgeId { get; set; }
+    public string FactId { get; set; }
 
-    public KnowledgeGainedEventTrigger(
-        string knowledgeId)
+    public FactEstablishedEventTrigger(
+        string factId)
     {
-        KnowledgeId = knowledgeId;
+        FactId = factId;
     }
 
     public override string ToString()
     {
-        return $"Knowledge gained: {KnowledgeId}";
+        return $"Fact established: {FactId}";
     }
 }

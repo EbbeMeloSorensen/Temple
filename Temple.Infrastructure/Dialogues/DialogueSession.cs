@@ -82,6 +82,9 @@ public class DialogueSession : IDialogueSession
             case KnowledgeGainedEventTrigger knowledgeGainedEventTrigger:
                 _eventBus.Publish(new KnowledgeGainedEvent(knowledgeGainedEventTrigger.KnowledgeId));
                 break;
+            case FactEstablishedEventTrigger factEstablishedEventTrigger:
+                _eventBus.Publish(new FactEstablishedEvent(factEstablishedEventTrigger.FactId));
+                break;
         }
     }
 }
