@@ -516,7 +516,7 @@ namespace Temple.Infrastructure.UnitTest
                 },
                 new()
                 {
-                    Text = "Please slay some skeletons for me, will ya?",
+                    Text = "Sure, you can slay some skeletons for me, will ya?",
                     GameEventTrigger = new QuestDiscoveredEventTrigger("skeleton_trouble")
                 },
                 new()
@@ -534,7 +534,7 @@ namespace Temple.Infrastructure.UnitTest
 
             var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new DialogueEdge(0, 1, "No, I think skeletons are cute"));
+            graph.AddEdge(new DialogueEdge(0, 1, "Do you have a quest for me?"));
             graph.AddEdge(new DialogueEdge(1, 3, "No, I think skeletons are cute"));
             graph.AddEdge(new DialogueEdge(1, 2, "Sure, why not"));
             graph.AddEdge(new DialogueEdge(2, 4, "OK"));

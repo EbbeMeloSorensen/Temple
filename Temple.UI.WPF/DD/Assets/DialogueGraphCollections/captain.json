@@ -23,7 +23,7 @@
           "Id": 0
         },
         {
-          "Text": "Please slay some skeletons for me, will ya?",
+          "Text": "Sure, you can slay some skeletons for me, will ya?",
           "GameEventTrigger": {
             "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestDiscoveredEventTrigger",
             "QuestId": "skeleton_trouble"
@@ -55,7 +55,7 @@
         {
           "VertexId1": 0,
           "VertexId2": 1,
-          "Text": "No, I think skeletons are cute"
+          "Text": "Do you have a quest for me?"
         },
         {
           "VertexId1": 1,
