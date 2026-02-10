@@ -1,7 +1,6 @@
 ﻿using Craft.Logging;
 using Temple.Persistence.Repositories.PR;
 using Temple.Persistence.Repositories.Smurfs;
-using System;
 using Temple.Persistence.Versioned.Repositories;
 
 namespace Temple.Persistence.Versioned

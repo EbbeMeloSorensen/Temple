@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Temple.Application.DD;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Application.State.Payloads;

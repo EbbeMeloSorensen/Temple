@@ -1,9 +1,6 @@
 ﻿using Craft.Logging;
 using Craft.Persistence;
 using Temple.Domain.Entities.PR;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Temple.Persistence.Repositories.PR
 {

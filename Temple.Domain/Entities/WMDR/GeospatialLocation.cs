@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Temple.Domain.Entities.WMDR
+﻿namespace Temple.Domain.Entities.WMDR
 {
     public abstract class GeospatialLocation
     {

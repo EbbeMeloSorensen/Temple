@@ -6,7 +6,6 @@ using GalaSoft.MvvmLight.Command;
 using Craft.UI.Utils;
 using Craft.ViewModel.Utils;
 using Craft.ViewModels.Dialogs;
-using FluentValidation.Validators;
 using Temple.Application.People;
 using Temple.Domain.Entities.PR;
 

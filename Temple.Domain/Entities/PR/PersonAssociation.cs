@@ -1,5 +1,4 @@
-﻿using System;
-using Craft.Domain;
+﻿using Craft.Domain;
 
 namespace Temple.Domain.Entities.PR
 {

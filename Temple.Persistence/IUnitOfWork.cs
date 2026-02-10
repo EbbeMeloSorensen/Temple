@@ -1,5 +1,4 @@
-﻿using System;
-using Temple.Persistence.Repositories.PR;
+﻿using Temple.Persistence.Repositories.PR;
 using Temple.Persistence.Repositories.Smurfs;
 
 namespace Temple.Persistence

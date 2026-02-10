@@ -4,7 +4,6 @@ using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
-using Temple.ViewModel.DD.ReadModels;
 
 namespace Temple.ViewModel.DD.Dialogue;
 

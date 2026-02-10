@@ -2,11 +2,7 @@
 using Temple.Domain;
 using Temple.Domain.Entities.PR;
 using Temple.Persistence.Repositories.PR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Temple.Persistence.Versioned.Repositories
 {

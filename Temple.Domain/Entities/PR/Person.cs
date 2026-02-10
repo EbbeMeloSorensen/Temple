@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Craft.Domain;
-using Temple.Domain.Entities.C2IEDM.ObjectItems;
+﻿using Craft.Domain;
 
 namespace Temple.Domain.Entities.PR
 {

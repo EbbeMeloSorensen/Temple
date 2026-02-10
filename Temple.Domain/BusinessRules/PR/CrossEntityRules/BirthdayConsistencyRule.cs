@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Craft.Domain;
+﻿using Craft.Domain;
 using Temple.Domain.Entities.PR;
 
 namespace Temple.Domain.BusinessRules.PR.CrossEntityRules

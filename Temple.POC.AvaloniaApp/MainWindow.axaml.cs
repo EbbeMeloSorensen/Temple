@@ -1,5 +1,4 @@
 using Avalonia.Controls;
-using Temple.POC.AvaloniaApp.ViewModels;
 
 namespace Temple.POC.AvaloniaApp
 {

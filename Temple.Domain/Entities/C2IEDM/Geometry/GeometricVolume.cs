@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Temple.Domain.Entities.C2IEDM.Geometry
+﻿namespace Temple.Domain.Entities.C2IEDM.Geometry
 {
     public abstract class GeometricVolume : Location
     {

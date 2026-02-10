@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Temple.Domain.Entities.C2IEDM.Affiliations
+﻿namespace Temple.Domain.Entities.C2IEDM.Affiliations
 {
     public abstract class Affiliation
     {

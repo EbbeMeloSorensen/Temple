@@ -1,6 +1,4 @@
 ﻿using Craft.Logging;
-using Craft.Utils;
-using Temple.Domain.Entities.DD.Battle;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
 using Temple.ViewModel.DD.Battle.BusinessLogic.Complex;
 

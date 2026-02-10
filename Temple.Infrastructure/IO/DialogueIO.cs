@@ -29,6 +29,7 @@ namespace Temple.Infrastructure.IO
                 {
                     KnownTypes = new[]
                     {
+                        typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),
                         typeof(QuestAcceptedEventTrigger),

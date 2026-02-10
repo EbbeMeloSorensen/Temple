@@ -1,8 +1,6 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Craft.DataStructures.Graph;
 using Craft.DataStructures.IO;
-using Temple.Application.Core;
 using Temple.Application.DD;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.Dialogues;
@@ -38,27 +36,10 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new DialogueEdge(2, 4, "Thanks, see you later"));
             graph.AddEdge(new DialogueEdge(3, 4, "Ok"));
 
-            var jsonResolver = new IgnoreVertexCountResolver();
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = jsonResolver,
-                NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new KnownTypesBinder
-                {
-                    KnownTypes = new[]
-                    {
-                        typeof(QuestDiscoveredEventTrigger),
-                        //typeof(QuestAcceptedEventTrigger)
-                    }
-                }
-            };
-
             var json = JsonConvert.SerializeObject(
                 graph,
                 Formatting.Indented,
-                settings);
+                GetJsonSerializerSettings());
 
             using var streamWriter = new StreamWriter(@"C:\Temp\serializedGraph.json");
 
@@ -75,25 +56,9 @@ namespace Temple.Infrastructure.UnitTest
             using var streamReader = new StreamReader(@"C:\Temp\serializedGraph.json");
             var json = streamReader.ReadToEnd();
 
-            var jsonResolver = new IgnoreVertexCountResolver();
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = jsonResolver,
-                NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new KnownTypesBinder
-                {
-                    KnownTypes = new[]
-                    {
-                        typeof(QuestDiscoveredEventTrigger),
-                        //typeof(QuestAcceptedEventTrigger)
-                    }
-                }
-            };
-
             // Act
-            var a = JsonConvert.DeserializeObject<GraphAdjacencyList<DialogueVertex, DialogueEdge>>(json, settings);
+            var a = JsonConvert.DeserializeObject<GraphAdjacencyList<DialogueVertex, DialogueEdge>>(
+                json, GetJsonSerializerSettings());
 
             // Assert
             a = null;
@@ -129,27 +94,10 @@ namespace Temple.Infrastructure.UnitTest
                 Graph = graph
             };
 
-            var jsonResolver = new IgnoreVertexCountResolver();
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = jsonResolver,
-                NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new KnownTypesBinder
-                {
-                    KnownTypes = new[]
-                    {
-                        typeof(QuestDiscoveredEventTrigger),
-                        //typeof(QuestAcceptedEventTrigger)
-                    }
-                }
-            };
-
             var json = JsonConvert.SerializeObject(
                 dialogueGraph,
                 Formatting.Indented,
-                settings);
+                GetJsonSerializerSettings());
 
             using var streamWriter = new StreamWriter(@"C:\Temp\serializedDialogueGraph.json");
 
@@ -240,27 +188,10 @@ namespace Temple.Infrastructure.UnitTest
                 }
             };
 
-            var jsonResolver = new IgnoreVertexCountResolver();
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = jsonResolver,
-                NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new KnownTypesBinder
-                {
-                    KnownTypes = new[]
-                    {
-                        typeof(QuestDiscoveredEventTrigger),
-                        typeof(QuestAcceptedEventTrigger)
-                    }
-                }
-            };
-
             var json = JsonConvert.SerializeObject(
                 dialogueGraphs,
                 Formatting.Indented,
-                settings);
+                GetJsonSerializerSettings());
 
             using var streamWriter = new StreamWriter(@"C:\Temp\alyth.json");
 
@@ -351,19 +282,10 @@ namespace Temple.Infrastructure.UnitTest
                 }
             };
 
-            var jsonResolver = new IgnoreVertexCountResolver();
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = jsonResolver,
-                NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto,
-            };
-
             var json = JsonConvert.SerializeObject(
                 dialogueGraphs,
                 Formatting.Indented,
-                settings);
+                GetJsonSerializerSettings());
 
             using var streamWriter = new StreamWriter(@"C:\Temp\captain.json");
 
@@ -586,31 +508,37 @@ namespace Temple.Infrastructure.UnitTest
         private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SkeletonQuestHidden()
         {
             var vertices = new List<DialogueVertex>
-        {
-            new()
             {
-                Text = "Hello there. Please slay some skeletons for me, will ya?",
-                GameEventTrigger = new QuestDiscoveredEventTrigger("skeleton_trouble")
-            },
-            new()
-            {
-                Text = "Great, they are on the graveyard outside of the village. Good luck",
-                GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
-            },
-            new()
-            {
-                Text = "Ok, then fuck off, skeleton lover! By the way, Alyth likes strawberries.",
-                GameEventTrigger = new KnowledgeGainedEventTrigger("alyth_likes_strawberries")
-            },
-            new(""),
-        };
+                new()
+                {
+                    Text = "Hi there, welcome to the village. I am Boris, the captain of the city watch.",
+                    GameEventTrigger = new FactEstablishedEventTrigger("party_talked_with_captain")
+                },
+                new()
+                {
+                    Text = "Please slay some skeletons for me, will ya?",
+                    GameEventTrigger = new QuestDiscoveredEventTrigger("skeleton_trouble")
+                },
+                new()
+                {
+                    Text = "Great, they are on the graveyard outside of the village. Good luck",
+                    GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
+                },
+                new()
+                {
+                    Text = "Ok, then fuck off, skeleton lover! By the way, Alyth likes strawberries.",
+                    GameEventTrigger = new KnowledgeGainedEventTrigger("alyth_likes_strawberries")
+                },
+                new(""),
+            };
 
             var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new DialogueEdge(0, 2, "No, I think skeletons are cute"));
-            graph.AddEdge(new DialogueEdge(0, 1, "Sure, why not"));
-            graph.AddEdge(new DialogueEdge(1, 3, "OK"));
-            graph.AddEdge(new DialogueEdge(2, 3, "OK"));
+            graph.AddEdge(new DialogueEdge(0, 1, "No, I think skeletons are cute"));
+            graph.AddEdge(new DialogueEdge(1, 3, "No, I think skeletons are cute"));
+            graph.AddEdge(new DialogueEdge(1, 2, "Sure, why not"));
+            graph.AddEdge(new DialogueEdge(2, 4, "OK"));
+            graph.AddEdge(new DialogueEdge(3, 4, "OK"));
 
             return graph;
         }
@@ -680,6 +608,30 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new DialogueEdge(0, 1, "Nah I think the weather is nice"));
 
             return graph;
+        }
+
+        private JsonSerializerSettings GetJsonSerializerSettings()
+        {
+            var jsonResolver = new IgnoreVertexCountResolver();
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = jsonResolver,
+                NullValueHandling = NullValueHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Auto,
+                SerializationBinder = new KnownTypesBinder
+                {
+                    KnownTypes = new[]
+                    {
+                        typeof(FactEstablishedEventTrigger),
+                        typeof(KnowledgeGainedEventTrigger),
+                        typeof(QuestDiscoveredEventTrigger),
+                        typeof(QuestAcceptedEventTrigger)
+                    }
+                }
+            };
+
+            return settings;
         }
     }
 }

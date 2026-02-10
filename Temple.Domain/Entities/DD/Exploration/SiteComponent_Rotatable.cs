@@ -1,6 +1,4 @@
-﻿using Craft.Math;
-
-namespace Temple.Domain.Entities.DD.Exploration;
+﻿namespace Temple.Domain.Entities.DD.Exploration;
 
 public class SiteComponent_Rotatable :SiteComponent_Placeable
 {

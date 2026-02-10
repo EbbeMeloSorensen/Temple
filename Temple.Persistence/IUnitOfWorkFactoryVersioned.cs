@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Temple.Persistence
+﻿namespace Temple.Persistence
 {
     public interface IUnitOfWorkFactoryVersioned : IUnitOfWorkFactory
     {

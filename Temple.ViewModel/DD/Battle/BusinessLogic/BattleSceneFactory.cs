@@ -1,5 +1,4 @@
-﻿using Temple.Application.State;
-using Temple.Domain.Entities.DD.Battle;
+﻿using Temple.Domain.Entities.DD.Battle;
 
 namespace Temple.ViewModel.DD.Battle.BusinessLogic
 {

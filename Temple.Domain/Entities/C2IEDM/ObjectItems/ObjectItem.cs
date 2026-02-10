@@ -1,5 +1,3 @@
-using System;
-
 namespace Temple.Domain.Entities.C2IEDM.ObjectItems
 
 {

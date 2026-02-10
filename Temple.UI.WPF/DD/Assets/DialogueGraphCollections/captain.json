@@ -3,7 +3,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
-        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 0,
@@ -15,53 +15,66 @@
       "IsDirected": true,
       "Vertices": [
         {
-          "Text": "Hello there. Please slay some skeletons for me, will ya?",
+          "Text": "Hi there, welcome to the village. I am Boris, the captain of the city watch.",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.QuestDiscoveredEventTrigger, Temple.Infrastructure",
-            "QuestId": "skeleton_trouble"
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "party_talked_with_captain"
           },
           "Id": 0
         },
         {
-          "Text": "Great, they are on the graveyard outside of the village. Good luck",
+          "Text": "Please slay some skeletons for me, will ya?",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestDiscoveredEventTrigger",
             "QuestId": "skeleton_trouble"
           },
           "Id": 1
         },
         {
-          "Text": "Ok, then fuck off, skeleton lover! By the way, Alyth likes strawberries.",
+          "Text": "Great, they are on the graveyard outside of the village. Good luck",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.KnowledgeGainedEventTrigger, Temple.Infrastructure",
-            "KnowledgeId": "alyth_likes_strawberries"
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
+            "QuestId": "skeleton_trouble"
           },
           "Id": 2
         },
         {
-          "Text": "",
+          "Text": "Ok, then fuck off, skeleton lover! By the way, Alyth likes strawberries.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.KnowledgeGainedEventTrigger",
+            "KnowledgeId": "alyth_likes_strawberries"
+          },
           "Id": 3
+        },
+        {
+          "Text": "",
+          "Id": 4
         }
       ],
       "Edges": [
         {
           "VertexId1": 0,
-          "VertexId2": 2,
-          "Text": "No, I think skeletons are cute"
-        },
-        {
-          "VertexId1": 0,
           "VertexId2": 1,
-          "Text": "Sure, why not"
+          "Text": "No, I think skeletons are cute"
         },
         {
           "VertexId1": 1,
           "VertexId2": 3,
-          "Text": "OK"
+          "Text": "No, I think skeletons are cute"
+        },
+        {
+          "VertexId1": 1,
+          "VertexId2": 2,
+          "Text": "Sure, why not"
         },
         {
           "VertexId1": 2,
-          "VertexId2": 3,
+          "VertexId2": 4,
+          "Text": "OK"
+        },
+        {
+          "VertexId1": 3,
+          "VertexId2": 4,
           "Text": "OK"
         }
       ]
@@ -71,7 +84,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
-        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 1,
@@ -93,7 +106,7 @@
         {
           "Text": "Ok then, best of luck!",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.QuestAcceptedEventTrigger, Temple.Infrastructure",
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
             "QuestId": "skeleton_trouble"
           },
           "Id": 2
@@ -131,7 +144,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
-        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 2,
@@ -173,7 +186,7 @@
     "Priority": 100.0,
     "Conditions": [
       {
-        "$type": "Temple.Infrastructure.Dialogues.QuestStatusCondition, Temple.Infrastructure",
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
         "QuestId": "skeleton_trouble",
         "RequiredStatus": {
           "QuestState": 2,
