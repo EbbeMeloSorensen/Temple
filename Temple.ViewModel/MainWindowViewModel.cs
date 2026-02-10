@@ -1,9 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Craft.ViewModels.Dialogs;
+using GalaSoft.MvvmLight;
 using MediatR;
-using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
+using Temple.Application.Interfaces.Readers;
 using Temple.Application.State;
+using Temple.Infrastructure.Dialogues;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
@@ -13,7 +15,6 @@ using Temple.ViewModel.DD.ReadModels;
 using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
-using Temple.Application.Interfaces.Readers;
 
 namespace Temple.ViewModel
 {
@@ -67,6 +68,13 @@ namespace Temple.ViewModel
             _knowledgeGainedReadModel = new KnowledgeGainedReadModel(controller.EventBus);
             _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
             _sitesUnlockedReader = new SitesUnlockedReadModel(controller.EventBus);
+
+            _dialogueSessionFactory.Initialize(
+                _factsEstablishedReader,
+                _knowledgeGainedReadModel,
+                _questStatusReadModel,
+                _sitesUnlockedReader,
+                controller.EventBus);
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 

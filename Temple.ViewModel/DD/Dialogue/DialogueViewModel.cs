@@ -106,11 +106,6 @@ public class DialogueViewModel : TempleViewModel
                                  ?? throw new ArgumentException("Payload is not of type DialoguePayload", nameof(payload));
 
         _dialogueSession = _dialogueSessionFactory.GetDialogueSession(
-            _factsEstablishedReader,
-            _knowledgeGainedReadModel,
-            _questStatusReadModel,
-            _sitesUnlockedReader,
-            _controller.EventBus,
             dialoguePayload.NPCId);
 
         Title = dialoguePayload.NPCId;

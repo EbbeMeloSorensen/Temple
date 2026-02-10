@@ -5,11 +5,13 @@ namespace Temple.Application.Interfaces;
 
 public interface IDialogueSessionFactory
 {
-    public IDialogueSession GetDialogueSession(
+    void Initialize(
         IFactsEstablishedReader factsEstablishedReader,
         IKnowledgeGainedReader knowledgeGainedReader,
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
-        QuestEventBus eventBus,
+        QuestEventBus eventBus);
+
+    public IDialogueSession GetDialogueSession(
         string npcId);
 }

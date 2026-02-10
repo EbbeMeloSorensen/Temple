@@ -10,19 +10,34 @@ namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
-    public IDialogueSession GetDialogueSession(
+    private IFactsEstablishedReader _factsEstablishedReader;
+    private IKnowledgeGainedReader _knowledgeGainedReader;
+    private IQuestStatusReader _questStatusReader;
+    private ISitesUnlockedReader _sitesUnlockedReader;
+    private QuestEventBus _eventBus;
+
+    public void Initialize(
         IFactsEstablishedReader factsEstablishedReader,
-        IKnowledgeGainedReader knowledgeGainedReadModel,
-        IQuestStatusReader questStatusReadModel,
+        IKnowledgeGainedReader knowledgeGainedReader,
+        IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
-        QuestEventBus eventBus,
+        QuestEventBus eventBus)
+    {
+        _factsEstablishedReader = factsEstablishedReader;
+        _knowledgeGainedReader = knowledgeGainedReader;
+        _questStatusReader = questStatusReader;
+        _sitesUnlockedReader = sitesUnlockedReader;
+        _eventBus = eventBus;
+    }
+
+    public IDialogueSession GetDialogueSession(
         string npcId)
     {
         return new DialogueSession(
-            knowledgeGainedReadModel,
-            eventBus,
+            _knowledgeGainedReader,
+            _eventBus,
             npcId,
-            GenerateGraph_Dialogue(questStatusReadModel, npcId));
+            GenerateGraph_Dialogue(_questStatusReader, npcId));
     }
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Dialogue(
