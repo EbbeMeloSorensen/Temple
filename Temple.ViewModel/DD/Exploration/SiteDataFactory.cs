@@ -9,7 +9,7 @@ public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
         string siteId,
-        IQuestStatusReadModel questStatusReadModel)
+        IQuestStatusReader questStatusReadModel)
     {
         var siteData = new SiteData();
 

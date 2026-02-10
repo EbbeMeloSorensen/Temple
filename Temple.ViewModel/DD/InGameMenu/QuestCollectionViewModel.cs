@@ -15,7 +15,7 @@ namespace Temple.ViewModel.DD.InGameMenu
 {
     public class QuestCollectionViewModel : ViewModelBase
     {
-        private IQuestStatusReadModel _questStatusReadModel;
+        private IQuestStatusReader _questStatusReadModel;
         private QuestEventBus _eventBus;
 
         private readonly Brush _unavailableQuestBrush = new SolidColorBrush(Colors.IndianRed);
@@ -31,7 +31,7 @@ namespace Temple.ViewModel.DD.InGameMenu
         public RelayCommand<string> Cheat_Command { get; }
 
         public QuestCollectionViewModel(
-            IQuestStatusReadModel questStatusReadModel,
+            IQuestStatusReader questStatusReadModel,
             QuestEventBus eventBus)
         {
             _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));

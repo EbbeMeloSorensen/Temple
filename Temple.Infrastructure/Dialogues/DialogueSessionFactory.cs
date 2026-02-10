@@ -10,8 +10,8 @@ namespace Temple.Infrastructure.Dialogues;
 public class DialogueSessionFactory : IDialogueSessionFactory
 {
     public IDialogueSession GetDialogueSession(
-        IKnowledgeGainedReadModel knowledgeGainedReadModel,
-        IQuestStatusReadModel questStatusReadModel,
+        IKnowledgeGainedReader knowledgeGainedReadModel,
+        IQuestStatusReader questStatusReadModel,
         QuestEventBus eventBus,
         string npcId)
     {
@@ -23,7 +23,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     }
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Dialogue(
-        IQuestStatusReadModel questStatusReadModel,
+        IQuestStatusReader questStatusReadModel,
         string npcId)
     {
         var dialogueGraphs =
@@ -44,7 +44,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
     private bool DialogueGraphMeetsConditions(
         DialogueGraph graph,
-        IQuestStatusReadModel questStatusReadModel)
+        IQuestStatusReader questStatusReadModel)
     {
         if (graph.Conditions == null || !graph.Conditions.Any())
         {

@@ -10,8 +10,8 @@ namespace Temple.ViewModel.DD.Dialogue;
 public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
-    private readonly IKnowledgeGainedReadModel _knowledgeGainedReadModel;
-    private readonly IQuestStatusReadModel _questStatusReadModel;
+    private readonly IKnowledgeGainedReader _knowledgeGainedReadModel;
+    private readonly IQuestStatusReader _questStatusReadModel;
     private readonly IDialogueSessionFactory _dialogueSessionFactory;
     private IDialogueSession _dialogueSession;
     private string _title;
@@ -54,8 +54,8 @@ public class DialogueViewModel : TempleViewModel
 
     public DialogueViewModel(
         ApplicationController controller,
-        IKnowledgeGainedReadModel knowledgeGainedReadModel,
-        IQuestStatusReadModel questStatusReadModel,
+        IKnowledgeGainedReader knowledgeGainedReadModel,
+        IQuestStatusReader questStatusReadModel,
         IDialogueSessionFactory dialogueSessionFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));

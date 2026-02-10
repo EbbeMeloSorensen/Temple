@@ -4,7 +4,7 @@ using Temple.Domain.Entities.DD.Quests.Events;
 
 namespace Temple.ViewModel.DD.ReadModels;
 
-public class KnowledgeGainedReadModel : IKnowledgeGainedReadModel
+public class KnowledgeGainedReadModel : IKnowledgeGainedReader
 {
     private readonly HashSet<string> _knowledgeGained = new HashSet<string>();
 

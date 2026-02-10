@@ -1,6 +1,6 @@
 ﻿namespace Temple.Application.Interfaces;
 
-public interface IKnowledgeGainedReadModel
+public interface IKnowledgeGainedReader
 {
     public IEnumerable<string> KnowledgeGained { get; }
 }

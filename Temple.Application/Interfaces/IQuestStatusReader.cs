@@ -3,7 +3,7 @@ using Temple.Domain.Entities.DD.Quests;
 
 namespace Temple.Application.Interfaces;
 
-public interface IQuestStatusReadModel
+public interface IQuestStatusReader
 {
     IEnumerable<string> QuestIds { get; }
 

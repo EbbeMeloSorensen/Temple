@@ -9,7 +9,7 @@ namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSession : IDialogueSession
 {
-    private IKnowledgeGainedReadModel _knowledgeGainedReadModel;
+    private IKnowledgeGainedReader _knowledgeGainedReadModel;
     private QuestEventBus _eventBus;
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> _graph;
@@ -37,7 +37,7 @@ public class DialogueSession : IDialogueSession
     }
 
     public DialogueSession(
-        IKnowledgeGainedReadModel knowledgeGainedReadModel,
+        IKnowledgeGainedReader knowledgeGainedReadModel,
         QuestEventBus eventBus,
         string npcId,
         GraphAdjacencyList<DialogueVertex, DialogueEdge> graph)

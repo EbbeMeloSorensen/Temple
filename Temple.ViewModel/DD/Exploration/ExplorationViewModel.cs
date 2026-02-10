@@ -21,7 +21,7 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
         private readonly ISiteRenderer _siteRenderer;
-        private readonly IQuestStatusReadModel _questStatusReadModel;
+        private readonly IQuestStatusReader _questStatusReadModel;
 
         private Model3D _scene3D;
         private Point3D _cameraPosition;
@@ -87,7 +87,7 @@ namespace Temple.ViewModel.DD.Exploration
 
         public ExplorationViewModel(
             ApplicationController controller,
-            IQuestStatusReadModel questStatusReadModel,
+            IQuestStatusReader questStatusReadModel,
             ISiteRenderer siteRenderer)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
