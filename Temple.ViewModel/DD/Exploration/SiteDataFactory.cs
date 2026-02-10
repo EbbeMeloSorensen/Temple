@@ -185,8 +185,10 @@ public static class SiteDataFactory
                 siteData.AddCharacter("human male", "captain", new Point2D(8.5, 8.5));
                 siteData.AddCharacter("human female", "alyth", new Point2D(12.5, 7.5));
                 siteData.AddCharacter("human male", "ethon", new Point2D(12.5, 7.9));
+                siteData.AddCharacter("human male", "lortimer", new Point2D(12.5, 8.3));
+                siteData.AddCharacter("human male", "nebbish", new Point2D(12.5, 8.7));
 
-                    siteData.AddEventTrigger_LeaveSite(
+                siteData.AddEventTrigger_LeaveSite(
                     new Point2D(15, 8),
                     new Point2D(15, 7),
                     "Exit_Wilderness");

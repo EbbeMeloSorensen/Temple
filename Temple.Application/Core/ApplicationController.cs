@@ -79,7 +79,24 @@ public class ApplicationController
             new TurnInOnDialogueRule("captain")
         });
 
-        var quest3 = new Quest(id: "resque_ethon", rules: new List<IQuestRule>
+        var quest3 = new Quest(id: "bottle_for_nebbish", rules: new List<IQuestRule>
+        {
+            new AdvanceOnCheatRule(),
+
+            // During dialogue with Nebbish
+            new BecomeAvailableOnQuestDiscoveredRule(),
+
+            // Player accepts quest
+            new AcceptQuestRule(),
+
+            // Kill warehouse rats => completion criteria satisfied
+            //new SatisfyOnBattleWonRule("rats_in_warehouse"),
+
+            // Talk to innkeeper again => quest completed
+            new TurnInOnDialogueRule("nebbish")
+        });
+
+        var quest4 = new Quest(id: "resque_ethon", rules: new List<IQuestRule>
         {
             new AdvanceOnCheatRule(),
 
@@ -96,11 +113,11 @@ public class ApplicationController
             new TurnInOnDialogueRule("alyth")
         });
 
-
         Quests = new List<Quest>
         {
             quest1,
-            quest2
+            quest2,
+            quest3
         };
 
         EventBus = new QuestEventBus();

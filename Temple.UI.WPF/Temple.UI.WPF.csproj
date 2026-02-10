@@ -33,6 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="DD\Assets\DialogueGraphCollections\nebbish.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DD\Assets\DialogueGraphCollections\lortimer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DD\Assets\DialogueGraphCollections\guard.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

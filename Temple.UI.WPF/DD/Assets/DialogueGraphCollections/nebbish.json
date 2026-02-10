@@ -1,0 +1,70 @@
+[
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "What do you want? I got no coin to spare, so don't think your begging will make me part with a single copper.",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        },
+        {
+          "Text": "There's always been thieves in Baldur's Gate - this latest batch may be a bit more bloodthirsty than most, but they haven't crossed me yet. Still, I'd rather be able to part with my coins at the bar than keep them in my purse.",
+          "Id": 2
+        },
+        {
+          "Text": "Ah, the bartender, Alyth cut me off two nights ago. I keep coming back, hoping she'll change her mind, but she hasn't come around yet. And with the cellars locked, I can't slip down below to a spare bottle to tide me over - but maybe you could. Yeah, if you could find some way to get that cellar door key from ol' Ethon, then head down to the cellars to get me a bottle, I'd make it worth your while.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestDiscoveredEventTrigger",
+            "QuestId": "bottle_for_nebbish"
+          },
+          "Id": 3
+        },
+        {
+          "Text": "",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
+            "QuestId": "bottle_for_nebbish"
+          },
+          "Id": 4
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Never mind, then. Farewell",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Text": "I'm not a beggar, and I'm not interested in your coins. I just wanted to know if you knew anything about the thieves here in Baldur's Gate.",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Text": "Why can't you spend your gold at the bar?",
+          "VertexId1": 2,
+          "VertexId2": 3
+        },
+        {
+          "Text": "I see. Farewell.",
+          "VertexId1": 2,
+          "VertexId2": 1
+        },
+        {
+          "Text": "Perhaps some other time. Farewell",
+          "VertexId1": 3,
+          "VertexId2": 1
+        },
+        {
+          "Text": "I got the key from Ethon; I'll see what I can do.",
+          "VertexId1": 3,
+          "VertexId2": 4
+        }
+      ]
+    }
+  }
+]
