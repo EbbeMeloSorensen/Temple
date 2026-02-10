@@ -204,6 +204,10 @@
         {
           "Text": "That's the other thing. They just came out of the shadows a few weeks ago, and no one can place their faces. Not a one of them is local talent. They have a different way of doing things, and it usually involves a dagger between your ribs rather than lifting your purse. They're killers, not thives.",
           "Id": 3
+        },
+        {
+          "Text": "Aye, I did. I'm sure there are other things lying around down there; the Elfsong's sheltered many thieves and cutthroats over the years. That's probably why there's that gate to the sewers down there. There's bound to be plenty of boltholes in the cellar and the sewers. I found the beholder in one of them, in a secret door behind some barrels in the far corner of the cellar.",
+          "Id": 4
         }
       ],
       "Edges": [
@@ -211,6 +215,12 @@
           "VertexId1": 0,
           "VertexId2": 1,
           "Text": "I'm still working on it."
+        },
+        {
+          "VertexId1": 0,
+          "VertexId2": 4,
+          "Text": "Not all of them - I wanted to ask you about that stuffed beholder over the fireplace. Alyth told me you found it in the cellar.",
+          "KnowledgeRequired": "ethon_found_beholder"
         },
         {
           "VertexId1": 0,
@@ -226,6 +236,11 @@
           "VertexId1": 2,
           "VertexId2": 1,
           "Text": "I'll be careful. Farewell, Ethon."
+        },
+        {
+          "VertexId1": 4,
+          "VertexId2": 1,
+          "Text": "I'll keep an eye out for them. Farewell, Ethon."
         },
         {
           "VertexId1": 3,
