@@ -158,7 +158,7 @@ public class ApplicationController
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
 
-        ApplicationData.CurrentSiteId = "Village";
+        ApplicationData.CurrentSiteId = "village";
         ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
         ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
 

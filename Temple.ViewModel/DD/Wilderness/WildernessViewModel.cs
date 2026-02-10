@@ -33,21 +33,21 @@ namespace Temple.ViewModel.DD.Wilderness
             {
                 _controller.ApplicationData.ExplorationPosition = new Vector2D(0.5, -0.5);
                 _controller.ApplicationData.ExplorationOrientation = 0.5 * Math.PI;
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "Mine" });
+                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "mine" });
             });
 
             GoToSite_Village_Command = new RelayCommand(() =>
             {
                 _controller.ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
                 _controller.ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "Village" });
+                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "village" });
             });
 
             GoToSite_Graveyard_Command = new RelayCommand(() =>
             {
                 _controller.ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
                 _controller.ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "Graveyard" });
+                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "graveyard" });
             });
         }
     }

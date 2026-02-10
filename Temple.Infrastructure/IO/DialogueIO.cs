@@ -34,6 +34,7 @@ namespace Temple.Infrastructure.IO
                         typeof(QuestDiscoveredEventTrigger),
                         typeof(QuestAcceptedEventTrigger),
                         typeof(QuestStatusCondition),
+                        typeof(SiteUnlockedEventTrigger),
                     }
                 }
             };

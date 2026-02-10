@@ -15,7 +15,7 @@ public static class SiteDataFactory
 
         switch (siteId)
         {
-            case "Mine":
+            case "mine":
             {
                 var siteExtent = 20.0;
 
@@ -120,7 +120,7 @@ public static class SiteDataFactory
 
                 break;
             }
-            case "Village":
+            case "village":
             {
                 siteData.AddWall(new List<Point2D>
                 {
@@ -201,7 +201,7 @@ public static class SiteDataFactory
 
                 break;
             }
-            case "Graveyard":
+            case "graveyard":
             {
                 siteData.AddWall(new List<Point2D>
                 {

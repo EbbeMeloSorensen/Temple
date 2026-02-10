@@ -74,17 +74,20 @@ public class DialogueSession : IDialogueSession
     {
         switch (((DialogueVertex)_graph.GetVertex(_activeVertexId)).GameEventTrigger)
         {
+            case FactEstablishedEventTrigger factEstablishedEventTrigger:
+                _eventBus.Publish(new FactEstablishedEvent(factEstablishedEventTrigger.FactId));
+                break;
+            case KnowledgeGainedEventTrigger knowledgeGainedEventTrigger:
+                _eventBus.Publish(new KnowledgeGainedEvent(knowledgeGainedEventTrigger.KnowledgeId));
+                break;
             case QuestDiscoveredEventTrigger questDiscoveredEventTrigger:
                 _eventBus.Publish(new QuestDiscoveredEvent(questDiscoveredEventTrigger.QuestId));
                 break;
             case QuestAcceptedEventTrigger questAcceptedEventTrigger:
                 _eventBus.Publish(new QuestAcceptedEvent(questAcceptedEventTrigger.QuestId));
                 break;
-            case KnowledgeGainedEventTrigger knowledgeGainedEventTrigger:
-                _eventBus.Publish(new KnowledgeGainedEvent(knowledgeGainedEventTrigger.KnowledgeId));
-                break;
-            case FactEstablishedEventTrigger factEstablishedEventTrigger:
-                _eventBus.Publish(new FactEstablishedEvent(factEstablishedEventTrigger.FactId));
+            case SiteUnlockedEventTrigger siteUnlockedEventTrigger:
+                _eventBus.Publish(new SiteUnlockedEvent(siteUnlockedEventTrigger.SiteId));
                 break;
         }
     }

@@ -31,10 +31,10 @@
           "Id": 1
         },
         {
-          "Text": "Great, they are on the graveyard outside of the village. Good luck",
+          "Text": "They are on the graveyard outside of the village.",
           "GameEventTrigger": {
-            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
-            "QuestId": "skeleton_trouble"
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.SiteUnlockedEventTrigger",
+            "SiteId": "graveyard"
           },
           "Id": 2
         },
@@ -47,35 +47,53 @@
           "Id": 3
         },
         {
-          "Text": "",
+          "Text": "Ok, then good luck, my friend.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
+            "QuestId": "skeleton_trouble"
+          },
           "Id": 4
+        },
+        {
+          "Text": "",
+          "Id": 5
         }
       ],
       "Edges": [
         {
           "VertexId1": 0,
           "VertexId2": 1,
-          "Text": "Do you have a quest for me?"
+          "Text": "Nice to meet you, do you have a quest for me?"
         },
         {
           "VertexId1": 1,
           "VertexId2": 3,
-          "Text": "No, I think skeletons are cute"
+          "Text": "No thanks, I think skeletons are cute"
+        },
+        {
+          "VertexId1": 3,
+          "VertexId2": 5,
+          "Text": "OK"
         },
         {
           "VertexId1": 1,
           "VertexId2": 2,
-          "Text": "Sure, why not"
+          "Text": "Where are those skeletons?"
+        },
+        {
+          "VertexId1": 2,
+          "VertexId2": 3,
+          "Text": "That's too far away."
         },
         {
           "VertexId1": 2,
           "VertexId2": 4,
-          "Text": "OK"
+          "Text": "Ok, I'll go there and slay them for ya"
         },
         {
-          "VertexId1": 3,
-          "VertexId2": 4,
-          "Text": "OK"
+          "VertexId1": 4,
+          "VertexId2": 5,
+          "Text": "Thanks, see you later"
         }
       ]
     }

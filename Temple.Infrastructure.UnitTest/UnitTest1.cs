@@ -310,6 +310,23 @@ namespace Temple.Infrastructure.UnitTest
         }
 
         [Fact]
+        public void ReadDialogueGraphCollectionforCaptainFromJsonFileThenExportAsDotFile()
+        {
+            var npcId = "captain";
+
+            var dialogueGraphs =
+                DialogueIO.ReadDialogueGraphListFromFile($@"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\DialogueGraphCollections\{npcId}.json");
+
+            var count = 0;
+            foreach (var dialogueGraph in dialogueGraphs)
+            {
+                count++;
+                var outputFileName = $@"C:\Temp\DialogueGrapg_{npcId}_{count}.dot";
+                dialogueGraph.WriteToDotFile(outputFileName);
+            }
+        }
+
+        [Fact]
         public void ReadDialogueGraphCollectionforEthonFromJsonFileThenExportAsDotFile()
         {
             var npcId = "ethon";
@@ -509,36 +526,43 @@ namespace Temple.Infrastructure.UnitTest
         {
             var vertices = new List<DialogueVertex>
             {
-                new()
+                new() // 0
                 {
                     Text = "Hi there, welcome to the village. I am Boris, the captain of the city watch.",
                     GameEventTrigger = new FactEstablishedEventTrigger("party_talked_with_captain")
                 },
-                new()
+                new() // 1
                 {
                     Text = "Sure, you can slay some skeletons for me, will ya?",
                     GameEventTrigger = new QuestDiscoveredEventTrigger("skeleton_trouble")
                 },
-                new()
+                new() // 2
                 {
-                    Text = "Great, they are on the graveyard outside of the village. Good luck",
-                    GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
+                    Text = "They are on the graveyard outside of the village.",
+                    GameEventTrigger = new SiteUnlockedEventTrigger("graveyard")
                 },
-                new()
+                new() // 3
                 {
                     Text = "Ok, then fuck off, skeleton lover! By the way, Alyth likes strawberries.",
                     GameEventTrigger = new KnowledgeGainedEventTrigger("alyth_likes_strawberries")
                 },
+                new() // 4
+                {
+                    Text = "Ok, then good luck, my friend.",
+                    GameEventTrigger = new QuestAcceptedEventTrigger("skeleton_trouble")
+                }, // 5
                 new(""),
             };
 
             var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
-            graph.AddEdge(new DialogueEdge(0, 1, "Do you have a quest for me?"));
-            graph.AddEdge(new DialogueEdge(1, 3, "No, I think skeletons are cute"));
-            graph.AddEdge(new DialogueEdge(1, 2, "Sure, why not"));
-            graph.AddEdge(new DialogueEdge(2, 4, "OK"));
-            graph.AddEdge(new DialogueEdge(3, 4, "OK"));
+            graph.AddEdge(new DialogueEdge(0, 1, "Nice to meet you, do you have a quest for me?"));
+            graph.AddEdge(new DialogueEdge(1, 3, "No thanks, I think skeletons are cute"));
+            graph.AddEdge(new DialogueEdge(3, 5, "OK"));
+            graph.AddEdge(new DialogueEdge(1, 2, "Where are those skeletons?"));
+            graph.AddEdge(new DialogueEdge(2, 3, "That's too far away."));
+            graph.AddEdge(new DialogueEdge(2, 4, "Ok, I'll go there and slay them for ya"));
+            graph.AddEdge(new DialogueEdge(4, 5, "Thanks, see you later"));
 
             return graph;
         }
@@ -626,7 +650,8 @@ namespace Temple.Infrastructure.UnitTest
                         typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),
-                        typeof(QuestAcceptedEventTrigger)
+                        typeof(QuestAcceptedEventTrigger),
+                        typeof(SiteUnlockedEventTrigger)
                     }
                 }
             };
