@@ -29,17 +29,45 @@ namespace Temple.Infrastructure.IO
                 {
                     KnownTypes = new[]
                     {
+                        typeof(FactEstablishedCondition),
+                        typeof(QuestStatusCondition),
                         typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),
                         typeof(QuestAcceptedEventTrigger),
-                        typeof(QuestStatusCondition),
-                        typeof(SiteUnlockedEventTrigger),
+                        typeof(SiteUnlockedEventTrigger)
                     }
                 }
             };
 
             return JsonConvert.DeserializeObject<List<DialogueGraph>>(json, settings);
+        }
+
+        public static JsonSerializerSettings GetJsonSerializerSettings()
+        {
+            var jsonResolver = new IgnoreVertexCountResolver();
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = jsonResolver,
+                NullValueHandling = NullValueHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Auto,
+                SerializationBinder = new KnownTypesBinder
+                {
+                    KnownTypes = new[]
+                    {
+                        typeof(FactEstablishedCondition),
+                        typeof(QuestStatusCondition),
+                        typeof(FactEstablishedEventTrigger),
+                        typeof(KnowledgeGainedEventTrigger),
+                        typeof(QuestDiscoveredEventTrigger),
+                        typeof(QuestAcceptedEventTrigger),
+                        typeof(SiteUnlockedEventTrigger)
+                    }
+                }
+            };
+
+            return settings;
         }
     }
 }

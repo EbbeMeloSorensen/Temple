@@ -39,7 +39,7 @@ namespace Temple.Infrastructure.UnitTest
             var json = JsonConvert.SerializeObject(
                 graph,
                 Formatting.Indented,
-                GetJsonSerializerSettings());
+                DialogueIO.GetJsonSerializerSettings());
 
             using var streamWriter = new StreamWriter(@"C:\Temp\serializedGraph.json");
 
@@ -48,22 +48,7 @@ namespace Temple.Infrastructure.UnitTest
             // Act
             // Assert
         }
-
-        [Fact]
-        public void DeserializeAGraphFromJsonFile()
-        {
-            // Arrange
-            using var streamReader = new StreamReader(@"C:\Temp\serializedGraph.json");
-            var json = streamReader.ReadToEnd();
-
-            // Act
-            var a = JsonConvert.DeserializeObject<GraphAdjacencyList<DialogueVertex, DialogueEdge>>(
-                json, GetJsonSerializerSettings());
-
-            // Assert
-            a = null;
-        }
-
+        
         [Fact]
         public void SerializeADialogueGraphToJsonFile()
         {
@@ -97,7 +82,7 @@ namespace Temple.Infrastructure.UnitTest
             var json = JsonConvert.SerializeObject(
                 dialogueGraph,
                 Formatting.Indented,
-                GetJsonSerializerSettings());
+                DialogueIO.GetJsonSerializerSettings());
 
             using var streamWriter = new StreamWriter(@"C:\Temp\serializedDialogueGraph.json");
 
@@ -188,10 +173,12 @@ namespace Temple.Infrastructure.UnitTest
                 }
             };
 
+            var settings = DialogueIO.GetJsonSerializerSettings();
+
             var json = JsonConvert.SerializeObject(
                 dialogueGraphs,
                 Formatting.Indented,
-                GetJsonSerializerSettings());
+                settings);
 
             using var streamWriter = new StreamWriter(@"C:\Temp\alyth.json");
 
@@ -285,7 +272,7 @@ namespace Temple.Infrastructure.UnitTest
             var json = JsonConvert.SerializeObject(
                 dialogueGraphs,
                 Formatting.Indented,
-                GetJsonSerializerSettings());
+                DialogueIO.GetJsonSerializerSettings());
 
             using var streamWriter = new StreamWriter(@"C:\Temp\captain.json");
 
@@ -632,31 +619,6 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new DialogueEdge(0, 1, "Nah I think the weather is nice"));
 
             return graph;
-        }
-
-        private JsonSerializerSettings GetJsonSerializerSettings()
-        {
-            var jsonResolver = new IgnoreVertexCountResolver();
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = jsonResolver,
-                NullValueHandling = NullValueHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new KnownTypesBinder
-                {
-                    KnownTypes = new[]
-                    {
-                        typeof(FactEstablishedEventTrigger),
-                        typeof(KnowledgeGainedEventTrigger),
-                        typeof(QuestDiscoveredEventTrigger),
-                        typeof(QuestAcceptedEventTrigger),
-                        typeof(SiteUnlockedEventTrigger)
-                    }
-                }
-            };
-
-            return settings;
         }
     }
 }
