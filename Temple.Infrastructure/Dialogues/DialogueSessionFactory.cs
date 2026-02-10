@@ -37,18 +37,20 @@ public class DialogueSessionFactory : IDialogueSessionFactory
             _knowledgeGainedReader,
             _eventBus,
             npcId,
-            GenerateGraph_Dialogue(_questStatusReader, npcId));
+            GenerateGraph_Dialogue(_factsEstablishedReader, _questStatusReader, npcId));
     }
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Dialogue(
-        IQuestStatusReader questStatusReadModel,
+        IFactsEstablishedReader factsEstablishedReader,
+        IQuestStatusReader questStatusReader,
         string npcId)
     {
         var dialogueGraphs =
             DialogueIO.ReadDialogueGraphListFromFile($"DD//Assets//DialogueGraphCollections//{npcId}.json");
 
         // Filtrer de grafer fra, som ikke kvalificerer
-        dialogueGraphs = dialogueGraphs.Where(graph => DialogueGraphMeetsConditions(graph, questStatusReadModel));
+        dialogueGraphs = dialogueGraphs.Where(graph => DialogueGraphMeetsConditions(
+            graph, factsEstablishedReader, questStatusReader));
 
         // Returner den af de kvalificerende grafer, som har den højeste prioritet
         var result = dialogueGraphs
@@ -62,7 +64,8 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
     private bool DialogueGraphMeetsConditions(
         DialogueGraph graph,
-        IQuestStatusReader questStatusReadModel)
+        IFactsEstablishedReader factsEstablishedReader,
+        IQuestStatusReader questStatusReader)
     {
         if (graph.Conditions == null || !graph.Conditions.Any())
         {
@@ -74,11 +77,19 @@ public class DialogueSessionFactory : IDialogueSessionFactory
             switch (condition)
             {
                 case QuestStatusCondition questStatusCondition:
-                    if (!questStatusReadModel.GetQuestStatus(questStatusCondition.QuestId)
+                    if (!questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
                             .Equals(questStatusCondition.RequiredStatus))
                     {
                         return false;
                     }
+                    break;
+                case FactEstablishedCondition factEstablishedCondition:
+                {
+                    if (!factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
+                    {
+                        return false;
+                    }
+                }
                     break;
                 default:
                     throw new NotImplementedException();

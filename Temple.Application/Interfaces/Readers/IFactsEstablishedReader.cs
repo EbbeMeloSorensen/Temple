@@ -2,5 +2,5 @@
 
 public interface IFactsEstablishedReader
 {
-    public IEnumerable<string> FactsEstablished { get; }
+    public bool FactEstablished(string factId);
 }

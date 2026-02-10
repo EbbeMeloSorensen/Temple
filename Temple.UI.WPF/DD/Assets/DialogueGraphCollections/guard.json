@@ -1,5 +1,34 @@
 [
   {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+        "FactId": "party_talked_with_captain"
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Hi there, I see you spoke to the captain..",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Yup, sure did",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  },
+  {
     "Priority": 0.0,
     "Graph": {
       "IsDirected": true,

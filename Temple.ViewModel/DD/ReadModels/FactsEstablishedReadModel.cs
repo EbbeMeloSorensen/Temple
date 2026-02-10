@@ -8,12 +8,15 @@ public class FactsEstablishedReadModel : IFactsEstablishedReader
 {
     private readonly HashSet<string> _factsEstablished = new HashSet<string>();
 
-    public IEnumerable<string> FactsEstablished => _factsEstablished;
-
     public FactsEstablishedReadModel(
         QuestEventBus eventBus)
     {
         eventBus.Subscribe<FactEstablishedEvent>(HandleFactEstablished);
+    }
+
+    public bool FactEstablished(string factId)
+    {
+        return _factsEstablished.Contains(factId);
     }
 
     private void HandleFactEstablished(
