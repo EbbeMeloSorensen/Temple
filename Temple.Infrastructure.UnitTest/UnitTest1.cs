@@ -479,9 +479,21 @@ namespace Temple.Infrastructure.UnitTest
         {
             var vertices = new List<DialogueVertex>
         {
-            new("You're back! Did you see Ethon down there?"),
-            new("He followed you down there not long ago, and I fear he may have gotten lost in the cellar... or worse, he may have wandered into the sewers. I tried to stop him..."),
-            new("Thank you... but before you go, please take these coins -- in payment for all you've done so far. And as promised, here's the key to the sewer gate. Be careful down there - there's bound to be worse things than sewer rats in those tunnels."),
+            new()
+            {
+                Text = "You're back! Did you see Ethon down there?",
+                GameEventTrigger = new QuestDiscoveredEventTrigger("find_ethon")
+            },
+            new()
+            {
+                Text = "He followed you down there not long ago, and I fear he may have gotten lost in the cellar... or worse, he may have wandered into the sewers. I tried to stop him...",
+                GameEventTrigger = new QuestAcceptedEventTrigger("find_ethon")
+            },
+            new()
+            {
+                Text = "Thank you... but before you go, please take these coins -- in payment for all you've done so far. And as promised, here's the key to the sewer gate. Be careful down there - there's bound to be worse things than sewer rats in those tunnels.",
+                GameEventTrigger = new FactEstablishedEventTrigger("got_key_to_sewer_door_from_alyth")
+            },
             new(""),
         };
 

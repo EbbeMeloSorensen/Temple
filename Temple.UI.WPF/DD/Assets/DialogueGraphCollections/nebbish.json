@@ -1,6 +1,16 @@
 [
   {
-    "Priority": 0.0,
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+        "QuestId": "bottle_for_nebbish",
+        "RequiredStatus": {
+          "QuestState": 0,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
     "Graph": {
       "IsDirected": true,
       "Vertices": [
@@ -63,6 +73,109 @@
           "Text": "I got the key from Ethon; I'll see what I can do.",
           "VertexId1": 3,
           "VertexId2": 4
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+        "QuestId": "bottle_for_nebbish",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Manage to find me a bottle of Alyth's best, yet?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Not yet. I'm still looking",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+        "QuestId": "bottle_for_nebbish",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": true
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Manage to find me a bottle of Alyth's best, yet?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        },
+        {
+          "Text": "Aye, it'll do me well enough... thank you, friend. Here, have a bottle from me - no idea what the thing does, but it smells awful, and it doesn't seem to have the... kick I was looking for.",
+          "Id": 2
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Not yet. I'm still looking",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Text": "Will this bottle do?",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Text": "Thanks. Farewell.",
+          "VertexId1": 2,
+          "VertexId2": 1
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Laaaa la laaaaaaa",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Bye",
+          "VertexId1": 0,
+          "VertexId2": 1
         }
       ]
     }

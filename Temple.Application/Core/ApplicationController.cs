@@ -96,7 +96,7 @@ public class ApplicationController
             new TurnInOnDialogueRule("nebbish")
         });
 
-        var quest4 = new Quest(id: "resque_ethon", rules: new List<IQuestRule>
+        var quest4 = new Quest(id: "find_ethon", rules: new List<IQuestRule>
         {
             new AdvanceOnCheatRule(),
 
@@ -106,8 +106,8 @@ public class ApplicationController
             // Player accepts quest
             new AcceptQuestRule(),
 
-            // Kill warehouse rats => completion criteria satisfied
-            new SatisfyOnBattleWonRule("rats_in_warehouse"),
+            //// Kill warehouse rats => completion criteria satisfied
+            //new SatisfyOnBattleWonRule("rats_in_warehouse"),
 
             // Talk to innkeeper again => quest completed
             new TurnInOnDialogueRule("alyth")

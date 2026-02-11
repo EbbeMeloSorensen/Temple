@@ -249,5 +249,88 @@
         }
       ]
     }
+  },
+  {
+    "Priority": 80.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+        "FactId": "got_key_to_cellar_door_from_ethon"
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Thank the Gods you're here! Any longer and I'd be sitting in some kobold's belly",
+          "Id": 0
+        },
+        {
+          "Text": "Well, after I gave you the cellar door key, I felt guilty about letting you head down here without help, so I followed you down. No sooner do I get down here, then I'm surrounded by those yapping kobold devils, and they haul me to this cell and lock me in.",
+          "Id": 1
+        },
+        {
+          "Text": "There's an entrance to the sewers from the streets, and I used that... I knew about it from my days when I was in the guild. The *old* guild, not the new one.",
+          "Id": 2
+        },
+        {
+          "Text": "Retired - that life's behind me. Still, I've kept a bit of what I've learned, and it might help you now.",
+          "Id": 3
+        },
+        {
+          "Text": "",
+          "Id": 4
+        },
+        {
+          "Text": "I managed to pick this key off the chieftain you killed; I think it unlocks a gate deeper in the sewers. If you're still aiming to catch those thieves that robbed you, then you'll need it. While I was locked up here, I overheard some of the thieves from this new guild planning a mission. ...and that's what i heard. I don't know what that thief was carrying, but it can't hae been good. If you want to stop whatever deviltry they've got planned, then you'll need to head deeper into the sewers and find that thief.",
+          "Id": 5
+        },
+        {
+          "Text": "All right, then - I don't need to tell you to be careful. I'll meet up with you at the Elfsong Tavern later on - come find me when you've found that thief and what he was carring. I'll try to dig up some of my old contacts and see if they can tell me anything about these thieves that could help you out.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "got_key_to_sewer_level_2_from_ethon"
+          },
+          "Id": 6
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Alyth told me you'd followed me down into the cellars, Ethon - I'm glad I found you."
+        },
+        {
+          "VertexId1": 1,
+          "VertexId2": 2,
+          "Text": "But the door to the sewers was locked. How did you get down here?"
+        },
+        {
+          "VertexId1": 2,
+          "VertexId2": 3,
+          "Text": "You're a thief?"
+        },
+        {
+          "VertexId1": 2,
+          "VertexId2": 4,
+          "Text": "There was another entrance? So I didn't *need* to go through the sewers at all?"
+        },
+        {
+          "VertexId1": 3,
+          "VertexId2": 5,
+          "Text": "What do you mean?"
+        },
+        {
+          "VertexId1": 5,
+          "VertexId2": 4,
+          "Text": "I'll find him. Give me the key, and I'll head deeper into the sewers."
+        },
+        {
+          "VertexId1": 5,
+          "VertexId2": 6,
+          "Text": "All right. Farewell, Ethon."
+        }
+      ]
+    }
   }
 ]
