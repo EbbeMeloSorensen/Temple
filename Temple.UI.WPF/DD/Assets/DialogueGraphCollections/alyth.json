@@ -374,14 +374,26 @@
       "Vertices": [
         {
           "Text": "You're back! Did you see Ethon down there?",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestDiscoveredEventTrigger",
+            "QuestId": "find_ethon"
+          },
           "Id": 0
         },
         {
           "Text": "He followed you down there not long ago, and I fear he may have gotten lost in the cellar... or worse, he may have wandered into the sewers. I tried to stop him...",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
+            "QuestId": "find_ethon"
+          },
           "Id": 1
         },
         {
           "Text": "Thank you... but before you go, please take these coins -- in payment for all you've done so far. And as promised, here's the key to the sewer gate. Be careful down there - there's bound to be worse things than sewer rats in those tunnels.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "got_key_to_sewer_door_from_alyth"
+          },
           "Id": 2
         },
         {
@@ -404,6 +416,48 @@
           "VertexId1": 2,
           "VertexId2": 3,
           "Text": "I'll be careful. Thanks, Alyth."
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+        "QuestId": "find_ethon",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": true
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Thank you for finding Ethon; he told me what happened down in the Sewers.",
+          "Id": 0
+        },
+        {
+          "Text": "Here's some coins for your trouble... and please, you're welcome to rest here anytime, no charge.",
+          "Id": 1
+        },
+        {
+          "Text": "",
+          "Id": 2
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "You're welcome, Alyth."
+        },
+        {
+          "VertexId1": 1,
+          "VertexId2": 2,
+          "Text": "Thank you. I appreciate the hospitality."
         }
       ]
     }

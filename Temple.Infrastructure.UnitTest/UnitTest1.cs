@@ -167,6 +167,23 @@ namespace Temple.Infrastructure.UnitTest
                 },
                 new DialogueGraph
                 {
+                    Priority = 100,
+                    Conditions = new List<IDialogueGraphCondition>
+                    {
+                        new QuestStatusCondition()
+                        {
+                            QuestId = "find_ethon",
+                            RequiredStatus = new QuestStatus
+                            {
+                                QuestState = QuestState.Active,
+                                AreCompletionCriteriaSatisfied = true
+                            }
+                        }
+                    },
+                    Graph = GenerateGraph_Alyth_EthonQuestTurnIn()
+                },
+                new DialogueGraph
+                {
                     Priority = 0,
                     Graph = GenerateGraph_Alyth_SmallTalkDialogue()
                 }
@@ -478,30 +495,52 @@ namespace Temple.Infrastructure.UnitTest
         private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_RatQuestTurnIn()
         {
             var vertices = new List<DialogueVertex>
-        {
-            new()
             {
-                Text = "You're back! Did you see Ethon down there?",
-                GameEventTrigger = new QuestDiscoveredEventTrigger("find_ethon")
-            },
-            new()
-            {
-                Text = "He followed you down there not long ago, and I fear he may have gotten lost in the cellar... or worse, he may have wandered into the sewers. I tried to stop him...",
-                GameEventTrigger = new QuestAcceptedEventTrigger("find_ethon")
-            },
-            new()
-            {
-                Text = "Thank you... but before you go, please take these coins -- in payment for all you've done so far. And as promised, here's the key to the sewer gate. Be careful down there - there's bound to be worse things than sewer rats in those tunnels.",
-                GameEventTrigger = new FactEstablishedEventTrigger("got_key_to_sewer_door_from_alyth")
-            },
-            new(""),
-        };
+                new()
+                {
+                    Text = "You're back! Did you see Ethon down there?",
+                    GameEventTrigger = new QuestDiscoveredEventTrigger("find_ethon")
+                },
+                new()
+                {
+                    Text = "He followed you down there not long ago, and I fear he may have gotten lost in the cellar... or worse, he may have wandered into the sewers. I tried to stop him...",
+                    GameEventTrigger = new QuestAcceptedEventTrigger("find_ethon")
+                },
+                new()
+                {
+                    Text = "Thank you... but before you go, please take these coins -- in payment for all you've done so far. And as promised, here's the key to the sewer gate. Be careful down there - there's bound to be worse things than sewer rats in those tunnels.",
+                    GameEventTrigger = new FactEstablishedEventTrigger("got_key_to_sewer_door_from_alyth")
+                },
+                new(""),
+            };
 
             var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
             graph.AddEdge(new DialogueEdge(0, 1, "In the cellar? No I didn't see him."));
             graph.AddEdge(new DialogueEdge(1, 2, "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him."));
             graph.AddEdge(new DialogueEdge(2, 3, "I'll be careful. Thanks, Alyth."));
+
+            return graph;
+        }
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_EthonQuestTurnIn()
+        {
+            var vertices = new List<DialogueVertex>
+            {
+                new()
+                {
+                    Text = "Thank you for finding Ethon; he told me what happened down in the Sewers."
+                },
+                new()
+                {
+                    Text = "Here's some coins for your trouble... and please, you're welcome to rest here anytime, no charge."
+                },
+                new(""),
+            };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
+
+            graph.AddEdge(new DialogueEdge(0, 1, "You're welcome, Alyth."));
+            graph.AddEdge(new DialogueEdge(1, 2, "Thank you. I appreciate the hospitality."));
 
             return graph;
         }
