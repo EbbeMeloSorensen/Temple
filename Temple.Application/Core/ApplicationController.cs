@@ -117,7 +117,8 @@ public class ApplicationController
         {
             quest1,
             quest2,
-            quest3
+            quest3,
+            quest4,
         };
 
         EventBus = new QuestEventBus();

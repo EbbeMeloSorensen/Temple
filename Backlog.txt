@@ -50,20 +50,20 @@ Done:
 * Læs quest collections fra fil
 * Lav det sådan at QuestReadModel, som jo er en cache, kan populeres fra autoritative data i Controlleren
 * DialogueGraphList filer skal tilføjes til projektet som ressource-filer
+* Lav det der med at man kun kan spørge til beholderen, hvis man først har spurgt Alyth om det - baseret på knowledge
+  - det skal afgøre, om edges ud af dialogue graph vertices er tilladte.
+* Er det at få en nøgle af Ethon en quest i sig selv? Egentlig burde det jo bare være en del af questen om at slå rotter ihjel...
+  - Ikke i Baldurs gate i hvert fald - der er ikke engang et hint om det, ud over at der er udråbstegn over Ethon
 
 Todo:
 * Man skal kunne snyde med knowledge, lige som man kan med quests
 * Implementer noget mere dialog fra Dark Alliance
   - Ethon
-* Lav det der med at man kun kan spørge til beholderen, hvis man først har spurgt Alyth om det - baseret på knowledge
-  - det skal afgøre, om edges ud af dialogue graph vertices er tilladte.
-* Er det at få en nøgle af Ethon en quest i sig selv? Egentlig burde det jo bare være en del af questen om at slå rotter ihjel...
-  - Ikke i Baldurs gate i hvert fald - der er ikke engang et hint om det, ud over at der er udråbstegn over Ethon
 * Lav noget visualisering af en DialogueGraph
   - Visualiseringen skal omfatte game event triggers
   - Der skal være en game event trigger, der handler om, at der etableres et fact
 * Implementer noget interlude snak fra Dark Alliance
-* Lav det sådan at quests læses fra fil i stedet for at blive hardkodet
+* Lav det sådan at QUESTS læses fra fil i stedet for at være hardkodet i controlleren
 * Få dialog factoryen til at bruge det
 * Fix lige det med at man klarer en quest ved at besejre en fjende - det holdt op med at virke, da du refaktorerede
 * Lav det, som ChatGPT foreslår, med at Controlleren lytter på alle Game Events og vedligeholder "authoritative game state"

@@ -176,6 +176,23 @@ namespace Temple.Infrastructure.UnitTest
                             RequiredStatus = new QuestStatus
                             {
                                 QuestState = QuestState.Active,
+                                AreCompletionCriteriaSatisfied = false
+                            }
+                        }
+                    },
+                    Graph = GenerateGraph_Alyth_EthonQuestActive()
+                },
+                new DialogueGraph
+                {
+                    Priority = 100,
+                    Conditions = new List<IDialogueGraphCondition>
+                    {
+                        new QuestStatusCondition()
+                        {
+                            QuestId = "find_ethon",
+                            RequiredStatus = new QuestStatus
+                            {
+                                QuestState = QuestState.Active,
                                 AreCompletionCriteriaSatisfied = true
                             }
                         }
@@ -519,6 +536,20 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new DialogueEdge(0, 1, "In the cellar? No I didn't see him."));
             graph.AddEdge(new DialogueEdge(1, 2, "Don't worry, Alyth.  I've taken care of all the rats, so he probably just got lost. I'll find him."));
             graph.AddEdge(new DialogueEdge(2, 3, "I'll be careful. Thanks, Alyth."));
+
+            return graph;
+        }
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Alyth_EthonQuestActive()
+        {
+            var vertices = new List<DialogueVertex>
+            {
+                new("You're back! Did you see Ethon down there?"),
+                new(""),
+            };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
+
+            graph.AddEdge(new DialogueEdge(0, 1, "Not yet. I'm still looking. I'll return when I find him."));
 
             return graph;
         }

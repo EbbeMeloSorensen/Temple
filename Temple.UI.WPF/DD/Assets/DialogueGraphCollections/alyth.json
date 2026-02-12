@@ -428,6 +428,39 @@
         "QuestId": "find_ethon",
         "RequiredStatus": {
           "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "You're back! Did you see Ethon down there?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Not yet. I'm still looking. I'll return when I find him."
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+        "QuestId": "find_ethon",
+        "RequiredStatus": {
+          "QuestState": 2,
           "AreCompletionCriteriaSatisfied": true
         }
       }
