@@ -5,7 +5,6 @@ using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
 using Temple.Application.State;
-using Temple.Infrastructure.Dialogues;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
@@ -28,6 +27,7 @@ namespace Temple.ViewModel
         private readonly IKnowledgeGainedReader _knowledgeGainedReadModel;
         private readonly IQuestStatusReader _questStatusReadModel;
         private readonly ISitesUnlockedReader _sitesUnlockedReader;
+        private readonly IBattlesWonReader _battlesWonReader;
         private readonly ApplicationController _controller;
 
         private string _currentApplicationStateAsText;
@@ -68,12 +68,14 @@ namespace Temple.ViewModel
             _knowledgeGainedReadModel = new KnowledgeGainedReadModel(controller.EventBus);
             _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
             _sitesUnlockedReader = new SitesUnlockedReadModel(controller.EventBus);
+            _battlesWonReader = new BattlesWonReadModel(controller.EventBus);
 
             _dialogueSessionFactory.Initialize(
                 _factsEstablishedReader,
                 _knowledgeGainedReadModel,
                 _questStatusReadModel,
                 _sitesUnlockedReader,
+                _battlesWonReader,
                 controller.EventBus);
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
@@ -127,6 +129,7 @@ namespace Temple.ViewModel
                             _knowledgeGainedReadModel,
                             _questStatusReadModel,
                             _sitesUnlockedReader,
+                            _battlesWonReader,
                             _dialogueSessionFactory);
 
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);

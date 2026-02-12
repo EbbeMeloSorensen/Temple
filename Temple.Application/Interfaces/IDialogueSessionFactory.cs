@@ -10,6 +10,7 @@ public interface IDialogueSessionFactory
         IKnowledgeGainedReader knowledgeGainedReader,
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
+        IBattlesWonReader battlesWonReader,
         QuestEventBus eventBus);
 
     public IDialogueSession GetDialogueSession(

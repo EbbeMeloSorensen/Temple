@@ -14,7 +14,8 @@ public class FactsEstablishedReadModel : IFactsEstablishedReader
         eventBus.Subscribe<FactEstablishedEvent>(HandleFactEstablished);
     }
 
-    public bool FactEstablished(string factId)
+    public bool FactEstablished(
+        string factId)
     {
         return _factsEstablished.Contains(factId);
     }

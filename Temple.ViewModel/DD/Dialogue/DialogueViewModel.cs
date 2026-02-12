@@ -16,6 +16,7 @@ public class DialogueViewModel : TempleViewModel
     private readonly IQuestStatusReader _questStatusReadModel;
     private readonly IDialogueSessionFactory _dialogueSessionFactory;
     private readonly ISitesUnlockedReader _sitesUnlockedReader;
+    private readonly IBattlesWonReader _battlesWonReader;
     private IDialogueSession _dialogueSession;
     private string _title;
     private string _npcPortraitPath;
@@ -61,6 +62,7 @@ public class DialogueViewModel : TempleViewModel
         IKnowledgeGainedReader knowledgeGainedReader,
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
+        IBattlesWonReader battlesWonReader,
         IDialogueSessionFactory dialogueSessionFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));

@@ -1,6 +1,6 @@
 [
   {
-    "Priority": 90.0,
+    "Priority": 0.0,
     "Graph": {
       "IsDirected": true,
       "Vertices": [
@@ -251,11 +251,11 @@
     }
   },
   {
-    "Priority": 80.0,
+    "Priority": 100.0,
     "Conditions": [
       {
-        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
-        "FactId": "got_key_to_cellar_door_from_ethon"
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.BattleWonCondition",
+        "FactId": "bugbear_chieftain"
       }
     ],
     "Graph": {

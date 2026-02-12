@@ -14,6 +14,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private IKnowledgeGainedReader _knowledgeGainedReader;
     private IQuestStatusReader _questStatusReader;
     private ISitesUnlockedReader _sitesUnlockedReader;
+    private IBattlesWonReader _battlesWonReader;
     private QuestEventBus _eventBus;
 
     public void Initialize(
@@ -21,12 +22,14 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         IKnowledgeGainedReader knowledgeGainedReader,
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
+        IBattlesWonReader battlesWonReader,
         QuestEventBus eventBus)
     {
         _factsEstablishedReader = factsEstablishedReader;
         _knowledgeGainedReader = knowledgeGainedReader;
         _questStatusReader = questStatusReader;
         _sitesUnlockedReader = sitesUnlockedReader;
+        _battlesWonReader = battlesWonReader;
         _eventBus = eventBus;
     }
 
@@ -37,20 +40,17 @@ public class DialogueSessionFactory : IDialogueSessionFactory
             _knowledgeGainedReader,
             _eventBus,
             npcId,
-            GenerateGraph_Dialogue(_factsEstablishedReader, _questStatusReader, npcId));
+            GenerateGraph_Dialogue(npcId));
     }
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Dialogue(
-        IFactsEstablishedReader factsEstablishedReader,
-        IQuestStatusReader questStatusReader,
         string npcId)
     {
         var dialogueGraphs =
             DialogueIO.ReadDialogueGraphListFromFile($"DD//Assets//DialogueGraphCollections//{npcId}.json");
 
         // Filtrer de grafer fra, som ikke kvalificerer
-        dialogueGraphs = dialogueGraphs.Where(graph => DialogueGraphMeetsConditions(
-            graph, factsEstablishedReader, questStatusReader));
+        dialogueGraphs = dialogueGraphs.Where(graph => DialogueGraphMeetsConditions(graph));
 
         // Returner den af de kvalificerende grafer, som har den højeste prioritet
         var result = dialogueGraphs
@@ -63,9 +63,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     }
 
     private bool DialogueGraphMeetsConditions(
-        DialogueGraph graph,
-        IFactsEstablishedReader factsEstablishedReader,
-        IQuestStatusReader questStatusReader)
+        DialogueGraph graph)
     {
         if (graph.Conditions == null || !graph.Conditions.Any())
         {
@@ -77,7 +75,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
             switch (condition)
             {
                 case QuestStatusCondition questStatusCondition:
-                    if (!questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
+                    if (!_questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
                             .Equals(questStatusCondition.RequiredStatus))
                     {
                         return false;
@@ -85,12 +83,20 @@ public class DialogueSessionFactory : IDialogueSessionFactory
                     break;
                 case FactEstablishedCondition factEstablishedCondition:
                 {
-                    if (!factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
+                    if (!_factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
                     {
                         return false;
                     }
-                }
                     break;
+                }
+                case BattleWonCondition battleWonCondition:
+                {
+                    if (!_battlesWonReader.BattleWon(battleWonCondition.BattleId))
+                    {
+                        return false;
+                    }
+                    break;
+                }
                 default:
                     throw new NotImplementedException();
             }

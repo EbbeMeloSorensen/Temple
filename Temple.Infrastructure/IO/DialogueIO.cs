@@ -31,6 +31,7 @@ namespace Temple.Infrastructure.IO
                     {
                         typeof(FactEstablishedCondition),
                         typeof(QuestStatusCondition),
+                        typeof(BattleWonCondition),
                         typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),
@@ -58,6 +59,7 @@ namespace Temple.Infrastructure.IO
                     {
                         typeof(FactEstablishedCondition),
                         typeof(QuestStatusCondition),
+                        typeof(BattleWonCondition),
                         typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),
