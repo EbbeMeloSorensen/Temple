@@ -106,8 +106,8 @@ public class ApplicationController
             // Player accepts quest
             new AcceptQuestRule(),
 
-            //// Kill warehouse rats => completion criteria satisfied
             //new SatisfyOnBattleWonRule("rats_in_warehouse"),
+            new SatisfyOnDialogueRule("ethon"),
 
             // Talk to innkeeper again => quest completed
             new TurnInOnDialogueRule("alyth")

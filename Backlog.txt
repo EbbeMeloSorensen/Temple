@@ -56,6 +56,7 @@ Done:
   - Ikke i Baldurs gate i hvert fald - der er ikke engang et hint om det, ud over at der er udråbstegn over Ethon
 
 Todo:
+* Der skal være en nuke 'em option under kamp, så det er lettere at teste
 * Man skal kunne snyde med knowledge, lige som man kan med quests
 * Implementer noget mere dialog fra Dark Alliance
   - Ethon

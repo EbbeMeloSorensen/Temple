@@ -368,11 +368,11 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
         {
             var goblinArcher = new CreatureType(
                 name: "Goblin Archer",
-                maxHitPoints: 20,
-                armorClass: 7,
+                maxHitPoints: 1,
+                armorClass: 10,
                 thaco: 13,
                 initiativeModifier: 0,
-                movement: 6,
+                movement: 1,
                 attacks: new List<Attack>
                 {
                     new RangedAttack(

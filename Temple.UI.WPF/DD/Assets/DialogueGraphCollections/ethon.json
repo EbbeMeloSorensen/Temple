@@ -179,7 +179,7 @@
     }
   },
   {
-    "Priority": 100.0,
+    "Priority": 10.0,
     "Conditions": [
       {
         "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
@@ -251,7 +251,7 @@
     }
   },
   {
-    "Priority": 100.0,
+    "Priority": 20.0,
     "Conditions": [
       {
         "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.BattleWonCondition",
@@ -322,13 +322,75 @@
         },
         {
           "VertexId1": 5,
-          "VertexId2": 4,
+          "VertexId2": 6,
           "Text": "I'll find him. Give me the key, and I'll head deeper into the sewers."
         },
         {
           "VertexId1": 5,
           "VertexId2": 6,
           "Text": "All right. Farewell, Ethon."
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 30.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+        "FactId": "got_key_to_sewer_level_2_from_ethon"
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Thanks again for saving me, dude. Here you have a reward",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "got_reward_from_ethon"
+          },
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Thanks, man"
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 40.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+        "FactId": "got_reward_from_ethon"
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Nice weather, huh?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Yeah, very nice indeed. Farewell"
         }
       ]
     }
