@@ -12,6 +12,7 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
             return battleSceneId switch
             {
                 "rats_in_warehouse" => GetSceneWarehouse(party),
+                "bugbear_chieftain" => GetSceneBugbearChieftain(party),
                 "skeletons_in_graveyard" => GetSceneGraveyard(party),
                 "Dungeon 1, Room A, Goblin" => GetSceneA(party),
                 "Dungeon 1, Room B, Goblin" => GetSceneB(party, entranceId),
@@ -349,6 +350,49 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
                     new (11, 6)
                 },
                 _ => throw new InvalidOperationException()
+            };
+
+            adventurerPositions
+                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+                .ToList()
+                .ForEach(_ =>
+                {
+                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+                });
+
+            return scene;
+        }
+
+        private static Scene GetSceneBugbearChieftain(
+            IEnumerable<Creature> party)
+        {
+            var goblinArcher = new CreatureType(
+                name: "Goblin Archer",
+                maxHitPoints: 20,
+                armorClass: 7,
+                thaco: 13,
+                initiativeModifier: 0,
+                movement: 6,
+                attacks: new List<Attack>
+                {
+                    new RangedAttack(
+                        name: "Bow & Arrow",
+                        maxDamage: 4,
+                        range: 4)
+                });
+
+            var scene = new Scene("DummyScene", 10, 12);
+
+            // Enemies
+            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
+
+            // Party
+            var adventurerPositions = new List<Tuple<int, int>>
+            {
+                new(10, 5),
+                new(10, 6),
+                new(11, 5),
+                new(11, 6)
             };
 
             adventurerPositions

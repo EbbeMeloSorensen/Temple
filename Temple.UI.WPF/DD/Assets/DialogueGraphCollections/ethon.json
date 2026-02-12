@@ -255,7 +255,7 @@
     "Conditions": [
       {
         "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.BattleWonCondition",
-        "FactId": "bugbear_chieftain"
+        "BattleId": "bugbear_chieftain"
       }
     ],
     "Graph": {
@@ -282,7 +282,7 @@
           "Id": 4
         },
         {
-          "Text": "I managed to pick this key off the chieftain you killed; I think it unlocks a gate deeper in the sewers. If you're still aiming to catch those thieves that robbed you, then you'll need it. While I was locked up here, I overheard some of the thieves from this new guild planning a mission. ...and that's what i heard. I don't know what that thief was carrying, but it can't hae been good. If you want to stop whatever deviltry they've got planned, then you'll need to head deeper into the sewers and find that thief.",
+          "Text": "I managed to pick this key off the chieftain you killed; I think it unlocks a gate deeper in the sewers. If you're still aiming to catch those thieves that robbed you, then you'll need it. While I was locked up here, I overheard some of the thieves from this new guild planning a mission. ...and that's what i heard. I don't know what that thief was carrying, but it can't have been good. If you want to stop whatever deviltry they've got planned, then you'll need to head deeper into the sewers and find that thief.",
           "Id": 5
         },
         {

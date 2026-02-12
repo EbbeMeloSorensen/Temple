@@ -201,6 +201,14 @@ public static class SiteDataFactory
                         "rats_in_warehouse");
                 }
 
+                if (questStatusReadModel.GetQuestStatus("find_ethon").QuestState == QuestState.Active)
+                {
+                    siteData.AddEventTrigger_ScriptedBattle(
+                        new Point2D(12, 6),
+                        new Point2D(11, 6),
+                        "bugbear_chieftain");
+                }
+
                 break;
             }
             case "graveyard":
