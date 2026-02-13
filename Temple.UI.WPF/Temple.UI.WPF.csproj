@@ -22,8 +22,12 @@
     <None Remove="DD\Images\Goblin.PNG" />
     <None Remove="DD\Images\Guard.jpg" />
     <None Remove="DD\Images\Innkeeper.png" />
+    <None Remove="DD\Images\ipswitch.png" />
     <None Remove="DD\Images\Knight.PNG" />
+    <None Remove="DD\Images\lortimer.png" />
+    <None Remove="DD\Images\nebbish.png" />
     <None Remove="DD\Images\NoPreview.png" />
+    <None Remove="DD\Images\osala.png" />
     <None Remove="DD\Images\Sword.png" />
     <None Remove="DD\Images\Victory.png" />
     <None Remove="DD\Images\Wall.jpg" />
@@ -98,10 +102,22 @@
     <Resource Include="DD\Images\interlude.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="DD\Images\ipswitch.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="DD\Images\Knight.PNG">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="DD\Images\lortimer.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\nebbish.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="DD\Images\NoPreview.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="DD\Images\osala.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="DD\Images\Sword.png">
