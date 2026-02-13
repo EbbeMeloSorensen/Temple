@@ -113,12 +113,32 @@ public class ApplicationController
             new TurnInOnDialogueRule("alyth")
         });
 
+        var quest5 = new Quest(id: "find_osalas_man", rules: new List<IQuestRule>
+        {
+            new AdvanceOnCheatRule(),
+            new BecomeAvailableOnQuestDiscoveredRule(),
+            new AcceptQuestRule(),
+            new SatisfyOnBattleWonRule("orb_of_the_undead"),
+            new TurnInOnDialogueRule("osala")
+        });
+
+        var quest6 = new Quest(id: "find_medallion_for_ipswitch", rules: new List<IQuestRule>
+        {
+            new AdvanceOnCheatRule(),
+            new BecomeAvailableOnQuestDiscoveredRule(),
+            new AcceptQuestRule(),
+            //new SatisfyOnBattleWonRule("orb_of_the_undead"),
+            new TurnInOnDialogueRule("ipswitch")
+        });
+
         Quests = new List<Quest>
         {
             quest1,
             quest2,
             quest3,
             quest4,
+            quest5,
+            quest6
         };
 
         EventBus = new QuestEventBus();

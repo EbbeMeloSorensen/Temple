@@ -187,6 +187,8 @@ public static class SiteDataFactory
                 siteData.AddCharacter("human male", "ethon", new Point2D(12.5, 7.9));
                 siteData.AddCharacter("human male", "lortimer", new Point2D(12.5, 8.3));
                 siteData.AddCharacter("human male", "nebbish", new Point2D(12.5, 8.7));
+                siteData.AddCharacter("human female", "osala", new Point2D(13.5, 8.7), 270);
+                siteData.AddCharacter("human male", "ipswitch", new Point2D(14.5, 8.7), 270);
 
                 siteData.AddEventTrigger_LeaveSite(
                     new Point2D(15, 8),

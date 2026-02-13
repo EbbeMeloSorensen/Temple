@@ -345,23 +345,32 @@
       "IsDirected": true,
       "Vertices": [
         {
-          "Text": "Thanks again for saving me, dude. Here you have a reward",
+          "Text": "Thanks for the rescue down in the sewers, friend. I feel like a right fool for not heeding my own advice and staying clear of the place. Here are a few coins as a way of thanks... and an old trinket of mine from my younger days; it's not much, but it may be of use to you.'",
           "GameEventTrigger": {
             "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
-            "FactId": "got_reward_from_ethon"
+            "FactId": "got_amulet_from_ethon"
           },
           "Id": 0
         },
         {
-          "Text": "",
+          "Text": "Did you find that thief who was running around in the sewers?",
           "Id": 1
+        },
+        {
+          "Text": "",
+          "Id": 2
         }
       ],
       "Edges": [
         {
           "VertexId1": 0,
           "VertexId2": 1,
-          "Text": "Thanks, man"
+          "Text": "Thanks, Ethon"
+        },
+        {
+          "VertexId1": 1,
+          "VertexId2": 2,
+          "Text": "Not yet. I'm still looking. I'll return when I've found him"
         }
       ]
     }
@@ -371,7 +380,7 @@
     "Conditions": [
       {
         "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
-        "FactId": "got_reward_from_ethon"
+        "FactId": "got_amulet_from_ethon"
       }
     ],
     "Graph": {

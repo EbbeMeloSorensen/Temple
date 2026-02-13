@@ -56,6 +56,8 @@ public class DialogueSession : IDialogueSession
             "captain" => "DD/Images/Captain.png",
             "lortimer" => "DD/Images/Guard.jpg",
             "nebbish" => "DD/Images/Guard.jpg",
+            "osala" => "DD/Images/Guard.jpg",
+            "ipswitch" => "DD/Images/Guard.jpg",
             _ => throw new InvalidOperationException("Unknown npcId")
         };
 

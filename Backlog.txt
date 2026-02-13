@@ -56,6 +56,9 @@ Done:
   - Ikke i Baldurs gate i hvert fald - der er ikke engang et hint om det, ud over at der er udråbstegn over Ethon
 
 Todo:
+* Hvad siger ipswitch, hvis man siger farvel i stedet for at sige, at man vil hjælpe med medaljonen og så snakker med ham igen?
+* Hvad siger nebbish, hvis man snakker med ham før man snakker med Ethon?
+* Hvad siger ethon, hvis man spørger til hvorfor man skulle gennem kælderen i stedet for at bruge den vej til kloakken, som han kender?
 * Der skal være en nuke 'em option under kamp, så det er lettere at teste
 * Man skal kunne snyde med knowledge, lige som man kan med quests
 * Implementer noget mere dialog fra Dark Alliance

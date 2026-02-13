@@ -1,0 +1,98 @@
+[
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+        "QuestId": "find_osalas_man",
+        "RequiredStatus": {
+          "QuestState": 0,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Please... leave me be. I want no trouble.",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        },
+        {
+          "Text": "I... I have been waiting for someone, but I fear I wait in vain.",
+          "Id": 2
+        },
+        {
+          "Text": "My man, Keissen , had just gone on an... expedition into the north, to a place called the Battle of the Bones, where the dead still walk. He has a talent for the shadowy arts... and he had been asked to recover an item, an orb, for someone, then bring it here to Baldur's Gate - the amount of money he was being offered was more than either of us had ever seen. When I spoke to him about the expedition, however, he was acting strangely... almost dazed, as if he had been hypnotized... or charmed. He was obsessed with finding this orb for his new employer. We had agreed to meet here in the Elfsong should anything happen, but it has been almost three nights now, and I have seen no sign of him. I fear for the worst... I fear that the orb he recovered may have done something horrible to him.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestDiscoveredEventTrigger",
+            "QuestId": "find_osalas_man"
+          },
+          "Id": 3
+        },
+        {
+          "Text": "",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
+            "QuestId": "find_osalas_man"
+          },
+          "Id": 4
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Very well, then. Farewell.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Text": "Are you all right?",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Text": "I have no time for this - I must take my leave. Farewell.",
+          "VertexId1": 2,
+          "VertexId2": 1
+        },
+        {
+          "Text": "Who?",
+          "VertexId1": 2,
+          "VertexId2": 3
+        },
+        {
+          "Text": "If I should see or hear of Keissen, I will let you know.",
+          "VertexId1": 3,
+          "VertexId2": 4
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Please... leave me be. I want no trouble.",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Very well, then. Farewell."
+        }
+      ]
+    }
+  }
+]

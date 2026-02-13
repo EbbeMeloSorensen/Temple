@@ -1,0 +1,117 @@
+[
+  {
+    "Priority": 100.0,
+    "Conditions": [
+      {
+        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+        "QuestId": "find_medallion_for_ipswitch",
+        "RequiredStatus": {
+          "QuestState": 0,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      }
+    ],
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Well met, friend. It's good to see a new face in the Elfsong... please, have a seat, share a drink. My nam's Ipswitch. What brings you to Baldur's Gate?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        },
+        {
+          "Text": "A sad tale, friend. My heart goes out to you... it seems Baldur's Gate has not been treating its visitors well of late. I, too, am a stranger here.",
+          "Id": 2
+        },
+        {
+          "Text": "I came to pay my respects at the Shrine of Suffering, the local temple run by the priests of Ilmater. But I came to find the temple sealed, and no one answered my summons. I had a terrible feeling that something was wrong inside, but I did not know what.",
+          "Id": 3
+        },
+        {
+          "Text": "My brother's bones lie within the crypts beneath the shrine. I had hoped to pay my respects at his grave, and take back with me his medallion that had been buried with him. It was always his intention that it be passed on through our family, and now that I have a little one of my own, I wish my child to have the medallion. But now... I do not know what to do, so I sit here, drink, and wait for the shrine to awake.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestDiscoveredEventTrigger",
+            "QuestId": "find_medallion_for_ipswitch"
+          },
+          "Id": 4
+        },
+        {
+          "Text": "",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
+            "QuestId": "find_medallion_for_ipswitch"
+          },
+          "Id": 5
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Perhaps we shall speak another time. Farewell.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        },
+        {
+          "Text": "I had thought to seek my fortune here, but what little fortune I had was taken from me when I entered the gate.",
+          "VertexId1": 0,
+          "VertexId2": 2
+        },
+        {
+          "Text": "Perhaps we shall speak another time. Farewell.",
+          "VertexId1": 2,
+          "VertexId2": 1
+        },
+        {
+          "Text": "Why did you come to Baldur's Gate?",
+          "VertexId1": 2,
+          "VertexId2": 3
+        },
+        {
+          "Text": "Perhaps we shall speak another time. Farewell.",
+          "VertexId1": 3,
+          "VertexId2": 1
+        },
+        {
+          "Text": "Why did you wish to visit the shrine?",
+          "VertexId1": 3,
+          "VertexId2": 4
+        },
+        {
+          "Text": "Perhaps we shall speak another time. Farewell.",
+          "VertexId1": 4,
+          "VertexId2": 1
+        },
+        {
+          "Text": "If I can find a way into the shrine, I'll see if I can find your brother's tomb.",
+          "VertexId1": 4,
+          "VertexId2": 5
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Splendid weather today, huh?",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Sure"
+        }
+      ]
+    }
+  }
+]
