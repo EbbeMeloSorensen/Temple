@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Craft.DataStructures.Graph;
+using Craft.DataStructures.IO;
 using Temple.Application.DD;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.Dialogues;
@@ -11,86 +12,6 @@ namespace Temple.Infrastructure.UnitTest
 {
     public class DialogueIOTest
     {
-        [Fact]
-        public void SerializeAGraphToJsonFile()
-        {
-            // Arrange
-            var vertices = new List<DialogueVertex>
-            {
-                new("Nice weather today, huh?"),
-                new()
-                {
-                    Text = "Wanna kill rats?",
-                    GameEventTrigger = new QuestDiscoveredEventTrigger("rat_infestation")
-                },
-                new("Then good luck"),
-                new("Then fuck off, rat lover"),
-                new(""),
-            };
-
-            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
-            graph.AddEdge(new DialogueEdge(0, 1, "Yep super nice"));
-            graph.AddEdge(new DialogueEdge(1, 2, "Oh yes, I hate rats"));
-            graph.AddEdge(new DialogueEdge(1, 3, "No, rats are cute"));
-            graph.AddEdge(new DialogueEdge(2, 4, "Thanks, see you later"));
-            graph.AddEdge(new DialogueEdge(3, 4, "Ok"));
-
-            var json = JsonConvert.SerializeObject(
-                graph,
-                Formatting.Indented,
-                DialogueIO.GetJsonSerializerSettings());
-
-            using var streamWriter = new StreamWriter(@"C:\Temp\serializedGraph.json");
-
-            streamWriter.WriteLine(json);
-
-            // Act
-            // Assert
-        }
-        
-        [Fact]
-        public void SerializeADialogueGraphToJsonFile()
-        {
-            // Arrange
-            var vertices = new List<DialogueVertex>
-            {
-                new("Nice weather today, huh?"),
-                new()
-                {
-                    Text = "Wanna kill rats?",
-                    GameEventTrigger = new QuestDiscoveredEventTrigger("rat_infestation")
-                },
-                new("Then good luck"),
-                new("Then fuck off, rat lover"),
-                new(""),
-            };
-
-            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
-            graph.AddEdge(new DialogueEdge(0, 1, "Yep super nice"));
-            graph.AddEdge(new DialogueEdge(1, 2, "Oh yes, I hate rats"));
-            graph.AddEdge(new DialogueEdge(1, 3, "No, rats are cute"));
-            graph.AddEdge(new DialogueEdge(2, 4, "Thanks, see you later"));
-            graph.AddEdge(new DialogueEdge(3, 4, "Ok"));
-
-            var dialogueGraph = new DialogueGraph
-            {
-                Priority = 90.0,
-                Graph = graph
-            };
-
-            var json = JsonConvert.SerializeObject(
-                dialogueGraph,
-                Formatting.Indented,
-                DialogueIO.GetJsonSerializerSettings());
-
-            using var streamWriter = new StreamWriter(@"C:\Temp\serializedDialogueGraph.json");
-
-            streamWriter.WriteLine(json);
-
-            // Act
-            // Assert
-        }
-
         [Fact]
         public void GenerateDialogueGraphCollectionForAlythThenWriteToJsonFile()
         {
@@ -188,19 +109,7 @@ namespace Temple.Infrastructure.UnitTest
                 }
             };
 
-            var settings = DialogueIO.GetJsonSerializerSettings();
-
-            var json = JsonConvert.SerializeObject(
-                dialogueGraphs,
-                Formatting.Indented,
-                settings);
-
-            using var streamWriter = new StreamWriter(@"C:\Temp\alyth.json");
-
-            streamWriter.WriteLine(json);
-
-            // Act
-            // Assert
+            dialogueGraphs.WriteToFile(@"C:\Temp\alyth.json");
         }
 
         [Fact]
@@ -291,14 +200,7 @@ namespace Temple.Infrastructure.UnitTest
                 }
             };
 
-            var json = JsonConvert.SerializeObject(
-                dialogueGraphs,
-                Formatting.Indented,
-                DialogueIO.GetJsonSerializerSettings());
-
-            using var streamWriter = new StreamWriter(@"C:\Temp\captain.json");
-
-            streamWriter.WriteLine(json);
+            dialogueGraphs.WriteToFile(@"C:\Temp\captain.json");
         }
 
         [Fact]

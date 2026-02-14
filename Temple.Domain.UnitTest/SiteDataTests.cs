@@ -8,7 +8,7 @@ namespace Temple.Domain.UnitTest
         public void SerializeSiteDataToFile()
         {
             // Arrange
-            var siteData = new SiteData()
+            var siteData = new SiteData();
             // Act
             // Assert
         }
