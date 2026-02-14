@@ -2,11 +2,7 @@
 {
     public class NPC : SiteComponent_Rotatable
     {
+        public string ModelId { get; init; }
         public string Id { get; set; }
-
-        public NPC(
-            string modelId) : base(modelId)
-        {
-        }
     }
 }

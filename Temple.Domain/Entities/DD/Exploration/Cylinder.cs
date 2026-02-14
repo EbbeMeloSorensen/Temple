@@ -4,10 +4,5 @@
     {
         public double Radius { get; set; }
         public double Length { get; set; }
-
-        public Cylinder(
-            string modelId) : base(modelId)
-        {
-        }
     }
 }

@@ -2,8 +2,4 @@
 
 public class EventTrigger_LeaveSite : EventTrigger
 {
-    public EventTrigger_LeaveSite(
-        string modelId) : base(modelId)
-    {
-    }
 }

@@ -14,7 +14,7 @@ public class SiteData
         Point3D point3,
         Point3D point4)
     {
-        _siteComponents.Add(new Quad("quad")
+        _siteComponents.Add(new Quad
         {
             Point1 = new Vector3D(point1.Y, point1.Z, point1.X),
             Point2 = new Vector3D(point2.Y, point2.Z, point2.X),
@@ -28,7 +28,7 @@ public class SiteData
         double radius,
         double height = 0)
     {
-        _siteComponents.Add(new Sphere("sphere")
+        _siteComponents.Add(new Sphere
         {
             Position = new Vector3D(position.Y, height, position.X),
             Radius = radius
@@ -41,7 +41,7 @@ public class SiteData
         double length,
         double height = 0)
     {
-        _siteComponents.Add(new Cylinder("cylinder")
+        _siteComponents.Add(new Cylinder
         {
             Position = new Vector3D(position.Y, height, position.X),
             Radius = radius,
@@ -53,7 +53,7 @@ public class SiteData
         Point2D position,
         double height = 0)
     {
-        _siteComponents.Add(new ExclamationMark("exclamation mark")
+        _siteComponents.Add(new ExclamationMark
         {
             Position = new Vector3D(position.Y, height, position.X)
         });
@@ -62,7 +62,7 @@ public class SiteData
     public void AddWall(
         IEnumerable<Point2D> wallPoints)
     {
-        _siteComponents.Add(new Barrier("wall")
+        _siteComponents.Add(new Barrier
         {
             BarrierPoints = wallPoints.Select(_ => new Vector3D(_.Y, 0, _.X)).ToList()
         });
@@ -75,8 +75,9 @@ public class SiteData
         double orientation = 0,
         double height = 0)
     {
-        _siteComponents.Add(new NPC(modelId)
+        _siteComponents.Add(new NPC
         {
+            ModelId = modelId,
             Id = npcId,
             Position = new Vector3D(position.Y, height, position.X),
             Orientation = orientation
@@ -88,7 +89,7 @@ public class SiteData
         Point2D point2,
         string eventId)
     {
-        _siteComponents.Add(new EventTrigger_LeaveSite("event trigger")
+        _siteComponents.Add(new EventTrigger_LeaveSite
         {
             Point1 = point1,
             Point2 = point2,
@@ -103,7 +104,7 @@ public class SiteData
         int? questId = null,
         string? entranceId = null)
     {
-        _siteComponents.Add(new EventTrigger_ScriptedBattle("event trigger")
+        _siteComponents.Add(new EventTrigger_ScriptedBattle
         {
             Point1 = point1,
             Point2 = point2,

@@ -2,8 +2,4 @@
 
 public class ExclamationMark : SiteComponent_Placeable
 {
-    public ExclamationMark(
-        string modelId) : base(modelId)
-    {
-    }
 }

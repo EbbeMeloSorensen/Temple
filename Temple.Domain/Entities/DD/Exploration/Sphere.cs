@@ -3,10 +3,5 @@
     public class Sphere : SiteComponent_Placeable
     {
         public double Radius { get; set; }
-
-        public Sphere(
-            string modelId) : base(modelId)
-        {
-        }
     }
 }

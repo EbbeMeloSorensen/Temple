@@ -8,9 +8,5 @@ public class Quad : SiteComponent
     public Vector3D Point2 { get; set; }
     public Vector3D Point3 { get; set; }
     public Vector3D Point4 { get; set; }
-
-    public Quad(string modelId) : base(modelId)
-    {
-    }
 }
 
