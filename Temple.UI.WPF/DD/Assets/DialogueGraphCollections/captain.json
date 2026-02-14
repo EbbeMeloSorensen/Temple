@@ -2,6 +2,42 @@
   {
     "Priority": 100.0,
     "Condition": {
+      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.AndDialogueGraphCondition",
+      "Conditions": [
+        {
+          "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+          "FactId": "party_talked_with_lortimer"
+        },
+        {
+          "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+          "FactId": "party_talked_with_nebbish"
+        }
+      ]
+    },
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Dude, you talked with nebbish and lortimer",
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Sure did, dude"
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 90.0,
+    "Condition": {
       "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
       "QuestId": "skeleton_trouble",
       "RequiredStatus": {
@@ -97,7 +133,7 @@
     }
   },
   {
-    "Priority": 100.0,
+    "Priority": 90.0,
     "Condition": {
       "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
       "QuestId": "skeleton_trouble",
@@ -155,7 +191,7 @@
     }
   },
   {
-    "Priority": 100.0,
+    "Priority": 90.0,
     "Condition": {
       "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
       "QuestId": "skeleton_trouble",
@@ -195,7 +231,7 @@
     }
   },
   {
-    "Priority": 100.0,
+    "Priority": 90.0,
     "Condition": {
       "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
       "QuestId": "skeleton_trouble",

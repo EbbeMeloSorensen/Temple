@@ -212,6 +212,25 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
+                    Condition = new AndDialogueGraphCondition
+                    {
+                        Conditions =
+                        {
+                            new FactEstablishedCondition
+                            {
+                                FactId = "party_talked_with_lortimer"
+                            },
+                            new FactEstablishedCondition
+                            {
+                                FactId = "party_talked_with_nebbish"
+                            }
+                        }
+                    },
+                    Graph = GenerateGraph_Captain_SmallTalkDialogue2()
+                },
+                new DialogueGraph
+                {
+                    Priority = 90,
                     Condition = new QuestStatusCondition()
                     {
                         QuestId = "skeleton_trouble",
@@ -225,7 +244,7 @@ namespace Temple.Infrastructure.UnitTest
                 },
                 new DialogueGraph
                 {
-                    Priority = 100,
+                    Priority = 90,
                     Condition = new QuestStatusCondition()
                     {
                         QuestId = "skeleton_trouble",
@@ -239,7 +258,7 @@ namespace Temple.Infrastructure.UnitTest
                 },
                 new DialogueGraph
                 {
-                    Priority = 100,
+                    Priority = 90,
                     Condition = new QuestStatusCondition()
                     {
                         QuestId = "skeleton_trouble",
@@ -253,7 +272,7 @@ namespace Temple.Infrastructure.UnitTest
                 },
                 new DialogueGraph
                 {
-                    Priority = 100,
+                    Priority = 90,
                     Condition = new QuestStatusCondition()
                     {
                         QuestId = "skeleton_trouble",
@@ -268,7 +287,7 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 0,
-                    Graph = GenerateGraph_Captain_SmallTalkDialogue()
+                    Graph = GenerateGraph_Captain_SmallTalkDialogue1()
                 }
             };
 
@@ -654,7 +673,7 @@ namespace Temple.Infrastructure.UnitTest
 
             return graph;
         }
-        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SmallTalkDialogue()
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SmallTalkDialogue1()
         {
             var vertices = new List<DialogueVertex>
         {
@@ -665,6 +684,20 @@ namespace Temple.Infrastructure.UnitTest
             var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
 
             graph.AddEdge(new DialogueEdge(0, 1, "Nah I think the weather is nice"));
+
+            return graph;
+        }
+        private GraphAdjacencyList<DialogueVertex, DialogueEdge> GenerateGraph_Captain_SmallTalkDialogue2()
+        {
+            var vertices = new List<DialogueVertex>
+            {
+                new("Dude, you talked with nebbish and lortimer"),
+                new(""),
+            };
+
+            var graph = new GraphAdjacencyList<DialogueVertex, DialogueEdge>(vertices, true);
+
+            graph.AddEdge(new DialogueEdge(0, 1, "Sure did, dude"));
 
             return graph;
         }

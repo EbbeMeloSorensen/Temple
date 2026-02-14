@@ -6,6 +6,10 @@
       "Vertices": [
         {
           "Text": "Zzzzz...",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "party_talked_with_lortimer"
+          },
           "Id": 0
         },
         {

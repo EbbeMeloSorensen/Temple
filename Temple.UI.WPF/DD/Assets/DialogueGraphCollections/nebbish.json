@@ -14,6 +14,10 @@
       "Vertices": [
         {
           "Text": "What do you want? I got no coin to spare, so don't think your begging will make me part with a single copper.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "party_talked_with_nebbish"
+          },
           "Id": 0
         },
         {
