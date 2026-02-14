@@ -1,8 +1,8 @@
 ﻿using Craft.DataStructures.IO;
 using Newtonsoft.Json;
 using Temple.Infrastructure.Dialogues;
-using Temple.Infrastructure.Dialogues.DialogueGraphConditions;
 using Temple.Infrastructure.Dialogues.GameEventTriggers;
+using Temple.Infrastructure.GameConditions;
 
 namespace Temple.Infrastructure.IO
 {
@@ -32,7 +32,8 @@ namespace Temple.Infrastructure.IO
                         typeof(FactEstablishedCondition),
                         typeof(QuestStatusCondition),
                         typeof(BattleWonCondition),
-                        typeof(AndDialogueGraphCondition),
+                        typeof(AndGameCondition),
+                        typeof(OrGameCondition),
                         typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),
@@ -61,7 +62,8 @@ namespace Temple.Infrastructure.IO
                         typeof(FactEstablishedCondition),
                         typeof(QuestStatusCondition),
                         typeof(BattleWonCondition),
-                        typeof(AndDialogueGraphCondition),
+                        typeof(AndGameCondition),
+                        typeof(OrGameCondition),
                         typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),

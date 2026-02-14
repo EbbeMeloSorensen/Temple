@@ -4,8 +4,8 @@ using Temple.Application.DD;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.IO;
-using Temple.Infrastructure.Dialogues.DialogueGraphConditions;
 using Temple.Infrastructure.Dialogues.GameEventTriggers;
+using Temple.Infrastructure.GameConditions;
 
 namespace Temple.Infrastructure.UnitTest
 {
@@ -212,7 +212,7 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Condition = new AndDialogueGraphCondition
+                    Condition = new AndGameCondition
                     {
                         Conditions =
                         {

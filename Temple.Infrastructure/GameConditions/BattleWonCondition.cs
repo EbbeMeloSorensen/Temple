@@ -1,13 +1,13 @@
 ﻿using Temple.Application.Interfaces;
 
-namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+namespace Temple.Infrastructure.GameConditions;
 
-public class BattleWonCondition : IDialogueGraphCondition
+public class BattleWonCondition : IGameCondition
 {
     public string BattleId { get; set; }
 
     public bool Evaluate(
-        IDialogueQueryService query)
+        IGameQueryService query)
     {
         return query.IsBattleWon(BattleId);
     }

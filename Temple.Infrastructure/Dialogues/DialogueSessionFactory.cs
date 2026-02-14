@@ -3,7 +3,6 @@ using Craft.DataStructures.IO;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
-using Temple.Infrastructure.Dialogues.DialogueGraphConditions;
 using Temple.Infrastructure.IO;
 
 namespace Temple.Infrastructure.Dialogues;
@@ -15,7 +14,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private IQuestStatusReader _questStatusReader;
     private ISitesUnlockedReader _sitesUnlockedReader;
     private IBattlesWonReader _battlesWonReader;
-    private IDialogueQueryService _dialogueQueryService;
+    private IGameQueryService _dialogueQueryService;
     private QuestEventBus _eventBus;
 
     public void Initialize(
@@ -24,7 +23,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
         IBattlesWonReader battlesWonReader,
-        IDialogueQueryService dialogueQueryService,
+        IGameQueryService dialogueQueryService,
         QuestEventBus eventBus)
     {
         _factsEstablishedReader = factsEstablishedReader;

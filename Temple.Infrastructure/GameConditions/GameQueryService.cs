@@ -2,16 +2,16 @@
 using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
 
-namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+namespace Temple.Infrastructure.GameConditions;
 
-public class DialogueQueryService : IDialogueQueryService
+public class GameQueryService : IGameQueryService
 {
     private IFactsEstablishedReader _factsEstablishedReader;
     private IQuestStatusReader _questStatusReader;
     private IBattlesWonReader _battlesWonReader;
     private ISitesUnlockedReader _sitesUnlockedReader;
 
-    public DialogueQueryService(
+    public GameQueryService(
         IFactsEstablishedReader factsEstablishedReader,
         IQuestStatusReader questStatusReader,
         IBattlesWonReader battlesWonReader,

@@ -1,15 +1,15 @@
 ﻿using Temple.Application.DD;
 using Temple.Application.Interfaces;
 
-namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+namespace Temple.Infrastructure.GameConditions;
 
-public class QuestStatusCondition : IDialogueGraphCondition
+public class QuestStatusCondition : IGameCondition
 {
     public string QuestId { get; set; }
     public QuestStatus RequiredStatus { get; set; }
 
     public bool Evaluate(
-        IDialogueQueryService query)
+        IGameQueryService query)
     {
         return query.DoesQuestStatusEqualRequiredValue(QuestId, RequiredStatus);
     }

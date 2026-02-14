@@ -2,7 +2,7 @@
 
 namespace Temple.Application.Interfaces;
 
-public interface IDialogueQueryService
+public interface IGameQueryService
 {
     bool IsFactEstablished(
         string factId);

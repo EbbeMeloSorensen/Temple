@@ -181,7 +181,7 @@
   {
     "Priority": 10.0,
     "Condition": {
-      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+      "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
       "FactId": "got_key_to_cellar_door_from_ethon"
     },
     "Graph": {
@@ -251,7 +251,7 @@
   {
     "Priority": 20.0,
     "Condition": {
-      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.BattleWonCondition",
+      "$type": "Temple.Infrastructure.GameConditions.BattleWonCondition",
       "BattleId": "bugbear_chieftain"
     },
     "Graph": {
@@ -332,7 +332,7 @@
   {
     "Priority": 30.0,
     "Condition": {
-      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+      "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
       "FactId": "got_key_to_sewer_level_2_from_ethon"
     },
     "Graph": {
@@ -372,7 +372,7 @@
   {
     "Priority": 40.0,
     "Condition": {
-      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+      "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
       "FactId": "got_amulet_from_ethon"
     },
     "Graph": {

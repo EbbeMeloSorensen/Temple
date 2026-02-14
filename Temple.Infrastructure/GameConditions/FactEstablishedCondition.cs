@@ -1,13 +1,13 @@
 ﻿using Temple.Application.Interfaces;
 
-namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+namespace Temple.Infrastructure.GameConditions;
 
-public class FactEstablishedCondition : IDialogueGraphCondition
+public class FactEstablishedCondition : IGameCondition
 {
     public string FactId { get; set; }
 
     public bool Evaluate(
-        IDialogueQueryService query)
+        IGameQueryService query)
     {
         return query.IsFactEstablished(FactId);
     }

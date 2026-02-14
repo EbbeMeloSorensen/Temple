@@ -5,7 +5,7 @@ using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
 using Temple.Application.State;
-using Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+using Temple.Infrastructure.GameConditions;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
@@ -71,7 +71,7 @@ namespace Temple.ViewModel
             _sitesUnlockedReader = new SitesUnlockedReadModel(controller.EventBus);
             _battlesWonReader = new BattlesWonReadModel(controller.EventBus);
 
-            var dialogueQueryService = new DialogueQueryService(
+            var dialogueQueryService = new GameQueryService(
                 _factsEstablishedReader,
                 _questStatusReadModel,
                 _battlesWonReader,

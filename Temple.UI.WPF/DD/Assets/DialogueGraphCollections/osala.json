@@ -2,7 +2,7 @@
   {
     "Priority": 100.0,
     "Condition": {
-      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+      "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
       "QuestId": "find_osalas_man",
       "RequiredStatus": {
         "QuestState": 0,
