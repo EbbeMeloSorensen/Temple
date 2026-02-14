@@ -56,6 +56,8 @@ Done:
   - Ikke i Baldurs gate i hvert fald - der er ikke engang et hint om det, ud over at der er udråbstegn over Ethon
 
 Todo:
+* Erstat brugen af en switch case ladder i DialogueSessionFactory med den nye DialogueSessionQuery
+* Skyd en abstract atomic condition ind
 * Hvad siger ipswitch, hvis man siger farvel i stedet for at sige, at man vil hjælpe med medaljonen og så snakker med ham igen?
 * Hvad siger nebbish, hvis man snakker med ham før man snakker med Ethon?
 * Hvad siger ethon, hvis man spørger til hvorfor man skulle gennem kælderen i stedet for at bruge den vej til kloakken, som han kender?

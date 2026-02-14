@@ -15,6 +15,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private IQuestStatusReader _questStatusReader;
     private ISitesUnlockedReader _sitesUnlockedReader;
     private IBattlesWonReader _battlesWonReader;
+    private IDialogueQueryService _dialogueQueryService;
     private QuestEventBus _eventBus;
 
     public void Initialize(
@@ -23,6 +24,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
         IBattlesWonReader battlesWonReader,
+        IDialogueQueryService dialogueQueryService,
         QuestEventBus eventBus)
     {
         _factsEstablishedReader = factsEstablishedReader;
@@ -30,6 +32,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         _questStatusReader = questStatusReader;
         _sitesUnlockedReader = sitesUnlockedReader;
         _battlesWonReader = battlesWonReader;
+        _dialogueQueryService = dialogueQueryService;
         _eventBus = eventBus;
     }
 
@@ -69,6 +72,8 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         {
             return true;
         }
+
+        return graph.Condition.Evaluate(_dialogueQueryService);
 
         switch (graph.Condition)
         {

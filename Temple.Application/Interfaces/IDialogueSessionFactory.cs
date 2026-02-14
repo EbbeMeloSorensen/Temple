@@ -11,6 +11,7 @@ public interface IDialogueSessionFactory
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
         IBattlesWonReader battlesWonReader,
+        IDialogueQueryService dialogueQueryService,
         QuestEventBus eventBus);
 
     public IDialogueSession GetDialogueSession(

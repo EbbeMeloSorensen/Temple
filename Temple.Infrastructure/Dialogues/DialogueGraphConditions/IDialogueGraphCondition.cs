@@ -1,4 +1,6 @@
-﻿namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
+﻿using Temple.Application.Interfaces;
+
+namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
 
 public interface IDialogueGraphCondition
 {
