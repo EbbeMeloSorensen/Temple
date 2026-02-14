@@ -1,16 +1,14 @@
 [
   {
     "Priority": 100.0,
-    "Conditions": [
-      {
-        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
-        "QuestId": "skeleton_trouble",
-        "RequiredStatus": {
-          "QuestState": 0,
-          "AreCompletionCriteriaSatisfied": false
-        }
+    "Condition": {
+      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+      "QuestId": "skeleton_trouble",
+      "RequiredStatus": {
+        "QuestState": 0,
+        "AreCompletionCriteriaSatisfied": false
       }
-    ],
+    },
     "Graph": {
       "IsDirected": true,
       "Vertices": [
@@ -100,16 +98,14 @@
   },
   {
     "Priority": 100.0,
-    "Conditions": [
-      {
-        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
-        "QuestId": "skeleton_trouble",
-        "RequiredStatus": {
-          "QuestState": 1,
-          "AreCompletionCriteriaSatisfied": false
-        }
+    "Condition": {
+      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+      "QuestId": "skeleton_trouble",
+      "RequiredStatus": {
+        "QuestState": 1,
+        "AreCompletionCriteriaSatisfied": false
       }
-    ],
+    },
     "Graph": {
       "IsDirected": true,
       "Vertices": [
@@ -160,16 +156,14 @@
   },
   {
     "Priority": 100.0,
-    "Conditions": [
-      {
-        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
-        "QuestId": "skeleton_trouble",
-        "RequiredStatus": {
-          "QuestState": 2,
-          "AreCompletionCriteriaSatisfied": false
-        }
+    "Condition": {
+      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+      "QuestId": "skeleton_trouble",
+      "RequiredStatus": {
+        "QuestState": 2,
+        "AreCompletionCriteriaSatisfied": false
       }
-    ],
+    },
     "Graph": {
       "IsDirected": true,
       "Vertices": [
@@ -202,16 +196,14 @@
   },
   {
     "Priority": 100.0,
-    "Conditions": [
-      {
-        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
-        "QuestId": "skeleton_trouble",
-        "RequiredStatus": {
-          "QuestState": 2,
-          "AreCompletionCriteriaSatisfied": true
-        }
+    "Condition": {
+      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+      "QuestId": "skeleton_trouble",
+      "RequiredStatus": {
+        "QuestState": 2,
+        "AreCompletionCriteriaSatisfied": true
       }
-    ],
+    },
     "Graph": {
       "IsDirected": true,
       "Vertices": [

@@ -65,41 +65,38 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private bool DialogueGraphMeetsConditions(
         DialogueGraph graph)
     {
-        if (graph.Conditions == null || !graph.Conditions.Any())
+        if (graph.Condition == null)
         {
             return true;
         }
 
-        foreach (var condition in graph.Conditions)
+        switch (graph.Condition)
         {
-            switch (condition)
+            case QuestStatusCondition questStatusCondition:
+                if (!_questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
+                        .Equals(questStatusCondition.RequiredStatus))
+                {
+                    return false;
+                }
+                break;
+            case FactEstablishedCondition factEstablishedCondition:
             {
-                case QuestStatusCondition questStatusCondition:
-                    if (!_questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
-                            .Equals(questStatusCondition.RequiredStatus))
-                    {
-                        return false;
-                    }
-                    break;
-                case FactEstablishedCondition factEstablishedCondition:
+                if (!_factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
                 {
-                    if (!_factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
-                    {
-                        return false;
-                    }
-                    break;
+                    return false;
                 }
-                case BattleWonCondition battleWonCondition:
-                {
-                    if (!_battlesWonReader.BattleWon(battleWonCondition.BattleId))
-                    {
-                        return false;
-                    }
-                    break;
-                }
-                default:
-                    throw new NotImplementedException();
+                break;
             }
+            case BattleWonCondition battleWonCondition:
+            {
+                if (!_battlesWonReader.BattleWon(battleWonCondition.BattleId))
+                {
+                    return false;
+                }
+                break;
+            }
+            default:
+                throw new NotImplementedException();
         }
 
         return true;

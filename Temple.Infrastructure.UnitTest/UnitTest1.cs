@@ -100,16 +100,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "rat_infestation",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Hidden,
-                                AreCompletionCriteriaSatisfied = false
-                            }
+                            QuestState = QuestState.Hidden,
+                            AreCompletionCriteriaSatisfied = false
                         }
                     },
                     Graph = GenerateGraph_Alyth_RatQuestHidden()
@@ -117,16 +114,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "rat_infestation",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Available,
-                                AreCompletionCriteriaSatisfied = false
-                            }
+                            QuestState = QuestState.Available,
+                            AreCompletionCriteriaSatisfied = false
                         }
                     },
                     Graph = GenerateGraph_Alyth_RatQuestAvailable()
@@ -134,16 +128,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "rat_infestation",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Active,
-                                AreCompletionCriteriaSatisfied = false
-                            }
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
                         }
                     },
                     Graph = GenerateGraph_Alyth_RatQuestActive()
@@ -151,16 +142,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "rat_infestation",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Active,
-                                AreCompletionCriteriaSatisfied = true
-                            }
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = true
                         }
                     },
                     Graph = GenerateGraph_Alyth_RatQuestTurnIn()
@@ -168,16 +156,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "find_ethon",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "find_ethon",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Active,
-                                AreCompletionCriteriaSatisfied = false
-                            }
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
                         }
                     },
                     Graph = GenerateGraph_Alyth_EthonQuestActive()
@@ -185,16 +170,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "find_ethon",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "find_ethon",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Active,
-                                AreCompletionCriteriaSatisfied = true
-                            }
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = true
                         }
                     },
                     Graph = GenerateGraph_Alyth_EthonQuestTurnIn()
@@ -230,16 +212,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "skeleton_trouble",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Hidden,
-                                AreCompletionCriteriaSatisfied = false
-                            }
+                            QuestState = QuestState.Hidden,
+                            AreCompletionCriteriaSatisfied = false
                         }
                     },
                     Graph = GenerateGraph_Captain_SkeletonQuestHidden()
@@ -247,16 +226,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "skeleton_trouble",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Available,
-                                AreCompletionCriteriaSatisfied = false
-                            }
+                            QuestState = QuestState.Available,
+                            AreCompletionCriteriaSatisfied = false
                         }
                     },
                     Graph = GenerateGraph_Captain_SkeletonQuestAvailable()
@@ -264,16 +240,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "skeleton_trouble",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Active,
-                                AreCompletionCriteriaSatisfied = false
-                            }
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
                         }
                     },
                     Graph = GenerateGraph_Captain_SkeletonQuestActive()
@@ -281,16 +254,13 @@ namespace Temple.Infrastructure.UnitTest
                 new DialogueGraph
                 {
                     Priority = 100,
-                    Conditions = new List<IDialogueGraphCondition>
+                    Condition = new QuestStatusCondition()
                     {
-                        new QuestStatusCondition()
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
                         {
-                            QuestId = "skeleton_trouble",
-                            RequiredStatus = new QuestStatus
-                            {
-                                QuestState = QuestState.Active,
-                                AreCompletionCriteriaSatisfied = true
-                            }
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = true
                         }
                     },
                     Graph = GenerateGraph_Captain_SkeletonQuestTurnIn()
@@ -370,16 +340,13 @@ namespace Temple.Infrastructure.UnitTest
             var dialogueGraph = new DialogueGraph
             {
                 Priority = 100,
-                Conditions = new List<IDialogueGraphCondition>
+                Condition = new QuestStatusCondition()
                 {
-                    new QuestStatusCondition()
+                    QuestId = "rat_infestation",
+                    RequiredStatus = new QuestStatus
                     {
-                        QuestId = "rat_infestation",
-                        RequiredStatus = new QuestStatus
-                        {
-                            QuestState = QuestState.Hidden,
-                            AreCompletionCriteriaSatisfied = false
-                        }
+                        QuestState = QuestState.Hidden,
+                        AreCompletionCriteriaSatisfied = false
                     }
                 },
                 Graph = GenerateGraph_Alyth_RatQuestHidden()
