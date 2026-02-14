@@ -17,21 +17,20 @@ namespace Temple.Infrastructure.Presentation
             foreach (var siteComponent in siteData.SiteComponents)
             {
                 // Event triggers are not relevant for the 3D scene
-                if (siteComponent.ModelId == "event trigger")
+                if (siteComponent is EventTrigger)
                 {
                     continue;
                 }
 
-                var model = siteComponent.ModelId switch
+                var model = siteComponent switch
                 {
-                    "quad" => GenerateQuad(siteComponent),
-                    "wall" => GenerateWall(siteComponent),
-                    "cylinder" => GenerateCylinder(siteComponent),
-                    "sphere" => GenerateSphere(siteComponent),
-                    "exclamation mark" => GenerateExclamationMark(siteComponent),
-                    "human male" => GenerateHumanMale(siteComponent),
-                    "human female" => GenerateHumanFemale(siteComponent),
-                    _ => throw new NotSupportedException($"Unknown Model ID '{siteComponent.ModelId}'.")
+                    Quad quad => GenerateQuad(quad),
+                    Barrier barrier => GenerateBarrier(barrier),
+                    Cylinder cylinder => GenerateCylinder(cylinder),
+                    Sphere sphere => GenerateSphere(sphere),
+                    ExclamationMark exclamationMark => GenerateExclamationMark(exclamationMark),
+                    NPC npc => GenerateNPC(npc),
+                    _ => throw new NotSupportedException("unsupported site component")
                 };
 
                 group.Children.Add(model);
@@ -41,13 +40,8 @@ namespace Temple.Infrastructure.Presentation
         }
 
         private Model3D GenerateQuad(
-            SiteComponent siteComponent)
+            Quad quad)
         {
-            if (siteComponent is not Quad quad)
-            {
-                throw new InvalidOperationException("Must be a quad");
-            }
-
             var mesh = MeshBuilder.CreateQuad(
                 new Point3D(quad.Point1.X, quad.Point1.Y, quad.Point1.Z),
                 new Point3D(quad.Point2.X, quad.Point2.Y, quad.Point2.Z),
@@ -66,14 +60,9 @@ namespace Temple.Infrastructure.Presentation
             return model;
         }
 
-        private Model3D GenerateWall(
-            SiteComponent siteComponent)
+        private Model3D GenerateBarrier(
+            Barrier barrier)
         {
-            if (siteComponent is not Barrier barrier)
-            {
-                throw new InvalidOperationException("Must be a barrier");
-            }
-
             var material = new MaterialGroup();
             material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(80, 70, 60))));
 
@@ -103,13 +92,8 @@ namespace Temple.Infrastructure.Presentation
         }
 
         private Model3D GenerateCylinder(
-            SiteComponent siteComponent)
+            Cylinder cylinder)
         {
-            if (siteComponent is not Cylinder cylinder)
-            {
-                throw new InvalidOperationException("Must be a cylinder");
-            }
-
             var mesh = MeshBuilder.CreateCylinder(new Point3D(0, cylinder.Length / 2, 0), cylinder.Radius, cylinder.Length, 16);
 
             var material = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
@@ -131,13 +115,8 @@ namespace Temple.Infrastructure.Presentation
         }
 
         private Model3D GenerateSphere(
-            SiteComponent siteComponent)
+            Sphere sphere)
         {
-            if (siteComponent is not Sphere sphere)
-            {
-                throw new InvalidOperationException("Must be a sphere");
-            }
-
             var mesh = MeshBuilder.CreateSphere(new Point3D(0, sphere.Radius, 0), sphere.Radius, 8, 8);
 
             var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
@@ -159,13 +138,8 @@ namespace Temple.Infrastructure.Presentation
         }
 
         private Model3D GenerateExclamationMark(
-            SiteComponent siteComponent)
+            ExclamationMark exclamationMark)
         {
-            if (siteComponent is not ExclamationMark exclamationMark)
-            {
-                throw new InvalidOperationException("Must be an exclamation mark");
-            }
-
             var radius = 0.01;
             var cylinderHeight = 0.08;
             var material = new DiffuseMaterial(new SolidColorBrush(Colors.DarkSlateGray));
@@ -194,6 +168,17 @@ namespace Temple.Infrastructure.Presentation
             return group;
         }
 
+        private Model3D GenerateNPC(
+            NPC npc)
+        {
+            return npc.ModelId switch
+            {
+                "human male" => GenerateHumanMale(npc),
+                "human female" => GenerateHumanFemale(npc),
+                _ => throw new NotSupportedException("unsupported model id for npc")
+            };
+        }
+
         private Model3D GenerateHumanMale(
             SiteComponent siteComponent)
         {
@@ -213,7 +198,7 @@ namespace Temple.Infrastructure.Presentation
                     rotatableScenePart.Position.X,
                     rotatableScenePart.Position.Y,
                     rotatableScenePart.Position.Z),
-                rotatableScenePart.Orientation);
+                    rotatableScenePart.Orientation);
         }
 
         private Model3D GenerateHumanFemale(
@@ -235,7 +220,7 @@ namespace Temple.Infrastructure.Presentation
                     rotatableScenePart.Position.X,
                     rotatableScenePart.Position.Y,
                     rotatableScenePart.Position.Z),
-                rotatableScenePart.Orientation);
+                    rotatableScenePart.Orientation);
         }
 
         private GeometryModel3D ImportMeshFromFile(
