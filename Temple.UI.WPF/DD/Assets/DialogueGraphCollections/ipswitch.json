@@ -1,16 +1,14 @@
 [
   {
     "Priority": 100.0,
-    "Conditions": [
-      {
-        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
-        "QuestId": "find_medallion_for_ipswitch",
-        "RequiredStatus": {
-          "QuestState": 0,
-          "AreCompletionCriteriaSatisfied": false
-        }
+    "Condition": {
+      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.QuestStatusCondition",
+      "QuestId": "find_medallion_for_ipswitch",
+      "RequiredStatus": {
+        "QuestState": 0,
+        "AreCompletionCriteriaSatisfied": false
       }
-    ],
+    },
     "Graph": {
       "IsDirected": true,
       "Vertices": [

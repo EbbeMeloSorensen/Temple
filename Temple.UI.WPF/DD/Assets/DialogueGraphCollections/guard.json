@@ -1,12 +1,10 @@
 [
   {
     "Priority": 100.0,
-    "Conditions": [
-      {
-        "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
-        "FactId": "party_talked_with_captain"
-      }
-    ],
+    "Condition": {
+      "$type": "Temple.Infrastructure.Dialogues.DialogueGraphConditions.FactEstablishedCondition",
+      "FactId": "party_talked_with_captain"
+    },
     "Graph": {
       "IsDirected": true,
       "Vertices": [
