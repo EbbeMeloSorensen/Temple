@@ -75,35 +75,35 @@ public class DialogueSessionFactory : IDialogueSessionFactory
 
         return graph.Condition.Evaluate(_dialogueQueryService);
 
-        switch (graph.Condition)
-        {
-            case QuestStatusCondition questStatusCondition:
-                if (!_questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
-                        .Equals(questStatusCondition.RequiredStatus))
-                {
-                    return false;
-                }
-                break;
-            case FactEstablishedCondition factEstablishedCondition:
-            {
-                if (!_factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
-                {
-                    return false;
-                }
-                break;
-            }
-            case BattleWonCondition battleWonCondition:
-            {
-                if (!_battlesWonReader.BattleWon(battleWonCondition.BattleId))
-                {
-                    return false;
-                }
-                break;
-            }
-            default:
-                throw new NotImplementedException();
-        }
+        //switch (graph.Condition)
+        //{
+        //    case QuestStatusCondition questStatusCondition:
+        //        if (!_questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
+        //                .Equals(questStatusCondition.RequiredStatus))
+        //        {
+        //            return false;
+        //        }
+        //        break;
+        //    case FactEstablishedCondition factEstablishedCondition:
+        //    {
+        //        if (!_factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
+        //        {
+        //            return false;
+        //        }
+        //        break;
+        //    }
+        //    case BattleWonCondition battleWonCondition:
+        //    {
+        //        if (!_battlesWonReader.BattleWon(battleWonCondition.BattleId))
+        //        {
+        //            return false;
+        //        }
+        //        break;
+        //    }
+        //    default:
+        //        throw new NotImplementedException();
+        //}
 
-        return true;
+        //return true;
     }
 }

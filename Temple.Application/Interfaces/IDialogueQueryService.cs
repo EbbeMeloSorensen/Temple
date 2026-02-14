@@ -1,22 +1,16 @@
-﻿namespace Temple.Application.Interfaces;
+﻿using Temple.Application.DD;
+
+namespace Temple.Application.Interfaces;
 
 public interface IDialogueQueryService
 {
     bool IsFactEstablished(
-        string factID);
+        string factId);
 
-    bool IsQuestHidden(
-        string questID);
-
-    bool IsQuestAvailable(
-        string questID);
-
-    bool IsQuestReadyToTurnIn(
-        string questID);
-
-    bool IsQuestCompleted(
-        string questID);
+    bool DoesQuestStatusEqualRequiredValue(
+        string questId,
+        QuestStatus status);
 
     bool IsBattleWon(
-        string battleID);
+        string battleId);
 }

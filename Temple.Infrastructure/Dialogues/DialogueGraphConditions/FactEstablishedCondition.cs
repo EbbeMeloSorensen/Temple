@@ -9,6 +9,6 @@ public class FactEstablishedCondition : IDialogueGraphCondition
     public bool Evaluate(
         IDialogueQueryService query)
     {
-        throw new NotImplementedException();
+        return query.IsFactEstablished(FactId);
     }
 }

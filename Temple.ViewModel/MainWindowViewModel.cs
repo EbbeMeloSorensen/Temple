@@ -72,7 +72,10 @@ namespace Temple.ViewModel
             _battlesWonReader = new BattlesWonReadModel(controller.EventBus);
 
             var dialogueQueryService = new DialogueQueryService(
-                _questStatusReadModel);
+                _factsEstablishedReader,
+                _questStatusReadModel,
+                _battlesWonReader,
+                _sitesUnlockedReader);
 
             _dialogueSessionFactory.Initialize(
                 _factsEstablishedReader,

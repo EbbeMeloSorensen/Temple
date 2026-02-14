@@ -9,6 +9,6 @@ public class BattleWonCondition : IDialogueGraphCondition
     public bool Evaluate(
         IDialogueQueryService query)
     {
-        throw new NotImplementedException();
+        return query.IsBattleWon(BattleId);
     }
 }

@@ -1,52 +1,44 @@
-﻿using Temple.Application.Interfaces;
+﻿using Temple.Application.DD;
+using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
-using Temple.Domain.Entities.DD.Quests;
 
 namespace Temple.Infrastructure.Dialogues.DialogueGraphConditions;
 
 public class DialogueQueryService : IDialogueQueryService
 {
+    private IFactsEstablishedReader _factsEstablishedReader;
     private IQuestStatusReader _questStatusReader;
+    private IBattlesWonReader _battlesWonReader;
+    private ISitesUnlockedReader _sitesUnlockedReader;
 
     public DialogueQueryService(
-        IQuestStatusReader questStatusReader)
+        IFactsEstablishedReader factsEstablishedReader,
+        IQuestStatusReader questStatusReader,
+        IBattlesWonReader battlesWonReader,
+        ISitesUnlockedReader sitesUnlockedReader)
     {
+        _factsEstablishedReader = factsEstablishedReader;
         _questStatusReader = questStatusReader;
+        _battlesWonReader = battlesWonReader;
+        _sitesUnlockedReader = sitesUnlockedReader;
     }
 
     public bool IsFactEstablished(
         string factID)
     {
-        throw new NotImplementedException();
+        return _factsEstablishedReader.FactEstablished(factID);
     }
 
-    public bool IsQuestHidden(
-        string questId)
+    public bool DoesQuestStatusEqualRequiredValue(
+        string questId,
+        QuestStatus status)
     {
-        return _questStatusReader.GetQuestStatus(questId).QuestState == QuestState.Hidden;
-    }
-
-    public bool IsQuestAvailable(
-        string questID)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool IsQuestReadyToTurnIn(
-        string questID)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool IsQuestCompleted(
-        string questID)
-    {
-        throw new NotImplementedException();
+        return _questStatusReader.GetQuestStatus(questId) == status;
     }
 
     public bool IsBattleWon(
         string battleID)
     {
-        throw new NotImplementedException();
+        return _battlesWonReader.BattleWon(battleID);
     }
 }
