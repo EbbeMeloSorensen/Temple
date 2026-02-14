@@ -9,7 +9,7 @@ using Temple.Infrastructure.GameConditions;
 
 namespace Temple.Infrastructure.UnitTest
 {
-    public class UnitTest1
+    public class DialogueIOTest
     {
         [Fact]
         public void SerializeAGraphToJsonFile()
