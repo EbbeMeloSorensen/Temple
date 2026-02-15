@@ -208,7 +208,14 @@ public static class SiteDataFactory
                 }
 
                 siteData.AddCharacter("human male", "lortimer", new Point2D(12.5, 8.3));
-                siteData.AddCharacter("human male", "nebbish", new Point2D(12.5, 8.7), 0, 0, new FactEstablishedCondition{FactId = "party_talked_with_lortimer"});
+
+                siteData.AddCharacter(
+                    "human male",
+                    "nebbish",
+                    new Point2D(12.5, 8.7),
+                    0,
+                    0,
+                    new FactEstablishedCondition{FactId = "party_talked_with_lortimer"});
 
                 if (ratQuestReadyToTurnIn ||
                     questStatusReadModel.GetQuestStatus("rat_infestation").QuestState == QuestState.Completed)
