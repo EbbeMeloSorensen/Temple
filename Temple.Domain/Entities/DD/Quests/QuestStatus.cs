@@ -1,6 +1,4 @@
-﻿using Temple.Domain.Entities.DD.Quests;
-
-namespace Temple.Application.DD;
+﻿namespace Temple.Domain.Entities.DD.Quests;
 
 public record QuestStatus
 {

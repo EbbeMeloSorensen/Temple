@@ -1,5 +1,5 @@
-﻿using Temple.Application.DD;
-using Temple.Application.Interfaces;
+﻿using Temple.Domain.Entities.DD.Common;
+using Temple.Domain.Entities.DD.Quests;
 using Temple.Application.Interfaces.Readers;
 
 namespace Temple.Infrastructure.GameConditions;

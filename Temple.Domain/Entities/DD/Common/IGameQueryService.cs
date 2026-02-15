@@ -1,6 +1,6 @@
-﻿using Temple.Application.DD;
+﻿using Temple.Domain.Entities.DD.Quests;
 
-namespace Temple.Application.Interfaces;
+namespace Temple.Domain.Entities.DD.Common;
 
 public interface IGameQueryService
 {

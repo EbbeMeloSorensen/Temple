@@ -1,4 +1,6 @@
-﻿namespace Temple.Application.DD;
+﻿using Temple.Domain.Entities.DD.Quests;
+
+namespace Temple.Application.DD;
 
 public class QuestStatusChangedEventArgs : EventArgs
 {

@@ -1,5 +1,6 @@
 ﻿using Craft.DataStructures.Graph;
 using Craft.DataStructures.IO;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;

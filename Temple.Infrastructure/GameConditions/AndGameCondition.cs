@@ -1,4 +1,4 @@
-﻿using Temple.Application.Interfaces;
+﻿using Temple.Domain.Entities.DD.Common;
 
 namespace Temple.Infrastructure.GameConditions;
 

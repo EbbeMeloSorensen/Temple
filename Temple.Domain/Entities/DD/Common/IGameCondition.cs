@@ -1,6 +1,4 @@
-﻿using Temple.Application.Interfaces;
-
-namespace Temple.Infrastructure.GameConditions;
+﻿namespace Temple.Domain.Entities.DD.Common;
 
 public interface IGameCondition
 {

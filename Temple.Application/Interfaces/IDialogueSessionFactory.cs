@@ -1,4 +1,5 @@
-﻿using Temple.Application.Core;
+﻿using Temple.Domain.Entities.DD.Common;
+using Temple.Application.Core;
 using Temple.Application.Interfaces.Readers;
 
 namespace Temple.Application.Interfaces;

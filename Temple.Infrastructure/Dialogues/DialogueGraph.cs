@@ -1,5 +1,5 @@
 ﻿using Craft.DataStructures.Graph;
-using Temple.Infrastructure.GameConditions;
+using Temple.Domain.Entities.DD.Common;
 
 namespace Temple.Infrastructure.Dialogues;
 
