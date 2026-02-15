@@ -2,6 +2,7 @@
 using Craft.Simulation;
 using Craft.Simulation.BodyStates;
 using Craft.Utils.Linq;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.ViewModel.DD.Exploration.Bodies;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
@@ -17,7 +18,8 @@ public static class ExplorationSceneFactory
         SiteData siteData,
         Vector2D initialPositionOfParty,
         double initialOrientationOfParty,
-        IReadOnlySet<string> battlesWon)
+        IReadOnlySet<string> battlesWon,
+        IGameQueryService gameQueryService)
     {
         var ballRadius = 0.16;
 
@@ -188,6 +190,12 @@ public static class ExplorationSceneFactory
 
         siteData.SiteComponents.ToList().ForEach(siteComponent =>
         {
+            if (siteComponent.Condition != null &&
+                !siteComponent.Condition.Evaluate(gameQueryService))
+            {
+                return;
+            }
+
             switch (siteComponent)
             {
                 case Barrier barrier:

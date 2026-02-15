@@ -1,19 +1,21 @@
-﻿using System.Windows.Media.Media3D;
-using GalaSoft.MvvmLight.Command;
-using Craft.Simulation.Bodies;
+﻿using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Engine;
 using Craft.Utils;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
+using GalaSoft.MvvmLight.Command;
+using System.Windows.Media.Media3D;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
+using Temple.Application.Interfaces.Readers;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Common;
+using Temple.Infrastructure.GameConditions;
 using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
-using Temple.Application.Interfaces.Readers;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -23,6 +25,7 @@ namespace Temple.ViewModel.DD.Exploration
         private SceneViewController _sceneViewController;
         private readonly ISiteRenderer _siteRenderer;
         private readonly IQuestStatusReader _questStatusReadModel;
+        private readonly IGameQueryService _gameQueryService;
 
         private Model3D _scene3D;
         private Point3D _cameraPosition;
@@ -89,11 +92,13 @@ namespace Temple.ViewModel.DD.Exploration
         public ExplorationViewModel(
             ApplicationController controller,
             IQuestStatusReader questStatusReadModel,
-            ISiteRenderer siteRenderer)
+            ISiteRenderer siteRenderer,
+            IGameQueryService gameQueryService)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
+            _gameQueryService = gameQueryService;
 
             Engine = new Engine(null);
 
@@ -246,7 +251,8 @@ namespace Temple.ViewModel.DD.Exploration
                 siteData,
                 _controller.ApplicationData.ExplorationPosition,
                 _controller.ApplicationData.ExplorationOrientation.Value,
-                _controller.ApplicationData.BattlesWon);
+                _controller.ApplicationData.BattlesWon,
+                _gameQueryService);
 
             StartAnimation(scene);
 

@@ -1,4 +1,5 @@
 ﻿using Craft.Math;
+using Temple.Domain.Entities.DD.Common;
 
 namespace Temple.Domain.Entities.DD.Exploration;
 
@@ -73,14 +74,16 @@ public class SiteData
         string npcId,
         Point2D position,
         double orientation = 0,
-        double height = 0)
+        double height = 0,
+        IGameCondition condition = null)
     {
         _siteComponents.Add(new NPC
         {
             ModelId = modelId,
             Id = npcId,
             Position = new Vector3D(position.Y, height, position.X),
-            Orientation = orientation
+            Orientation = orientation,
+            Condition = condition
         });
     }
 

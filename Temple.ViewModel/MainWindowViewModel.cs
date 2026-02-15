@@ -121,7 +121,7 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.Exploration:
-                        var explorationViewModel = new ExplorationViewModel(_controller, _questStatusReadModel, _siteRenderer);
+                        var explorationViewModel = new ExplorationViewModel(_controller, _questStatusReadModel, _siteRenderer, dialogueQueryService);
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;
 
