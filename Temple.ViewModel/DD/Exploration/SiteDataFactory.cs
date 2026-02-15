@@ -325,18 +325,26 @@ public static class SiteDataFactory
                         }
                     });
 
-                    siteData.AddEventTrigger_LeaveSite(
+                siteData.AddEventTrigger_LeaveSite(
                     new Point2D(15, 8),
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
-                if (questStatusReadModel.GetQuestStatus("rat_infestation").QuestState == QuestState.Active)
-                {
-                    siteData.AddEventTrigger_ScriptedBattle(
-                        new Point2D(12, 9),
-                        new Point2D(11, 9),
-                        "rats_in_warehouse");
-                }
+                siteData.AddEventTrigger_ScriptedBattle(
+                    new Point2D(12, 9),
+                    new Point2D(11, 9),
+                    "rats_in_warehouse",
+                    null,
+                    null,
+                    new QuestStatusCondition
+                    {
+                        QuestId = "rat_infestation",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    });
 
                 if (questStatusReadModel.GetQuestStatus("find_ethon").QuestState == QuestState.Active)
                 {
