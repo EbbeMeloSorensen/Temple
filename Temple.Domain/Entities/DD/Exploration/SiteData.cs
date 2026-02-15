@@ -4,9 +4,9 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class SiteData
 {
-    private readonly List<SiteComponent> _siteComponents = new();
+    private readonly List<ISiteComponent> _siteComponents = new();
 
-    public IReadOnlyList<SiteComponent> SiteComponents => _siteComponents;
+    public IReadOnlyList<ISiteComponent> SiteComponents => _siteComponents;
 
     public void AddQuad(
         Point3D point1,

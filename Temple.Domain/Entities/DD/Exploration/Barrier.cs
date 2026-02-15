@@ -2,7 +2,7 @@
 
 namespace Temple.Domain.Entities.DD.Exploration;
 
-public class Barrier : SiteComponent
+public class Barrier : ISiteComponent
 {
     public List<Vector3D> BarrierPoints { get; set; }
 

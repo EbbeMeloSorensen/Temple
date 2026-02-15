@@ -2,7 +2,7 @@
 
 namespace Temple.Domain.Entities.DD.Exploration;
 
-public class Quad : SiteComponent
+public class Quad : ISiteComponent
 {
     public Vector3D Point1 { get; set; }
     public Vector3D Point2 { get; set; }

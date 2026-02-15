@@ -1,6 +1,6 @@
 ﻿namespace Temple.Domain.Entities.DD.Exploration;
 
-public class SiteComponent_Rotatable : SiteComponent_Placeable
+public interface ISiteComponent_Rotatable : ISiteComponent_Placeable
 {
     public double Orientation { get; set; }
 }

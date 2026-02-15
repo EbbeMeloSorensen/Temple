@@ -1,7 +1,11 @@
-﻿namespace Temple.Domain.Entities.DD.Exploration
+﻿using Craft.Math;
+
+namespace Temple.Domain.Entities.DD.Exploration
 {
-    public class NPC : SiteComponent_Rotatable
+    public class NPC : ISiteComponent_Rotatable
     {
+        public Vector3D Position { get; set; }
+        public double Orientation { get; set; }
         public string ModelId { get; init; }
         public string Id { get; set; }
     }

@@ -2,7 +2,7 @@
 
 namespace Temple.Domain.Entities.DD.Exploration;
 
-public abstract class EventTrigger : SiteComponent
+public interface IEventTrigger : ISiteComponent
 {
     public Point2D Point1 { get; set; }
     public Point2D Point2 { get; set; }

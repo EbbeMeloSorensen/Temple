@@ -17,7 +17,7 @@ namespace Temple.Infrastructure.Presentation
             foreach (var siteComponent in siteData.SiteComponents)
             {
                 // Event triggers are not relevant for the 3D scene
-                if (siteComponent is EventTrigger)
+                if (siteComponent is IEventTrigger)
                 {
                     continue;
                 }
@@ -180,9 +180,9 @@ namespace Temple.Infrastructure.Presentation
         }
 
         private Model3D GenerateHumanMale(
-            SiteComponent siteComponent)
+            ISiteComponent siteComponent)
         {
-            if (siteComponent is not SiteComponent_Rotatable rotatableScenePart)
+            if (siteComponent is not ISiteComponent_Rotatable rotatableScenePart)
             {
                 throw new InvalidOperationException("Must be a rotatable site component");
             }
@@ -202,9 +202,9 @@ namespace Temple.Infrastructure.Presentation
         }
 
         private Model3D GenerateHumanFemale(
-            SiteComponent siteComponent)
+            ISiteComponent siteComponent)
         {
-            if (siteComponent is not SiteComponent_Rotatable rotatableScenePart)
+            if (siteComponent is not ISiteComponent_Rotatable rotatableScenePart)
             {
                 throw new InvalidOperationException("Must be a rotatable site component");
             }

@@ -1,5 +1,8 @@
-﻿namespace Temple.Domain.Entities.DD.Exploration;
+﻿using Craft.Math;
 
-public class ExclamationMark : SiteComponent_Placeable
+namespace Temple.Domain.Entities.DD.Exploration;
+
+public class ExclamationMark : ISiteComponent_Placeable
 {
+    public Vector3D Position { get; set; }
 }
