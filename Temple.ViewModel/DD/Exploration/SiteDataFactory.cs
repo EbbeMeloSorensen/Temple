@@ -346,13 +346,21 @@ public static class SiteDataFactory
                         }
                     });
 
-                if (questStatusReadModel.GetQuestStatus("find_ethon").QuestState == QuestState.Active)
-                {
-                    siteData.AddEventTrigger_ScriptedBattle(
-                        new Point2D(12, 6),
-                        new Point2D(11, 6),
-                        "bugbear_chieftain");
-                }
+                siteData.AddEventTrigger_ScriptedBattle(
+                    new Point2D(12, 6),
+                    new Point2D(11, 6),
+                    "bugbear_chieftain",
+                    null,
+                    null,
+                    new QuestStatusCondition
+                    {
+                        QuestId = "find_ethon",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    });
 
                 break;
             }
