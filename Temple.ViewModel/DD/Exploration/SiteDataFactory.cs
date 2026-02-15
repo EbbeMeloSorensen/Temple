@@ -1,5 +1,6 @@
 ﻿using Craft.Math;
 using Temple.Application.Interfaces.Readers;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.GameConditions;
@@ -186,45 +187,145 @@ public static class SiteDataFactory
                 siteData.AddCharacter("human male", "captain", new Point2D(8.5, 8.5));
                 siteData.AddCharacter("human female", "alyth", new Point2D(12.5, 7.5));
 
-                // Lav om til noget andet end et if/then/else helvede
-                var ratQuestReadyToTurnIn =
-                    questStatusReadModel.GetQuestStatus("rat_infestation").QuestState == QuestState.Active &&
-                    questStatusReadModel.GetQuestStatus("rat_infestation").AreCompletionCriteriaSatisfied;
+                siteData.AddCharacter(
+                    "human male",
+                    "ethon",
+                    new Point2D(10.5, 4.5),
+                    0,
+                    0,
+                    new OrGameCondition
+                    {
+                        Conditions = new List<IGameCondition>
+                        {
+                            new QuestStatusCondition
+                            {
+                                QuestId = "rat_infestation",
+                                RequiredStatus = new QuestStatus
+                                {
+                                    QuestState = QuestState.Active,
+                                    AreCompletionCriteriaSatisfied = true
+                                }
+                            },
+                            new QuestStatusCondition
+                            {
+                                QuestId = "find_ethon",
+                                RequiredStatus = new QuestStatus
+                                {
+                                    QuestState = QuestState.Active,
+                                    AreCompletionCriteriaSatisfied = false
+                                }
+                            }
+                        }
+                    });
 
-                var findEthonQuestActive =
-                    questStatusReadModel.GetQuestStatus("find_ethon").QuestState == QuestState.Active;
+                siteData.AddCharacter(
+                    "human male",
+                    "ethon",
+                    new Point2D(12.5, 7.9),
+                    0,
+                    0,
+                    new NotGameCondition
+                    {
+                        Condition = new OrGameCondition
+                        {
+                            Conditions = new List<IGameCondition>
+                            {
+                                new QuestStatusCondition
+                                {
+                                    QuestId = "rat_infestation",
+                                    RequiredStatus = new QuestStatus
+                                    {
+                                        QuestState = QuestState.Active,
+                                        AreCompletionCriteriaSatisfied = true
+                                    }
+                                },
+                                new QuestStatusCondition
+                                {
+                                    QuestId = "find_ethon",
+                                    RequiredStatus = new QuestStatus
+                                    {
+                                        QuestState = QuestState.Active,
+                                        AreCompletionCriteriaSatisfied = false
+                                    }
+                                }
+                            }
+                        }
+                    });
 
-                var findEthonQuestReadyToTurnIn =
-                    questStatusReadModel.GetQuestStatus("find_ethon").QuestState == QuestState.Active &&
-                    questStatusReadModel.GetQuestStatus("find_ethon").AreCompletionCriteriaSatisfied;
-
-                if (ratQuestReadyToTurnIn || (findEthonQuestActive && !findEthonQuestReadyToTurnIn))
-                {
-                    siteData.AddCharacter("human male", "ethon", new Point2D(10.5, 4.5));
-                }
-                else
-                {
-                    siteData.AddCharacter("human male", "ethon", new Point2D(12.5, 7.9));
-                }
-
-                siteData.AddCharacter("human male", "lortimer", new Point2D(12.5, 8.3));
+                siteData.AddCharacter(
+                    "human male",
+                    "lortimer",
+                    new Point2D(12.5, 8.3));
 
                 siteData.AddCharacter(
                     "human male",
                     "nebbish",
-                    new Point2D(12.5, 8.7),
-                    0,
-                    0,
-                    new FactEstablishedCondition{FactId = "party_talked_with_lortimer"});
+                    new Point2D(12.5, 8.7));
 
-                if (ratQuestReadyToTurnIn ||
-                    questStatusReadModel.GetQuestStatus("rat_infestation").QuestState == QuestState.Completed)
-                {
-                    siteData.AddCharacter("human male", "ipswitch", new Point2D(14.5, 8.7), 270);
-                    siteData.AddCharacter("human female", "osala", new Point2D(13.5, 8.7), 270);
-                }
+                siteData.AddCharacter(
+                    "human male",
+                    "ipswitch",
+                    new Point2D(14.5, 8.7),
+                    270,
+                    0,
+                    new OrGameCondition
+                    {
+                        Conditions = new List<IGameCondition>
+                        {
+                            new QuestStatusCondition
+                            {
+                                QuestId = "rat_infestation",
+                                RequiredStatus = new QuestStatus
+                                {
+                                    QuestState = QuestState.Active,
+                                    AreCompletionCriteriaSatisfied = true
+                                }
+                            },
+                            new QuestStatusCondition
+                            {
+                                QuestId = "rat_infestation",
+                                RequiredStatus = new QuestStatus
+                                {
+                                    QuestState = QuestState.Completed,
+                                    AreCompletionCriteriaSatisfied = true
+                                }
+                            }
+                        }
+                    });
 
-                siteData.AddEventTrigger_LeaveSite(
+
+                siteData.AddCharacter(
+                    "human female",
+                    "osala",
+                    new Point2D(13.5, 8.7),
+                    270,
+                    0,
+                    new OrGameCondition
+                    {
+                        Conditions = new List<IGameCondition>
+                        {
+                            new QuestStatusCondition
+                            {
+                                QuestId = "rat_infestation",
+                                RequiredStatus = new QuestStatus
+                                {
+                                    QuestState = QuestState.Active,
+                                    AreCompletionCriteriaSatisfied = true
+                                }
+                            },
+                            new QuestStatusCondition
+                            {
+                                QuestId = "rat_infestation",
+                                RequiredStatus = new QuestStatus
+                                {
+                                    QuestState = QuestState.Completed,
+                                    AreCompletionCriteriaSatisfied = true
+                                }
+                            }
+                        }
+                    });
+
+                    siteData.AddEventTrigger_LeaveSite(
                     new Point2D(15, 8),
                     new Point2D(15, 7),
                     "Exit_Wilderness");

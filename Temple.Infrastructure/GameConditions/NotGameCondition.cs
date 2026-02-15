@@ -2,13 +2,13 @@
 
 namespace Temple.Infrastructure.GameConditions;
 
-public class OrGameCondition : IGameCondition
+public class NotGameCondition : IGameCondition
 {
-    public List<IGameCondition> Conditions { get; set; }
+    public IGameCondition Condition { get; set; }
 
     public bool Evaluate(
         IGameQueryService query)
     {
-        return Conditions.Any(c => c.Evaluate(query));
+        return !Condition.Evaluate(query);
     }
 }

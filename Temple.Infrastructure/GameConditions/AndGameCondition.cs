@@ -4,7 +4,7 @@ namespace Temple.Infrastructure.GameConditions;
 
 public class AndGameCondition : IGameCondition
 {
-    public List<IGameCondition> Conditions { get; } = new();
+    public List<IGameCondition> Conditions { get; set; }
 
     public bool Evaluate(
         IGameQueryService query)
