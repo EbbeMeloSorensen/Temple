@@ -1,5 +1,4 @@
 ﻿using Craft.Math;
-using Temple.Application.Interfaces.Readers;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
@@ -10,8 +9,7 @@ namespace Temple.ViewModel.DD.Exploration;
 public static class SiteDataFactory
 {
     public static SiteData GenerateSiteData(
-        string siteId,
-        IQuestStatusReader questStatusReadModel)
+        string siteId)
     {
         var siteData = new SiteData();
 
@@ -381,13 +379,21 @@ public static class SiteDataFactory
                     new Point2D(15, 7),
                     "Exit_Wilderness");
 
-                if (questStatusReadModel.GetQuestStatus("skeleton_trouble").QuestState == QuestState.Active)
-                {
-                    siteData.AddEventTrigger_ScriptedBattle(
-                        new Point2D(12, 9),
-                        new Point2D(11, 9),
-                        "skeletons_in_graveyard");
-                }
+                siteData.AddEventTrigger_ScriptedBattle(
+                    new Point2D(12, 9),
+                    new Point2D(11, 9),
+                    "skeletons_in_graveyard",
+                    null,
+                    null,
+                    new QuestStatusCondition
+                    {
+                        QuestId = "skeleton_trouble",
+                        RequiredStatus = new QuestStatus
+                        {
+                            QuestState = QuestState.Active,
+                            AreCompletionCriteriaSatisfied = false
+                        }
+                    });
 
                 break;
             }

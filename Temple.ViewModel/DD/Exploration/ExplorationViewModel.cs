@@ -11,7 +11,7 @@ using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Common;
-using Temple.Infrastructure.GameConditions;
+using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
@@ -24,7 +24,6 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
         private readonly ISiteRenderer _siteRenderer;
-        private readonly IQuestStatusReader _questStatusReadModel;
         private readonly IGameQueryService _gameQueryService;
 
         private Model3D _scene3D;
@@ -91,12 +90,10 @@ namespace Temple.ViewModel.DD.Exploration
 
         public ExplorationViewModel(
             ApplicationController controller,
-            IQuestStatusReader questStatusReadModel,
             ISiteRenderer siteRenderer,
             IGameQueryService gameQueryService)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _questStatusReadModel = questStatusReadModel ?? throw new ArgumentNullException(nameof(questStatusReadModel));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
             _gameQueryService = gameQueryService;
 
@@ -242,8 +239,19 @@ namespace Temple.ViewModel.DD.Exploration
             }
 
             var siteData = SiteDataFactory.GenerateSiteData(
-                explorationPayload.SiteId,
-                _questStatusReadModel);
+                explorationPayload.SiteId);
+
+            var temp = siteData.SiteComponents
+                .Where(_ => _.Condition == null ||
+                            _.Condition.Evaluate(_gameQueryService));
+
+            siteData = new SiteData
+            {
+                SiteComponents = siteData.SiteComponents
+                    .Where(_ => _.Condition == null ||
+                                _.Condition.Evaluate(_gameQueryService))
+                    .ToList(),
+            };
 
             Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 

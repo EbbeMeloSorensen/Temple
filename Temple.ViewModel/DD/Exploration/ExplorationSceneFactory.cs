@@ -188,13 +188,13 @@ public static class ExplorationSceneFactory
             return response;
         };
 
-        siteData.SiteComponents.ToList().ForEach(siteComponent =>
+        siteData.SiteComponents.ForEach(siteComponent =>
         {
-            if (siteComponent.Condition != null &&
-                !siteComponent.Condition.Evaluate(gameQueryService))
-            {
-                return;
-            }
+            //if (siteComponent.Condition != null &&
+            //    !siteComponent.Condition.Evaluate(gameQueryService))
+            //{
+            //    return;
+            //}
 
             switch (siteComponent)
             {

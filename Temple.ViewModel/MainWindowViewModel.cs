@@ -71,7 +71,7 @@ namespace Temple.ViewModel
             _sitesUnlockedReader = new SitesUnlockedReadModel(controller.EventBus);
             _battlesWonReader = new BattlesWonReadModel(controller.EventBus);
 
-            var dialogueQueryService = new GameQueryService(
+            var gameQueryService = new GameQueryService(
                 _knowledgeGainedReader,
                 _factsEstablishedReader,
                 _questStatusReader,
@@ -84,7 +84,7 @@ namespace Temple.ViewModel
                 _questStatusReader,
                 _sitesUnlockedReader,
                 _battlesWonReader,
-                dialogueQueryService,
+                gameQueryService,
                 controller.EventBus);
 
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
@@ -124,9 +124,8 @@ namespace Temple.ViewModel
                     case StateMachineState.Exploration:
                         var explorationViewModel = new ExplorationViewModel(
                             _controller,
-                            _questStatusReader,
                             _siteRenderer,
-                            dialogueQueryService);
+                            gameQueryService);
 
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;

@@ -7,6 +7,5 @@ public class SiteDataIOTest
     [Fact]
     public void WriteSiteDataToFile()
     {
-        var siteData = new SiteData();
     }
 }
