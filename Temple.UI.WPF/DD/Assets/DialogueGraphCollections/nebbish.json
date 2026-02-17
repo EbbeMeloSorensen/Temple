@@ -72,7 +72,23 @@
           "VertexId2": 1
         },
         {
+          "Condition": {
+            "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
+            "FactId": "got_key_to_cellar_door_from_ethon"
+          },
           "Text": "I got the key from Ethon; I'll see what I can do.",
+          "VertexId1": 3,
+          "VertexId2": 4
+        },
+        {
+          "Condition": {
+            "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
+            "Condition": {
+              "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
+              "FactId": "got_key_to_cellar_door_from_ethon"
+            }
+          },
+          "Text": "I'll see what I can do.",
           "VertexId1": 3,
           "VertexId2": 4
         }

@@ -57,6 +57,7 @@ namespace Temple.Infrastructure.IO
                         typeof(BattleWonCondition),
                         typeof(AndGameCondition),
                         typeof(OrGameCondition),
+                        typeof(NotGameCondition),
                         typeof(FactEstablishedEventTrigger),
                         typeof(KnowledgeGainedEventTrigger),
                         typeof(QuestDiscoveredEventTrigger),
