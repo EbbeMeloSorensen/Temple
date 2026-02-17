@@ -172,6 +172,33 @@
     }
   },
   {
+    "Priority": 100.0,
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+      "QuestId": "bottle_for_nebbish",
+      "RequiredStatus": {
+        "QuestState": 3,
+        "AreCompletionCriteriaSatisfied": true
+      }
+    },
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Thanks for your help, friend - let's just keep it between us, all right?",
+          "Id": 0
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "Very well. Farewell.",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  },
+  {
     "Priority": 0.0,
     "Graph": {
       "IsDirected": true,

@@ -1,11 +1,38 @@
 [
   {
-    "Priority": 0.0,
+    "Priority": 1.0,
     "Graph": {
       "IsDirected": true,
       "Vertices": [
         {
           "Text": "Zzzzz...",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "party_talked_with_lortimer"
+          },
+          "Id": 0
+        },
+        {
+          "Text": "",
+          "Id": 1
+        }
+      ],
+      "Edges": [
+        {
+          "Text": "OK",
+          "VertexId1": 0,
+          "VertexId2": 1
+        }
+      ]
+    }
+  },
+  {
+    "Priority": 0.0,
+    "Graph": {
+      "IsDirected": true,
+      "Vertices": [
+        {
+          "Text": "Fsgdf... monkeys... (giggles)",
           "GameEventTrigger": {
             "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
             "FactId": "party_talked_with_lortimer"

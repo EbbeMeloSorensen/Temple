@@ -300,6 +300,10 @@
             "FactId": "got_key_to_sewer_level_2_from_ethon"
           },
           "Id": 6
+        },
+        {
+          "Text": "No, but I was hoping that maybe the rats would discourage you from chasing those thieves - I was worried the thieves would kill you.",
+          "Id": 7
         }
       ],
       "Edges": [
@@ -320,7 +324,7 @@
         },
         {
           "VertexId1": 2,
-          "VertexId2": 4,
+          "VertexId2": 7,
           "Text": "There was another entrance? So I didn't *need* to go through the sewers at all?"
         },
         {
@@ -337,6 +341,11 @@
           "VertexId1": 5,
           "VertexId2": 6,
           "Text": "All right. Farewell, Ethon."
+        },
+        {
+          "VertexId1": 7,
+          "VertexId2": 3,
+          "Text": "You said before you used to be in the thieves' guild. So you're a thief?"
         }
       ]
     }
