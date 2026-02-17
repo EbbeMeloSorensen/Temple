@@ -52,9 +52,9 @@ public static class DialogueGraphExtensions
             text = text.Replace("\"", "\\\"");
             text = WrapByMaxLength(text, 30);
 
-            if (edge.KnowledgeRequired != null)
+            if (edge.Condition != null)
             {
-                text = $"{text}\\n\\nKnowledge required: {edge.KnowledgeRequired}";
+                text = $"{text}\\n\\nCondition: {edge.Condition}";
             }
 
             streamWriter.WriteLine($"  {edge.VertexId1}->{edge.VertexId2} [label=\"{text}\"]");

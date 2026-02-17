@@ -2,5 +2,6 @@
 
 public interface IFactsEstablishedReader
 {
-    public bool FactEstablished(string factId);
+    public bool FactEstablished(
+        string factId);
 }

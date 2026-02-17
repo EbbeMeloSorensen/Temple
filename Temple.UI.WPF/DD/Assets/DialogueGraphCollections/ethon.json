@@ -66,13 +66,19 @@
           "Text": "Alyth, the bartender, said you had the key to the cellar.",
           "VertexId1": 0,
           "VertexId2": 1,
-          "KnowledgeRequired": "ethon_has_key_to_cellar"
+          "Condition": {
+            "$type": "Temple.Infrastructure.GameConditions.KnowledgeGainedCondition",
+            "KnowledgeId": "ethon_has_key_to_cellar"
+          }
         },
         {
           "Text": "I hear you're the one that found that stuffed beholder.",
           "VertexId1": 0,
           "VertexId2": 2,
-          "KnowledgeRequired": "ethon_found_beholder"
+          "Condition": {
+            "$type": "Temple.Infrastructure.GameConditions.KnowledgeGainedCondition",
+            "KnowledgeId": "ethon_found_beholder"
+          }
         },
         {
           "Text": "Nothing. Sorry to disturb you.",
@@ -148,7 +154,10 @@
           "Text": "Before I go, Alyth told me you were the one that found that stuffed beholder over the fireplace.",
           "VertexId1": 9,
           "VertexId2": 2,
-          "KnowledgeRequired": "ethon_found_beholder"
+          "Condition": {
+            "$type": "Temple.Infrastructure.GameConditions.KnowledgeGainedCondition",
+            "KnowledgeId": "ethon_found_beholder"
+          }
         },
         {
           "Text": "I'll be careful. Thanks for the key.",
@@ -218,7 +227,10 @@
           "VertexId1": 0,
           "VertexId2": 4,
           "Text": "Not all of them - I wanted to ask you about that stuffed beholder over the fireplace. Alyth told me you found it in the cellar.",
-          "KnowledgeRequired": "ethon_found_beholder"
+          "Condition": {
+            "$type": "Temple.Infrastructure.GameConditions.KnowledgeGainedCondition",
+            "KnowledgeId": "ethon_found_beholder"
+          }
         },
         {
           "VertexId1": 0,

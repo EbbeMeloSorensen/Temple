@@ -1,7 +1,4 @@
-using Newtonsoft.Json;
 using Craft.DataStructures.Graph;
-using Craft.DataStructures.IO;
-using Temple.Application.DD;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.IO;
@@ -329,7 +326,10 @@ namespace Temple.Infrastructure.UnitTest
             graph.AddEdge(new DialogueEdge(0, 17, "I think it sounds rather lame"));
             graph.AddEdge(new DialogueEdge(0, 19, "I brought you some strawberries")
             {
-                KnowledgeRequired = "alyth_likes_strawberries"
+                Condition = new KnowledgeGainedCondition
+                {
+                    KnowledgeId = "alyth_likes_strawberries"
+                }
             });
             graph.AddEdge(new DialogueEdge(1, 2, "Why does she sing?"));
             graph.AddEdge(new DialogueEdge(2, 3, "What's that thing hanging over the fireplace?"));

@@ -15,7 +15,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private IQuestStatusReader _questStatusReader;
     private ISitesUnlockedReader _sitesUnlockedReader;
     private IBattlesWonReader _battlesWonReader;
-    private IGameQueryService _dialogueQueryService;
+    private IGameQueryService _gameQueryService;
     private QuestEventBus _eventBus;
 
     public void Initialize(
@@ -24,7 +24,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         IQuestStatusReader questStatusReader,
         ISitesUnlockedReader sitesUnlockedReader,
         IBattlesWonReader battlesWonReader,
-        IGameQueryService dialogueQueryService,
+        IGameQueryService gameQueryService,
         QuestEventBus eventBus)
     {
         _factsEstablishedReader = factsEstablishedReader;
@@ -32,7 +32,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         _questStatusReader = questStatusReader;
         _sitesUnlockedReader = sitesUnlockedReader;
         _battlesWonReader = battlesWonReader;
-        _dialogueQueryService = dialogueQueryService;
+        _gameQueryService = gameQueryService;
         _eventBus = eventBus;
     }
 
@@ -40,6 +40,7 @@ public class DialogueSessionFactory : IDialogueSessionFactory
         string npcId)
     {
         return new DialogueSession(
+            _gameQueryService,
             _knowledgeGainedReader,
             _eventBus,
             npcId,
@@ -68,42 +69,6 @@ public class DialogueSessionFactory : IDialogueSessionFactory
     private bool DialogueGraphMeetsConditions(
         DialogueGraph graph)
     {
-        if (graph.Condition == null)
-        {
-            return true;
-        }
-
-        return graph.Condition.Evaluate(_dialogueQueryService);
-
-        //switch (graph.Condition)
-        //{
-        //    case QuestStatusCondition questStatusCondition:
-        //        if (!_questStatusReader.GetQuestStatus(questStatusCondition.QuestId)
-        //                .Equals(questStatusCondition.RequiredStatus))
-        //        {
-        //            return false;
-        //        }
-        //        break;
-        //    case FactEstablishedCondition factEstablishedCondition:
-        //    {
-        //        if (!_factsEstablishedReader.FactEstablished(factEstablishedCondition.FactId))
-        //        {
-        //            return false;
-        //        }
-        //        break;
-        //    }
-        //    case BattleWonCondition battleWonCondition:
-        //    {
-        //        if (!_battlesWonReader.BattleWon(battleWonCondition.BattleId))
-        //        {
-        //            return false;
-        //        }
-        //        break;
-        //    }
-        //    default:
-        //        throw new NotImplementedException();
-        //}
-
-        //return true;
+        return graph.Condition == null || graph.Condition.Evaluate(_gameQueryService);
     }
 }

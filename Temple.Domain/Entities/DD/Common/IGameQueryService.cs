@@ -4,6 +4,9 @@ namespace Temple.Domain.Entities.DD.Common;
 
 public interface IGameQueryService
 {
+    bool IsKnowledgeGained(
+        string knowledgeId);
+
     bool IsFactEstablished(
         string factId);
 

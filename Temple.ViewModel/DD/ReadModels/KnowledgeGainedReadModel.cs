@@ -8,8 +8,6 @@ public class KnowledgeGainedReadModel : IKnowledgeGainedReader
 {
     private readonly HashSet<string> _knowledgeGained = new HashSet<string>();
 
-    public IEnumerable<string> KnowledgeGained => _knowledgeGained;
-
     public KnowledgeGainedReadModel(
         QuestEventBus eventBus)
     {
@@ -20,5 +18,11 @@ public class KnowledgeGainedReadModel : IKnowledgeGainedReader
         KnowledgeGainedEvent e)
     {
         _knowledgeGained.Add(e.KnowledgeId);
+    }
+
+    public bool IsKnowledgeGained(
+        string knowledgeId)
+    {
+        return _knowledgeGained.Contains(knowledgeId);
     }
 }

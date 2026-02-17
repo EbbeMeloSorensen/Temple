@@ -2,5 +2,6 @@
 
 public interface IKnowledgeGainedReader
 {
-    public IEnumerable<string> KnowledgeGained { get; }
+    public bool IsKnowledgeGained(
+        string knowledgeId);
 }

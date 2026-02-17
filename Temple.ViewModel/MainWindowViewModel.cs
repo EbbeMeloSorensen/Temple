@@ -25,8 +25,8 @@ namespace Temple.ViewModel
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
         private readonly IFactsEstablishedReader _factsEstablishedReader;
-        private readonly IKnowledgeGainedReader _knowledgeGainedReadModel;
-        private readonly IQuestStatusReader _questStatusReadModel;
+        private readonly IKnowledgeGainedReader _knowledgeGainedReader;
+        private readonly IQuestStatusReader _questStatusReader;
         private readonly ISitesUnlockedReader _sitesUnlockedReader;
         private readonly IBattlesWonReader _battlesWonReader;
         private readonly ApplicationController _controller;
@@ -66,21 +66,22 @@ namespace Temple.ViewModel
             _dialogueSessionFactory = dialogueSessionFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _factsEstablishedReader = new FactsEstablishedReadModel(controller.EventBus);
-            _knowledgeGainedReadModel = new KnowledgeGainedReadModel(controller.EventBus);
-            _questStatusReadModel = new QuestStatusReadModel(controller.EventBus);
+            _knowledgeGainedReader = new KnowledgeGainedReadModel(controller.EventBus);
+            _questStatusReader = new QuestStatusReadModel(controller.EventBus);
             _sitesUnlockedReader = new SitesUnlockedReadModel(controller.EventBus);
             _battlesWonReader = new BattlesWonReadModel(controller.EventBus);
 
             var dialogueQueryService = new GameQueryService(
+                _knowledgeGainedReader,
                 _factsEstablishedReader,
-                _questStatusReadModel,
+                _questStatusReader,
                 _battlesWonReader,
                 _sitesUnlockedReader);
 
             _dialogueSessionFactory.Initialize(
                 _factsEstablishedReader,
-                _knowledgeGainedReadModel,
-                _questStatusReadModel,
+                _knowledgeGainedReader,
+                _questStatusReader,
                 _sitesUnlockedReader,
                 _battlesWonReader,
                 dialogueQueryService,
@@ -111,7 +112,7 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.GameStartup:
-                        _questStatusReadModel.Initialize(_controller.Quests);
+                        _questStatusReader.Initialize(_controller.Quests);
                         _controller.ExitState();
                         break;
 
@@ -121,7 +122,12 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.Exploration:
-                        var explorationViewModel = new ExplorationViewModel(_controller, _questStatusReadModel, _siteRenderer, dialogueQueryService);
+                        var explorationViewModel = new ExplorationViewModel(
+                            _controller,
+                            _questStatusReader,
+                            _siteRenderer,
+                            dialogueQueryService);
+
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;
 
@@ -134,8 +140,8 @@ namespace Temple.ViewModel
                         var dialogueViewModel = new DialogueViewModel(
                             _controller,
                             _factsEstablishedReader,
-                            _knowledgeGainedReadModel,
-                            _questStatusReadModel,
+                            _knowledgeGainedReader,
+                            _questStatusReader,
                             _sitesUnlockedReader,
                             _battlesWonReader,
                             _dialogueSessionFactory);
@@ -144,7 +150,7 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.InGameMenu:
-                        var inGameMenuViewModel = new InGameMenuViewModel(_controller, _questStatusReadModel);
+                        var inGameMenuViewModel = new InGameMenuViewModel(_controller, _questStatusReader);
                         CurrentViewModel = inGameMenuViewModel.Init(applicationState.Payload);
                         break;
 

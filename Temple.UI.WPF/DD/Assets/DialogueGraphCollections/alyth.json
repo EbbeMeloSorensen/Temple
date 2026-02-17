@@ -127,8 +127,11 @@
         {
           "VertexId1": 0,
           "VertexId2": 19,
-          "Text": "I brought you some strawberries",
-          "KnowledgeRequired": "alyth_likes_strawberries"
+          "Condition": {
+            "$type": "Temple.Infrastructure.GameConditions.KnowledgeGainedCondition",
+            "KnowledgeId": "alyth_likes_strawberries"
+          },
+          "Text": "I brought you some strawberries"
         },
         {
           "VertexId1": 1,

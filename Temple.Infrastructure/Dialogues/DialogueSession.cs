@@ -3,6 +3,7 @@ using Temple.Application.Core;
 using Temple.Application.DD;
 using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Infrastructure.Dialogues.GameEventTriggers;
 
@@ -11,6 +12,7 @@ namespace Temple.Infrastructure.Dialogues;
 public class DialogueSession : IDialogueSession
 {
     private IKnowledgeGainedReader _knowledgeGainedReadModel;
+    private IGameQueryService _gameQueryService;
     private QuestEventBus _eventBus;
 
     private GraphAdjacencyList<DialogueVertex, DialogueEdge> _graph;
@@ -26,8 +28,8 @@ public class DialogueSession : IDialogueSession
         {
             // Denne skal have adgang til en readmodel for, hvilken knowledge, der er
             return _graph.OutgoingEdges(_activeVertexId)
-                .Where(_ => ((DialogueEdge)_).KnowledgeRequired == null ||
-                            _knowledgeGainedReadModel.KnowledgeGained.Contains(((DialogueEdge)_).KnowledgeRequired))
+                .Where(_ => ((DialogueEdge)_).Condition == null ||
+                            ((DialogueEdge)_).Condition.Evaluate(_gameQueryService))
                 .Select(_ => new DialogueChoice
                 {
                     Id = _.VertexId2,
@@ -38,11 +40,13 @@ public class DialogueSession : IDialogueSession
     }
 
     public DialogueSession(
+        IGameQueryService gameQueryService,
         IKnowledgeGainedReader knowledgeGainedReadModel,
         QuestEventBus eventBus,
         string npcId,
         GraphAdjacencyList<DialogueVertex, DialogueEdge> graph)
     {
+        _gameQueryService = gameQueryService;
         _knowledgeGainedReadModel = knowledgeGainedReadModel;
         _eventBus = eventBus;
         _graph = graph;

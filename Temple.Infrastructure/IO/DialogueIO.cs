@@ -51,6 +51,7 @@ namespace Temple.Infrastructure.IO
                 {
                     KnownTypes = new[]
                     {
+                        typeof(KnowledgeGainedCondition),
                         typeof(FactEstablishedCondition),
                         typeof(QuestStatusCondition),
                         typeof(BattleWonCondition),
