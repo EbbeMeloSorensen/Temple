@@ -82,6 +82,8 @@ namespace Temple.UI.Console
         public static async Task ListPeople(
             Verbs.PR.List options)
         {
+            System.Console.Write("Listing people...");
+
             options.HistoricalTime.TryParsingAsDateTime(out var historicalTime);
             options.DatabaseTime.TryParsingAsDateTime(out var databaseTime);
 
