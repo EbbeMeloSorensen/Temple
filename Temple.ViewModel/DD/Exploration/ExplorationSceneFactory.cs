@@ -190,12 +190,6 @@ public static class ExplorationSceneFactory
 
         siteData.SiteComponents.ForEach(siteComponent =>
         {
-            //if (siteComponent.Condition != null &&
-            //    !siteComponent.Condition.Evaluate(gameQueryService))
-            //{
-            //    return;
-            //}
-
             switch (siteComponent)
             {
                 case Barrier barrier:

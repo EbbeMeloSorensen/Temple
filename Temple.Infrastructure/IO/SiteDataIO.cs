@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Dialogues;
@@ -56,7 +55,8 @@ public static class SiteDataIO
             {
                 KnownTypes = new[]
                 {
-                    typeof(Quad)
+                    typeof(Quad),
+                    typeof(Temple.Domain.Entities.DD.Exploration.Barrier),
                 }
             }
         };
