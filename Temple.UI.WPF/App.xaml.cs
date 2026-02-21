@@ -15,6 +15,7 @@ using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.IO;
 using Temple.Infrastructure.Pagination;
 using Temple.Infrastructure.Presentation;
+using Temple.Infrastructure.Exploration;
 using Temple.Persistence;
 using Temple.Persistence.EFCore.AppData;
 using Temple.ViewModel;
@@ -63,6 +64,7 @@ namespace Temple.UI.WPF
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
                             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
                             services.AddScoped<IStateMachineIO, StateMachineIO>();
+                            services.AddScoped<ISiteDataFactory, SiteDataFactory>();
                             services.AddScoped<IDialogueSessionFactory, DialogueSessionFactory>();
                             services.AddScoped<ISiteRenderer, WPFSiteRenderer>();
 

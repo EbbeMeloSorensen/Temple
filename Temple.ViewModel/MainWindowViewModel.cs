@@ -22,6 +22,7 @@ namespace Temple.ViewModel
     {
         private readonly IMediator _mediator;
         private readonly IDialogService _applicationDialogService;
+        private readonly ISiteDataFactory _siteDataFactory;
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
         private readonly IFactsEstablishedReader _factsEstablishedReader;
@@ -56,12 +57,14 @@ namespace Temple.ViewModel
         public MainWindowViewModel(
             IMediator mediator,
             IDialogService applicationDialogService,
+            ISiteDataFactory siteDataFactory,
             ISiteRenderer siteRenderer,
             IDialogueSessionFactory dialogueSessionFactory,
             ApplicationController controller)
         {
             _mediator = mediator;
             _applicationDialogService = applicationDialogService;
+            _siteDataFactory = siteDataFactory;
             _siteRenderer = siteRenderer;
             _dialogueSessionFactory = dialogueSessionFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
@@ -124,6 +127,7 @@ namespace Temple.ViewModel
                     case StateMachineState.Exploration:
                         var explorationViewModel = new ExplorationViewModel(
                             _controller,
+                            _siteDataFactory,
                             _siteRenderer,
                             gameQueryService);
 

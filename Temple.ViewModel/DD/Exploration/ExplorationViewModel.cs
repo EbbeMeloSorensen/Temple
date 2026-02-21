@@ -8,7 +8,6 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Media.Media3D;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
-using Temple.Application.Interfaces.Readers;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
@@ -23,6 +22,7 @@ namespace Temple.ViewModel.DD.Exploration
     {
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
+        private readonly ISiteDataFactory _siteDataFactory;
         private readonly ISiteRenderer _siteRenderer;
         private readonly IGameQueryService _gameQueryService;
 
@@ -90,10 +90,12 @@ namespace Temple.ViewModel.DD.Exploration
 
         public ExplorationViewModel(
             ApplicationController controller,
+            ISiteDataFactory siteDataFactory,
             ISiteRenderer siteRenderer,
             IGameQueryService gameQueryService)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            _siteDataFactory = siteDataFactory ?? throw new ArgumentNullException(nameof(siteDataFactory));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
             _gameQueryService = gameQueryService;
 
@@ -238,7 +240,7 @@ namespace Temple.ViewModel.DD.Exploration
                 throw new InvalidOperationException("Position and orientation needed here");
             }
 
-            var siteData = SiteDataFactory.GenerateSiteData(
+            var siteData = _siteDataFactory.GenerateSiteData(
                 explorationPayload.SiteId);
 
             var temp = siteData.SiteComponents
