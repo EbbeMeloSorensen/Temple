@@ -194,11 +194,11 @@ public static class ExplorationSceneFactory
             {
                 case Barrier barrier:
                 {
-                    barrier.BoundaryPoints.AdjacentPairs().ToList().ForEach(_ =>
+                    barrier.BarrierPoints.AdjacentPairs().ToList().ForEach(_ =>
                     {
                         scene.AddBoundary(new LineSegment(
-                            _.Item1,
-                            _.Item2));
+                            new Vector2D(_.Item1.Z, -_.Item1.X),
+                            new Vector2D(_.Item2.Z, -_.Item2.X)));
                     });
                     break;
                 }
