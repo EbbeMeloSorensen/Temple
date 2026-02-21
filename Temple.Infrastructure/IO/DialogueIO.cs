@@ -7,7 +7,7 @@ using Temple.Infrastructure.GameConditions;
 
 namespace Temple.Infrastructure.IO
 {
-    public enum DialogueIOMode
+    public enum IOMode
     {
         Read,
         Write
@@ -22,7 +22,7 @@ namespace Temple.Infrastructure.IO
             var json = JsonConvert.SerializeObject(
                 graph,
                 Formatting.Indented,
-                GetJsonSerializerSettings(DialogueIOMode.Write));
+                GetJsonSerializerSettings(IOMode.Write));
 
             using var streamWriter = new StreamWriter(fileName);
 
@@ -34,13 +34,13 @@ namespace Temple.Infrastructure.IO
         {
             using var streamReader = new StreamReader(fileName);
             var json = streamReader.ReadToEnd();
-            var settings = GetJsonSerializerSettings(DialogueIOMode.Read);
+            var settings = GetJsonSerializerSettings(IOMode.Read);
 
             return JsonConvert.DeserializeObject<List<DialogueGraph>>(json, settings);
         }
 
         private static JsonSerializerSettings GetJsonSerializerSettings(
-            DialogueIOMode mode)
+            IOMode mode)
         {
             var settings = new JsonSerializerSettings
             {
@@ -67,7 +67,7 @@ namespace Temple.Infrastructure.IO
                 }
             };
 
-            if (mode == DialogueIOMode.Read)
+            if (mode == IOMode.Read)
             {
                 settings.Converters = new List<JsonConverter>
                 {

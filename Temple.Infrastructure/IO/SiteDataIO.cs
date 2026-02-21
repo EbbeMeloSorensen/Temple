@@ -1,17 +1,31 @@
-﻿using Newtonsoft.Json;
+﻿using System.Globalization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Temple.Domain.Entities.DD.Exploration;
+using Temple.Infrastructure.Dialogues;
 
 namespace Temple.Infrastructure.IO;
+
+public class SiteComponentCountResolver : DefaultContractResolver
+{
+    protected override IList<JsonProperty> CreateProperties(
+        Type type,
+        MemberSerialization memberSerialization)
+    {
+        return base.CreateProperties(type, memberSerialization)
+            .Where(p => p.PropertyName != "Length")
+            .ToList();
+    }
+}
 
 public static class SiteDataIO
 {
     public static void WriteToFile(
-        this SiteData siteData,
+        this IEnumerable<ISiteComponent> siteComponents,
         string fileName)
     {
         var json = JsonConvert.SerializeObject(
-            siteData,
+            siteComponents,
             Formatting.Indented,
             GetJsonSerializerSettings());
 
@@ -20,29 +34,31 @@ public static class SiteDataIO
         streamWriter.WriteLine(json);
     }
 
+    public static IEnumerable<ISiteComponent> ReadSiteComponentListFromFile(
+        string fileName)
+    {
+        using var streamReader = new StreamReader(fileName);
+        var json = streamReader.ReadToEnd();
+        var settings = GetJsonSerializerSettings();
+
+        return JsonConvert.DeserializeObject<List<ISiteComponent>>(json, settings);
+    }
+
     private static JsonSerializerSettings GetJsonSerializerSettings()
     {
         var settings = new JsonSerializerSettings
         {
-            ContractResolver = new DefaultContractResolver(),
+            //Culture = CultureInfo.InvariantCulture,
+            ContractResolver = new SiteComponentCountResolver(),
             NullValueHandling = NullValueHandling.Ignore,
-            //TypeNameHandling = TypeNameHandling.Auto,
-            //SerializationBinder = new KnownTypesBinder
-            //{
-            //    KnownTypes = new[]
-            //    {
-            //        typeof(FactEstablishedCondition),
-            //        typeof(QuestStatusCondition),
-            //        typeof(BattleWonCondition),
-            //        typeof(AndGameCondition),
-            //        typeof(OrGameCondition),
-            //        typeof(FactEstablishedEventTrigger),
-            //        typeof(KnowledgeGainedEventTrigger),
-            //        typeof(QuestDiscoveredEventTrigger),
-            //        typeof(QuestAcceptedEventTrigger),
-            //        typeof(SiteUnlockedEventTrigger)
-            //    }
-            //}
+            TypeNameHandling = TypeNameHandling.Auto,
+            SerializationBinder = new KnownTypesBinder
+            {
+                KnownTypes = new[]
+                {
+                    typeof(Quad)
+                }
+            }
         };
 
         //if (mode == DialogueIOMode.Read)
