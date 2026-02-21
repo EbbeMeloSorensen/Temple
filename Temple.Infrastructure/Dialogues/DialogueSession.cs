@@ -11,7 +11,6 @@ namespace Temple.Infrastructure.Dialogues;
 
 public class DialogueSession : IDialogueSession
 {
-    private IKnowledgeGainedReader _knowledgeGainedReadModel;
     private IGameQueryService _gameQueryService;
     private QuestEventBus _eventBus;
 
@@ -41,13 +40,11 @@ public class DialogueSession : IDialogueSession
 
     public DialogueSession(
         IGameQueryService gameQueryService,
-        IKnowledgeGainedReader knowledgeGainedReadModel,
         QuestEventBus eventBus,
         string npcId,
         GraphAdjacencyList<DialogueVertex, DialogueEdge> graph)
     {
         _gameQueryService = gameQueryService;
-        _knowledgeGainedReadModel = knowledgeGainedReadModel;
         _eventBus = eventBus;
         _graph = graph;
 

@@ -1,18 +1,12 @@
 ﻿using Temple.Domain.Entities.DD.Common;
 using Temple.Application.Core;
-using Temple.Application.Interfaces.Readers;
 
 namespace Temple.Application.Interfaces;
 
 public interface IDialogueSessionFactory
 {
     void Initialize(
-        IFactsEstablishedReader factsEstablishedReader,
-        IKnowledgeGainedReader knowledgeGainedReader,
-        IQuestStatusReader questStatusReader,
-        ISitesUnlockedReader sitesUnlockedReader,
-        IBattlesWonReader battlesWonReader,
-        IGameQueryService dialogueQueryService,
+        IGameQueryService gameQueryService,
         QuestEventBus eventBus);
 
     public IDialogueSession GetDialogueSession(

@@ -82,11 +82,6 @@ namespace Temple.ViewModel
                 _sitesUnlockedReader);
 
             _dialogueSessionFactory.Initialize(
-                _factsEstablishedReader,
-                _knowledgeGainedReader,
-                _questStatusReader,
-                _sitesUnlockedReader,
-                _battlesWonReader,
                 gameQueryService,
                 controller.EventBus);
 
