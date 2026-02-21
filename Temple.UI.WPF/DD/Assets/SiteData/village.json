@@ -1,0 +1,473 @@
+[
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+    "BarrierPoints": [
+      {
+        "X": 7.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 8.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 7.0,
+        "Y": 0.0,
+        "Z": 8.0
+      }
+    ]
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+    "BarrierPoints": [
+      {
+        "X": 8.0,
+        "Y": 0.0,
+        "Z": 15.0
+      },
+      {
+        "X": 12.0,
+        "Y": 0.0,
+        "Z": 15.0
+      },
+      {
+        "X": 12.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 15.0
+      },
+      {
+        "X": 7.0,
+        "Y": 0.0,
+        "Z": 15.0
+      }
+    ]
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+    "BarrierPoints": [
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 12.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 11.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 12.0
+      }
+    ]
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+    "BarrierPoints": [
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 11.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 12.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 13.0
+      },
+      {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 10.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 11.0
+      }
+    ]
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Cylinder",
+    "Position": {
+      "X": 8.5,
+      "Y": 0.0,
+      "Z": 10.5
+    },
+    "Radius": 0.1
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Sphere",
+    "Position": {
+      "X": 8.5,
+      "Y": 0.4,
+      "Z": 10.5
+    },
+    "Radius": 0.1
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Position": {
+      "X": 6.5,
+      "Y": 0.0,
+      "Z": 8.5
+    },
+    "Orientation": 0.0,
+    "ModelId": "human male",
+    "Id": "guard"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Position": {
+      "X": 8.5,
+      "Y": 0.0,
+      "Z": 8.5
+    },
+    "Orientation": 0.0,
+    "ModelId": "human male",
+    "Id": "captain"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Position": {
+      "X": 7.5,
+      "Y": 0.0,
+      "Z": 12.5
+    },
+    "Orientation": 0.0,
+    "ModelId": "human female",
+    "Id": "alyth"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+      "Conditions": [
+        {
+          "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+          "QuestId": "rat_infestation",
+          "RequiredStatus": {
+            "QuestState": 2,
+            "AreCompletionCriteriaSatisfied": true
+          }
+        },
+        {
+          "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+          "QuestId": "find_ethon",
+          "RequiredStatus": {
+            "QuestState": 2,
+            "AreCompletionCriteriaSatisfied": false
+          }
+        }
+      ]
+    },
+    "Position": {
+      "X": 4.5,
+      "Y": 0.0,
+      "Z": 10.5
+    },
+    "Orientation": 0.0,
+    "ModelId": "human male",
+    "Id": "ethon"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
+      "Condition": {
+        "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+        "Conditions": [
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": true
+            }
+          },
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "find_ethon",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": false
+            }
+          }
+        ]
+      }
+    },
+    "Position": {
+      "X": 7.9,
+      "Y": 0.0,
+      "Z": 12.5
+    },
+    "Orientation": 0.0,
+    "ModelId": "human male",
+    "Id": "ethon"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Position": {
+      "X": 8.3,
+      "Y": 0.0,
+      "Z": 12.5
+    },
+    "Orientation": 0.0,
+    "ModelId": "human male",
+    "Id": "lortimer"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Position": {
+      "X": 8.7,
+      "Y": 0.0,
+      "Z": 12.5
+    },
+    "Orientation": 0.0,
+    "ModelId": "human male",
+    "Id": "nebbish"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+      "Conditions": [
+        {
+          "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+          "QuestId": "rat_infestation",
+          "RequiredStatus": {
+            "QuestState": 2,
+            "AreCompletionCriteriaSatisfied": true
+          }
+        },
+        {
+          "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+          "QuestId": "rat_infestation",
+          "RequiredStatus": {
+            "QuestState": 3,
+            "AreCompletionCriteriaSatisfied": true
+          }
+        }
+      ]
+    },
+    "Position": {
+      "X": 8.7,
+      "Y": 0.0,
+      "Z": 14.5
+    },
+    "Orientation": 270.0,
+    "ModelId": "human male",
+    "Id": "ipswitch"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+      "Conditions": [
+        {
+          "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+          "QuestId": "rat_infestation",
+          "RequiredStatus": {
+            "QuestState": 2,
+            "AreCompletionCriteriaSatisfied": true
+          }
+        },
+        {
+          "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+          "QuestId": "rat_infestation",
+          "RequiredStatus": {
+            "QuestState": 3,
+            "AreCompletionCriteriaSatisfied": true
+          }
+        }
+      ]
+    },
+    "Position": {
+      "X": 8.7,
+      "Y": 0.0,
+      "Z": 13.5
+    },
+    "Orientation": 270.0,
+    "ModelId": "human female",
+    "Id": "osala"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+    "Point1": {
+      "X": 15.0,
+      "Y": 8.0
+    },
+    "Point2": {
+      "X": 15.0,
+      "Y": 7.0
+    },
+    "EventID": "Exit_Wilderness"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+      "QuestId": "rat_infestation",
+      "RequiredStatus": {
+        "QuestState": 2,
+        "AreCompletionCriteriaSatisfied": false
+      }
+    },
+    "Point1": {
+      "X": 12.0,
+      "Y": 9.0
+    },
+    "Point2": {
+      "X": 11.0,
+      "Y": 9.0
+    },
+    "EventID": "rats_in_warehouse"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+      "QuestId": "find_ethon",
+      "RequiredStatus": {
+        "QuestState": 2,
+        "AreCompletionCriteriaSatisfied": false
+      }
+    },
+    "Point1": {
+      "X": 12.0,
+      "Y": 6.0
+    },
+    "Point2": {
+      "X": 11.0,
+      "Y": 6.0
+    },
+    "EventID": "bugbear_chieftain"
+  }
+]

@@ -1,0 +1,339 @@
+[
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Quad",
+    "Point1": {
+      "X": 20.0,
+      "Y": 0.0,
+      "Z": 20.0
+    },
+    "Point2": {
+      "X": 20.0,
+      "Y": 0.0,
+      "Z": -20.0
+    },
+    "Point3": {
+      "X": -20.0,
+      "Y": 0.0,
+      "Z": -20.0
+    },
+    "Point4": {
+      "X": -20.0,
+      "Y": 0.0,
+      "Z": 20.0
+    }
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Quad",
+    "Point1": {
+      "X": 20.0,
+      "Y": 1.0,
+      "Z": 20.0
+    },
+    "Point2": {
+      "X": -20.0,
+      "Y": 1.0,
+      "Z": 20.0
+    },
+    "Point3": {
+      "X": -20.0,
+      "Y": 1.0,
+      "Z": -20.0
+    },
+    "Point4": {
+      "X": 20.0,
+      "Y": 1.0,
+      "Z": -20.0
+    }
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+    "BarrierPoints": [
+      {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 1.0
+      },
+      {
+        "X": 2.0,
+        "Y": 0.0,
+        "Z": 1.0
+      },
+      {
+        "X": 2.0,
+        "Y": 0.0,
+        "Z": 2.0
+      },
+      {
+        "X": 1.0,
+        "Y": 0.0,
+        "Z": 2.0
+      },
+      {
+        "X": 1.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 2.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 2.0,
+        "Y": 0.0,
+        "Z": 5.0
+      },
+      {
+        "X": 1.0,
+        "Y": 0.0,
+        "Z": 5.0
+      },
+      {
+        "X": 1.0,
+        "Y": 0.0,
+        "Z": 7.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 7.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 8.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 5.0
+      },
+      {
+        "X": 7.0,
+        "Y": 0.0,
+        "Z": 5.0
+      },
+      {
+        "X": 7.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 9.0,
+        "Y": 0.0,
+        "Z": -2.0
+      },
+      {
+        "X": 5.0,
+        "Y": 0.0,
+        "Z": -2.0
+      },
+      {
+        "X": 5.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": -1.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": -1.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": -3.0
+      },
+      {
+        "X": 1.0,
+        "Y": 0.0,
+        "Z": -3.0
+      },
+      {
+        "X": 1.0,
+        "Y": 0.0,
+        "Z": -1.0
+      },
+      {
+        "X": 2.0,
+        "Y": 0.0,
+        "Z": -1.0
+      },
+      {
+        "X": 2.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      }
+    ]
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+    "BarrierPoints": [
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 1.0
+      },
+      {
+        "X": 5.0,
+        "Y": 0.0,
+        "Z": 1.0
+      },
+      {
+        "X": 5.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 6.0,
+        "Y": 0.0,
+        "Z": 6.0
+      },
+      {
+        "X": 5.0,
+        "Y": 0.0,
+        "Z": 6.0
+      },
+      {
+        "X": 5.0,
+        "Y": 0.0,
+        "Z": 5.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 5.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 4.0
+      },
+      {
+        "X": 4.0,
+        "Y": 0.0,
+        "Z": 2.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 2.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 1.0
+      }
+    ]
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+    "Point1": {
+      "X": 0.0,
+      "Y": 0.0
+    },
+    "Point2": {
+      "X": 1.0,
+      "Y": 0.0
+    },
+    "EventID": "Exit_Wilderness"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Point1": {
+      "X": -1.0,
+      "Y": 3.0
+    },
+    "Point2": {
+      "X": -1.0,
+      "Y": 2.0
+    },
+    "EventID": "Dungeon 1, Room A, Goblin"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Point1": {
+      "X": 2.0,
+      "Y": 3.0
+    },
+    "Point2": {
+      "X": 2.0,
+      "Y": 2.0
+    },
+    "EventID": "Dungeon 1, Room B, Goblin",
+    "EntranceID": "West"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Point1": {
+      "X": 4.0,
+      "Y": 3.0
+    },
+    "Point2": {
+      "X": 4.0,
+      "Y": 2.0
+    },
+    "EventID": "Dungeon 1, Room B, Goblin",
+    "EntranceID": "East"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Point1": {
+      "X": 1.0,
+      "Y": 5.0
+    },
+    "Point2": {
+      "X": 0.0,
+      "Y": 5.0
+    },
+    "EventID": "Final Battle",
+    "EntranceID": "South"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Point1": {
+      "X": 3.0,
+      "Y": 7.0
+    },
+    "Point2": {
+      "X": 3.0,
+      "Y": 6.0
+    },
+    "EventID": "Final Battle",
+    "EntranceID": "East"
+  }
+]

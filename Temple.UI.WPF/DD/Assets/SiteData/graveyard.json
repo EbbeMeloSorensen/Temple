@@ -1,0 +1,69 @@
+[
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+    "BarrierPoints": [
+      {
+        "X": 8.0,
+        "Y": 0.0,
+        "Z": 15.0
+      },
+      {
+        "X": 12.0,
+        "Y": 0.0,
+        "Z": 15.0
+      },
+      {
+        "X": 12.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 3.0
+      },
+      {
+        "X": 3.0,
+        "Y": 0.0,
+        "Z": 15.0
+      },
+      {
+        "X": 7.0,
+        "Y": 0.0,
+        "Z": 15.0
+      }
+    ]
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+    "Point1": {
+      "X": 15.0,
+      "Y": 8.0
+    },
+    "Point2": {
+      "X": 15.0,
+      "Y": 7.0
+    },
+    "EventID": "Exit_Wilderness"
+  },
+  {
+    "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+    "Condition": {
+      "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+      "QuestId": "skeleton_trouble",
+      "RequiredStatus": {
+        "QuestState": 2,
+        "AreCompletionCriteriaSatisfied": false
+      }
+    },
+    "Point1": {
+      "X": 12.0,
+      "Y": 9.0
+    },
+    "Point2": {
+      "X": 11.0,
+      "Y": 9.0
+    },
+    "EventID": "skeletons_in_graveyard"
+  }
+]
