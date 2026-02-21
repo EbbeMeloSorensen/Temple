@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Globalization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Dialogues;
+using Temple.Infrastructure.GameConditions;
 
 namespace Temple.Infrastructure.IO;
 
@@ -47,7 +49,7 @@ public static class SiteDataIO
     {
         var settings = new JsonSerializerSettings
         {
-            //Culture = CultureInfo.InvariantCulture,
+            Culture = CultureInfo.InvariantCulture,
             ContractResolver = new SiteComponentCountResolver(),
             NullValueHandling = NullValueHandling.Ignore,
             TypeNameHandling = TypeNameHandling.Auto,
@@ -55,8 +57,20 @@ public static class SiteDataIO
             {
                 KnownTypes = new[]
                 {
+                    typeof(KnowledgeGainedCondition),
+                    typeof(FactEstablishedCondition),
+                    typeof(QuestStatusCondition),
+                    typeof(BattleWonCondition),
+                    typeof(AndGameCondition),
+                    typeof(OrGameCondition),
+                    typeof(NotGameCondition),
                     typeof(Quad),
+                    typeof(Cylinder),
+                    typeof(Sphere),
+                    typeof(NPC),
                     typeof(Temple.Domain.Entities.DD.Exploration.Barrier),
+                    typeof(EventTrigger_LeaveSite),
+                    typeof(EventTrigger_ScriptedBattle)
                 }
             }
         };

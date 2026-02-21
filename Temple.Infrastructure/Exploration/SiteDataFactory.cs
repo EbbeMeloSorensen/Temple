@@ -65,21 +65,21 @@ public class SiteDataFactory : ISiteDataFactory
                     });
 
                     siteData.AddWall(new List<Point2D>
-                {
-                    new (1, 3),
-                    new (1, 5),
-                    new (3, 5),
-                    new (3, 6),
-                    new (6, 6),
-                    new (6, 5),
-                    new (5, 5),
-                    new (5, 3),
-                    new (4, 3),
-                    new (4, 4),
-                    new (2, 4),
-                    new (2, 3),
-                    new (1, 3),
-                });
+                    {
+                        new (1, 3),
+                        new (1, 5),
+                        new (3, 5),
+                        new (3, 6),
+                        new (6, 6),
+                        new (6, 5),
+                        new (5, 5),
+                        new (5, 3),
+                        new (4, 3),
+                        new (4, 4),
+                        new (2, 4),
+                        new (2, 3),
+                        new (1, 3),
+                    });
 
                     siteData.AddEventTrigger_LeaveSite(
                         new Point2D(0, 0),
@@ -124,59 +124,59 @@ public class SiteDataFactory : ISiteDataFactory
             case "village":
                 {
                     siteData.AddWall(new List<Point2D>
-                {
-                    new (8, 7),
-                    new (8, 4),
-                    new (4, 4),
-                    new (4, 11),
-                    new (8, 11),
-                    new (8, 8),
-                    new (8, 11),
-                    new (4, 11),
-                    new (4, 4),
-                    new (8, 4),
-                    new (8, 7)
-                });
+                    {
+                        new (8, 7),
+                        new (8, 4),
+                        new (4, 4),
+                        new (4, 11),
+                        new (8, 11),
+                        new (8, 8),
+                        new (8, 11),
+                        new (4, 11),
+                        new (4, 4),
+                        new (8, 4),
+                        new (8, 7)
+                    });
 
                     siteData.AddWall(new List<Point2D>
-                {
-                    new (15, 8),
-                    new (15, 12),
-                    new (3, 12),
-                    new (3, 3),
-                    new (15, 3),
-                    new (15, 7),
-                });
+                    {
+                        new (15, 8),
+                        new (15, 12),
+                        new (3, 12),
+                        new (3, 3),
+                        new (15, 3),
+                        new (15, 7),
+                    });
 
                     siteData.AddWall(new List<Point2D>
-                {
-                    new (12, 6),
-                    new (13, 6),
-                    new (13, 4),
-                    new (10, 4),
-                    new (10, 6),
-                    new (11, 6),
-                    new (10, 6),
-                    new (10, 4),
-                    new (13, 4),
-                    new (13, 6),
-                    new (12, 6)
-                });
+                    {
+                        new (12, 6),
+                        new (13, 6),
+                        new (13, 4),
+                        new (10, 4),
+                        new (10, 6),
+                        new (11, 6),
+                        new (10, 6),
+                        new (10, 4),
+                        new (13, 4),
+                        new (13, 6),
+                        new (12, 6)
+                    });
 
                     siteData.AddWall(new List<Point2D>
-                {
-                    new (11, 9),
-                    new (10, 9),
-                    new (10, 11),
-                    new (13, 11),
-                    new (13, 9),
-                    new (12, 9),
-                    new (13, 9),
-                    new (13, 11),
-                    new (10, 11),
-                    new (10, 9),
-                    new (11, 9),
-                });
+                    {
+                        new (11, 9),
+                        new (10, 9),
+                        new (10, 11),
+                        new (13, 11),
+                        new (13, 9),
+                        new (12, 9),
+                        new (13, 9),
+                        new (13, 11),
+                        new (10, 11),
+                        new (10, 9),
+                        new (11, 9),
+                    });
 
                     siteData.AddCylinder(new Point2D(10.5, 8.5), 0.1, 0.4);
 
