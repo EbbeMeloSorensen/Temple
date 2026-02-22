@@ -1,0 +1,116 @@
+﻿[
+  {
+    "Id": "rat_infestation",
+    "Rules": [
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AdvanceOnCheatRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.BecomeAvailableOnQuestDiscoveredRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AcceptQuestRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.SatisfyOnBattleWonRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.TurnInOnDialogueRule"
+      }
+    ]
+  },
+  {
+    "Id": "skeleton_trouble",
+    "Rules": [
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AdvanceOnCheatRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.BecomeAvailableOnQuestDiscoveredRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AcceptQuestRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.SatisfyOnBattleWonRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.TurnInOnDialogueRule"
+      }
+    ]
+  },
+  {
+    "Id": "bottle_for_nebbish",
+    "Rules": [
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AdvanceOnCheatRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.BecomeAvailableOnQuestDiscoveredRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AcceptQuestRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.TurnInOnDialogueRule"
+      }
+    ]
+  },
+  {
+    "Id": "find_ethon",
+    "Rules": [
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AdvanceOnCheatRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.BecomeAvailableOnQuestDiscoveredRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AcceptQuestRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.SatisfyOnDialogueRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.TurnInOnDialogueRule"
+      }
+    ]
+  },
+  {
+    "Id": "find_osalas_man",
+    "Rules": [
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AdvanceOnCheatRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.BecomeAvailableOnQuestDiscoveredRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AcceptQuestRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.SatisfyOnBattleWonRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.TurnInOnDialogueRule"
+      }
+    ]
+  },
+  {
+    "Id": "find_medallion_for_ipswitch",
+    "Rules": [
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AdvanceOnCheatRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.BecomeAvailableOnQuestDiscoveredRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.AcceptQuestRule"
+      },
+      {
+        "$type": "Temple.Domain.Entities.DD.Quests.Rules.TurnInOnDialogueRule"
+      }
+    ]
+  }
+]

@@ -8,7 +8,6 @@ using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.Domain.Entities.DD.Quests.Rules;
 using Temple.Persistence.EFCore.AppData;
 
 namespace Temple.Application.Core;
@@ -38,108 +37,16 @@ public class ApplicationController
     public ApplicationController(
         ApplicationStateMachine applicationStateMachine,
         IServiceScopeFactory scopeFactory,
+        IGameIOHandler gameIOHandler,
         ILogger<ApplicationController> logger)
     {
         _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
 
-        // Todo: Her hardkoder vi bare et par quests. Senere læser vi dem fra fil
-        var quest1 = new Quest(id: "rat_infestation", rules: new List<IQuestRule>
-        {
-            new AdvanceOnCheatRule(),
-
-            // During dialogue with Alyth
-            new BecomeAvailableOnQuestDiscoveredRule(),
-
-            // Player accepts quest
-            new AcceptQuestRule(),
-
-            // Kill warehouse rats => completion criteria satisfied
-            new SatisfyOnBattleWonRule("rats_in_warehouse"),
-
-            // Talk to innkeeper again => quest completed
-            new TurnInOnDialogueRule("alyth")
-        });
-
-        var quest2 = new Quest(id: "skeleton_trouble", rules: new List<IQuestRule>
-        {
-            new AdvanceOnCheatRule(),
-
-            // Talk to captain => quest becomes available
-            new BecomeAvailableOnQuestDiscoveredRule(),
-
-            // Player accepts quest
-            new AcceptQuestRule(),
-
-            // Kill skeletons in graveyard => completion criteria satisfied
-            new SatisfyOnBattleWonRule("skeletons_in_graveyard"),
-
-            // Talk to captain again => quest completed
-            new TurnInOnDialogueRule("captain")
-        });
-
-        var quest3 = new Quest(id: "bottle_for_nebbish", rules: new List<IQuestRule>
-        {
-            new AdvanceOnCheatRule(),
-
-            // During dialogue with Nebbish
-            new BecomeAvailableOnQuestDiscoveredRule(),
-
-            // Player accepts quest
-            new AcceptQuestRule(),
-
-            // Kill warehouse rats => completion criteria satisfied
-            //new SatisfyOnBattleWonRule("rats_in_warehouse"),
-
-            // Talk to innkeeper again => quest completed
-            new TurnInOnDialogueRule("nebbish")
-        });
-
-        var quest4 = new Quest(id: "find_ethon", rules: new List<IQuestRule>
-        {
-            new AdvanceOnCheatRule(),
-
-            // During dialogue with Alyth
-            new BecomeAvailableOnQuestDiscoveredRule(),
-
-            // Player accepts quest
-            new AcceptQuestRule(),
-
-            //new SatisfyOnBattleWonRule("rats_in_warehouse"),
-            new SatisfyOnDialogueRule("ethon"),
-
-            // Talk to innkeeper again => quest completed
-            new TurnInOnDialogueRule("alyth")
-        });
-
-        var quest5 = new Quest(id: "find_osalas_man", rules: new List<IQuestRule>
-        {
-            new AdvanceOnCheatRule(),
-            new BecomeAvailableOnQuestDiscoveredRule(),
-            new AcceptQuestRule(),
-            new SatisfyOnBattleWonRule("orb_of_the_undead"),
-            new TurnInOnDialogueRule("osala")
-        });
-
-        var quest6 = new Quest(id: "find_medallion_for_ipswitch", rules: new List<IQuestRule>
-        {
-            new AdvanceOnCheatRule(),
-            new BecomeAvailableOnQuestDiscoveredRule(),
-            new AcceptQuestRule(),
-            //new SatisfyOnBattleWonRule("orb_of_the_undead"),
-            new TurnInOnDialogueRule("ipswitch")
-        });
-
-        Quests = new List<Quest>
-        {
-            quest1,
-            quest2,
-            quest3,
-            quest4,
-            quest5,
-            quest6
-        };
+        Quests = gameIOHandler
+            .ReadQuestListFromFile($"DD//Assets//Quests//quests.json")
+            .ToList();
 
         EventBus = new QuestEventBus();
 

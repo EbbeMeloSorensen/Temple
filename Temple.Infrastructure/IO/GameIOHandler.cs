@@ -23,7 +23,7 @@ public class GameIOHandler : IGameIOHandler
         streamWriter.WriteLine(json);
     }
 
-    public static IEnumerable<Quest> ReadQuestListFromFile(
+    public IEnumerable<Quest> ReadQuestListFromFile(
         string fileName)
     {
         using var streamReader = new StreamReader(fileName);

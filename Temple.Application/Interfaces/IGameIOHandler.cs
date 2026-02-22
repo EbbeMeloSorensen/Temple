@@ -13,4 +13,7 @@ public interface IGameIOHandler
     public void WriteQuestsToFile(
         IEnumerable<Quest> quests,
         string fileName);
+
+    IEnumerable<Quest> ReadQuestListFromFile(
+        string fileName);
 }

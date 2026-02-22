@@ -79,7 +79,7 @@ public class QuestIOTest
         gameIOHandler.WriteQuestsToFile(quests, fileName);
 
         // Act (Read)
-        var quests2 = GameIOHandler.ReadQuestListFromFile(fileName);
+        var quests2 = gameIOHandler.ReadQuestListFromFile(fileName);
 
         // Act (Write the one that was read)
         gameIOHandler.WriteQuestsToFile(quests2, @"C:\Temp\quests_in_out.json");
