@@ -1,5 +1,5 @@
-using Craft.Math;
 using FluentAssertions;
+using Craft.Math;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;

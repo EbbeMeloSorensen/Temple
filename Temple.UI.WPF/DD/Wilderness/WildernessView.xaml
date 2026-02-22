@@ -12,6 +12,7 @@
             <Button Margin="20" Width="100" Content="Go to Mine" Command="{Binding GoToSite_Mine_Command}"/>
             <Button Margin="20" Width="100" Content="Go to Village" Command="{Binding GoToSite_Village_Command}"/>
             <Button Margin="20" Width="100" Content="Go to Graveyard" Command="{Binding GoToSite_Graveyard_Command}"/>
+            <Button Margin="20" Width="100" Content="Go to Maze" Command="{Binding GoToSite_Maze_Command}"/>
         </StackPanel>
 
         <Button Content="In-Game Menu" Width="120" Height ="30"
