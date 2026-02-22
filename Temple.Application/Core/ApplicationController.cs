@@ -1,14 +1,14 @@
-﻿using Craft.Math;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Temple.Application.Interfaces;
-using Temple.Application.State;
-using Temple.Application.State.Payloads;
+using Craft.Math;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Persistence.EFCore.AppData;
+using Temple.Application.Interfaces;
+using Temple.Application.State;
+using Temple.Application.State.Payloads;
 
 namespace Temple.Application.Core;
 
@@ -57,6 +57,7 @@ public class ApplicationController
 
         EventBus.Subscribe<KnowledgeGainedEvent>(HandleKnowledgeGained);
         EventBus.Subscribe<BattleWonEvent>(HandleBattleWon);
+        EventBus.Subscribe<SiteUnlockedEvent>(HandleSiteUnlocked);
     }
 
     public async Task InitializeAsync()
@@ -243,5 +244,11 @@ public class ApplicationController
         BattleWonEvent e)
     {
         ApplicationData.BattlesWon.Add(e.BattleId);
+    }
+
+    private void HandleSiteUnlocked(
+        SiteUnlockedEvent e)
+    {
+        ApplicationData.SitesUnlocked.Add(e.SiteId);
     }
 }

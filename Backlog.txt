@@ -60,8 +60,12 @@ Done:
 * SiteData skal læses fra fil og ikke hardkodes
 
 Todo:
-* Site 
+* BattleSceneFactory skal ikke hardkode battlescenes men derimod læse dem fra fil. Desuden skal den laves som interface, lige som de andre factories og services
+* BattleSceneFactory skal gøre brug af en CreatureFactory
+* Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked
+  - i stedet for at have 3 hardkodede buttons for de 3 sites, så skal den have en liste over buttons, der genereres ud fra unlocked sites
 * Man skal ikke kunne komme hen til minen, før man har klaret questen om at redde Ethon
+* Introducer noget Save Game/Load game funktionalitet
 * Tilføj bugbears og kobolds
 * Monstre skal ikke hardkodes men læses fra fil
 * Hvad siger ipswitch, hvis man siger farvel i stedet for at sige, at man vil hjælpe med medaljonen og så snakker med ham igen?

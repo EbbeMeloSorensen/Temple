@@ -25,6 +25,7 @@ namespace Temple.ViewModel
         private readonly ISiteDataFactory _siteDataFactory;
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
+        private readonly IBattleSceneFactory _battleSceneFactory;
         private readonly IFactsEstablishedReader _factsEstablishedReader;
         private readonly IKnowledgeGainedReader _knowledgeGainedReader;
         private readonly IQuestStatusReader _questStatusReader;
@@ -60,6 +61,7 @@ namespace Temple.ViewModel
             ISiteDataFactory siteDataFactory,
             ISiteRenderer siteRenderer,
             IDialogueSessionFactory dialogueSessionFactory,
+            IBattleSceneFactory battleSceneFactory,
             ApplicationController controller)
         {
             _mediator = mediator;
@@ -67,6 +69,7 @@ namespace Temple.ViewModel
             _siteDataFactory = siteDataFactory;
             _siteRenderer = siteRenderer;
             _dialogueSessionFactory = dialogueSessionFactory;
+            _battleSceneFactory = battleSceneFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _factsEstablishedReader = new FactsEstablishedReadModel(controller.EventBus);
             _knowledgeGainedReader = new KnowledgeGainedReadModel(controller.EventBus);
@@ -130,7 +133,10 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.Battle:
-                        var battleViewModel = new BattleViewModel(_controller);
+                        var battleViewModel = new BattleViewModel(
+                            _controller,
+                            _battleSceneFactory);
+
                         CurrentViewModel = battleViewModel.Init(applicationState.Payload);
                         break;
 
@@ -148,7 +154,9 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.Wilderness:
-                        CurrentViewModel = new WildernessViewModel(_controller);
+                        CurrentViewModel = new WildernessViewModel(
+                            _controller,
+                            gameQueryService);
                         break;
 
                     case StateMachineState.Defeat:

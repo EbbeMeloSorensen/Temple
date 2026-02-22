@@ -1,5 +1,6 @@
 ﻿using Craft.Logging;
 using Temple.Application.Core;
+using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.ViewModel.DD.Battle.BusinessLogic;
@@ -10,6 +11,7 @@ namespace Temple.ViewModel.DD.Battle;
 public class BattleViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
+    private readonly IBattleSceneFactory _battleSceneFactory;
     private string _battleId;
     private ApplicationStatePayload _payloadForNextState;
 
@@ -18,9 +20,11 @@ public class BattleViewModel : TempleViewModel
     public ActOutSceneViewModelBase ActOutSceneViewModel { get; }
 
     public BattleViewModel(
-        ApplicationController controller)
+        ApplicationController controller,
+        IBattleSceneFactory battleSceneFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+        _battleSceneFactory = battleSceneFactory ?? throw new ArgumentNullException(nameof(battleSceneFactory));
 
         ILogger logger = null;
         var engine = new ComplexEngine(logger);
@@ -76,7 +80,7 @@ public class BattleViewModel : TempleViewModel
         _battleId = battlePayload.BattleId;
         _payloadForNextState = battlePayload.PayloadForNextStateInCasePartyWins;
 
-        ActOutSceneViewModel.InitializeScene(BattleSceneFactory.SetupBattleScene(
+        ActOutSceneViewModel.InitializeScene(_battleSceneFactory.SetupBattleScene(
             _controller.ApplicationData.Party,
             battlePayload.BattleId,
             battlePayload.EntranceId));

@@ -2,12 +2,14 @@
 using GalaSoft.MvvmLight.Command;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Common;
 
 namespace Temple.ViewModel.DD.Wilderness
 {
     public class WildernessViewModel : TempleViewModel
     {
         private readonly ApplicationController _controller;
+        private readonly IGameQueryService _gameQueryService;
 
         public RelayCommand GoToInGameMenu_Command { get; }
         public RelayCommand GoToSite_Mine_Command { get; }
@@ -15,9 +17,11 @@ namespace Temple.ViewModel.DD.Wilderness
         public RelayCommand GoToSite_Graveyard_Command { get; }
 
         public WildernessViewModel(
-            ApplicationController controller)
+            ApplicationController controller,
+            IGameQueryService gameQueryService)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            _gameQueryService = gameQueryService ?? throw new ArgumentNullException(nameof(gameQueryService)); ;
 
             GoToInGameMenu_Command = new RelayCommand(() =>
             {

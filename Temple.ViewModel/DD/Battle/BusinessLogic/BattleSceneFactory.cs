@@ -1,409 +1,410 @@
 ﻿using Temple.Domain.Entities.DD.Battle;
+using Temple.Application.Interfaces;
 
-namespace Temple.ViewModel.DD.Battle.BusinessLogic
+namespace Temple.ViewModel.DD.Battle.BusinessLogic;
+
+public class BattleSceneFactory : IBattleSceneFactory
 {
-    public static class BattleSceneFactory
+    public Scene SetupBattleScene(
+        List<Creature> party,
+        string battleSceneId,
+        string? entranceId)
     {
-        public static Scene SetupBattleScene(
-            List<Creature> party,
-            string battleSceneId,
-            string? entranceId)
+        return battleSceneId switch
         {
-            return battleSceneId switch
+            "rats_in_warehouse" => GetSceneWarehouse(party),
+            "bugbear_chieftain" => GetSceneBugbearChieftain(party),
+            "skeletons_in_graveyard" => GetSceneGraveyard(party),
+            "Dungeon 1, Room A, Goblin" => GetSceneA(party),
+            "Dungeon 1, Room B, Goblin" => GetSceneB(party, entranceId),
+            "Final Battle" => GetSceneF(party, entranceId),
+            _ => throw new ArgumentException($"Unknown battle scene ID: {battleSceneId}", nameof(battleSceneId))
+        };
+    }
+
+    private static Scene GetSceneWarehouse(
+        IEnumerable<Creature> party)
+    {
+        var goblin = new CreatureType(
+            name: "Goblin",
+            maxHitPoints: 12,
+            armorClass: 5,
+            thaco: 20,
+            initiativeModifier: 0,
+            movement: 6,
+            attacks: new List<Attack>
             {
-                "rats_in_warehouse" => GetSceneWarehouse(party),
-                "bugbear_chieftain" => GetSceneBugbearChieftain(party),
-                "skeletons_in_graveyard" => GetSceneGraveyard(party),
-                "Dungeon 1, Room A, Goblin" => GetSceneA(party),
-                "Dungeon 1, Room B, Goblin" => GetSceneB(party, entranceId),
-                "Final Battle" => GetSceneF(party, entranceId),
-                _ => throw new ArgumentException($"Unknown battle scene ID: {battleSceneId}", nameof(battleSceneId))
-            };
-        }
+                new MeleeAttack("Short sword", 6)
+            });
 
-        private static Scene GetSceneWarehouse(
-            IEnumerable<Creature> party)
+        var scene = new Scene("DummyScene", 6, 8);
+
+        // Obstacles
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 4));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 5));
+
+        // Enemies
+        scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 1);
+
+        // Party
+        var adventurerPositions = new List<Tuple<int, int>>
         {
-            var goblin = new CreatureType(
-                name: "Goblin",
-                maxHitPoints: 12,
-                armorClass: 5,
-                thaco: 20,
-                initiativeModifier: 0,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new MeleeAttack("Short sword", 6)
-                });
+            new (4, 5),
+            new (3, 5)
+        };
 
-            var scene = new Scene("DummyScene", 6, 8);
-
-            // Obstacles
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 3));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 4));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 5));
-
-            // Enemies
-            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 1);
-
-            // Party
-            var adventurerPositions = new List<Tuple<int, int>>
+        adventurerPositions
+            .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+            .ToList()
+            .ForEach(_ =>
             {
-                new (4, 5),
-                new (3, 5)
-            };
+                scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+            });
 
-            adventurerPositions
-                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
-                .ToList()
-                .ForEach(_ =>
-                {
-                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
-                });
+        return scene;
+    }
 
-            return scene;
-        }
-
-        private static Scene GetSceneGraveyard(
-            IEnumerable<Creature> party)
-        {
-            var goblinArcher = new CreatureType(
-                name: "Goblin Archer",
-                maxHitPoints: 20,
-                armorClass: 7,
-                thaco: 13,
-                initiativeModifier: 0,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new RangedAttack(
-                        name: "Bow & Arrow",
-                        maxDamage: 4,
-                        range: 4)
-                });
-
-            var scene = new Scene("DummyScene", 10, 12);
-
-            // Enemies
-            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
-            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 7, 1);
-
-            // Party
-            var adventurerPositions = new List<Tuple<int, int>>
+    private static Scene GetSceneGraveyard(
+        IEnumerable<Creature> party)
+    {
+        var goblinArcher = new CreatureType(
+            name: "Goblin Archer",
+            maxHitPoints: 20,
+            armorClass: 7,
+            thaco: 13,
+            initiativeModifier: 0,
+            movement: 6,
+            attacks: new List<Attack>
             {
-                new(10, 5),
-                new(10, 6),
-                new(11, 5),
-                new(11, 6)
-            };
+                new RangedAttack(
+                    name: "Bow & Arrow",
+                    maxDamage: 4,
+                    range: 4)
+            });
 
-            adventurerPositions
-                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
-                .ToList()
-                .ForEach(_ =>
-                {
-                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
-                });
+        var scene = new Scene("DummyScene", 10, 12);
 
-            return scene;
-        }
+        // Enemies
+        scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
+        scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 7, 1);
 
-        private static Scene GetSceneA(
-            IEnumerable<Creature> party)
+        // Party
+        var adventurerPositions = new List<Tuple<int, int>>
         {
-            var goblin = new CreatureType(
-                name: "Goblin",
-                maxHitPoints: 12,
-                armorClass: 5,
-                thaco: 20,
-                initiativeModifier: 0,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new MeleeAttack("Short sword", 6)
-                });
+            new(10, 5),
+            new(10, 6),
+            new(11, 5),
+            new(11, 6)
+        };
 
-            var scene = new Scene("DummyScene", 8, 6);
+        adventurerPositions
+            .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+            .ToList()
+            .ForEach(_ =>
+            {
+                scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+            });
 
-            // Obstacles
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 6));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 1));
+        return scene;
+    }
 
-            // Enemies
-            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 4);
+    private static Scene GetSceneA(
+        IEnumerable<Creature> party)
+    {
+        var goblin = new CreatureType(
+            name: "Goblin",
+            maxHitPoints: 12,
+            armorClass: 5,
+            thaco: 20,
+            initiativeModifier: 0,
+            movement: 6,
+            attacks: new List<Attack>
+            {
+                new MeleeAttack("Short sword", 6)
+            });
 
-            // Party
-            var adventurerPositions = new List<Tuple<int, int>>
+        var scene = new Scene("DummyScene", 8, 6);
+
+        // Obstacles
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 6));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 1));
+
+        // Enemies
+        scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 4);
+
+        // Party
+        var adventurerPositions = new List<Tuple<int, int>>
+        {
+            new (4, 3),
+            new (4, 4),
+            new (5, 3),
+            new (5, 4)
+       };
+
+        adventurerPositions
+            .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer})
+            .ToList()
+            .ForEach(_ =>
+            {
+                scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+            });
+
+        return scene;
+    }
+
+    private static Scene GetSceneB(
+        IEnumerable<Creature> party,
+        string? entranceId)
+    {
+        var goblin = new CreatureType(
+            name: "Goblin",
+            maxHitPoints: 12,
+            armorClass: 5,
+            thaco: 20,
+            initiativeModifier: 0,
+            movement: 6,
+            attacks: new List<Attack>
+            {
+                new MeleeAttack("Short sword", 6)
+            });
+
+        var scene = new Scene("DummyScene", 8, 6);
+
+        // Obstacles
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 6));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 1));
+
+        // Enemies
+        scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 4);
+        scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 4, 4);
+
+        // Party
+        var adventurerPositions = entranceId switch
+        {
+            "West" => new List<Tuple<int, int>>
+            {
+                new (1, 4),
+                new (1, 3),
+                new (0, 4),
+                new (0, 3)
+            },
+            "East" => new List<Tuple<int, int>>
             {
                 new (4, 3),
                 new (4, 4),
                 new (5, 3),
                 new (5, 4)
-           };
+            },
+            _ => throw new InvalidOperationException()
+        };
 
-            adventurerPositions
-                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer})
-                .ToList()
-                .ForEach(_ =>
-                {
-                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
-                });
+        adventurerPositions
+            .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+            .ToList()
+            .ForEach(_ =>
+            {
+                scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+            });
 
-            return scene;
-        }
+        return scene;
+    }
 
-        private static Scene GetSceneB(
-            IEnumerable<Creature> party,
-            string? entranceId)
+    private static Scene GetSceneF(
+        IEnumerable<Creature> party,
+        string? entranceId)
+    {
+        if (entranceId == null)
         {
-            var goblin = new CreatureType(
-                name: "Goblin",
-                maxHitPoints: 12,
-                armorClass: 5,
-                thaco: 20,
-                initiativeModifier: 0,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new MeleeAttack("Short sword", 6)
-                });
-
-            var scene = new Scene("DummyScene", 8, 6);
-
-            // Obstacles
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 6));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 1));
-
-            // Enemies
-            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 3, 4);
-            scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 4, 4);
-
-            // Party
-            var adventurerPositions = entranceId switch
-            {
-                "West" => new List<Tuple<int, int>>
-                {
-                    new (1, 4),
-                    new (1, 3),
-                    new (0, 4),
-                    new (0, 3)
-                },
-                "East" => new List<Tuple<int, int>>
-                {
-                    new (4, 3),
-                    new (4, 4),
-                    new (5, 3),
-                    new (5, 4)
-                },
-                _ => throw new InvalidOperationException()
-            };
-
-            adventurerPositions
-                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
-                .ToList()
-                .ForEach(_ =>
-                {
-                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
-                });
-
-            return scene;
+            throw new InvalidOperationException("Entrance Id needed");
         }
 
-        private static Scene GetSceneF(
-            IEnumerable<Creature> party,
-            string? entranceId)
+        var goblinArcher = new CreatureType(
+            name: "Goblin Archer",
+            maxHitPoints: 20,
+            armorClass: 7,
+            thaco: 13,
+            initiativeModifier: 0,
+            movement: 6,
+            attacks: new List<Attack>
+            {
+                new RangedAttack(
+                    name: "Bow & Arrow",
+                    maxDamage: 4,
+                    range: 4)
+            });
+
+        var scene = new Scene("DummyScene", 10, 12);
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 4));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 8));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 8));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 9));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 9));
+
+        // Enemies
+        scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
+        scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 7, 1);
+
+        // Party
+        var adventurerPositions = entranceId switch
         {
-            if (entranceId == null)
+            "South" => new List<Tuple<int, int>>
             {
-                throw new InvalidOperationException("Entrance Id needed");
-            }
-
-            var goblinArcher = new CreatureType(
-                name: "Goblin Archer",
-                maxHitPoints: 20,
-                armorClass: 7,
-                thaco: 13,
-                initiativeModifier: 0,
-                movement: 6,
-                attacks: new List<Attack>
-                {
-                    new RangedAttack(
-                        name: "Bow & Arrow",
-                        maxDamage: 4,
-                        range: 4)
-                });
-
-            var scene = new Scene("DummyScene", 10, 12);
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 0));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 1));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 2));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 3));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 4));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 7));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 8));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 8));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 9));
-            scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 9));
-
-            // Enemies
-            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
-            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 7, 1);
-
-            // Party
-            var adventurerPositions = entranceId switch
+                new (6, 8),
+                new (5, 8),
+                new (6, 9),
+                new (5, 9)
+            },
+            "East" => new List<Tuple<int, int>>
             {
-                "South" => new List<Tuple<int, int>>
-                {
-                    new (6, 8),
-                    new (5, 8),
-                    new (6, 9),
-                    new (5, 9)
-                },
-                "East" => new List<Tuple<int, int>>
-                {
-                    new (10, 5),
-                    new (10, 6),
-                    new (11, 5),
-                    new (11, 6)
-                },
-                _ => throw new InvalidOperationException()
-            };
+                new (10, 5),
+                new (10, 6),
+                new (11, 5),
+                new (11, 6)
+            },
+            _ => throw new InvalidOperationException()
+        };
 
-            adventurerPositions
-                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
-                .ToList()
-                .ForEach(_ =>
-                {
-                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
-                });
+        adventurerPositions
+            .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+            .ToList()
+            .ForEach(_ =>
+            {
+                scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+            });
 
-            return scene;
-        }
+        return scene;
+    }
 
-        private static Scene GetSceneBugbearChieftain(
-            IEnumerable<Creature> party)
+    private static Scene GetSceneBugbearChieftain(
+        IEnumerable<Creature> party)
+    {
+        var goblinArcher = new CreatureType(
+            name: "Goblin Archer",
+            maxHitPoints: 1,
+            armorClass: 10,
+            thaco: 13,
+            initiativeModifier: 0,
+            movement: 1,
+            attacks: new List<Attack>
+            {
+                new RangedAttack(
+                    name: "Bow & Arrow",
+                    maxDamage: 4,
+                    range: 4)
+            });
+
+        var scene = new Scene("DummyScene", 10, 12);
+
+        // Enemies
+        scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
+
+        // Party
+        var adventurerPositions = new List<Tuple<int, int>>
         {
-            var goblinArcher = new CreatureType(
-                name: "Goblin Archer",
-                maxHitPoints: 1,
-                armorClass: 10,
-                thaco: 13,
-                initiativeModifier: 0,
-                movement: 1,
-                attacks: new List<Attack>
-                {
-                    new RangedAttack(
-                        name: "Bow & Arrow",
-                        maxDamage: 4,
-                        range: 4)
-                });
+            new(10, 5),
+            new(10, 6),
+            new(11, 5),
+            new(11, 6)
+        };
 
-            var scene = new Scene("DummyScene", 10, 12);
-
-            // Enemies
-            scene.AddCreature(new Creature(goblinArcher, true) { IsAutomatic = true }, 4, 1);
-
-            // Party
-            var adventurerPositions = new List<Tuple<int, int>>
+        adventurerPositions
+            .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+            .ToList()
+            .ForEach(_ =>
             {
-                new(10, 5),
-                new(10, 6),
-                new(11, 5),
-                new(11, 6)
-            };
+                scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+            });
 
-            adventurerPositions
-                .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
-                .ToList()
-                .ForEach(_ =>
-                {
-                    scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
-                });
-
-            return scene;
-        }
+        return scene;
     }
 }
+

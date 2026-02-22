@@ -97,7 +97,7 @@ namespace Temple.ViewModel.DD.Exploration
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _siteDataFactory = siteDataFactory ?? throw new ArgumentNullException(nameof(siteDataFactory));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
-            _gameQueryService = gameQueryService;
+            _gameQueryService = gameQueryService ?? throw new ArgumentNullException(nameof(gameQueryService)); ;
 
             Engine = new Engine(null);
 
