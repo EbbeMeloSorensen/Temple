@@ -221,7 +221,8 @@
       "Y": 0.0,
       "Z": 10.5
     },
-    "Radius": 0.1
+    "Radius": 0.1,
+    "Length": 0.4
   },
   {
     "$type": "Temple.Domain.Entities.DD.Exploration.Sphere",

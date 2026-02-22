@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Craft.Math;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Temple.Infrastructure.IO;
@@ -9,8 +10,15 @@ public class SiteComponentResolver : DefaultContractResolver
         Type type,
         MemberSerialization memberSerialization)
     {
-        return base.CreateProperties(type, memberSerialization)
-            .Where(p => p.PropertyName != "Length")
-            .ToList();
+        var properties = base.CreateProperties(type, memberSerialization);
+
+        if (type == typeof(Vector3D))
+        {
+            properties = properties
+                .Where(p => p.PropertyName != "Length")
+                .ToList();
+        }
+
+        return properties;
     }
 }
