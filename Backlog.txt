@@ -57,12 +57,16 @@ Done:
 * Hvad siger nebbish, hvis man snakker med ham før man snakker med Ethon?
 * Hvad siger ethon, hvis man spørger til hvorfor man skulle gennem kælderen i stedet for at bruge den vej til kloakken, som han kender?
 * Erstat brugen af en switch case ladder i DialogueSessionFactory med den nye DialogueSessionQuery
+* SiteData skal læses fra fil og ikke hardkodes
 
 Todo:
-* SiteData skal læses fra fil og ikke hardkodes
+* Site 
+* Man skal ikke kunne komme hen til minen, før man har klaret questen om at redde Ethon
+* Tilføj bugbears og kobolds
+* Monstre skal ikke hardkodes men læses fra fil
 * Hvad siger ipswitch, hvis man siger farvel i stedet for at sige, at man vil hjælpe med medaljonen og så snakker med ham igen?
 * Hvis man siger farvel til osala før man har fået en quest, har man så forpasset chancen? og hvad med ipswitch?
-* Hvornår snakker lortimer?
+* Hvornår snakker lortimer? -> det gør han aldrig, men der er lidt variation i hvad han siger
 * Der skal være en nuke 'em option under kamp, så det er lettere at teste
 * Man skal kunne snyde med knowledge, lige som man kan med quests
 * Implementer noget mere dialog fra Dark Alliance

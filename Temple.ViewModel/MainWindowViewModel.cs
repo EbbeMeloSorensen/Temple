@@ -137,11 +137,6 @@ namespace Temple.ViewModel
                     case StateMachineState.Dialogue:
                         var dialogueViewModel = new DialogueViewModel(
                             _controller,
-                            _factsEstablishedReader,
-                            _knowledgeGainedReader,
-                            _questStatusReader,
-                            _sitesUnlockedReader,
-                            _battlesWonReader,
                             _dialogueSessionFactory);
 
                         CurrentViewModel = dialogueViewModel.Init(applicationState.Payload);

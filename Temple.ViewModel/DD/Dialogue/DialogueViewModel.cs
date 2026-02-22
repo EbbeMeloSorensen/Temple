@@ -12,8 +12,6 @@ public class DialogueViewModel : TempleViewModel
 {
     private readonly ApplicationController _controller;
     private readonly IFactsEstablishedReader _factsEstablishedReader;
-    private readonly IKnowledgeGainedReader _knowledgeGainedReadModel;
-    private readonly IQuestStatusReader _questStatusReadModel;
     private readonly IDialogueSessionFactory _dialogueSessionFactory;
     private readonly ISitesUnlockedReader _sitesUnlockedReader;
     private readonly IBattlesWonReader _battlesWonReader;
@@ -58,16 +56,9 @@ public class DialogueViewModel : TempleViewModel
 
     public DialogueViewModel(
         ApplicationController controller,
-        IFactsEstablishedReader factsEstablishedReader,
-        IKnowledgeGainedReader knowledgeGainedReader,
-        IQuestStatusReader questStatusReader,
-        ISitesUnlockedReader sitesUnlockedReader,
-        IBattlesWonReader battlesWonReader,
         IDialogueSessionFactory dialogueSessionFactory)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-        _knowledgeGainedReadModel = knowledgeGainedReader ?? throw new ArgumentNullException(nameof(knowledgeGainedReader));
-        _questStatusReadModel = questStatusReader ?? throw new ArgumentNullException(nameof(questStatusReader));
         _dialogueSessionFactory = dialogueSessionFactory ?? throw new ArgumentNullException(nameof(dialogueSessionFactory));
 
         SelectOption_Command = new RelayCommand<int>(optionId =>
