@@ -58,9 +58,9 @@ Done:
 * Hvad siger ethon, hvis man spørger til hvorfor man skulle gennem kælderen i stedet for at bruge den vej til kloakken, som han kender?
 * Erstat brugen af en switch case ladder i DialogueSessionFactory med den nye DialogueSessionQuery
 * SiteData skal læses fra fil og ikke hardkodes
+* Der skal være et site, som ikke læses fra fil, men som til gengæld genereres dynamisk, for at stressteste systemet
 
 Todo:
-* Der skal være et site, som ikke læses fra fil, men som til gengæld genereres dynamisk, f.eks. for at stressteste systemet
 * BattleSceneFactory skal ikke hardkode battlescenes men derimod læse dem fra fil. Desuden skal den laves som interface, lige som de andre factories og services
 * BattleSceneFactory skal gøre brug af en CreatureFactory
 * Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked
