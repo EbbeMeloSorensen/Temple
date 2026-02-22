@@ -14,7 +14,6 @@ public class SiteDataIOTest
     public void WriteSiteDataToFileThenReadItAndWriteItAgain()
     {
         // Arrange
-        var fileName = @"C:\Temp\test_site_data.json";
         var siteData = new SiteData();
 
         var siteExtent = 20.0;
@@ -67,6 +66,8 @@ public class SiteDataIOTest
             new Point2D(-1, 2),
             "Dungeon 1, Room A, Goblin");
 
+        var fileName = @"C:\Temp\test_site_data.json";
+
         // Act (Write)
         siteData.SiteComponents.WriteToFile(fileName);
 
@@ -88,7 +89,6 @@ public class SiteDataIOTest
     public void WriteSiteDataForVillageToFileThenReadItAndWriteItAgain()
     {
         // Arrange
-        var fileName = @"C:\Temp\village.json";
         var siteData = new SiteData();
 
         siteData.AddWall(new List<Point2D>
@@ -329,6 +329,8 @@ public class SiteDataIOTest
                 }
             });
 
+        var fileName = @"C:\Temp\village.json";
+
         // Act (Write)
         siteData.SiteComponents.WriteToFile(fileName);
 
@@ -346,7 +348,6 @@ public class SiteDataIOTest
     public void WriteSiteDataForGraveyardToFileThenReadItAndWriteItAgain()
     {
         // Arrange
-        var fileName = @"C:\Temp\graveyard.json";
         var siteData = new SiteData();
 
         siteData.AddWall(new List<Point2D>
@@ -380,6 +381,8 @@ public class SiteDataIOTest
                 }
             });
 
+        var fileName = @"C:\Temp\graveyard.json";
+
         // Act (Write)
         siteData.SiteComponents.WriteToFile(fileName);
 
@@ -397,7 +400,6 @@ public class SiteDataIOTest
     public void WriteSiteDataForMineToFileThenReadItAndWriteItAgain()
     {
         // Arrange
-        var fileName = @"C:\Temp\mine.json";
         var siteData = new SiteData();
 
         var siteExtent = 20.0;
@@ -500,6 +502,8 @@ public class SiteDataIOTest
             "Final Battle",
             null,
             "East");
+
+        var fileName = @"C:\Temp\mine.json";
 
         // Act (Write)
         siteData.SiteComponents.WriteToFile(fileName);

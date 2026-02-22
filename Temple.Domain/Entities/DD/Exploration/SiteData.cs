@@ -5,12 +5,7 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class SiteData
 {
-    public SiteData()
-    {
-        SiteComponents = new List<ISiteComponent>();
-    }
-
-    public List<ISiteComponent> SiteComponents { get; set; }
+    public List<ISiteComponent> SiteComponents { get; set; } = new();
 
     public void AddQuad(
         Point3D point1,

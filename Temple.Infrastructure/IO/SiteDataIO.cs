@@ -1,23 +1,10 @@
 ﻿using System.Globalization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.GameConditions;
 
 namespace Temple.Infrastructure.IO;
-
-public class SiteComponentCountResolver : DefaultContractResolver
-{
-    protected override IList<JsonProperty> CreateProperties(
-        Type type,
-        MemberSerialization memberSerialization)
-    {
-        return base.CreateProperties(type, memberSerialization)
-            .Where(p => p.PropertyName != "Length")
-            .ToList();
-    }
-}
 
 public static class SiteDataIO
 {
@@ -50,7 +37,7 @@ public static class SiteDataIO
         var settings = new JsonSerializerSettings
         {
             Culture = CultureInfo.InvariantCulture,
-            ContractResolver = new SiteComponentCountResolver(),
+            ContractResolver = new SiteComponentResolver(),
             NullValueHandling = NullValueHandling.Ignore,
             TypeNameHandling = TypeNameHandling.Auto,
             SerializationBinder = new KnownTypesBinder
@@ -74,14 +61,6 @@ public static class SiteDataIO
                 }
             }
         };
-
-        //if (mode == DialogueIOMode.Read)
-        //{
-        //    settings.Converters = new List<JsonConverter>
-        //    {
-        //        new GraphJsonConverter()
-        //    };
-        //}
 
         return settings;
     }

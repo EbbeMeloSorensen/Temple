@@ -9,7 +9,7 @@ public sealed class Quest
     public QuestState State { get; private set; }
     public bool AreCompletionCriteriaSatisfied { get; private set; }
 
-    private readonly List<IQuestRule> _rules;
+    public List<IQuestRule> Rules { get; set; }
 
     public Quest(
         string id,
@@ -18,12 +18,12 @@ public sealed class Quest
         Id = id;
         State = QuestState.Hidden;
         AreCompletionCriteriaSatisfied = false;
-        _rules = rules.ToList();
+        Rules = rules.ToList();
     }
 
     public void HandleEvent(IGameEvent e)
     {
-        foreach (var rule in _rules)
+        foreach (var rule in Rules)
         {
             rule.Apply(this, e);
         }
