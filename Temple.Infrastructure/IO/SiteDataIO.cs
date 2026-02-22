@@ -8,7 +8,7 @@ namespace Temple.Infrastructure.IO;
 
 public static class SiteDataIO
 {
-    public static void WriteToFile(
+    public static void WriteSiteComponentsToFile(
         this IEnumerable<ISiteComponent> siteComponents,
         string fileName)
     {

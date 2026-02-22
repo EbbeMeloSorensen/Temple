@@ -1,19 +1,20 @@
-﻿using Newtonsoft.Json;
-using System.Globalization;
+﻿using System.Globalization;
+using Newtonsoft.Json;
+using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Rules;
 using Temple.Infrastructure.Dialogues;
 
 namespace Temple.Infrastructure.IO;
 
-public static class QuestIO
+public class GameIOHandler : IGameIOHandler
 {
-    public static void WriteToFile(
-        this IEnumerable<Quest> siteComponents,
+    public void WriteQuestsToFile(
+        IEnumerable<Quest> quests,
         string fileName)
     {
         var json = JsonConvert.SerializeObject(
-            siteComponents,
+            quests,
             Formatting.Indented,
             GetJsonSerializerSettings());
 

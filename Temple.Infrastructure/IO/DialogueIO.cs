@@ -15,7 +15,7 @@ namespace Temple.Infrastructure.IO
 
     public static class DialogueIO
     {
-        public static void WriteToFile(
+        public static void WriteDialogueGraphsToFile(
             this IEnumerable<DialogueGraph> graph,
             string fileName)
         {

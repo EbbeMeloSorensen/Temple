@@ -69,7 +69,7 @@ public class SiteDataIOTest
         var fileName = @"C:\Temp\test_site_data.json";
 
         // Act (Write)
-        siteData.SiteComponents.WriteToFile(fileName);
+        siteData.SiteComponents.WriteSiteComponentsToFile(fileName);
 
         // Act (Read)
         var siteData2 = new SiteData
@@ -78,7 +78,7 @@ public class SiteDataIOTest
         };
 
         // Act (Write the one that was read)
-        siteData2.SiteComponents.WriteToFile(@"C:\Temp\out.json");
+        siteData2.SiteComponents.WriteSiteComponentsToFile(@"C:\Temp\out.json");
 
         // Assert
         siteData2.SiteComponents.Count().Should().Be(siteData.SiteComponents.Count);
@@ -332,7 +332,7 @@ public class SiteDataIOTest
         var fileName = @"C:\Temp\village.json";
 
         // Act (Write)
-        siteData.SiteComponents.WriteToFile(fileName);
+        siteData.SiteComponents.WriteSiteComponentsToFile(fileName);
 
         // Act (Read)
         var siteData2 = new SiteData
@@ -341,7 +341,7 @@ public class SiteDataIOTest
         };
 
         // Act (Write the one that was read)
-        siteData2.SiteComponents.WriteToFile(@"C:\Temp\village_out.json");
+        siteData2.SiteComponents.WriteSiteComponentsToFile(@"C:\Temp\village_out.json");
     }
 
     [Fact]
@@ -384,7 +384,7 @@ public class SiteDataIOTest
         var fileName = @"C:\Temp\graveyard.json";
 
         // Act (Write)
-        siteData.SiteComponents.WriteToFile(fileName);
+        siteData.SiteComponents.WriteSiteComponentsToFile(fileName);
 
         // Act (Read)
         var siteData2 = new SiteData
@@ -393,7 +393,7 @@ public class SiteDataIOTest
         };
 
         // Act (Write the one that was read)
-        siteData2.SiteComponents.WriteToFile(@"C:\Temp\graveyard_out.json");
+        siteData2.SiteComponents.WriteSiteComponentsToFile(@"C:\Temp\graveyard_out.json");
     }
 
     [Fact]
@@ -506,7 +506,7 @@ public class SiteDataIOTest
         var fileName = @"C:\Temp\mine.json";
 
         // Act (Write)
-        siteData.SiteComponents.WriteToFile(fileName);
+        siteData.SiteComponents.WriteSiteComponentsToFile(fileName);
 
         // Act (Read)
         var siteData2 = new SiteData
@@ -515,6 +515,6 @@ public class SiteDataIOTest
         };
 
         // Act (Write the one that was read)
-        siteData2.SiteComponents.WriteToFile(@"C:\Temp\mine_out.json");
+        siteData2.SiteComponents.WriteSiteComponentsToFile(@"C:\Temp\mine_out.json");
     }
 }

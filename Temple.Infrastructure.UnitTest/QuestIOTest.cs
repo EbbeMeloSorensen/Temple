@@ -1,4 +1,3 @@
-using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Rules;
 using Temple.Infrastructure.IO;
@@ -10,6 +9,7 @@ public class QuestIOTest
     [Fact]
     public void WriteQuestsToFileThenReadItAndWriteItAgain()
     {
+        // Arrange
         var quests = new List<Quest>
         {
             new (
@@ -73,14 +73,15 @@ public class QuestIOTest
         };
 
         var fileName = @"C:\Temp\quests.json";
+        var gameIOHandler = new GameIOHandler();
 
         // Act (Write)
-        quests.WriteToFile(fileName);
+        gameIOHandler.WriteQuestsToFile(quests, fileName);
 
         // Act (Read)
-        var quests2 = QuestIO.ReadQuestListFromFile(fileName);
+        var quests2 = GameIOHandler.ReadQuestListFromFile(fileName);
 
         // Act (Write the one that was read)
-        quests2.WriteToFile(@"C:\Temp\quests_in_out.json");
+        gameIOHandler.WriteQuestsToFile(quests2, @"C:\Temp\quests_in_out.json");
     }
 }

@@ -106,7 +106,7 @@ namespace Temple.Infrastructure.UnitTest
                 }
             };
 
-            dialogueGraphs.WriteToFile(@"C:\Temp\alyth.json");
+            dialogueGraphs.WriteDialogueGraphsToFile(@"C:\Temp\alyth.json");
         }
 
         [Fact]
@@ -197,7 +197,7 @@ namespace Temple.Infrastructure.UnitTest
                 }
             };
 
-            dialogueGraphs.WriteToFile(@"C:\Temp\captain.json");
+            dialogueGraphs.WriteDialogueGraphsToFile(@"C:\Temp\captain.json");
         }
 
         [Fact]
