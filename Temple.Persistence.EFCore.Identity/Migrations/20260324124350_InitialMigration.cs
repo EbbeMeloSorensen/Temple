@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using System;
 
 #nullable disable
 
-namespace PR.Web.Persistence.Migrations
+namespace Temple.Persistence.EFCore.Identity.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
