@@ -106,6 +106,7 @@ In Visual Studio, just set Temple.API to the active project and press F5. Use Po
 1) In VS Code, open a second terminal window (after having launched the API from one terminal window) and navigate to the Temple.WebClient folder.
 2) Build the web client by executing `npm install`
 3) Launch the web client by executing `npm start`
+4) VS Code should now open a web page in Chrome with this URL: http://localhost:3000
 
 Notice that you may see an error related to GetCurrentUser. Try to just log out and in again, using `bob@test.com` and password `Super-long-very-secure-secret-key-that-is-at-least-64-bytes-in-length!!!!`
 
