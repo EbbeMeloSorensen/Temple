@@ -116,6 +116,8 @@ Notice that you may see an error related to GetCurrentUser. Try to just log out 
 
 Coming soon..
 
+NB. It should be fairly easy now that you are pulling the Craft libraries from GitHub packages. However, you may have to get rid of the other executables to get it to work... at least I have had a hard time telling Heroku which executable to spin up.
+
 
 
 
