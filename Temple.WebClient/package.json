@@ -1,0 +1,65 @@
+{
+  "name": "client-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.1",
+    "@types/node": "^16.11.35",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-infinite-scroller": "^1.2.3",
+    "axios": "^0.27.2",
+    "date-fns": "^2.28.0",
+    "formik": "^2.2.9",
+    "mobx": "^6.5.0",
+    "mobx-react-lite": "^3.4.0",
+    "react": "^17.0.2",
+    "react-calendar": "^3.7.0",
+    "react-cropper": "^2.1.8",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "^17.0.2",
+    "react-infinite-scroller": "^1.2.6",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.3",
+    "semantic-ui-react": "^2.1.2",
+    "typescript": "^4.6.4",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "postbuild": "mv build ../PR.Web.API/wwwroot",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-datepicker": "^4.4.1",
+    "@types/react-router-dom": "^5.3.2",
+    "@types/uuid": "^8.3.4",
+    "@types/yup": "^0.29.14"
+  }
+}
