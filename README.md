@@ -1,5 +1,11 @@
 # Temple
 
+[TOC]
+
+## Introduction
+
+People management, Smurf management, Dungeons and Dragons adventure game.
+
 ## Layers
 
 This is a solution made in compliance with the "Clean Architecture" architectural pattern. The solution consists of the following layers:
@@ -73,11 +79,45 @@ As such, you might use these projects instead of Temple.API when generating migr
 
 Also notice how the multiple calls to AddApplicationServices use the same connection string. This results in the migrations being applied to *the same* database, which is usually suitable.
 
-# User Accesors
+## User Accessors
 
 Notice how the API as well as the applications all make use of a UserAccessor implementing the IUserAccessor interface residing in the application layer. In this solution, the UserAccessor is just used in conjunction with letting a web application ask the API about the name of the logged in user in order to display it in the user interface. The implementations of the IUserAccessor interfaces in the WPF application and the Console application are just dummy objects that are never used but just there since the application layer requires a user accessor......
 
 (I must admit I don't quite remember the rationale...)
+
+## How to establish a local database
+
+Use the local Postgres server on MELO_HOME
+
+Use Docker on MELO_BASEMENT
+
+Use podman on the Linux laptop
+
+## How to run the API
+
+In Visual Studio, just set Temple.API to the active project and press F5. Use Postman to verify that it works.
+
+1. In VS Code, open a terminal window  and navigate to the Temple.API folder.
+2. Optionally execute `dotnet build` to make sure that the API compiles.
+3. Launch the API by executing `dotnet watch run`. Use Postman to verify that it works.
+
+## How to run the WebClient locally
+
+1) In VS Code, open a second terminal window (after having launched the API from one terminal window) and navigate to the Temple.WebClient folder.
+2) Build the web client by executing `npm install`
+3) Launch the web client by executing `npm start`
+
+Notice that you may see an error related to GetCurrentUser. Try to just log out and in again, using `bob@test.com` and password `Super-long-very-secure-secret-key-that-is-at-least-64-bytes-in-length!!!!`
+
+4. Verify that you can retrieve people, create a new person, use the filter etc.
+
+## How to deploy to Heroku
+
+Coming soon..
+
+
+
+
 
 
 
