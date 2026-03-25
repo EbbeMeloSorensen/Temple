@@ -28,7 +28,7 @@ namespace Temple.API
                 {
                     config.RegisterValidatorsFromAssemblyContaining<Create>();
                 });
-            services.AddApplicationServices(_config, true);
+            services.AddApplicationServices(_config);
             services.AddIdentityServices(_config);
         }
 
