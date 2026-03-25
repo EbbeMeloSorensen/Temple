@@ -120,7 +120,48 @@ In order to make a new production build of the client application, follow these 
 
 1) Optionally, delete the wwwroot folder under the Temple.API folder
 2) Optionally, navigate to the Temple.WebClient folder, and execute: `npm run build`. Notice that the postbuild step in the package.json file will have to be adapted to the operating system that is being used when deploying. If it is Windows, then you should use the "move" command, and when it is Linux, you have to use the "mv" command instead.
-3) 
+3) Copy the contents of the Temple folder into a temporary folder such as C:\Temp\DeployTemple
+4) In the temporary folder, delete the .git folder (to detach it from the git repo). Then open the solution in Visual Studio.
+5) Remove these projects from the Temple solution
+   * Temple.UI.WPF
+   * Temple.UI.Console
+   * Temple.POC.WPFApp
+   * Temple.POC.ConsoleApp
+   * Temple.POC.AvaloniaApp
+   * Temple.Infrastructure.UnitTest
+   * Temple.Application.UnitTest
+   * Temple.Domain.UnitTest
+6) Also delete the folders for these projects.
+7) Make sure to save the Temple solution file to get totally rid of the mentioned projects
+8) Open the Heroku site in a web browser such as Chrome, and log in. Notice that you have to use the Salesforce authentication app on your phone.
+9) Click the purple "Create New App" button
+10) Enter a name for the app such as temple
+11) Select a location such as Europe
+12) Click the purple "Create app" button
+13) At this point, you may have to install the Heroku CLI (Command line Interface) unless you have already done that.
+14) Navigate to the "Resources" tab
+15) Click in the "Add-on Services" field, type postgres, and select "Heroku Postgres"
+16) Select Essential 0 (Max 5$ a month), and click the purple "Submit Order Form" button. It then takes a short while for Heroku to provision the database.
+17) Navigate to the "Settings" tab. Here, you should ***not*** click the "Add buildpack button", but notice how it says "Buildpacks will appear here"
+18) Open a command prompt, and navigate to the temporary folder.
+19) Execute `git init` to initialize an empty git repository in the folder.
+20) Execute `git add *` and then `git commit -m` to populate the local git repository.
+21) Execute `heroku login`. Then a browser window opens, where you can log in.
+22) Execute `heroku git:remote -a temple` to attach the local git repository to the application, you just created on Heroku (temple is the name you chose for the application).
+23) Execute `heroku buildpacks:set https://github.com/jincod/dotnetcore-buildpack` to configure a build pack for the application. Notice how it appears in the Heroku web page (you may need to refresh the page by pressing F5).
+24) In Heroku, click the white "Reveal Config Vars" button. Notice how there already is a key named `DATABASE_URL`
+25) Add a key named `ASPNETCORE_ENVIRONMENT` with the value `Production`
+26) Add a key named `GITHUB_TOKEN` with the same value as your local environment variable with the same name. This is what facilitates retrieving your personal Nuget packages (Craft) from GitHub packages.
+27) Add a key named `TokenKey` with a value that is a 64 characters long string generated with a password generator such as LastPass.
+28) Back at the command prompt, execute `git push heroku master`. Notice, that sometimes it is apparently `main` instead of `master`.
+
+Now you should see a build log ending with "Compressing", "Done", "Launching", "Released", and a URL
+
+29. Copy/paste the URL into a page in a Web browser such as Chrome.
+
+Now you should see the login page of your web application
+
+Log in as `bob@test.com` with password `Super-long-very-secure-secret-key-that-is-at-least-64-bytes-in-length!!!!` Verify that the application works by creating a new person, editing one, deleting one, and using the filters.
 
 
 
