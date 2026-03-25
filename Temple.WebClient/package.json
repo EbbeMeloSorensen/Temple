@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "mv build ../PR.Web.API/wwwroot",
+    "postbuild": "move build ../Temple.API/wwwroot",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

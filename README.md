@@ -104,7 +104,7 @@ In Visual Studio, just set Temple.API to the active project and press F5. Use Po
 ## How to run the WebClient locally
 
 1) In VS Code, open a second terminal window (after having launched the API from one terminal window) and navigate to the Temple.WebClient folder.
-2) Build the web client by executing `npm install`
+2) Build the web client by executing `npm install`. Notice that there is a postbuild step in the package.json file that moves the contents of the build folder to a folder named "wwwroot" in the Temple.API folder. This is in order to bundle the web application with the API when deploying it to Heroku.
 3) Launch the web client by executing `npm start`
 4) VS Code should now open a web page in Chrome with this URL: http://localhost:3000
 
