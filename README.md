@@ -114,9 +114,15 @@ Notice that you may see an error related to GetCurrentUser. Try to just log out 
 
 ## How to deploy to Heroku
 
-Coming soon..
+As is the case with the migrations mentioned earlier, the solution already contains a production build of the client application residing in the folder "Temple.WebClient", specifically in the folder wwwroot under the folder Temple.API. It is, however, important to know how to make a production build, which is e.g. relevant after having modified the client application.
 
-NB. It should be fairly easy now that you are pulling the Craft libraries from GitHub packages. However, you may have to get rid of the other executables to get it to work... at least I have had a hard time telling Heroku which executable to spin up.
+In order to make a new production build of the client application, follow these steps:
+
+1) Optionally, delete the wwwroot folder under the Temple.API folder
+2) Optionally, navigate to the Temple.WebClient folder, and execute: `npm run build`. Notice that the postbuild step in the package.json file will have to be adapted to the operating system that is being used when deploying. If it is Windows, then you should use the "move" command, and when it is Linux, you have to use the "mv" command instead.
+3) 
+
+
 
 
 
