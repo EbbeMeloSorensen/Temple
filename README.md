@@ -81,9 +81,7 @@ Also notice how the multiple calls to AddApplicationServices use the same connec
 
 ## User Accessors
 
-Notice how the API as well as the applications all make use of a UserAccessor implementing the IUserAccessor interface residing in the application layer. In this solution, the UserAccessor is just used in conjunction with letting a web application ask the API about the name of the logged in user in order to display it in the user interface. The implementations of the IUserAccessor interfaces in the WPF application and the Console application are just dummy objects that are never used but just there since the application layer requires a user accessor......
-
-(I must admit I don't quite remember the rationale...)
+Notice how the API as well as the applications all make use of a UserAccessor implementing the IUserAccessor interface residing in the application layer. In this solution, the UserAccessor is just used in conjunction with letting a web application ask the API about the name of the logged in user in order to display it in the user interface. In the Reactivities project, the UserAccessor was used to determine which objects to retrieve and display in the user interface, since each user cold only manage his/her own content. The implementations of the IUserAccessor interfaces in the WPF application and the Console application are just dummy objects that are never used but just there since the application layer requires a user accessor.
 
 ## How to establish a local database
 
