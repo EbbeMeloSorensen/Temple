@@ -1,6 +1,12 @@
-Dette er gamle noter fra et git repo, som du bare kaldte PR. Det var her du begyndte at arbejde med de principper, som
-ChatGpt anviste mht f.eks. at have et enkelt Application projekt. Du sadlede dog ret hurtigt om til at arbejde i det
-repository, du kaldte for Temple - fordi du indså, at du passende kunne bygge flere applikationer ind i en og samme applikation.
+Opdatering 26. marts 2026
+Dette er gamle noter fra et git repo, som du bare kaldte PR. Det var her, du begyndte at arbejde med de principper, som
+ChatGpt anviste, specielt mht at trække på Craft bibliotekerne i form af Nuget pakker uploadet til GitHub packages.
+Det var også et aspekt at operere med ét fælles applikationslag for Web APIet og andre overbygninger såsom WPF- og konsol-
+applikationerne. Du sadlede dog ret hurtigt om til at arbejde i det repository, du kaldte for Temple - fordi du indså,
+at du passende kunne bygge flere applikationer ind i en og samme applikation og også fandt ud af, hvordan du i den forbindelse
+kunne operere med et dynamisk viewmodel hierarki.
+
+--------------
 
 API-projektet afhænger nu af 2 forskellige dbcontexts. En, som har med authentication at gøre,
 og en, som har med domæneobjekter at gøre. De har også hver deres migration, men derfor
