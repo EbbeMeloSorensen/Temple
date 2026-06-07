@@ -6,6 +6,7 @@ using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Media.Media3D;
+using Craft.Logging;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -99,7 +100,8 @@ namespace Temple.ViewModel.DD.Exploration
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
             _gameQueryService = gameQueryService ?? throw new ArgumentNullException(nameof(gameQueryService)); ;
 
-            Engine = new Engine(null);
+            var logger = new DummyLogger();
+            Engine = new Engine(logger);
 
             GoToInGameMenu_Command = new RelayCommand(() =>
             {

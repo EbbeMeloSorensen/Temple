@@ -37,6 +37,7 @@ public static class ExplorationSceneFactory
         var gravitationalConstant = 0.0;
         var coefficientOfFriction = 0.0;
         var timeFactor = 1.0;
+        var handleBoundaryCollisions = true;
         var handleBodyCollisions = true;
         var deltaT = 0.001;
         var viewMode = SceneViewMode.FocusOnFirstBody;
@@ -50,6 +51,7 @@ public static class ExplorationSceneFactory
             gravitationalConstant,
             coefficientOfFriction,
             timeFactor,
+            handleBoundaryCollisions,
             handleBodyCollisions,
             deltaT,
             viewMode);
