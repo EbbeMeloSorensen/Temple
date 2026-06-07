@@ -253,6 +253,8 @@ public static class ExplorationSceneFactory
             }
         });
 
+        scene.InitializeBoundaryDataStore();
+
         return scene;
     }
 
