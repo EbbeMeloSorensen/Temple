@@ -1,12 +1,17 @@
-﻿using Craft.Simulation.Bodies;
+﻿using System.Windows;
+using System.Windows.Media.Media3D;
+using GalaSoft.MvvmLight.Command;
+using Craft.Logging;
+using Craft.Math;
+using Craft.Simulation;
+using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Engine;
 using Craft.Utils;
+using Craft.ViewModels.Geometry2D.Reborn;
+using Craft.ViewModels.Geometry2D.Reborn.GeometricModels;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
-using GalaSoft.MvvmLight.Command;
-using System.Windows.Media.Media3D;
-using Craft.Logging;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -19,14 +24,16 @@ using Vector3D = System.Windows.Media.Media3D.Vector3D;
 
 namespace Temple.ViewModel.DD.Exploration
 {
-    public class ExplorationViewModel : TempleViewModel
+    public class ExplorationViewModel : TempleViewModel, IFrameAware
     {
         private readonly ApplicationController _controller;
         private SceneViewController _sceneViewController;
+        //private GeometryDataStore _geometryDataStore;
         private readonly ISiteDataFactory _siteDataFactory;
         private readonly ISiteRenderer _siteRenderer;
         private readonly IGameQueryService _gameQueryService;
 
+        private Scene _scene2D;
         private Model3D _scene3D;
         private Point3D _cameraPosition;
         private Vector3D _lookDirection;
@@ -36,6 +43,7 @@ namespace Temple.ViewModel.DD.Exploration
         public Engine Engine { get; }
 
         public GeometryEditorViewModel GeometryEditorViewModel { get; }
+        public GeometryViewModel GeometryViewModel { get; }
 
         public Model3D Scene3D
         {
@@ -121,6 +129,16 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 UpdateModelCallBack = Engine.UpdateModel
             };
+
+            GeometryViewModel = new GeometryViewModel()
+            {
+                ShowCoordinateSystem = false,
+                LockAspectRatio = true,
+                DampFocusShifts = false
+            };
+
+            //GeometryViewModel.PropertyChanged += GeometryViewModel_PropertyChanged;
+            //Engine.CurrentStateChanged += Engine_CurrentStateChanged;
 
             ShapeSelectorCallback shapeSelectorCallback = (bs) =>
             {
@@ -258,16 +276,24 @@ namespace Temple.ViewModel.DD.Exploration
 
             Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 
-            var scene = ExplorationSceneFactory.GenerateScene(
+            _scene2D = ExplorationSceneFactory.GenerateScene(
                 siteData,
                 _controller.ApplicationData.ExplorationPosition,
                 _controller.ApplicationData.ExplorationOrientation.Value,
                 _controller.ApplicationData.BattlesWon,
                 _gameQueryService);
 
-            StartAnimation(scene);
+            StartAnimation(_scene2D);
 
             return this;
+        }
+
+        public void OnFrame(
+            TimeSpan time,
+            double dt)
+        {
+            // Bemærk, at man ikke bruger parametrene her
+            //Engine.UpdateModel();
         }
 
         public void StartAnimation(
@@ -301,5 +327,60 @@ namespace Temple.ViewModel.DD.Exploration
 
             Engine.StartOrResumeAnimation();
         }
+
+        //private void GeometryViewModel_PropertyChanged(
+        //    object? sender,
+        //    System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName == nameof(GeometryViewModel.WorldWindowExpanded))
+        //    {
+        //        UpdateStaticGeometricObjects();
+        //    }
+        //}
+
+        //private void Engine_CurrentStateChanged(
+        //    object? sender,
+        //    CurrentStateChangedEventArgs e)
+        //{
+        //    UpdateGeometricObjects(e.State);
+
+        //    if (_scene2D.ViewMode == SceneViewMode.FocusOnFirstBody)
+        //    {
+        //        UpdateFocus(e.State.BodyStates.First().Position);
+        //    }
+        //}
+
+        //private void UpdateStaticGeometricObjects()
+        //{
+        //    GeometryViewModel.ClearLayer(false);
+
+        //    //if (_geometryDataStore != null)
+        //    //{
+        //    //    GeometryViewModel.AddStaticGeometryLayer(
+        //    //        _geometryDataStore.Query(GeometryViewModel.WorldWindowExpanded));
+        //    //}
+        //}
+
+        //private void UpdateGeometricObjects(
+        //    State state)
+        //{
+        //    var geometricObjects = state.BodyStates.Select(bs => new CircleModel
+        //    {
+        //        Center = new Point(bs.Position.X, bs.Position.Y),
+        //        Radius = (bs.Body as CircularBody)!.Radius
+        //    });
+
+        //    GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects);
+        //}
+
+        //private void UpdateFocus(
+        //    Vector2D focus)
+        //{
+        //    GeometryViewModel.RequestedWorldFocus = new WorldFocusRequest
+        //    {
+        //        WorldPoint = new Point(focus.X, focus.Y),
+        //        ViewportRatio = new Size(0.5, 0.5)
+        //    };
+        //}
     }
 }
