@@ -5,20 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:scrollFree="clr-namespace:Craft.UIElements.Geometry2D.ScrollFree;assembly=Craft.UIElements"
              xmlns:exploration="clr-namespace:Temple.ViewModel.DD.Exploration;assembly=Temple.ViewModel"
+             xmlns:reborn="clr-namespace:Craft.UIElements.Geometry2D.Reborn;assembly=Craft.UIElements"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Focusable="True"
              KeyDown="ExploreAreaView_OnKeyDown"
              KeyUp="ExploreAreaView_OnKeyUp" d:DataContext="{d:DesignInstance exploration:ExplorationViewModel}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <scrollFree:GeometryEditorView Grid.Column="0" DataContext="{Binding GeometryEditorViewModel}"/>
+        <scrollFree:GeometryEditorView Grid.Row="0" Grid.Column="0" DataContext="{Binding GeometryEditorViewModel}"/>
 
-        <Viewport3D Grid.Column="1" Name="viewport">
+        <reborn:GeometryView Grid.Row="1" Grid.Column="0"
+                             DataContext="{Binding}"
+                             FrameHandler="{Binding}"/>
+
+        <Viewport3D Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Name="viewport">
 
             <Viewport3D.Camera>
                 <PerspectiveCamera
@@ -59,7 +68,7 @@
 
         </Viewport3D>
 
-        <Button Grid.Column="0" Grid.ColumnSpan="2" Content="In-Game Menu"
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Content="In-Game Menu"
                 Width="120" Height ="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20"
                 Command="{Binding GoToInGameMenu_Command}"/>
     </Grid>
