@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Craft.Domain" Version="1.0.28" />
-    <PackageReference Include="Craft.Math" Version="1.0.28" />
+    <PackageReference Include="Craft.Domain" Version="1.0.29" />
+    <PackageReference Include="Craft.Math" Version="1.0.29" />
   </ItemGroup>
 
 </Project>
