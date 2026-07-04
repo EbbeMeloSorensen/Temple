@@ -1,6 +1,8 @@
 ﻿using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.BodyStates;
+using Craft.Simulation.Boundaries;
+using Craft.Simulation.Props;
 using Craft.Utils.Linq;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
@@ -38,7 +40,7 @@ public static class ExplorationSceneFactory
         var coefficientOfFriction = 0.0;
         var timeFactor = 1.0;
         var handleBoundaryCollisions = true;
-        var handleBodyCollisions = true;
+        var handleBodyCollisions = false;
         var deltaT = 0.001;
         var viewMode = SceneViewMode.FocusOnFirstBody;
 
@@ -59,25 +61,6 @@ public static class ExplorationSceneFactory
         // Denne callback returnerer en værdi, der angiver, hvad der skal ske, når en body kolliderer med en boundary
         scene.CollisionBetweenBodyAndBoundaryOccuredCallBack =
             body => OutcomeOfCollisionBetweenBodyAndBoundary.Block;
-
-        // Denne callback returnerer en værdi, der angiver, hvad der skal ske, når to bodies kolliderer
-        scene.CollisionBetweenTwoBodiesOccuredCallBack =
-            (body1, body2) => OutcomeOfCollisionBetweenTwoBodies.Ignore;
-
-        scene.CheckForCollisionBetweenBodiesCallback = (body1, body2) =>
-        {
-            // Vi checker for om en probe rammer en NPC
-            if (body1 is Bodies.NPC || body2 is Bodies.NPC)
-            {
-                if (body1 is Probe || body2 is Probe)
-                {
-                    return true;
-                }
-            }
-
-            // Ellers foretages ikke noget check
-            return false;
-        };
 
         var spaceKeyWasPressed = false;
 
@@ -125,7 +108,7 @@ public static class ExplorationSceneFactory
             return true;
         };
 
-        var nextBodyId = 2;
+        var nextBodyId = 1000;
         var bodyDisposalMap = new Dictionary<int, int>();
 
         scene.PostPropagationCallBack = (propagatedState, boundaryCollisionReports, bodyCollisionReports) =>
@@ -153,10 +136,12 @@ public static class ExplorationSceneFactory
                     Math.Cos(currentStateOfPlayer!.Orientation),
                     -Math.Sin(currentStateOfPlayer!.Orientation));
 
-                bodyDisposalMap[propagatedState.Index + 100] = nextBodyId;
+                bodyDisposalMap[propagatedState.Index + 150] = nextBodyId;
+
+                var probeRadius = 0.05;
 
                 propagatedState.AddBodyState(new BodyState(
-                    new Probe(nextBodyId++, 0.05), currentStateOfPlayer!.Position)
+                    new Probe(nextBodyId++, probeRadius), currentStateOfPlayer!.Position)
                 {
                     NaturalVelocity = 3.0 * lookDirection
                 });
@@ -164,31 +149,32 @@ public static class ExplorationSceneFactory
 
             var response = new PostPropagationResponse();
 
-            // Determine if we triggered a dialog with an npc
-            if (bodyCollisionReports.Any())
+            // Determine if we triggered an event such as leaving the site or starting a scripted battle
+            if (!boundaryCollisionReports.Any())
             {
-                var bcr = bodyCollisionReports.First();
-                var npc = bcr.Body1 as Bodies.NPC ?? bcr.Body2 as Bodies.NPC;
-                var tag = npc!.Tag;
-
-                // Det er en npc (MULIGVIS med en quest - det ved vi ikke her). Derfor afslutter vi exploration animationen og starter en dialog
-                response.Outcome = $"NPC_{tag}";
-                response.IndexOfLastState = propagatedState.Index + 10;
                 return response;
             }
 
-            // Determine if we triggered an event such as leaving the site or starting a scripted battle
-            if (!boundaryCollisionReports.Any()) return response;
+            var bcrWithTag = boundaryCollisionReports.FirstOrDefault(
+                _ => _.BodyState.Body is Probe && _.Boundary.Tag != null);
 
-            var boundary = boundaryCollisionReports.First().Boundary;
+            if (bcrWithTag != null)
+            {
+                var tag = bcrWithTag.Boundary.Tag;
 
-            if (string.IsNullOrEmpty(boundary.Tag)) return response;
+                if (bcrWithTag.Boundary is Boundaries.NPC)
+                {
+                    tag = $"NPC_{tag}";
+                }
 
-            response.Outcome = boundary.Tag;
-            response.IndexOfLastState = propagatedState.Index;
+                response.Outcome = tag;
+                response.IndexOfLastState = propagatedState.Index;
+            }
 
             return response;
         };
+
+        var npcId = 2;
 
         siteData.SiteComponents.ForEach(siteComponent =>
         {
@@ -202,32 +188,29 @@ public static class ExplorationSceneFactory
                             new Vector2D(_.Item1.Z, -_.Item1.X),
                             new Vector2D(_.Item2.Z, -_.Item2.X)));
                     });
+
                     break;
                 }
                 case Cylinder cylinder:
                 {
-                    AddCircularBoundary(
-                        scene, 
-                        new Point2D(
-                            cylinder.Position.Z,
-                            cylinder.Position.X),
-                        cylinder.Radius);
+                    scene.AddBoundary(new CircularBoundary(new Vector2D(
+                        cylinder.Position.Z, -cylinder.Position.X), cylinder.Radius));
+
+                    scene.Props.Add(new PropCircle(npcId++, cylinder.Radius * 2, new Vector2D(
+                        cylinder.Position.Z, -cylinder.Position.X)));
 
                     break;
                 }
                 case NPC npc:
                 {
                     var tag = npc.Id;
+                    var npcRadius = 0.16;
 
-                    initialState.AddBodyState(
-                        new BodyState(new Bodies.NPC(nextBodyId++, 0.16, tag), new Vector2D(npc.Position.Z, -npc.Position.X)));
+                    scene.AddBoundary(new Boundaries.NPC(new Vector2D(
+                        npc.Position.Z, -npc.Position.X), npcRadius, tag));
 
-                    AddCircularBoundary(
-                    scene,
-                    new Point2D(
-                        npc.Position.Z,
-                        npc.Position.X),
-                    0.16);
+                    scene.Props.Add(new PropCircle(npcId++, npcRadius * 2, new Vector2D(
+                        npc.Position.Z, -npc.Position.X)));
 
                     break;
                 }
@@ -252,9 +235,6 @@ public static class ExplorationSceneFactory
                 }
             }
         });
-
-        // Hmm fucks it up for some reason
-        //scene.InitializeBoundaryDataStore();
 
         return scene;
     }
@@ -282,6 +262,7 @@ public static class ExplorationSceneFactory
             tag));
     }
 
+    // Deprecated
     private static void AddCircularBoundary(
         Scene scene,
         Point2D center,
