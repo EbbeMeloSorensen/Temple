@@ -88,6 +88,8 @@ namespace Temple.ViewModel
                 gameQueryService,
                 controller.EventBus);
 
+            // Dummy comment
+
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
             _controller.ApplicationStateChanged += (applicationState) =>
