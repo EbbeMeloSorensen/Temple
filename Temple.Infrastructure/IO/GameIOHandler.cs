@@ -9,6 +9,20 @@ namespace Temple.Infrastructure.IO;
 
 public class GameIOHandler : IGameIOHandler
 {
+    public void WriteQuestToFile(
+        Quest quest,
+        string fileName)
+    {
+        var json = JsonConvert.SerializeObject(
+            quest,
+            Formatting.Indented,
+            GetJsonSerializerSettings());
+
+        using var streamWriter = new StreamWriter(fileName);
+
+        streamWriter.WriteLine(json);
+    }
+
     public void WriteQuestsToFile(
         IEnumerable<Quest> quests,
         string fileName)

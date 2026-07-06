@@ -4,18 +4,18 @@ namespace Temple.Domain.Entities.DD.Quests.Rules;
 
 public sealed class SatisfyOnDialogueRule : IQuestRule
 {
-    private readonly string _npcId;
+    public string NPCId { get; set; }
 
     public SatisfyOnDialogueRule(string npcId)
     {
-        _npcId = npcId;
+        NPCId = npcId;
     }
 
     public void Apply(Quest quest, IGameEvent e)
     {
         if (quest.State == QuestState.Active &&
             e is DialogueEvent @event &&
-            @event.NpcId == _npcId)
+            @event.NpcId == NPCId)
         {
             quest.MarkObjectivesCompleted();
         }

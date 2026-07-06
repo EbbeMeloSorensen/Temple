@@ -4,18 +4,18 @@ namespace Temple.Domain.Entities.DD.Quests.Rules;
 
 public sealed class SatisfyOnBattleWonRule : IQuestRule
 {
-    private readonly string _battleId;
+    public string BattleId { get; set; }
 
     public SatisfyOnBattleWonRule(string battleId)
     {
-        _battleId = battleId;
+        BattleId = battleId;
     }
 
     public void Apply(Quest quest, IGameEvent e)
     {
         if (quest.State == QuestState.Active &&
             e is BattleWonEvent @event &&
-            @event.BattleId == _battleId)
+            @event.BattleId == BattleId)
         {
             quest.MarkObjectivesCompleted();
         }

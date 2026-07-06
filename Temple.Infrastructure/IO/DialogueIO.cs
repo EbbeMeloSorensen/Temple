@@ -1,6 +1,5 @@
-﻿using Craft.DataStructures.IO;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
+using Craft.DataStructures.IO;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.Dialogues.GameEventTriggers;
 using Temple.Infrastructure.GameConditions;

@@ -7,6 +7,49 @@ namespace Temple.Infrastructure.UnitTest;
 public class QuestIOTest
 {
     [Fact]
+    public void WriteQuestToFile()
+    {
+        // Arrange
+        var quest = new Quest(
+                id: "rat_infestation",
+                new List<IQuestRule>
+                {
+                    new SatisfyOnBattleWonRule("rats_in_warehouse"),
+                });
+
+        var fileName = @"C:\Temp\quests_trimmed.json";
+        var gameIOHandler = new GameIOHandler();
+
+        // Act (Write)
+        gameIOHandler.WriteQuestToFile(quest, fileName);
+    }
+
+    [Fact]
+    public void WriteQuestsToFile()
+    {
+        // Arrange
+        var quests = new List<Quest>
+        {
+            new (
+                id: "rat_infestation",
+                new List<IQuestRule>
+                {
+                    new AdvanceOnCheatRule(),
+                    new BecomeAvailableOnQuestDiscoveredRule(),
+                    new AcceptQuestRule(),
+                    new SatisfyOnBattleWonRule("rats_in_warehouse"),
+                    new TurnInOnDialogueRule("alyth")
+                })
+        };
+
+        var fileName = @"C:\Temp\quests_trimmed.json";
+        var gameIOHandler = new GameIOHandler();
+
+        // Act (Write)
+        gameIOHandler.WriteQuestsToFile(quests, fileName);
+    }
+
+    [Fact]
     public void WriteQuestsToFileThenReadItAndWriteItAgain()
     {
         // Arrange

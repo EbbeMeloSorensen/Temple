@@ -4,12 +4,12 @@ namespace Temple.Domain.Entities.DD.Quests.Rules;
 
 public sealed class BecomeAvailableOnAreaEnterRule : IQuestRule
 {
-    private readonly string _siteId;
+    public string SiteId { get; set; }
 
     public BecomeAvailableOnAreaEnterRule(
         string siteId)
     {
-        _siteId = siteId;
+        SiteId = siteId;
     }
 
     public void Apply(
@@ -18,7 +18,7 @@ public sealed class BecomeAvailableOnAreaEnterRule : IQuestRule
     {
         if (quest.State == QuestState.Hidden &&
             e is SiteEnteredEvent entered &&
-            entered.SiteId == _siteId)
+            entered.SiteId == SiteId)
         {
             quest.TransitionTo(QuestState.Available);
         }

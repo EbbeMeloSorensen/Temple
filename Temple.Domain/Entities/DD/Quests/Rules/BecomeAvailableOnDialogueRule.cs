@@ -4,12 +4,12 @@ namespace Temple.Domain.Entities.DD.Quests.Rules;
 
 public sealed class BecomeAvailableOnDialogueRule : IQuestRule
 {
-    private readonly string _npcId;
+    public string NPCId { get; set; }
 
     public BecomeAvailableOnDialogueRule(
         string npcId)
     {
-        _npcId = npcId;
+        NPCId = npcId;
     }
 
     public void Apply(
@@ -18,7 +18,7 @@ public sealed class BecomeAvailableOnDialogueRule : IQuestRule
     {
         if (quest.State == QuestState.Hidden &&
             e is DialogueEvent d &&
-            d.NpcId == _npcId)
+            d.NpcId == NPCId)
         {
             quest.TransitionTo(QuestState.Available);
         }
