@@ -153,8 +153,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Craft.UI.Utils" Version="1.0.33" />
-    <PackageReference Include="Craft.UIElements" Version="1.0.33" />
+    <PackageReference Include="Craft.UI.Utils" Version="1.0.34" />
+    <PackageReference Include="Craft.UIElements" Version="1.0.34" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
   </ItemGroup>
 
