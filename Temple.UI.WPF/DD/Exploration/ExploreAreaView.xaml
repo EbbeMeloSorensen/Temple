@@ -12,22 +12,16 @@
              KeyDown="ExploreAreaView_OnKeyDown"
              KeyUp="ExploreAreaView_OnKeyUp" d:DataContext="{d:DesignInstance exploration:ExplorationViewModel}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <scrollFree:GeometryEditorView Grid.Row="0" Grid.Column="0" DataContext="{Binding GeometryEditorViewModel}"/>
-
-        <reborn:GeometryView Grid.Row="1" Grid.Column="0"
+        <reborn:GeometryView Grid.Row="0" Grid.Column="0"
                              DataContext="{Binding}"
                              FrameHandler="{Binding}"/>
 
-        <Viewport3D Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Name="viewport">
+        <Viewport3D Grid.Column="1" Name="viewport">
 
             <Viewport3D.Camera>
                 <PerspectiveCamera

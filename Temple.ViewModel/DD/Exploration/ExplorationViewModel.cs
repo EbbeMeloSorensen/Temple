@@ -28,7 +28,6 @@ namespace Temple.ViewModel.DD.Exploration
     public class ExplorationViewModel : TempleViewModel, IFrameAware
     {
         private readonly ApplicationController _controller;
-        private SceneViewController _sceneViewController;
         private GeometryDataStore _geometryDataStore;
         private readonly ISiteDataFactory _siteDataFactory;
         private readonly ISiteRenderer _siteRenderer;
@@ -43,7 +42,6 @@ namespace Temple.ViewModel.DD.Exploration
 
         public Engine Engine { get; }
 
-        public GeometryEditorViewModel GeometryEditorViewModel { get; }
         public GeometryViewModel GeometryViewModel { get; }
 
         public Model3D Scene3D
@@ -126,14 +124,9 @@ namespace Temple.ViewModel.DD.Exploration
                 _controller.GoToNextApplicationState(payload);
             });
 
-            GeometryEditorViewModel = new GeometryEditorViewModel(1)
-            {
-                //UpdateModelCallBack = Engine.UpdateModel
-            };
-
             GeometryViewModel = new GeometryViewModel()
             {
-                ShowCoordinateSystem = true,
+                ShowCoordinateSystem = false,
                 LockAspectRatio = true,
                 DampFocusShifts = false
             };
@@ -193,12 +186,6 @@ namespace Temple.ViewModel.DD.Exploration
                     rotatableEllipseViewModel.Orientation = orientation;
                 }
             };
-
-            _sceneViewController = new SceneViewController(
-                Engine,
-                GeometryEditorViewModel,
-                shapeSelectorCallback,
-                shapeUpdateCallback);
 
             Engine.AnimationCompleted += (s, e) =>
             {
@@ -285,7 +272,6 @@ namespace Temple.ViewModel.DD.Exploration
                 _gameQueryService);
 
             InitializeGeometryDataStore(_scene2D);
-
             StartAnimation(_scene2D);
 
             return this;
@@ -373,12 +359,8 @@ namespace Temple.ViewModel.DD.Exploration
         private void StartAnimation(
             Scene scene)
         {
-            GeometryEditorViewModel.InitializeWorldWindow(
-                scene.InitialWorldWindowFocus(),
-                scene.InitialWorldWindowSize(),
-                false);
-
-            _sceneViewController.ActiveScene = scene;
+            Engine.EngineCore.Scene = scene;
+            Engine.EngineCore.SpawnNewThread();
 
             Engine.CurrentStateChanged += (s, e) =>
             {
