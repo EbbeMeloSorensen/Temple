@@ -156,19 +156,29 @@ public static class ExplorationSceneFactory
             }
 
             var bcrWithTag = boundaryCollisionReports.FirstOrDefault(
-                _ => _.BodyState.Body is Probe && _.Boundary.Tag != null);
+                _ => _.Boundary.Tag != null);
 
             if (bcrWithTag != null)
             {
                 var tag = bcrWithTag.Boundary.Tag;
 
-                if (bcrWithTag.Boundary is Boundaries.NPC)
+                if (bcrWithTag.BodyState.Body is Probe)
                 {
-                    tag = $"NPC_{tag}";
+                    if (bcrWithTag.Boundary is Boundaries.NPC)
+                    {
+                        tag = $"NPC_{tag}";
+                        response.Outcome = tag;
+                        response.IndexOfLastState = propagatedState.Index;
+                    }
                 }
-
-                response.Outcome = tag;
-                response.IndexOfLastState = propagatedState.Index;
+                else
+                {
+                    if (bcrWithTag.Boundary is not Boundaries.NPC)
+                    {
+                        response.Outcome = tag;
+                        response.IndexOfLastState = propagatedState.Index;
+                    }
+                }
             }
 
             return response;
