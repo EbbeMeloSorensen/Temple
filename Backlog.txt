@@ -59,9 +59,10 @@ Done:
 * Erstat brugen af en switch case ladder i DialogueSessionFactory med den nye DialogueSessionQuery
 * SiteData skal læses fra fil og ikke hardkodes
 * Der skal være et site, som ikke læses fra fil, men som til gengæld genereres dynamisk, for at stressteste systemet
+* Få lige styr på det med fokus, der crasher Reborn
 
 Todo:
-* Få lige styr på det med fokus, der crasher Reborn
+* Fjern det gamle 2D View
 * BattleSceneFactory skal ikke hardkode battlescenes men derimod læse dem fra fil. Desuden skal den laves som interface, lige som de andre factories og services
 * BattleSceneFactory skal gøre brug af en CreatureFactory
 * Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked

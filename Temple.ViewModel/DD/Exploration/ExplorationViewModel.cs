@@ -450,11 +450,11 @@ namespace Temple.ViewModel.DD.Exploration
         private void UpdateFocus(
             Vector2D focus)
         {
-            // Dette trigger, at den crasher, når man skifter til game menu - du skal måske have en guard mere i Craft
             GeometryViewModel.RequestedWorldFocus = new WorldFocusRequest
             {
                 WorldPoint = new Point(focus.X, focus.Y),
-                ViewportRatio = new Size(0.5, 0.5)
+                ViewportRatio = new Size(0.5, 0.5),
+                Scaling = new Size(0.015, 0.015)
             };
         }
     }
