@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using Craft.DataStructures.Geometry;
+﻿using Craft.DataStructures.Geometry;
 using Craft.DataStructures.MxCifQuadTree;
 using Craft.Logging;
-using Craft.ViewModels.Geometry2D.Reborn.GeometricModels;
+using Craft.Math;
 using Craft.ViewModels.Geometry2D.Reborn;
+using Craft.ViewModels.Geometry2D.Reborn.GeometricModels;
+using System.Collections;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -32,13 +33,22 @@ namespace Temple.ViewModel.DD.Exploration
         {
             switch (geometryObject)
             {
-                case LineModel line:
-                    _mxCifQuadTree.Insert(new SpatialItem<object>(line.ComputeBoundingBox(), line));
+                //case LineModel line:
+                //    _mxCifQuadTree.Insert(new SpatialItem<object>(line.ComputeBoundingBox(), line));
+                //    break;
+                //case PointModel point:
+                //    _mxCifQuadTree.Insert(new SpatialItem<object>(point.ComputeBoundingBox(), point));
+                //    break;
+                //case CircleModel circle:
+                //    _mxCifQuadTree.Insert(new SpatialItem<object>(circle.ComputeBoundingBox(), circle));
+                //    break;
+                case LineSegment2D lineSegment:
+                    _mxCifQuadTree.Insert(new SpatialItem<object>(lineSegment.ComputeBoundingBox(), lineSegment));
                     break;
-                case PointModel point:
+                case Point2D point:
                     _mxCifQuadTree.Insert(new SpatialItem<object>(point.ComputeBoundingBox(), point));
                     break;
-                case CircleModel circle:
+                case Circle2D circle:
                     _mxCifQuadTree.Insert(new SpatialItem<object>(circle.ComputeBoundingBox(), circle));
                     break;
                 default:

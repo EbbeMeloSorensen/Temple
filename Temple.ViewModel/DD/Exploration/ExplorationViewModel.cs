@@ -297,38 +297,28 @@ namespace Temple.ViewModel.DD.Exploration
                 switch (boundary)
                 {
                     case HorizontalLineSegment horizontalLineSegment:
-                        staticGeometryObjects.Add(new LineModel
-                        {
-                            P1 = new Point(horizontalLineSegment.X0, horizontalLineSegment.Y),
-                            P2 = new Point(horizontalLineSegment.X1, horizontalLineSegment.Y)
-                        });
+                        staticGeometryObjects.Add(new LineSegment2D(
+                            new Point2D(horizontalLineSegment.X0, horizontalLineSegment.Y),
+                            new Point2D(horizontalLineSegment.X1, horizontalLineSegment.Y)));
                         break;
                     case VerticalLineSegment verticalLineSegment:
-                        staticGeometryObjects.Add(new LineModel
-                        {
-                            P1 = new Point(verticalLineSegment.X, verticalLineSegment.Y0),
-                            P2 = new Point(verticalLineSegment.X, verticalLineSegment.Y1)
-                        });
+                        staticGeometryObjects.Add(new LineSegment2D(
+                            new Point2D(verticalLineSegment.X, verticalLineSegment.Y0),
+                            new Point2D(verticalLineSegment.X, verticalLineSegment.Y1)));
                         break;
                     case LineSegment lineSegment:
-                        staticGeometryObjects.Add(new LineModel
-                        {
-                            P1 = new Point(lineSegment.Point1.X, lineSegment.Point1.Y),
-                            P2 = new Point(lineSegment.Point2.X, lineSegment.Point2.Y)
-                        });
+                        staticGeometryObjects.Add(new LineSegment2D(
+                            new Point2D(lineSegment.Point1.X, lineSegment.Point1.Y),
+                            new Point2D(lineSegment.Point2.X, lineSegment.Point2.Y)));
                         break;
                     case BoundaryPoint boundaryPoint:
-                        staticGeometryObjects.Add(new PointModel()
-                        {
-                            P = new Point(boundaryPoint.Point.X, boundaryPoint.Point.Y)
-                        });
+                        staticGeometryObjects.Add(
+                            new Point2D(boundaryPoint.Point.X, boundaryPoint.Point.Y));
                         break;
                     case CircularBoundary circularBoundary:
-                        staticGeometryObjects.Add(new CircleModel()
-                        {
-                            Center = new Point(circularBoundary.Center.X, circularBoundary.Center.Y),
-                            Radius = circularBoundary.Radius
-                        });
+                        staticGeometryObjects.Add(new Circle2D(
+                            new Point2D(circularBoundary.Center.X, circularBoundary.Center.Y),
+                            circularBoundary.Radius));
                         break;
                     default:
                         throw new ArgumentException();
@@ -339,9 +329,12 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 return geometryObject switch
                 {
-                    LineModel line => line.ComputeBoundingBox(),
-                    PointModel point => point.ComputeBoundingBox(),
-                    CircleModel circle => circle.ComputeBoundingBox(),
+                    //LineModel line => line.ComputeBoundingBox(),
+                    //PointModel point => point.ComputeBoundingBox(),
+                    //CircleModel circle => circle.ComputeBoundingBox(),
+                    Point2D point => point.ComputeBoundingBox(),
+                    LineSegment2D lineSegment => lineSegment.ComputeBoundingBox(),
+                    Circle2D circle => circle.ComputeBoundingBox(),
                     _ => throw new InvalidOperationException(),
                 };
             });
@@ -420,11 +413,7 @@ namespace Temple.ViewModel.DD.Exploration
         private void UpdateGeometricObjects(
             State state)
         {
-            var geometricObjects = state.BodyStates.Select(bs => new CircleModel
-            {
-                Center = new Point(bs.Position.X, bs.Position.Y),
-                Radius = (bs.Body as CircularBody)!.Radius
-            });
+            var geometricObjects = state.BodyStates.Select(bs => new Circle2D(new Point2D(bs.Position.X, bs.Position.Y), (bs.Body as CircularBody)!.Radius));
 
             GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects);
         }
