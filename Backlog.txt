@@ -66,6 +66,8 @@ Done:
 Todo:
 * Hiv NPC'er med i det nye setup emd Rebon
   - Lav en specialisering af Circle2D og brug i stedet for Circle2D
+* Sørg for at alt nulstilles, når man starter et nyt spil
+  (hvis man slår rotter ihjel og så gennemfører spillet og starter et nyt, så nulstilles quests ikke, dvs de 2 npc'er, der kommer senere, optræder i village)
 * Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked
   - i stedet for at have 3 hardkodede buttons for de 3 sites, så skal den have en liste over buttons, der genereres ud fra unlocked sites
 * BattleSceneFactory skal ikke hardkode battlescenes men derimod læse dem fra fil. Desuden skal den laves som interface, lige som de andre factories og services

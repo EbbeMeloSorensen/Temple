@@ -4,6 +4,7 @@ using System.Windows.Media.Media3D;
 using Craft.Utils.Linq;
 using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Exploration;
+using Temple.Domain.Geometry;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 
 namespace Temple.Infrastructure.Presentation
@@ -72,8 +73,10 @@ namespace Temple.Infrastructure.Presentation
                         group.Children.Add(model);
 
                         break;
-                    case Domain.Geometry.Circle2D_NPC circle2D_npc:
-                        var a = 0;
+                    case Circle2D_NPC circle2D_npc:
+                        var modelNPC = GenerateHumanMaleNew(circle2D_npc);
+                        group.Children.Add(modelNPC);
+
                         break;
                     case Craft.Math.Circle2D circle2D:
                         var b = 0;
@@ -213,6 +216,25 @@ namespace Temple.Infrastructure.Presentation
             return group;
         }
 
+        private Model3D GenerateHumanMaleNew(
+            Circle2D_NPC circle2D_NPC)
+        {
+            var orientation = 0;
+
+            return ImportMeshFromFile(
+                @"DD\Assets\male.stl",
+                new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
+                new Vector3D(1, 0, 0),
+                -90,
+                new Vector3D(0, 0, 0),
+                0.003,
+                new Vector3D(
+                    -circle2D_NPC.Center.Y,
+                    0,
+                    circle2D_NPC.Center.X),
+                    orientation);
+        }
+
         private Model3D GenerateNPC(
             NPC npc)
         {
@@ -232,6 +254,10 @@ namespace Temple.Infrastructure.Presentation
                 throw new InvalidOperationException("Must be a rotatable site component");
             }
 
+            var x = rotatableScenePart.Position.X;
+            var y = rotatableScenePart.Position.Y;
+            var z = rotatableScenePart.Position.Z;
+
             return ImportMeshFromFile(
                 @"DD\Assets\male.stl",
                 new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
@@ -239,10 +265,7 @@ namespace Temple.Infrastructure.Presentation
                 -90,
                 new Vector3D(0, 0, 0),
                 0.003,
-                new Vector3D(
-                    rotatableScenePart.Position.X,
-                    rotatableScenePart.Position.Y,
-                    rotatableScenePart.Position.Z),
+                new Vector3D(x, y, z),
                     rotatableScenePart.Orientation);
         }
 
