@@ -72,7 +72,11 @@ namespace Temple.Infrastructure.Presentation
                         group.Children.Add(model);
 
                         break;
+                    case Domain.Geometry.Circle2D_NPC circle2D_npc:
+                        var a = 0;
+                        break;
                     case Craft.Math.Circle2D circle2D:
+                        var b = 0;
                         break;
                 }
             }

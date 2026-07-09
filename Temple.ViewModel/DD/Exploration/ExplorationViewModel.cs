@@ -9,7 +9,6 @@ using Craft.Simulation.BodyStates;
 using Craft.Simulation.Engine;
 using Craft.Utils;
 using Craft.ViewModels.Geometry2D.Reborn;
-using Craft.ViewModels.Geometry2D.Reborn.GeometricModels;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
 using Craft.Simulation.Boundaries;
@@ -22,7 +21,6 @@ using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
-using Temple.Infrastructure.IO;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -316,6 +314,11 @@ namespace Temple.ViewModel.DD.Exploration
                         staticGeometryObjects.Add(
                             new Point2D(boundaryPoint.Point.X, boundaryPoint.Point.Y));
                         break;
+                    case Boundaries.NPC npc:
+                        staticGeometryObjects.Add(new Domain.Geometry.Circle2D_NPC(
+                            new Point2D(npc.Center.X, npc.Center.Y),
+                            npc.Radius));
+                        break;
                     case CircularBoundary circularBoundary:
                         staticGeometryObjects.Add(new Circle2D(
                             new Point2D(circularBoundary.Center.X, circularBoundary.Center.Y),
@@ -412,9 +415,8 @@ namespace Temple.ViewModel.DD.Exploration
                 GeometryViewModel.AddStaticGeometryLayer(
                     geometricObjects);
 
-                // Also update the 3D scene. First, we just build one to throw away
+                // Also update the 3D scene
                 Scene3D = ((WpfSiteModel)_siteRenderer.Build(geometricObjects)).Model3D;
-                //var toThrowAway = ((WpfSiteModel)_siteRenderer.Build(geometricObjects)).Model3D;
             }
         }
 
@@ -433,9 +435,9 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                //Scaling = new Size(0.015, 0.015)
+                Scaling = new Size(0.015, 0.015)
                 //Scaling = new Size(0.15, 0.15)
-                Scaling = new Size(0.05, 0.05)
+                //Scaling = new Size(0.05, 0.05)
             };
         }
     }

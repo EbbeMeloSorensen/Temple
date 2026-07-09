@@ -61,13 +61,15 @@ Done:
 * Der skal være et site, som ikke læses fra fil, men som til gengæld genereres dynamisk, for at stressteste systemet
 * Få lige styr på det med fokus, der crasher Reborn
 * Fjern det gamle 2D View
+* Hvorfor klarer man ikke rat quest ved at slå rotterne ihjel? (Fordi rules skulle have public properties for at blive serialiseret rigigt)
 
 Todo:
-* Hvorfor klarer man ikke rat quest ved at slå rotterne ihjel?
-* BattleSceneFactory skal ikke hardkode battlescenes men derimod læse dem fra fil. Desuden skal den laves som interface, lige som de andre factories og services
-* BattleSceneFactory skal gøre brug af en CreatureFactory
+* Hiv NPC'er med i det nye setup emd Rebon
+  - Lav en specialisering af Circle2D og brug i stedet for Circle2D
 * Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked
   - i stedet for at have 3 hardkodede buttons for de 3 sites, så skal den have en liste over buttons, der genereres ud fra unlocked sites
+* BattleSceneFactory skal ikke hardkode battlescenes men derimod læse dem fra fil. Desuden skal den laves som interface, lige som de andre factories og services
+* BattleSceneFactory skal gøre brug af en CreatureFactory
 * Man skal ikke kunne komme hen til minen, før man har klaret questen om at redde Ethon
 * Introducer noget Save Game/Load game funktionalitet
 * Tilføj bugbears og kobolds
