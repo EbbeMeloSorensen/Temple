@@ -6,7 +6,7 @@
              xmlns:viewModel="clr-namespace:Temple.ViewModel;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance viewModel:HomeViewModel }">
-    <Grid>
+    <Grid Background="Black">
         <StackPanel>
             <Button Content="Start New Game" FontWeight="Bold" HorizontalAlignment="Center" Width="120"
                     Command="{Binding StartNewGameCommand}"/>

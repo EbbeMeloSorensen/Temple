@@ -22,6 +22,7 @@ using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
+using Temple.Infrastructure.IO;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -262,7 +263,7 @@ namespace Temple.ViewModel.DD.Exploration
                     .ToList(),
             };
 
-            Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
+            //Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
 
             _scene2D = ExplorationSceneFactory.GenerateScene(
                 siteData,
@@ -405,8 +406,15 @@ namespace Temple.ViewModel.DD.Exploration
 
             if (_geometryDataStore != null)
             {
+                var geometricObjects =
+                    _geometryDataStore.Query(GeometryViewModel.WorldWindowExpanded);
+
                 GeometryViewModel.AddStaticGeometryLayer(
-                    _geometryDataStore.Query(GeometryViewModel.WorldWindowExpanded));
+                    geometricObjects);
+
+                // Also update the 3D scene. First, we just build one to throw away
+                Scene3D = ((WpfSiteModel)_siteRenderer.Build(geometricObjects)).Model3D;
+                //var toThrowAway = ((WpfSiteModel)_siteRenderer.Build(geometricObjects)).Model3D;
             }
         }
 
@@ -425,7 +433,9 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                Scaling = new Size(0.015, 0.015)
+                //Scaling = new Size(0.015, 0.015)
+                //Scaling = new Size(0.15, 0.15)
+                Scaling = new Size(0.05, 0.05)
             };
         }
     }

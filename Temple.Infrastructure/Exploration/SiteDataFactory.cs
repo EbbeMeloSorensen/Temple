@@ -20,14 +20,14 @@ public class SiteDataFactory : ISiteDataFactory
                 "Exit_Wilderness");
 
             // Det her er ikke så tungt
-            var rows = 4;
-            var cols = 4;
+            //var rows = 4;
+            //var cols = 4;
 
             // 10 x 10 -> Det er tungt i scenen, hvor der skal checkes for kollision med 10 * 10 * 4 = 400 liniestykker
             // Det er ikke så tungt for 3D-modellerne, hvor der er 10 * 10 * 4 * 2 = 800 trekanter
             // (det kan man se ved at udkommentere den del, der laver quads til liniestykker i 2D-scenen)
-            //var rows = 10;
-            //var cols = 10;
+            var rows = 20;
+            var cols = 20;
 
             // 100 x 100
             // Det her er tungt i selve 3D-modellen, dvs også selv om man har udkommenteret den del, der laver quads til liniestykker i 2D-scenen

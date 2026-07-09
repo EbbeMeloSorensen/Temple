@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using Craft.Utils.Linq;
@@ -34,6 +35,46 @@ namespace Temple.Infrastructure.Presentation
                 };
 
                 group.Children.Add(model);
+            }
+
+            return new WpfSiteModel(group);
+        }
+
+        public ISiteModel Build(
+            IEnumerable geometricObjects)
+        {
+            var group = new Model3DGroup();
+
+            var material = new MaterialGroup();
+            material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(80, 70, 60))));
+
+            foreach (var geometricObject in geometricObjects)
+            {
+                switch (geometricObject)
+                {
+                    case Craft.Math.LineSegment2D lineSegment2D:
+                        var p1 = lineSegment2D.Point1; // 8, -7
+                        var p2 = lineSegment2D.Point2; // 8, -4
+
+                        var mesh = MeshBuilder.CreateQuad(
+                            new Point3D(-p1.Y, 1, p1.X),
+                            new Point3D(-p2.Y, 1, p2.X),
+                            new Point3D(-p2.Y, 0, p2.X),
+                            new Point3D(-p1.Y, 0, p1.X));
+
+                        // Burde ikke være nødvendigt at putte material på hver af disse..
+                        var model = new GeometryModel3D
+                        {
+                            Geometry = mesh,
+                            Material = material
+                        };
+
+                        group.Children.Add(model);
+
+                        break;
+                    case Craft.Math.Circle2D circle2D:
+                        break;
+                }
             }
 
             return new WpfSiteModel(group);

@@ -1,10 +1,8 @@
-﻿using Craft.DataStructures.Geometry;
+﻿using System.Collections;
+using Craft.DataStructures.Geometry;
 using Craft.DataStructures.MxCifQuadTree;
 using Craft.Logging;
 using Craft.Math;
-using Craft.ViewModels.Geometry2D.Reborn;
-using Craft.ViewModels.Geometry2D.Reborn.GeometricModels;
-using System.Collections;
 
 namespace Temple.ViewModel.DD.Exploration
 {
