@@ -78,8 +78,28 @@ namespace Temple.Infrastructure.Presentation
                         group.Children.Add(modelNPC);
 
                         break;
-                    case Craft.Math.Circle2D circle2D:
-                        var b = 0;
+                    case Circle2D_Cylinder circle2D_cylinder:
+                        var mesh2 = MeshBuilder.CreateCylinder(
+                            new Point3D(0, circle2D_cylinder.Length / 2, 0),
+                            circle2D_cylinder.Radius,
+                            circle2D_cylinder.Length, 16);
+
+                        var material2 = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
+
+                        var model2 = new GeometryModel3D
+                        {
+                            Geometry = mesh2,
+                            Material = material2,
+                            BackMaterial = material2
+                        };
+
+                        // Position in this scene
+                        model2.Translate(
+                            -circle2D_cylinder.Center.Y,
+                            0.0,
+                            circle2D_cylinder.Center.X);
+
+                        group.Children.Add(model2);
                         break;
                 }
             }
