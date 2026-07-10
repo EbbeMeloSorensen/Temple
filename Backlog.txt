@@ -62,10 +62,14 @@ Done:
 * Få lige styr på det med fokus, der crasher Reborn
 * Fjern det gamle 2D View
 * Hvorfor klarer man ikke rat quest ved at slå rotterne ihjel? (Fordi rules skulle have public properties for at blive serialiseret rigigt)
+* Hiv NPC'er med i det nye setup med reborn
+  - Lav en specialisering af Circle2D og brug i stedet for Circle2D (OK)
+  - information med om hvilken figur, der skal bruges (OK)
+  - information om orientering (OK)
 
 Todo:
-* Hiv NPC'er med i det nye setup emd Rebon
-  - Lav en specialisering af Circle2D og brug i stedet for Circle2D
+* Hiv cylinder med i det nye setup
+* Hiv circle med i det nye setup
 * Sørg for at alt nulstilles, når man starter et nyt spil
   (hvis man slår rotter ihjel og så gennemfører spillet og starter et nyt, så nulstilles quests ikke, dvs de 2 npc'er, der kommer senere, optræder i village)
 * Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked

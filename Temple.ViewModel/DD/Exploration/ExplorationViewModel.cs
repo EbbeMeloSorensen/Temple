@@ -317,7 +317,9 @@ namespace Temple.ViewModel.DD.Exploration
                     case Boundaries.NPC npc:
                         staticGeometryObjects.Add(new Domain.Geometry.Circle2D_NPC(
                             new Point2D(npc.Center.X, npc.Center.Y),
-                            npc.Radius));
+                            npc.Radius,
+                            npc.ModelId,
+                            npc.Orientation));
                         break;
                     case CircularBoundary circularBoundary:
                         staticGeometryObjects.Add(new Circle2D(

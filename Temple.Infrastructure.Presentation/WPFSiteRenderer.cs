@@ -219,20 +219,42 @@ namespace Temple.Infrastructure.Presentation
         private Model3D GenerateHumanMaleNew(
             Circle2D_NPC circle2D_NPC)
         {
-            var orientation = 0;
+            string path = @"DD\Assets\male.stl";
+            var basicRotationAxis = new Vector3D(1, 0, 0);
+            var basicRotationAngle = -90.0;
+            var basicTranslation = new Vector3D(0, 0, 0);
+            var basicScaleFactor = 0.003;
+
+            switch (circle2D_NPC.ModelId)
+            {
+                case "human male":
+                    path = @"DD\Assets\male.stl";
+                    basicRotationAxis = new Vector3D(1, 0, 0);
+                    basicRotationAngle = -90.0;
+                    basicTranslation = new Vector3D(0, 0, 0);
+                    basicScaleFactor = 0.003;
+                    break;
+                case "human female":
+                    path = @"DD\Assets\female.stl";
+                    basicRotationAxis = new Vector3D(1, 0, 0);
+                    basicRotationAngle = -90.0;
+                    basicTranslation = new Vector3D(-132.5, 0, 101);
+                    basicScaleFactor = 0.015;
+                    break;
+            }
 
             return ImportMeshFromFile(
-                @"DD\Assets\male.stl",
+                path,
                 new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
-                new Vector3D(1, 0, 0),
-                -90,
-                new Vector3D(0, 0, 0),
-                0.003,
+                basicRotationAxis,
+                basicRotationAngle,
+                basicTranslation,
+                basicScaleFactor,
                 new Vector3D(
                     -circle2D_NPC.Center.Y,
                     0,
                     circle2D_NPC.Center.X),
-                    orientation);
+                    circle2D_NPC.Orientation);
         }
 
         private Model3D GenerateNPC(

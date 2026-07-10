@@ -217,7 +217,7 @@ public static class ExplorationSceneFactory
                     var npcRadius = 0.16;
 
                     scene.AddBoundary(new Boundaries.NPC(new Vector2D(
-                        npc.Position.Z, -npc.Position.X), npcRadius, tag));
+                        npc.Position.Z, -npc.Position.X), npcRadius, tag, npc.ModelId, npc.Orientation));
 
                     scene.Props.Add(new PropCircle(npcId++, npcRadius * 2, new Vector2D(
                         npc.Position.Z, -npc.Position.X)));
