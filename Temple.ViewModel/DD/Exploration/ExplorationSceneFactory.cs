@@ -1,7 +1,6 @@
 ﻿using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.BodyStates;
-using Craft.Simulation.Boundaries;
 using Craft.Simulation.Props;
 using Craft.Utils.Linq;
 using Temple.Domain.Entities.DD.Common;
@@ -229,7 +228,10 @@ public static class ExplorationSceneFactory
                     scene.AddBoundary(new LineSegment(
                         new Vector2D(leaveSiteEventTrigger.Point1.X, -leaveSiteEventTrigger.Point1.Y),
                         new Vector2D(leaveSiteEventTrigger.Point2.X, -leaveSiteEventTrigger.Point2.Y),
-                        leaveSiteEventTrigger.EventID));
+                        leaveSiteEventTrigger.EventID)
+                        {
+                            Visible = false
+                        });
 
                     break;
                 }
@@ -269,7 +271,10 @@ public static class ExplorationSceneFactory
         scene.AddBoundary(new LineSegment(
             new Vector2D(point1.X, -point1.Y),
             new Vector2D(point2.X, -point2.Y),
-            tag));
+            tag)
+            {
+                Visible = false
+            }); ;
     }
 
     // Deprecated

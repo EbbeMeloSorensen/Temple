@@ -67,6 +67,7 @@ Done:
   - information med om hvilken figur, der skal bruges (OK)
   - information om orientering (OK)
 * Hiv cylinder med i det nye setup
+* Sørg for at event triggers ikke vises i 3D scenen
 
 Todo:
 * Tilføj Undermountain, level 1 som site
