@@ -85,6 +85,21 @@ public class SiteData
         });
     }
 
+    public void AddDoor(
+        string doorId,
+        Point2D position,
+        double orientation = 0,
+        IGameCondition condition = null)
+    {
+        SiteComponents.Add(new Door
+        {
+            Id = doorId,
+            Position = new Vector3D(position.Y, 0, position.X),
+            Orientation = orientation,
+            Condition = condition
+        });
+    }
+
     public void AddEventTrigger_LeaveSite(
         Point2D point1,
         Point2D point2,

@@ -341,9 +341,6 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 return geometryObject switch
                 {
-                    //LineModel line => line.ComputeBoundingBox(),
-                    //PointModel point => point.ComputeBoundingBox(),
-                    //CircleModel circle => circle.ComputeBoundingBox(),
                     Point2D point => point.ComputeBoundingBox(),
                     LineSegment2D lineSegment => lineSegment.ComputeBoundingBox(),
                     Circle2D circle => circle.ComputeBoundingBox(),
@@ -403,7 +400,7 @@ namespace Temple.ViewModel.DD.Exploration
             object? sender,
             CurrentStateChangedEventArgs e)
         {
-            UpdateGeometricObjects(e.State);
+            UpdateDynamicGeometricObjects(e.State);
 
             if (_scene2D.ViewMode == SceneViewMode.FocusOnFirstBody)
             {
@@ -428,10 +425,13 @@ namespace Temple.ViewModel.DD.Exploration
             }
         }
 
-        private void UpdateGeometricObjects(
+        private void UpdateDynamicGeometricObjects(
             State state)
         {
-            var geometricObjects = state.BodyStates.Select(bs => new Circle2D(new Point2D(bs.Position.X, bs.Position.Y), (bs.Body as CircularBody)!.Radius));
+            var geometricObjects = state.BodyStates.Select(
+                bs => new Circle2D(
+                    new Point2D(bs.Position.X, bs.Position.Y),
+                    (bs.Body as CircularBody)!.Radius));
 
             GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects);
         }

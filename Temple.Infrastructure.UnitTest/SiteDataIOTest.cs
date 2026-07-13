@@ -56,6 +56,8 @@ public class SiteDataIOTest
             new (2, 2)
         });
 
+        siteData.AddDoor("door1", new Point2D(0, 0), 0);
+
         siteData.AddEventTrigger_LeaveSite(
             new Point2D(0, 0),
             new Point2D(1, 0),

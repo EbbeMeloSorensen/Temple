@@ -55,7 +55,8 @@ public static class SiteDataIO
                     typeof(Cylinder),
                     typeof(Sphere),
                     typeof(NPC),
-                    typeof(Temple.Domain.Entities.DD.Exploration.Barrier),
+                    typeof(Door),
+                    typeof(Domain.Entities.DD.Exploration.Barrier),
                     typeof(EventTrigger_LeaveSite),
                     typeof(EventTrigger_ScriptedBattle)
                 }
