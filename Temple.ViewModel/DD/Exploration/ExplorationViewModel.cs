@@ -21,6 +21,7 @@ using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
+using System.Collections;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -249,10 +250,7 @@ namespace Temple.ViewModel.DD.Exploration
             var siteData = _siteDataFactory.GenerateSiteData(
                 explorationPayload.SiteId);
 
-            var temp = siteData.SiteComponents
-                .Where(_ => _.Condition == null ||
-                            _.Condition.Evaluate(_gameQueryService));
-
+            // Exclude site components having a unfulfilled game condition
             siteData = new SiteData
             {
                 SiteComponents = siteData.SiteComponents
@@ -428,10 +426,53 @@ namespace Temple.ViewModel.DD.Exploration
         private void UpdateDynamicGeometricObjects(
             State state)
         {
-            var geometricObjects = state.BodyStates.Select(
-                bs => new Circle2D(
-                    new Point2D(bs.Position.X, bs.Position.Y),
-                    (bs.Body as CircularBody)!.Radius));
+            var geometricObjects = new ArrayList();
+
+            state.BodyStates.ForEach(bs =>
+            {
+                switch (bs.Body)
+                {
+                    case CircularBody circularBody:
+                        geometricObjects.Add(new Circle2D(
+                            new Point2D(bs.Position.X, bs.Position.Y),
+                            circularBody.Radius));
+                        break;
+                    case BodyDoor bodyDoor:
+                        var bodyStateDoor = bs as BodyStateDoor;
+                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * System.Math.PI / 100;
+
+                        var doorAsVector = new Vector2D(
+                            bodyDoor.Point2.X - bodyDoor.Point1.X,
+                            bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+
+                        var doorWidth = doorAsVector.Length;
+                        var hatted = doorAsVector.Hat();
+
+                        if (!bodyStateDoor.OpenClockWise)
+                        {
+                            hatted = -hatted;
+                        }
+
+                        var pt2_x =
+                            bodyDoor.Point1.X +
+                            Math.Cos(angle) * doorAsVector.X +
+                            Math.Sin(angle) * hatted.X;
+
+                        var pt2_y =
+                            bodyDoor.Point1.Y +
+                            Math.Cos(angle) * doorAsVector.Y +
+                            Math.Sin(angle) * hatted.Y;
+
+                        geometricObjects.Add(new LineSegment2D(
+                            new Point2D(
+                                bodyDoor.Point1.X,
+                                bodyDoor.Point1.Y),
+                            new Point2D(
+                                pt2_x,
+                                pt2_y)));
+                        break;
+                }
+            });
 
             GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects);
         }
@@ -443,9 +484,9 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                //Scaling = new Size(0.015, 0.015) // (Ordinary)
+                Scaling = new Size(0.015, 0.015) // (Ordinary)
                 //Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
-                Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
+                //Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
             };
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Craft.Math;
 using Craft.Simulation;
+using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Props;
 using Craft.Utils.Linq;
@@ -39,7 +40,7 @@ public static class ExplorationSceneFactory
         var coefficientOfFriction = 0.0;
         var timeFactor = 1.0;
         var handleBoundaryCollisions = true;
-        var handleBodyCollisions = false;
+        var handleBodyCollisions = true;
         var deltaT = 0.001;
         var viewMode = SceneViewMode.FocusOnFirstBody;
 
@@ -57,9 +58,26 @@ public static class ExplorationSceneFactory
             deltaT,
             viewMode);
 
-        // Denne callback returnerer en værdi, der angiver, hvad der skal ske, når en body kolliderer med en boundary
         scene.CollisionBetweenBodyAndBoundaryOccuredCallBack =
             body => OutcomeOfCollisionBetweenBodyAndBoundary.Block;
+
+        scene.CollisionBetweenTwoBodiesOccuredCallBack =
+            (body1, body2) => OutcomeOfCollisionBetweenTwoBodies.Block;
+
+        scene.CheckForCollisionBetweenBodiesCallback = (body1, body2) =>
+        {
+            if (body1 is BodyDoor && body2 is BodyDoor)
+            {
+                return false;
+            }
+
+            return body1 is BodyDoor || body2 is BodyDoor;
+        };
+
+        var openedDoors = new HashSet<BodyDoor>();
+        BodyDoor activatedDoor = null;
+        var doorActivationMaxCount = 20;
+        var doorActivationCounter = 0;
 
         var spaceKeyWasPressed = false;
 
@@ -70,6 +88,36 @@ public static class ExplorationSceneFactory
             var currentStateOfMainBody = currentState.BodyStates.First() as BodyStateClassic;
             var currentRotationalSpeed = currentStateOfMainBody.RotationalSpeed;
             var currentArtificialSpeed = currentStateOfMainBody.ArtificialVelocity.Length;
+
+            if (doorActivationCounter > 0)
+            {
+                // Door is activated
+                doorActivationCounter--;
+
+                var percentageOpen = 100.0 * (doorActivationMaxCount - doorActivationCounter) / doorActivationMaxCount;
+
+                var currentStateOfDoor = currentState.BodyStates.First(bs => bs.Body == activatedDoor) as BodyStateDoor;
+
+                // Dette skal afhænge af, hvor spilleren er i forhold til døren
+                // Det skulle du kunne regne ud med et prikprodukt
+                currentStateOfDoor.SetOpeningDirection(
+                    currentStateOfMainBody.Position);
+
+                currentStateOfDoor.PercentageOpen = percentageOpen;
+
+                // Freeze the player while the door opens
+                currentStateOfMainBody.RotationalSpeed = 0;
+                currentStateOfMainBody.ArtificialVelocity = new Vector2D(0, 0);
+
+                if (doorActivationCounter == 0)
+                {
+                    // Final step of activation
+                    openedDoors.Add(activatedDoor);
+                    activatedDoor = null;
+                }
+
+                return true;
+            }
 
             var newRotationalSpeed = 0.0;
 
@@ -126,7 +174,7 @@ public static class ExplorationSceneFactory
                 throw new InvalidOperationException("Expected a BodyStateClassic here");
             }
 
-            // Determine if a probe should be launched (for initiating an npc dialog)
+            // Determine if a probe should be launched (for initiating an npc dialog or opening a door)
             if (spaceKeyWasPressed)
             {
                 spaceKeyWasPressed = false;
@@ -148,34 +196,53 @@ public static class ExplorationSceneFactory
 
             var response = new PostPropagationResponse();
 
-            // Determine if we triggered an event such as leaving the site or starting a scripted battle
-            if (!boundaryCollisionReports.Any())
+            // Determine if we triggered a BOUNDARY COLLISION based event such as:
+            //   leaving the site
+            //   starting a scripted battle
+            //   initiating a dialog with an npc
+            if (boundaryCollisionReports.Any())
             {
-                return response;
-            }
+                var bcrWithTag = boundaryCollisionReports.FirstOrDefault(
+                    _ => _.Boundary.Tag != null);
 
-            var bcrWithTag = boundaryCollisionReports.FirstOrDefault(
-                _ => _.Boundary.Tag != null);
-
-            if (bcrWithTag != null)
-            {
-                var tag = bcrWithTag.Boundary.Tag;
-
-                if (bcrWithTag.BodyState.Body is Probe)
+                if (bcrWithTag != null)
                 {
-                    if (bcrWithTag.Boundary is Boundaries.NPC)
+                    var tag = bcrWithTag.Boundary.Tag;
+
+                    if (bcrWithTag.BodyState.Body is Probe)
                     {
-                        tag = $"NPC_{tag}";
-                        response.Outcome = tag;
-                        response.IndexOfLastState = propagatedState.Index;
+                        if (bcrWithTag.Boundary is Boundaries.NPC)
+                        {
+                            tag = $"NPC_{tag}";
+                            response.Outcome = tag;
+                            response.IndexOfLastState = propagatedState.Index;
+                        }
+                    }
+                    else
+                    {
+                        if (bcrWithTag.Boundary is not Boundaries.NPC)
+                        {
+                            response.Outcome = tag;
+                            response.IndexOfLastState = propagatedState.Index;
+                        }
                     }
                 }
-                else
+            }
+            // Determine if we triggered a BODY COLLISION based event such as:
+            //   Attempting to open a door
+            else if (bodyCollisionReports.Any())
+            {
+                var bodyCollisionReport = bodyCollisionReports.First();
+
+                if ((bodyCollisionReport.Body1 is BodyDoor && bodyCollisionReport.Body2 is Probe) ||
+                    (bodyCollisionReport.Body2 is BodyDoor && bodyCollisionReport.Body1 is Probe))
                 {
-                    if (bcrWithTag.Boundary is not Boundaries.NPC)
+                    var door = bodyCollisionReport.Body2 as BodyDoor;
+
+                    if (!openedDoors.Contains(door))
                     {
-                        response.Outcome = tag;
-                        response.IndexOfLastState = propagatedState.Index;
+                        activatedDoor = door;
+                        doorActivationCounter = doorActivationMaxCount;
                     }
                 }
             }
@@ -184,6 +251,7 @@ public static class ExplorationSceneFactory
         };
 
         var npcId = 2;
+        var doorId = 100;
 
         siteData.SiteComponents.ForEach(siteComponent =>
         {
@@ -207,6 +275,34 @@ public static class ExplorationSceneFactory
 
                     scene.Props.Add(new PropCircle(npcId++, cylinder.Radius * 2, new Vector2D(
                         cylinder.Position.Z, -cylinder.Position.X)));
+
+                    break;
+                }
+                case Door door:
+                {
+                    var mass = 1.0;
+                    var affectedByGravity = true;
+                    var affectedByBoundaries = true;
+                    var percentageOpen = 0.0;
+
+                    var doorCenter = new Vector2D(door.Position.Z, -door.Position.X);
+                    var doorWidth = 0.9;
+                    var radians = door.Orientation * Math.PI / 180;
+
+                    var doorHalfVector = new Vector2D(
+                        Math.Sin(radians),
+                        Math.Cos(radians)) * 0.5 * doorWidth;
+
+                    var point1 = doorCenter - doorHalfVector;
+                    var point2 = doorCenter + doorHalfVector;
+
+                    var bodyDoor = new BodyDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, null)
+                    {
+                        Point1 = point1,
+                        Point2 = point2,
+                    };
+
+                    initialState.AddBodyState(new BodyStateDoor(bodyDoor, true, percentageOpen));
 
                     break;
                 }
