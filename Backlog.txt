@@ -70,6 +70,11 @@ Done:
 * Sørg for at event triggers ikke vises i 3D scenen
 
 Todo:
+* Support for døre
+  - Det registreres ikke, hvis man rammer en (åben) dør lige på dens kant (eksponer og fix dette i Craft)
+* Hvis man går ind i Game Menu og tilbage, så lukkes alle døre. Det virker ulogisk,
+  og derudover risikerer playeren at stå oven i en dør!
+* Døre skal vises i 3D-viewet
 * Tilføj Undermountain, level 1 som site
 * Hiv circle med i det nye setup
   (ting, der ikke influerer på engine skal alligevel med, fordi de skal indekseres)
