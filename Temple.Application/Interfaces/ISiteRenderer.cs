@@ -5,14 +5,17 @@ namespace Temple.Application.Interfaces;
 
 public interface ISiteRenderer
 {
+    // Denne bygger HELE modellen (deprecated)
     ISiteModel Build(
         SiteData siteData);
 
-    // Denne skal bygge et udsnit af 3D-modellen,
+    // Denne bygger et UDSNIT af den statiske del af 3D-modellen,
     // afhængigt af hvor spilleren befinder sig.
-    // Som udgangspunkt får den basis-objekter, så du skal
-    // lige finde ud af, hvordan du giver den, hvad den skal have for at
-    // lave f.eks. npc´er. Måske skal du lave en specialicering af Circle2D
-    ISiteModel Build(
+    ISiteModel BuildStaticPart(
         IEnumerable geometricObjects);
+
+    // Denne bygger den DYNAMISKE del af 3D-modellen
+    ISiteModel BuildDynamicPart(
+        IEnumerable geometricObjects);
+
 }

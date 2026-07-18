@@ -41,7 +41,7 @@ namespace Temple.Infrastructure.Presentation
             return new WpfSiteModel(group);
         }
 
-        public ISiteModel Build(
+        public ISiteModel BuildStaticPart(
             IEnumerable geometricObjects)
         {
             var group = new Model3DGroup();
@@ -100,6 +100,44 @@ namespace Temple.Infrastructure.Presentation
                             circle2D_cylinder.Center.X);
 
                         group.Children.Add(model2);
+                        break;
+                }
+            }
+
+            return new WpfSiteModel(group);
+        }
+
+        public ISiteModel BuildDynamicPart(
+            IEnumerable geometricObjects)
+        {
+            var group = new Model3DGroup();
+
+            var material = new MaterialGroup();
+            material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(50, 25, 25))));
+
+            foreach (var geometricObject in geometricObjects)
+            {
+                switch (geometricObject)
+                {
+                    case Craft.Math.LineSegment2D lineSegment2D:
+                        var p1 = lineSegment2D.Point1; // 8, -7
+                        var p2 = lineSegment2D.Point2; // 8, -4
+
+                        var mesh = MeshBuilder.CreateQuad(
+                            new Point3D(-p1.Y, 1, p1.X),
+                            new Point3D(-p2.Y, 1, p2.X),
+                            new Point3D(-p2.Y, 0, p2.X),
+                            new Point3D(-p1.Y, 0, p1.X));
+
+                        // Burde ikke være nødvendigt at putte material på hver af disse..
+                        var model = new GeometryModel3D
+                        {
+                            Geometry = mesh,
+                            Material = material
+                        };
+
+                        group.Children.Add(model);
+
                         break;
                 }
             }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections;
+using System.Windows;
 using System.Windows.Media.Media3D;
 using GalaSoft.MvvmLight.Command;
 using Craft.Logging;
@@ -21,7 +22,6 @@ using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
-using System.Collections;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -34,7 +34,8 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly IGameQueryService _gameQueryService;
 
         private Scene _scene2D;
-        private Model3D _scene3D;
+        private Model3D _scene3DStatic;
+        private Model3D _scene3DDynamic;
         private Point3D _cameraPosition;
         private Vector3D _lookDirection;
         private Point3D _playerLightPosition;
@@ -44,12 +45,22 @@ namespace Temple.ViewModel.DD.Exploration
 
         public GeometryViewModel GeometryViewModel { get; }
 
-        public Model3D Scene3D
+        public Model3D Scene3DStatic
         {
-            get => _scene3D;
+            get => _scene3DStatic;
             private set
             {
-                _scene3D = value;
+                _scene3DStatic = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Model3D Scene3DDynamic
+        {
+            get => _scene3DDynamic;
+            private set
+            {
+                _scene3DDynamic = value;
                 RaisePropertyChanged();
             }
         }
@@ -259,8 +270,6 @@ namespace Temple.ViewModel.DD.Exploration
                     .ToList(),
             };
 
-            //Scene3D = ((WpfSiteModel)_siteRenderer.Build(siteData)).Model3D;
-
             _scene2D = ExplorationSceneFactory.GenerateScene(
                 siteData,
                 _controller.ApplicationData.ExplorationPosition,
@@ -418,25 +427,28 @@ namespace Temple.ViewModel.DD.Exploration
                 GeometryViewModel.AddStaticGeometryLayer(
                     geometricObjects);
 
-                // Also update the 3D scene
-                Scene3D = ((WpfSiteModel)_siteRenderer.Build(geometricObjects)).Model3D;
+                // Also update the static part of the 3D scene
+                Scene3DStatic = ((WpfSiteModel)_siteRenderer.BuildStaticPart(geometricObjects)).Model3D;
             }
         }
 
         private void UpdateDynamicGeometricObjects(
             State state)
         {
-            var geometricObjects = new ArrayList();
+            // Update the dynamic part of the 2D scene
+            var geometricObjects2D = new ArrayList();
 
             state.BodyStates.ForEach(bs =>
             {
                 switch (bs.Body)
                 {
+                    // Player
                     case CircularBody circularBody:
-                        geometricObjects.Add(new Circle2D(
+                        geometricObjects2D.Add(new Circle2D(
                             new Point2D(bs.Position.X, bs.Position.Y),
                             circularBody.Radius));
                         break;
+                    // Doors
                     case BodyDoor bodyDoor:
                         var bodyStateDoor = bs as BodyStateDoor;
                         var angle = (bodyStateDoor.PercentageOpen) * 0.5 * System.Math.PI / 100;
@@ -463,7 +475,7 @@ namespace Temple.ViewModel.DD.Exploration
                             Math.Cos(angle) * doorAsVector.Y +
                             Math.Sin(angle) * hatted.Y;
 
-                        geometricObjects.Add(new LineSegment2D(
+                        geometricObjects2D.Add(new LineSegment2D(
                             new Point2D(
                                 bodyDoor.Point1.X,
                                 bodyDoor.Point1.Y),
@@ -474,7 +486,54 @@ namespace Temple.ViewModel.DD.Exploration
                 }
             });
 
-            GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects);
+            GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects2D);
+
+            // Also update the dynamic part of the 3D scene
+            var geometricObjects3D = new ArrayList();
+
+            state.BodyStates.ForEach(bs =>
+            {
+                switch (bs.Body)
+                {
+                    // Doors
+                    case BodyDoor bodyDoor:
+                        var bodyStateDoor = bs as BodyStateDoor;
+                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * System.Math.PI / 100;
+
+                        var doorAsVector = new Vector2D(
+                            bodyDoor.Point2.X - bodyDoor.Point1.X,
+                            bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+
+                        var doorWidth = doorAsVector.Length;
+                        var hatted = doorAsVector.Hat();
+
+                        if (!bodyStateDoor.OpenClockWise)
+                        {
+                            hatted = -hatted;
+                        }
+
+                        var pt2_x =
+                            bodyDoor.Point1.X +
+                            Math.Cos(angle) * doorAsVector.X +
+                            Math.Sin(angle) * hatted.X;
+
+                        var pt2_y =
+                            bodyDoor.Point1.Y +
+                            Math.Cos(angle) * doorAsVector.Y +
+                            Math.Sin(angle) * hatted.Y;
+
+                        geometricObjects3D.Add(new LineSegment2D(
+                            new Point2D(
+                                bodyDoor.Point1.X,
+                                bodyDoor.Point1.Y),
+                            new Point2D(
+                                pt2_x,
+                                pt2_y)));
+                        break;
+                }
+            });
+
+            Scene3DDynamic = ((WpfSiteModel)_siteRenderer.BuildStaticPart(geometricObjects3D)).Model3D;
         }
 
         private void UpdateFocus(
