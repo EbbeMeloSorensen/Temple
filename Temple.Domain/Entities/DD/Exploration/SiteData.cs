@@ -89,14 +89,16 @@ public class SiteData
         string doorId,
         Point2D position,
         double orientation = 0,
-        IGameCondition condition = null)
+        IGameCondition condition = null,
+        IGameCondition conditionForAccessibility = null)
     {
         SiteComponents.Add(new Door
         {
             Id = doorId,
             Position = new Vector3D(position.Y, 0, position.X),
             Orientation = orientation,
-            Condition = condition
+            Condition = condition,
+            ConditionForAccessibility = conditionForAccessibility
         });
     }
 

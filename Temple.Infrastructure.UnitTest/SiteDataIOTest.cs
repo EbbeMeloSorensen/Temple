@@ -56,7 +56,15 @@ public class SiteDataIOTest
             new (2, 2)
         });
 
-        siteData.AddDoor("door1", new Point2D(0, 0), 0);
+        siteData.AddDoor(
+            "door1",
+            new Point2D(0, 0),
+            90,
+            null,
+            new FactEstablishedCondition
+            {
+                FactId = "got_key_to_cellar_door_from_ethon"
+            });
 
         siteData.AddEventTrigger_LeaveSite(
             new Point2D(0, 0),

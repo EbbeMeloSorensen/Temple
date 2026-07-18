@@ -7,6 +7,8 @@ public class Door : ISiteComponent_Rotatable
 {
     public IGameCondition? Condition { get; set; }
 
+    public IGameCondition? ConditionForAccessibility { get; set; }
+
     public Vector3D Position { get; set; }
 
     public double Orientation { get; set; }

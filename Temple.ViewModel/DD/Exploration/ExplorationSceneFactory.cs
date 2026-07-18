@@ -8,6 +8,7 @@ using Temple.Application.Core;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.Infrastructure.GameConditions;
 using Temple.ViewModel.DD.Exploration.Bodies;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
@@ -241,8 +242,17 @@ public static class ExplorationSceneFactory
                     (bodyCollisionReport.Body2 is BodyDoor && bodyCollisionReport.Body1 is Probe))
                 {
                     var door = bodyCollisionReport.Body2 as BodyDoor;
+                    var doorIsLocked = false;
 
-                    if (true || gameQueryService.IsFactEstablished("party_talked_with_captain"))
+                    if (door is LockableDoor)
+                    {
+                        var lockableDoor = door as LockableDoor;
+                        var factEstablishedCondition = lockableDoor.ConditionForAccessibility as FactEstablishedCondition;
+
+                        doorIsLocked = !gameQueryService.IsFactEstablished(factEstablishedCondition!.FactId);
+                    }
+
+                    if (!doorIsLocked)
                     {
                         if (!gameQueryService.IsFactEstablished($"door_opened_{door.Id}"))
                         {
@@ -306,11 +316,25 @@ public static class ExplorationSceneFactory
                         throw new InvalidOperationException("Door has to have an Id");
                     }
 
-                    var bodyDoor = new BodyDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id)
+                    BodyDoor bodyDoor = null;
+
+                    if (door.ConditionForAccessibility == null)
                     {
-                        Point1 = point1,
-                        Point2 = point2,
-                    };
+                        bodyDoor = new BodyDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id)
+                        {
+                            Point1 = point1,
+                            Point2 = point2,
+                        };
+                    }
+                    else
+                    {
+                        bodyDoor = new LockableDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id)
+                        {
+                            Point1 = point1,
+                            Point2 = point2,
+                            ConditionForAccessibility = door.ConditionForAccessibility
+                        };
+                    }
 
                     var percentageOpen = 0.0;
 
