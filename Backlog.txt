@@ -80,6 +80,7 @@ Done:
 In progress:
 
 Todo:
+* Spice det med døre lidt op under anvendelse af en stl-model, så de ikke ligner lort
 * Der skal være en trigger for at vise information om et sted, såsom noget, man kan se eller høre eller lugte
 * Man skal kunne gå direkte fra et site til et andet site, såsom fra et hus til dets kælder
 * Bug for funktionalitet til døre
