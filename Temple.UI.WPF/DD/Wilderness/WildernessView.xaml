@@ -21,8 +21,14 @@
             <Button Margin="10" Width="130" Content="Go to Undermountain" Command="{Binding GoToSite_Undermountain_Command}"/>
         </StackPanel>
 
-        <ListBox Grid.Column="1">
-            
+        <ListBox Grid.Column="1"
+                 ItemsSource="{Binding Sites}"
+                 SelectedItem="{Binding SelectedSite}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Button Grid.Column="0" Grid.ColumnSpan="2"

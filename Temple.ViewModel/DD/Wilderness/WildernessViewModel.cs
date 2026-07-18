@@ -1,5 +1,6 @@
-﻿using Craft.Math;
+﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
+using Craft.Math;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Common;
@@ -11,7 +12,22 @@ namespace Temple.ViewModel.DD.Wilderness
         private readonly ApplicationController _controller;
         private readonly IGameQueryService _gameQueryService;
 
+        private SiteListBoxItemViewModel _selectedSite;
+
+        public ObservableCollection<SiteListBoxItemViewModel> Sites { get; } = new();
+
+        public SiteListBoxItemViewModel SelectedSite
+        {
+            get => _selectedSite;
+            set
+            {
+                _selectedSite = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public RelayCommand GoToInGameMenu_Command { get; }
+
         public RelayCommand GoToSite_Mine_Command { get; }
         public RelayCommand GoToSite_Village_Command { get; }
         public RelayCommand GoToSite_Graveyard_Command { get; }
@@ -23,7 +39,22 @@ namespace Temple.ViewModel.DD.Wilderness
             IGameQueryService gameQueryService)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _gameQueryService = gameQueryService ?? throw new ArgumentNullException(nameof(gameQueryService)); ;
+            _gameQueryService = gameQueryService ?? throw new ArgumentNullException(nameof(gameQueryService));
+
+            Sites.Add(new SiteListBoxItemViewModel
+            {
+                Text = "Kasper"
+            });
+
+            Sites.Add(new SiteListBoxItemViewModel
+            {
+                Text = "Jesper"
+            });
+
+            Sites.Add(new SiteListBoxItemViewModel
+            {
+                Text = "Jonathan"
+            });
 
             GoToInGameMenu_Command = new RelayCommand(() =>
             {
