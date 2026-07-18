@@ -4,8 +4,11 @@ using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Props;
 using Craft.Utils.Linq;
+using Temple.Application.Core;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
+using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.Infrastructure.Dialogues.GameEventTriggers;
 using Temple.ViewModel.DD.Exploration.Bodies;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
@@ -18,9 +21,7 @@ public static class ExplorationSceneFactory
 {
     public static Scene GenerateScene(
         SiteData siteData,
-        Vector2D initialPositionOfParty,
-        double initialOrientationOfParty,
-        IReadOnlySet<string> battlesWon,
+        ApplicationController controller,
         IGameQueryService gameQueryService)
     {
         var ballRadius = 0.16;
@@ -28,9 +29,9 @@ public static class ExplorationSceneFactory
         var initialState = new State();
 
         initialState.AddBodyState(
-            new BodyStateClassic(new Player(1, ballRadius), position: initialPositionOfParty)
+            new BodyStateClassic(new Player(1, ballRadius), position: controller.ApplicationData.ExplorationPosition)
             {
-                Orientation = initialOrientationOfParty
+                Orientation = controller.ApplicationData.ExplorationOrientation!.Value
             });
 
         var standardGravity = 0.0;
@@ -113,6 +114,9 @@ public static class ExplorationSceneFactory
                 {
                     // Final step of activation
                     openedDoors.Add(activatedDoor);
+
+                    var factId = $"door_opened_{activatedDoor.Tag}";
+                    controller.EventBus.Publish(new FactEstablishedEvent(factId));
                     activatedDoor = null;
                 }
 
@@ -239,10 +243,13 @@ public static class ExplorationSceneFactory
                 {
                     var door = bodyCollisionReport.Body2 as BodyDoor;
 
-                    if (!openedDoors.Contains(door))
+                    if (true || gameQueryService.IsFactEstablished("party_talked_with_captain"))
                     {
-                        activatedDoor = door;
-                        doorActivationCounter = doorActivationMaxCount;
+                        if (!openedDoors.Contains(door))
+                        {
+                            activatedDoor = door;
+                            doorActivationCounter = doorActivationMaxCount;
+                        }
                     }
                 }
             }
@@ -296,7 +303,12 @@ public static class ExplorationSceneFactory
                     var point1 = doorCenter - doorHalfVector;
                     var point2 = doorCenter + doorHalfVector;
 
-                    var bodyDoor = new BodyDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, null)
+                    if (string.IsNullOrEmpty(door.Id))
+                    {
+                        throw new InvalidOperationException("Door has to have an Id");
+                    }
+
+                    var bodyDoor = new BodyDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id)
                     {
                         Point1 = point1,
                         Point2 = point2,
@@ -338,7 +350,7 @@ public static class ExplorationSceneFactory
                         scriptedBattleEventTrigger.Point2,
                         scriptedBattleEventTrigger.EventID,
                         scriptedBattleEventTrigger.EntranceID,
-                        battlesWon);
+                        controller.ApplicationData.BattlesWon);
                     break;
                 }
             }

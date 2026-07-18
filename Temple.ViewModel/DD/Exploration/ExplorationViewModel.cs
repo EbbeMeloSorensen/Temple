@@ -272,9 +272,10 @@ namespace Temple.ViewModel.DD.Exploration
 
             _scene2D = ExplorationSceneFactory.GenerateScene(
                 siteData,
-                _controller.ApplicationData.ExplorationPosition,
-                _controller.ApplicationData.ExplorationOrientation.Value,
-                _controller.ApplicationData.BattlesWon,
+                _controller,
+                //_controller.ApplicationData.ExplorationPosition,
+                //_controller.ApplicationData.ExplorationOrientation.Value,
+                //_controller.ApplicationData.BattlesWon,
                 _gameQueryService);
 
             InitializeGeometryDataStore(_scene2D);

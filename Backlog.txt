@@ -69,13 +69,26 @@ Done:
 * Hiv cylinder med i det nye setup
 * Sørg for at event triggers ikke vises i 3D scenen
 
+In progress:
+* Alle døre skal have et unikt tag (ok)
+* Man kan kun (i almindelighed) åbne døre, hvis man har snakket med kaptajnen (fact id: party_talked_with_captain) (OK)
+* Der skal gemmes information om, hvilke døre, der er åbnet (OK)
+* Informationen om, hvilke døre, der er åbnet, skal bruges under initialisering af exploration tilstanden
+* Det skal være specifikt fra dør til dør, om der er en condition for at de kan åbnes
+
 Todo:
+* Der skal gemmes information om, hvilke døre, der er åbnet
+* Brush up på logik for game progress
+  - Hvad sker, når man har fået en nøgle af Ethon?
+    -> Det etableres et fact med id: ""got_key_to_cellar_door_from_ethon"
+  - Hvordan etableres der et fact?
+    -> Man publicerer et event på "Event Bussen", som tilgås via Application Controlleren
+  - Nogle døre skal kun kunne åbnes, hvis en given game condition gør sig gældende.
 * Support for døre
-  - Døre skal vises i 3D-viewet
+  - Døre skal vises i 3D-viewet (OK)
   - Det registreres ikke, hvis man rammer en (åben) dør lige på dens kant (eksponer og fix dette i Craft)
   - Hvis man går ind i Game Menu og tilbage, så lukkes alle døre. Det virker ulogisk,
     og derudover risikerer playeren at stå oven i en dør!
-  - Nogle døre skal kun kunne åbnes, hvis en given game condition gør sig gældende.
 * Tilføj Undermountain, level 1 som site
 * Hiv circle med i det nye setup
   (ting, der ikke influerer på engine skal alligevel med, fordi de skal indekseres)
