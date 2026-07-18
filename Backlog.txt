@@ -80,6 +80,8 @@ Done:
 In progress:
 
 Todo:
+* Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked
+  - i stedet for at have hardkodede buttons for de sites, der er, skal den have en liste over buttons, der genereres ud fra unlocked sites
 * Spice det med døre lidt op under anvendelse af en stl-model, så de ikke ligner lort
 * Der skal være en trigger for at vise information om et sted, såsom noget, man kan se eller høre eller lugte
 * Man skal kunne gå direkte fra et site til et andet site, såsom fra et hus til dets kælder
@@ -90,8 +92,6 @@ Todo:
   (ting, der ikke influerer på engine skal alligevel med, fordi de skal indekseres)
 * Sørg for at alt nulstilles, når man starter et nyt spil
   (hvis man slår rotter ihjel og så gennemfører spillet og starter et nyt, så nulstilles quests ikke, dvs de 2 npc'er, der kommer senere, optræder i village)
-* Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked
-  - i stedet for at have 3 hardkodede buttons for de 3 sites, så skal den have en liste over buttons, der genereres ud fra unlocked sites
 * BattleSceneFactory skal ikke hardkode battlescenes men derimod læse dem fra fil. Desuden skal den laves som interface, lige som de andre factories og services
 * BattleSceneFactory skal gøre brug af en CreatureFactory
 * Man skal ikke kunne komme hen til minen, før man har klaret questen om at redde Ethon

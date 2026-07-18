@@ -56,6 +56,7 @@ public class ApplicationController
         ApplicationData = new ApplicationData();
 
         EventBus.Subscribe<KnowledgeGainedEvent>(HandleKnowledgeGained);
+        EventBus.Subscribe<FactEstablishedEvent>(HandleFactEstablished);
         EventBus.Subscribe<BattleWonEvent>(HandleBattleWon);
         EventBus.Subscribe<SiteUnlockedEvent>(HandleSiteUnlocked);
     }
@@ -239,6 +240,12 @@ public class ApplicationController
         KnowledgeGainedEvent e)
     {
         ApplicationData.KnowledgeGained.Add(e.KnowledgeId);
+    }
+
+    private void HandleFactEstablished(
+        FactEstablishedEvent e)
+    {
+        ApplicationData.FactsEstablished.Add(e.FactId);
     }
 
     private void HandleBattleWon(
