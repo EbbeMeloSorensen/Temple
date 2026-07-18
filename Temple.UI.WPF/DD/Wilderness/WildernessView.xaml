@@ -8,7 +8,12 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignData WildernessViewModel}">
     <Grid Background="Black">
-        <StackPanel VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Button Margin="10" Width="130" Content="Go to Mine" Command="{Binding GoToSite_Mine_Command}"/>
             <Button Margin="10" Width="130" Content="Go to Village" Command="{Binding GoToSite_Village_Command}"/>
             <Button Margin="10" Width="130" Content="Go to Graveyard" Command="{Binding GoToSite_Graveyard_Command}"/>
@@ -16,7 +21,12 @@
             <Button Margin="10" Width="130" Content="Go to Undermountain" Command="{Binding GoToSite_Undermountain_Command}"/>
         </StackPanel>
 
-        <Button Content="In-Game Menu" Width="120" Height ="30"
+        <ListBox Grid.Column="1">
+            
+        </ListBox>
+
+        <Button Grid.Column="0" Grid.ColumnSpan="2"
+                Content="In-Game Menu" Width="120" Height ="30"
                 VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20"
                 Command="{Binding GoToInGameMenu_Command}"/>
     </Grid>

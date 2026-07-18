@@ -106,8 +106,8 @@ public class ApplicationController
         GeneratePartyData();
 
         ApplicationData.CurrentSiteId = "village";
-        //ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
-        ApplicationData.ExplorationPosition = new Vector2D(9.5, -7.5);
+        ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
+        //ApplicationData.ExplorationPosition = new Vector2D(9.5, -7.5);
         ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
 
         _applicationStateMachine.NextPayload = new InterludePayload
