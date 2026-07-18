@@ -80,6 +80,8 @@ Done:
 In progress:
 
 Todo:
+* Der skal være en trigger for at vise information om et sted, såsom noget, man kan se eller høre eller lugte
+* Man skal kunne gå direkte fra et site til et andet site, såsom fra et hus til dets kælder
 * Bug for funktionalitet til døre
   - Det registreres ikke, hvis man rammer en (åben) dør lige på dens kant (eksponer og fix dette i Craft)
 * Tilføj Undermountain, level 1 som site
