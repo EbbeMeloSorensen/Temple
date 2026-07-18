@@ -8,7 +8,6 @@ using Temple.Application.Core;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.Infrastructure.Dialogues.GameEventTriggers;
 using Temple.ViewModel.DD.Exploration.Bodies;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
@@ -75,7 +74,7 @@ public static class ExplorationSceneFactory
             return body1 is BodyDoor || body2 is BodyDoor;
         };
 
-        var openedDoors = new HashSet<BodyDoor>();
+        //var openedDoors = new HashSet<BodyDoor>();
         BodyDoor activatedDoor = null;
         var doorActivationMaxCount = 20;
         var doorActivationCounter = 0;
@@ -113,7 +112,7 @@ public static class ExplorationSceneFactory
                 if (doorActivationCounter == 0)
                 {
                     // Final step of activation
-                    openedDoors.Add(activatedDoor);
+                    //openedDoors.Add(activatedDoor);
 
                     var factId = $"door_opened_{activatedDoor.Tag}";
                     controller.EventBus.Publish(new FactEstablishedEvent(factId));
@@ -245,7 +244,7 @@ public static class ExplorationSceneFactory
 
                     if (true || gameQueryService.IsFactEstablished("party_talked_with_captain"))
                     {
-                        if (!openedDoors.Contains(door))
+                        if (!gameQueryService.IsFactEstablished($"door_opened_{door.Id}"))
                         {
                             activatedDoor = door;
                             doorActivationCounter = doorActivationMaxCount;
@@ -290,7 +289,6 @@ public static class ExplorationSceneFactory
                     var mass = 1.0;
                     var affectedByGravity = true;
                     var affectedByBoundaries = true;
-                    var percentageOpen = 0.0;
 
                     var doorCenter = new Vector2D(door.Position.Z, -door.Position.X);
                     var doorWidth = 0.9;
@@ -313,6 +311,13 @@ public static class ExplorationSceneFactory
                         Point1 = point1,
                         Point2 = point2,
                     };
+
+                    var percentageOpen = 0.0;
+
+                    if (gameQueryService.IsFactEstablished($"door_opened_{door.Id}"))
+                    {
+                        percentageOpen = 100;
+                    }
 
                     initialState.AddBodyState(new BodyStateDoor(bodyDoor, true, percentageOpen));
 
