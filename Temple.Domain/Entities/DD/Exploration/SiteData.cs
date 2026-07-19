@@ -5,6 +5,9 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class SiteData
 {
+    public Point2D StartPosition { get; set; }
+    public double StartOrientation { get; set; }
+
     public List<ISiteComponent> SiteComponents { get; set; } = new();
 
     public void AddQuad(

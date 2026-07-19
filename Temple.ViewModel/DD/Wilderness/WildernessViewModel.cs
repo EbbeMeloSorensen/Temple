@@ -68,36 +68,28 @@ namespace Temple.ViewModel.DD.Wilderness
 
             GoToSite_Mine_Command = new RelayCommand(() =>
             {
-                _controller.ApplicationData.ExplorationPosition = new Vector2D(0.5, -0.5);
-                _controller.ApplicationData.ExplorationOrientation = 0.5 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "mine" });
             });
 
             GoToSite_Village_Command = new RelayCommand(() =>
             {
-                _controller.ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
-                _controller.ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "village" });
             });
 
             GoToSite_Graveyard_Command = new RelayCommand(() =>
             {
-                _controller.ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
-                _controller.ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "graveyard" });
             });
 
             GoToSite_Maze_Command = new RelayCommand(() =>
             {
                 _controller.ApplicationData.ExplorationPosition = new Vector2D(1.5, 0.5);
-                _controller.ApplicationData.ExplorationOrientation = 0.5 * Math.PI;
+                _controller.ApplicationData.ExplorationOrientation = 90;
                 _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "maze" });
             });
 
             GoToSite_Undermountain_Command = new RelayCommand(() =>
             {
-                _controller.ApplicationData.ExplorationPosition = new Vector2D(0, 0);
-                _controller.ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
                 _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "undermountain" });
             });
         }

@@ -10,9 +10,11 @@ public class SiteDataFactory : ISiteDataFactory
     public SiteData GenerateSiteData(
         string siteId)
     {
+        SiteData siteData = null;
+
         if (siteId == "maze")
         {
-            var siteData = new SiteData();
+            siteData = new SiteData();
 
             siteData.AddEventTrigger_LeaveSite(
                 new Point2D(1, -1),
@@ -50,6 +52,11 @@ public class SiteDataFactory : ISiteDataFactory
 
             return siteData;
         }
+
+        siteData = SiteDataIO.ReadSiteDataFromFile(
+            $"DD//Assets//SiteData//{siteId}.json");
+
+        return siteData;
 
         return new SiteData
         {

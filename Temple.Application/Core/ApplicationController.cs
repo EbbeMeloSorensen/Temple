@@ -106,9 +106,9 @@ public class ApplicationController
         GeneratePartyData();
 
         ApplicationData.CurrentSiteId = "village";
-        ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
+        //ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
         //ApplicationData.ExplorationPosition = new Vector2D(9.5, -7.5);
-        ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
+        //ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {
@@ -171,6 +171,11 @@ public class ApplicationController
 
     public void GoToWilderness()
     {
+        // Stop storing the exploration position so that the start position from
+        // a site will be used if reentering that site
+        ApplicationData.ExplorationPosition = null;
+        ApplicationData.ExplorationOrientation = null;
+
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.GoToWilderness);
     }
 

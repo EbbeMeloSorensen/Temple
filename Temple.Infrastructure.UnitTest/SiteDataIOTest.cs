@@ -536,7 +536,11 @@ public class SiteDataIOTest
     public void WriteSiteDataToFileThenReadItAndWriteItAgain()
     {
         // Arrange
-        var siteData = new SiteData();
+        var siteData = new SiteData
+        {
+            StartPosition = new Point2D(3, 4),
+            StartOrientation = 90.0
+        };
 
         var siteExtent = 20.0;
 

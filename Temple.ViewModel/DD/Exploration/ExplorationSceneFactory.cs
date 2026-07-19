@@ -28,10 +28,18 @@ public static class ExplorationSceneFactory
 
         var initialState = new State();
 
+        if (controller.ApplicationData.ExplorationPosition == null)
+        {
+            controller.ApplicationData.ExplorationPosition = siteData.StartPosition.AsVector2D();
+            controller.ApplicationData.ExplorationOrientation = siteData.StartOrientation;
+        }
+
         initialState.AddBodyState(
-            new BodyStateClassic(new Player(1, ballRadius), position: controller.ApplicationData.ExplorationPosition)
+            new BodyStateClassic(
+                new Player(1, ballRadius),
+                controller.ApplicationData.ExplorationPosition)
             {
-                Orientation = controller.ApplicationData.ExplorationOrientation!.Value
+                Orientation = controller.ApplicationData.ExplorationOrientation!.Value * Math.PI / 180
             });
 
         var standardGravity = 0.0;

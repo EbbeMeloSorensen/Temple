@@ -252,11 +252,11 @@ namespace Temple.ViewModel.DD.Exploration
 
             _controller.ApplicationData.CurrentSiteId = explorationPayload.SiteId;
 
-            if (_controller.ApplicationData.ExplorationPosition == null ||
-                _controller.ApplicationData.ExplorationOrientation == null)
-            {
-                throw new InvalidOperationException("Position and orientation needed here");
-            }
+            //if (_controller.ApplicationData.ExplorationPosition == null ||
+            //    _controller.ApplicationData.ExplorationOrientation == null)
+            //{
+            //    throw new InvalidOperationException("Position and orientation needed here");
+            //}
 
             var siteData = _siteDataFactory.GenerateSiteData(
                 explorationPayload.SiteId);
@@ -264,18 +264,20 @@ namespace Temple.ViewModel.DD.Exploration
             // Exclude site components having a unfulfilled game condition
             siteData = new SiteData
             {
+                StartPosition = siteData.StartPosition,
+                StartOrientation = siteData.StartOrientation,
                 SiteComponents = siteData.SiteComponents
                     .Where(_ => _.Condition == null ||
                                 _.Condition.Evaluate(_gameQueryService))
                     .ToList(),
             };
 
+            //_controller.ApplicationData.ExplorationPosition = siteData.StartPosition.AsVector2D();
+            //_controller.ApplicationData.ExplorationOrientation = siteData.StartOrientation;
+
             _scene2D = ExplorationSceneFactory.GenerateScene(
                 siteData,
                 _controller,
-                //_controller.ApplicationData.ExplorationPosition,
-                //_controller.ApplicationData.ExplorationOrientation.Value,
-                //_controller.ApplicationData.BattlesWon,
                 _gameQueryService);
 
             InitializeGeometryDataStore(_scene2D);
@@ -379,7 +381,7 @@ namespace Temple.ViewModel.DD.Exploration
                 var orientation = bodyStateOfProtagonist.Orientation;
 
                 _controller.ApplicationData.ExplorationPosition = position;
-                _controller.ApplicationData.ExplorationOrientation = orientation;
+                _controller.ApplicationData.ExplorationOrientation = orientation * 180.0 / Math.PI;
 
                 CameraPosition = new Point3D(
                     -position.Y,
@@ -544,9 +546,9 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                //Scaling = new Size(0.015, 0.015) // (Ordinary)
+                Scaling = new Size(0.015, 0.015) // (Ordinary)
                 //Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
-                Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
+                //Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
             };
         }
     }
