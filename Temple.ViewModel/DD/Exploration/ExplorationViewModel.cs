@@ -544,9 +544,9 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                Scaling = new Size(0.015, 0.015) // (Ordinary)
+                //Scaling = new Size(0.015, 0.015) // (Ordinary)
                 //Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
-                //Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
+                Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
             };
         }
     }
