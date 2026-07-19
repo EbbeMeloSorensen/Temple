@@ -376,6 +376,7 @@ public static class ExplorationSceneFactory
                         leaveSiteEventTrigger.EventID)
                         {
                             Visible = false
+                            //Visible = true // (for diagnostics)
                         });
 
                     break;

@@ -16,7 +16,6 @@
     <None Remove="DD\Assets\SiteData\graveyard.json" />
     <None Remove="DD\Assets\SiteData\mine.json" />
     <None Remove="DD\Assets\SiteData\undermountain.json" />
-    <None Remove="DD\Assets\SiteData\undermountain_bak.json" />
     <None Remove="DD\Assets\SiteData\village.json" />
     <None Remove="DD\Images\alyth.png" />
     <None Remove="DD\Images\Archer.PNG" />
@@ -75,9 +74,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DD\Assets\Quests\quests.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DD\Assets\SiteData\undermountain_bak.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DD\Assets\SiteData\undermountain.json">

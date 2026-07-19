@@ -169,6 +169,18 @@
                     "Z": -3.0
                 }
             ]
+        },
+        {
+            "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+            "Point1": {
+                "X": 1.8,
+                "Y": 2.0
+            },
+            "Point2": {
+                "X": 1.8,
+                "Y": -2.0
+            },
+            "EventID": "Exit_Wilderness"
         }
     ]
 }

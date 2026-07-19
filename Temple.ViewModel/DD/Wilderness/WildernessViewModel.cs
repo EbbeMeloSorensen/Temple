@@ -23,16 +23,22 @@ namespace Temple.ViewModel.DD.Wilderness
             {
                 _selectedSite = value;
                 RaisePropertyChanged();
+
+                if (_selectedSite.Text == "maze")
+                {
+                    // Test site
+                    _controller.ApplicationData.ExplorationPosition = new Vector2D(1.5, 0.5);
+                    _controller.ApplicationData.ExplorationOrientation = 90;
+                }
+
+                _controller.GoToNextApplicationState(new ExplorationPayload
+                {
+                    SiteId = _selectedSite.Text
+                });
             }
         }
 
         public RelayCommand GoToInGameMenu_Command { get; }
-
-        public RelayCommand GoToSite_Mine_Command { get; }
-        public RelayCommand GoToSite_Village_Command { get; }
-        public RelayCommand GoToSite_Graveyard_Command { get; }
-        public RelayCommand GoToSite_Maze_Command { get; }
-        public RelayCommand GoToSite_Undermountain_Command { get; }
 
         public WildernessViewModel(
             ApplicationController controller,
@@ -43,17 +49,27 @@ namespace Temple.ViewModel.DD.Wilderness
 
             Sites.Add(new SiteListBoxItemViewModel
             {
-                Text = "Kasper"
+                Text = "mine"
             });
 
             Sites.Add(new SiteListBoxItemViewModel
             {
-                Text = "Jesper"
+                Text = "village"
             });
 
             Sites.Add(new SiteListBoxItemViewModel
             {
-                Text = "Jonathan"
+                Text = "graveyard"
+            });
+
+            Sites.Add(new SiteListBoxItemViewModel
+            {
+                Text = "undermountain"
+            });
+
+            Sites.Add(new SiteListBoxItemViewModel
+            {
+                Text = "maze"
             });
 
             GoToInGameMenu_Command = new RelayCommand(() =>
@@ -64,33 +80,6 @@ namespace Temple.ViewModel.DD.Wilderness
                 };
 
                 _controller.GoToNextApplicationState(payload);
-            });
-
-            GoToSite_Mine_Command = new RelayCommand(() =>
-            {
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "mine" });
-            });
-
-            GoToSite_Village_Command = new RelayCommand(() =>
-            {
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "village" });
-            });
-
-            GoToSite_Graveyard_Command = new RelayCommand(() =>
-            {
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "graveyard" });
-            });
-
-            GoToSite_Maze_Command = new RelayCommand(() =>
-            {
-                _controller.ApplicationData.ExplorationPosition = new Vector2D(1.5, 0.5);
-                _controller.ApplicationData.ExplorationOrientation = 90;
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "maze" });
-            });
-
-            GoToSite_Undermountain_Command = new RelayCommand(() =>
-            {
-                _controller.GoToNextApplicationState(new ExplorationPayload { SiteId = "undermountain" });
             });
         }
     }
