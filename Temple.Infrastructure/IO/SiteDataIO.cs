@@ -8,6 +8,31 @@ namespace Temple.Infrastructure.IO;
 
 public static class SiteDataIO
 {
+    public static void WriteSiteDataToFile(
+        this SiteData siteData,
+        string fileName)
+    {
+        var json = JsonConvert.SerializeObject(
+            siteData,
+            Formatting.Indented,
+            GetJsonSerializerSettings());
+
+        using var streamWriter = new StreamWriter(fileName);
+
+        streamWriter.WriteLine(json);
+    }
+
+    public static SiteData ReadSiteDataFromFile(
+        string fileName)
+    {
+        using var streamReader = new StreamReader(fileName);
+        var json = streamReader.ReadToEnd();
+        var settings = GetJsonSerializerSettings();
+
+        return JsonConvert.DeserializeObject<SiteData>(json, settings);
+    }
+
+    // Deprecated
     public static void WriteSiteComponentsToFile(
         this IEnumerable<ISiteComponent> siteComponents,
         string fileName)
@@ -22,6 +47,7 @@ public static class SiteDataIO
         streamWriter.WriteLine(json);
     }
 
+    // Deprecated
     public static IEnumerable<ISiteComponent> ReadSiteComponentListFromFile(
         string fileName)
     {
