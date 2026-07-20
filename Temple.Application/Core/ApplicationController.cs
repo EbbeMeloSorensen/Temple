@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Craft.Math;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
@@ -44,6 +43,12 @@ public class ApplicationController
         _scopeFactory = scopeFactory;
         _logger = logger;
 
+        // Find ud af, hvilke sites, der er (af hensyn til diagnosticering)
+        // Måske skal der være nogle header-filer for sites, der bare indeholder information
+        // om, hvor på mappet de er
+
+
+
         Quests = gameIOHandler
             .ReadQuestListFromFile($"DD//Assets//Quests//quests.json")
             .ToList();
@@ -52,8 +57,6 @@ public class ApplicationController
 
         // (The QuestRuntime exists for its side effects, i.e. it is not an unused variable)
         _ = new QuestRuntime(Quests, EventBus);
-
-        ApplicationData = new ApplicationData();
 
         EventBus.Subscribe<KnowledgeGainedEvent>(HandleKnowledgeGained);
         EventBus.Subscribe<FactEstablishedEvent>(HandleFactEstablished);
@@ -105,13 +108,12 @@ public class ApplicationController
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
 
+        // Magic number
         ApplicationData.CurrentSiteId = "village";
-        //ApplicationData.ExplorationPosition = new Vector2D(14.5, -7.5);
-        //ApplicationData.ExplorationPosition = new Vector2D(9.5, -7.5);
-        //ApplicationData.ExplorationOrientation = 1.0 * Math.PI;
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {
+            // Magic number
             Text = "Så går eventyret i gang",
             PayloadForNextState = new ExplorationPayload
             {

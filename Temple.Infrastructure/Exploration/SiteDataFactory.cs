@@ -57,12 +57,6 @@ public class SiteDataFactory : ISiteDataFactory
             $"DD//Assets//SiteData//{siteId}.json");
 
         return siteData;
-
-        return new SiteData
-        {
-            SiteComponents = SiteDataIO.ReadSiteComponentListFromFile(
-                $"DD//Assets//SiteData//{siteId}.json").ToList()
-        };
     }
 
     private void AddDummyWallToSite(

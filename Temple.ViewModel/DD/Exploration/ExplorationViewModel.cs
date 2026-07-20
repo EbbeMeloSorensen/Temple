@@ -252,12 +252,6 @@ namespace Temple.ViewModel.DD.Exploration
 
             _controller.ApplicationData.CurrentSiteId = explorationPayload.SiteId;
 
-            //if (_controller.ApplicationData.ExplorationPosition == null ||
-            //    _controller.ApplicationData.ExplorationOrientation == null)
-            //{
-            //    throw new InvalidOperationException("Position and orientation needed here");
-            //}
-
             var siteData = _siteDataFactory.GenerateSiteData(
                 explorationPayload.SiteId);
 
@@ -271,9 +265,6 @@ namespace Temple.ViewModel.DD.Exploration
                                 _.Condition.Evaluate(_gameQueryService))
                     .ToList(),
             };
-
-            //_controller.ApplicationData.ExplorationPosition = siteData.StartPosition.AsVector2D();
-            //_controller.ApplicationData.ExplorationOrientation = siteData.StartOrientation;
 
             _scene2D = ExplorationSceneFactory.GenerateScene(
                 siteData,
