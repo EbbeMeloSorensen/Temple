@@ -9,6 +9,16 @@ namespace Temple.Infrastructure.IO;
 
 public class GameIOHandler : IGameIOHandler
 {
+    public IEnumerable<string> ReadSiteIdsFromDirectory(
+        string directoryPath)
+    {
+        var directoryInfo = new DirectoryInfo(directoryPath);
+        var fileInfos = directoryInfo.GetFiles("*.json");
+        var fileNames = fileInfos.Select(f => Path.GetFileNameWithoutExtension(f.Name));
+
+        return fileNames;
+    }
+
     public void WriteQuestToFile(
         Quest quest,
         string fileName)

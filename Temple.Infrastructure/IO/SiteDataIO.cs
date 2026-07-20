@@ -32,30 +32,12 @@ public static class SiteDataIO
         return JsonConvert.DeserializeObject<SiteData>(json, settings);
     }
 
-    // Deprecated
-    public static void WriteSiteComponentsToFile(
-        this IEnumerable<ISiteComponent> siteComponents,
-        string fileName)
+    public static IEnumerable<string> ReadSiteIds(
+        string path)
     {
-        var json = JsonConvert.SerializeObject(
-            siteComponents,
-            Formatting.Indented,
-            GetJsonSerializerSettings());
+        var result = new List<string>();
 
-        using var streamWriter = new StreamWriter(fileName);
-
-        streamWriter.WriteLine(json);
-    }
-
-    // Deprecated
-    public static IEnumerable<ISiteComponent> ReadSiteComponentListFromFile(
-        string fileName)
-    {
-        using var streamReader = new StreamReader(fileName);
-        var json = streamReader.ReadToEnd();
-        var settings = GetJsonSerializerSettings();
-
-        return JsonConvert.DeserializeObject<List<ISiteComponent>>(json, settings);
+        return result;
     }
 
     private static JsonSerializerSettings GetJsonSerializerSettings()

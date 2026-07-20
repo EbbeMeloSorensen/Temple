@@ -1,6 +1,6 @@
-﻿using Craft.ViewModels.Dialogs;
+﻿using MediatR;
 using GalaSoft.MvvmLight;
-using MediatR;
+using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.Interfaces.Readers;
@@ -88,8 +88,6 @@ namespace Temple.ViewModel
                 gameQueryService,
                 controller.EventBus);
 
-            // Dummy comment
-
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
             _controller.ApplicationStateChanged += (applicationState) =>
@@ -115,6 +113,7 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.GameStartup:
+                        _sitesUnlockedReader.Initialize(_controller.SiteIds);
                         _questStatusReader.Initialize(_controller.Quests);
                         _controller.ExitState();
                         break;
@@ -158,7 +157,7 @@ namespace Temple.ViewModel
                     case StateMachineState.Wilderness:
                         CurrentViewModel = new WildernessViewModel(
                             _controller,
-                            gameQueryService);
+                            _sitesUnlockedReader);
                         break;
 
                     case StateMachineState.Defeat:

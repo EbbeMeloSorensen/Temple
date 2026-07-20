@@ -1,6 +1,6 @@
-﻿using Temple.Application.Core;
+﻿using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.Application.Core;
 using Temple.Application.Interfaces.Readers;
-using Temple.Domain.Entities.DD.Quests.Events;
 
 namespace Temple.ViewModel.DD.ReadModels;
 
@@ -14,6 +14,20 @@ public class SitesUnlockedReadModel : ISitesUnlockedReader
         QuestEventBus eventBus)
     {
         eventBus.Subscribe<SiteUnlockedEvent>(HandleSiteUnlocked);
+    }
+
+    public void Initialize(
+        IReadOnlyCollection<string> siteIds)
+    {
+        foreach (var siteId in siteIds)
+        {
+            if (siteId == "graveyard")
+            {
+                continue;
+            }
+
+            _sitesUnlocked.Add(siteId);
+        }
     }
 
     private void HandleSiteUnlocked(

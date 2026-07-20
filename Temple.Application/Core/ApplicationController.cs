@@ -17,6 +17,7 @@ public class ApplicationController
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
+    public IReadOnlyCollection<string> SiteIds { get; }
     public IReadOnlyCollection<Quest> Quests { get; }
 
     public QuestEventBus EventBus { get; }
@@ -47,7 +48,9 @@ public class ApplicationController
         // Måske skal der være nogle header-filer for sites, der bare indeholder information
         // om, hvor på mappet de er
 
-
+        SiteIds = gameIOHandler
+            .ReadSiteIdsFromDirectory($"DD//Assets//SiteData")
+            .ToList();
 
         Quests = gameIOHandler
             .ReadQuestListFromFile($"DD//Assets//Quests//quests.json")
@@ -81,8 +84,8 @@ public class ApplicationController
             Report("Seeding database...");
             await Seeding.SeedDatabase(db);
 
-            Report("Finalizing startup...");
-            await Task.Delay(100); // Simulate additional initialization
+            //Report("Finalizing startup...");
+            ///await Task.Delay(100); // Simulate additional initialization
 
             _applicationStateMachine.Fire(ApplicationStateShiftTrigger.Initialize); // Starting → MainMenu
             Report("Application is ready.");

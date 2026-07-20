@@ -3,14 +3,13 @@ using GalaSoft.MvvmLight.Command;
 using Craft.Math;
 using Temple.Application.Core;
 using Temple.Application.State.Payloads;
-using Temple.Domain.Entities.DD.Common;
+using Temple.Application.Interfaces.Readers;
 
 namespace Temple.ViewModel.DD.Wilderness
 {
     public class WildernessViewModel : TempleViewModel
     {
         private readonly ApplicationController _controller;
-        private readonly IGameQueryService _gameQueryService;
 
         private SiteListBoxItemViewModel _selectedSite;
 
@@ -42,31 +41,19 @@ namespace Temple.ViewModel.DD.Wilderness
 
         public WildernessViewModel(
             ApplicationController controller,
-            IGameQueryService gameQueryService)
+            ISitesUnlockedReader sitesUnlockedReader)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _gameQueryService = gameQueryService ?? throw new ArgumentNullException(nameof(gameQueryService));
 
-            Sites.Add(new SiteListBoxItemViewModel
+            sitesUnlockedReader.SitesUnlocked.ToList().ForEach(siteId =>
             {
-                Text = "mine"
+                Sites.Add(new SiteListBoxItemViewModel
+                {
+                    Text = siteId
+                });
             });
 
-            Sites.Add(new SiteListBoxItemViewModel
-            {
-                Text = "village"
-            });
-
-            Sites.Add(new SiteListBoxItemViewModel
-            {
-                Text = "graveyard"
-            });
-
-            Sites.Add(new SiteListBoxItemViewModel
-            {
-                Text = "undermountain"
-            });
-
+            // An extra site for testing
             Sites.Add(new SiteListBoxItemViewModel
             {
                 Text = "maze"

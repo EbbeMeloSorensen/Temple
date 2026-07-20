@@ -1,5 +1,5 @@
-﻿using Temple.Application.DD;
-using Temple.Domain.Entities.DD.Quests;
+﻿using Temple.Domain.Entities.DD.Quests;
+using Temple.Application.DD;
 
 namespace Temple.Application.Interfaces.Readers;
 

@@ -10,6 +10,9 @@ public enum IOMode
 
 public interface IGameIOHandler
 {
+    IEnumerable<string> ReadSiteIdsFromDirectory(
+        string directoryPath);
+
     public void WriteQuestsToFile(
         IEnumerable<Quest> quests,
         string fileName);
