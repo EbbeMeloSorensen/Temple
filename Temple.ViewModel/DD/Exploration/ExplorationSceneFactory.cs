@@ -375,8 +375,8 @@ public static class ExplorationSceneFactory
                         new Vector2D(leaveSiteEventTrigger.Point2.X, -leaveSiteEventTrigger.Point2.Y),
                         leaveSiteEventTrigger.EventID)
                         {
-                            Visible = false
-                            //Visible = true // (for diagnostics)
+                            //Visible = false
+                            Visible = true // (for diagnostics)
                         });
 
                     break;
@@ -419,8 +419,9 @@ public static class ExplorationSceneFactory
             new Vector2D(point2.X, -point2.Y),
             tag)
             {
-                Visible = false
-            }); ;
+                //Visible = false
+                Visible = true // for diagnostics
+        }); ;
     }
 
     // Deprecated
