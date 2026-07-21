@@ -466,6 +466,18 @@
         {
             "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
             "Point1": {
+                "X": 7.0,
+                "Y": 8.0
+            },
+            "Point2": {
+                "X": 7.0,
+                "Y": 7.0
+            },
+            "EventID": "Exit_Townhall"
+        },
+        {
+            "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+            "Point1": {
                 "X": 15.0,
                 "Y": 8.0
             },

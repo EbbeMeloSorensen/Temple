@@ -76,6 +76,7 @@ Done:
 * Informationen om, hvilke døre, der er åbnet, skal bruges under initialisering af exploration tilstanden
 * Det skal være specifikt fra dør til dør, om der er en condition for at de kan åbnes
 * Nogle døre skal kun kunne åbnes, hvis en given game condition gør sig gældende.
+* Support for at gå fra et site til et andet (village -> Townhall)
 
 In progress:
 

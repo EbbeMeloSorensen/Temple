@@ -22,6 +22,7 @@ using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
+using Temple.Application.State;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -214,6 +215,19 @@ namespace Temple.ViewModel.DD.Exploration
                 else if (outcome == "Exit_Wilderness")
                 {
                     _controller.GoToWilderness();
+                }
+                else if (outcome == "Exit_Townhall")
+                {
+                    var payload = new ExplorationPayload
+                    {
+                        SiteId = "mine"
+                    };
+
+                    // Make sure to use the default start position of the site
+                    _controller.ApplicationData.ExplorationPosition = null;
+                    _controller.ApplicationData.ExplorationOrientation = null;
+
+                    _controller.GoToNextApplicationState(payload);
                 }
                 else
                 {
