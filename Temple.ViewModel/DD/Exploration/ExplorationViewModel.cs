@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Media.Media3D;
 using GalaSoft.MvvmLight.Command;
@@ -227,9 +228,24 @@ namespace Temple.ViewModel.DD.Exploration
                             SiteId = exit_identifier
                         };
 
-                        // Make sure to use the default start position of the site
-                        _controller.ApplicationData.ExplorationPosition = null;
-                        _controller.ApplicationData.ExplorationOrientation = null;
+                        var exit_identifier_components = exit_identifier.Split("_");
+
+                        if (exit_identifier_components.Length == 4)
+                        {
+                            // Use the start position encoded in the exit identifier
+                            var x = double.Parse(exit_identifier_components[1], CultureInfo.InvariantCulture);
+                            var y = double.Parse(exit_identifier_components[2], CultureInfo.InvariantCulture);
+                            var orientation = double.Parse(exit_identifier_components[3], CultureInfo.InvariantCulture);
+
+                            _controller.ApplicationData.ExplorationPosition = new Vector2D(x, y);
+                            _controller.ApplicationData.ExplorationOrientation = orientation;
+                        }
+                        else
+                        {
+                            // Make sure to use the default start position of the site
+                            _controller.ApplicationData.ExplorationPosition = null;
+                            _controller.ApplicationData.ExplorationOrientation = null;
+                        }
 
                         _controller.GoToNextApplicationState(payload);
                     }
@@ -269,24 +285,54 @@ namespace Temple.ViewModel.DD.Exploration
             var explorationPayload = payload as ExplorationPayload
                                      ?? throw new ArgumentException("Payload is not of type ExplorationPayload", nameof(payload));
 
-            _controller.ApplicationData.CurrentSiteId = explorationPayload.SiteId;
+            var siteIdComponents = explorationPayload.SiteId.Split("_");
+            string siteId;
 
-            var siteData = _siteDataFactory.GenerateSiteData(
-                explorationPayload.SiteId);
+            Point2D? startPosition = null;
+            double? startOrientation = null;
+
+            if (siteIdComponents.Length == 4)
+            {
+                siteId = siteIdComponents[0];
+
+                var x = double.Parse(siteIdComponents[1], CultureInfo.InvariantCulture);
+                var y = double.Parse(siteIdComponents[2], CultureInfo.InvariantCulture);
+
+                startPosition = new Point2D(x, y);
+                startOrientation = double.Parse(siteIdComponents[3], CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                siteId = explorationPayload.SiteId;
+            }
+
+            _controller.ApplicationData.CurrentSiteId = siteId;
+
+            var siteData = _siteDataFactory.GenerateSiteData(siteId);
 
             // Exclude site components having a unfulfilled game condition
-            siteData = new SiteData
+            var filteredSiteData = new SiteData
             {
-                StartPosition = siteData.StartPosition,
-                StartOrientation = siteData.StartOrientation,
                 SiteComponents = siteData.SiteComponents
                     .Where(_ => _.Condition == null ||
                                 _.Condition.Evaluate(_gameQueryService))
                     .ToList(),
             };
 
+            if (startPosition != null &&
+                startOrientation.HasValue)
+            {
+                filteredSiteData.StartPosition = startPosition;
+                filteredSiteData.StartOrientation = startOrientation.Value;
+            }
+            else
+            {
+                filteredSiteData.StartPosition = siteData.StartPosition;
+                filteredSiteData.StartOrientation = siteData.StartOrientation;
+            }
+
             _scene2D = ExplorationSceneFactory.GenerateScene(
-                siteData,
+                filteredSiteData,
                 _controller,
                 _gameQueryService);
 

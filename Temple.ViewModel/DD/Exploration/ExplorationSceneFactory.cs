@@ -4,6 +4,7 @@ using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Props;
 using Craft.Utils.Linq;
+using System.Globalization;
 using Temple.Application.Core;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
@@ -372,10 +373,22 @@ public static class ExplorationSceneFactory
                 }
                 case EventTrigger_LeaveSite leaveSiteEventTrigger:
                 {
+                    var tag = leaveSiteEventTrigger.EventID;
+
+                    if (leaveSiteEventTrigger.StartPositionAtNewSite != null &&
+                        leaveSiteEventTrigger.StartOrientationAtNewSite.HasValue)
+                    {
+                        var x = leaveSiteEventTrigger.StartPositionAtNewSite.X.ToString(CultureInfo.InvariantCulture);
+                        var y = leaveSiteEventTrigger.StartPositionAtNewSite.Y.ToString(CultureInfo.InvariantCulture);
+                        var angle = leaveSiteEventTrigger.StartOrientationAtNewSite.Value.ToString(CultureInfo.InvariantCulture);
+
+                        tag = $"{tag}_{x}_{y}_{angle}";
+                    }
+
                     scene.AddBoundary(new LineSegment(
                         new Vector2D(leaveSiteEventTrigger.Point1.X, -leaveSiteEventTrigger.Point1.Y),
                         new Vector2D(leaveSiteEventTrigger.Point2.X, -leaveSiteEventTrigger.Point2.Y),
-                        leaveSiteEventTrigger.EventID)
+                        tag)
                         {
                             //Visible = false
                             Visible = true // (for diagnostics)
