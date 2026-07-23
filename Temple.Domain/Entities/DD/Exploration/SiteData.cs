@@ -108,13 +108,17 @@ public class SiteData
     public void AddEventTrigger_LeaveSite(
         Point2D point1,
         Point2D point2,
-        string eventId)
+        string eventId,
+        Point2D? startPositionAtNewSite = null,
+        double? startOrientationAtNewSite = null)
     {
         SiteComponents.Add(new EventTrigger_LeaveSite
         {
             Point1 = point1,
             Point2 = point2,
-            EventID = eventId
+            EventID = eventId,
+            StartPositionAtNewSite = startPositionAtNewSite,
+            StartOrientationAtNewSite = startOrientationAtNewSite
         });
     }
 

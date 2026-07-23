@@ -50,7 +50,12 @@
                 "X": 15.0,
                 "Y": 7.0
             },
-            "EventID": "Exit_village"
+            "EventID": "Exit_village",
+            "StartPositionAtNewSite": {
+                "X": 4.0,
+                "Y": 4.0
+            },
+            "StartOrientationAtNewSite": 90.0
         }
     ]
 }

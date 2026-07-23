@@ -75,6 +75,13 @@ public class SiteDataIOTest
             new Point2D(1, 0),
             "Exit_Wilderness");
 
+        siteData.AddEventTrigger_LeaveSite(
+            new Point2D(0, 1),
+            new Point2D(1, 1),
+            "Exit_village",
+            new Point2D(7, 9),
+            90.0);
+
         siteData.AddEventTrigger_ScriptedBattle(
             new Point2D(-1, 3),
             new Point2D(-1, 2),

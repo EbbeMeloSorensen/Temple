@@ -12,4 +12,8 @@ public class EventTrigger_LeaveSite : IEventTrigger
     public Point2D Point2 { get; set; }
 
     public string EventID { get; set; }
+
+    public Point2D? StartPositionAtNewSite { get; set; }
+
+    public double? StartOrientationAtNewSite { get; set; }
 }
