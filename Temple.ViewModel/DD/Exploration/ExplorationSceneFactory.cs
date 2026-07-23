@@ -234,6 +234,8 @@ public static class ExplorationSceneFactory
                     {
                         if (bcrWithTag.Boundary is not Boundaries.NPC)
                         {
+                            // Trigger for leaving site or scripted battle
+
                             response.Outcome = tag;
                             response.IndexOfLastState = propagatedState.Index;
                         }
