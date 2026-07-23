@@ -25,7 +25,7 @@ public static class SiteDataIO
     public static SiteData ReadSiteDataFromFile(
         string fileName)
     {
-        using var streamReader = new StreamReader(fileName);
+         using var streamReader = new StreamReader(fileName);
         var json = streamReader.ReadToEnd();
         var settings = GetJsonSerializerSettings();
 

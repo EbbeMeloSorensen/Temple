@@ -79,8 +79,10 @@ Done:
 * Support for at gå fra et site til et andet (village -> Townhall)
 
 In progress:
+* Leave_site_eventtrigger: Hvis den peger på et andet site, skal den omfatte koordinater for, hvor man skal starte på det næste site
 
 Todo:
+* Kun sites, der er tilgængelige fra Wilderness, skal figurere i Wilderness viewet. Townhall skal f.eks. ikke
 * Wilderness viewet skal ikke give adgang til alle sites fra starten af, så den skal bruge query servicen til at finde ud af, hvilke sites der er unlocked
   - i stedet for at have hardkodede buttons for de sites, der er, skal den have en liste over buttons, der genereres ud fra unlocked sites
 * Spice det med døre lidt op under anvendelse af en stl-model, så de ikke ligner lort

@@ -212,22 +212,27 @@ namespace Temple.ViewModel.DD.Exploration
 
                     _controller.GoToNextApplicationState(payload);
                 }
-                else if (outcome == "Exit_Wilderness")
+                else if (outcome.Length >= 4 && outcome.Substring(0, 4) == "Exit")
                 {
-                    _controller.GoToWilderness();
-                }
-                else if (outcome == "Exit_Townhall")
-                {
-                    var payload = new ExplorationPayload
+                    var exit_identifier = outcome.Substring(5);
+
+                    if (exit_identifier == "Wilderness")
                     {
-                        SiteId = "mine"
-                    };
+                        _controller.GoToWilderness();
+                    }
+                    else
+                    {
+                        var payload = new ExplorationPayload
+                        {
+                            SiteId = exit_identifier
+                        };
 
-                    // Make sure to use the default start position of the site
-                    _controller.ApplicationData.ExplorationPosition = null;
-                    _controller.ApplicationData.ExplorationOrientation = null;
+                        // Make sure to use the default start position of the site
+                        _controller.ApplicationData.ExplorationPosition = null;
+                        _controller.ApplicationData.ExplorationOrientation = null;
 
-                    _controller.GoToNextApplicationState(payload);
+                        _controller.GoToNextApplicationState(payload);
+                    }
                 }
                 else
                 {

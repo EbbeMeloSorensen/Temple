@@ -1,0 +1,56 @@
+{
+    "StartPosition": {
+        "X": 14.5,
+        "Y": -7.5
+    },
+    "StartOrientation": 180.0,
+    "SiteComponents": [
+        {
+            "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+            "BarrierPoints": [
+                {
+                    "X": 8.0,
+                    "Y": 0.0,
+                    "Z": 15.0
+                },
+                {
+                    "X": 12.0,
+                    "Y": 0.0,
+                    "Z": 15.0
+                },
+                {
+                    "X": 12.0,
+                    "Y": 0.0,
+                    "Z": 10.0
+                },
+                {
+                    "X": 3.0,
+                    "Y": 0.0,
+                    "Z": 10.0
+                },
+                {
+                    "X": 3.0,
+                    "Y": 0.0,
+                    "Z": 15.0
+                },
+                {
+                    "X": 7.0,
+                    "Y": 0.0,
+                    "Z": 15.0
+                }
+            ]
+        },
+        {
+            "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+            "Point1": {
+                "X": 15.0,
+                "Y": 8.0
+            },
+            "Point2": {
+                "X": 15.0,
+                "Y": 7.0
+            },
+            "EventID": "Exit_village"
+        }
+    ]
+}

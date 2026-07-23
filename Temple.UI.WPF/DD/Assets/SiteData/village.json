@@ -466,14 +466,14 @@
         {
             "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
             "Point1": {
-                "X": 7.0,
+                "X": 7.5,
                 "Y": 8.0
             },
             "Point2": {
-                "X": 7.0,
+                "X": 7.5,
                 "Y": 7.0
             },
-            "EventID": "Exit_Townhall"
+            "EventID": "Exit_townhall"
         },
         {
             "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
