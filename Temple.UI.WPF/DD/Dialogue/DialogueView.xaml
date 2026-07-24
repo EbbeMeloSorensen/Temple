@@ -39,7 +39,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" FontSize="50"
+                <TextBlock Grid.Row="0" FontSize="36"
                            Margin="20" TextWrapping="Wrap" 
                            Text="{Binding NPCText}"/>
 
@@ -52,11 +52,11 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Width="50" Height="50" VerticalAlignment="Top" Margin="11"
+                                <Button Grid.Column="0" Width="36" Height="36" VerticalAlignment="Top" Margin="11"
                                         Command="{Binding DataContext.SelectOption_Command,
                                     RelativeSource={RelativeSource AncestorType=UserControl}}"
                                         CommandParameter="{Binding OptionId}"/>
-                                <TextBlock Grid.Column="1" FontSize="50" FontStyle="Italic" TextWrapping="Wrap"
+                                <TextBlock Grid.Column="1" FontSize="36" FontStyle="Italic" TextWrapping="Wrap"
                                            Text="{Binding Text}"/>
                             </Grid>
                         </DataTemplate>
