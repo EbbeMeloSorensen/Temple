@@ -79,7 +79,8 @@ Done:
 * Support for at gå fra et site til et andet (village -> Townhall)
 
 In progress:
-* Leave_site_eventtrigger: Hvis den peger på et andet site, skal den omfatte koordinater for, hvor man skal starte på det næste site
+* Leave_site_eventtrigger: Hvis den peger på et andet site, skal den omfatte koordinater for, 
+  hvor man skal starte på det næste site
 
 Todo:
 * Kun sites, der er tilgængelige fra Wilderness, skal figurere i Wilderness viewet. Townhall skal f.eks. ikke
