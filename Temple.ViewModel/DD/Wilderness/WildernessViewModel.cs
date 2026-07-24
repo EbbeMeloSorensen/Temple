@@ -41,7 +41,8 @@ namespace Temple.ViewModel.DD.Wilderness
 
         public WildernessViewModel(
             ApplicationController controller,
-            ISitesUnlockedReader sitesUnlockedReader)
+            ISitesUnlockedReader sitesUnlockedReader,
+            bool addTestSite = false)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
 
@@ -53,11 +54,13 @@ namespace Temple.ViewModel.DD.Wilderness
                 });
             });
 
-            // An extra site for testing
-            Sites.Add(new SiteListBoxItemViewModel
+            if (addTestSite)
             {
-                Text = "maze"
-            });
+                Sites.Add(new SiteListBoxItemViewModel
+                {
+                    Text = "maze"
+                });
+            }
 
             GoToInGameMenu_Command = new RelayCommand(() =>
             {

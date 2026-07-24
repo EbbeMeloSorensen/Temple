@@ -5,6 +5,7 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class SiteData
 {
+    public bool InitiallyAccesibleFromWilderness { get; set; }
     public Point2D StartPosition { get; set; }
     public double StartOrientation { get; set; }
 
