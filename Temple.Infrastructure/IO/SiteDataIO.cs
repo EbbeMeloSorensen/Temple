@@ -65,6 +65,7 @@ public static class SiteDataIO
                     typeof(NPC),
                     typeof(Door),
                     typeof(Domain.Entities.DD.Exploration.Barrier),
+                    typeof(EventTrigger_SiteLocationInfo),
                     typeof(EventTrigger_LeaveSite),
                     typeof(EventTrigger_ScriptedBattle)
                 }

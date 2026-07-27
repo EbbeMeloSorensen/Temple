@@ -489,6 +489,18 @@
             "EventID": "Exit_Wilderness"
         },
         {
+            "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_SiteLocationInfo",
+            "Point1": {
+                "X": 13.0,
+                "Y": 6.7
+            },
+            "Point2": {
+                "X": 13.0,
+                "Y": 6.3
+            },
+            "EventID": "Info_Sound"
+        },
+        {
             "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
             "Condition": {
                 "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",

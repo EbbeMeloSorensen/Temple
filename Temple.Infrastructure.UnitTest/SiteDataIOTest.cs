@@ -71,6 +71,11 @@ public class SiteDataIOTest
                 FactId = "got_key_to_cellar_door_from_ethon"
             });
 
+        siteData.AddEventTrigger_SiteLocationInfo(
+            new Point2D(0, 0),
+            new Point2D(1, 0),
+            "Info_Sound");
+
         siteData.AddEventTrigger_LeaveSite(
             new Point2D(0, 0),
             new Point2D(1, 0),

@@ -106,6 +106,19 @@ public class SiteData
         });
     }
 
+    public void AddEventTrigger_SiteLocationInfo(
+        Point2D point1,
+        Point2D point2,
+        string eventId)
+    {
+        SiteComponents.Add(new EventTrigger_SiteLocationInfo
+        {
+            Point1 = point1,
+            Point2 = point2,
+            EventID = eventId
+        });
+    }
+
     public void AddEventTrigger_LeaveSite(
         Point2D point1,
         Point2D point2,

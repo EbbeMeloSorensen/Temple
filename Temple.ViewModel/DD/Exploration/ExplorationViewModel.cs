@@ -29,6 +29,7 @@ namespace Temple.ViewModel.DD.Exploration
 {
     public class ExplorationViewModel : TempleViewModel, IFrameAware
     {
+        private bool _pauseAfterNextUpdate;
         private readonly ApplicationController _controller;
         private GeometryDataStore _geometryDataStore;
         private readonly ISiteDataFactory _siteDataFactory;
@@ -42,6 +43,8 @@ namespace Temple.ViewModel.DD.Exploration
         private Vector3D _lookDirection;
         private Point3D _playerLightPosition;
         private Vector3D _directionalLight;
+
+        private bool _displayLocationIfo;
 
         public Engine Engine { get; }
 
@@ -103,6 +106,16 @@ namespace Temple.ViewModel.DD.Exploration
             set
             {
                 _directionalLight = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool DisplayLocationInfo
+        {
+            get => _displayLocationIfo;
+            set
+            {
+                _displayLocationIfo = value;
                 RaisePropertyChanged();
             }
         }
@@ -204,7 +217,12 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 var outcome = Engine.EngineCore.Outcome as string;
 
-                if (outcome.Length >= 3 && outcome.Substring(0, 3) == "NPC")
+                if (outcome.Length >= 4 && outcome.Substring(0, 4) == "Info")
+                {
+                    // Show Info (don´t switch to another state)
+                    DisplayLocationInfo = true;
+                }
+                else if (outcome.Length >= 3 && outcome.Substring(0, 3) == "NPC")
                 {
                     var payload = new DialoguePayload
                     {
@@ -471,6 +489,12 @@ namespace Temple.ViewModel.DD.Exploration
             if (_scene2D.ViewMode == SceneViewMode.FocusOnFirstBody)
             {
                 UpdateFocus(e.State.BodyStates.First().Position);
+            }
+
+            if (_pauseAfterNextUpdate)
+            {
+                Engine.PauseAnimation();
+                _pauseAfterNextUpdate = false;
             }
         }
 

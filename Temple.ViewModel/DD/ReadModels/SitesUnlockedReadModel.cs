@@ -21,7 +21,7 @@ public class SitesUnlockedReadModel : ISitesUnlockedReader
     {
         foreach (var siteId in siteIds)
         {
-            if (siteId == "graveyard")
+            if (siteId != "village")
             {
                 continue;
             }

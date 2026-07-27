@@ -236,7 +236,6 @@ public static class ExplorationSceneFactory
                         if (bcrWithTag.Boundary is not Boundaries.NPC)
                         {
                             // Trigger for leaving site or scripted battle
-
                             response.Outcome = tag;
                             response.IndexOfLastState = propagatedState.Index;
                         }
@@ -368,6 +367,21 @@ public static class ExplorationSceneFactory
 
                     scene.Props.Add(new PropCircle(npcId++, npcRadius * 2, new Vector2D(
                         npc.Position.Z, -npc.Position.X)));
+
+                    break;
+                }
+                case EventTrigger_SiteLocationInfo siteLocationInfoEventTrigger:
+                {
+                    var tag = siteLocationInfoEventTrigger.EventID;
+
+                    scene.AddBoundary(new LineSegment(
+                        new Vector2D(siteLocationInfoEventTrigger.Point1.X, -siteLocationInfoEventTrigger.Point1.Y),
+                        new Vector2D(siteLocationInfoEventTrigger.Point2.X, -siteLocationInfoEventTrigger.Point2.Y),
+                        tag)
+                        {
+                            //Visible = false
+                            Visible = true // (for diagnostics)
+                        });
 
                     break;
                 }
