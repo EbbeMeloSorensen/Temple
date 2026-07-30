@@ -545,10 +545,11 @@ namespace Temple.ViewModel.DD.Exploration
                 var geometricObjects =
                     _geometryDataStore.Query(GeometryViewModel.WorldWindowExpanded);
 
+                // Update the static part of the 2D scene
                 GeometryViewModel.AddStaticGeometryLayer(
                     geometricObjects);
 
-                // Also update the static part of the 3D scene
+                // Update the static part of the 3D scene
                 Scene3DStatic = ((WpfSiteModel)_siteRenderer.BuildStaticPart(geometricObjects)).Model3D;
             }
         }
