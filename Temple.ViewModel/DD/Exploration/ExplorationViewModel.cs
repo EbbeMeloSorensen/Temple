@@ -19,6 +19,7 @@ using Temple.Domain.Entities.DD.Exploration;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
@@ -43,6 +44,7 @@ namespace Temple.ViewModel.DD.Exploration
         private Point3D _playerLightPosition;
         private Vector3D _directionalLight;
 
+        private string _locationInfo;
         private bool _displayLocationIfo;
 
         public Engine Engine { get; }
@@ -105,6 +107,16 @@ namespace Temple.ViewModel.DD.Exploration
             set
             {
                 _directionalLight = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string LocationInfo
+        {
+            get => _locationInfo;
+            set
+            {
+                _locationInfo = value;
                 RaisePropertyChanged();
             }
         }
@@ -231,6 +243,13 @@ namespace Temple.ViewModel.DD.Exploration
                 if (outcome.Length >= 4 && outcome.Substring(0, 4) == "Info")
                 {
                     // Show Info (don´t switch to another state)
+
+                    var locationInfoId = outcome.Substring(5);
+
+                    controller.EventBus.Publish(new KnowledgeGainedEvent(locationInfoId));
+
+                    LocationInfo = "You notice a faint smell of cheese here.";
+
                     DisplayLocationInfo = true;
                 }
                 else if (outcome.Length >= 3 && outcome.Substring(0, 3) == "NPC")

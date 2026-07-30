@@ -79,18 +79,14 @@ Done:
 * Support for at gå fra et site til et andet (village -> Townhall)
 
 In progress:
+* Der skal være triggers for noget, som man bare oplever - i form af lyd, lugt, noget man ser osv.
+  - det skal minde om det med scritped battle triggers, så de kun kan trigges én gang
+  - Animationen skal IKKE pauses - den skal STOPPES, som hvis man går over i Game Menu. Når man så trykker på Continue,
+    startes en NY animation og scenen genpopuleres (spilleren ser det ikke) (OK)
+  - Når man trigger en, skal knowledgegained opdateres (OK)
+  - Det, der vises som tekst, skal hentes fra en factory
 * Leave_site_eventtrigger: Hvis den peger på et andet site, skal den omfatte koordinater for, 
   hvor man skal starte på det næste site. Du kan overveje somehow at bruge koordinater af hensyn til brugeroplevelsen
-* Der skal være triggers for noget, som man bare oplever - i form af lyd, lugt, noget man ser osv.
-  -> Du have forestillet dig, at du bare kunne genbruge logikken fra scripted_battle event trigger,
-     men det er ikke så ligetil, da du jo gerne bare vil PAUSE animationen frem for at skifte tilstand...
-     Desuden vil du gerne FJERNE triggeren fra scenen, så den ikke trigges igen.
-     Måske skal du gøre det med en speciel boundary eller bare tillade, at man fjerner den fra den "statiske" collection...
-     ..Du vil helst ikke svine EngineCore til med nye ansvar - den ved jo ikke noget om at pause animationen,
-       da det ligger hos Engine-klassen, som er host for EngineCore
-       .. Så er det nok bedre somehow at bruge et event eller et callback til at informere den viewmodel,
-          der er host for Enginen...
-          .. skal man passe en delegate til GenerateScene-metoden i ExplorationSceneFactory-klassen?
   
 Todo:
 * Kun sites, der er tilgængelige fra Wilderness, skal figurere i Wilderness viewet. Townhall skal f.eks. ikke.

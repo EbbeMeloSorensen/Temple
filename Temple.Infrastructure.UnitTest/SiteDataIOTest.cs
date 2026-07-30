@@ -74,7 +74,7 @@ public class SiteDataIOTest
         siteData.AddEventTrigger_SiteLocationInfo(
             new Point2D(0, 0),
             new Point2D(1, 0),
-            "Info_Sound");
+            "Info_smell");
 
         siteData.AddEventTrigger_LeaveSite(
             new Point2D(0, 0),
