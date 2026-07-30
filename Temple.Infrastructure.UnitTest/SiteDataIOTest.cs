@@ -93,6 +93,9 @@ public class SiteDataIOTest
             new Point2D(-1, 2),
             "Dungeon 1, Room A, Goblin");
 
+        siteData.AddLocationInfo("bamse", "kylling");
+        siteData.AddLocationInfo("aske", "luna");
+
         var fileName = @"C:\Temp\test_site_data.json";
 
         // Act (Write)

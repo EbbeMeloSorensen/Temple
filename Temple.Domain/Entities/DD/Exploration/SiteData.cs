@@ -11,6 +11,20 @@ public class SiteData
 
     public List<ISiteComponent> SiteComponents { get; set; } = new();
 
+    public Dictionary<string, string>? LocationInfo { get; set; }
+
+    public void AddLocationInfo(
+        string locationInfoId,
+        string text)
+    {
+        if (LocationInfo == null)
+        {
+            LocationInfo = new Dictionary<string, string>();
+        }
+
+        LocationInfo[locationInfoId] = text;
+    }
+
     public void AddQuad(
         Point3D point1,
         Point3D point2,

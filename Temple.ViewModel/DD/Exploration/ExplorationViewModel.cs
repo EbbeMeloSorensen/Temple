@@ -44,6 +44,7 @@ namespace Temple.ViewModel.DD.Exploration
         private Point3D _playerLightPosition;
         private Vector3D _directionalLight;
 
+        private Dictionary<string, string>? _locationInfoDictionary;
         private string _locationInfo;
         private bool _displayLocationIfo;
 
@@ -248,7 +249,11 @@ namespace Temple.ViewModel.DD.Exploration
 
                     controller.EventBus.Publish(new KnowledgeGainedEvent(locationInfoId));
 
-                    LocationInfo = "You notice a faint smell of cheese here.";
+                    //LocationInfo = "You notice a foul smell of cheese here.";
+
+                    LocationInfo = _locationInfoDictionary.ContainsKey(locationInfoId)
+                        ? _locationInfoDictionary[locationInfoId]
+                        : "location info id not found in site data";
 
                     DisplayLocationInfo = true;
                 }
@@ -357,6 +362,9 @@ namespace Temple.ViewModel.DD.Exploration
             _controller.ApplicationData.CurrentSiteId = siteId;
 
             var siteData = _siteDataFactory.GenerateSiteData(siteId);
+
+            // Store the location info
+            _locationInfoDictionary = siteData.LocationInfo;
 
             // Exclude site components having a unfulfilled game condition
             var filteredSiteData = new SiteData

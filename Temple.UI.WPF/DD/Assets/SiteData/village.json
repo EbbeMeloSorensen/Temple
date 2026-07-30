@@ -502,10 +502,29 @@
         "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
         "Condition": {
           "$type": "Temple.Infrastructure.GameConditions.KnowledgeGainedCondition",
-          "KnowledgeId": "smell"
+          "KnowledgeId": "smell1"
         }
       },
-      "EventID": "Info_smell"
+      "EventID": "Info_smell1"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_SiteLocationInfo",
+      "Point1": {
+        "X": 12.0,
+        "Y": 6.7
+      },
+      "Point2": {
+        "X": 12.0,
+        "Y": 6.3
+      },
+      "Condition": {
+        "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
+        "Condition": {
+          "$type": "Temple.Infrastructure.GameConditions.KnowledgeGainedCondition",
+          "KnowledgeId": "smell2"
+        }
+      },
+      "EventID": "Info_smell2"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
@@ -547,5 +566,10 @@
       },
       "EventID": "bugbear_chieftain"
     }
-  ]
+  ],
+  "LocationInfo": {
+    "smell1": "You notice a foul smell of cheese here.",
+    "smell2": "Here, it smells of cheese.",
+    "sight": "Someone wrote \"Certain death this way\" on this section of the wall"
+  }
 }
