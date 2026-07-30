@@ -77,18 +77,19 @@ Done:
 * Det skal være specifikt fra dør til dør, om der er en condition for at de kan åbnes
 * Nogle døre skal kun kunne åbnes, hvis en given game condition gør sig gældende.
 * Support for at gå fra et site til et andet (village -> Townhall)
+* Der skal være triggers for noget, som man bare oplever - i form af lyd, lugt, noget man ser osv.
+  - det skal minde om det med scritped battle triggers, så de kun kan trigges én gang i løbet af et spil
+  - Animationen skal IKKE pauses - den skal STOPPES, som hvis man går over i Game Menu. Når man så trykker på Continue,
+    startes en NY animation, og scenen genpopuleres (spilleren ser det ikke) (OK)
+  - Når man trigger en, skal knowledgegained opdateres (OK)
+  - Det, der vises som tekst, skal lægges i SiteData-filerne og hentes med SiteDataFactory
 
 In progress:
-* Der skal være triggers for noget, som man bare oplever - i form af lyd, lugt, noget man ser osv.
-  - det skal minde om det med scritped battle triggers, så de kun kan trigges én gang
-  - Animationen skal IKKE pauses - den skal STOPPES, som hvis man går over i Game Menu. Når man så trykker på Continue,
-    startes en NY animation og scenen genpopuleres (spilleren ser det ikke) (OK)
-  - Når man trigger en, skal knowledgegained opdateres (OK)
-  - Det, der vises som tekst, skal hentes fra en factory
 * Leave_site_eventtrigger: Hvis den peger på et andet site, skal den omfatte koordinater for, 
   hvor man skal starte på det næste site. Du kan overveje somehow at bruge koordinater af hensyn til brugeroplevelsen
   
 Todo:
+* Du skal kunne bygge en ~"story graf" (som ChatGpt snakkede om), så du kan vedligeholde et overblik over muligheder for game progress
 * Kun sites, der er tilgængelige fra Wilderness, skal figurere i Wilderness viewet. Townhall skal f.eks. ikke.
   - Et site skal omfatte en boolsk property, der specificerer, om sitet er locked fra starten af. "InitiallyAcessibleFromWilderness"
   - Hmm måske er det bedre, at sige, at ALLE de sites, der er tilgængelige fra Wilderness, kommer i kraft af game progress
