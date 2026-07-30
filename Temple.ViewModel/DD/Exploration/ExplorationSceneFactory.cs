@@ -11,7 +11,9 @@ using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Infrastructure.GameConditions;
 using Temple.ViewModel.DD.Exploration.Bodies;
+using Temple.ViewModel.DD.Exploration.Boundaries;
 using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
+using Cylinder = Temple.Domain.Entities.DD.Exploration.Cylinder;
 using LineSegment = Craft.Simulation.Boundaries.LineSegment;
 using NPC = Temple.Domain.Entities.DD.Exploration.NPC;
 using Scene = Craft.Simulation.Scene;
@@ -374,7 +376,7 @@ public static class ExplorationSceneFactory
                 {
                     var tag = siteLocationInfoEventTrigger.EventID;
 
-                    scene.AddBoundary(new LineSegment(
+                    scene.AddBoundary(new Trigger(
                         new Vector2D(siteLocationInfoEventTrigger.Point1.X, -siteLocationInfoEventTrigger.Point1.Y),
                         new Vector2D(siteLocationInfoEventTrigger.Point2.X, -siteLocationInfoEventTrigger.Point2.Y),
                         tag)
@@ -399,7 +401,7 @@ public static class ExplorationSceneFactory
                         tag = $"{tag}_{x}_{y}_{angle}";
                     }
 
-                    scene.AddBoundary(new LineSegment(
+                    scene.AddBoundary(new Trigger(
                         new Vector2D(leaveSiteEventTrigger.Point1.X, -leaveSiteEventTrigger.Point1.Y),
                         new Vector2D(leaveSiteEventTrigger.Point2.X, -leaveSiteEventTrigger.Point2.Y),
                         tag)
@@ -443,7 +445,7 @@ public static class ExplorationSceneFactory
             tag = $"{tag};{entranceId}";
         }
 
-        scene.AddBoundary(new LineSegment(
+        scene.AddBoundary(new Trigger(
             new Vector2D(point1.X, -point1.Y),
             new Vector2D(point2.X, -point2.Y),
             tag)

@@ -19,6 +19,10 @@
       "Vertices": [
         {
           "Text": "Dude, you talked with nebbish and lortimer",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.FactEstablishedEventTrigger",
+            "FactId": "party_talked_with_captain"
+          },
           "Id": 0
         },
         {
@@ -30,7 +34,7 @@
         {
           "VertexId1": 0,
           "VertexId2": 1,
-          "Text": "Sure did, dude"
+          "Text": "Sure did, dude."
         }
       ]
     }

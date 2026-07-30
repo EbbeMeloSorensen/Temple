@@ -20,6 +20,7 @@ using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
 using Temple.Domain.Entities.DD.Quests.Events;
+using Temple.Domain.Geometry;
 using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
@@ -426,6 +427,11 @@ namespace Temple.ViewModel.DD.Exploration
                         staticGeometryObjects.Add(new LineSegment2D(
                             new Point2D(verticalLineSegment.X, verticalLineSegment.Y0),
                             new Point2D(verticalLineSegment.X, verticalLineSegment.Y1)));
+                        break;
+                    case Boundaries.Trigger trigger:
+                        staticGeometryObjects.Add(new LineSegment2D_Trigger(
+                            new Point2D(trigger.Point1.X, trigger.Point1.Y),
+                            new Point2D(trigger.Point2.X, trigger.Point2.Y)));
                         break;
                     case LineSegment lineSegment:
                         staticGeometryObjects.Add(new LineSegment2D(

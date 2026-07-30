@@ -53,6 +53,9 @@ namespace Temple.Infrastructure.Presentation
             {
                 switch (geometricObject)
                 {
+                    case LineSegment2D_Trigger:
+                        // These are not to be rendered in the 3d model
+                        break;
                     case Craft.Math.LineSegment2D lineSegment2D:
                         var p1 = lineSegment2D.Point1; // 8, -7
                         var p2 = lineSegment2D.Point2; // 8, -4
