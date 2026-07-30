@@ -23,7 +23,6 @@ using Temple.Infrastructure.Presentation;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using Scene = Craft.Simulation.Scene;
 using Vector3D = System.Windows.Media.Media3D.Vector3D;
-using Temple.Application.State;
 
 namespace Temple.ViewModel.DD.Exploration
 {
@@ -122,6 +121,8 @@ namespace Temple.ViewModel.DD.Exploration
 
         public RelayCommand GoToInGameMenu_Command { get; }
 
+        public RelayCommand CloseLocationInfo_Command { get; }
+
         public ExplorationViewModel(
             ApplicationController controller,
             ISiteDataFactory siteDataFactory,
@@ -145,6 +146,16 @@ namespace Temple.ViewModel.DD.Exploration
                     {
                         SiteId = _controller.ApplicationData.CurrentSiteId
                     }
+                };
+
+                _controller.GoToNextApplicationState(payload);
+            });
+
+            CloseLocationInfo_Command = new RelayCommand(() =>
+            {
+                var payload = new ExplorationPayload
+                {
+                    SiteId = _controller.ApplicationData.CurrentSiteId
                 };
 
                 _controller.GoToNextApplicationState(payload);

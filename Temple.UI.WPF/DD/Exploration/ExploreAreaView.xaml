@@ -72,9 +72,8 @@
 
         <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                 Width="300" Height="200" Content="Bamse"
-                Visibility="{Binding DisplayLocationInfo, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-        </Button>
+                Visibility="{Binding DisplayLocationInfo, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{Binding CloseLocationInfo_Command}"/>
 
     </Grid>
 </UserControl>
