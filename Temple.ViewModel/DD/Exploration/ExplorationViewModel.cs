@@ -277,6 +277,7 @@ namespace Temple.ViewModel.DD.Exploration
                     }
                     else
                     {
+                        // We go directly from one site to another, such as from a street into a building
                         var payload = new ExplorationPayload
                         {
                             SiteId = exit_identifier
@@ -284,22 +285,22 @@ namespace Temple.ViewModel.DD.Exploration
 
                         var exit_identifier_components = exit_identifier.Split("_");
 
-                        if (exit_identifier_components.Length == 4)
-                        {
-                            // Use the start position encoded in the exit identifier
-                            var x = double.Parse(exit_identifier_components[1], CultureInfo.InvariantCulture);
-                            var y = double.Parse(exit_identifier_components[2], CultureInfo.InvariantCulture);
-                            var orientation = double.Parse(exit_identifier_components[3], CultureInfo.InvariantCulture);
+                        //if (exit_identifier_components.Length == 4)
+                        //{
+                        //    // Use the start position encoded in the exit identifier
+                        //    var x = double.Parse(exit_identifier_components[1], CultureInfo.InvariantCulture);
+                        //    var y = double.Parse(exit_identifier_components[2], CultureInfo.InvariantCulture);
+                        //    var orientation = double.Parse(exit_identifier_components[3], CultureInfo.InvariantCulture);
 
-                            _controller.ApplicationData.ExplorationPosition = new Vector2D(x, y);
-                            _controller.ApplicationData.ExplorationOrientation = orientation;
-                        }
-                        else
-                        {
-                            // Make sure to use the default start position of the site
-                            _controller.ApplicationData.ExplorationPosition = null;
-                            _controller.ApplicationData.ExplorationOrientation = null;
-                        }
+                        //    _controller.ApplicationData.ExplorationPosition = new Vector2D(x, y);
+                        //    _controller.ApplicationData.ExplorationOrientation = orientation;
+                        //}
+                        //else
+                        //{
+                        //    // Make sure to use the default start position of the site
+                        //    _controller.ApplicationData.ExplorationPosition = null;
+                        //    _controller.ApplicationData.ExplorationOrientation = null;
+                        //}
 
                         _controller.GoToNextApplicationState(payload);
                     }
