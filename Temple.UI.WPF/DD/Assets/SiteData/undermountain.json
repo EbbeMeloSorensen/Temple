@@ -1,10 +1,30 @@
 {
   "StartPosition": {
-    "X": 0.0,
-    "Y": 0.0
+    "X": 0,
+    "Y": 0
   },
   "StartOrientation": 180.0,
   "SiteComponents": [
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 2,
+        "Y": 0.0,
+        "Z": -1.5
+      },
+      "Orientation": 270.0,
+      "Id": "undermountain_door1"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 1.5,
+        "Y": 0.0,
+        "Z": -14
+      },
+      "Orientation": 0.0,
+      "Id": "undermountain_door2"
+    },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
@@ -50,7 +70,6 @@
         }
       ]
     },
-
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
