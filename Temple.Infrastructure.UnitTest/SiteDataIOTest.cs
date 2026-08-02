@@ -16,7 +16,6 @@ public class SiteDataIOTest
         // Arrange
         var siteData = new SiteData
         {
-            InitiallyAccesibleFromWilderness = true,
             StartPosition = new Point2D(3, 4),
             StartOrientation = 90.0
         };
