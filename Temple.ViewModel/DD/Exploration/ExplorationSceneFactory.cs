@@ -86,7 +86,6 @@ public static class ExplorationSceneFactory
             return body1 is BodyDoor || body2 is BodyDoor;
         };
 
-        //var openedDoors = new HashSet<BodyDoor>();
         BodyDoor activatedDoor = null;
         var doorActivationMaxCount = 20;
         var doorActivationCounter = 0;
@@ -124,9 +123,13 @@ public static class ExplorationSceneFactory
                 if (doorActivationCounter == 0)
                 {
                     // Final step of activation
-                    //openedDoors.Add(activatedDoor);
 
-                    var factId = $"door_opened_{activatedDoor.Tag}";
+                    var direction = currentStateOfDoor.OpenClockWise == true
+                        ? "clockwise"
+                        : "counter-clockwise";
+
+                    var factId = $"door_opened_{activatedDoor.Tag}_{direction}";
+
                     controller.EventBus.Publish(new FactEstablishedEvent(factId));
                     activatedDoor = null;
                 }
@@ -349,13 +352,20 @@ public static class ExplorationSceneFactory
                     }
 
                     var percentageOpen = 0.0;
+                    var openClockwise = true;
 
-                    if (gameQueryService.IsFactEstablished($"door_opened_{door.Id}"))
+                    if (gameQueryService.IsFactEstablished($"door_opened_{door.Id}_clockwise"))
                     {
                         percentageOpen = 100;
+                        openClockwise = true;
+                    }
+                    else if (gameQueryService.IsFactEstablished($"door_opened_{door.Id}_counter-clockwise"))
+                    {
+                        percentageOpen = 100;
+                        openClockwise = false;
                     }
 
-                    initialState.AddBodyState(new BodyStateDoor(bodyDoor, true, percentageOpen));
+                    initialState.AddBodyState(new BodyStateDoor(bodyDoor, openClockwise, percentageOpen));
 
                     break;
                 }
