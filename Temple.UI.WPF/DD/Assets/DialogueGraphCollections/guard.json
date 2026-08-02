@@ -32,7 +32,11 @@
       "IsDirected": true,
       "Vertices": [
         {
-          "Text": "Leave me alone",
+          "Text": "There is a dungeon called Undermountain close to the village",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.SiteUnlockedEventTrigger",
+            "SiteId": "undermountain"
+          },
           "Id": 0
         },
         {
