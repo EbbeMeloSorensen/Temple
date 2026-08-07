@@ -12,6 +12,7 @@
         "Y": 0.0,
         "Z": -1.5
       },
+      "Width": 0.45,
       "Orientation": 270.0,
       "Id": "undermountain_door1"
     },
@@ -22,6 +23,7 @@
         "Y": 0.0,
         "Z": -14
       },
+      "Width": 0.45,
       "Orientation": 0.0,
       "Id": "undermountain_door2"
     },

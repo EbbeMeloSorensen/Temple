@@ -316,12 +316,11 @@ public static class ExplorationSceneFactory
                     var affectedByBoundaries = true;
 
                     var doorCenter = new Vector2D(door.Position.Z, -door.Position.X);
-                    var doorWidth = 0.9;
                     var radians = door.Orientation * Math.PI / 180;
 
                     var doorHalfVector = new Vector2D(
                         Math.Sin(radians),
-                        Math.Cos(radians)) * 0.5 * doorWidth;
+                        Math.Cos(radians)) * 0.5 * door.Width;
 
                     var point1 = doorCenter - doorHalfVector;
                     var point2 = doorCenter + doorHalfVector;

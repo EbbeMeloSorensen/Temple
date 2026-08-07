@@ -64,6 +64,7 @@ public class SiteDataIOTest
             "door1",
             new Point2D(0, 0),
             90,
+            0.45,
             null,
             new FactEstablishedCondition
             {

@@ -12,6 +12,7 @@
         "Y": 0.0,
         "Z": 8
       },
+      "Width": 0.45,
       "Orientation": 0.0,
       "Id": "door1"
     },
@@ -26,6 +27,7 @@
         "Y": 0.0,
         "Z": 11.5
       },
+      "Width": 0.45,
       "Orientation": 270.0,
       "Id": "door2"
     },
@@ -40,6 +42,7 @@
         "Y": 0.0,
         "Z": 11.5
       },
+      "Width": 0.45,
       "Orientation": 90.0,
       "Id": "door3"
     },
@@ -50,6 +53,7 @@
         "Y": 0.0,
         "Z": 13
       },
+      "Width": 0.45,
       "Orientation": 0.0,
       "Id": "door4"
     },
@@ -61,6 +65,7 @@
         "Y": 0.0,
         "Z": 11.5
       },
+      "Width": 0.45,
       "Orientation": 270.0,
       "Id": "door5"
     },

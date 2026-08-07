@@ -105,7 +105,8 @@ public class SiteData
     public void AddDoor(
         string doorId,
         Point2D position,
-        double orientation = 0,
+        double orientation,
+        double width,
         IGameCondition condition = null,
         IGameCondition conditionForAccessibility = null)
     {
@@ -114,6 +115,7 @@ public class SiteData
             Id = doorId,
             Position = new Vector3D(position.Y, 0, position.X),
             Orientation = orientation,
+            Width = width,
             Condition = condition,
             ConditionForAccessibility = conditionForAccessibility
         });

@@ -11,6 +11,8 @@ public class Door : ISiteComponent_Rotatable
 
     public Vector3D Position { get; set; }
 
+    public double Width { get; set; }
+
     public double Orientation { get; set; }
 
     public string Id { get; set; }
