@@ -83,12 +83,12 @@ Done:
     startes en NY animation, og scenen genpopuleres (spilleren ser det ikke) (OK)
   - Når man trigger en, skal knowledgegained opdateres (OK)
   - Det, der vises som tekst, skal lægges i SiteData-filerne og hentes med SiteDataFactory
+* En dør skal kunne være åben fra starten af, f.eks. når man træder ind i townhall. Principielt er det jo den samme dør
 
 In progress:
 * Hvad med at sige, at hvis man går fra et site til et andet, så beamer man altså principielt ikke. Koordinater skal respekteres (OK)
 * Well - det skal de måske pr default, men teleportering er sædvanligvis en en del af et adventure spil - hvis det skal være til at holde ud
-* En dør skal kunne være åben fra starten af, f.eks. når man træder ind i townhall. Principielt er det jo den samme dør
-* Leave_site_eventtrigger: Hvis den peger på et andet site, skal den omfatte koordinater for, 
+* Leave_site_eventtrigger: Hvis den peger på et andet site, KAN den omfatte koordinater for, 
   hvor man skal starte på det næste site. Du kan overveje somehow at bruge koordinater af hensyn til brugeroplevelsen
   
 Todo:
