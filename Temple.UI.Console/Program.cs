@@ -390,8 +390,8 @@ namespace Temple.UI.Console
 
                         services.AddAppDataPersistence<PRDbContextBase>(options =>
                         {
-                            //options.UseSqlite(connectionString);
-                            options.UseNpgsql(connectionString);
+                            options.UseSqlite(connectionString);
+                            //options.UseNpgsql(connectionString);
                         });
 
                         services.AddApplication(); // registers MediatR and handlers

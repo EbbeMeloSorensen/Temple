@@ -34,8 +34,8 @@ namespace Temple.POC.WPFApp
 
                     services.AddAppDataPersistence<PRDbContextBase>(options =>
                     {
-                        //options.UseSqlite(connectionString);
-                        options.UseNpgsql(connectionString);
+                        options.UseSqlite(connectionString);
+                        //options.UseNpgsql(connectionString);
                     });
 
                     services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);

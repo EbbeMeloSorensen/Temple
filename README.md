@@ -73,6 +73,30 @@ dotnet ef migrations add InitialMigration -p Temple.Persistence.EFCore.Identity 
 
 Notice that you don't have to select anything in the "Default project" dropdown box. That was necessary for older solutions but not this one.
 
+Update 13th Aug 2026: The above instructionsmay fail. It is better to do like this:
+
+```
+dotnet ef migrations add InitialMigration -p .\Temple.Persistence.EFCore.Dummies\Temple.Persistence.EFCore.Dummies.csproj -s .\Temple.API\Temple.API.csproj --context DataContext2
+
+dotnet ef migrations add InitialMigration -p .\Temple.Persistence.EFCore.AppData\Temple.Persistence.EFCore.AppData.csproj -s .\Temple.API\Temple.API.csproj --context PRDbContextBase
+
+dotnet ef migrations add InitialMigration -p .\Temple.Persistence.EFCore.Identity\Temple.Persistence.EFCore.Identity.csproj -s .\Temple.API\Temple.API.csproj --context DataContext
+```
+
+Fedt - du famler med at skifte til en anden db engine.
+
+Det involverer disse steps:
+
+* Slet alle Migrations
+* Udkommenter options.UseNpgsql i relevante projekter (evt bare alle) og indkommenter options.UseSqlite i relevante projekter
+* Byg nye migrations med instruktionerne ovenfor
+* Sæt DefaultConnection korrekt i filen appsettings.json under projektet Temple.API
+* Sæt connection string korrekt i OnStartup metoden i filen App.xaml.cs under projektet Temple.UI.WPF og sikr, at den også kalder options.UseSqlite
+
+..så virker Temple.API og kan kaldes fra Postman, hvor dine queries ligger under C2IEDM_II.
+
+Temple.UI.WPF virker også for både Smurfs og People
+
 Here, "InitialMigration" is the name of the migration you want to generate. "Temple.Persistence.EFCore.Dummies" (after -p) is the name of the project you want to make the migration for, and Temple.API (after -s) is the name of the project that holds statements like this: `options.UseNpsql(connectionString)`. For the Temple.API project these statements specifically reside in AddApplicationServices method of the ApplicationServiceExtensions class. Notice how that method contains multiple calls to AddIdentityPersistence, specifically one for each of the data model files that are in use for the API project. The other higher order layers depending on the application layer have corresponding calls, such as the project Temple.UI.WPF that calls AddAppDataPersistence in the file App.xaml.cs. In a similar way, the method GetHost in the Program class of the Temple.UI.Console project calls GetRequiredService. Notice that the WPF application and the console application only use the migration of the project Temple.Persistence.EFCore.AppData class. This is because they don't use authentication, and they don't support management of smurfs.
 
 As such, you might use these projects instead of Temple.API when generating migrations with the Console Package Manage, but practically it make sense to use Temple.API since it contains all the datamodels.

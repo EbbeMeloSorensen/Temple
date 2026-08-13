@@ -15,7 +15,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "CoordinateSystems",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false)
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,7 +26,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Locations",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,9 +37,9 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "ObjectItems",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    AlternativeIdentificationText = table.Column<string>(type: "text", nullable: true)
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    AlternativeIdentificationText = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,24 +50,24 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "People",
                 columns: table => new
                 {
-                    ArchiveID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Superseded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Start = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    End = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    Surname = table.Column<string>(type: "text", nullable: true),
-                    Nickname = table.Column<string>(type: "text", nullable: true),
-                    Address = table.Column<string>(type: "text", nullable: true),
-                    ZipCode = table.Column<string>(type: "text", nullable: true),
-                    City = table.Column<string>(type: "text", nullable: true),
-                    Birthday = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    Category = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    Dead = table.Column<bool>(type: "boolean", nullable: true),
-                    Latitude = table.Column<double>(type: "double precision", nullable: true),
-                    Longitude = table.Column<double>(type: "double precision", nullable: true)
+                    ArchiveID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Superseded = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Start = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    End = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    Surname = table.Column<string>(type: "TEXT", nullable: true),
+                    Nickname = table.Column<string>(type: "TEXT", nullable: true),
+                    Address = table.Column<string>(type: "TEXT", nullable: true),
+                    ZipCode = table.Column<string>(type: "TEXT", nullable: true),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
+                    Birthday = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Category = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Dead = table.Column<bool>(type: "INTEGER", nullable: true),
+                    Latitude = table.Column<double>(type: "REAL", nullable: true),
+                    Longitude = table.Column<double>(type: "REAL", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,8 +78,8 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Smurfs",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,8 +90,8 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "VerticalDistances",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Dimension = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Dimension = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,7 +102,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Lines",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -119,7 +119,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Points",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -136,7 +136,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Surfaces",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,8 +153,8 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Organisations",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    NickName = table.Column<string>(type: "text", nullable: true)
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    NickName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -171,17 +171,17 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "PersonAssociations",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    ArchiveID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Superseded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Start = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    End = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    SubjectPersonID = table.Column<Guid>(type: "uuid", nullable: false),
-                    SubjectPersonArchiveID = table.Column<Guid>(type: "uuid", nullable: false),
-                    ObjectPersonID = table.Column<Guid>(type: "uuid", nullable: false),
-                    ObjectPersonArchiveID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Text = table.Column<string>(type: "text", nullable: false)
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ArchiveID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Superseded = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Start = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    End = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    SubjectPersonID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    SubjectPersonArchiveID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ObjectPersonID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ObjectPersonArchiveID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Text = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -204,15 +204,15 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "PersonComments",
                 columns: table => new
                 {
-                    ArchiveID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Superseded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Start = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    End = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    PersonID = table.Column<Guid>(type: "uuid", nullable: false),
-                    PersonArchiveID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Text = table.Column<string>(type: "text", nullable: false)
+                    ArchiveID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Superseded = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Start = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    End = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PersonID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PersonArchiveID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Text = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -229,9 +229,9 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "GeometricVolumes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    LowerVerticalDistanceID = table.Column<Guid>(type: "uuid", nullable: true),
-                    UpperVerticalDistanceID = table.Column<Guid>(type: "uuid", nullable: true)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LowerVerticalDistanceID = table.Column<Guid>(type: "TEXT", nullable: true),
+                    UpperVerticalDistanceID = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -260,10 +260,10 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "AbsolutePoints",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    LatitudeCoordinate = table.Column<double>(type: "double precision", nullable: false),
-                    LongitudeCoordinate = table.Column<double>(type: "double precision", nullable: false),
-                    VerticalDistanceId = table.Column<Guid>(type: "uuid", nullable: true)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LatitudeCoordinate = table.Column<double>(type: "REAL", nullable: false),
+                    LongitudeCoordinate = table.Column<double>(type: "REAL", nullable: false),
+                    VerticalDistanceId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -286,10 +286,10 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "LinePoints",
                 columns: table => new
                 {
-                    LineID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Index = table.Column<int>(type: "integer", nullable: false),
-                    PointId = table.Column<Guid>(type: "uuid", nullable: false),
-                    SequenceQuantity = table.Column<int>(type: "integer", nullable: false)
+                    LineID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Index = table.Column<int>(type: "INTEGER", nullable: false),
+                    PointId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    SequenceQuantity = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -312,10 +312,10 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "PointReferences",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    OriginPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    XVectorPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    YVectorPointID = table.Column<Guid>(type: "uuid", nullable: false)
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    OriginPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    XVectorPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    YVectorPointID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -350,11 +350,11 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "RelativePoints",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CoordinateSystemID = table.Column<Guid>(type: "uuid", nullable: false),
-                    XCoordinateDimension = table.Column<double>(type: "double precision", nullable: false),
-                    YCoordinateDimension = table.Column<double>(type: "double precision", nullable: false),
-                    ZCoordinateDimension = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CoordinateSystemID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    XCoordinateDimension = table.Column<double>(type: "REAL", nullable: false),
+                    YCoordinateDimension = table.Column<double>(type: "REAL", nullable: false),
+                    ZCoordinateDimension = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -377,9 +377,9 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "CorridorAreas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CenterLineID = table.Column<Guid>(type: "uuid", nullable: false),
-                    WidthDimension = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CenterLineID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    WidthDimension = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -402,10 +402,10 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Ellipses",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CentrePointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    FirstConjugateDiameterPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    SecondConjugateDiameterPointID = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CentrePointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FirstConjugateDiameterPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    SecondConjugateDiameterPointID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -440,12 +440,12 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "FanAreas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    VertexPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    MinimumRangeDimension = table.Column<double>(type: "double precision", nullable: false),
-                    MaximumRangeDimension = table.Column<double>(type: "double precision", nullable: false),
-                    OrientationAngle = table.Column<double>(type: "double precision", nullable: false),
-                    SectorSizeAngle = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    VertexPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    MinimumRangeDimension = table.Column<double>(type: "REAL", nullable: false),
+                    MaximumRangeDimension = table.Column<double>(type: "REAL", nullable: false),
+                    OrientationAngle = table.Column<double>(type: "REAL", nullable: false),
+                    SectorSizeAngle = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -468,11 +468,11 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "OrbitAreas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FirstPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    SecondPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    OrbitAreaAlignmentCode = table.Column<int>(type: "integer", nullable: false),
-                    WidthDimension = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FirstPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    SecondPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    OrbitAreaAlignmentCode = table.Column<int>(type: "INTEGER", nullable: false),
+                    WidthDimension = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -501,12 +501,12 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "PolyArcAreas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DefiningLineID = table.Column<Guid>(type: "uuid", nullable: false),
-                    BearingOriginPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    BeginBearingAngle = table.Column<double>(type: "double precision", nullable: false),
-                    EndBearingAngle = table.Column<double>(type: "double precision", nullable: false),
-                    ArcRadiusDimension = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DefiningLineID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BearingOriginPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BeginBearingAngle = table.Column<double>(type: "REAL", nullable: false),
+                    EndBearingAngle = table.Column<double>(type: "REAL", nullable: false),
+                    ArcRadiusDimension = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -535,8 +535,8 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "PolygonAreas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    BoundingLineID = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BoundingLineID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -559,11 +559,11 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "TrackAreas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    BeginPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    EndPointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    LeftWidthDimension = table.Column<double>(type: "double precision", nullable: false),
-                    RightWidthDimension = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BeginPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    EndPointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LeftWidthDimension = table.Column<double>(type: "REAL", nullable: false),
+                    RightWidthDimension = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -592,8 +592,8 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "Units",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    FormalAbbreviatedName = table.Column<string>(type: "text", nullable: false)
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FormalAbbreviatedName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -610,9 +610,9 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "ConeVolumes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DefiningSurfaceID = table.Column<Guid>(type: "uuid", nullable: false),
-                    VertexPointID = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DefiningSurfaceID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    VertexPointID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -641,9 +641,9 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "SphereVolumes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CentrePointID = table.Column<Guid>(type: "uuid", nullable: false),
-                    RadiusDimension = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CentrePointID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    RadiusDimension = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -666,8 +666,8 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                 name: "SurfaceVolumes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DefiningSurfaceID = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DefiningSurfaceID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
