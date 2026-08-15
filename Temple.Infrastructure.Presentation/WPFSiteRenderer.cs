@@ -289,18 +289,20 @@ namespace Temple.Infrastructure.Presentation
             switch (circle2D_NPC.ModelId)
             {
                 case "human male":
-                    path = @"DD\Assets\male.stl";
+                    path = @"DD\Assets\male_corrected.stl";
                     basicRotationAxis = new Vector3D(1, 0, 0);
                     basicRotationAngle = -90.0;
                     basicTranslation = new Vector3D(0, 0, 0);
-                    basicScaleFactor = 0.003;
+                    basicScaleFactor = 0.3;
                     break;
                 case "human female":
-                    path = @"DD\Assets\female.stl";
+                    path = @"DD\Assets\female_corrected.stl";
                     basicRotationAxis = new Vector3D(1, 0, 0);
                     basicRotationAngle = -90.0;
-                    basicTranslation = new Vector3D(-132.5, 0, 101);
-                    basicScaleFactor = 0.015;
+                    //basicTranslation = new Vector3D(-132.5, 0, 101);
+                    //basicScaleFactor = 0.015;
+                    basicTranslation = new Vector3D(0, 0, 0);
+                    basicScaleFactor = 0.3;
                     break;
             }
 
