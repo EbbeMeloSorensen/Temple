@@ -37,9 +37,11 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly ISiteRenderer _siteRenderer;
         private readonly IGameQueryService _gameQueryService;
 
+        private State _currentState;
         private Scene _scene2D;
         private Model3D _scene3DStatic;
         private Model3D _scene3DDynamic;
+        private Model3D _scene3DDynamicNew;
         private Point3D _cameraPosition;
         private Vector3D _lookDirection;
         private Point3D _playerLightPosition;
@@ -69,6 +71,16 @@ namespace Temple.ViewModel.DD.Exploration
             private set
             {
                 _scene3DDynamic = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Model3D Scene3DDynamicNew
+        {
+            get => _scene3DDynamicNew;
+            private set
+            {
+                _scene3DDynamicNew = value;
                 RaisePropertyChanged();
             }
         }
@@ -492,26 +504,6 @@ namespace Temple.ViewModel.DD.Exploration
         {
             Engine.EngineCore.Scene = scene;
             Engine.EngineCore.SpawnNewThread();
-
-            Engine.CurrentStateChanged += (s, e) =>
-            {
-                var bodyStateOfProtagonist = e.State.BodyStates.First() as BodyStateClassic;
-                var position = bodyStateOfProtagonist.Position;
-                var orientation = bodyStateOfProtagonist.Orientation;
-
-                _controller.ApplicationData.ExplorationPosition = position;
-                _controller.ApplicationData.ExplorationOrientation = orientation * 180.0 / Math.PI;
-
-                CameraPosition = new Point3D(
-                    -position.Y,
-                    0.5,
-                    position.X);
-
-                LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
-                DirectionalLight = LookDirection + new Vector3D(0, -0.5, 0);
-                PlayerLightPosition = CameraPosition + LookDirection * 3 + new Vector3D(0, -1, 0);
-            };
-
             Engine.StartOrResumeAnimation();
         }
 
@@ -529,11 +521,29 @@ namespace Temple.ViewModel.DD.Exploration
             object? sender,
             CurrentStateChangedEventArgs e)
         {
-            UpdateDynamicGeometricObjects(e.State);
+            _currentState = e.State;
+
+            var bodyStateOfProtagonist = _currentState.BodyStates.First() as BodyStateClassic;
+            var position = bodyStateOfProtagonist.Position;
+            var orientation = bodyStateOfProtagonist.Orientation;
+
+            _controller.ApplicationData.ExplorationPosition = position;
+            _controller.ApplicationData.ExplorationOrientation = orientation * 180.0 / Math.PI;
+
+            CameraPosition = new Point3D(
+                -position.Y,
+                0.5,
+                position.X);
+
+            LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
+            DirectionalLight = LookDirection + new Vector3D(0, -0.5, 0);
+            PlayerLightPosition = CameraPosition + LookDirection * 3 + new Vector3D(0, -1, 0);
+
+            UpdateDynamicGeometricObjects();
 
             if (_scene2D.ViewMode == SceneViewMode.FocusOnFirstBody)
             {
-                UpdateFocus(e.State.BodyStates.First().Position);
+                UpdateFocus(_currentState.BodyStates.First().Position);
             }
 
             if (_pauseAfterNextUpdate)
@@ -543,6 +553,7 @@ namespace Temple.ViewModel.DD.Exploration
             }
         }
 
+        // Denne kaldes ikke så tit - kun, når extended world window opdateres
         private void UpdateStaticGeometricObjects()
         {
             GeometryViewModel.ClearLayer(false);
@@ -557,17 +568,34 @@ namespace Temple.ViewModel.DD.Exploration
                     geometricObjects);
 
                 // Update the static part of the 3D scene
-                Scene3DStatic = ((WpfSiteModel)_siteRenderer.BuildStaticPart(geometricObjects)).Model3D;
+                Scene3DStatic = ((WpfSiteModel)_siteRenderer.Build(geometricObjects)).Model3D;
+            }
+
+            // Hent alle døre (Todo: nøjes med dem, der er tæt på spilleren)
+            if (_currentState != null)
+            {
+                _currentState.BodyStates.ForEach(bs =>
+                {
+                    switch (bs.Body)
+                    {
+                        case BodyDoor bodyDoor:
+                            var bodyStateDoor = bs as BodyStateDoor;
+                            var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
+
+                            // Todo: Tilføj et objekt til 3D scenen der, hvor døren er. Bare en kugle i første omgang
+
+                            break;
+                    }
+                });
             }
         }
 
-        private void UpdateDynamicGeometricObjects(
-            State state)
+        private void UpdateDynamicGeometricObjects()
         {
             // Update the dynamic part of the 2D scene
             var geometricObjects2D = new ArrayList();
 
-            state.BodyStates.ForEach(bs =>
+            _currentState.BodyStates.ForEach(bs =>
             {
                 switch (bs.Body)
                 {
@@ -620,14 +648,14 @@ namespace Temple.ViewModel.DD.Exploration
             // Also update the dynamic part of the 3D scene
             var geometricObjects3D = new ArrayList();
 
-            state.BodyStates.ForEach(bs =>
+            _currentState.BodyStates.ForEach(bs =>
             {
                 switch (bs.Body)
                 {
                     // Doors
                     case BodyDoor bodyDoor:
                         var bodyStateDoor = bs as BodyStateDoor;
-                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * System.Math.PI / 100;
+                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
 
                         var doorAsVector = new Vector2D(
                             bodyDoor.Point2.X - bodyDoor.Point1.X,
@@ -662,7 +690,7 @@ namespace Temple.ViewModel.DD.Exploration
                 }
             });
 
-            Scene3DDynamic = ((WpfSiteModel)_siteRenderer.BuildStaticPart(geometricObjects3D)).Model3D;
+            Scene3DDynamic = ((WpfSiteModel)_siteRenderer.Build(geometricObjects3D)).Model3D;
         }
 
         private void UpdateFocus(

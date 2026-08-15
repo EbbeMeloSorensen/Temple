@@ -11,37 +11,37 @@ namespace Temple.Infrastructure.Presentation
 {
     public class WPFSiteRenderer : ISiteRenderer
     {
+        //public ISiteModel Build(
+        //    SiteData siteData)
+        //{
+        //    var group = new Model3DGroup();
+
+        //    foreach (var siteComponent in siteData.SiteComponents)
+        //    {
+        //        // Event triggers are not relevant for the 3D scene
+        //        if (siteComponent is IEventTrigger)
+        //        {
+        //            continue;
+        //        }
+
+        //        var model = siteComponent switch
+        //        {
+        //            Quad quad => GenerateQuad(quad),
+        //            Barrier barrier => GenerateBarrier(barrier),
+        //            Cylinder cylinder => GenerateCylinder(cylinder),
+        //            Sphere sphere => GenerateSphere(sphere),
+        //            ExclamationMark exclamationMark => GenerateExclamationMark(exclamationMark),
+        //            NPC npc => GenerateNPC(npc),
+        //            _ => throw new NotSupportedException("unsupported site component")
+        //        };
+
+        //        group.Children.Add(model);
+        //    }
+
+        //    return new WpfSiteModel(group);
+        //}
+
         public ISiteModel Build(
-            SiteData siteData)
-        {
-            var group = new Model3DGroup();
-
-            foreach (var siteComponent in siteData.SiteComponents)
-            {
-                // Event triggers are not relevant for the 3D scene
-                if (siteComponent is IEventTrigger)
-                {
-                    continue;
-                }
-
-                var model = siteComponent switch
-                {
-                    Quad quad => GenerateQuad(quad),
-                    Barrier barrier => GenerateBarrier(barrier),
-                    Cylinder cylinder => GenerateCylinder(cylinder),
-                    Sphere sphere => GenerateSphere(sphere),
-                    ExclamationMark exclamationMark => GenerateExclamationMark(exclamationMark),
-                    NPC npc => GenerateNPC(npc),
-                    _ => throw new NotSupportedException("unsupported site component")
-                };
-
-                group.Children.Add(model);
-            }
-
-            return new WpfSiteModel(group);
-        }
-
-        public ISiteModel BuildStaticPart(
             IEnumerable geometricObjects)
         {
             var group = new Model3DGroup();
@@ -110,43 +110,43 @@ namespace Temple.Infrastructure.Presentation
             return new WpfSiteModel(group);
         }
 
-        public ISiteModel BuildDynamicPart(
-            IEnumerable geometricObjects)
-        {
-            var group = new Model3DGroup();
+        //public ISiteModel BuildDynamicPart(
+        //    IEnumerable geometricObjects)
+        //{
+        //    var group = new Model3DGroup();
 
-            var material = new MaterialGroup();
-            material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(50, 25, 25))));
+        //    var material = new MaterialGroup();
+        //    material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(50, 25, 25))));
 
-            foreach (var geometricObject in geometricObjects)
-            {
-                switch (geometricObject)
-                {
-                    case Craft.Math.LineSegment2D lineSegment2D:
-                        var p1 = lineSegment2D.Point1; // 8, -7
-                        var p2 = lineSegment2D.Point2; // 8, -4
+        //    foreach (var geometricObject in geometricObjects)
+        //    {
+        //        switch (geometricObject)
+        //        {
+        //            case Craft.Math.LineSegment2D lineSegment2D:
+        //                var p1 = lineSegment2D.Point1; // 8, -7
+        //                var p2 = lineSegment2D.Point2; // 8, -4
 
-                        var mesh = MeshBuilder.CreateQuad(
-                            new Point3D(-p1.Y, 1, p1.X),
-                            new Point3D(-p2.Y, 1, p2.X),
-                            new Point3D(-p2.Y, 0, p2.X),
-                            new Point3D(-p1.Y, 0, p1.X));
+        //                var mesh = MeshBuilder.CreateQuad(
+        //                    new Point3D(-p1.Y, 1, p1.X),
+        //                    new Point3D(-p2.Y, 1, p2.X),
+        //                    new Point3D(-p2.Y, 0, p2.X),
+        //                    new Point3D(-p1.Y, 0, p1.X));
 
-                        // Burde ikke være nødvendigt at putte material på hver af disse..
-                        var model = new GeometryModel3D
-                        {
-                            Geometry = mesh,
-                            Material = material
-                        };
+        //                // Burde ikke være nødvendigt at putte material på hver af disse..
+        //                var model = new GeometryModel3D
+        //                {
+        //                    Geometry = mesh,
+        //                    Material = material
+        //                };
 
-                        group.Children.Add(model);
+        //                group.Children.Add(model);
 
-                        break;
-                }
-            }
+        //                break;
+        //        }
+        //    }
 
-            return new WpfSiteModel(group);
-        }
+        //    return new WpfSiteModel(group);
+        //}
 
         private Model3D GenerateQuad(
             Quad quad)

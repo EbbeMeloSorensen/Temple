@@ -64,6 +64,8 @@
             <!-- Dynamic content like doors, etc -->
             <ModelVisual3D Content="{Binding Scene3DDynamic}"/>
 
+            <!-- Exploratory for fancying up doors-->
+            <ModelVisual3D Content="{Binding Scene3DDynamicNew}"/>
         </Viewport3D>
 
         <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="In-Game Menu"
