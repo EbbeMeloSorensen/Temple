@@ -1,24 +1,25 @@
-﻿using System.Collections;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Media.Media3D;
-using GalaSoft.MvvmLight.Command;
-using Craft.Logging;
+﻿using Craft.Logging;
 using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
+using Craft.Simulation.Boundaries;
 using Craft.Simulation.Engine;
 using Craft.Utils;
 using Craft.ViewModels.Geometry2D.Reborn;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
-using Craft.Simulation.Boundaries;
-using Temple.Domain.Entities.DD.Common;
-using Temple.Domain.Entities.DD.Exploration;
+using GalaSoft.MvvmLight.Command;
+using System.Collections;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
+using Temple.Domain.Entities.DD.Common;
+using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Domain.Geometry;
 using Temple.Infrastructure.Presentation;
@@ -446,7 +447,7 @@ namespace Temple.ViewModel.DD.Exploration
                             new Point2D(trigger.Point1.X, trigger.Point1.Y),
                             new Point2D(trigger.Point2.X, trigger.Point2.Y)));
                         break;
-                    case LineSegment lineSegment:
+                    case Craft.Simulation.Boundaries.LineSegment lineSegment:
                         staticGeometryObjects.Add(new LineSegment2D(
                             new Point2D(lineSegment.Point1.X, lineSegment.Point1.Y),
                             new Point2D(lineSegment.Point2.X, lineSegment.Point2.Y)));
@@ -456,7 +457,7 @@ namespace Temple.ViewModel.DD.Exploration
                             new Point2D(boundaryPoint.Point.X, boundaryPoint.Point.Y));
                         break;
                     case Boundaries.NPC npc:
-                        staticGeometryObjects.Add(new Domain.Geometry.Circle2D_NPC(
+                        staticGeometryObjects.Add(new Circle2D_NPC(
                             new Point2D(npc.Center.X, npc.Center.Y),
                             npc.Radius,
                             npc.ModelId,
@@ -574,6 +575,9 @@ namespace Temple.ViewModel.DD.Exploration
             // Hent alle døre (Todo: nøjes med dem, der er tæt på spilleren)
             if (_currentState != null)
             {
+                var model3DGroup = new Model3DGroup();
+                var material_Doors = new DiffuseMaterial(new SolidColorBrush(Colors.Yellow));
+
                 _currentState.BodyStates.ForEach(bs =>
                 {
                     switch (bs.Body)
@@ -582,11 +586,39 @@ namespace Temple.ViewModel.DD.Exploration
                             var bodyStateDoor = bs as BodyStateDoor;
                             var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
 
-                            // Todo: Tilføj et objekt til 3D scenen der, hvor døren er. Bare en kugle i første omgang
+                            var x = (bodyDoor.Point1.X + bodyDoor.Point1.X) / 2;
+                            var y = (bodyDoor.Point1.Y + bodyDoor.Point1.Y) / 2;
+                            var length = 1.0;
+                            var radius = 0.1;
+
+                            var mesh = MeshBuilder.CreateCylinder(
+                                new Point3D(0, length / 2, 0),
+                                radius,
+                                length, 4);
+
+                            var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 45);
+                            var rotation = new RotateTransform3D(axisAngleRotation);
+
+                            var transform3DGroup = new Transform3DGroup();
+                            //transform3DGroup.Children.Add(new ScaleTransform3D(2, 2, 2)); // For fun
+                            transform3DGroup.Children.Add(rotation);
+                            transform3DGroup.Children.Add(new TranslateTransform3D(-y, 0, x));
+
+                            var model = new GeometryModel3D
+                            {
+                                Geometry = mesh,
+                                Material = material_Doors,
+                                BackMaterial = material_Doors,
+                                Transform = transform3DGroup
+                            };
+
+                            model3DGroup.Children.Add(model);
 
                             break;
                     }
                 });
+
+                Scene3DDynamicNew = model3DGroup;
             }
         }
 

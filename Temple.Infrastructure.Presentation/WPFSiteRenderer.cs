@@ -44,10 +44,8 @@ namespace Temple.Infrastructure.Presentation
         public ISiteModel Build(
             IEnumerable geometricObjects)
         {
-            var group = new Model3DGroup();
-
-            var material = new MaterialGroup();
-            material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(80, 70, 60))));
+            var model3DGroup = new Model3DGroup();
+            var material_Walls = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(80, 70, 60)));
 
             foreach (var geometricObject in geometricObjects)
             {
@@ -66,19 +64,18 @@ namespace Temple.Infrastructure.Presentation
                             new Point3D(-p2.Y, 0, p2.X),
                             new Point3D(-p1.Y, 0, p1.X));
 
-                        // Burde ikke være nødvendigt at putte material på hver af disse..
                         var model = new GeometryModel3D
                         {
                             Geometry = mesh,
-                            Material = material
+                            Material = material_Walls,
                         };
 
-                        group.Children.Add(model);
+                        model3DGroup.Children.Add(model);
 
                         break;
                     case Circle2D_NPC circle2D_npc:
-                        var modelNPC = GenerateHumanMaleNew(circle2D_npc);
-                        group.Children.Add(modelNPC);
+                        var modelNPC = GenerateHumanMale(circle2D_npc);
+                        model3DGroup.Children.Add(modelNPC);
 
                         break;
                     case Circle2D_Cylinder circle2D_cylinder:
@@ -102,12 +99,12 @@ namespace Temple.Infrastructure.Presentation
                             0.0,
                             circle2D_cylinder.Center.X);
 
-                        group.Children.Add(model2);
+                        model3DGroup.Children.Add(model2);
                         break;
                 }
             }
 
-            return new WpfSiteModel(group);
+            return new WpfSiteModel(model3DGroup);
         }
 
         //public ISiteModel BuildDynamicPart(
@@ -277,7 +274,7 @@ namespace Temple.Infrastructure.Presentation
             return group;
         }
 
-        private Model3D GenerateHumanMaleNew(
+        private Model3D GenerateHumanMale(
             Circle2D_NPC circle2D_NPC)
         {
             string path = @"DD\Assets\male.stl";
