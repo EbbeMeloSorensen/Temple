@@ -13,8 +13,10 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using System.Windows.Threading;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -31,6 +33,8 @@ namespace Temple.ViewModel.DD.Exploration
 {
     public class ExplorationViewModel : TempleViewModel, IFrameAware
     {
+        private readonly DispatcherTimer _timer;
+
         private bool _pauseAfterNextUpdate;
         private readonly ApplicationController _controller;
         private GeometryDataStore _geometryDataStore;
@@ -55,6 +59,8 @@ namespace Temple.ViewModel.DD.Exploration
         public Engine Engine { get; }
 
         public GeometryViewModel GeometryViewModel { get; }
+
+        public DoorRotationViewModel DoorRotationViewModel { get; }
 
         public Model3D Scene3DStatic
         {
@@ -193,6 +199,11 @@ namespace Temple.ViewModel.DD.Exploration
                 ShowCoordinateSystem = false,
                 LockAspectRatio = true,
                 DampFocusShifts = false
+            };
+
+            DoorRotationViewModel = new DoorRotationViewModel
+            {
+                RotationAngle = 0.0
             };
 
             GeometryViewModel.PropertyChanged += GeometryViewModel_PropertyChanged;
@@ -345,6 +356,19 @@ namespace Temple.ViewModel.DD.Exploration
                     _controller.GoToNextApplicationState(payload);
                 }
             };
+
+            // Experimental
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(20) // ~50 updates/sec
+            };
+
+            _timer.Tick += (s, e) =>
+            {
+                DoorRotationViewModel.RotationAngle += 1.0;
+            };
+
+            _timer.Start();
         }
 
         public override TempleViewModel Init(
@@ -596,8 +620,16 @@ namespace Temple.ViewModel.DD.Exploration
                                 radius,
                                 length, 4);
 
-                            var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 45);
+                            var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
                             var rotation = new RotateTransform3D(axisAngleRotation);
+
+                            BindingOperations.SetBinding(
+                                axisAngleRotation,
+                                AxisAngleRotation3D.AngleProperty,
+                                new Binding(nameof(DoorRotationViewModel.RotationAngle))
+                                {
+                                    Source = DoorRotationViewModel
+                                });
 
                             var transform3DGroup = new Transform3DGroup();
                             //transform3DGroup.Children.Add(new ScaleTransform3D(2, 2, 2)); // For fun
