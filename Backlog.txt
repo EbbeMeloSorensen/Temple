@@ -86,6 +86,11 @@ Done:
 * En dør skal kunne være åben fra starten af, f.eks. når man træder ind i townhall. Principielt er det jo den samme dør
 
 In progress:
+* Fancy de døre lidt op - med noget, du har lavet i Blender
+  - Tegn grove cylindre på dørenes omdrejningsakser (OK)
+  - Sikr, at du kan rotere dørene om deres omdrejningsakser (OK)
+  - Lav noget binding af 3D-repræsentationen af dørene til deres rotation.
+  - Døre skal ikke forsvinde, når man støder på de der oplevelser
 * Hvad med at sige, at hvis man går fra et site til et andet, så beamer man altså principielt ikke. Koordinater skal respekteres (OK)
 * Well - det skal de måske pr default, men teleportering er sædvanligvis en en del af et adventure spil - hvis det skal være til at holde ud
 * Leave_site_eventtrigger: Hvis den peger på et andet site, KAN den omfatte koordinater for, 
