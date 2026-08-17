@@ -1,4 +1,12 @@
-﻿using Craft.Logging;
+﻿using System.Collections;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
+using System.Windows.Threading;
+using GalaSoft.MvvmLight.Command;
+using Craft.Logging;
 using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
@@ -9,14 +17,6 @@ using Craft.Utils;
 using Craft.ViewModels.Geometry2D.Reborn;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
-using GalaSoft.MvvmLight.Command;
-using System.Collections;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media;
-using System.Windows.Media.Media3D;
-using System.Windows.Threading;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -56,11 +56,11 @@ namespace Temple.ViewModel.DD.Exploration
         private string _locationInfo;
         private bool _displayLocationIfo;
 
+        private Dictionary<string, DoorRotationViewModel> DoorRotationViewModelDictionary { get; }
+
         public Engine Engine { get; }
 
         public GeometryViewModel GeometryViewModel { get; }
-
-        public DoorRotationViewModel DoorRotationViewModel { get; }
 
         public Model3D Scene3DStatic
         {
@@ -201,10 +201,7 @@ namespace Temple.ViewModel.DD.Exploration
                 DampFocusShifts = false
             };
 
-            DoorRotationViewModel = new DoorRotationViewModel
-            {
-                RotationAngle = 0.0
-            };
+            DoorRotationViewModelDictionary = new Dictionary<string, DoorRotationViewModel>();
 
             GeometryViewModel.PropertyChanged += GeometryViewModel_PropertyChanged;
             Engine.CurrentStateChanged += Engine_CurrentStateChanged;
@@ -365,7 +362,19 @@ namespace Temple.ViewModel.DD.Exploration
 
             _timer.Tick += (s, e) =>
             {
-                DoorRotationViewModel.RotationAngle += 1.0;
+                // Change the rotation of SOME OF the doors
+                var count = 0;
+                foreach (var kvp in DoorRotationViewModelDictionary)
+                {
+                    kvp.Value.RotationAngle += 1.0;
+
+                    count++;
+
+                    if (count >= 3)
+                    {
+                        break;
+                    }
+                }
             };
 
             _timer.Start();
@@ -623,12 +632,15 @@ namespace Temple.ViewModel.DD.Exploration
                             var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
                             var rotation = new RotateTransform3D(axisAngleRotation);
 
+                            var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = 0 };
+                            DoorRotationViewModelDictionary[$"{bodyDoor.Id}"] = doorRotationViewModel;
+
                             BindingOperations.SetBinding(
                                 axisAngleRotation,
                                 AxisAngleRotation3D.AngleProperty,
                                 new Binding(nameof(DoorRotationViewModel.RotationAngle))
                                 {
-                                    Source = DoorRotationViewModel
+                                    Source = doorRotationViewModel
                                 });
 
                             var transform3DGroup = new Transform3DGroup();
