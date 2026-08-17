@@ -11,36 +11,6 @@ namespace Temple.Infrastructure.Presentation
 {
     public class WPFSiteRenderer : ISiteRenderer
     {
-        //public ISiteModel Build(
-        //    SiteData siteData)
-        //{
-        //    var group = new Model3DGroup();
-
-        //    foreach (var siteComponent in siteData.SiteComponents)
-        //    {
-        //        // Event triggers are not relevant for the 3D scene
-        //        if (siteComponent is IEventTrigger)
-        //        {
-        //            continue;
-        //        }
-
-        //        var model = siteComponent switch
-        //        {
-        //            Quad quad => GenerateQuad(quad),
-        //            Barrier barrier => GenerateBarrier(barrier),
-        //            Cylinder cylinder => GenerateCylinder(cylinder),
-        //            Sphere sphere => GenerateSphere(sphere),
-        //            ExclamationMark exclamationMark => GenerateExclamationMark(exclamationMark),
-        //            NPC npc => GenerateNPC(npc),
-        //            _ => throw new NotSupportedException("unsupported site component")
-        //        };
-
-        //        group.Children.Add(model);
-        //    }
-
-        //    return new WpfSiteModel(group);
-        //}
-
         public ISiteModel Build(
             IEnumerable geometricObjects)
         {
@@ -54,13 +24,14 @@ namespace Temple.Infrastructure.Presentation
                     case LineSegment2D_Trigger:
                         // These are not to be rendered in the 3d model
                         break;
+
                     case Craft.Math.LineSegment2D lineSegment2D:
-                        var p1 = lineSegment2D.Point1; // 8, -7
-                        var p2 = lineSegment2D.Point2; // 8, -4
+                        var p1 = lineSegment2D.Point1;
+                        var p2 = lineSegment2D.Point2;
 
                         var mesh = MeshBuilder.CreateQuad(
-                            new Point3D(-p1.Y, 1, p1.X),
-                            new Point3D(-p2.Y, 1, p2.X),
+                            new Point3D(-p1.Y, 2, p1.X),
+                            new Point3D(-p2.Y, 2, p2.X),
                             new Point3D(-p2.Y, 0, p2.X),
                             new Point3D(-p1.Y, 0, p1.X));
 
@@ -71,13 +42,13 @@ namespace Temple.Infrastructure.Presentation
                         };
 
                         model3DGroup.Children.Add(model);
-
                         break;
+
                     case Circle2D_NPC circle2D_npc:
                         var modelNPC = GenerateHumanMale(circle2D_npc);
                         model3DGroup.Children.Add(modelNPC);
-
                         break;
+
                     case Circle2D_Cylinder circle2D_cylinder:
                         var mesh2 = MeshBuilder.CreateCylinder(
                             new Point3D(0, circle2D_cylinder.Length / 2, 0),
@@ -105,142 +76,6 @@ namespace Temple.Infrastructure.Presentation
             }
 
             return new WpfSiteModel(model3DGroup);
-        }
-
-        //public ISiteModel BuildDynamicPart(
-        //    IEnumerable geometricObjects)
-        //{
-        //    var group = new Model3DGroup();
-
-        //    var material = new MaterialGroup();
-        //    material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(50, 25, 25))));
-
-        //    foreach (var geometricObject in geometricObjects)
-        //    {
-        //        switch (geometricObject)
-        //        {
-        //            case Craft.Math.LineSegment2D lineSegment2D:
-        //                var p1 = lineSegment2D.Point1; // 8, -7
-        //                var p2 = lineSegment2D.Point2; // 8, -4
-
-        //                var mesh = MeshBuilder.CreateQuad(
-        //                    new Point3D(-p1.Y, 1, p1.X),
-        //                    new Point3D(-p2.Y, 1, p2.X),
-        //                    new Point3D(-p2.Y, 0, p2.X),
-        //                    new Point3D(-p1.Y, 0, p1.X));
-
-        //                // Burde ikke være nødvendigt at putte material på hver af disse..
-        //                var model = new GeometryModel3D
-        //                {
-        //                    Geometry = mesh,
-        //                    Material = material
-        //                };
-
-        //                group.Children.Add(model);
-
-        //                break;
-        //        }
-        //    }
-
-        //    return new WpfSiteModel(group);
-        //}
-
-        private Model3D GenerateQuad(
-            Quad quad)
-        {
-            var mesh = MeshBuilder.CreateQuad(
-                new Point3D(quad.Point1.X, quad.Point1.Y, quad.Point1.Z),
-                new Point3D(quad.Point2.X, quad.Point2.Y, quad.Point2.Z),
-                new Point3D(quad.Point3.X, quad.Point3.Y, quad.Point3.Z),
-                new Point3D(quad.Point4.X, quad.Point4.Y, quad.Point4.Z));
-
-            var material = new MaterialGroup();
-            material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Colors.LightSalmon)));
-
-            var model = new GeometryModel3D
-            {
-                Geometry = mesh,
-                Material = material
-            };
-
-            return model;
-        }
-
-        private Model3D GenerateBarrier(
-            Barrier barrier)
-        {
-            var material = new MaterialGroup();
-            material.Children.Add(new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(80, 70, 60))));
-
-            var group = new Model3DGroup();
-
-            barrier.BarrierPoints.AdjacentPairs().ToList().ForEach(_ =>
-            {
-                var p1 = _.Item1;
-                var p2 = _.Item2;
-
-                var mesh = MeshBuilder.CreateQuad(
-                    new Point3D(p1.X, 1, p1.Z),
-                    new Point3D(p2.X, 1, p2.Z),
-                    new Point3D(p2.X, 0, p2.Z),
-                    new Point3D(p1.X, 0, p1.Z));
-
-                var model = new GeometryModel3D
-                {
-                    Geometry = mesh,
-                    Material = material
-                };
-
-                group.Children.Add(model);
-            });
-
-            return group;
-        }
-
-        private Model3D GenerateCylinder(
-            Cylinder cylinder)
-        {
-            var mesh = MeshBuilder.CreateCylinder(new Point3D(0, cylinder.Length / 2, 0), cylinder.Radius, cylinder.Length, 16);
-
-            var material = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
-
-            var model = new GeometryModel3D
-            {
-                Geometry = mesh,
-                Material = material,
-                BackMaterial = material
-            };
-
-            // Position in this scene
-            model.Translate(
-                cylinder.Position.X,
-                cylinder.Position.Y,
-                cylinder.Position.Z);
-
-            return model;
-        }
-
-        private Model3D GenerateSphere(
-            Sphere sphere)
-        {
-            var mesh = MeshBuilder.CreateSphere(new Point3D(0, sphere.Radius, 0), sphere.Radius, 8, 8);
-
-            var material = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
-
-            var model = new GeometryModel3D
-            {
-                Geometry = mesh,
-                Material = material,
-                BackMaterial = material
-            };
-
-            // Position in this scene
-            model.Translate(
-                sphere.Position.X,
-                sphere.Position.Y,
-                sphere.Position.Z);
-
-            return model;
         }
 
         private Model3D GenerateExclamationMark(
@@ -277,29 +112,20 @@ namespace Temple.Infrastructure.Presentation
         private Model3D GenerateHumanMale(
             Circle2D_NPC circle2D_NPC)
         {
-            string path = @"DD\Assets\male.stl";
+            string path = null;
             var basicRotationAxis = new Vector3D(1, 0, 0);
             var basicRotationAngle = -90.0;
             var basicTranslation = new Vector3D(0, 0, 0);
-            var basicScaleFactor = 0.003;
+            //var basicScaleFactor = 0.3;
+            var basicScaleFactor = 1;
 
             switch (circle2D_NPC.ModelId)
             {
                 case "human male":
                     path = @"DD\Assets\male_corrected.stl";
-                    basicRotationAxis = new Vector3D(1, 0, 0);
-                    basicRotationAngle = -90.0;
-                    basicTranslation = new Vector3D(0, 0, 0);
-                    basicScaleFactor = 0.3;
                     break;
                 case "human female":
                     path = @"DD\Assets\female_corrected.stl";
-                    basicRotationAxis = new Vector3D(1, 0, 0);
-                    basicRotationAngle = -90.0;
-                    //basicTranslation = new Vector3D(-132.5, 0, 101);
-                    //basicScaleFactor = 0.015;
-                    basicTranslation = new Vector3D(0, 0, 0);
-                    basicScaleFactor = 0.3;
                     break;
             }
 
@@ -315,62 +141,6 @@ namespace Temple.Infrastructure.Presentation
                     0,
                     circle2D_NPC.Center.X),
                     circle2D_NPC.Orientation);
-        }
-
-        private Model3D GenerateNPC(
-            NPC npc)
-        {
-            return npc.ModelId switch
-            {
-                "human male" => GenerateHumanMale(npc),
-                "human female" => GenerateHumanFemale(npc),
-                _ => throw new NotSupportedException("unsupported model id for npc")
-            };
-        }
-
-        private Model3D GenerateHumanMale(
-            ISiteComponent siteComponent)
-        {
-            if (siteComponent is not ISiteComponent_Rotatable rotatableScenePart)
-            {
-                throw new InvalidOperationException("Must be a rotatable site component");
-            }
-
-            var x = rotatableScenePart.Position.X;
-            var y = rotatableScenePart.Position.Y;
-            var z = rotatableScenePart.Position.Z;
-
-            return ImportMeshFromFile(
-                @"DD\Assets\male.stl",
-                new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
-                new Vector3D(1, 0, 0),
-                -90,
-                new Vector3D(0, 0, 0),
-                0.003,
-                new Vector3D(x, y, z),
-                    rotatableScenePart.Orientation);
-        }
-
-        private Model3D GenerateHumanFemale(
-            ISiteComponent siteComponent)
-        {
-            if (siteComponent is not ISiteComponent_Rotatable rotatableScenePart)
-            {
-                throw new InvalidOperationException("Must be a rotatable site component");
-            }
-
-            return ImportMeshFromFile(
-                @"DD\Assets\female.stl",
-                new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
-                new Vector3D(1, 0, 0),
-                -90,
-                new Vector3D(-132.5, 0, 101),
-                0.015,
-                new Vector3D(
-                    rotatableScenePart.Position.X,
-                    rotatableScenePart.Position.Y,
-                    rotatableScenePart.Position.Z),
-                    rotatableScenePart.Orientation);
         }
 
         private GeometryModel3D ImportMeshFromFile(
