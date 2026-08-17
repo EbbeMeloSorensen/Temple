@@ -90,8 +90,10 @@ In progress:
   - Tegn grove cylindre på dørenes omdrejningsakser (OK)
   - Sikr, at du kan rotere dørene om deres omdrejningsakser (OK)
   - Lav noget binding af 3D-repræsentationen af dørene til deres rotation.
-    - Lav en DoorRotationViewModel og bind alle rotation transformation objekter fra 3D scenen til den
-    - Lav en hel collection af DoorRotationViewModels og bind dem individuelt til objekter i 3D scenen
+    - Lav en DoorRotationViewModel og bind alle rotation transformation objekter fra 3D scenen til den (OK)
+    - Lav en hel collection af DoorRotationViewModels og bind dem individuelt til objekter i 3D scenen (OK)
+  - Brug din dør fra Blender i stedet for en cylinder
+  - Fjern din DispatcherTimer og opdater dørenes rotation i OnFrame i stedet
   - Døre skal ikke forsvinde, når man støder på de der oplevelser
 * Optimer det med vægge - du bruger for mange GeometryModel3D objekter og for mange points
 * Hvad med at sige, at hvis man går fra et site til et andet, så beamer man altså principielt ikke. Koordinater skal respekteres (OK)
