@@ -30,8 +30,8 @@ namespace Temple.Infrastructure.Presentation
                         var p2 = lineSegment2D.Point2;
 
                         var mesh = MeshBuilder.CreateQuad(
-                            new Point3D(-p1.Y, 2, p1.X),
-                            new Point3D(-p2.Y, 2, p2.X),
+                            new Point3D(-p1.Y, 2.5, p1.X),
+                            new Point3D(-p2.Y, 2.5, p2.X),
                             new Point3D(-p2.Y, 0, p2.X),
                             new Point3D(-p1.Y, 0, p1.X));
 
@@ -45,7 +45,16 @@ namespace Temple.Infrastructure.Presentation
                         break;
 
                     case Circle2D_NPC circle2D_npc:
-                        var modelNPC = GenerateHumanMale(circle2D_npc);
+
+                        var modelNPC = MeshBuilder.ImportModelFromFile(
+                            circle2D_npc.ModelId,
+                            new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
+                            new Vector3D(
+                                -circle2D_npc.Center.Y,
+                                0,
+                                circle2D_npc.Center.X),
+                            circle2D_npc.Orientation);
+
                         model3DGroup.Children.Add(modelNPC);
                         break;
 
@@ -107,74 +116,6 @@ namespace Temple.Infrastructure.Presentation
                 exclamationMark.Position.Z);
 
             return group;
-        }
-
-        private Model3D GenerateHumanMale(
-            Circle2D_NPC circle2D_NPC)
-        {
-            string path = null;
-            var basicRotationAxis = new Vector3D(1, 0, 0);
-            var basicRotationAngle = -90.0;
-            var basicTranslation = new Vector3D(0, 0, 0);
-            //var basicScaleFactor = 0.3;
-            var basicScaleFactor = 1;
-
-            switch (circle2D_NPC.ModelId)
-            {
-                case "human male":
-                    path = @"DD\Assets\male_corrected.stl";
-                    break;
-                case "human female":
-                    path = @"DD\Assets\female_corrected.stl";
-                    break;
-            }
-
-            return ImportMeshFromFile(
-                path,
-                new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
-                basicRotationAxis,
-                basicRotationAngle,
-                basicTranslation,
-                basicScaleFactor,
-                new Vector3D(
-                    -circle2D_NPC.Center.Y,
-                    0,
-                    circle2D_NPC.Center.X),
-                    circle2D_NPC.Orientation);
-        }
-
-        private GeometryModel3D ImportMeshFromFile(
-            string path,
-            Material material,
-            Vector3D basicRotationAxis,
-            double basicRotationAngle,
-            Vector3D basicTranslation,
-            double basicScaleFactor,
-            Vector3D position,
-            double orientation = 0)
-        {
-            var mesh = StlMeshLoader.Load(path);
-
-            var model = new GeometryModel3D
-            {
-                Geometry = mesh,
-                Material = material
-            };
-
-            // Basic transform to normalize the model in this coordinate system
-            model.Rotate(basicRotationAxis, basicRotationAngle);
-            model.Translate(basicTranslation.X, basicTranslation.Y, basicTranslation.Z);
-            model.Scale(basicScaleFactor, basicScaleFactor, basicScaleFactor);
-
-            // Position in this scene
-            if (Math.Abs(orientation) > 0.00001)
-            {
-                model.Rotate(new Vector3D(0, 1, 0), orientation);
-            }
-
-            model.Translate(position.X, position.Y, position.Z);
-
-            return model;
         }
     }
 }

@@ -566,7 +566,7 @@ namespace Temple.ViewModel.DD.Exploration
 
             CameraPosition = new Point3D(
                 -position.Y,
-                0.5,
+                1.7, // Eye height in meters
                 position.X);
 
             LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
@@ -621,13 +621,23 @@ namespace Temple.ViewModel.DD.Exploration
 
                             var x = (bodyDoor.Point1.X + bodyDoor.Point1.X) / 2;
                             var y = (bodyDoor.Point1.Y + bodyDoor.Point1.Y) / 2;
-                            var length = 1.0;
+                            var length = 2.5;
                             var radius = 0.1;
 
                             var mesh = MeshBuilder.CreateCylinder(
                                 new Point3D(0, length / 2, 0),
                                 radius,
                                 length, 4);
+
+                            // Få det lige på plads mht typer
+                            //var mesh = MeshBuilder.ImportModelFromFile(
+                            //    "door",
+                            //    new DiffuseMaterial(new SolidColorBrush(Colors.Yellow)),
+                            //    new Vector3D(
+                            //        0,
+                            //        0,
+                            //        0),
+                            //    0.0);
 
                             var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
                             var rotation = new RotateTransform3D(axisAngleRotation);
