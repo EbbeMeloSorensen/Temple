@@ -619,26 +619,6 @@ namespace Temple.ViewModel.DD.Exploration
                             var bodyStateDoor = bs as BodyStateDoor;
                             var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
 
-                            var x = (bodyDoor.Point1.X + bodyDoor.Point1.X) / 2;
-                            var y = (bodyDoor.Point1.Y + bodyDoor.Point1.Y) / 2;
-                            var length = 2.5;
-                            var radius = 0.1;
-
-                            var mesh = MeshBuilder.CreateCylinder(
-                                new Point3D(0, length / 2, 0),
-                                radius,
-                                length, 4);
-
-                            // Få det lige på plads mht typer
-                            //var mesh = MeshBuilder.ImportModelFromFile(
-                            //    "door",
-                            //    new DiffuseMaterial(new SolidColorBrush(Colors.Yellow)),
-                            //    new Vector3D(
-                            //        0,
-                            //        0,
-                            //        0),
-                            //    0.0);
-
                             var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
                             var rotation = new RotateTransform3D(axisAngleRotation);
 
@@ -653,18 +633,30 @@ namespace Temple.ViewModel.DD.Exploration
                                     Source = doorRotationViewModel
                                 });
 
+                            var x = (bodyDoor.Point1.X + bodyDoor.Point1.X) / 2;
+                            var y = (bodyDoor.Point1.Y + bodyDoor.Point1.Y) / 2;
+                            var length = 2.5;
+                            var radius = 0.1;
+
                             var transform3DGroup = new Transform3DGroup();
-                            //transform3DGroup.Children.Add(new ScaleTransform3D(2, 2, 2)); // For fun
+
+                            // Nødvendigt indtil du har nogle bedre koordinatsystemer, hvor du ikke behøver vride stl-modellerne på vej ind.
+                            transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), -90))); 
+
                             transform3DGroup.Children.Add(rotation);
                             transform3DGroup.Children.Add(new TranslateTransform3D(-y, 0, x));
 
-                            var model = new GeometryModel3D
-                            {
-                                Geometry = mesh,
-                                Material = material_Doors,
-                                BackMaterial = material_Doors,
-                                Transform = transform3DGroup
-                            };
+                            var model = MeshBuilder.ImportModelFromFile(
+                                "door",
+                                material_Doors,
+                                new Vector3D(
+                                    0,
+                                    0,
+                                    0),
+                                0.0);
+
+
+                            model.Transform = transform3DGroup;
 
                             model3DGroup.Children.Add(model);
 

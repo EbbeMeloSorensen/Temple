@@ -92,7 +92,9 @@ In progress:
   - Lav noget binding af 3D-repræsentationen af dørene til deres rotation.
     - Lav en DoorRotationViewModel og bind alle rotation transformation objekter fra 3D scenen til den (OK)
     - Lav en hel collection af DoorRotationViewModels og bind dem individuelt til objekter i 3D scenen (OK)
-  - Brug din dør fra Blender i stedet for en cylinder
+  - Brug din dør fra Blender i stedet for en cylinder (OK)
+  - Brug et bedre koordinatsystem i 3D-viewet
+  - Prøv at genbruge samme dør i stedet for at loade en fil ind i en masse forskellige objekter.
   - Fjern din DispatcherTimer og opdater dørenes rotation i OnFrame i stedet
   - Døre skal ikke forsvinde, når man støder på de der oplevelser
 * Optimer det med vægge - du bruger for mange GeometryModel3D objekter og for mange points

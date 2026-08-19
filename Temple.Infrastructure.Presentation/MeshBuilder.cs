@@ -232,15 +232,17 @@ public static class MeshBuilder
         var basicRotationAxis = new Vector3D(1, 0, 0);
         var basicRotationAngle = -90.0;
         //var basicRotationAngle = 0.0; // Så ligger de ned for nuværende - måske skal du ændre koordinater for scenen
-        var basicTranslation = new Vector3D(0, 0, 0);
+        //var basicTranslation = new Vector3D(0, 0, 0);
         //var basicScaleFactor = 0.3;
-        var basicScaleFactor = 1;
+        //var basicScaleFactor = 1;
 
         switch (modelId)
         {
+            case "door":
+                path = @"DD\Assets\door.stl";
+                break;
             case "human male":
                 path = @"DD\Assets\male_corrected.stl";
-                //path = @"DD\Assets\door.stl";
                 break;
             case "human female":
                 path = @"DD\Assets\female_corrected.stl";
@@ -252,8 +254,8 @@ public static class MeshBuilder
             material,
             basicRotationAxis,
             basicRotationAngle,
-            basicTranslation,
-            basicScaleFactor,
+            //basicTranslation,
+            //basicScaleFactor,
             position,
             orientation);
     }
@@ -263,8 +265,8 @@ public static class MeshBuilder
         Material material,
         Vector3D basicRotationAxis,
         double basicRotationAngle,
-        Vector3D basicTranslation,
-        double basicScaleFactor,
+        //Vector3D basicTranslation,
+        //double basicScaleFactor,
         Vector3D position,
         double orientation = 0)
     {
@@ -278,8 +280,8 @@ public static class MeshBuilder
 
         // Basic transform to normalize the model in this coordinate system
         model.Rotate(basicRotationAxis, basicRotationAngle);
-        model.Translate(basicTranslation.X, basicTranslation.Y, basicTranslation.Z);
-        model.Scale(basicScaleFactor, basicScaleFactor, basicScaleFactor);
+        //model.Translate(basicTranslation.X, basicTranslation.Y, basicTranslation.Z);
+        //model.Scale(basicScaleFactor, basicScaleFactor, basicScaleFactor);
 
         // Position in this scene
         if (Math.Abs(orientation) > 0.00001)
