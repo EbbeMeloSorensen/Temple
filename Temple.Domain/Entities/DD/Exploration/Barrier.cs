@@ -7,6 +7,6 @@ public class Barrier : ISiteComponent
 {
     public IGameCondition? Condition { get; set; }
 
-    public List<Vector3D> BarrierPoints { get; set; }
+    public List<Vector2D> BarrierPoints { get; set; }
 }
 

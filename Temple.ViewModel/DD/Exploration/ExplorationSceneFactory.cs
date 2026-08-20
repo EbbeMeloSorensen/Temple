@@ -293,8 +293,8 @@ public static class ExplorationSceneFactory
                     barrier.BarrierPoints.AdjacentPairs().ToList().ForEach(_ =>
                     {
                         scene.AddBoundary(new LineSegment(
-                            new Vector2D(_.Item1.Z, -_.Item1.X),
-                            new Vector2D(_.Item2.Z, -_.Item2.X)));
+                            new Vector2D(_.Item1.X, -_.Item1.Y),
+                            new Vector2D(_.Item2.X, -_.Item2.Y)));
                     });
 
                     break;

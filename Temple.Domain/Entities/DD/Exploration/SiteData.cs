@@ -80,7 +80,7 @@ public class SiteData
     {
         SiteComponents.Add(new Barrier
         {
-            BarrierPoints = wallPoints.Select(_ => new Vector3D(_.Y, 0, _.X)).ToList()
+            BarrierPoints = wallPoints.Select(_ => new Vector2D(_.X, _.Y)).ToList()
         });
     }
 

@@ -20,7 +20,6 @@
     <None Remove="DD\Assets\SiteData\mine.json" />
     <None Remove="DD\Assets\SiteData\townhall.json" />
     <None Remove="DD\Assets\SiteData\undermountain.json" />
-    <None Remove="DD\Assets\SiteData\village.json" />
     <None Remove="DD\Images\alyth.png" />
     <None Remove="DD\Images\Archer.PNG" />
     <None Remove="DD\Images\Arrow.png" />
@@ -102,6 +101,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DD\Assets\SiteData\village.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DD\Assets\SiteData\village_old.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
