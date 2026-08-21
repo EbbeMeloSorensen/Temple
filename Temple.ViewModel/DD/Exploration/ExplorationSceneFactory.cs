@@ -37,13 +37,22 @@ public static class ExplorationSceneFactory
             controller.ApplicationData.ExplorationOrientation = siteData.StartOrientation;
         }
 
+        var orientationInRadians = 1.5 * Math.PI + controller.ApplicationData.ExplorationOrientation!.Value * Math.PI / 180;
+
+        if (orientationInRadians > 2 * Math.PI)
+        {
+            orientationInRadians -= 2 * Math.PI;
+        }
+
         initialState.AddBodyState(
             new BodyStateClassic(
                 new Player(1, ballRadius),
-                controller.ApplicationData.ExplorationPosition)
-            {
-                Orientation = controller.ApplicationData.ExplorationOrientation!.Value * Math.PI / 180
-            });
+                new Vector2D(
+                    controller.ApplicationData.ExplorationPosition.X,
+                    -controller.ApplicationData.ExplorationPosition.Y))
+                {
+                    Orientation = orientationInRadians
+                });
 
         var standardGravity = 0.0;
         var initialWorldWindowUpperLeft = new Point2D(-1.4, -1.3);
@@ -374,10 +383,10 @@ public static class ExplorationSceneFactory
                     var npcRadius = 0.16;
 
                     scene.AddBoundary(new Boundaries.NPC(new Vector2D(
-                        npc.Position.Z, -npc.Position.X), npcRadius, tag, npc.ModelId, npc.Orientation));
+                        npc.Position.X, -npc.Position.Y), npcRadius, tag, npc.ModelId, npc.Orientation));
 
                     scene.Props.Add(new PropCircle(npcId++, npcRadius * 2, new Vector2D(
-                        npc.Position.Z, -npc.Position.X)));
+                        npc.Position.X, -npc.Position.Y)));
 
                     break;
                 }

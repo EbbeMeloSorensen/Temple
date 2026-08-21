@@ -558,18 +558,33 @@ namespace Temple.ViewModel.DD.Exploration
             _currentState = e.State;
 
             var bodyStateOfProtagonist = _currentState.BodyStates.First() as BodyStateClassic;
-            var position = bodyStateOfProtagonist.Position;
+
+            var position = new Vector2D(
+                bodyStateOfProtagonist.Position.X,
+                -bodyStateOfProtagonist.Position.Y);
+                
             var orientation = bodyStateOfProtagonist.Orientation;
 
             _controller.ApplicationData.ExplorationPosition = position;
             _controller.ApplicationData.ExplorationOrientation = orientation * 180.0 / Math.PI;
 
-            CameraPosition = new Point3D(
-                -position.Y,
-                1.7, // Eye height in meters
-                position.X);
+            // NB: orientering er 0.5 PI som forventet
 
-            LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
+            //CameraPosition = new Point3D(
+            //    -position.Y,
+            //    1.7, // Eye height in meters
+            //    position.X);
+
+            CameraPosition = new Point3D(
+                position.X,
+                position.Y,
+                1.7); // Eye height in meters
+
+            //LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
+
+            // Todo: Beregn det pba orientation
+            LookDirection = new Vector3D(0, 1, 0);
+
             DirectionalLight = LookDirection + new Vector3D(0, -0.5, 0);
             PlayerLightPosition = CameraPosition + LookDirection * 3 + new Vector3D(0, -1, 0);
 

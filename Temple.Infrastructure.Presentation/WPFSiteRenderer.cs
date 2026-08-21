@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-using Craft.Utils.Linq;
-using Temple.Application.Interfaces;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Geometry;
-using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
+using Temple.Application.Interfaces;
 
 namespace Temple.Infrastructure.Presentation
 {
@@ -26,6 +24,9 @@ namespace Temple.Infrastructure.Presentation
                         break;
 
                     case Craft.Math.LineSegment2D lineSegment2D:
+                        // Det slår vi lige fra til en start
+                        break;
+
                         var p1 = lineSegment2D.Point1;
                         var p2 = lineSegment2D.Point2;
 

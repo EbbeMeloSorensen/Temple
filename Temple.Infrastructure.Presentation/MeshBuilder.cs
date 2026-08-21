@@ -229,12 +229,8 @@ public static class MeshBuilder
         double orientation)
     {
         string path = null;
-        var basicRotationAxis = new Vector3D(1, 0, 0);
-        var basicRotationAngle = -90.0;
-        //var basicRotationAngle = 0.0; // Så ligger de ned for nuværende - måske skal du ændre koordinater for scenen
-        //var basicTranslation = new Vector3D(0, 0, 0);
-        //var basicScaleFactor = 0.3;
-        //var basicScaleFactor = 1;
+        //var basicRotationAxis = new Vector3D(1, 0, 0);
+        //var basicRotationAngle = -90.0;
 
         switch (modelId)
         {
@@ -252,10 +248,8 @@ public static class MeshBuilder
         return ImportMeshFromFile(
             path,
             material,
-            basicRotationAxis,
-            basicRotationAngle,
-            //basicTranslation,
-            //basicScaleFactor,
+            //basicRotationAxis,
+            //basicRotationAngle,
             position,
             orientation);
     }
@@ -263,10 +257,8 @@ public static class MeshBuilder
     private static GeometryModel3D ImportMeshFromFile(
         string path,
         Material material,
-        Vector3D basicRotationAxis,
-        double basicRotationAngle,
-        //Vector3D basicTranslation,
-        //double basicScaleFactor,
+        //Vector3D basicRotationAxis,
+        //double basicRotationAngle,
         Vector3D position,
         double orientation = 0)
     {
@@ -279,7 +271,7 @@ public static class MeshBuilder
         };
 
         // Basic transform to normalize the model in this coordinate system
-        model.Rotate(basicRotationAxis, basicRotationAngle);
+        //model.Rotate(basicRotationAxis, basicRotationAngle);
         //model.Translate(basicTranslation.X, basicTranslation.Y, basicTranslation.Z);
         //model.Scale(basicScaleFactor, basicScaleFactor, basicScaleFactor);
 

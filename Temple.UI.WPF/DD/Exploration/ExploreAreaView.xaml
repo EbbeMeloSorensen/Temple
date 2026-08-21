@@ -27,7 +27,7 @@
                 <PerspectiveCamera
                     Position="{Binding CameraPosition}"
                     LookDirection="{Binding LookDirection}"
-                    UpDirection="0,1,0"
+                    UpDirection="0,0,1"
                     FieldOfView="45"/>
             </Viewport3D.Camera>
 

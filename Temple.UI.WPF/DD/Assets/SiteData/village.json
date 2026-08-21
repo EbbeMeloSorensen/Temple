@@ -1,26 +1,98 @@
 {
   "StartPosition": {
-    "X": 0.5,
-    "Y": 0.5
+    "X": 0,
+    "Y": -4
   },
-  "StartOrientation": 90.0,
+  "StartOrientation": 180.0,
   "SiteComponents": [
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
-          "X": -1.0,
+          "X": 0.0,
           "Y": 3.0
+        },
+        {
+          "X": -2.0,
+          "Y": 4.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.0
+        },
+        {
+          "X": 1.0,
+          "Y": 5.0
         },
         {
           "X": 1.0,
           "Y": 3.0
         },
         {
-          "X": -1.0,
+          "X": 0.0,
           "Y": 3.0
         }
       ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.0
+        },
+        {
+          "X": -1.0,
+          "Y": -1.0
+        },
+        {
+          "X": -1.0,
+          "Y": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 2.0,
+          "Y": 0.0
+        },
+        {
+          "X": 2.0,
+          "Y": -1.0
+        },
+        {
+          "X": 1.0,
+          "Y": -1.0
+        },
+        {
+          "X": 1.0,
+          "Y": 0.0
+        },
+        {
+          "X": 2.0,
+          "Y": 0.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human female",
+      "Id": "alyth"
     }
   ]
 }
