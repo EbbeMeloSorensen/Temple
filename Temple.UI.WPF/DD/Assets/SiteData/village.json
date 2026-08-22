@@ -1,7 +1,7 @@
 {
   "StartPosition": {
-    "X": 0,
-    "Y": -2
+    "X": 0.5,
+    "Y": 0.5
   },
   "StartOrientation": 180,
   "SiteComponents": [
@@ -236,14 +236,22 @@
       ]
     },
     {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "$type": "Temple.Domain.Entities.DD.Exploration.Cylinder",
       "Position": {
-        "X": 0,
-        "Y": 0
+        "X": -0.5,
+        "Y": 4.5
       },
-      "Width": 0.75,
-      "Orientation": 0,
-      "Id": "door0"
+      "Radius": 0.3,
+      "Length": 1.2
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Cylinder",
+      "Position": {
+        "X": -3.5,
+        "Y": 0.5
+      },
+      "Radius": 0.3,
+      "Length": 1.2
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -284,6 +292,16 @@
       "Width": 0.75,
       "Orientation": 0,
       "Id": "door4"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 0,
+        "Y": 0
+      },
+      "Width": 0.75,
+      "Orientation": 180,
+      "Id": "door5"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -475,11 +493,11 @@
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
       "Point1": {
-        "X": 1,
+        "X": -1,
         "Y": -0.2
       },
       "Point2": {
-        "X": 2,
+        "X": 1,
         "Y": -0.2
       },
       "EventID": "Exit_Wilderness"

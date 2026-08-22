@@ -152,7 +152,7 @@ namespace Temple.ViewModel.DD.Exploration
             ISiteRenderer siteRenderer,
             IGameQueryService gameQueryService)
         {
-            _materialDoor = new DiffuseMaterial(new SolidColorBrush(Colors.Yellow));
+            _materialDoor = new DiffuseMaterial(new SolidColorBrush(Colors.SandyBrown));
 
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _siteDataFactory = siteDataFactory ?? throw new ArgumentNullException(nameof(siteDataFactory));

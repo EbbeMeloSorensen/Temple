@@ -95,7 +95,6 @@ public static class MeshBuilder
     /// Creates a closed cylinder centered on the Y axis.
     /// </summary>
     public static MeshGeometry3D CreateCylinder(
-        Point3D center,
         double radius,
         double height,
         int slices)
@@ -116,24 +115,24 @@ public static class MeshBuilder
         {
             var angle = 2.0 * Math.PI * i / slices;
             var x = Math.Cos(angle);
-            var z = Math.Sin(angle);
+            var y = Math.Sin(angle);
 
-            var normal = new Vector3D(x, 0, z);
+            var normal = new Vector3D(x, y, 0);
             normal.Normalize();
 
             // Bottom ring
             mesh.Positions.Add(new Point3D(
-                center.X + radius * x,
-                center.Y - halfH,
-                center.Z + radius * z));
+                radius * x,
+                radius * y,
+                -halfH));
 
             mesh.Normals.Add(normal);
 
             // Top ring
             mesh.Positions.Add(new Point3D(
-                center.X + radius * x,
-                center.Y + halfH,
-                center.Z + radius * z));
+                radius * x,
+                radius * y,
+                halfH));
 
             mesh.Normals.Add(normal);
         }
@@ -163,22 +162,21 @@ public static class MeshBuilder
         // Top cap
         // --------------------
         var topCenterIndex = mesh.Positions.Count;
-        mesh.Positions.Add(new Point3D(
-            center.X, center.Y + halfH, center.Z));
-        mesh.Normals.Add(new Vector3D(0, 1, 0));
+        mesh.Positions.Add(new Point3D(0, 0, halfH));
+        mesh.Normals.Add(new Vector3D(0, 0, 1));
 
         for (var i = 0; i <= slices; i++)
         {
             var angle = 2.0 * Math.PI * i / slices;
             var x = Math.Cos(angle);
-            var z = Math.Sin(angle);
+            var y = Math.Sin(angle);
 
             mesh.Positions.Add(new Point3D(
-                center.X + radius * x,
-                center.Y + halfH,
-                center.Z + radius * z));
+                radius * x,
+                radius * y,
+                halfH));
 
-            mesh.Normals.Add(new Vector3D(0, 1, 0));
+            mesh.Normals.Add(new Vector3D(0, 0, 1));
         }
 
         for (var i = 0; i < slices; i++)
@@ -192,22 +190,21 @@ public static class MeshBuilder
         // Bottom cap
         // --------------------
         var bottomCenterIndex = mesh.Positions.Count;
-        mesh.Positions.Add(new Point3D(
-            center.X, center.Y - halfH, center.Z));
+        mesh.Positions.Add(new Point3D(0, 0, -halfH));
         mesh.Normals.Add(new Vector3D(0, -1, 0));
 
         for (var i = 0; i <= slices; i++)
         {
             var angle = 2.0 * Math.PI * i / slices;
             var x = Math.Cos(angle);
-            var z = Math.Sin(angle);
+            var y = Math.Sin(angle);
 
             mesh.Positions.Add(new Point3D(
-                center.X + radius * x,
-                center.Y - halfH,
-                center.Z + radius * z));
+                radius * x,
+                radius * y,
+                halfH));
 
-            mesh.Normals.Add(new Vector3D(0, -1, 0));
+            mesh.Normals.Add(new Vector3D(0, 0, -1));
         }
 
         for (var i = 0; i < slices; i++)

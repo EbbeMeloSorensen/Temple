@@ -311,10 +311,10 @@ public static class ExplorationSceneFactory
                 case Cylinder cylinder:
                 {
                     scene.AddBoundary(new Boundaries.Cylinder(new Vector2D(
-                        cylinder.Position.Z, -cylinder.Position.X), cylinder.Radius, null, cylinder.Length));
+                        cylinder.Position.X, -cylinder.Position.Y), cylinder.Radius, null, cylinder.Length));
 
                     scene.Props.Add(new PropCircle(npcId++, cylinder.Radius * 2, new Vector2D(
-                        cylinder.Position.Z, -cylinder.Position.X)));
+                        cylinder.Position.X, -cylinder.Position.Y)));
 
                     break;
                 }

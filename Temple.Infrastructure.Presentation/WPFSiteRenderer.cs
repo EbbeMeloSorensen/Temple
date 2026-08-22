@@ -9,18 +9,21 @@ namespace Temple.Infrastructure.Presentation
 {
     public class WPFSiteRenderer : ISiteRenderer
     {
+        private Material _materialWall;
+        private Material _materialCylinder;
         private Material _materialNPC;
 
         public WPFSiteRenderer()
         {
+            _materialWall = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(140, 120, 140)));
             _materialNPC = new DiffuseMaterial(new SolidColorBrush(Colors.LightPink));
+            _materialCylinder = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
         }
 
         public ISiteModel Build(
             IEnumerable geometricObjects)
         {
             var model3DGroup = new Model3DGroup();
-            var material_Walls = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(80, 70, 60)));
 
             foreach (var geometricObject in geometricObjects)
             {
@@ -44,7 +47,7 @@ namespace Temple.Infrastructure.Presentation
                         var model = new GeometryModel3D
                         {
                             Geometry = mesh,
-                            Material = material_Walls,
+                            Material = _materialWall,
                         };
 
                         model3DGroup.Children.Add(model);
@@ -71,27 +74,24 @@ namespace Temple.Infrastructure.Presentation
                         break;
 
                     case Circle2D_Cylinder circle2D_cylinder:
-                        var mesh2 = MeshBuilder.CreateCylinder(
-                            new Point3D(0, circle2D_cylinder.Length / 2, 0),
+                        var meshCylinder = MeshBuilder.CreateCylinder(
                             circle2D_cylinder.Radius,
                             circle2D_cylinder.Length, 16);
 
-                        var material2 = new DiffuseMaterial(new SolidColorBrush(Colors.SaddleBrown));
-
-                        var model2 = new GeometryModel3D
+                        var modelCylinder = new GeometryModel3D
                         {
-                            Geometry = mesh2,
-                            Material = material2,
-                            BackMaterial = material2
+                            Geometry = meshCylinder,
+                            Material = _materialCylinder,
+                            BackMaterial = _materialCylinder
                         };
 
                         // Position in this scene
-                        model2.Translate(
+                        modelCylinder.Translate(
                             circle2D_cylinder.Center.X,
-                            0.0,
-                            circle2D_cylinder.Center.Y);
+                            -circle2D_cylinder.Center.Y,
+                            circle2D_cylinder.Length / 2);
 
-                        model3DGroup.Children.Add(model2);
+                        model3DGroup.Children.Add(modelCylinder);
                         break;
                 }
             }
@@ -116,7 +116,7 @@ namespace Temple.Infrastructure.Presentation
 
             group.Children.Add(new GeometryModel3D
             {
-                Geometry = MeshBuilder.CreateCylinder(new Point3D(0, 2 * radius + cylinderHeight / 2 + 0.005, 0), radius, cylinderHeight, 8),
+                Geometry = MeshBuilder.CreateCylinder(radius, cylinderHeight, 8),
                 Material = material,
                 BackMaterial = material
             });
