@@ -1,7 +1,7 @@
 {
   "StartPosition": {
-    "X": 0,
-    "Y": -4
+    "X": 0.5,
+    "Y": 0.5
   },
   "StartOrientation": 180.0,
   "SiteComponents": [
@@ -87,10 +87,20 @@
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
       "Position": {
-        "X": 0.0,
-        "Y": 0.0
+        "X": 0.5,
+        "Y": 2.5
       },
       "Orientation": 0.0,
+      "ModelId": "human female",
+      "Id": "alyth"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": 1.5,
+        "Y": 2.5
+      },
+      "Orientation": 90.0,
       "ModelId": "human female",
       "Id": "alyth"
     }

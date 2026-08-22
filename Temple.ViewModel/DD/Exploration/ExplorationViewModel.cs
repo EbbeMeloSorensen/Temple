@@ -568,22 +568,13 @@ namespace Temple.ViewModel.DD.Exploration
             _controller.ApplicationData.ExplorationPosition = position;
             _controller.ApplicationData.ExplorationOrientation = orientation * 180.0 / Math.PI;
 
-            // NB: orientering er 0.5 PI som forventet
-
-            //CameraPosition = new Point3D(
-            //    -position.Y,
-            //    1.7, // Eye height in meters
-            //    position.X);
-
             CameraPosition = new Point3D(
                 position.X,
                 position.Y,
                 1.7); // Eye height in meters
 
-            //LookDirection = new Vector3D(Math.Sin(orientation), 0, Math.Cos(orientation));
-
             // Todo: Beregn det pba orientation
-            LookDirection = new Vector3D(0, 1, 0);
+            LookDirection = new Vector3D(Math.Cos(orientation), Math.Sin(orientation), 0);
 
             DirectionalLight = LookDirection + new Vector3D(0, -0.5, 0);
             PlayerLightPosition = CameraPosition + LookDirection * 3 + new Vector3D(0, -1, 0);

@@ -1,5 +1,4 @@
-﻿using System.Windows.Media;
-using System.Windows.Media.Media3D;
+﻿using System.Windows.Media.Media3D;
 
 namespace Temple.Infrastructure.Presentation;
 
@@ -229,8 +228,6 @@ public static class MeshBuilder
         double orientation)
     {
         string path = null;
-        //var basicRotationAxis = new Vector3D(1, 0, 0);
-        //var basicRotationAngle = -90.0;
 
         switch (modelId)
         {
@@ -248,8 +245,6 @@ public static class MeshBuilder
         return ImportMeshFromFile(
             path,
             material,
-            //basicRotationAxis,
-            //basicRotationAngle,
             position,
             orientation);
     }
@@ -257,8 +252,6 @@ public static class MeshBuilder
     private static GeometryModel3D ImportMeshFromFile(
         string path,
         Material material,
-        //Vector3D basicRotationAxis,
-        //double basicRotationAngle,
         Vector3D position,
         double orientation = 0)
     {
@@ -270,15 +263,10 @@ public static class MeshBuilder
             Material = material
         };
 
-        // Basic transform to normalize the model in this coordinate system
-        //model.Rotate(basicRotationAxis, basicRotationAngle);
-        //model.Translate(basicTranslation.X, basicTranslation.Y, basicTranslation.Z);
-        //model.Scale(basicScaleFactor, basicScaleFactor, basicScaleFactor);
-
         // Position in this scene
         if (Math.Abs(orientation) > 0.00001)
         {
-            model.Rotate(new Vector3D(0, 1, 0), orientation);
+            model.Rotate(new Vector3D(0, 0, 1), orientation);
         }
 
         model.Translate(position.X, position.Y, position.Z);

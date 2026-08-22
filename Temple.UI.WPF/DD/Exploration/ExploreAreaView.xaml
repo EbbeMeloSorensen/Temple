@@ -17,56 +17,60 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <reborn:GeometryView Grid.Row="0" Grid.Column="0"
-                             DataContext="{Binding}"
-                             FrameHandler="{Binding}"/>
+        <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black">
+            <reborn:GeometryView DataContext="{Binding}"
+                                 FrameHandler="{Binding}"/>
 
-        <Viewport3D Grid.Column="1" Name="viewport">
+        </Border>
 
-            <Viewport3D.Camera>
-                <PerspectiveCamera
-                    Position="{Binding CameraPosition}"
-                    LookDirection="{Binding LookDirection}"
-                    UpDirection="0,0,1"
-                    FieldOfView="45"/>
-            </Viewport3D.Camera>
+        <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black">
+            <Viewport3D Name="viewport">
 
-            <!-- Dim ambient so the point light matters -->
-            <ModelVisual3D>
-                <ModelVisual3D.Content>
-                    <AmbientLight Color="#202020"/>
-                </ModelVisual3D.Content>
-            </ModelVisual3D>
+                <Viewport3D.Camera>
+                    <PerspectiveCamera
+                        Position="{Binding CameraPosition}"
+                        LookDirection="{Binding LookDirection}"
+                        UpDirection="0,0,1"
+                        FieldOfView="80"/>
+                </Viewport3D.Camera>
 
-            <!--Directional light, to show floor-->
-            <ModelVisual3D>
-                <ModelVisual3D.Content>
-                    <DirectionalLight Color="#666666"
-                                      Direction="{Binding DirectionalLight}"/>
-                </ModelVisual3D.Content>
-            </ModelVisual3D>
+                <!-- Dim ambient so the point light matters -->
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <AmbientLight Color="#202020"/>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
 
-            <!-- Player light -->
-            <ModelVisual3D>
-                <ModelVisual3D.Content>
-                    <PointLight Color="white"
-                                Range="10"
-                                ConstantAttenuation="1"
-                                LinearAttenuation="0.2"
-                                QuadraticAttenuation="0.05"
-                                Position="{Binding PlayerLightPosition}" />
-                </ModelVisual3D.Content>
-            </ModelVisual3D>
+                <!--Directional light, to show floor-->
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <DirectionalLight Color="#666666"
+                                          Direction="{Binding DirectionalLight}"/>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
 
-            <!-- Static content like walls, cylinders, NPCs, etc -->
-            <ModelVisual3D Content="{Binding Scene3DStatic}"/>
+                <!-- Player light -->
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <PointLight Color="white"
+                                    Range="10"
+                                    ConstantAttenuation="1"
+                                    LinearAttenuation="0.2"
+                                    QuadraticAttenuation="0.05"
+                                    Position="{Binding PlayerLightPosition}" />
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
 
-            <!-- Dynamic content like doors, etc -->
-            <ModelVisual3D Content="{Binding Scene3DDynamic}"/>
+                <!-- Static content like walls, cylinders, NPCs, etc -->
+                <ModelVisual3D Content="{Binding Scene3DStatic}"/>
 
-            <!-- Exploratory for fancying up doors-->
-            <ModelVisual3D Content="{Binding Scene3DDynamicNew}"/>
-        </Viewport3D>
+                <!-- Dynamic content like doors, etc -->
+                <ModelVisual3D Content="{Binding Scene3DDynamic}"/>
+
+                <!-- Exploratory for fancying up doors-->
+                <ModelVisual3D Content="{Binding Scene3DDynamicNew}"/>
+            </Viewport3D>
+        </Border>
 
         <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="In-Game Menu"
                 Width="120" Height ="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20"

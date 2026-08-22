@@ -24,17 +24,15 @@ namespace Temple.Infrastructure.Presentation
                         break;
 
                     case Craft.Math.LineSegment2D lineSegment2D:
-                        // Det slår vi lige fra til en start
-                        break;
 
                         var p1 = lineSegment2D.Point1;
                         var p2 = lineSegment2D.Point2;
 
                         var mesh = MeshBuilder.CreateQuad(
-                            new Point3D(-p1.Y, 2.5, p1.X),
-                            new Point3D(-p2.Y, 2.5, p2.X),
-                            new Point3D(-p2.Y, 0, p2.X),
-                            new Point3D(-p1.Y, 0, p1.X));
+                            new Point3D(p1.X, -p1.Y, 2.5),
+                            new Point3D(p2.X, -p2.Y, 2.5),
+                            new Point3D(p2.X, -p2.Y, 0),
+                            new Point3D(p1.X, -p1.Y, 0));
 
                         var model = new GeometryModel3D
                         {
@@ -51,9 +49,9 @@ namespace Temple.Infrastructure.Presentation
                             circle2D_npc.ModelId,
                             new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
                             new Vector3D(
+                                circle2D_npc.Center.X,
                                 -circle2D_npc.Center.Y,
-                                0,
-                                circle2D_npc.Center.X),
+                                0),
                             circle2D_npc.Orientation);
 
                         model3DGroup.Children.Add(modelNPC);
@@ -76,9 +74,9 @@ namespace Temple.Infrastructure.Presentation
 
                         // Position in this scene
                         model2.Translate(
-                            -circle2D_cylinder.Center.Y,
+                            circle2D_cylinder.Center.X,
                             0.0,
-                            circle2D_cylinder.Center.X);
+                            circle2D_cylinder.Center.Y);
 
                         model3DGroup.Children.Add(model2);
                         break;

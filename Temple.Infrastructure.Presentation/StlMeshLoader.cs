@@ -6,19 +6,39 @@ namespace Temple.Infrastructure.Presentation
 {
     public static class StlMeshLoader
     {
-        public static MeshGeometry3D Load(string filePath)
+        private static Dictionary<string, MeshGeometry3D> _cache;
+
+        static StlMeshLoader()
         {
+            _cache = new Dictionary<string, MeshGeometry3D>();
+        }
+
+        public static MeshGeometry3D Load(
+            string filePath)
+        {
+            MeshGeometry3D result;
+
+            if (_cache.TryGetValue(filePath, out result))
+            {
+                return result;
+            }
+
             using var fs = File.OpenRead(filePath);
             var isAscii = IsAsciiStl(fs);
 
             fs.Seek(0, SeekOrigin.Begin);
 
-            return isAscii
+            var mesh = isAscii
                 ? LoadAsciiStl(fs)
                 : LoadBinaryStl(fs);
+
+            _cache[filePath] = mesh;
+
+            return mesh;
         }
 
-        private static bool IsAsciiStl(FileStream fs)
+        private static bool IsAsciiStl(
+            FileStream fs)
         {
             // look at the first 80 bytes; ASCII STL usually starts with "solid"
             Span<byte> header = stackalloc byte[80];
@@ -27,7 +47,8 @@ namespace Temple.Infrastructure.Presentation
             return head.TrimStart().StartsWith("solid", StringComparison.OrdinalIgnoreCase);
         }
 
-        private static MeshGeometry3D LoadAsciiStl(Stream stream)
+        private static MeshGeometry3D LoadAsciiStl(
+            Stream stream)
         {
             var mesh = new MeshGeometry3D();
             using var reader = new StreamReader(stream);
@@ -54,7 +75,8 @@ namespace Temple.Infrastructure.Presentation
             return mesh;
         }
 
-        private static MeshGeometry3D LoadBinaryStl(Stream stream)
+        private static MeshGeometry3D LoadBinaryStl(
+            Stream stream)
         {
             var mesh = new MeshGeometry3D();
             using var reader = new BinaryReader(stream);
@@ -77,7 +99,8 @@ namespace Temple.Infrastructure.Presentation
             return mesh;
         }
 
-        private static Vector3D ParseVector(string s)
+        private static Vector3D ParseVector(
+            string s)
         {
             var parts = s.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
             return new Vector3D(
@@ -86,7 +109,12 @@ namespace Temple.Infrastructure.Presentation
                 double.Parse(parts[2]));
         }
 
-        private static void AddTriangle(MeshGeometry3D mesh, Vector3D v1, Vector3D v2, Vector3D v3, Vector3D normal)
+        private static void AddTriangle(
+            MeshGeometry3D mesh,
+            Vector3D v1,
+            Vector3D v2,
+            Vector3D v3,
+            Vector3D normal)
         {
             mesh.Positions.Add((Point3D)v1);
             mesh.Positions.Add((Point3D)v2);
