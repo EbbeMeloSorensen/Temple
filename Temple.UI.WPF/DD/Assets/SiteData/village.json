@@ -235,16 +235,16 @@
         }
       ]
     },
-    //{
-    //  "$type": "Temple.Domain.Entities.DD.Exploration.Door",
-    //  "Position": {
-    //    "X": 0,
-    //    "Y": 0
-    //  },
-    //  "Width": 0.75,
-    //  "Orientation": 0,
-    //  "Id": "door0"
-    //},
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 0,
+        "Y": 0
+      },
+      "Width": 0.75,
+      "Orientation": 0,
+      "Id": "door0"
+    },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
       "Position": {

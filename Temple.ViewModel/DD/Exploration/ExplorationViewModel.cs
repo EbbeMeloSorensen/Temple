@@ -37,7 +37,6 @@ namespace Temple.ViewModel.DD.Exploration
 
         private readonly DispatcherTimer _timer;
 
-        private bool _pauseAfterNextUpdate;
         private readonly ApplicationController _controller;
         private GeometryDataStore _geometryDataStore;
         private readonly ISiteDataFactory _siteDataFactory;
@@ -48,7 +47,6 @@ namespace Temple.ViewModel.DD.Exploration
         private Scene _scene2D;
         private Model3D _scene3DStatic;
         private Model3D _scene3DDynamic;
-        private Model3D _scene3DDynamicNew;
         private Point3D _cameraPosition;
         private Vector3D _lookDirection;
         private Point3D _playerLightPosition;
@@ -80,16 +78,6 @@ namespace Temple.ViewModel.DD.Exploration
             private set
             {
                 _scene3DDynamic = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public Model3D Scene3DDynamicNew
-        {
-            get => _scene3DDynamicNew;
-            private set
-            {
-                _scene3DDynamicNew = value;
                 RaisePropertyChanged();
             }
         }
@@ -575,7 +563,6 @@ namespace Temple.ViewModel.DD.Exploration
                 position.Y,
                 1.7); // Eye height in meters
 
-            // Todo: Beregn det pba orientation
             LookDirection = new Vector3D(Math.Cos(orientation), Math.Sin(orientation), 0);
 
             DirectionalLight = LookDirection + new Vector3D(0, -0.5, 0);
@@ -586,12 +573,6 @@ namespace Temple.ViewModel.DD.Exploration
             if (_scene2D.ViewMode == SceneViewMode.FocusOnFirstBody)
             {
                 UpdateFocus(_currentState.BodyStates.First().Position);
-            }
-
-            if (_pauseAfterNextUpdate)
-            {
-                Engine.PauseAnimation();
-                _pauseAfterNextUpdate = false;
             }
         }
 
@@ -683,7 +664,7 @@ namespace Temple.ViewModel.DD.Exploration
                     }
                 });
 
-                Scene3DDynamicNew = model3DGroup;
+                Scene3DDynamic = model3DGroup;
             }
         }
 
@@ -743,51 +724,75 @@ namespace Temple.ViewModel.DD.Exploration
             GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects2D);
 
             // Also update the dynamic part of the 3D scene
-            var geometricObjects3D = new ArrayList();
+            //var geometricObjects3D = new ArrayList();
 
-            _currentState.BodyStates.ForEach(bs =>
+            //_currentState.BodyStates.ForEach(bs =>
+            //{
+            //    switch (bs.Body)
+            //    {
+            //        // Doors
+            //        case BodyDoor bodyDoor:
+            //            var bodyStateDoor = bs as BodyStateDoor;
+            //            var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
+
+            //            var doorAsVector = new Vector2D(
+            //                bodyDoor.Point2.X - bodyDoor.Point1.X,
+            //                bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+
+            //            var doorWidth = doorAsVector.Length;
+            //            var hatted = doorAsVector.Hat();
+
+            //            if (!bodyStateDoor.OpenClockWise)
+            //            {
+            //                hatted = -hatted;
+            //            }
+
+            //            var pt2_x =
+            //                bodyDoor.Point1.X +
+            //                Math.Cos(angle) * doorAsVector.X +
+            //                Math.Sin(angle) * hatted.X;
+
+            //            var pt2_y =
+            //                bodyDoor.Point1.Y +
+            //                Math.Cos(angle) * doorAsVector.Y +
+            //                Math.Sin(angle) * hatted.Y;
+
+            //            geometricObjects3D.Add(new LineSegment2D(
+            //                new Point2D(
+            //                    bodyDoor.Point1.X,
+            //                    bodyDoor.Point1.Y),
+            //                new Point2D(
+            //                    pt2_x,
+            //                    pt2_y)));
+            //            break;
+            //    }
+            //});
+
+            //Scene3DDynamic = ((WpfSiteModel)_siteRenderer.Build(geometricObjects3D)).Model3D;
+
+            if (DoorRotationViewModelDictionary.Any())
             {
-                switch (bs.Body)
+                // Update rotation for the doors
+                _currentState.BodyStates.ForEach(bs =>
                 {
-                    // Doors
-                    case BodyDoor bodyDoor:
-                        var bodyStateDoor = bs as BodyStateDoor;
-                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
+                    switch (bs.Body)
+                    {
+                        case BodyDoor bodyDoor:
+                            var bodyStateDoor = bs as BodyStateDoor;
 
-                        var doorAsVector = new Vector2D(
-                            bodyDoor.Point2.X - bodyDoor.Point1.X,
-                            bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+                            var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
 
-                        var doorWidth = doorAsVector.Length;
-                        var hatted = doorAsVector.Hat();
+                            if (bodyStateDoor.OpenClockWise)
+                            {
+                                angle *= -1;
+                            }
 
-                        if (!bodyStateDoor.OpenClockWise)
-                        {
-                            hatted = -hatted;
-                        }
+                            DoorRotationViewModelDictionary[$"{bodyDoor.Id}"].RotationAngle = angle;
 
-                        var pt2_x =
-                            bodyDoor.Point1.X +
-                            Math.Cos(angle) * doorAsVector.X +
-                            Math.Sin(angle) * hatted.X;
-
-                        var pt2_y =
-                            bodyDoor.Point1.Y +
-                            Math.Cos(angle) * doorAsVector.Y +
-                            Math.Sin(angle) * hatted.Y;
-
-                        geometricObjects3D.Add(new LineSegment2D(
-                            new Point2D(
-                                bodyDoor.Point1.X,
-                                bodyDoor.Point1.Y),
-                            new Point2D(
-                                pt2_x,
-                                pt2_y)));
-                        break;
-                }
-            });
-
-            Scene3DDynamic = ((WpfSiteModel)_siteRenderer.Build(geometricObjects3D)).Model3D;
+                            break;
+                    }
+                });
+            }
         }
 
         private void UpdateFocus(
