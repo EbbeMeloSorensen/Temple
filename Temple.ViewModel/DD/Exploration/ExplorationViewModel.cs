@@ -623,9 +623,9 @@ namespace Temple.ViewModel.DD.Exploration
                     {
                         case BodyDoor bodyDoor:
                             var bodyStateDoor = bs as BodyStateDoor;
-                            var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
+                            //var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
 
-                            var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
+                            var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
                             var rotation = new RotateTransform3D(axisAngleRotation);
 
                             var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = 0 };
@@ -647,10 +647,10 @@ namespace Temple.ViewModel.DD.Exploration
                             var transform3DGroup = new Transform3DGroup();
 
                             // Nødvendigt indtil du har nogle bedre koordinatsystemer, hvor du ikke behøver vride stl-modellerne på vej ind.
-                            transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), -90))); 
+                            //transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), -90))); 
 
                             transform3DGroup.Children.Add(rotation);
-                            transform3DGroup.Children.Add(new TranslateTransform3D(-y, 0, x));
+                            transform3DGroup.Children.Add(new TranslateTransform3D(x, 0, -y));
 
                             var model = MeshBuilder.ImportModelFromFile(
                                 "door",
