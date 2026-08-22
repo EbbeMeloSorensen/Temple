@@ -33,6 +33,8 @@ namespace Temple.ViewModel.DD.Exploration
 {
     public class ExplorationViewModel : TempleViewModel, IFrameAware
     {
+        private Material _materialDoor;
+
         private readonly DispatcherTimer _timer;
 
         private bool _pauseAfterNextUpdate;
@@ -162,6 +164,8 @@ namespace Temple.ViewModel.DD.Exploration
             ISiteRenderer siteRenderer,
             IGameQueryService gameQueryService)
         {
+            _materialDoor = new DiffuseMaterial(new SolidColorBrush(Colors.Yellow));
+
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _siteDataFactory = siteDataFactory ?? throw new ArgumentNullException(nameof(siteDataFactory));
             _siteRenderer = siteRenderer ?? throw new ArgumentNullException(nameof(siteRenderer));
@@ -366,7 +370,8 @@ namespace Temple.ViewModel.DD.Exploration
                 var count = 0;
                 foreach (var kvp in DoorRotationViewModelDictionary)
                 {
-                    kvp.Value.RotationAngle += 1.0;
+                    // Temporarily outcommented
+                    //kvp.Value.RotationAngle += 1.0;
 
                     count++;
 
@@ -615,56 +620,54 @@ namespace Temple.ViewModel.DD.Exploration
             if (_currentState != null)
             {
                 var model3DGroup = new Model3DGroup();
-                var material_Doors = new DiffuseMaterial(new SolidColorBrush(Colors.Yellow));
 
                 _currentState.BodyStates.ForEach(bs =>
                 {
-                    switch (bs.Body)
-                    {
-                        case BodyDoor bodyDoor:
-                            var bodyStateDoor = bs as BodyStateDoor;
-                            //var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
+                switch (bs.Body)
+                {
+                    case BodyDoor bodyDoor:
+                        var bodyStateDoor = bs as BodyStateDoor;
+                        //var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
 
-                            var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
-                            var rotation = new RotateTransform3D(axisAngleRotation);
+                        var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+                        var rotation = new RotateTransform3D(axisAngleRotation);
 
-                            var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = 0 };
-                            DoorRotationViewModelDictionary[$"{bodyDoor.Id}"] = doorRotationViewModel;
+                        var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = 0 };
+                        DoorRotationViewModelDictionary[$"{bodyDoor.Id}"] = doorRotationViewModel;
 
-                            BindingOperations.SetBinding(
-                                axisAngleRotation,
-                                AxisAngleRotation3D.AngleProperty,
-                                new Binding(nameof(DoorRotationViewModel.RotationAngle))
-                                {
-                                    Source = doorRotationViewModel
-                                });
+                        BindingOperations.SetBinding(
+                            axisAngleRotation,
+                            AxisAngleRotation3D.AngleProperty,
+                            new Binding(nameof(DoorRotationViewModel.RotationAngle))
+                            {
+                                Source = doorRotationViewModel
+                            });
 
-                            var x = (bodyDoor.Point1.X + bodyDoor.Point1.X) / 2;
-                            var y = (bodyDoor.Point1.Y + bodyDoor.Point1.Y) / 2;
-                            var length = 2.5;
-                            var radius = 0.1;
+                            var doorCenter = new Vector2D(
+                                (bodyDoor.Point1.X + bodyDoor.Point1.X) / 2,
+                                (bodyDoor.Point1.Y + bodyDoor.Point1.Y) / 2);
+
+                            var doorAsVector = new Vector2D(
+                                bodyDoor.Point2.X - bodyDoor.Point1.X,
+                                bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+
+                            var polarAngle = Math.Atan2(-doorAsVector.Y, doorAsVector.X);
+
+                            var doorOrientation = (polarAngle + Math.PI) * 180 / Math.PI;
 
                             var transform3DGroup = new Transform3DGroup();
+                            transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), doorOrientation)));
+                            transform3DGroup.Children.Add(new TranslateTransform3D(doorCenter.X, -doorCenter.Y, 0));
+                            var meshDoor = MeshBuilder.CreateMesh("door");
 
-                            // Nødvendigt indtil du har nogle bedre koordinatsystemer, hvor du ikke behøver vride stl-modellerne på vej ind.
-                            //transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), -90))); 
+                            var modelDoor = new GeometryModel3D
+                            {
+                                Geometry = meshDoor,
+                                Material = _materialDoor
+                            };
 
-                            transform3DGroup.Children.Add(rotation);
-                            transform3DGroup.Children.Add(new TranslateTransform3D(x, 0, -y));
-
-                            var model = MeshBuilder.ImportModelFromFile(
-                                "door",
-                                material_Doors,
-                                new Vector3D(
-                                    0,
-                                    0,
-                                    0),
-                                0.0);
-
-
-                            model.Transform = transform3DGroup;
-
-                            model3DGroup.Children.Add(model);
+                            modelDoor.Transform = transform3DGroup;
+                            model3DGroup.Children.Add(modelDoor);
 
                             break;
                     }

@@ -221,15 +221,12 @@ public static class MeshBuilder
         return mesh;
     }
 
-    public static Model3D ImportModelFromFile(
-        string modelId,
-        Material material,
-        Vector3D position,
-        double orientation)
+    public static MeshGeometry3D CreateMesh(
+        string meshId)
     {
         string path = null;
 
-        switch (modelId)
+        switch (meshId)
         {
             case "door":
                 path = @"DD\Assets\door.stl";
@@ -242,36 +239,29 @@ public static class MeshBuilder
                 break;
         }
 
-        return ImportMeshFromFile(
-            path,
-            material,
-            position,
-            orientation);
+        return ImportMeshFromFile(path);
     }
 
-    private static GeometryModel3D ImportMeshFromFile(
-        string path,
-        Material material,
-        Vector3D position,
-        double orientation = 0)
+    private static MeshGeometry3D ImportMeshFromFile(
+        string path)
     {
-        var mesh = StlMeshLoader.Load(path);
+        return StlMeshLoader.Load(path);
 
-        var model = new GeometryModel3D
-        {
-            Geometry = mesh,
-            Material = material
-        };
+        //var model = new GeometryModel3D
+        //{
+        //    Geometry = mesh,
+        //    Material = material
+        //};
 
-        // Position in this scene
-        if (Math.Abs(orientation) > 0.00001)
-        {
-            model.Rotate(new Vector3D(0, 0, 1), orientation);
-        }
+        //// Position in this scene
+        //if (Math.Abs(orientation) > 0.00001)
+        //{
+        //    model.Rotate(new Vector3D(0, 0, 1), orientation);
+        //}
 
-        model.Translate(position.X, position.Y, position.Z);
+        //model.Translate(position.X, position.Y, position.Z);
 
-        return model;
+        //return model;
     }
 }
 

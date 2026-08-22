@@ -9,6 +9,13 @@ namespace Temple.Infrastructure.Presentation
 {
     public class WPFSiteRenderer : ISiteRenderer
     {
+        private Material _materialNPC;
+
+        public WPFSiteRenderer()
+        {
+            _materialNPC = new DiffuseMaterial(new SolidColorBrush(Colors.LightPink));
+        }
+
         public ISiteModel Build(
             IEnumerable geometricObjects)
         {
@@ -24,6 +31,9 @@ namespace Temple.Infrastructure.Presentation
                         break;
 
                     case Craft.Math.LineSegment2D lineSegment2D:
+
+                        // Temporarily outcommented
+                        break;
 
                         var p1 = lineSegment2D.Point1;
                         var p2 = lineSegment2D.Point2;
@@ -45,14 +55,20 @@ namespace Temple.Infrastructure.Presentation
 
                     case Circle2D_NPC circle2D_npc:
 
-                        var modelNPC = MeshBuilder.ImportModelFromFile(
-                            circle2D_npc.ModelId,
-                            new DiffuseMaterial(new SolidColorBrush(Colors.LightPink)),
-                            new Vector3D(
-                                circle2D_npc.Center.X,
-                                -circle2D_npc.Center.Y,
-                                0),
-                            circle2D_npc.Orientation);
+                        var meshNPC = MeshBuilder.CreateMesh(circle2D_npc.ModelId);
+
+                        var modelNPC = new GeometryModel3D
+                        {
+                            Geometry = meshNPC,
+                            Material = _materialNPC
+                        };
+
+                        if (Math.Abs(circle2D_npc.Orientation) > 0.00001)
+                        {
+                            modelNPC.Rotate(new Vector3D(0, 0, 1), circle2D_npc.Orientation);
+                        }
+
+                        modelNPC.Translate(circle2D_npc.Center.X, -circle2D_npc.Center.Y, 0);
 
                         model3DGroup.Children.Add(modelNPC);
                         break;
