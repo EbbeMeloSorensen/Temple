@@ -654,7 +654,8 @@ namespace Temple.ViewModel.DD.Exploration
                         var modelDoor = new GeometryModel3D
                         {
                             Geometry = meshDoor,
-                            Material = _materialDoor
+                            Material = _materialDoor,
+                            BackMaterial = _materialDoor
                         };
 
                         modelDoor.Transform = transform3DGroup;

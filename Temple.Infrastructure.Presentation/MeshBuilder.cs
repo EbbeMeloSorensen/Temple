@@ -227,8 +227,8 @@ public static class MeshBuilder
         {
             case "door":
                 //path = @"DD\Assets\door.stl";
-                path = @"DD\Assets\door2.stl";
-                //path = @"DD\Assets\door3.stl";
+                //path = @"DD\Assets\door2.stl";
+                path = @"DD\Assets\door3.stl";
                 break;
             case "human male":
                 path = @"DD\Assets\male_corrected.stl";
