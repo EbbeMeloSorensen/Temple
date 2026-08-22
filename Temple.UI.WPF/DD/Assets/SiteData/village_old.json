@@ -57,7 +57,6 @@
       "Orientation": 0.0,
       "Id": "door4"
     },
-
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
       "Position": {

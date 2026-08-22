@@ -82,7 +82,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding LocationInfo}"/>
+            <TextBlock Grid.Row="0" Text="{Binding LocationInfo}" TextWrapping="Wrap"/>
             <Button Grid.Row="1" Content="Continue" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"
                     FontWeight="Bold" FontSize="16"
                     Command="{Binding CloseLocationInfo_Command}"/>

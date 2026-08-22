@@ -566,7 +566,7 @@ namespace Temple.ViewModel.DD.Exploration
             var orientation = bodyStateOfProtagonist.Orientation;
 
             _controller.ApplicationData.ExplorationPosition = position;
-            _controller.ApplicationData.ExplorationOrientation = orientation * 180.0 / Math.PI;
+            _controller.ApplicationData.ExplorationOrientation = 90 + orientation * 180.0 / Math.PI;
 
             CameraPosition = new Point3D(
                 position.X,
