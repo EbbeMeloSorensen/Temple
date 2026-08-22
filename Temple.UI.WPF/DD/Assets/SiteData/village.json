@@ -242,6 +242,56 @@
       ]
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 0.5,
+        "Y": 7
+      },
+      "Width": 0.45,
+      "Orientation": 0,
+      "Id": "door1"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 2,
+        "Y": 3.5
+      },
+      "Width": 0.45,
+      "Orientation": 270,
+      "Id": "door2"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -1,
+        "Y": 3.5
+      },
+      "Width": 0.45,
+      "Orientation": 90,
+      "Id": "door3"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -2,
+        "Y": 2
+      },
+      "Width": 0.45,
+      "Orientation": 0,
+      "Id": "door4"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -3,
+        "Y": 3.5
+      },
+      "Width": 0.45,
+      "Orientation": 270,
+      "Id": "door5"
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
       "Position": {
         "X": 0.5,

@@ -324,8 +324,8 @@ public static class ExplorationSceneFactory
                     var affectedByGravity = true;
                     var affectedByBoundaries = true;
 
-                    var doorCenter = new Vector2D(door.Position.Z, -door.Position.X);
-                    var radians = door.Orientation * Math.PI / 180;
+                    var doorCenter = new Vector2D(door.Position.X, -door.Position.Y);
+                    var radians = (door.Orientation + 270) * Math.PI / 180;
 
                     var doorHalfVector = new Vector2D(
                         Math.Sin(radians),
