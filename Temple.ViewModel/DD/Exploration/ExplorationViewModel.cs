@@ -275,8 +275,6 @@ namespace Temple.ViewModel.DD.Exploration
 
                     controller.EventBus.Publish(new KnowledgeGainedEvent(locationInfoId));
 
-                    //LocationInfo = "You notice a foul smell of cheese here.";
-
                     LocationInfo = _locationInfoDictionary.ContainsKey(locationInfoId)
                         ? _locationInfoDictionary[locationInfoId]
                         : "location info id not found in site data";
@@ -366,11 +364,10 @@ namespace Temple.ViewModel.DD.Exploration
 
             _timer.Tick += (s, e) =>
             {
-                // Change the rotation of SOME OF the doors
+                // Change the rotation of SOME OF the doors (3 first of 5)
                 var count = 0;
                 foreach (var kvp in DoorRotationViewModelDictionary)
                 {
-                    // Temporarily outcommented
                     //kvp.Value.RotationAngle += 1.0;
 
                     count++;
@@ -627,12 +624,17 @@ namespace Temple.ViewModel.DD.Exploration
                 {
                     case BodyDoor bodyDoor:
                         var bodyStateDoor = bs as BodyStateDoor;
-                        //var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
+                        var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
+
+                        if (bodyStateDoor.OpenClockWise)
+                        {
+                            angle *= -1;
+                        }
 
                         var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
-                        var rotation = new RotateTransform3D(axisAngleRotation);
+                        var doorOpeningRotation = new RotateTransform3D(axisAngleRotation);
 
-                        var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = 0 };
+                        var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = angle };
                         DoorRotationViewModelDictionary[$"{bodyDoor.Id}"] = doorRotationViewModel;
 
                         BindingOperations.SetBinding(
@@ -643,33 +645,41 @@ namespace Temple.ViewModel.DD.Exploration
                                 Source = doorRotationViewModel
                             });
 
-                            var doorCenter = new Vector2D(
-                                (bodyDoor.Point1.X + bodyDoor.Point1.X) / 2,
-                                (bodyDoor.Point1.Y + bodyDoor.Point1.Y) / 2);
+                        var doorCenter = new Vector2D(
+                            (bodyDoor.Point1.X + bodyDoor.Point2.X) / 2,
+                            (bodyDoor.Point1.Y + bodyDoor.Point2.Y) / 2);
 
-                            var doorAsVector = new Vector2D(
-                                bodyDoor.Point2.X - bodyDoor.Point1.X,
-                                bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+                        var doorAsVector = new Vector2D(
+                            bodyDoor.Point2.X - bodyDoor.Point1.X,
+                            bodyDoor.Point2.Y - bodyDoor.Point1.Y);
 
-                            var polarAngle = Math.Atan2(-doorAsVector.Y, doorAsVector.X);
+                        var polarAngle = Math.Atan2(-doorAsVector.Y, doorAsVector.X);
+                        var doorOrientation = (polarAngle + Math.PI) * 180 / Math.PI;
 
-                            var doorOrientation = (polarAngle + Math.PI) * 180 / Math.PI;
+                        var doorWidth = doorAsVector.Length;
 
-                            var transform3DGroup = new Transform3DGroup();
-                            transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), doorOrientation)));
-                            transform3DGroup.Children.Add(new TranslateTransform3D(doorCenter.X, -doorCenter.Y, 0));
-                            var meshDoor = MeshBuilder.CreateMesh("door");
+                        var transform3DGroup = new Transform3DGroup();
 
-                            var modelDoor = new GeometryModel3D
-                            {
-                                Geometry = meshDoor,
-                                Material = _materialDoor
-                            };
+                        // Transformer den i henhold til, hvor åben den er
+                        transform3DGroup.Children.Add(new TranslateTransform3D(-doorWidth / 2, 0, 0));
+                        transform3DGroup.Children.Add(doorOpeningRotation);
+                        transform3DGroup.Children.Add(new TranslateTransform3D(doorWidth / 2, 0, 0));
 
-                            modelDoor.Transform = transform3DGroup;
-                            model3DGroup.Children.Add(modelDoor);
+                        // Placer den i scenen
+                        transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), doorOrientation)));
+                        transform3DGroup.Children.Add(new TranslateTransform3D(doorCenter.X, -doorCenter.Y, 0));
+                        var meshDoor = MeshBuilder.CreateMesh("door");
 
-                            break;
+                        var modelDoor = new GeometryModel3D
+                        {
+                            Geometry = meshDoor,
+                            Material = _materialDoor
+                        };
+
+                        modelDoor.Transform = transform3DGroup;
+                        model3DGroup.Children.Add(modelDoor);
+
+                        break;
                     }
                 });
 

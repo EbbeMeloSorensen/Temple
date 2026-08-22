@@ -1,7 +1,7 @@
 {
   "StartPosition": {
     "X": 0,
-    "Y": -3
+    "Y": -2
   },
   "StartOrientation": 180,
   "SiteComponents": [
@@ -9,7 +9,7 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
-          "X": 1,
+          "X": 0.5,
           "Y": 0
         },
         {
@@ -29,7 +29,27 @@
           "Y": 0
         },
         {
-          "X": 0,
+          "X": -0.5,
+          "Y": 0
+        },
+        {
+          "X": -4,
+          "Y": 0
+        },
+        {
+          "X": -4,
+          "Y": 12
+        },
+        {
+          "X": 5,
+          "Y": 12
+        },
+        {
+          "X": 5,
+          "Y": 0
+        },
+        {
+          "X": 0.5,
           "Y": 0
         }
       ]
@@ -215,14 +235,24 @@
         }
       ]
     },
+    //{
+    //  "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+    //  "Position": {
+    //    "X": 0,
+    //    "Y": 0
+    //  },
+    //  "Width": 0.75,
+    //  "Orientation": 0,
+    //  "Id": "door0"
+    //},
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
       "Position": {
         "X": 0.5,
         "Y": 7
       },
-      "Width": 0.45,
-      "Orientation": 180,
+      "Width": 0.75,
+      "Orientation": 0,
       "Id": "door1"
     },
     {
@@ -231,7 +261,7 @@
         "X": 2,
         "Y": 3.5
       },
-      "Width": 0.45,
+      "Width": 0.75,
       "Orientation": 270,
       "Id": "door2"
     },
@@ -241,7 +271,7 @@
         "X": -1,
         "Y": 3.5
       },
-      "Width": 0.45,
+      "Width": 0.75,
       "Orientation": 90,
       "Id": "door3"
     },
@@ -251,7 +281,7 @@
         "X": -2,
         "Y": 2
       },
-      "Width": 0.45,
+      "Width": 0.75,
       "Orientation": 0,
       "Id": "door4"
     },
@@ -261,7 +291,7 @@
         "X": -3,
         "Y": 3.5
       },
-      "Width": 0.45,
+      "Width": 0.75,
       "Orientation": 270,
       "Id": "door5"
     },

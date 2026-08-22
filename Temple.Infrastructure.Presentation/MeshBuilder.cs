@@ -229,7 +229,8 @@ public static class MeshBuilder
         switch (meshId)
         {
             case "door":
-                path = @"DD\Assets\door.stl";
+                //path = @"DD\Assets\door.stl";
+                path = @"DD\Assets\door2.stl";
                 break;
             case "human male":
                 path = @"DD\Assets\male_corrected.stl";

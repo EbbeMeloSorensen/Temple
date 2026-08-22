@@ -32,9 +32,6 @@ namespace Temple.Infrastructure.Presentation
 
                     case Craft.Math.LineSegment2D lineSegment2D:
 
-                        // Temporarily outcommented
-                        break;
-
                         var p1 = lineSegment2D.Point1;
                         var p2 = lineSegment2D.Point2;
 
