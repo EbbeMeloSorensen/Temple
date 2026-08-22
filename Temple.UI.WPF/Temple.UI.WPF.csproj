@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="DD\Assets\door.stl" />
     <None Remove="DD\Assets\door2.stl" />
+    <None Remove="DD\Assets\door3.stl" />
     <None Remove="DD\Assets\female.stl" />
     <None Remove="DD\Assets\female_corrected.stl" />
     <None Remove="DD\Assets\male.stl" />
@@ -75,6 +76,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DD\Assets\door2.stl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DD\Assets\door3.stl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DD\Assets\female.stl">
