@@ -588,12 +588,25 @@ namespace Temple.ViewModel.DD.Exploration
 
             if (_geometryDataStore != null)
             {
+                // This may include both visible and invisible objects. Here, we are only interested in the visible ones
                 var geometricObjects =
                     _geometryDataStore.Query(GeometryViewModel.WorldWindowExpanded);
 
+                var visibleGeometricObjects = new List<object>();
+
+                foreach (var geometricObject in geometricObjects)
+                {
+                    if (geometricObject is Circle2D_NPC circle2D_NPC && !circle2D_NPC.Visible)
+                    {
+                        continue;
+                    }
+
+                    visibleGeometricObjects.Add(geometricObject);
+                }
+
                 // Update the static part of the 2D scene
                 GeometryViewModel.AddStaticGeometryLayer(
-                    geometricObjects);
+                    visibleGeometricObjects);
 
                 // Update the static part of the 3D scene
                 Scene3DStatic = ((WpfSiteModel)_siteRenderer.Build(geometricObjects)).Model3D;
@@ -761,8 +774,8 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                //Scaling = new Size(0.015, 0.015) // (Ordinary)
-                Scaling = new Size(0.003, 0.003) // (Zoom in x 5)
+                Scaling = new Size(0.015, 0.015) // (Ordinary)
+                //Scaling = new Size(0.003, 0.003) // (Zoom in x 5)
                 //Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
                 //Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
             };

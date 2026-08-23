@@ -254,6 +254,14 @@
       "Length": 1.2
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Sphere",
+      "Position": {
+        "X": -3.5,
+        "Y": 0.5
+      },
+      "Radius": 0.1
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
       "Position": {
         "X": 0.5,
@@ -265,6 +273,10 @@
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "ConditionForAccessibility": {
+        "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
+        "FactId": "got_key_to_cellar_door_from_ethon"
+      },
       "Position": {
         "X": 2,
         "Y": 3.5
@@ -275,6 +287,10 @@
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "ConditionForAccessibility": {
+        "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
+        "FactId": "got_key_to_sewer_door_from_alyth"
+      },
       "Position": {
         "X": -1,
         "Y": 3.5
@@ -296,22 +312,22 @@
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
       "Position": {
-        "X": 0,
-        "Y": 0
-      },
-      "Width": 0.75,
-      "Orientation": 180,
-      "Id": "door5"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
-      "Position": {
         "X": -3,
         "Y": 3.5
       },
       "Width": 0.75,
       "Orientation": 270,
       "Id": "door5"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 0,
+        "Y": 0
+      },
+      "Width": 0.75,
+      "Orientation": 180,
+      "Id": "door6"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
