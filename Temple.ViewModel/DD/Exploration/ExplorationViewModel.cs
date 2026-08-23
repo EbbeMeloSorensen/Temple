@@ -487,7 +487,7 @@ namespace Temple.ViewModel.DD.Exploration
                             npc.Orientation));
                         break;
                     case Boundaries.Cylinder cylinder:
-                        staticGeometryObjects.Add(new Domain.Geometry.Circle2D_Cylinder(
+                        staticGeometryObjects.Add(new Circle2D_Cylinder(
                             new Point2D(cylinder.Center.X, cylinder.Center.Y),
                             cylinder.Radius,
                             cylinder.Length));
