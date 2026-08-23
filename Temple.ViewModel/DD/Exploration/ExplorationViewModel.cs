@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using Craft.Logging;
 using Craft.Math;
@@ -34,8 +33,6 @@ namespace Temple.ViewModel.DD.Exploration
     public class ExplorationViewModel : TempleViewModel, IFrameAware
     {
         private Material _materialDoor;
-
-        private readonly DispatcherTimer _timer;
 
         private readonly ApplicationController _controller;
         private GeometryDataStore _geometryDataStore;
@@ -343,31 +340,6 @@ namespace Temple.ViewModel.DD.Exploration
                     _controller.GoToNextApplicationState(payload);
                 }
             };
-
-            // Experimental
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMilliseconds(20) // ~50 updates/sec
-            };
-
-            _timer.Tick += (s, e) =>
-            {
-                // Change the rotation of SOME OF the doors (3 first of 5)
-                var count = 0;
-                foreach (var kvp in DoorRotationViewModelDictionary)
-                {
-                    //kvp.Value.RotationAngle += 1.0;
-
-                    count++;
-
-                    if (count >= 3)
-                    {
-                        break;
-                    }
-                }
-            };
-
-            _timer.Start();
         }
 
         public override TempleViewModel Init(
@@ -724,53 +696,6 @@ namespace Temple.ViewModel.DD.Exploration
 
             GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects2D);
 
-            // Also update the dynamic part of the 3D scene
-            //var geometricObjects3D = new ArrayList();
-
-            //_currentState.BodyStates.ForEach(bs =>
-            //{
-            //    switch (bs.Body)
-            //    {
-            //        // Doors
-            //        case BodyDoor bodyDoor:
-            //            var bodyStateDoor = bs as BodyStateDoor;
-            //            var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
-
-            //            var doorAsVector = new Vector2D(
-            //                bodyDoor.Point2.X - bodyDoor.Point1.X,
-            //                bodyDoor.Point2.Y - bodyDoor.Point1.Y);
-
-            //            var doorWidth = doorAsVector.Length;
-            //            var hatted = doorAsVector.Hat();
-
-            //            if (!bodyStateDoor.OpenClockWise)
-            //            {
-            //                hatted = -hatted;
-            //            }
-
-            //            var pt2_x =
-            //                bodyDoor.Point1.X +
-            //                Math.Cos(angle) * doorAsVector.X +
-            //                Math.Sin(angle) * hatted.X;
-
-            //            var pt2_y =
-            //                bodyDoor.Point1.Y +
-            //                Math.Cos(angle) * doorAsVector.Y +
-            //                Math.Sin(angle) * hatted.Y;
-
-            //            geometricObjects3D.Add(new LineSegment2D(
-            //                new Point2D(
-            //                    bodyDoor.Point1.X,
-            //                    bodyDoor.Point1.Y),
-            //                new Point2D(
-            //                    pt2_x,
-            //                    pt2_y)));
-            //            break;
-            //    }
-            //});
-
-            //Scene3DDynamic = ((WpfSiteModel)_siteRenderer.Build(geometricObjects3D)).Model3D;
-
             if (DoorRotationViewModelDictionary.Any())
             {
                 // Update rotation for the doors
@@ -803,8 +728,8 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                Scaling = new Size(0.015, 0.015) // (Ordinary)
-                //Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
+                //Scaling = new Size(0.015, 0.015) // (Ordinary)
+                Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
                 //Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
             };
         }
