@@ -1,4 +1,11 @@
-﻿using Craft.Logging;
+﻿using System.Collections;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
+using GalaSoft.MvvmLight.Command;
+using Craft.Logging;
 using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
@@ -9,13 +16,6 @@ using Craft.Utils;
 using Craft.ViewModels.Geometry2D.Reborn;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
-using GalaSoft.MvvmLight.Command;
-using System.Collections;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media;
-using System.Windows.Media.Media3D;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -518,14 +518,17 @@ namespace Temple.ViewModel.DD.Exploration
                 };
             });
 
-            _geometryDataStore = new GeometryDataStore(
-                new Craft.DataStructures.Geometry.BoundingBox(
-                    boundingBoxes.Min(b => b.MinX),
-                    boundingBoxes.Max(b => b.MaxX),
-                    boundingBoxes.Min(b => b.MinY),
-                    boundingBoxes.Max(b => b.MaxY)));
+            if (boundingBoxes.Any())
+            {
+                _geometryDataStore = new GeometryDataStore(
+                    new Craft.DataStructures.Geometry.BoundingBox(
+                        boundingBoxes.Min(b => b.MinX),
+                        boundingBoxes.Max(b => b.MaxX),
+                        boundingBoxes.Min(b => b.MinY),
+                        boundingBoxes.Max(b => b.MaxY)));
 
-            staticGeometryObjects.ForEach(_geometryDataStore.AddStaticGeometryObject);
+                staticGeometryObjects.ForEach(_geometryDataStore.AddStaticGeometryObject);
+            }
         }
 
         private void StartAnimation(

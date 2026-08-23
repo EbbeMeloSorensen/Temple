@@ -1,9 +1,264 @@
 {
-    "StartPosition": {
-        "X": 0.5,
-        "Y": 0.5
+  "StartPosition": {
+    "X": 0.5,
+    "Y": 0.5
+  },
+  "StartOrientation": 180.0,
+  "SiteComponents": [
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Quad",
+      "Point1": {
+        "X": 20,
+        "Y": 20
+      },
+      "Point2": {
+        "X": 20,
+        "Y": -20
+      },
+      "Point3": {
+        "X": -20,
+        "Y": -20
+      },
+      "Point4": {
+        "X": 20,
+        "Y": 20
+      }
     },
-    "StartOrientation": 180.0,
-    "SiteComponents": [
-    ]
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 1,
+          "Y": 0
+        },
+        {
+          "X": 1,
+          "Y": 2
+        },
+        {
+          "X": 2,
+          "Y": 2
+        },
+        {
+          "X": 2,
+          "Y": 1
+        },
+        {
+          "X": 4,
+          "Y": 1
+        },
+        {
+          "X": 4,
+          "Y": 2
+        },
+        {
+          "X": 5,
+          "Y": 2
+        },
+        {
+          "X": 5,
+          "Y": 1
+        },
+        {
+          "X": 7,
+          "Y": 1
+        },
+        {
+          "X": 7,
+          "Y": 6
+        },
+        {
+          "X": 8,
+          "Y": 6
+        },
+        {
+          "X": 8,
+          "Y": 9
+        },
+        {
+          "X": 5,
+          "Y": 9
+        },
+        {
+          "X": 5,
+          "Y": 7
+        },
+        {
+          "X": 3,
+          "Y": 7
+        },
+        {
+          "X": 3,
+          "Y": 9
+        },
+        {
+          "X": -2,
+          "Y": 9
+        },
+        {
+          "X": -2,
+          "Y": 5
+        },
+        {
+          "X": 0,
+          "Y": 5
+        },
+        {
+          "X": 0,
+          "Y": 3
+        },
+        {
+          "X": -1,
+          "Y": 3
+        },
+        {
+          "X": -1,
+          "Y": 4
+        },
+        {
+          "X": -3,
+          "Y": 4
+        },
+        {
+          "X": -3,
+          "Y": 1
+        },
+        {
+          "X": -1,
+          "Y": 1
+        },
+        {
+          "X": -1,
+          "Y": 2
+        },
+        {
+          "X": 0,
+          "Y": 2
+        },
+        {
+          "X": 0,
+          "Y": 0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 1,
+          "Y": 3
+        },
+        {
+          "X": 1,
+          "Y": 5
+        },
+        {
+          "X": 3,
+          "Y": 5
+        },
+        {
+          "X": 3,
+          "Y": 6
+        },
+        {
+          "X": 6,
+          "Y": 6
+        },
+        {
+          "X": 6,
+          "Y": 5
+        },
+        {
+          "X": 5,
+          "Y": 5
+        },
+        {
+          "X": 5,
+          "Y": 3
+        },
+        {
+          "X": 4,
+          "Y": 3
+        },
+        {
+          "X": 4,
+          "Y": 4
+        },
+        {
+          "X": 2,
+          "Y": 4
+        },
+        {
+          "X": 2,
+          "Y": 3
+        },
+        {
+          "X": 1,
+          "Y": 3
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 0.5,
+        "Y": 5
+      },
+      "Width": 0.75,
+      "Orientation": 0,
+      "Id": "door_mine_1"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -1,
+        "Y": 2.5
+      },
+      "Width": 0.75,
+      "Orientation": 90,
+      "Id": "door_mine_2"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 2,
+        "Y": 2.5
+      },
+      "Width": 0.75,
+      "Orientation": 270,
+      "Id": "door_mine_3"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 4,
+        "Y": 2.5
+      },
+      "Width": 0.75,
+      "Orientation": 90,
+      "Id": "door_mine_4"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 3,
+        "Y": 6.5
+      },
+      "Width": 0.75,
+      "Orientation": 90,
+      "Id": "door_mine_5"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+      "Point1": {
+        "X": -0.5,
+        "Y": -0.2
+      },
+      "Point2": {
+        "X": 1.5,
+        "Y": -0.2
+      },
+      "EventID": "Exit_Wilderness"
+    }
+  ]
 }
