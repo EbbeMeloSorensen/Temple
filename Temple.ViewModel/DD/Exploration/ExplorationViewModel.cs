@@ -1,11 +1,4 @@
-﻿using System.Collections;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media;
-using System.Windows.Media.Media3D;
-using GalaSoft.MvvmLight.Command;
-using Craft.Logging;
+﻿using Craft.Logging;
 using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
@@ -16,6 +9,13 @@ using Craft.Utils;
 using Craft.ViewModels.Geometry2D.Reborn;
 using Craft.ViewModels.Geometry2D.ScrollFree;
 using Craft.ViewModels.Simulation;
+using GalaSoft.MvvmLight.Command;
+using System.Collections;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State.Payloads;
@@ -421,6 +421,38 @@ namespace Temple.ViewModel.DD.Exploration
         {
             var staticGeometryObjects = new List<object>();
 
+            scene.InitialState.BodyStates.ForEach(bs =>
+            {
+                switch (bs.Body)
+                {
+                    case BodyDoor bodyDoor:
+                        var bodyStateDoor = bs as BodyStateDoor;
+
+                        var doorCenter = new Vector2D(
+                            (bodyDoor.Point1.X + bodyDoor.Point2.X) / 2,
+                            (bodyDoor.Point1.Y + bodyDoor.Point2.Y) / 2);
+
+                        var doorAsVector = new Vector2D(
+                            bodyDoor.Point2.X - bodyDoor.Point1.X,
+                            bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+
+                        var polarAngle = Math.Atan2(-doorAsVector.Y, doorAsVector.X);
+                        var doorOrientation = (polarAngle + Math.PI) * 180 / Math.PI;
+
+                        var radius = 0.5;
+                        var orientation = 0;
+
+                        staticGeometryObjects.Add(new Circle2D_NPC(
+                            new Point2D(doorCenter.X, doorCenter.Y),
+                            radius,
+                            "arc",
+                            doorOrientation,
+                            false));
+
+                        break;
+                }
+            });
+
             scene.Boundaries.ForEach(boundary =>
             {
                 if (!boundary.Visible) return;
@@ -456,7 +488,8 @@ namespace Temple.ViewModel.DD.Exploration
                             new Point2D(npc.Center.X, npc.Center.Y),
                             npc.Radius,
                             npc.ModelId,
-                            npc.Orientation));
+                            npc.Orientation,
+                            true));
                         break;
                     case Boundaries.Cylinder cylinder:
                         staticGeometryObjects.Add(new Circle2D_Cylinder(
@@ -573,67 +606,67 @@ namespace Temple.ViewModel.DD.Exploration
 
                 _currentState.BodyStates.ForEach(bs =>
                 {
-                switch (bs.Body)
-                {
-                    case BodyDoor bodyDoor:
-                        var bodyStateDoor = bs as BodyStateDoor;
-                        var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
+                    switch (bs.Body)
+                    {
+                        case BodyDoor bodyDoor:
+                            var bodyStateDoor = bs as BodyStateDoor;
+                            var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
 
-                        if (bodyStateDoor.OpenClockWise)
-                        {
-                            angle *= -1;
-                        }
-
-                        var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
-                        var doorOpeningRotation = new RotateTransform3D(axisAngleRotation);
-
-                        var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = angle };
-                        DoorRotationViewModelDictionary[$"{bodyDoor.Id}"] = doorRotationViewModel;
-
-                        BindingOperations.SetBinding(
-                            axisAngleRotation,
-                            AxisAngleRotation3D.AngleProperty,
-                            new Binding(nameof(DoorRotationViewModel.RotationAngle))
+                            if (bodyStateDoor.OpenClockWise)
                             {
-                                Source = doorRotationViewModel
-                            });
+                                angle *= -1;
+                            }
 
-                        var doorCenter = new Vector2D(
-                            (bodyDoor.Point1.X + bodyDoor.Point2.X) / 2,
-                            (bodyDoor.Point1.Y + bodyDoor.Point2.Y) / 2);
+                            var axisAngleRotation = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+                            var doorOpeningRotation = new RotateTransform3D(axisAngleRotation);
 
-                        var doorAsVector = new Vector2D(
-                            bodyDoor.Point2.X - bodyDoor.Point1.X,
-                            bodyDoor.Point2.Y - bodyDoor.Point1.Y);
+                            var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = angle };
+                            DoorRotationViewModelDictionary[$"{bodyDoor.Id}"] = doorRotationViewModel;
 
-                        var polarAngle = Math.Atan2(-doorAsVector.Y, doorAsVector.X);
-                        var doorOrientation = (polarAngle + Math.PI) * 180 / Math.PI;
+                            BindingOperations.SetBinding(
+                                axisAngleRotation,
+                                AxisAngleRotation3D.AngleProperty,
+                                new Binding(nameof(DoorRotationViewModel.RotationAngle))
+                                {
+                                    Source = doorRotationViewModel
+                                });
 
-                        var doorWidth = doorAsVector.Length;
+                            var doorCenter = new Vector2D(
+                                (bodyDoor.Point1.X + bodyDoor.Point2.X) / 2,
+                                (bodyDoor.Point1.Y + bodyDoor.Point2.Y) / 2);
 
-                        var transform3DGroup = new Transform3DGroup();
+                            var doorAsVector = new Vector2D(
+                                bodyDoor.Point2.X - bodyDoor.Point1.X,
+                                bodyDoor.Point2.Y - bodyDoor.Point1.Y);
 
-                        // Transformer den i henhold til, hvor åben den er
-                        transform3DGroup.Children.Add(new TranslateTransform3D(-doorWidth / 2, 0, 0));
-                        transform3DGroup.Children.Add(doorOpeningRotation);
-                        transform3DGroup.Children.Add(new TranslateTransform3D(doorWidth / 2, 0, 0));
+                            var polarAngle = Math.Atan2(-doorAsVector.Y, doorAsVector.X);
+                            var doorOrientation = (polarAngle + Math.PI) * 180 / Math.PI;
 
-                        // Placer den i scenen
-                        transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), doorOrientation)));
-                        transform3DGroup.Children.Add(new TranslateTransform3D(doorCenter.X, -doorCenter.Y, 0));
-                        var meshDoor = MeshBuilder.CreateMesh("door");
+                            var doorWidth = doorAsVector.Length;
 
-                        var modelDoor = new GeometryModel3D
-                        {
-                            Geometry = meshDoor,
-                            Material = _materialDoor,
-                            BackMaterial = _materialDoor
-                        };
+                            var transform3DGroup = new Transform3DGroup();
 
-                        modelDoor.Transform = transform3DGroup;
-                        model3DGroup.Children.Add(modelDoor);
+                            // Transformer den i henhold til, hvor åben den er
+                            transform3DGroup.Children.Add(new TranslateTransform3D(-doorWidth / 2, 0, 0));
+                            transform3DGroup.Children.Add(doorOpeningRotation);
+                            transform3DGroup.Children.Add(new TranslateTransform3D(doorWidth / 2, 0, 0));
 
-                        break;
+                            // Placer den i scenen
+                            transform3DGroup.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), doorOrientation)));
+                            transform3DGroup.Children.Add(new TranslateTransform3D(doorCenter.X, -doorCenter.Y, 0));
+                            var meshDoor = MeshBuilder.CreateMesh("door");
+
+                            var modelDoor = new GeometryModel3D
+                            {
+                                Geometry = meshDoor,
+                                Material = _materialDoor,
+                                BackMaterial = _materialDoor
+                            };
+
+                            modelDoor.Transform = transform3DGroup;
+                            model3DGroup.Children.Add(modelDoor);
+
+                            break;
                     }
                 });
 
@@ -728,8 +761,9 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 WorldPoint = new Point(focus.X, focus.Y),
                 ViewportRatio = new Size(0.5, 0.5),
-                //Scaling = new Size(0.015, 0.015) // (Ordinary)
-                Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
+                Scaling = new Size(0.015, 0.015) // (Ordinary)
+                //Scaling = new Size(0.0015, 0.003) // (Zoom in x 5)
+                //Scaling = new Size(0.0015, 0.0015) // (Zoom in x 10)
                 //Scaling = new Size(0.15, 0.15) // (Zoom out x 10)
             };
         }

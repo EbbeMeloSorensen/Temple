@@ -48,6 +48,7 @@ namespace Temple.Infrastructure.Presentation
                         {
                             Geometry = mesh,
                             Material = _materialWall,
+                            BackMaterial = _materialWall
                         };
 
                         model3DGroup.Children.Add(model);
@@ -57,10 +58,15 @@ namespace Temple.Infrastructure.Presentation
 
                         var meshNPC = MeshBuilder.CreateMesh(circle2D_npc.ModelId);
 
+                        var material = circle2D_npc.ModelId == "arc"
+                            ? _materialWall
+                            : _materialNPC;
+
                         var modelNPC = new GeometryModel3D
                         {
                             Geometry = meshNPC,
-                            Material = _materialNPC
+                            Material = material,
+                            BackMaterial = material
                         };
 
                         if (Math.Abs(circle2D_npc.Orientation) > 0.00001)

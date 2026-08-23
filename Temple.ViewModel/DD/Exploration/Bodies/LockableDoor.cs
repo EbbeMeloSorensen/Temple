@@ -12,11 +12,14 @@ namespace Temple.ViewModel.DD.Exploration.Bodies
             double mass,
             bool affectedByGravity,
             bool affectedByBoundaries,
-            string? tag) : base(
+            string? tag,
+            bool visible) : base(
                 id,
                 mass,
                 affectedByGravity,
-                affectedByBoundaries, tag)
+                affectedByBoundaries,
+                tag,
+                visible)
         {
         }
     }

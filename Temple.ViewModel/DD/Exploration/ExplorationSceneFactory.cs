@@ -343,7 +343,7 @@ public static class ExplorationSceneFactory
 
                     if (door.ConditionForAccessibility == null)
                     {
-                        bodyDoor = new BodyDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id)
+                        bodyDoor = new BodyDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id, false)
                         {
                             Point1 = point1,
                             Point2 = point2,
@@ -351,7 +351,7 @@ public static class ExplorationSceneFactory
                     }
                     else
                     {
-                        bodyDoor = new LockableDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id)
+                        bodyDoor = new LockableDoor(doorId++, mass, affectedByGravity, affectedByBoundaries, door.Id, false)
                         {
                             Point1 = point1,
                             Point2 = point2,
