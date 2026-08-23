@@ -111,10 +111,10 @@ public class ApplicationController
         // Vi starter ud med at man bare får et standard party
         GeneratePartyData();
 
-        // Magic number
-        ApplicationData.CurrentSiteId = "village";
+        // Magic number!
+        //ApplicationData.CurrentSiteId = "village";
         //ApplicationData.CurrentSiteId = "undermountain";
-        //ApplicationData.CurrentSiteId = "mine";
+        ApplicationData.CurrentSiteId = "mine";
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {

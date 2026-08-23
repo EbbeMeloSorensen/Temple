@@ -100,6 +100,9 @@
     <Content Include="DD\Assets\Quests\quests.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="DD\Assets\SiteData\mine_old.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DD\Assets\SiteData\townhall.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
