@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DD\Assets\arc.stl" />
     <None Remove="DD\Assets\door.stl" />
     <None Remove="DD\Assets\door2.stl" />
     <None Remove="DD\Assets\door3.stl" />
@@ -48,6 +49,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="DD\Assets\arc.stl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DD\Assets\DialogueGraphCollections\ipswitch.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
