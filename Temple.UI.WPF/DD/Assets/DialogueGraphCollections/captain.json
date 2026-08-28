@@ -252,8 +252,16 @@
           "Id": 0
         },
         {
-          "Text": "",
+          "Text": "By the way, you did not happen to meet the patrol I sent out two days ago, did you?",
           "Id": 1
+        },
+        {
+          "Text": "I sent them to the inspect the mines ",
+          "Id": 2
+        },
+        {
+          "Text": "",
+          "Id": 3
         }
       ],
       "Edges": [
@@ -261,6 +269,11 @@
           "VertexId1": 0,
           "VertexId2": 1,
           "Text": "Thanks, man."
+        },
+        {
+          "VertexId1": 0,
+          "VertexId2": 1,
+          "Text": "Nopes, I didn't meet them."
         }
       ]
     }
