@@ -256,12 +256,32 @@
           "Id": 1
         },
         {
-          "Text": "I sent them to the inspect the mines ",
+          "Text": "I sent them to inspect the abandoned mine because a farmer from the area reported activity there.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.SiteUnlockedEventTrigger",
+            "SiteId": "mine"
+          },
           "Id": 2
         },
         {
-          "Text": "",
+          "Text": "One evening, he heard his pigs being upset. He went to check the barn and found a pig missing. He noticed some footprints that didn't look human leading towards the mine. Now that my patrol is missing, I fear they may have encountered something at the mine that defeated them.'",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestDiscoveredEventTrigger",
+            "QuestId": "clear_mine"
+          },
           "Id": 3
+        },
+        {
+          "Text": "Thanks, dude - I appreciate it. Best of luck.",
+          "GameEventTrigger": {
+            "$type": "Temple.Infrastructure.Dialogues.GameEventTriggers.QuestAcceptedEventTrigger",
+            "QuestId": "clear_mine"
+          },
+          "Id": 4
+        },
+        {
+          "Text": "",
+          "Id": 5
         }
       ],
       "Edges": [
@@ -271,9 +291,29 @@
           "Text": "Thanks, man."
         },
         {
-          "VertexId1": 0,
-          "VertexId2": 1,
+          "VertexId1": 1,
+          "VertexId2": 2,
           "Text": "Nopes, I didn't meet them."
+        },
+        {
+          "VertexId1": 2,
+          "VertexId2": 3,
+          "Text": "What kind of activity?"
+        },
+        {
+          "VertexId1": 3,
+          "VertexId2": 4,
+          "Text": "I will go investigate the mine and see if I can find your men."
+        },
+        {
+          "VertexId1": 3,
+          "VertexId2": 5,
+          "Text": "Tough luck, old man - I don't have time for that shit."
+        },
+        {
+          "VertexId1": 4,
+          "VertexId2": 5,
+          "Text": "Thanks. See you later."
         }
       ]
     }

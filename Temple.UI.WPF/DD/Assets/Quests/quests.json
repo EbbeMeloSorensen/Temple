@@ -124,7 +124,7 @@
     ]
   },
   {
-    "Id": "clear_mines",
+    "Id": "clear_mine",
     "Rules": [
       {
         "$type": "Temple.Domain.Entities.DD.Quests.Rules.BecomeAvailableOnQuestDiscoveredRule"
