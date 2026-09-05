@@ -112,9 +112,10 @@ public class ApplicationController
         GeneratePartyData();
 
         // Magic number!
-        ApplicationData.CurrentSiteId = "village";
+        //ApplicationData.CurrentSiteId = "village";
         //ApplicationData.CurrentSiteId = "undermountain";
         //ApplicationData.CurrentSiteId = "mine";
+        ApplicationData.CurrentSiteId = "maze";
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {
