@@ -114,7 +114,8 @@ public class ApplicationController
         // Magic number!
         //ApplicationData.CurrentSiteId = "village";
         //ApplicationData.CurrentSiteId = "undermountain";
-        ApplicationData.CurrentSiteId = "mine";
+        //ApplicationData.CurrentSiteId = "mine";
+        ApplicationData.CurrentSiteId = "maze";
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {

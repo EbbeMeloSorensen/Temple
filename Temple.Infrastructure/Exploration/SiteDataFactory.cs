@@ -50,6 +50,9 @@ public class SiteDataFactory : ISiteDataFactory
                 }
             }
 
+            siteData.StartPosition = new Point2D(1.5, -0.5);
+            siteData.StartOrientation = 180.0;
+
             return siteData;
         }
 

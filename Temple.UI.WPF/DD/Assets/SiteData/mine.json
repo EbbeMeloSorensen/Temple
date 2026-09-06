@@ -259,6 +259,70 @@
         "Y": -0.2
       },
       "EventID": "Exit_Wilderness"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": -1.2,
+        "Y": 2
+      },
+      "Point2": {
+        "X": -1.2,
+        "Y": 3
+      },
+      "EventID": "Dungeon 1, Room A, Goblin"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": 2.2,
+        "Y": 2
+      },
+      "Point2": {
+        "X": 2.2,
+        "Y": 3
+      },
+      "EventID": "Dungeon 1, Room B, Goblin",
+      "EntranceID": "West"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": 3.8,
+        "Y": 2
+      },
+      "Point2": {
+        "X": 3.8,
+        "Y": 3
+      },
+      "EventID": "Dungeon 1, Room B, Goblin",
+      "EntranceID": "East"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": 0,
+        "Y": 5.2
+      },
+      "Point2": {
+        "X": 1,
+        "Y": 5.2
+      },
+      "EventID": "Final Battle",
+      "EntranceID": "South"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": 2.8,
+        "Y": 6
+      },
+      "Point2": {
+        "X": 2.8,
+        "Y": 7
+      },
+      "EventID": "Final Battle",
+      "EntranceID": "East"
     }
   ]
 }
