@@ -527,7 +527,7 @@ namespace Temple.ViewModel.DD.Exploration
                         boundingBoxes.Min(b => b.MinY),
                         boundingBoxes.Max(b => b.MaxY)));
 
-                staticGeometryObjects.ForEach(_geometryDataStore.AddStaticGeometryObject);
+                staticGeometryObjects.ForEach(_geometryDataStore.AddGeometricObject);
             }
         }
 

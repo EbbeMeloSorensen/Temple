@@ -26,20 +26,11 @@ namespace Temple.ViewModel.DD.Exploration
                 .Select(_ => _.Item);
         }
 
-        public void AddStaticGeometryObject(
+        public void AddGeometricObject(
             object geometryObject)
         {
             switch (geometryObject)
             {
-                //case LineModel line:
-                //    _mxCifQuadTree.Insert(new SpatialItem<object>(line.ComputeBoundingBox(), line));
-                //    break;
-                //case PointModel point:
-                //    _mxCifQuadTree.Insert(new SpatialItem<object>(point.ComputeBoundingBox(), point));
-                //    break;
-                //case CircleModel circle:
-                //    _mxCifQuadTree.Insert(new SpatialItem<object>(circle.ComputeBoundingBox(), circle));
-                //    break;
                 case LineSegment2D lineSegment:
                     _mxCifQuadTree.Insert(new SpatialItem<object>(lineSegment.ComputeBoundingBox(), lineSegment));
                     break;
