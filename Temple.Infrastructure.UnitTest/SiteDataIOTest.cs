@@ -113,11 +113,12 @@ public class SiteDataIOTest
     }
 
     [Fact]
-    public void ReadSiteIdsFromFile()
+    public void ImportSiteDataFromOtherFormat()
     {
         // Arrange
 
         // Act
+        var siteData = SiteDataIO.ImportSiteDataFromFile(@"C:\Temp5\undermountain.json");
 
         // Assert
     }

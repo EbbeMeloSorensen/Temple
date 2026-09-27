@@ -25,19 +25,23 @@ public static class SiteDataIO
     public static SiteData ReadSiteDataFromFile(
         string fileName)
     {
-         using var streamReader = new StreamReader(fileName);
+        using var streamReader = new StreamReader(fileName);
         var json = streamReader.ReadToEnd();
         var settings = GetJsonSerializerSettings();
 
         return JsonConvert.DeserializeObject<SiteData>(json, settings);
     }
 
-    public static IEnumerable<string> ReadSiteIds(
-        string path)
+    public static SiteData ImportSiteDataFromFile(
+        string fileName)
     {
-        var result = new List<string>();
+        using (var r = new StreamReader(fileName))
+        {
+            var jsonData = r.ReadToEnd();
+            //var geometricObjects = GeometryFile.Deserialize(jsonData);
+        }
 
-        return result;
+        return null;
     }
 
     private static JsonSerializerSettings GetJsonSerializerSettings()
