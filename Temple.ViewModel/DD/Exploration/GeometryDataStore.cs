@@ -22,7 +22,7 @@ namespace Temple.ViewModel.DD.Exploration
             BoundingBox window)
         {
             return _mxCifQuadTree
-                .GetAllIntersecting(window)
+                .GetIntersecting(window)
                 .Select(_ => _.Item);
         }
 
@@ -43,6 +43,16 @@ namespace Temple.ViewModel.DD.Exploration
                 default:
                     throw new ArgumentException("Object is not a geometry object");
             }
+        }
+
+        public IEnumerable GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable GetIntersecting(BoundingBox window)
+        {
+            throw new NotImplementedException();
         }
     }
 }
