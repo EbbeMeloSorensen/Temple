@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Domain.Entities.DD.Quests.Events;
-using Temple.Persistence.EFCore.AppData;
+using Temple.Persistence;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Application.State.Payloads;
@@ -76,13 +75,13 @@ public class ApplicationController
         try
         {
             using var scope = _scopeFactory.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<PRDbContextBase>();
+            var initializer = scope.ServiceProvider.GetRequiredService<IAppDataInitializer>();
 
             Report("Applying database migrations...");
-            await db.Database.MigrateAsync();
+            await initializer.MigrateAsync();
 
             Report("Seeding database...");
-            await Seeding.SeedDatabase(db);
+            await initializer.SeedAsync();
 
             //Report("Finalizing startup...");
             ///await Task.Delay(100); // Simulate additional initialization

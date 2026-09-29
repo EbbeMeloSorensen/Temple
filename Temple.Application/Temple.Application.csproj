@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Temple.Persistence.EFCore.AppData\Temple.Persistence.EFCore.AppData.csproj" />
+    <ProjectReference Include="..\Temple.Persistence\Temple.Persistence.csproj" />
     <ProjectReference Include="..\Temple.Persistence.Versioned\Temple.Persistence.Versioned.csproj" />
   </ItemGroup>
 
