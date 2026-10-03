@@ -9,6 +9,32 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
+          "X": -31.0,
+          "Y": -0.0
+        },
+        {
+          "X": -32.0,
+          "Y": 0.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -32.0,
+          "Y": 0.0
+        },
+        {
+          "X": -32.0,
+          "Y": -4.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
           "X": -2.0,
           "Y": 0.0
         },
@@ -152,6 +178,58 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
+          "X": -24.0,
+          "Y": 2.0
+        },
+        {
+          "X": -24.0,
+          "Y": -0.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -24.0,
+          "Y": -0.0
+        },
+        {
+          "X": -30.0,
+          "Y": 0.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -30.0,
+          "Y": 0.0
+        },
+        {
+          "X": -30.0,
+          "Y": 1.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -31.0,
+          "Y": 2.0
+        },
+        {
+          "X": -31.0,
+          "Y": -0.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
           "X": 2.0,
           "Y": -2.0
         },
@@ -178,12 +256,168 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
+          "X": -5.0,
+          "Y": 28.0
+        },
+        {
+          "X": 1.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 1.0,
+          "Y": 30.0
+        },
+        {
+          "X": -9.0,
+          "Y": 30.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
           "X": -2.0,
           "Y": -2.0
         },
         {
           "X": 2.0,
           "Y": -2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 32.0
+        },
+        {
+          "X": -10.0,
+          "Y": 30.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 30.0
+        },
+        {
+          "X": -12.0,
+          "Y": 38.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 35.0
+        },
+        {
+          "X": -13.0,
+          "Y": 30.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -21.0,
+          "Y": 30.0
+        },
+        {
+          "X": -21.0,
+          "Y": 34.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 32.0
+        },
+        {
+          "X": -22.0,
+          "Y": 31.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 31.0
+        },
+        {
+          "X": -27.0,
+          "Y": 38.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -28.0,
+          "Y": 38.0
+        },
+        {
+          "X": -28.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -21.0,
+          "Y": 34.0
+        },
+        {
+          "X": -25.0,
+          "Y": 34.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -25.0,
+          "Y": 34.0
+        },
+        {
+          "X": -25.0,
+          "Y": 32.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -25.0,
+          "Y": 32.0
+        },
+        {
+          "X": -22.0,
+          "Y": 32.0
         }
       ]
     },
@@ -256,32 +490,6 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
-          "X": -2.0,
-          "Y": 4.0
-        },
-        {
-          "X": -2.0,
-          "Y": 5.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -2.0,
-          "Y": 5.0
-        },
-        {
-          "X": -1.0,
-          "Y": 5.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
           "X": -3.0,
           "Y": 4.0
         },
@@ -366,19 +574,6 @@
         {
           "X": -3.0,
           "Y": 4.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -17.0,
-          "Y": 3.0
-        },
-        {
-          "X": -17.0,
-          "Y": 2.0
         }
       ]
     },
@@ -431,6 +626,3046 @@
       "Id": "door3"
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -7.0,
+        "Y": 5.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 90.0,
+      "Id": "door18"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 9.0
+        },
+        {
+          "X": -7.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 7.0
+        },
+        {
+          "X": -3.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 7.0
+        },
+        {
+          "X": -3.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 6.0
+        },
+        {
+          "X": -4.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 6.0
+        },
+        {
+          "X": -3.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 6.0
+        },
+        {
+          "X": -3.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 7.0
+        },
+        {
+          "X": -2.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 7.0
+        },
+        {
+          "X": -2.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 9.0
+        },
+        {
+          "X": -7.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -3.0,
+        "Y": 5.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 90.0,
+      "Id": "door19"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 4.0
+        },
+        {
+          "X": -2.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 6.0
+        },
+        {
+          "X": -1.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -30.0,
+          "Y": 1.0
+        },
+        {
+          "X": -28.0,
+          "Y": 1.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -28.0,
+          "Y": 1.0
+        },
+        {
+          "X": -28.0,
+          "Y": 2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -28.0,
+          "Y": 2.0
+        },
+        {
+          "X": -31.0,
+          "Y": 2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -17.0,
+          "Y": 4.0
+        },
+        {
+          "X": -17.0,
+          "Y": 2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -28.0,
+          "Y": 4.0
+        },
+        {
+          "X": -17.0,
+          "Y": 4.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -28.0,
+          "Y": 5.0
+        },
+        {
+          "X": -28.0,
+          "Y": 4.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -31.0,
+          "Y": 5.0
+        },
+        {
+          "X": -28.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 6.0
+        },
+        {
+          "X": -11.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 5.0
+        },
+        {
+          "X": -7.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 5.0
+        },
+        {
+          "X": -27.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 7.0
+        },
+        {
+          "X": -21.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -21.0,
+          "Y": 7.0
+        },
+        {
+          "X": -21.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -21.0,
+          "Y": 6.0
+        },
+        {
+          "X": -20.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 6.0
+        },
+        {
+          "X": -20.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 8.0
+        },
+        {
+          "X": -22.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 8.0
+        },
+        {
+          "X": -22.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 11.0
+        },
+        {
+          "X": -22.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 9.0
+        },
+        {
+          "X": -18.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -18.0,
+          "Y": 9.0
+        },
+        {
+          "X": -18.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -18.0,
+          "Y": 10.0
+        },
+        {
+          "X": -17.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -17.0,
+          "Y": 10.0
+        },
+        {
+          "X": -17.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 6.0
+        },
+        {
+          "X": -14.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 8.0
+        },
+        {
+          "X": -13.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 8.0
+        },
+        {
+          "X": -13.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 6.0
+        },
+        {
+          "X": -11.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 7.0
+        },
+        {
+          "X": -12.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 7.0
+        },
+        {
+          "X": -12.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 9.0
+        },
+        {
+          "X": -13.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 9.0
+        },
+        {
+          "X": -13.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 11.0
+        },
+        {
+          "X": -12.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 17.0
+        },
+        {
+          "X": -11.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 14.0
+        },
+        {
+          "X": -14.0,
+          "Y": 14.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 14.0
+        },
+        {
+          "X": -14.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 9.0
+        },
+        {
+          "X": -15.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 9.0
+        },
+        {
+          "X": -15.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -16.0,
+          "Y": 8.0
+        },
+        {
+          "X": -16.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -16.0,
+          "Y": 11.0
+        },
+        {
+          "X": -19.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 11.0
+        },
+        {
+          "X": -19.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 10.0
+        },
+        {
+          "X": -20.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 10.0
+        },
+        {
+          "X": -20.0,
+          "Y": 12.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 12.0
+        },
+        {
+          "X": -23.0,
+          "Y": 12.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 12.0
+        },
+        {
+          "X": -23.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 10.0
+        },
+        {
+          "X": -25.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -25.0,
+          "Y": 10.0
+        },
+        {
+          "X": -25.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -25.0,
+          "Y": 11.0
+        },
+        {
+          "X": -26.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -26.0,
+          "Y": 11.0
+        },
+        {
+          "X": -26.0,
+          "Y": 14.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 14.0
+        },
+        {
+          "X": -27.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 10.0
+        },
+        {
+          "X": -26.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -26.0,
+          "Y": 10.0
+        },
+        {
+          "X": -26.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -26.0,
+          "Y": 9.0
+        },
+        {
+          "X": -23.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 9.0
+        },
+        {
+          "X": -23.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 8.0
+        },
+        {
+          "X": -27.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 8.0
+        },
+        {
+          "X": -27.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 9.0
+        },
+        {
+          "X": -30.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 16.0
+        },
+        {
+          "X": -13.0,
+          "Y": 16.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 17.0
+        },
+        {
+          "X": -15.0,
+          "Y": 16.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 15.0
+        },
+        {
+          "X": -19.0,
+          "Y": 13.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -18.0,
+          "Y": 15.0
+        },
+        {
+          "X": -19.0,
+          "Y": 15.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -18.0,
+          "Y": 14.0
+        },
+        {
+          "X": -18.0,
+          "Y": 15.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -16.0,
+          "Y": 14.0
+        },
+        {
+          "X": -18.0,
+          "Y": 14.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 17.0
+        },
+        {
+          "X": -14.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 21.0
+        },
+        {
+          "X": -14.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -21.0,
+          "Y": 23.0
+        },
+        {
+          "X": -21.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 23.0
+        },
+        {
+          "X": -21.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 22.0
+        },
+        {
+          "X": -22.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -24.0,
+          "Y": 22.0
+        },
+        {
+          "X": -22.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -24.0,
+          "Y": 24.0
+        },
+        {
+          "X": -24.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 24.0
+        },
+        {
+          "X": -24.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 22.0
+        },
+        {
+          "X": -20.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 22.0
+        },
+        {
+          "X": -20.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 22.0
+        },
+        {
+          "X": -19.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 27.0
+        },
+        {
+          "X": -20.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 22.0
+        },
+        {
+          "X": -15.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 24.0
+        },
+        {
+          "X": -13.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 24.0
+        },
+        {
+          "X": -15.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 24.0
+        },
+        {
+          "X": -15.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 22.0
+        },
+        {
+          "X": -14.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 23.0
+        },
+        {
+          "X": -12.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 23.0
+        },
+        {
+          "X": -12.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 28.0
+        },
+        {
+          "X": -6.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -6.0,
+          "Y": 28.0
+        },
+        {
+          "X": -6.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -6.0,
+          "Y": 17.0
+        },
+        {
+          "X": -4.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 12.0
+        },
+        {
+          "X": -5.0,
+          "Y": 12.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 12.0
+        },
+        {
+          "X": -5.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 11.0
+        },
+        {
+          "X": -3.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 17.0
+        },
+        {
+          "X": -2.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 10.0
+        },
+        {
+          "X": -7.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 10.0
+        },
+        {
+          "X": -7.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 11.0
+        },
+        {
+          "X": -8.0,
+          "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -8.0,
+          "Y": 11.0
+        },
+        {
+          "X": -8.0,
+          "Y": 14.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -8.0,
+          "Y": 14.0
+        },
+        {
+          "X": -10.0,
+          "Y": 14.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 18.0
+        },
+        {
+          "X": -9.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -9.0,
+          "Y": 15.0
+        },
+        {
+          "X": -7.0,
+          "Y": 15.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 15.0
+        },
+        {
+          "X": -7.0,
+          "Y": 13.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 13.0
+        },
+        {
+          "X": -5.0,
+          "Y": 13.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 16.0
+        },
+        {
+          "X": -7.0,
+          "Y": 16.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 16.0
+        },
+        {
+          "X": -7.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 21.0
+        },
+        {
+          "X": -8.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -8.0,
+          "Y": 21.0
+        },
+        {
+          "X": -8.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -8.0,
+          "Y": 26.0
+        },
+        {
+          "X": -12.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 26.0
+        },
+        {
+          "X": -12.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 23.0
+        },
+        {
+          "X": -11.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 23.0
+        },
+        {
+          "X": -11.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 20.0
+        },
+        {
+          "X": -12.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 20.0
+        },
+        {
+          "X": -12.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 22.0
+        },
+        {
+          "X": -14.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 25.0
+        },
+        {
+          "X": -9.0,
+          "Y": 25.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -9.0,
+          "Y": 25.0
+        },
+        {
+          "X": -9.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -9.0,
+          "Y": 23.0
+        },
+        {
+          "X": -10.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 23.0
+        },
+        {
+          "X": -10.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 24.0
+        },
+        {
+          "X": -11.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 24.0
+        },
+        {
+          "X": -11.0,
+          "Y": 25.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 19.0
+        },
+        {
+          "X": -10.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 22.0
+        },
+        {
+          "X": -9.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -9.0,
+          "Y": 22.0
+        },
+        {
+          "X": -9.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -9.0,
+          "Y": 19.0
+        },
+        {
+          "X": -10.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 18.0
+        },
+        {
+          "X": -13.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 18.0
+        },
+        {
+          "X": -13.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 21.0
+        },
+        {
+          "X": -13.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 19.0
+        },
+        {
+          "X": -11.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 19.0
+        },
+        {
+          "X": -11.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 25.0
+        },
+        {
+          "X": -15.0,
+          "Y": 25.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 25.0
+        },
+        {
+          "X": -15.0,
+          "Y": 27.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -16.0,
+          "Y": 27.0
+        },
+        {
+          "X": -16.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -16.0,
+          "Y": 28.0
+        },
+        {
+          "X": -17.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 28.0
+        },
+        {
+          "X": -13.0,
+          "Y": 25.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -18.0,
+          "Y": 28.0
+        },
+        {
+          "X": -22.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 28.0
+        },
+        {
+          "X": -22.0,
+          "Y": 29.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 29.0
+        },
+        {
+          "X": -22.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 28.0
+        },
+        {
+          "X": -19.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 28.0
+        },
+        {
+          "X": -19.0,
+          "Y": 27.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 27.0
+        },
+        {
+          "X": -19.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 28.0
+        },
+        {
+          "X": -18.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 26.0
+        },
+        {
+          "X": -20.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 26.0
+        },
+        {
+          "X": -20.0,
+          "Y": 27.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 29.0
+        },
+        {
+          "X": -23.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -1.0,
+          "Y": 20.0
+        },
+        {
+          "X": -3.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 20.0
+        },
+        {
+          "X": -3.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 22.0
+        },
+        {
+          "X": -5.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 22.0
+        },
+        {
+          "X": -5.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 24.0
+        },
+        {
+          "X": -4.0,
+          "Y": 24.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 24.0
+        },
+        {
+          "X": -4.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 23.0
+        },
+        {
+          "X": -3.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 23.0
+        },
+        {
+          "X": -3.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 22.0
+        },
+        {
+          "X": -2.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 22.0
+        },
+        {
+          "X": -2.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 23.0
+        },
+        {
+          "X": -1.0,
+          "Y": 23.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -1.0,
+          "Y": 23.0
+        },
+        {
+          "X": -1.0,
+          "Y": 27.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -1.0,
+          "Y": 27.0
+        },
+        {
+          "X": -4.0,
+          "Y": 27.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 27.0
+        },
+        {
+          "X": -4.0,
+          "Y": 25.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 25.0
+        },
+        {
+          "X": -5.0,
+          "Y": 25.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 25.0
+        },
+        {
+          "X": -5.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -9.0,
+          "Y": 30.0
+        },
+        {
+          "X": -9.0,
+          "Y": 31.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 30.0
+        },
+        {
+          "X": -12.0,
+          "Y": 30.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 31.0
+        },
+        {
+          "X": -27.0,
+          "Y": 31.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -28.0,
+          "Y": 26.0
+        },
+        {
+          "X": -31.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -24.0,
+          "Y": 29.0
+        },
+        {
+          "X": -23.0,
+          "Y": 29.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -24.0,
+          "Y": 26.0
+        },
+        {
+          "X": -24.0,
+          "Y": 29.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 26.0
+        },
+        {
+          "X": -24.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 29.0
+        },
+        {
+          "X": -27.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -25.0,
+          "Y": 29.0
+        },
+        {
+          "X": -27.0,
+          "Y": 29.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 29.0
+        },
+        {
+          "X": -25.0,
+          "Y": 29.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -27.0,
+          "Y": 26.0
+        },
+        {
+          "X": -27.0,
+          "Y": 29.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -25.0,
+          "Y": 26.0
+        },
+        {
+          "X": -27.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -25.0,
+          "Y": 21.0
+        },
+        {
+          "X": -25.0,
+          "Y": 26.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 21.0
+        },
+        {
+          "X": -25.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 17.0
+        },
+        {
+          "X": -22.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -22.0,
+          "Y": 19.0
+        },
+        {
+          "X": -22.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 19.0
+        },
+        {
+          "X": -22.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -20.0,
+          "Y": 17.0
+        },
+        {
+          "X": -20.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -21.0,
+          "Y": 17.0
+        },
+        {
+          "X": -20.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 17.0
+        },
+        {
+          "X": -21.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 18.0
+        },
+        {
+          "X": -19.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -18.0,
+          "Y": 18.0
+        },
+        {
+          "X": -19.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -18.0,
+          "Y": 16.0
+        },
+        {
+          "X": -18.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 16.0
+        },
+        {
+          "X": -18.0,
+          "Y": 16.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -23.0,
+          "Y": 20.0
+        },
+        {
+          "X": -23.0,
+          "Y": 16.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -24.0,
+          "Y": 20.0
+        },
+        {
+          "X": -23.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -24.0,
+          "Y": 17.0
+        },
+        {
+          "X": -24.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -14.5,
+        "Y": 8.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door20"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -16.5,
+        "Y": 8.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door21"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -22.0,
+        "Y": 7.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 270.0,
+      "Id": "door22"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -23.0,
+        "Y": 7.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 270.0,
+      "Id": "door23"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -22.5,
+        "Y": 9.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door24"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -13.5,
+        "Y": 9.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door25"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -13.5,
+        "Y": 11.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door26"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -7.0,
+        "Y": 9.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 90.0,
+      "Id": "door27"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -3.5,
+        "Y": 13.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door28"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -3.5,
+        "Y": 15.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door29"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -3.5,
+        "Y": 17.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door30"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -3.5,
+        "Y": 20.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door31"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -5.0,
+        "Y": 21.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 90.0,
+      "Id": "door32"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 18.0
+        },
+        {
+          "X": -5.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 18.0
+        },
+        {
+          "X": -5.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 19.0
+        },
+        {
+          "X": -2.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 19.0
+        },
+        {
+          "X": -2.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 21.0
+        },
+        {
+          "X": -4.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 20.0
+        },
+        {
+          "X": -5.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 20.0
+        },
+        {
+          "X": -5.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 21.0
+        },
+        {
+          "X": -4.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -2.5,
+        "Y": 23.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 0.0,
+      "Id": "door33"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -5.5,
+        "Y": 28.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 0.0,
+      "Id": "door34"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -9.5,
+        "Y": 30.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door35"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -17.5,
+        "Y": 28.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 0.0,
+      "Id": "door36"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -19.5,
+        "Y": 27.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door37"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -22.5,
+        "Y": 29.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 180.0,
+      "Id": "door38"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -19.0,
+        "Y": 21.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 90.0,
+      "Id": "door39"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -16.0,
+        "Y": 21.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 270.0,
+      "Id": "door40"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -13.0,
+        "Y": 23.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 270.0,
+      "Id": "door41"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -11.5,
+        "Y": 24.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 0.0,
+      "Id": "door42"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -10.0,
+        "Y": 22.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 270.0,
+      "Id": "door43"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -10.0,
+        "Y": 18.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 270.0,
+      "Id": "door44"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -12.0,
+          "Y": 11.0
+        },
+        {
+          "X": -12.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -11.0,
+          "Y": 17.0
+        },
+        {
+          "X": -11.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 16.0
+        },
+        {
+          "X": -13.0,
+          "Y": 14.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 13.0
+        },
+        {
+          "X": -15.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -16.0,
+          "Y": 18.0
+        },
+        {
+          "X": -16.0,
+          "Y": 14.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 17.0
+        },
+        {
+          "X": -4.0,
+          "Y": 12.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -3.0,
+          "Y": 11.0
+        },
+        {
+          "X": -3.0,
+          "Y": 17.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 17.0
+        },
+        {
+          "X": -2.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 14.0
+        },
+        {
+          "X": -10.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -9.0,
+          "Y": 18.0
+        },
+        {
+          "X": -9.0,
+          "Y": 15.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 13.0
+        },
+        {
+          "X": -5.0,
+          "Y": 16.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -1.0,
+          "Y": 6.0
+        },
+        {
+          "X": -1.0,
+          "Y": 20.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -31.0,
+          "Y": 26.0
+        },
+        {
+          "X": -31.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
@@ -473,6 +3708,149 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
+          "X": -7.0,
+          "Y": 5.0
+        },
+        {
+          "X": -27.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -17.0,
+          "Y": 6.0
+        },
+        {
+          "X": -14.0,
+          "Y": 6.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 8.0
+        },
+        {
+          "X": -16.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -19.0,
+          "Y": 13.0
+        },
+        {
+          "X": -15.0,
+          "Y": 13.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -14.0,
+          "Y": 18.0
+        },
+        {
+          "X": -16.0,
+          "Y": 18.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -21.0,
+          "Y": 21.0
+        },
+        {
+          "X": -14.0,
+          "Y": 21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -16.0,
+          "Y": 22.0
+        },
+        {
+          "X": -15.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 22.0
+        },
+        {
+          "X": -16.0,
+          "Y": 22.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -15.0,
+          "Y": 27.0
+        },
+        {
+          "X": -16.0,
+          "Y": 27.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -17.0,
+          "Y": 28.0
+        },
+        {
+          "X": -13.0,
+          "Y": 28.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -13.0,
+          "Y": 30.0
+        },
+        {
+          "X": -21.0,
+          "Y": 30.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
           "X": -32.0,
           "Y": -19.0
         },
@@ -492,6 +3870,32 @@
         {
           "X": -32.0,
           "Y": -21.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -32.0,
+          "Y": -11.0
+        },
+        {
+          "X": -30.0,
+          "Y": -11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -30.0,
+          "Y": -12.0
+        },
+        {
+          "X": -32.0,
+          "Y": -12.0
         }
       ]
     },
@@ -518,6 +3922,45 @@
       "Width": 0.75,
       "Orientation": 180.0,
       "Id": "door10"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -32.0,
+          "Y": -4.0
+        },
+        {
+          "X": -37.0,
+          "Y": -4.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -37.0,
+          "Y": -5.0
+        },
+        {
+          "X": -32.0,
+          "Y": -5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -32.0,
+          "Y": -5.0
+        },
+        {
+          "X": -32.0,
+          "Y": -11.0
+        }
+      ]
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -3857,6 +7300,71 @@
       "Width": 0.75,
       "Orientation": 180.0,
       "Id": "door17"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -30.0,
+          "Y": -11.0
+        },
+        {
+          "X": -30.0,
+          "Y": -12.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -29.0,
+          "Y": -1.0
+        },
+        {
+          "X": -29.0,
+          "Y": -3.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -29.0,
+          "Y": -3.0
+        },
+        {
+          "X": -31.0,
+          "Y": -3.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -31.0,
+          "Y": -3.0
+        },
+        {
+          "X": -31.0,
+          "Y": -1.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -31.0,
+          "Y": -1.0
+        },
+        {
+          "X": -29.0,
+          "Y": -1.0
+        }
+      ]
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
