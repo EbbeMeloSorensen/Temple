@@ -18,6 +18,12 @@ public class SiteComponentResolver : DefaultContractResolver
                 .Where(p => p.PropertyName != "Length")
                 .ToList();
         }
+        else if (type == typeof(Vector2D))
+        {
+            properties = properties
+                .Where(p => p.PropertyName != "Length" && p.PropertyName != "SqrLength")
+                .ToList();
+        }
 
         return properties;
     }

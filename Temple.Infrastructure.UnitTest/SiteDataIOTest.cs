@@ -118,7 +118,12 @@ public class SiteDataIOTest
         // Arrange
 
         // Act
-        var siteData = SiteDataIO.ImportSiteDataFromFile(@"C:\Temp5\undermountain.json");
+        var siteData = SiteDataIO.ImportSiteDataFromFile(@"C:\Temp5\undermountain_v2.json");
+        
+        siteData.StartPosition = new Point2D(0, 0);
+        siteData.StartOrientation = 180.0;
+
+        siteData.WriteSiteDataToFile(@"C:\Temp5\imported_site_data.json");
 
         // Assert
     }

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Craft.DataStructures.IO" Version="1.0.41" />
+    <PackageReference Include="Craft.Math.IO" Version="1.0.41" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Stateless.Visualization" Version="1.0.0" />
