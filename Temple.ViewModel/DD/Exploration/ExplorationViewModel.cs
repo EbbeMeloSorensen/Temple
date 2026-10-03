@@ -620,12 +620,21 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 var model3DGroup = new Model3DGroup();
 
+                var playerPosition = _currentState.BodyStates.First().Position;
+
                 _currentState.BodyStates.ForEach(bs =>
                 {
                     switch (bs.Body)
                     {
                         case BodyDoor bodyDoor:
+
+                            if (bodyDoor.Point1.SquaredDistanceTo(playerPosition) > 100.0)
+                            {
+                                return;
+                            }
+
                             var bodyStateDoor = bs as BodyStateDoor;
+                            
                             var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
 
                             if (bodyStateDoor.OpenClockWise)
@@ -708,7 +717,7 @@ namespace Temple.ViewModel.DD.Exploration
                     // Doors
                     case BodyDoor bodyDoor:
                         var bodyStateDoor = bs as BodyStateDoor;
-                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * System.Math.PI / 100;
+                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
 
                         var doorAsVector = new Vector2D(
                             bodyDoor.Point2.X - bodyDoor.Point1.X,
@@ -755,14 +764,18 @@ namespace Temple.ViewModel.DD.Exploration
                         case BodyDoor bodyDoor:
                             var bodyStateDoor = bs as BodyStateDoor;
 
-                            var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
-
-                            if (bodyStateDoor.OpenClockWise)
+                            if (DoorRotationViewModelDictionary.TryGetValue($"{bodyDoor.Id}",
+                                    out DoorRotationViewModel vm))
                             {
-                                angle *= -1;
-                            }
+                                var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
 
-                            DoorRotationViewModelDictionary[$"{bodyDoor.Id}"].RotationAngle = angle;
+                                if (bodyStateDoor.OpenClockWise)
+                                {
+                                    angle *= -1;
+                                }
+
+                                vm.RotationAngle = angle;
+                            }
 
                             break;
                     }
