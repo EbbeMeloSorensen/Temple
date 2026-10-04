@@ -38,8 +38,8 @@ namespace Temple.Infrastructure.Presentation
                         var p1 = lineSegment2D.Point1;
                         var p2 = lineSegment2D.Point2;
 
-                        //var wallHeight = 2.5;
-                        var wallHeight = 1.0; // For exposing issue with doors
+                        var wallHeight = 2.5;
+                        //var wallHeight = 1.0; // For exposing issue with doors
 
                         var mesh = MeshBuilder.CreateQuad(
                             new Point3D(p1.X, -p1.Y, wallHeight),

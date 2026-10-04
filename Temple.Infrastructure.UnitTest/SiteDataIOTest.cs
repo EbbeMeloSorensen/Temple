@@ -118,12 +118,9 @@ public class SiteDataIOTest
         // Arrange
 
         // Act
-        var siteData = SiteDataIO.ImportSiteDataFromFile(@"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\undermountain_raw.json");
-        
-        siteData.StartPosition = new Point2D(0, 0);
-        siteData.StartOrientation = 180.0;
+        var siteData = SiteDataIO.ImportSiteDataFromFile(@"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\village_raw.json");
 
-        siteData.WriteSiteDataToFile(@"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\undermountain.json");
+        siteData.WriteSiteDataToFile(@"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\village.json");
 
         // Assert
     }

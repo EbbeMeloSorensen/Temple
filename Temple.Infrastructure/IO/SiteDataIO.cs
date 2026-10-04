@@ -1,10 +1,11 @@
 ﻿using System.Globalization;
-using Craft.Math;
 using Newtonsoft.Json;
+using Craft.Math;
 using Craft.Math.IO;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.GameConditions;
+using Barrier = Temple.Domain.Entities.DD.Exploration.Barrier;
 
 namespace Temple.Infrastructure.IO;
 
@@ -49,34 +50,73 @@ public static class SiteDataIO
             {
                 case LabeledOrientedPoint2D point:
 
-                    var doorId = point.Text;
+                    var text_parts = point.Text.Split("_");
 
-                    var doorOrientation = point.AngleDegrees + 90;
-
-                    if (doorOrientation >= 360)
+                    switch (text_parts.First())
                     {
-                        doorOrientation -= 360;
+                        case "start":
+
+                            siteData.StartPosition = new Point2D(point.X, -point.Y);
+
+                            var orientation = point.AngleDegrees + 90;
+
+                            if (orientation >= 360)
+                            {
+                                orientation -= 360;
+                            }
+
+                            siteData.StartOrientation = orientation;
+
+                            break;
+
+                        case "door":
+                            var doorId = point.Text;
+
+                            var doorOrientation = point.AngleDegrees + 90;
+
+                            if (doorOrientation >= 360)
+                            {
+                                doorOrientation -= 360;
+                            }
+
+                            var door = new Door
+                            {
+                                Id = doorId,
+                                Position = new Vector3D(point.X, -point.Y, 0),
+                                Orientation = doorOrientation,
+                                Width = 0.75,
+                                Condition = null,
+                                ConditionForAccessibility = null
+                            };
+
+                            siteData.SiteComponents.Add(door);
+
+                            break;
+
+                        default:
+                            throw new InvalidDataException($"Unsupported labeled oriented point: {point.Text}");
                     }
 
-                    var door = new Door
-                    {
-                        Id = doorId,
-                        Position = new Vector3D(point.X, -point.Y, 0),
-                        Orientation = doorOrientation,
-                        Width = 0.75,
-                        Condition = null,
-                        ConditionForAccessibility = null
-                    };
-
-                    siteData.SiteComponents.Add(door);
-
                     break;
+
                 case OrientedPoint2D point:
                     throw new NotImplementedException("OrientedPoint2D not supported");
+
                 case Point2D point:
                     throw new NotImplementedException("Point2D not supported");
+
+                case LabeledLineSegment2D labeledLineSegment2D:
+
                     break;
+
                 case LineSegment2D lineSegment2D:
+
+                    //var barrier = new Barrier
+                    //{
+                    //    BarrierPoints = wallPoints.Select(_ => new Vector2D(_.X, _.Y)).ToList()
+
+                    //};
+
                     siteData.AddWall(new List<Point2D>
                     {
                         new Point2D(lineSegment2D.Point1.X, -lineSegment2D.Point1.Y),
@@ -116,7 +156,7 @@ public static class SiteDataIO
                     typeof(Sphere),
                     typeof(NPC),
                     typeof(Door),
-                    typeof(Domain.Entities.DD.Exploration.Barrier),
+                    typeof(Barrier),
                     typeof(EventTrigger_SiteLocationInfo),
                     typeof(EventTrigger_LeaveSite),
                     typeof(EventTrigger_ScriptedBattle)
