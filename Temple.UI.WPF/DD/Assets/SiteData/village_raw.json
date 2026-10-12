@@ -45,7 +45,9 @@
       "Y": -0
     },
     "AngleDegrees": 90.0,
-    "Text": "start"
+    "Labels": [
+      "start"
+    ]
   },
   {
     "Point1": {
@@ -83,7 +85,9 @@
       "Y": -9
     },
     "AngleDegrees": 270.0,
-    "Text": "door_village_3"
+    "Labels": [
+      "door_village_3"
+    ]
   },
   {
     "Point1": {
@@ -94,7 +98,9 @@
       "X": 2,
       "Y": 0.25
     },
-    "Text": "exit_wilderness"
+    "Labels": [
+      "exit_wilderness"
+    ]
   },
   {
     "Point1": {
@@ -262,7 +268,9 @@
       "Y": -3.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door_village_2"
+    "Labels": [
+      "door_village_2"
+    ]
   },
   {
     "Point": {
@@ -270,7 +278,9 @@
       "Y": -2
     },
     "AngleDegrees": 270.0,
-    "Text": "door_village_4"
+    "Labels": [
+      "door_village_4"
+    ]
   },
   {
     "Point": {
@@ -278,7 +288,9 @@
       "Y": -3.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door_village_5"
+    "Labels": [
+      "door_village_5"
+    ]
   },
   {
     "Point1": {
@@ -426,6 +438,8 @@
       "Y": -3.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door_village_1"
+    "Labels": [
+      "door_village_1"
+    ]
   }
 ]
