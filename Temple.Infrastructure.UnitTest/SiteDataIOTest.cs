@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Craft.Math;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.GameConditions;
@@ -12,20 +13,83 @@ public class SiteDataIOTest
     [Fact]
     public void WriteSimpleConditionToFileThenReadItAndWriteItAgain()
     {
-        var condition = new FactEstablishedCondition
+        var condition1 = new FactEstablishedCondition
         {
             FactId = "got_key_to_cellar_door_from_ethon"
         };
 
-        var json = condition.ConvertToJsonRepresentation();
+        var json1 = condition1.ConvertToJsonRepresentation();
 
         using var streamWriter1 = new StreamWriter(@"C:\Temp\condition1.json");
-        streamWriter1.WriteLine(json);
+        streamWriter1.WriteLine(json1);
 
-        var deserialized = json.ConvertToGameCondition();
+        var condition2= json1.ConvertToGameCondition();
+
+        var json2 = condition2.ConvertToJsonRepresentation();
 
         using var streamWriter2 = new StreamWriter(@"C:\Temp\condition2.json");
-        streamWriter2.WriteLine(json);
+        streamWriter2.WriteLine(json2);
+
+        json1.Equals(json2).Should().BeTrue();
+    }
+
+    [Fact]
+    public void WriteNotConditionToFileThenReadItAndWriteItAgain()
+    {
+        var condition1 = new NotGameCondition
+        {
+            Condition = new FactEstablishedCondition
+            {
+                FactId = "got_key_to_cellar_door_from_ethon"
+            }
+        };
+
+        var json1 = condition1.ConvertToJsonRepresentation();
+
+        using var streamWriter1 = new StreamWriter(@"C:\Temp\condition1.json");
+        streamWriter1.WriteLine(json1);
+
+        var condition2 = json1.ConvertToGameCondition();
+
+        var json2 = condition2.ConvertToJsonRepresentation();
+
+        using var streamWriter2 = new StreamWriter(@"C:\Temp\condition2.json");
+        streamWriter2.WriteLine(json2);
+
+        json1.Equals(json2).Should().BeTrue();
+    }
+
+    [Fact]
+    public void WriteOrConditionToFileThenReadItAndWriteItAgain()
+    {
+        var condition1 = new OrGameCondition
+        {
+            Conditions = new List<IGameCondition>
+            {
+                new FactEstablishedCondition
+                {
+                    FactId = "got_key_to_cellar_door_from_ethon"
+                },
+                new FactEstablishedCondition
+                {
+                    FactId = "got_dagger_from_ethon"
+                },
+            }
+        };
+
+        var json1 = condition1.ConvertToJsonRepresentation();
+
+        using var streamWriter1 = new StreamWriter(@"C:\Temp\condition1.json");
+        streamWriter1.WriteLine(json1);
+
+        var condition2 = json1.ConvertToGameCondition();
+
+        var json2 = condition2.ConvertToJsonRepresentation();
+
+        using var streamWriter2 = new StreamWriter(@"C:\Temp\condition2.json");
+        streamWriter2.WriteLine(json2);
+
+        json1.Equals(json2).Should().BeTrue();
     }
 
     [Fact]

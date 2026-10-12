@@ -17,6 +17,7 @@ public static class SiteDataIO
     {
         var json = JsonConvert.SerializeObject(
             gameCondition,
+            typeof(IGameCondition),
             Formatting.Indented,
             GetJsonSerializerSettings());
 
@@ -28,7 +29,7 @@ public static class SiteDataIO
     {
         var settings = GetJsonSerializerSettings();
 
-        return JsonConvert.DeserializeObject<FactEstablishedCondition>(json, settings);
+        return JsonConvert.DeserializeObject<IGameCondition>(json, settings);
     }
 
     public static void WriteSiteDataToFile(

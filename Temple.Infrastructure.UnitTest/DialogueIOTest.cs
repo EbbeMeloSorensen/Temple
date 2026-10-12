@@ -1,4 +1,5 @@
 using Craft.DataStructures.Graph;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.IO;
@@ -120,7 +121,7 @@ namespace Temple.Infrastructure.UnitTest
                     Priority = 100,
                     Condition = new AndGameCondition
                     {
-                        Conditions =
+                        Conditions = new List<IGameCondition> 
                         {
                             new FactEstablishedCondition
                             {
