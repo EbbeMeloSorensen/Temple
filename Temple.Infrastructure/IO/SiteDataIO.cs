@@ -71,7 +71,7 @@ public static class SiteDataIO
             {
                 case LabeledOrientedPoint2D point:
 
-                    identifierParts = point.Identifier.Split("_");
+                    identifierParts = point.Identifier.Split(":");
 
                     switch (identifierParts.First())
                     {
@@ -86,7 +86,7 @@ public static class SiteDataIO
 
                             var npc = new NPC
                             {
-                                Id = identifierParts.Last(),
+                                Id = identifierParts.Last().Trim(),
                                 Position = new Vector3D(point.X, -point.Y, 0),
                                 Orientation = orientation1
                             };
@@ -181,7 +181,7 @@ public static class SiteDataIO
 
                 case LabeledLineSegment2D labeledLineSegment2D:
 
-                    identifierParts = labeledLineSegment2D.Identifier.Split("_");
+                    identifierParts = labeledLineSegment2D.Identifier.Split(":");
 
                     switch (identifierParts.First())
                     {

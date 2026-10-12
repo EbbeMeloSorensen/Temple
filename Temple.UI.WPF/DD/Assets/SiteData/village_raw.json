@@ -82,21 +82,11 @@
   {
     "Point": {
       "X": 0,
-      "Y": -9
+      "Y": -3
     },
     "AngleDegrees": 270.0,
     "Labels": [
-      "door_village_3"
-    ]
-  },
-  {
-    "Point": {
-      "X": -0,
-      "Y": -2
-    },
-    "AngleDegrees": 270.0,
-    "Labels": [
-      "npc_alyth",
+      "npc: alyth",
       "ModelId: human female"
     ]
   },
@@ -278,39 +268,9 @@
       "X": -2,
       "Y": -3.5
     },
-    "AngleDegrees": 0.0,
+    "AngleDegrees": 350.0,
     "Labels": [
-      "door_village_2"
-    ]
-  },
-  {
-    "Point": {
-      "X": -3,
-      "Y": -2
-    },
-    "AngleDegrees": 270.0,
-    "Labels": [
-      "door_village_4"
-    ]
-  },
-  {
-    "Point": {
-      "X": -4,
-      "Y": -3.5
-    },
-    "AngleDegrees": 180.0,
-    "Labels": [
-      "door_village_5"
-    ]
-  },
-  {
-    "Point": {
-      "X": -1,
-      "Y": -5
-    },
-    "AngleDegrees": 290.0,
-    "Labels": [
-      "npc_ethon",
+      "npc: ethon",
       "ModelId: human male",
       "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.NotGameCondition\",\r\n  \"Condition\": {\r\n    \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n    \"Conditions\": [\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"rat_infestation\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": true\r\n        }\r\n      },\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"find_ethon\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": false\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
     ]
@@ -462,7 +422,7 @@
     },
     "AngleDegrees": 180.0,
     "Labels": [
-      "door_village_1",
+      "door: village1",
       "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_cellar_door_from_ethon\"\r\n}"
     ]
   }

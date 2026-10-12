@@ -97,38 +97,15 @@
       ]
     },
     {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
-      "Position": {
-        "X": 0.0,
-        "Y": 9.0,
-        "Z": 0.0
-      },
-      "Width": 0.75,
-      "Orientation": 0.0,
-      "Id": "door_village_3"
-    },
-    {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
       "Position": {
-        "X": -0.0,
-        "Y": 2.0,
+        "X": 0.0,
+        "Y": 3.0,
         "Z": 0.0
       },
       "Orientation": 0.0,
       "ModelId": "human female",
       "Id": "alyth"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
-      "Point1": {
-        "X": -2.0,
-        "Y": -0.25
-      },
-      "Point2": {
-        "X": 2.0,
-        "Y": -0.25
-      },
-      "EventID": "exit_wilderness"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -339,39 +316,6 @@
       ]
     },
     {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
-      "Position": {
-        "X": -2.0,
-        "Y": 3.5,
-        "Z": 0.0
-      },
-      "Width": 0.75,
-      "Orientation": 90.0,
-      "Id": "door_village_2"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
-      "Position": {
-        "X": -3.0,
-        "Y": 2.0,
-        "Z": 0.0
-      },
-      "Width": 0.75,
-      "Orientation": 0.0,
-      "Id": "door_village_4"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
-      "Position": {
-        "X": -4.0,
-        "Y": 3.5,
-        "Z": 0.0
-      },
-      "Width": 0.75,
-      "Orientation": 270.0,
-      "Id": "door_village_5"
-    },
-    {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
       "ConditionForPresence": {
         "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
@@ -398,11 +342,11 @@
         }
       },
       "Position": {
-        "X": -1.0,
-        "Y": 5.0,
+        "X": -2.0,
+        "Y": 3.5,
         "Z": 0.0
       },
-      "Orientation": 20.0,
+      "Orientation": 80.0,
       "ModelId": "human male",
       "Id": "ethon"
     },
@@ -601,7 +545,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door_village_1"
+      "Id": "door: village1"
     }
   ]
 }
