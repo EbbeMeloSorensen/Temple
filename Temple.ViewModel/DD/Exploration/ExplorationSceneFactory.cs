@@ -240,7 +240,7 @@ public static class ExplorationSceneFactory
                     {
                         if (bcrWithTag.Boundary is Boundaries.NPC)
                         {
-                            tag = $"NPC_{tag}";
+                            tag = $"npc_{tag}";
                             response.Outcome = tag;
                             response.IndexOfLastState = propagatedState.Index;
                         }

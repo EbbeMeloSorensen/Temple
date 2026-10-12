@@ -75,6 +75,27 @@ public static class SiteDataIO
 
                     switch (identifierParts.First())
                     {
+                        case "npc":
+
+                            var orientation1 = point.AngleDegrees + 90;
+
+                            if (orientation1 >= 360)
+                            {
+                                orientation1 -= 360;
+                            }
+
+                            var npc = new NPC
+                            {
+                                ModelId = "human female",
+                                Id = identifierParts.Last(),
+                                Position = new Vector3D(point.X, -point.Y, 0),
+                                Orientation = orientation1
+                            };
+
+                            siteData.SiteComponents.Add(npc);
+
+                            break;
+
                         case "start":
 
                             siteData.StartPosition = new Point2D(point.X, -point.Y);

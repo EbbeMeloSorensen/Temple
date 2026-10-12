@@ -108,6 +108,17 @@
       "Id": "door_village_3"
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": -0.0,
+        "Y": 2.0,
+        "Z": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human female",
+      "Id": "alyth"
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
       "Point1": {
         "X": -2.0,

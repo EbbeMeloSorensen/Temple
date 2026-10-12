@@ -90,6 +90,16 @@
     ]
   },
   {
+    "Point": {
+      "X": -0,
+      "Y": -2
+    },
+    "AngleDegrees": 270.0,
+    "Labels": [
+      "npc_alyth"
+    ]
+  },
+  {
     "Point1": {
       "X": -2,
       "Y": 0.25
