@@ -544,6 +544,10 @@
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "ConditionForAccessibility": {
+        "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
+        "FactId": "got_key_to_cellar_door_from_ethon"
+      },
       "Position": {
         "X": 2.0,
         "Y": 3.5,

@@ -112,15 +112,16 @@ public static class SiteDataIO
                             {
                                 var property = label.Substring(0, label.IndexOf(":")).Trim('\"');
 
-                                var value = label.Substring(label.IndexOf(":") + 1);
-
-
+                                var json = label.Substring(label.IndexOf(":") + 1);
+                                var condition = json.ConvertToGameCondition();
 
                                 switch (property)
                                 {
                                     case "ConditionForPresence":
+                                        door.ConditionForPresence = condition;
                                         break;
                                     case "ConditionForAccessibility":
+                                        door.ConditionForAccessibility = condition;
                                         break;
                                 }
                             });
