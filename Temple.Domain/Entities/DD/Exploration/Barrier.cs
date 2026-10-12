@@ -5,7 +5,7 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class Barrier : ISiteComponent
 {
-    public IGameCondition? Condition { get; set; }
+    public IGameCondition? ConditionForPresence { get; set; }
 
     public List<Vector2D> BarrierPoints { get; set; }
 }

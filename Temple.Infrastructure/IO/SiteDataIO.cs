@@ -85,7 +85,7 @@ public static class SiteDataIO
                                 Position = new Vector3D(point.X, -point.Y, 0),
                                 Orientation = doorOrientation,
                                 Width = 0.75,
-                                Condition = null,
+                                ConditionForPresence = null,
                                 ConditionForAccessibility = null
                             };
 

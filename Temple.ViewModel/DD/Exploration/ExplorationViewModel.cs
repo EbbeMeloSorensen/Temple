@@ -380,8 +380,8 @@ namespace Temple.ViewModel.DD.Exploration
             var filteredSiteData = new SiteData
             {
                 SiteComponents = siteData.SiteComponents
-                    .Where(_ => _.Condition == null ||
-                                _.Condition.Evaluate(_gameQueryService))
+                    .Where(_ => _.ConditionForPresence == null ||
+                                _.ConditionForPresence.Evaluate(_gameQueryService))
                     .ToList(),
             };
 

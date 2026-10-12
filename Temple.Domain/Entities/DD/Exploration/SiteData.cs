@@ -90,7 +90,7 @@ public class SiteData
         Point2D position,
         double orientation = 0,
         double height = 0,
-        IGameCondition condition = null)
+        IGameCondition conditionForPresence = null)
     {
         SiteComponents.Add(new NPC
         {
@@ -98,7 +98,7 @@ public class SiteData
             Id = npcId,
             Position = new Vector3D(position.Y, height, position.X),
             Orientation = orientation,
-            Condition = condition
+            ConditionForPresence = conditionForPresence
         });
     }
 
@@ -107,7 +107,7 @@ public class SiteData
         Point2D position,
         double orientation,
         double width,
-        IGameCondition condition = null,
+        IGameCondition conditionForPresence = null,
         IGameCondition conditionForAccessibility = null)
     {
         SiteComponents.Add(new Door
@@ -116,7 +116,7 @@ public class SiteData
             Position = new Vector3D(position.Y, 0, position.X),
             Orientation = orientation,
             Width = width,
-            Condition = condition,
+            ConditionForPresence = conditionForPresence,
             ConditionForAccessibility = conditionForAccessibility
         });
     }
@@ -157,7 +157,7 @@ public class SiteData
         string eventId,
         int? questId = null,
         string? entranceId = null,
-        IGameCondition condition = null)
+        IGameCondition conditionForPresence = null)
     {
         SiteComponents.Add(new EventTrigger_ScriptedBattle
         {
@@ -166,7 +166,7 @@ public class SiteData
             EventID = eventId,
             QuestID = questId,
             EntranceID = entranceId,
-            Condition = condition
+            ConditionForPresence = conditionForPresence
         });
     }
 }

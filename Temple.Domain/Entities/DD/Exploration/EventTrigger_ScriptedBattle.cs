@@ -5,7 +5,7 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class EventTrigger_ScriptedBattle : IEventTrigger
 {
-    public IGameCondition? Condition { get; set; }
+    public IGameCondition? ConditionForPresence { get; set; }
 
 
     public Point2D Point1 { get; set; }

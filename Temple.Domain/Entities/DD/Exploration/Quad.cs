@@ -5,7 +5,7 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class Quad : ISiteComponent
 {
-    public IGameCondition? Condition { get; set; }
+    public IGameCondition? ConditionForPresence { get; set; }
 
 
     public Vector3D Point1 { get; set; }

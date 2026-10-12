@@ -5,7 +5,7 @@ namespace Temple.Domain.Entities.DD.Exploration;
 
 public class Door : ISiteComponent_Rotatable
 {
-    public IGameCondition? Condition { get; set; }
+    public IGameCondition? ConditionForPresence { get; set; }
 
     public IGameCondition? ConditionForAccessibility { get; set; }
 
