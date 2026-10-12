@@ -50,9 +50,9 @@ public static class SiteDataIO
             {
                 case LabeledOrientedPoint2D point:
 
-                    var text_parts = point.Text.Split("_");
+                    var identifier_parts = point.Identifier.Split("_");
 
-                    switch (text_parts.First())
+                    switch (identifier_parts.First())
                     {
                         case "start":
 
@@ -70,7 +70,7 @@ public static class SiteDataIO
                             break;
 
                         case "door":
-                            var doorId = point.Text;
+                            var doorId = point.Identifier;
 
                             var doorOrientation = point.AngleDegrees + 90;
 
@@ -94,7 +94,7 @@ public static class SiteDataIO
                             break;
 
                         default:
-                            throw new InvalidDataException($"Unsupported labeled oriented point: {point.Text}");
+                            throw new InvalidDataException($"Unsupported labeled oriented point: {point.Identifier}");
                     }
 
                     break;

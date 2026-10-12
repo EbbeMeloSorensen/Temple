@@ -112,19 +112,6 @@
       "BarrierPoints": [
         {
           "X": -2.0,
-          "Y": -0.25
-        },
-        {
-          "X": 2.0,
-          "Y": -0.25
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -2.0,
           "Y": 4.0
         },
         {
