@@ -41,7 +41,6 @@ public static class SiteDataIO
         using var r = new StreamReader(fileName);
         var jsonData = r.ReadToEnd();
         var geometricObjects = GeometryFile.Deserialize(jsonData);
-
         var siteData = new SiteData();
 
         foreach (var geometricObject in geometricObjects)
@@ -50,9 +49,7 @@ public static class SiteDataIO
             {
                 case LabeledOrientedPoint2D point:
 
-                    var identifier_parts = point.Identifier.Split("_");
-
-                    switch (identifier_parts.First())
+                    switch (point.Identifier.Split("_").First())
                     {
                         case "start":
 
@@ -107,15 +104,24 @@ public static class SiteDataIO
 
                 case LabeledLineSegment2D labeledLineSegment2D:
 
+                    var identifierParts = labeledLineSegment2D.Identifier.Split("_");
+
+                    switch (identifierParts.First())
+                    {
+                        case "exit":
+                            var event_id = identifierParts.Last();
+
+                            siteData.AddEventTrigger_LeaveSite(
+                                new Point2D(labeledLineSegment2D.Point1.X, -labeledLineSegment2D.Point1.Y),
+                                new Point2D(labeledLineSegment2D.Point2.X, -labeledLineSegment2D.Point2.Y),
+                                labeledLineSegment2D.Identifier);
+
+                            break;
+                    }
+
                     break;
 
                 case LineSegment2D lineSegment2D:
-
-                    //var barrier = new Barrier
-                    //{
-                    //    BarrierPoints = wallPoints.Select(_ => new Vector2D(_.X, _.Y)).ToList()
-
-                    //};
 
                     siteData.AddWall(new List<Point2D>
                     {

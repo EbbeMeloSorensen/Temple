@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -252,7 +253,7 @@ namespace Temple.ViewModel.DD.Exploration
             {
                 var outcome = Engine.EngineCore.Outcome as string;
 
-                if (outcome.Length >= 4 && outcome.Substring(0, 4) == "Info")
+                if (outcome.Length >= 4 && outcome.Substring(0, 4) == "info")
                 {
                     // Show Info (don´t switch to another state)
 
@@ -266,7 +267,7 @@ namespace Temple.ViewModel.DD.Exploration
 
                     DisplayLocationInfo = true;
                 }
-                else if (outcome.Length >= 3 && outcome.Substring(0, 3) == "NPC")
+                else if (outcome.Length >= 3 && outcome.Substring(0, 3) == "npc")
                 {
                     var payload = new DialoguePayload
                     {
@@ -275,11 +276,11 @@ namespace Temple.ViewModel.DD.Exploration
 
                     _controller.GoToNextApplicationState(payload);
                 }
-                else if (outcome.Length >= 4 && outcome.Substring(0, 4) == "Exit")
+                else if (outcome.Length >= 4 && outcome.Substring(0, 4) == "exit")
                 {
                     var exit_identifier = outcome.Substring(5);
 
-                    if (exit_identifier == "Wilderness")
+                    if (exit_identifier == "wilderness")
                     {
                         _controller.GoToWilderness();
                     }
@@ -313,7 +314,7 @@ namespace Temple.ViewModel.DD.Exploration
                         _controller.GoToNextApplicationState(payload);
                     }
                 }
-                else
+                else if (outcome.Length >= 6 && outcome.Substring(0, 6) == "battle")
                 {
                     string battleId;
                     string? entranceId;
@@ -338,6 +339,10 @@ namespace Temple.ViewModel.DD.Exploration
                     };
 
                     _controller.GoToNextApplicationState(payload);
+                }
+                else
+                {
+                    throw new InvalidDataException("Invalid outcome after animation");
                 }
             };
         }

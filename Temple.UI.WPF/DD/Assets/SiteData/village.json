@@ -108,6 +108,18 @@
       "Id": "door_village_3"
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+      "Point1": {
+        "X": -2.0,
+        "Y": -0.25
+      },
+      "Point2": {
+        "X": 2.0,
+        "Y": -0.25
+      },
+      "EventID": "exit_wilderness"
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
