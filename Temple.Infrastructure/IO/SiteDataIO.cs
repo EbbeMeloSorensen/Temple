@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Craft.Math;
 using Craft.Math.IO;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Dialogues;
 using Temple.Infrastructure.GameConditions;
@@ -11,6 +12,25 @@ namespace Temple.Infrastructure.IO;
 
 public static class SiteDataIO
 {
+    public static string ConvertToJsonRepresentation(
+        this IGameCondition gameCondition)
+    {
+        var json = JsonConvert.SerializeObject(
+            gameCondition,
+            Formatting.Indented,
+            GetJsonSerializerSettings());
+
+        return json;
+    }
+
+    public static IGameCondition ConvertToGameCondition(
+        this string json)
+    {
+        var settings = GetJsonSerializerSettings();
+
+        return JsonConvert.DeserializeObject<FactEstablishedCondition>(json, settings);
+    }
+
     public static void WriteSiteDataToFile(
         this SiteData siteData,
         string fileName)
@@ -42,6 +62,7 @@ public static class SiteDataIO
         var jsonData = r.ReadToEnd();
         var geometricObjects = GeometryFile.Deserialize(jsonData);
         var siteData = new SiteData();
+        string[] identifierParts;
 
         foreach (var geometricObject in geometricObjects)
         {
@@ -49,7 +70,9 @@ public static class SiteDataIO
             {
                 case LabeledOrientedPoint2D point:
 
-                    switch (point.Identifier.Split("_").First())
+                    identifierParts = point.Identifier.Split("_");
+
+                    switch (identifierParts.First())
                     {
                         case "start":
 
@@ -81,10 +104,25 @@ public static class SiteDataIO
                                 Id = doorId,
                                 Position = new Vector3D(point.X, -point.Y, 0),
                                 Orientation = doorOrientation,
-                                Width = 0.75,
-                                ConditionForPresence = null,
-                                ConditionForAccessibility = null
+                                Width = 0.75
                             };
+
+                            point.Labels.Skip(1).ToList().ForEach(label =>
+                            {
+                                var property = label.Substring(0, label.IndexOf(":")).Trim('\"');
+
+                                var value = label.Substring(label.IndexOf(":") + 1);
+
+
+
+                                switch (property)
+                                {
+                                    case "ConditionForPresence":
+                                        break;
+                                    case "ConditionForAccessibility":
+                                        break;
+                                }
+                            });
 
                             siteData.SiteComponents.Add(door);
 
@@ -104,12 +142,11 @@ public static class SiteDataIO
 
                 case LabeledLineSegment2D labeledLineSegment2D:
 
-                    var identifierParts = labeledLineSegment2D.Identifier.Split("_");
+                    identifierParts = labeledLineSegment2D.Identifier.Split("_");
 
                     switch (identifierParts.First())
                     {
                         case "exit":
-                            var event_id = identifierParts.Last();
 
                             siteData.AddEventTrigger_LeaveSite(
                                 new Point2D(labeledLineSegment2D.Point1.X, -labeledLineSegment2D.Point1.Y),

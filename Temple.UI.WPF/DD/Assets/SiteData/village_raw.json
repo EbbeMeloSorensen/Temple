@@ -439,7 +439,8 @@
     },
     "AngleDegrees": 180.0,
     "Labels": [
-      "door_village_1"
+      "door_village_1",
+      "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_cellar_door_from_ethon\"\r\n}"
     ]
   }
 ]

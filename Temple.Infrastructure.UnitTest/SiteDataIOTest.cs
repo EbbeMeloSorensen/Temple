@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Craft.Math;
-using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Infrastructure.GameConditions;
@@ -10,6 +9,25 @@ namespace Temple.Infrastructure.UnitTest;
 
 public class SiteDataIOTest
 {
+    [Fact]
+    public void WriteSimpleConditionToFileThenReadItAndWriteItAgain()
+    {
+        var condition = new FactEstablishedCondition
+        {
+            FactId = "got_key_to_cellar_door_from_ethon"
+        };
+
+        var json = condition.ConvertToJsonRepresentation();
+
+        using var streamWriter1 = new StreamWriter(@"C:\Temp\condition1.json");
+        streamWriter1.WriteLine(json);
+
+        var deserialized = json.ConvertToGameCondition();
+
+        using var streamWriter2 = new StreamWriter(@"C:\Temp\condition2.json");
+        streamWriter2.WriteLine(json);
+    }
+
     [Fact]
     public void WriteSiteDataToFileThenReadItAndWriteItAgain()
     {
