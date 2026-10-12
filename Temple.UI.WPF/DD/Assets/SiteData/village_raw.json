@@ -96,7 +96,8 @@
     },
     "AngleDegrees": 270.0,
     "Labels": [
-      "npc_alyth"
+      "npc_alyth",
+      "ModelId: human female"
     ]
   },
   {
@@ -303,6 +304,18 @@
     ]
   },
   {
+    "Point": {
+      "X": -1,
+      "Y": -5
+    },
+    "AngleDegrees": 290.0,
+    "Labels": [
+      "npc_ethon",
+      "ModelId: human male",
+      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.NotGameCondition\",\r\n  \"Condition\": {\r\n    \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n    \"Conditions\": [\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"rat_infestation\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": true\r\n        }\r\n      },\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"find_ethon\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": false\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+    ]
+  },
+  {
     "Point1": {
       "X": 2,
       "Y": -4
@@ -451,17 +464,6 @@
     "Labels": [
       "door_village_1",
       "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_cellar_door_from_ethon\"\r\n}"
-    ]
-  },
-  {
-    "Point": {
-      "X": 1.5,
-      "Y": -5.5
-    },
-    "AngleDegrees": 225.0,
-    "Labels": [
-      "npc_ethon",
-      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.NotGameCondition\",\r\n  \"Condition\": {\r\n    \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n    \"Conditions\": [\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"rat_infestation\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": true\r\n        }\r\n      },\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"find_ethon\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": false\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
     ]
   }
 ]

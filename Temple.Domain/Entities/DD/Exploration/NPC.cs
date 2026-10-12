@@ -11,7 +11,7 @@ namespace Temple.Domain.Entities.DD.Exploration
 
         public double Orientation { get; set; }
 
-        public string ModelId { get; init; }
+        public string ModelId { get; set; }
 
         public string Id { get; set; }
     }

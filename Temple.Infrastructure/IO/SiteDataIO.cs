@@ -86,11 +86,27 @@ public static class SiteDataIO
 
                             var npc = new NPC
                             {
-                                ModelId = "human female",
                                 Id = identifierParts.Last(),
                                 Position = new Vector3D(point.X, -point.Y, 0),
                                 Orientation = orientation1
                             };
+
+                            point.Labels.Skip(1).ToList().ForEach(label =>
+                            {
+                                var property = label.Substring(0, label.IndexOf(":")).Trim('\"');
+
+                                var value = label.Substring(label.IndexOf(":") + 2);
+
+                                switch (property)
+                                {
+                                    case "ModelId":
+                                        npc.ModelId = value;
+                                        break;
+                                    case "ConditionForPresence":
+                                        npc.ConditionForPresence = value.ConvertToGameCondition();
+                                        break;
+                                }
+                            });
 
                             siteData.SiteComponents.Add(npc);
 
@@ -133,16 +149,16 @@ public static class SiteDataIO
                             {
                                 var property = label.Substring(0, label.IndexOf(":")).Trim('\"');
 
-                                var json = label.Substring(label.IndexOf(":") + 1);
-                                var condition = json.ConvertToGameCondition();
+                                var json = label.Substring(label.IndexOf(":") + 2);
+                                var value = json.ConvertToGameCondition();
 
                                 switch (property)
                                 {
                                     case "ConditionForPresence":
-                                        door.ConditionForPresence = condition;
+                                        door.ConditionForPresence = value;
                                         break;
                                     case "ConditionForAccessibility":
-                                        door.ConditionForAccessibility = condition;
+                                        door.ConditionForAccessibility = value;
                                         break;
                                 }
                             });
