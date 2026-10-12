@@ -567,6 +567,17 @@
       "Width": 0.75,
       "Orientation": 270.0,
       "Id": "door_village_1"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": 1.5,
+        "Y": 5.5,
+        "Z": 0.0
+      },
+      "Orientation": 315.0,
+      "ModelId": "human female",
+      "Id": "ethon"
     }
   ]
 }
