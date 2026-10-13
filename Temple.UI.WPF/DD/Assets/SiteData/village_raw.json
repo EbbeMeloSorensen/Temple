@@ -256,6 +256,31 @@
     ]
   },
   {
+    "Point": {
+      "X": -2,
+      "Y": -3.5
+    },
+    "AngleDegrees": 0.0,
+    "Labels": [
+      "door: village2",
+      "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_sewer_door_from_alyth\"\r\n}"
+    ]
+  },
+  {
+    "Point1": {
+      "X": -2.25,
+      "Y": -4.5
+    },
+    "Point2": {
+      "X": -2.25,
+      "Y": -2.5
+    },
+    "Labels": [
+      "battle: bugbear_chieftain",
+      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"find_ethon\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
+    ]
+  },
+  {
     "Point1": {
       "X": 2,
       "Y": -4
