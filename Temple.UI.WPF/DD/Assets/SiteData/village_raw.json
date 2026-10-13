@@ -534,17 +534,6 @@
   },
   {
     "Point": {
-      "X": 4,
-      "Y": -7
-    },
-    "AngleDegrees": 180.0,
-    "Labels": [
-      "npc: ipswitch",
-      "ModelId: human male"
-    ]
-  },
-  {
-    "Point": {
       "X": 0.5,
       "Y": -8.5
     },
@@ -552,17 +541,6 @@
     "Labels": [
       "npc: captain",
       "ModelId: human male"
-    ]
-  },
-  {
-    "Point": {
-      "X": 4,
-      "Y": -6
-    },
-    "AngleDegrees": 180.0,
-    "Labels": [
-      "npc: osala",
-      "ModelId: human female"
     ]
   },
   {
@@ -589,6 +567,30 @@
     "Labels": [
       "battle: rats_in_warehouse",
       "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"rat_infestation\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
+    ]
+  },
+  {
+    "Point": {
+      "X": 4,
+      "Y": -6
+    },
+    "AngleDegrees": 180.0,
+    "Labels": [
+      "npc: osala",
+      "ModelId: human female",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n  \"Conditions\": [\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    },\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 3,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    }\r\n  ]\r\n}"
+    ]
+  },
+  {
+    "Point": {
+      "X": 4,
+      "Y": -7
+    },
+    "AngleDegrees": 180.0,
+    "Labels": [
+      "npc: ipswitch",
+      "ModelId: human male",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n  \"Conditions\": [\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    },\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 3,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    }\r\n  ]\r\n}"
     ]
   }
 ]

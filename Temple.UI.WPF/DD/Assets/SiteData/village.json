@@ -675,17 +675,6 @@
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
       "Position": {
-        "X": 4.0,
-        "Y": 7.0,
-        "Z": 0.0
-      },
-      "Orientation": 270.0,
-      "ModelId": "human male",
-      "Id": "ipswitch"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
-      "Position": {
         "X": 0.5,
         "Y": 8.5,
         "Z": 0.0
@@ -693,17 +682,6 @@
       "Orientation": 0.0,
       "ModelId": "human male",
       "Id": "captain"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
-      "Position": {
-        "X": 4.0,
-        "Y": 6.0,
-        "Z": 0.0
-      },
-      "Orientation": 270.0,
-      "ModelId": "human female",
-      "Id": "osala"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
@@ -759,6 +737,70 @@
         "Y": 2.5
       },
       "EventID": "rats_in_warehouse"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+        "Conditions": [
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": true
+            }
+          },
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 3,
+              "AreCompletionCriteriaSatisfied": true
+            }
+          }
+        ]
+      },
+      "Position": {
+        "X": 4.0,
+        "Y": 6.0,
+        "Z": 0.0
+      },
+      "Orientation": 270.0,
+      "ModelId": "human female",
+      "Id": "osala"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+        "Conditions": [
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": true
+            }
+          },
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 3,
+              "AreCompletionCriteriaSatisfied": true
+            }
+          }
+        ]
+      },
+      "Position": {
+        "X": 4.0,
+        "Y": 7.0,
+        "Z": 0.0
+      },
+      "Orientation": 270.0,
+      "ModelId": "human male",
+      "Id": "ipswitch"
     }
   ]
 }
