@@ -108,6 +108,32 @@
       "Id": "alyth"
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -1.0,
+          "Y": 9.0
+        },
+        {
+          "X": 1.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 1.0,
+          "Y": 9.0
+        },
+        {
+          "X": -1.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
       "Point1": {
         "X": -2.0,
@@ -203,32 +229,6 @@
         {
           "X": -4.0,
           "Y": 11.0
-        },
-        {
-          "X": -4.0,
-          "Y": 9.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -4.0,
-          "Y": 9.0
-        },
-        {
-          "X": -0.5,
-          "Y": 9.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -0.5,
-          "Y": 9.0
         },
         {
           "X": -4.0,
@@ -372,6 +372,56 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
+          "X": -4.0,
+          "Y": 9.0
+        },
+        {
+          "X": -2.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 9.0
+        },
+        {
+          "X": -4.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -1.5,
+        "Y": 9.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 0.0,
+      "Id": "village3"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": -2.5,
+        "Y": 9.25
+      },
+      "Point2": {
+        "X": -0.5,
+        "Y": 9.25
+      },
+      "EventID": "pigs_in_townhall",
+      "EntranceID": "left"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
           "X": 2.0,
           "Y": 4.0
         },
@@ -450,19 +500,6 @@
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
-          "X": 0.5,
-          "Y": 9.0
-        },
-        {
-          "X": 4.0,
-          "Y": 9.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
           "X": 4.0,
           "Y": 9.0
         },
@@ -481,19 +518,6 @@
         },
         {
           "X": 4.0,
-          "Y": 9.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": 4.0,
-          "Y": 9.0
-        },
-        {
-          "X": 0.5,
           "Y": 9.0
         }
       ]
@@ -619,6 +643,56 @@
           "Y": 2.0
         }
       ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 2.0,
+          "Y": 9.0
+        },
+        {
+          "X": 4.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 4.0,
+          "Y": 9.0
+        },
+        {
+          "X": 2.0,
+          "Y": 9.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": 1.5,
+        "Y": 9.0,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 0.0,
+      "Id": "village4"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": 0.5,
+        "Y": 9.25
+      },
+      "Point2": {
+        "X": 2.5,
+        "Y": 9.25
+      },
+      "EventID": "pigs_in_townhall",
+      "EntranceID": "right"
     }
   ]
 }

@@ -203,12 +203,14 @@ public static class SiteDataIO
 
                                 switch (property)
                                 {
-                                    case "EntranceIdId":
+                                    case "EntranceId":
                                         eventTrigger_ScriptedBattle.EntranceID = value;
                                         break;
                                     case "ConditionForPresence":
                                         eventTrigger_ScriptedBattle.ConditionForPresence = value.ConvertToGameCondition();
                                         break;
+                                    default:
+                                        throw new InvalidDataException("Invalid label for battle trigger");
                                 }
                             });
 

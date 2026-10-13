@@ -460,7 +460,7 @@ public static class ExplorationSceneFactory
 
         if (entranceId != null)
         {
-            tag = $"{tag};{entranceId}";
+            tag = $"{tag}, EntranceId: {entranceId}";
         }
 
         scene.AddBoundary(new Trigger(

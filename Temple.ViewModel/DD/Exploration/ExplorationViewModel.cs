@@ -317,20 +317,25 @@ namespace Temple.ViewModel.DD.Exploration
                 else if (outcome.Length >= 6 && outcome.Substring(0, 6) == "battle")
                 {
                     string battleId;
-                    //string? entranceId;
+                    string? entranceId = null;
 
-                    var indexOfColon = outcome.IndexOf(':');
-                    battleId = outcome.Substring(indexOfColon + 2);
+                    var indexOfFirstColon = outcome.IndexOf(':');
 
-                    if (outcome.Contains(","))
+                    if (outcome.Contains("EntranceId"))
                     {
-                        throw new NotImplementedException("EntranceId not yet supported");
+                        var indexOfEntranceId = outcome.IndexOf("EntranceId");
+                        entranceId = outcome.Substring(indexOfEntranceId + 12);
+                        battleId = outcome.Substring(indexOfFirstColon + 2, indexOfEntranceId - 4 - indexOfFirstColon);
+                    }
+                    else
+                    {
+                        battleId = outcome.Substring(indexOfFirstColon + 2);
                     }
 
                     var payload = new BattlePayload
                     {
                         BattleId = battleId,
-                        //EntranceId = entranceId,
+                        EntranceId = entranceId,
                         PayloadForNextStateInCasePartyWins = new ExplorationPayload { SiteId = _controller.ApplicationData.CurrentSiteId }
                     };
 

@@ -12,6 +12,7 @@ public class BattleSceneFactory : IBattleSceneFactory
     {
         return battleSceneId switch
         {
+            "pigs_in_townhall" => GetScenePigsInTownhall(party, entranceId),
             "rats_in_warehouse" => GetSceneWarehouse(party),
             "bugbear_chieftain" => GetSceneBugbearChieftain(party),
             "skeletons_in_graveyard" => GetSceneGraveyard(party),
@@ -20,6 +21,102 @@ public class BattleSceneFactory : IBattleSceneFactory
             "Final Battle" => GetSceneF(party, entranceId),
             _ => throw new ArgumentException($"Unknown battle scene ID: {battleSceneId}", nameof(battleSceneId))
         };
+    }
+
+    private static Scene GetScenePigsInTownhall(
+        IEnumerable<Creature> party,
+        string? entranceId)
+    {
+        var goblin = new CreatureType(
+            name: "Goblin",
+            maxHitPoints: 12,
+            armorClass: 5,
+            thaco: 20,
+            initiativeModifier: 0,
+            movement: 6,
+            attacks: new List<Attack>
+            {
+                new MeleeAttack("Short sword", 6)
+            });
+
+        var scene = new Scene("DummyScene", 6, 18);
+
+        // Obstacles
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 11, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 12, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 13, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 14, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 15, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 16, 0));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 17, 0));
+
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 17, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 17, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 17, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 17, 4));
+
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 8, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 9, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 10, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 13, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 14, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 15, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 16, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 17, 5));
+
+        // Enemies
+        scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 2, 2);
+
+        // Party
+        var adventurerPositions = entranceId switch
+        {
+            "left" => new List<Tuple<int, int>>
+            {
+                new (6, 4),
+                new (5, 4),
+                new (6, 5),
+                new (5, 5)
+            },
+            "right" => new List<Tuple<int, int>>
+            {
+                new (12, 4),
+                new (11, 4),
+                new (12, 5),
+                new (11, 5)
+            },
+            _ => throw new InvalidOperationException()
+        };
+
+        adventurerPositions
+            .Zip(party.Where(_ => _.HitPoints > 0), (position, adventurer) => new { position, adventurer })
+            .ToList()
+            .ForEach(_ =>
+            {
+                scene.AddCreature(_.adventurer, _.position.Item1, _.position.Item2);
+            });
+
+        return scene;
     }
 
     private static Scene GetSceneWarehouse(
@@ -37,40 +134,42 @@ public class BattleSceneFactory : IBattleSceneFactory
                 new MeleeAttack("Short sword", 6)
             });
 
-        var scene = new Scene("DummyScene", 6, 8);
+        var scene = new Scene("DummyScene", 8, 6);
 
         // Obstacles
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
         scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 0));
         scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 0));
         scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 0));
         scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 0));
         scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 0));
         scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 0));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 0));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 0));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 1));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 1));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 2));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 2));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 3));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 3));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 4));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 4));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 5));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 1));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 2));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 3));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 4));
         scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 5));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 6, 5));
-        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 7, 5));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 6));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 5, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 4, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 3, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 2, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 1, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 7));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 6));
+        scene.AddObstacle(new Obstacle(ObstacleType.Wall, 0, 5));
 
         // Enemies
-        scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 1, 1);
+        scene.AddCreature(new Creature(goblin, true) { IsAutomatic = true }, 4, 1);
 
         // Party
         var adventurerPositions = new List<Tuple<int, int>>
         {
-            new (4, 5),
-            new (3, 5)
+            new (1, 4),
+            new (1, 3),
+            new (0, 4),
+            new (0, 3),
         };
 
         adventurerPositions
