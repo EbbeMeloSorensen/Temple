@@ -257,7 +257,7 @@ namespace Temple.ViewModel.DD.Exploration
                 {
                     // Show Info (don´t switch to another state)
 
-                    var locationInfoId = outcome.Substring(5);
+                    var locationInfoId = outcome.Substring(6);
 
                     controller.EventBus.Publish(new KnowledgeGainedEvent(locationInfoId));
 

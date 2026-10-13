@@ -186,6 +186,37 @@ public static class SiteDataIO
 
                     switch (identifierParts.First())
                     {
+                        case "info":
+
+                            var locationInfoId = labeledLineSegment2D.Identifier.Substring(6);
+
+                            var eventTrigger_SiteLocationInfo = new EventTrigger_SiteLocationInfo
+                            {
+                                Point1 = new Point2D(labeledLineSegment2D.Point1.X, -labeledLineSegment2D.Point1.Y),
+                                Point2 = new Point2D(labeledLineSegment2D.Point2.X, -labeledLineSegment2D.Point2.Y),
+                                EventID = locationInfoId
+                            };
+
+                            labeledLineSegment2D.Labels.Skip(1).ToList().ForEach(label =>
+                            {
+                                var property = label.Substring(0, label.IndexOf(":")).Trim('\"');
+                                var value = label.Substring(label.IndexOf(":") + 2);
+
+                                switch (property)
+                                {
+                                    case "Text":
+                                        eventTrigger_SiteLocationInfo.EventID = locationInfoId;
+                                        siteData.AddLocationInfo(locationInfoId, value);
+                                        break;
+                                    default:
+                                        throw new InvalidDataException("Invalid label for location info trigger");
+                                }
+                            });
+
+                            siteData.SiteComponents.Add(eventTrigger_SiteLocationInfo);
+
+                            break;
+
                         case "battle":
 
                             var eventTrigger_ScriptedBattle = new EventTrigger_ScriptedBattle
@@ -198,7 +229,6 @@ public static class SiteDataIO
                             labeledLineSegment2D.Labels.Skip(1).ToList().ForEach(label =>
                             {
                                 var property = label.Substring(0, label.IndexOf(":")).Trim('\"');
-
                                 var value = label.Substring(label.IndexOf(":") + 2);
 
                                 switch (property)

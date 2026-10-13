@@ -392,7 +392,7 @@ public static class ExplorationSceneFactory
                 }
                 case EventTrigger_SiteLocationInfo siteLocationInfoEventTrigger:
                 {
-                    var tag = siteLocationInfoEventTrigger.EventID;
+                    var tag = $"info: {siteLocationInfoEventTrigger.EventID}";
 
                     scene.AddBoundary(new Trigger(
                         new Vector2D(siteLocationInfoEventTrigger.Point1.X, -siteLocationInfoEventTrigger.Point1.Y),
