@@ -392,16 +392,19 @@ public static class ExplorationSceneFactory
                 }
                 case EventTrigger_SiteLocationInfo siteLocationInfoEventTrigger:
                 {
-                    var tag = $"info: {siteLocationInfoEventTrigger.EventID}";
+                    if (!gameQueryService.IsKnowledgeGained(siteLocationInfoEventTrigger.EventID))
+                    {
+                        var tag = $"info: {siteLocationInfoEventTrigger.EventID}";
 
-                    scene.AddBoundary(new Trigger(
-                        new Vector2D(siteLocationInfoEventTrigger.Point1.X, -siteLocationInfoEventTrigger.Point1.Y),
-                        new Vector2D(siteLocationInfoEventTrigger.Point2.X, -siteLocationInfoEventTrigger.Point2.Y),
-                        tag)
+                        scene.AddBoundary(new Trigger(
+                            new Vector2D(siteLocationInfoEventTrigger.Point1.X, -siteLocationInfoEventTrigger.Point1.Y),
+                            new Vector2D(siteLocationInfoEventTrigger.Point2.X, -siteLocationInfoEventTrigger.Point2.Y),
+                            tag)
                         {
                             //Visible = false
                             Visible = true // (for diagnostics)
                         });
+                    }
 
                     break;
                 }
