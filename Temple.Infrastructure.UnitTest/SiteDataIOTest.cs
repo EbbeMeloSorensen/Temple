@@ -109,7 +109,6 @@ public class SiteDataIOTest
             new Point2D(11, 9),
             "rats_in_warehouse",
             null,
-            null,
             new QuestStatusCondition
             {
                 QuestId = "rat_infestation",

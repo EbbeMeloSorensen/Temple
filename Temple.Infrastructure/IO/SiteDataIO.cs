@@ -1,7 +1,8 @@
-﻿using System.Globalization;
-using Newtonsoft.Json;
-using Craft.Math;
+﻿using Craft.Math;
 using Craft.Math.IO;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Globalization;
 using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Exploration;
 using Temple.Infrastructure.Dialogues;
@@ -185,6 +186,36 @@ public static class SiteDataIO
 
                     switch (identifierParts.First())
                     {
+                        case "battle":
+
+                            var eventTrigger_ScriptedBattle = new EventTrigger_ScriptedBattle
+                            {
+                                Point1 = new Point2D(labeledLineSegment2D.Point1.X, -labeledLineSegment2D.Point1.Y),
+                                Point2 = new Point2D(labeledLineSegment2D.Point2.X, -labeledLineSegment2D.Point2.Y),
+                                EventID = labeledLineSegment2D.Identifier
+                            };
+
+                            labeledLineSegment2D.Labels.Skip(1).ToList().ForEach(label =>
+                            {
+                                var property = label.Substring(0, label.IndexOf(":")).Trim('\"');
+
+                                var value = label.Substring(label.IndexOf(":") + 2);
+
+                                switch (property)
+                                {
+                                    case "EntranceIdId":
+                                        eventTrigger_ScriptedBattle.EntranceID = value;
+                                        break;
+                                    case "ConditionForPresence":
+                                        eventTrigger_ScriptedBattle.ConditionForPresence = value.ConvertToGameCondition();
+                                        break;
+                                }
+                            });
+
+                            siteData.SiteComponents.Add(eventTrigger_ScriptedBattle);
+
+                            break;
+
                         case "exit":
 
                             siteData.AddEventTrigger_LeaveSite(

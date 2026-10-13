@@ -14,7 +14,7 @@ public class EventTrigger_ScriptedBattle : IEventTrigger
 
     public string EventID { get; set; }
 
-    public int? QuestID { get; set; }
+    //public int? QuestID { get; set; }
 
     public string? EntranceID { get; set; }
 }

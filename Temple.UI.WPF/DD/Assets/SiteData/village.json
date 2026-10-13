@@ -108,6 +108,30 @@
       "Id": "alyth"
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": -1.5,
+        "Y": 6.0
+      },
+      "Point2": {
+        "X": 1.75,
+        "Y": 6.0
+      },
+      "EventID": "battle: rats_in_warehouse"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+      "Point1": {
+        "X": -2.0,
+        "Y": -0.25
+      },
+      "Point2": {
+        "X": 2.0,
+        "Y": -0.25
+      },
+      "EventID": "exit: wilderness"
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {

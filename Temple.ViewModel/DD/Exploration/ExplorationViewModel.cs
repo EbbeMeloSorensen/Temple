@@ -278,7 +278,7 @@ namespace Temple.ViewModel.DD.Exploration
                 }
                 else if (outcome.Length >= 4 && outcome.Substring(0, 4) == "exit")
                 {
-                    var exit_identifier = outcome.Substring(5);
+                    var exit_identifier = outcome.Substring(6);
 
                     if (exit_identifier == "wilderness")
                     {
@@ -317,24 +317,20 @@ namespace Temple.ViewModel.DD.Exploration
                 else if (outcome.Length >= 6 && outcome.Substring(0, 6) == "battle")
                 {
                     string battleId;
-                    string? entranceId;
+                    //string? entranceId;
 
-                    if (outcome.Contains(';'))
+                    var indexOfColon = outcome.IndexOf(':');
+                    battleId = outcome.Substring(indexOfColon + 2);
+
+                    if (outcome.Contains(","))
                     {
-                        var separatorIndex = outcome.IndexOf(';');
-                        battleId = outcome.Substring(0, separatorIndex);
-                        entranceId = outcome.Substring(separatorIndex + 1);
-                    }
-                    else
-                    {
-                        battleId = outcome;
-                        entranceId = null;
+                        throw new NotImplementedException("EntranceId not yet supported");
                     }
 
                     var payload = new BattlePayload
                     {
                         BattleId = battleId,
-                        EntranceId = entranceId,
+                        //EntranceId = entranceId,
                         PayloadForNextStateInCasePartyWins = new ExplorationPayload { SiteId = _controller.ApplicationData.CurrentSiteId }
                     };
 
