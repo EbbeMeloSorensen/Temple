@@ -128,7 +128,7 @@ public static class SiteDataIO
                             break;
 
                         case "door":
-                            var doorId = point.Identifier;
+                            var doorId = point.Identifier.Substring(point.Identifier.IndexOf(":") + 2);
 
                             var doorOrientation = point.AngleDegrees + 90;
 
