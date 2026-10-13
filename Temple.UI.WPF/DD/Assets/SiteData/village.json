@@ -302,38 +302,6 @@
       ]
     },
     {
-      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
-      "ConditionForPresence": {
-        "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
-        "Conditions": [
-          {
-            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-            "QuestId": "rat_infestation",
-            "RequiredStatus": {
-              "QuestState": 2,
-              "AreCompletionCriteriaSatisfied": true
-            }
-          },
-          {
-            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-            "QuestId": "find_ethon",
-            "RequiredStatus": {
-              "QuestState": 2,
-              "AreCompletionCriteriaSatisfied": false
-            }
-          }
-        ]
-      },
-      "Position": {
-        "X": -3.0,
-        "Y": 4.5,
-        "Z": 0.0
-      },
-      "Orientation": 0.0,
-      "ModelId": "human male",
-      "Id": "ethon"
-    },
-    {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
       "ConditionForAccessibility": {
         "$type": "Temple.Infrastructure.GameConditions.FactEstablishedCondition",
@@ -347,26 +315,6 @@
       "Width": 0.75,
       "Orientation": 90.0,
       "Id": "village2"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
-      "ConditionForPresence": {
-        "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-        "QuestId": "find_ethon",
-        "RequiredStatus": {
-          "QuestState": 2,
-          "AreCompletionCriteriaSatisfied": false
-        }
-      },
-      "Point1": {
-        "X": -2.25,
-        "Y": 4.5
-      },
-      "Point2": {
-        "X": -2.25,
-        "Y": 2.5
-      },
-      "EventID": "bugbear_chieftain"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -450,6 +398,58 @@
       "Orientation": 0.0,
       "ModelId": "human male",
       "Id": "guard"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+        "Conditions": [
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": true
+            }
+          },
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "find_ethon",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": false
+            }
+          }
+        ]
+      },
+      "Position": {
+        "X": -3.0,
+        "Y": 4.5,
+        "Z": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human male",
+      "Id": "ethon"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+        "QuestId": "find_ethon",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      },
+      "Point1": {
+        "X": -2.25,
+        "Y": 4.5
+      },
+      "Point2": {
+        "X": -2.25,
+        "Y": 2.5
+      },
+      "EventID": "bugbear_chieftain"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -569,61 +569,6 @@
       "Width": 0.75,
       "Orientation": 270.0,
       "Id": "village1"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
-      "ConditionForPresence": {
-        "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-        "QuestId": "rat_infestation",
-        "RequiredStatus": {
-          "QuestState": 2,
-          "AreCompletionCriteriaSatisfied": false
-        }
-      },
-      "Point1": {
-        "X": 2.25,
-        "Y": 4.5
-      },
-      "Point2": {
-        "X": 2.25,
-        "Y": 2.5
-      },
-      "EventID": "rats_in_warehouse"
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
-      "ConditionForPresence": {
-        "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
-        "Condition": {
-          "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
-          "Conditions": [
-            {
-              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-              "QuestId": "rat_infestation",
-              "RequiredStatus": {
-                "QuestState": 2,
-                "AreCompletionCriteriaSatisfied": true
-              }
-            },
-            {
-              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-              "QuestId": "find_ethon",
-              "RequiredStatus": {
-                "QuestState": 2,
-                "AreCompletionCriteriaSatisfied": false
-              }
-            }
-          ]
-        }
-      },
-      "Position": {
-        "X": 1.0,
-        "Y": 3.0,
-        "Z": 0.0
-      },
-      "Orientation": 0.0,
-      "ModelId": "human male",
-      "Id": "ethon"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -759,6 +704,61 @@
       "Orientation": 270.0,
       "ModelId": "human female",
       "Id": "osala"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
+        "Condition": {
+          "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+          "Conditions": [
+            {
+              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+              "QuestId": "rat_infestation",
+              "RequiredStatus": {
+                "QuestState": 2,
+                "AreCompletionCriteriaSatisfied": true
+              }
+            },
+            {
+              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+              "QuestId": "find_ethon",
+              "RequiredStatus": {
+                "QuestState": 2,
+                "AreCompletionCriteriaSatisfied": false
+              }
+            }
+          ]
+        }
+      },
+      "Position": {
+        "X": 1.0,
+        "Y": 3.0,
+        "Z": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human male",
+      "Id": "ethon"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+        "QuestId": "rat_infestation",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      },
+      "Point1": {
+        "X": 2.25,
+        "Y": 4.5
+      },
+      "Point2": {
+        "X": 2.25,
+        "Y": 2.5
+      },
+      "EventID": "rats_in_warehouse"
     }
   ]
 }

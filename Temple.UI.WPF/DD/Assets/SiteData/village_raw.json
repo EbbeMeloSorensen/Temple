@@ -245,18 +245,6 @@
   },
   {
     "Point": {
-      "X": -3,
-      "Y": -4.5
-    },
-    "AngleDegrees": 270.0,
-    "Labels": [
-      "npc: ethon",
-      "ModelId: human male",
-      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n  \"Conditions\": [\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    },\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"find_ethon\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": false\r\n      }\r\n    }\r\n  ]\r\n}"
-    ]
-  },
-  {
-    "Point": {
       "X": -2,
       "Y": -3.5
     },
@@ -264,20 +252,6 @@
     "Labels": [
       "door: village2",
       "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_sewer_door_from_alyth\"\r\n}"
-    ]
-  },
-  {
-    "Point1": {
-      "X": -2.25,
-      "Y": -4.5
-    },
-    "Point2": {
-      "X": -2.25,
-      "Y": -2.5
-    },
-    "Labels": [
-      "battle: bugbear_chieftain",
-      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"find_ethon\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
     ]
   },
   {
@@ -355,6 +329,32 @@
     "Labels": [
       "npc: guard",
       "ModelId: human male"
+    ]
+  },
+  {
+    "Point": {
+      "X": -3,
+      "Y": -4.5
+    },
+    "AngleDegrees": 270.0,
+    "Labels": [
+      "npc: ethon",
+      "ModelId: human male",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n  \"Conditions\": [\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    },\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"find_ethon\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": false\r\n      }\r\n    }\r\n  ]\r\n}"
+    ]
+  },
+  {
+    "Point1": {
+      "X": -2.25,
+      "Y": -4.5
+    },
+    "Point2": {
+      "X": -2.25,
+      "Y": -2.5
+    },
+    "Labels": [
+      "battle: bugbear_chieftain",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"find_ethon\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
     ]
   },
   {
@@ -446,32 +446,6 @@
     "Labels": [
       "door: village1",
       "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_cellar_door_from_ethon\"\r\n}"
-    ]
-  },
-  {
-    "Point1": {
-      "X": 2.25,
-      "Y": -4.5
-    },
-    "Point2": {
-      "X": 2.25,
-      "Y": -2.5
-    },
-    "Labels": [
-      "battle: rats_in_warehouse",
-      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"rat_infestation\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
-    ]
-  },
-  {
-    "Point": {
-      "X": 1,
-      "Y": -3
-    },
-    "AngleDegrees": 270.0,
-    "Labels": [
-      "npc: ethon",
-      "ModelId: human male",
-      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.NotGameCondition\",\r\n  \"Condition\": {\r\n    \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n    \"Conditions\": [\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"rat_infestation\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": true\r\n        }\r\n      },\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"find_ethon\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": false\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
     ]
   },
   {
@@ -589,6 +563,32 @@
     "Labels": [
       "npc: osala",
       "ModelId: human female"
+    ]
+  },
+  {
+    "Point": {
+      "X": 1,
+      "Y": -3
+    },
+    "AngleDegrees": 270.0,
+    "Labels": [
+      "npc: ethon",
+      "ModelId: human male",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.NotGameCondition\",\r\n  \"Condition\": {\r\n    \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n    \"Conditions\": [\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"rat_infestation\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": true\r\n        }\r\n      },\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"find_ethon\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": false\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+    ]
+  },
+  {
+    "Point1": {
+      "X": 2.25,
+      "Y": -4.5
+    },
+    "Point2": {
+      "X": 2.25,
+      "Y": -2.5
+    },
+    "Labels": [
+      "battle: rats_in_warehouse",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"rat_infestation\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
     ]
   }
 ]
