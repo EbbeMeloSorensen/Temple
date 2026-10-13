@@ -419,6 +419,39 @@
       "EntranceID": "left"
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": -3.0,
+        "Y": 6.0,
+        "Z": 0.0
+      },
+      "Orientation": 90.0,
+      "ModelId": "human male",
+      "Id": "nebbish"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": -3.0,
+        "Y": 7.0,
+        "Z": 0.0
+      },
+      "Orientation": 90.0,
+      "ModelId": "human male",
+      "Id": "lortimer"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": -0.5,
+        "Y": 8.5,
+        "Z": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human male",
+      "Id": "guard"
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {
@@ -693,6 +726,39 @@
       },
       "EventID": "pigs_in_townhall",
       "EntranceID": "right"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": 4.0,
+        "Y": 7.0,
+        "Z": 0.0
+      },
+      "Orientation": 270.0,
+      "ModelId": "human male",
+      "Id": "ipswitch"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": 0.5,
+        "Y": 8.5,
+        "Z": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human male",
+      "Id": "captain"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "Position": {
+        "X": 4.0,
+        "Y": 6.0,
+        "Z": 0.0
+      },
+      "Orientation": 270.0,
+      "ModelId": "human female",
+      "Id": "osala"
     }
   ]
 }

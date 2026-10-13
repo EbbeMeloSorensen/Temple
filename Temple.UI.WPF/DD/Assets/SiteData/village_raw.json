@@ -325,6 +325,39 @@
     ]
   },
   {
+    "Point": {
+      "X": -3,
+      "Y": -6
+    },
+    "AngleDegrees": 0.0,
+    "Labels": [
+      "npc: nebbish",
+      "ModelId: human male"
+    ]
+  },
+  {
+    "Point": {
+      "X": -3,
+      "Y": -7
+    },
+    "AngleDegrees": 0.0,
+    "Labels": [
+      "npc: lortimer",
+      "ModelId: human male"
+    ]
+  },
+  {
+    "Point": {
+      "X": -0.5,
+      "Y": -8.5
+    },
+    "AngleDegrees": 270.0,
+    "Labels": [
+      "npc: guard",
+      "ModelId: human male"
+    ]
+  },
+  {
     "Point1": {
       "X": 2,
       "Y": -4
@@ -523,6 +556,39 @@
     "Labels": [
       "battle: pigs_in_townhall",
       "EntranceId: right"
+    ]
+  },
+  {
+    "Point": {
+      "X": 4,
+      "Y": -7
+    },
+    "AngleDegrees": 180.0,
+    "Labels": [
+      "npc: ipswitch",
+      "ModelId: human male"
+    ]
+  },
+  {
+    "Point": {
+      "X": 0.5,
+      "Y": -8.5
+    },
+    "AngleDegrees": 270.0,
+    "Labels": [
+      "npc: captain",
+      "ModelId: human male"
+    ]
+  },
+  {
+    "Point": {
+      "X": 4,
+      "Y": -6
+    },
+    "AngleDegrees": 180.0,
+    "Labels": [
+      "npc: osala",
+      "ModelId: human female"
     ]
   }
 ]
