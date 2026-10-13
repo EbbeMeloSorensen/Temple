@@ -108,18 +108,6 @@
       "Id": "alyth"
     },
     {
-      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
-      "Point1": {
-        "X": -1.5,
-        "Y": 6.0
-      },
-      "Point2": {
-        "X": 1.75,
-        "Y": 6.0
-      },
-      "EventID": "rats_in_warehouse"
-    },
-    {
       "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
       "Point1": {
         "X": -2.0,
@@ -570,6 +558,26 @@
       "Width": 0.75,
       "Orientation": 270.0,
       "Id": "village1"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+        "QuestId": "rat_infestation",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      },
+      "Point1": {
+        "X": 2.25,
+        "Y": 4.5
+      },
+      "Point2": {
+        "X": 2.25,
+        "Y": 2.5
+      },
+      "EventID": "rats_in_warehouse"
     }
   ]
 }

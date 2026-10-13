@@ -92,19 +92,6 @@
   },
   {
     "Point1": {
-      "X": -1.5,
-      "Y": -6
-    },
-    "Point2": {
-      "X": 1.75,
-      "Y": -6
-    },
-    "Labels": [
-      "battle: rats_in_warehouse"
-    ]
-  },
-  {
-    "Point1": {
       "X": -2,
       "Y": 0.25
     },
@@ -437,6 +424,20 @@
     "Labels": [
       "door: village1",
       "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_cellar_door_from_ethon\"\r\n}"
+    ]
+  },
+  {
+    "Point1": {
+      "X": 2.25,
+      "Y": -4.5
+    },
+    "Point2": {
+      "X": 2.25,
+      "Y": -2.5
+    },
+    "Labels": [
+      "battle: rats_in_warehouse",
+      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"rat_infestation\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
     ]
   }
 ]
