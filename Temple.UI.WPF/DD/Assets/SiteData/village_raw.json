@@ -129,26 +129,6 @@
       "Y": -5
     },
     "Point2": {
-      "X": -4,
-      "Y": -4
-    }
-  },
-  {
-    "Point1": {
-      "X": -4,
-      "Y": -4
-    },
-    "Point2": {
-      "X": -4,
-      "Y": -5
-    }
-  },
-  {
-    "Point1": {
-      "X": -4,
-      "Y": -5
-    },
-    "Point2": {
       "X": -2,
       "Y": -5
     }
@@ -179,48 +159,8 @@
       "Y": -2
     },
     "Point2": {
-      "X": -2.5,
-      "Y": -2
-    }
-  },
-  {
-    "Point1": {
-      "X": -2,
-      "Y": -2
-    },
-    "Point2": {
       "X": -2,
       "Y": -3
-    }
-  },
-  {
-    "Point1": {
-      "X": -4,
-      "Y": -3
-    },
-    "Point2": {
-      "X": -4,
-      "Y": -2
-    }
-  },
-  {
-    "Point1": {
-      "X": -4,
-      "Y": -2
-    },
-    "Point2": {
-      "X": -3.5,
-      "Y": -2
-    }
-  },
-  {
-    "Point1": {
-      "X": -3.5,
-      "Y": -2
-    },
-    "Point2": {
-      "X": -4,
-      "Y": -2
     }
   },
   {
@@ -261,18 +201,58 @@
     "Point2": {
       "X": -4,
       "Y": -11
+    }
+  },
+  {
+    "Point1": {
+      "X": -4,
+      "Y": -5
+    },
+    "Point2": {
+      "X": -4,
+      "Y": -2
+    }
+  },
+  {
+    "Point1": {
+      "X": -4,
+      "Y": -2
+    },
+    "Point2": {
+      "X": -4,
+      "Y": -5
+    }
+  },
+  {
+    "Point1": {
+      "X": -4,
+      "Y": -2
+    },
+    "Point2": {
+      "X": -2,
+      "Y": -2
+    }
+  },
+  {
+    "Point1": {
+      "X": -2,
+      "Y": -2
+    },
+    "Point2": {
+      "X": -4,
+      "Y": -2
     }
   },
   {
     "Point": {
-      "X": -2,
-      "Y": -3.5
+      "X": -3,
+      "Y": -4.5
     },
-    "AngleDegrees": 350.0,
+    "AngleDegrees": 270.0,
     "Labels": [
       "npc: ethon",
       "ModelId: human male",
-      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.NotGameCondition\",\r\n  \"Condition\": {\r\n    \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n    \"Conditions\": [\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"rat_infestation\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": true\r\n        }\r\n      },\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"find_ethon\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": false\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n  \"Conditions\": [\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    },\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"find_ethon\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": false\r\n      }\r\n    }\r\n  ]\r\n}"
     ]
   },
   {
@@ -299,46 +279,6 @@
     "Point1": {
       "X": 4,
       "Y": -5
-    },
-    "Point2": {
-      "X": 4,
-      "Y": -2
-    }
-  },
-  {
-    "Point1": {
-      "X": 4,
-      "Y": -2
-    },
-    "Point2": {
-      "X": 2,
-      "Y": -2
-    }
-  },
-  {
-    "Point1": {
-      "X": 2,
-      "Y": -2
-    },
-    "Point2": {
-      "X": 2,
-      "Y": -3
-    }
-  },
-  {
-    "Point1": {
-      "X": 2,
-      "Y": -3
-    },
-    "Point2": {
-      "X": 2,
-      "Y": -2
-    }
-  },
-  {
-    "Point1": {
-      "X": 2,
-      "Y": -2
     },
     "Point2": {
       "X": 4,
@@ -439,5 +379,57 @@
       "battle: rats_in_warehouse",
       "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"rat_infestation\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
     ]
+  },
+  {
+    "Point": {
+      "X": 1,
+      "Y": -3
+    },
+    "AngleDegrees": 270.0,
+    "Labels": [
+      "npc: ethon",
+      "ModelId: human male",
+      "\"ConditionForPresence\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.NotGameCondition\",\r\n  \"Condition\": {\r\n    \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n    \"Conditions\": [\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"rat_infestation\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": true\r\n        }\r\n      },\r\n      {\r\n        \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n        \"QuestId\": \"find_ethon\",\r\n        \"RequiredStatus\": {\r\n          \"QuestState\": 2,\r\n          \"AreCompletionCriteriaSatisfied\": false\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+    ]
+  },
+  {
+    "Point1": {
+      "X": 2,
+      "Y": -3
+    },
+    "Point2": {
+      "X": 2,
+      "Y": -2
+    }
+  },
+  {
+    "Point1": {
+      "X": 2,
+      "Y": -2
+    },
+    "Point2": {
+      "X": 2,
+      "Y": -3
+    }
+  },
+  {
+    "Point1": {
+      "X": 2,
+      "Y": -2
+    },
+    "Point2": {
+      "X": 4,
+      "Y": -2
+    }
+  },
+  {
+    "Point1": {
+      "X": 4,
+      "Y": -2
+    },
+    "Point2": {
+      "X": 2,
+      "Y": -2
+    }
   }
 ]

@@ -153,32 +153,6 @@
           "Y": 5.0
         },
         {
-          "X": -4.0,
-          "Y": 4.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -4.0,
-          "Y": 4.0
-        },
-        {
-          "X": -4.0,
-          "Y": 5.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -4.0,
-          "Y": 5.0
-        },
-        {
           "X": -2.0,
           "Y": 5.0
         }
@@ -218,60 +192,8 @@
           "Y": 2.0
         },
         {
-          "X": -2.5,
-          "Y": 2.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -2.0,
-          "Y": 2.0
-        },
-        {
           "X": -2.0,
           "Y": 3.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -4.0,
-          "Y": 3.0
-        },
-        {
-          "X": -4.0,
-          "Y": 2.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -4.0,
-          "Y": 2.0
-        },
-        {
-          "X": -3.5,
-          "Y": 2.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": -3.5,
-          "Y": 2.0
-        },
-        {
-          "X": -4.0,
-          "Y": 2.0
         }
       ]
     },
@@ -324,41 +246,90 @@
         {
           "X": -4.0,
           "Y": 11.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 5.0
+        },
+        {
+          "X": -4.0,
+          "Y": 2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 2.0
+        },
+        {
+          "X": -4.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -4.0,
+          "Y": 2.0
+        },
+        {
+          "X": -2.0,
+          "Y": 2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -2.0,
+          "Y": 2.0
+        },
+        {
+          "X": -4.0,
+          "Y": 2.0
         }
       ]
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
       "ConditionForPresence": {
-        "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
-        "Condition": {
-          "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
-          "Conditions": [
-            {
-              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-              "QuestId": "rat_infestation",
-              "RequiredStatus": {
-                "QuestState": 2,
-                "AreCompletionCriteriaSatisfied": true
-              }
-            },
-            {
-              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
-              "QuestId": "find_ethon",
-              "RequiredStatus": {
-                "QuestState": 2,
-                "AreCompletionCriteriaSatisfied": false
-              }
+        "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+        "Conditions": [
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": true
             }
-          ]
-        }
+          },
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "find_ethon",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": false
+            }
+          }
+        ]
       },
       "Position": {
-        "X": -2.0,
-        "Y": 3.5,
+        "X": -3.0,
+        "Y": 4.5,
         "Z": 0.0
       },
-      "Orientation": 80.0,
+      "Orientation": 0.0,
       "ModelId": "human male",
       "Id": "ethon"
     },
@@ -394,58 +365,6 @@
         {
           "X": 4.0,
           "Y": 5.0
-        },
-        {
-          "X": 4.0,
-          "Y": 2.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": 4.0,
-          "Y": 2.0
-        },
-        {
-          "X": 2.0,
-          "Y": 2.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": 2.0,
-          "Y": 2.0
-        },
-        {
-          "X": 2.0,
-          "Y": 3.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": 2.0,
-          "Y": 3.0
-        },
-        {
-          "X": 2.0,
-          "Y": 2.0
-        }
-      ]
-    },
-    {
-      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
-      "BarrierPoints": [
-        {
-          "X": 2.0,
-          "Y": 2.0
         },
         {
           "X": 4.0,
@@ -578,6 +497,93 @@
         "Y": 2.5
       },
       "EventID": "rats_in_warehouse"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.NotGameCondition",
+        "Condition": {
+          "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+          "Conditions": [
+            {
+              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+              "QuestId": "rat_infestation",
+              "RequiredStatus": {
+                "QuestState": 2,
+                "AreCompletionCriteriaSatisfied": true
+              }
+            },
+            {
+              "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+              "QuestId": "find_ethon",
+              "RequiredStatus": {
+                "QuestState": 2,
+                "AreCompletionCriteriaSatisfied": false
+              }
+            }
+          ]
+        }
+      },
+      "Position": {
+        "X": 1.0,
+        "Y": 3.0,
+        "Z": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human male",
+      "Id": "ethon"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 2.0,
+          "Y": 3.0
+        },
+        {
+          "X": 2.0,
+          "Y": 2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 2.0,
+          "Y": 2.0
+        },
+        {
+          "X": 2.0,
+          "Y": 3.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 2.0,
+          "Y": 2.0
+        },
+        {
+          "X": 4.0,
+          "Y": 2.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": 4.0,
+          "Y": 2.0
+        },
+        {
+          "X": 2.0,
+          "Y": 2.0
+        }
+      ]
     }
   ]
 }
