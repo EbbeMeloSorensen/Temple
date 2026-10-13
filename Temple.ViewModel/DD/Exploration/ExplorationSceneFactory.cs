@@ -407,7 +407,7 @@ public static class ExplorationSceneFactory
                 }
                 case EventTrigger_LeaveSite leaveSiteEventTrigger:
                 {
-                    var tag = leaveSiteEventTrigger.EventID;
+                    var tag = $"exit: {leaveSiteEventTrigger.EventID}";
 
                     if (leaveSiteEventTrigger.StartPositionAtNewSite != null &&
                         leaveSiteEventTrigger.StartOrientationAtNewSite.HasValue)
@@ -456,7 +456,7 @@ public static class ExplorationSceneFactory
     {
         if (battlesWon.Contains(battleId)) return;
 
-        var tag = battleId;
+        var tag = $"battle: {battleId}";
 
         if (entranceId != null)
         {

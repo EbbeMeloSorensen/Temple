@@ -192,7 +192,7 @@ public static class SiteDataIO
                             {
                                 Point1 = new Point2D(labeledLineSegment2D.Point1.X, -labeledLineSegment2D.Point1.Y),
                                 Point2 = new Point2D(labeledLineSegment2D.Point2.X, -labeledLineSegment2D.Point2.Y),
-                                EventID = labeledLineSegment2D.Identifier
+                                EventID = labeledLineSegment2D.Identifier.Substring(8)
                             };
 
                             labeledLineSegment2D.Labels.Skip(1).ToList().ForEach(label =>
@@ -221,7 +221,7 @@ public static class SiteDataIO
                             siteData.AddEventTrigger_LeaveSite(
                                 new Point2D(labeledLineSegment2D.Point1.X, -labeledLineSegment2D.Point1.Y),
                                 new Point2D(labeledLineSegment2D.Point2.X, -labeledLineSegment2D.Point2.Y),
-                                labeledLineSegment2D.Identifier);
+                                labeledLineSegment2D.Identifier.Substring(6));
 
                             break;
                     }

@@ -338,7 +338,7 @@ namespace Temple.ViewModel.DD.Exploration
                 }
                 else
                 {
-                    throw new InvalidDataException("Invalid outcome after animation");
+                    throw new InvalidDataException($"Invalid outcome after animation: {outcome}");
                 }
             };
         }

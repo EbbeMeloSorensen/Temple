@@ -117,7 +117,7 @@
         "X": 1.75,
         "Y": 6.0
       },
-      "EventID": "battle: rats_in_warehouse"
+      "EventID": "rats_in_warehouse"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
@@ -129,7 +129,7 @@
         "X": 2.0,
         "Y": -0.25
       },
-      "EventID": "exit: wilderness"
+      "EventID": "wilderness"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
