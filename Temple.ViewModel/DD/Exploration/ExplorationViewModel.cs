@@ -559,6 +559,7 @@ namespace Temple.ViewModel.DD.Exploration
             object? sender,
             CurrentStateChangedEventArgs e)
         {
+            var isFirstState = _currentState == null;
             _currentState = e.State;
 
             var bodyStateOfProtagonist = _currentState.BodyStates.First() as BodyStateClassic;
@@ -587,6 +588,13 @@ namespace Temple.ViewModel.DD.Exploration
             if (_scene2D.ViewMode == SceneViewMode.FocusOnFirstBody)
             {
                 UpdateFocus(_currentState.BodyStates.First().Position);
+            }
+
+            // Door meshes need an engine state, which is not available during Init.
+            // Build them even if the initial focus does not expand the world window.
+            if (isFirstState)
+            {
+                UpdateStaticGeometricObjects();
             }
         }
 
