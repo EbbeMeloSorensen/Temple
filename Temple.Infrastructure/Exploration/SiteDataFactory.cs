@@ -19,7 +19,7 @@ public class SiteDataFactory : ISiteDataFactory
             siteData.AddEventTrigger_LeaveSite(
                 new Point2D(1, -1),
                 new Point2D(2, -1),
-                "Exit_Wilderness");
+                "wilderness");
 
             // Det her er ikke så tungt
             //var rows = 4;
@@ -46,7 +46,8 @@ public class SiteDataFactory : ISiteDataFactory
                     var x = x0 + r * 2.0;
                     var y = y0 + c * 2.0;
 
-                    AddDummyWallToSite(siteData, x, y);
+                    //AddDummyWallToSite(siteData, x, y);
+                    AddDummyDoorToSite(siteData, x, y);
                 }
             }
 
@@ -75,6 +76,25 @@ public class SiteDataFactory : ISiteDataFactory
             new Point2D(x - 0.5, y - 0.5),
             new Point2D(x - 0.5, y + 0.5),
         });
+    }
+
+    private void AddDummyDoorToSite(
+        SiteData siteData,
+        double x,
+        double y)
+    {
+        var doorId = $"{x}_{y}";
+        var doorOrientation = 0;
+
+        var door = new Door
+        {
+            Id = doorId,
+            Position = new Vector3D(x, y, 0),
+            Orientation = doorOrientation,
+            Width = 0.75
+        };
+
+        siteData.SiteComponents.Add(door);
     }
 }
 
