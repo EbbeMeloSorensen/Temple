@@ -3,6 +3,7 @@ using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Props;
+using Craft.Simulation.Engine;
 using Craft.Utils.Linq;
 using System.Globalization;
 using Temple.Application.Core;
@@ -445,6 +446,10 @@ public static class ExplorationSceneFactory
                 }
             }
         });
+
+        var doorCollisions = new DoorCollisionBroadPhase(
+            initialState.BodyStates.Select(bs => bs.Body).OfType<BodyDoor>());
+        scene.BodyCollisionCandidates = doorCollisions.GetCandidates;
 
         return scene;
     }
