@@ -1,89 +1,89 @@
-﻿using Craft.Simulation.Engine;
+using Craft.Simulation;
+using Craft.Simulation.Engine;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Temple.ViewModel.DD.Exploration;
 
 namespace Temple.UI.WPF.DD.Exploration
 {
-    /// <summary>
-    /// Interaction logic for ExploreAreaView.xaml
-    /// </summary>
     public partial class ExploreAreaView : UserControl
     {
-        private ExplorationViewModel ViewModel { get { return DataContext as ExplorationViewModel; }}
+        private ExplorationViewModel? _inputViewModel;
+        private Window? _window;
+        private ExplorationViewModel? ViewModel => DataContext as ExplorationViewModel;
 
         public ExploreAreaView()
         {
             InitializeComponent();
-
-            // Er det her nødvendigt?
-            this.PreviewLostKeyboardFocus += (s, e) =>
+            Loaded += (_, _) => AttachInput();
+            Unloaded += (_, _) => DetachInput();
+            DataContextChanged += (_, _) =>
             {
-                e.Handled = true; // Do not allow other controls to gain focus
+                DetachInput();
+                if (IsLoaded) AttachInput();
+            };
+            PreviewLostKeyboardFocus += (s, e) =>
+            {
+                e.Handled = true; // Preserve the exploration view's focus policy.
             };
         }
 
-        private void ExploreAreaView_OnKeyDown(
-            object sender,
-            System.Windows.Input.KeyEventArgs e)
+        private void AttachInput()
         {
-            if (ViewModel == null)
-            {
-                return;
-            }
+            DetachInput();
+            _inputViewModel = ViewModel;
+            if (_inputViewModel != null) _inputViewModel.CaptureKeyboard = CaptureKeyboard;
+            _window = Window.GetWindow(this);
+            if (_window != null) _window.Deactivated += Window_Deactivated;
+        }
 
-            if (e.IsRepeat)
+        private void DetachInput()
+        {
+            if (_window != null) _window.Deactivated -= Window_Deactivated;
+            _window = null;
+            if (_inputViewModel != null)
             {
-                return;
-            }
-
-            switch (e.Key)
-            {
-                case Key.Up:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.UpArrow, KeyEventType.KeyPressed);
-                    break;
-                case Key.Down:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.DownArrow, KeyEventType.KeyPressed);
-                    break;
-                case Key.Left:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.LeftArrow, KeyEventType.KeyPressed);
-                    break;
-                case Key.Right:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.RightArrow, KeyEventType.KeyPressed);
-                    break;
-                case Key.Space:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.Space, KeyEventType.KeyPressed);
-                    break;
+                _inputViewModel.CaptureKeyboard = () => new KeyboardState();
+                _inputViewModel.KeyPresses.Clear();
+                _inputViewModel = null;
             }
         }
 
-        private void ExploreAreaView_OnKeyUp(
-            object sender,
-            System.Windows.Input.KeyEventArgs e)
-        {
-            if (ViewModel == null)
-            {
-                return;
-            }
+        private void Window_Deactivated(object? sender, EventArgs e) =>
+            _inputViewModel?.KeyPresses.Clear();
 
-            switch (e.Key)
+        private bool CanReadInput => IsLoaded && IsVisible && IsEnabled &&
+            IsKeyboardFocusWithin && _window?.IsActive == true &&
+            ViewModel?.DisplayLocationInfo == false;
+
+        private KeyboardState CaptureKeyboard()
+        {
+            if (!CanReadInput) return new KeyboardState();
+            return new KeyboardState
             {
-                case Key.Up:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.UpArrow, KeyEventType.KeyReleased);
-                    break;
-                case Key.Down:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.DownArrow, KeyEventType.KeyReleased);
-                    break;
-                case Key.Left:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.LeftArrow, KeyEventType.KeyReleased);
-                    break;
-                case Key.Right:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.RightArrow, KeyEventType.KeyReleased);
-                    break;
-                case Key.Space:
-                    ViewModel.Engine.HandleKeyEvent(KeyboardKey.Space, KeyEventType.KeyReleased);
-                    break;
-            }
+                UpArrowDown = Keyboard.IsKeyDown(Key.Up),
+                DownArrowDown = Keyboard.IsKeyDown(Key.Down),
+                LeftArrowDown = Keyboard.IsKeyDown(Key.Left),
+                RightArrowDown = Keyboard.IsKeyDown(Key.Right),
+                SpaceDown = Keyboard.IsKeyDown(Key.Space)
+            };
+        }
+
+        private void ExploreAreaView_OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            var viewModel = ViewModel;
+            if (e.IsRepeat || !CanReadInput || viewModel?.Engine.AnimationRunning != true) return;
+            KeyboardKey? key = e.Key switch
+            {
+                Key.Up => KeyboardKey.UpArrow,
+                Key.Down => KeyboardKey.DownArrow,
+                Key.Left => KeyboardKey.LeftArrow,
+                Key.Right => KeyboardKey.RightArrow,
+                Key.Space => KeyboardKey.Space,
+                _ => null
+            };
+            if (key.HasValue) viewModel.KeyPresses.Enqueue(key.Value);
         }
     }
 }

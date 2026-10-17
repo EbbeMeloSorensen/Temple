@@ -1,4 +1,4 @@
-﻿using Craft.Math;
+using Craft.Math;
 using Craft.Simulation;
 using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
@@ -102,9 +102,9 @@ public static class ExplorationSceneFactory
 
         var spaceKeyWasPressed = false;
 
-        scene.InteractionCallBack = (keyboardState, keyboardEvents, mouseClickPosition, collisions, currentState) =>
+        scene.InteractionCallBack = (keyboardState, keyPresses, mouseClickPosition, collisions, currentState) =>
         {
-            spaceKeyWasPressed = keyboardEvents.SpaceDown && keyboardState.SpaceDown;
+            spaceKeyWasPressed = keyPresses.SpaceDown;
 
             var currentStateOfMainBody = currentState.BodyStates.First() as BodyStateClassic;
             var currentRotationalSpeed = currentStateOfMainBody.RotationalSpeed;

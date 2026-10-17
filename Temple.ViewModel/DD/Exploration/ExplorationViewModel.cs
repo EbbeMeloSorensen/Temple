@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -58,6 +58,10 @@ namespace Temple.ViewModel.DD.Exploration
         private readonly DoorGeometryCache _doorGeometryCache = new();
         private readonly ArrayList _dynamicGeometricObjects = new();
         private readonly GeometryLayer _dynamicGeometryLayer;
+
+        // Supplied by the view; no keyboard or WPF input APIs in simulation logic.
+        public Func<KeyboardState> CaptureKeyboard { get; set; } = () => new KeyboardState();
+        public KeyPressBuffer KeyPresses { get; } = new KeyPressBuffer();
 
         public Engine Engine { get; }
 
@@ -138,6 +142,7 @@ namespace Temple.ViewModel.DD.Exploration
             get => _displayLocationIfo;
             set
             {
+                if (value) KeyPresses.Clear();
                 _displayLocationIfo = value;
                 RaisePropertyChanged();
             }
@@ -164,6 +169,7 @@ namespace Temple.ViewModel.DD.Exploration
 
             GoToInGameMenu_Command = new RelayCommand(() =>
             {
+                KeyPresses.Clear();
                 Engine.HandleClosing();
 
                 var payload = new InGameMenuPayload
@@ -256,6 +262,7 @@ namespace Temple.ViewModel.DD.Exploration
 
             Engine.AnimationCompleted += (s, e) =>
             {
+                KeyPresses.Clear();
                 var outcome = Engine.EngineCore.Outcome as string;
 
                 if (outcome.Length >= 4 && outcome.Substring(0, 4) == "info")
@@ -356,6 +363,7 @@ namespace Temple.ViewModel.DD.Exploration
         public override TempleViewModel Init(
             ApplicationStatePayload payload)
         {
+            KeyPresses.Clear();
             var explorationPayload = payload as ExplorationPayload
                                      ?? throw new ArgumentException("Payload is not of type ExplorationPayload", nameof(payload));
 
@@ -425,7 +433,16 @@ namespace Temple.ViewModel.DD.Exploration
             double dt)
         {
             // Bemærk, at man ikke bruger parametrene her
-            Engine.UpdateModel();
+            if (!Engine.AnimationRunning || DisplayLocationInfo)
+            {
+                KeyPresses.Clear();
+                return;
+            }
+
+            if (Engine.UpdateModel(CaptureKeyboard(), KeyPresses.Peek()))
+            {
+                KeyPresses.Consume();
+            }
         }
 
         private void InitializeGeometryDataStore(

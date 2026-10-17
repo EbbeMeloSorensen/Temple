@@ -2,6 +2,27 @@
 
 [TOC]
 
+## Local Craft simulation dependency
+
+Exploration uses Craft.Simulation 1.0.45. For local development, keep Craft beside
+Temple and pack it before restoring Temple:
+
+```powershell
+dotnet pack ../Craft/Craft.Simulation/Craft.Simulation.csproj -c Release -o ../Craft/artifacts/packages -p:GeneratePackageOnBuild=false
+dotnet restore Temple.sln
+```
+
+The local NuGet source points to that package directory; the GitHub source is
+still available for published packages. No package is published by these commands.
+
+The exploration view samples held keys every frame, so movement continues when
+an arrow stays down across site transitions. Discrete presses are queued until
+a state is consumed. Input is blocked while location information is shown or
+the window is inactive; view unloads and site changes discard queued actions.
+Keyboard sampling and view lifecycle wiring stay in code-behind because they
+depend on WPF focus and window activation; gameplay remains in the view model.
+
+
 ## Introduction
 
 People management, Smurf management, Dungeons and Dragons adventure game.

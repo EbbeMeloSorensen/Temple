@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Craft.Simulation" Version="1.0.43" />
+    <PackageReference Include="Craft.Simulation" Version="1.0.45" />
     <PackageReference Include="Craft.Algorithms" Version="1.0.44" />
     <PackageReference Include="Craft.UI.Utils" Version="1.0.44" />
     <PackageReference Include="Craft.ViewModel.Utils" Version="1.0.44" />
