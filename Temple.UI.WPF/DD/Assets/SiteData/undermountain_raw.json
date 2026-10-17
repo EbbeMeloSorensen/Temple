@@ -301,6 +301,19 @@
   },
   {
     "Point1": {
+      "X": 1,
+      "Y": -2
+    },
+    "Point2": {
+      "X": 1,
+      "Y": 2
+    },
+    "Labels": [
+      "exit: wilderness"
+    ]
+  },
+  {
+    "Point1": {
       "X": 39,
       "Y": 2
     },
@@ -358,6 +371,16 @@
       "X": 46,
       "Y": -1
     }
+  },
+  {
+    "Point": {
+      "X": -0,
+      "Y": -0
+    },
+    "AngleDegrees": 180.0,
+    "Labels": [
+      "start"
+    ]
   },
   {
     "Point1": {
@@ -675,7 +698,9 @@
       "Y": -2
     },
     "AngleDegrees": 270.0,
-    "Text": "door1"
+    "Labels": [
+      "door: undermountain1"
+    ]
   },
   {
     "Point": {
@@ -683,7 +708,9 @@
       "Y": -1.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door3"
+    "Labels": [
+      "door: undermountain3"
+    ]
   },
   {
     "Point": {
@@ -691,7 +718,9 @@
       "Y": -5.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door18"
+    "Labels": [
+      "door: undermountain18"
+    ]
   },
   {
     "Point1": {
@@ -789,7 +818,9 @@
       "Y": -5.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door19"
+    "Labels": [
+      "door: undermountain19"
+    ]
   },
   {
     "Point1": {
@@ -2607,7 +2638,9 @@
       "Y": -8
     },
     "AngleDegrees": 90.0,
-    "Text": "door20"
+    "Labels": [
+      "door: undermountain20"
+    ]
   },
   {
     "Point": {
@@ -2615,7 +2648,9 @@
       "Y": -8
     },
     "AngleDegrees": 90.0,
-    "Text": "door21"
+    "Labels": [
+      "door: undermountain21"
+    ]
   },
   {
     "Point": {
@@ -2623,7 +2658,9 @@
       "Y": -7.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door22"
+    "Labels": [
+      "door: undermountain22"
+    ]
   },
   {
     "Point": {
@@ -2631,7 +2668,9 @@
       "Y": -7.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door23"
+    "Labels": [
+      "door: undermountain23"
+    ]
   },
   {
     "Point": {
@@ -2639,7 +2678,9 @@
       "Y": -9
     },
     "AngleDegrees": 90.0,
-    "Text": "door24"
+    "Labels": [
+      "door: undermountain24"
+    ]
   },
   {
     "Point": {
@@ -2647,7 +2688,9 @@
       "Y": -9
     },
     "AngleDegrees": 90.0,
-    "Text": "door25"
+    "Labels": [
+      "door: undermountain25"
+    ]
   },
   {
     "Point": {
@@ -2655,7 +2698,9 @@
       "Y": -11
     },
     "AngleDegrees": 90.0,
-    "Text": "door26"
+    "Labels": [
+      "door: undermountain26"
+    ]
   },
   {
     "Point": {
@@ -2663,7 +2708,9 @@
       "Y": -9.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door27"
+    "Labels": [
+      "door: undermountain27"
+    ]
   },
   {
     "Point": {
@@ -2671,7 +2718,9 @@
       "Y": -13
     },
     "AngleDegrees": 90.0,
-    "Text": "door28"
+    "Labels": [
+      "door: undermountain28"
+    ]
   },
   {
     "Point": {
@@ -2679,7 +2728,9 @@
       "Y": -15
     },
     "AngleDegrees": 90.0,
-    "Text": "door29"
+    "Labels": [
+      "door: undermountain29"
+    ]
   },
   {
     "Point": {
@@ -2687,7 +2738,9 @@
       "Y": -17
     },
     "AngleDegrees": 90.0,
-    "Text": "door30"
+    "Labels": [
+      "door: undermountain30"
+    ]
   },
   {
     "Point": {
@@ -2695,7 +2748,9 @@
       "Y": -20
     },
     "AngleDegrees": 90.0,
-    "Text": "door31"
+    "Labels": [
+      "door: undermountain31"
+    ]
   },
   {
     "Point": {
@@ -2703,7 +2758,9 @@
       "Y": -21.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door32"
+    "Labels": [
+      "door: undermountain32"
+    ]
   },
   {
     "Point1": {
@@ -2791,7 +2848,9 @@
       "Y": -23
     },
     "AngleDegrees": 270.0,
-    "Text": "door33"
+    "Labels": [
+      "door: undermountain33"
+    ]
   },
   {
     "Point": {
@@ -2799,7 +2858,9 @@
       "Y": -28
     },
     "AngleDegrees": 270.0,
-    "Text": "door34"
+    "Labels": [
+      "door: undermountain34"
+    ]
   },
   {
     "Point": {
@@ -2807,7 +2868,9 @@
       "Y": -30
     },
     "AngleDegrees": 90.0,
-    "Text": "door35"
+    "Labels": [
+      "door: undermountain35"
+    ]
   },
   {
     "Point": {
@@ -2815,7 +2878,9 @@
       "Y": -28
     },
     "AngleDegrees": 270.0,
-    "Text": "door36"
+    "Labels": [
+      "door: undermountain36"
+    ]
   },
   {
     "Point": {
@@ -2823,7 +2888,9 @@
       "Y": -27
     },
     "AngleDegrees": 90.0,
-    "Text": "door37"
+    "Labels": [
+      "door: undermountain37"
+    ]
   },
   {
     "Point": {
@@ -2831,7 +2898,9 @@
       "Y": -29
     },
     "AngleDegrees": 90.0,
-    "Text": "door38"
+    "Labels": [
+      "door: undermountain38"
+    ]
   },
   {
     "Point": {
@@ -2839,7 +2908,9 @@
       "Y": -21.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door39"
+    "Labels": [
+      "door: undermountain39"
+    ]
   },
   {
     "Point": {
@@ -2847,7 +2918,9 @@
       "Y": -21.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door40"
+    "Labels": [
+      "door: undermountain40"
+    ]
   },
   {
     "Point": {
@@ -2855,7 +2928,9 @@
       "Y": -23.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door41"
+    "Labels": [
+      "door: undermountain41"
+    ]
   },
   {
     "Point": {
@@ -2863,7 +2938,9 @@
       "Y": -24
     },
     "AngleDegrees": 270.0,
-    "Text": "door42"
+    "Labels": [
+      "door: undermountain42"
+    ]
   },
   {
     "Point": {
@@ -2871,7 +2948,9 @@
       "Y": -22.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door43"
+    "Labels": [
+      "door: undermountain43"
+    ]
   },
   {
     "Point": {
@@ -2879,7 +2958,9 @@
       "Y": -18.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door44"
+    "Labels": [
+      "door: undermountain44"
+    ]
   },
   {
     "Point1": {
@@ -4107,7 +4188,9 @@
       "Y": -32.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door49"
+    "Labels": [
+      "door: undermountain49"
+    ]
   },
   {
     "Point": {
@@ -4115,7 +4198,9 @@
       "Y": -31.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door50"
+    "Labels": [
+      "door: undermountain50"
+    ]
   },
   {
     "Point": {
@@ -4123,7 +4208,9 @@
       "Y": -46.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door75"
+    "Labels": [
+      "door: undermountain75"
+    ]
   },
   {
     "Point": {
@@ -4131,7 +4218,9 @@
       "Y": -41.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door76"
+    "Labels": [
+      "door: undermountain76"
+    ]
   },
   {
     "Point": {
@@ -4139,7 +4228,9 @@
       "Y": -38
     },
     "AngleDegrees": 270.0,
-    "Text": "door77"
+    "Labels": [
+      "door: undermountain77"
+    ]
   },
   {
     "Point1": {
@@ -4647,7 +4738,9 @@
       "Y": -34.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door71"
+    "Labels": [
+      "door: undermountain71"
+    ]
   },
   {
     "Point": {
@@ -4655,7 +4748,9 @@
       "Y": -38.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door72"
+    "Labels": [
+      "door: undermountain72"
+    ]
   },
   {
     "Point": {
@@ -4663,7 +4758,9 @@
       "Y": -40.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door73"
+    "Labels": [
+      "door: undermountain73"
+    ]
   },
   {
     "Point": {
@@ -4671,7 +4768,9 @@
       "Y": -43
     },
     "AngleDegrees": 90.0,
-    "Text": "door74"
+    "Labels": [
+      "door: undermountain74"
+    ]
   },
   {
     "Point1": {
@@ -6399,7 +6498,9 @@
       "Y": -29.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door45"
+    "Labels": [
+      "door: undermountain45"
+    ]
   },
   {
     "Point": {
@@ -6407,7 +6508,9 @@
       "Y": -28.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door46"
+    "Labels": [
+      "door: undermountain46"
+    ]
   },
   {
     "Point": {
@@ -6415,7 +6518,9 @@
       "Y": -20
     },
     "AngleDegrees": 90.0,
-    "Text": "door47"
+    "Labels": [
+      "door: undermountain47"
+    ]
   },
   {
     "Point": {
@@ -6423,7 +6528,9 @@
       "Y": -20
     },
     "AngleDegrees": 90.0,
-    "Text": "door48"
+    "Labels": [
+      "door: undermountain48"
+    ]
   },
   {
     "Point": {
@@ -6431,7 +6538,9 @@
       "Y": -28.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door51"
+    "Labels": [
+      "door: undermountain51"
+    ]
   },
   {
     "Point": {
@@ -6439,7 +6548,9 @@
       "Y": -27.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door52"
+    "Labels": [
+      "door: undermountain52"
+    ]
   },
   {
     "Point": {
@@ -6447,7 +6558,9 @@
       "Y": -24.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door53"
+    "Labels": [
+      "door: undermountain53"
+    ]
   },
   {
     "Point": {
@@ -6455,7 +6568,9 @@
       "Y": -23.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door54"
+    "Labels": [
+      "door: undermountain54"
+    ]
   },
   {
     "Point": {
@@ -6463,7 +6578,9 @@
       "Y": -7
     },
     "AngleDegrees": 90.0,
-    "Text": "door55"
+    "Labels": [
+      "door: undermountain55"
+    ]
   },
   {
     "Point": {
@@ -6471,7 +6588,9 @@
       "Y": -7.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door56"
+    "Labels": [
+      "door: undermountain56"
+    ]
   },
   {
     "Point": {
@@ -6479,7 +6598,9 @@
       "Y": -4
     },
     "AngleDegrees": 90.0,
-    "Text": "door57"
+    "Labels": [
+      "door: undermountain57"
+    ]
   },
   {
     "Point": {
@@ -6487,7 +6608,9 @@
       "Y": -0.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door58"
+    "Labels": [
+      "door: undermountain58"
+    ]
   },
   {
     "Point": {
@@ -6495,7 +6618,9 @@
       "Y": -15.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door65"
+    "Labels": [
+      "door: undermountain65"
+    ]
   },
   {
     "Point1": {
@@ -7223,7 +7348,9 @@
       "Y": -15.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door66"
+    "Labels": [
+      "door: undermountain66"
+    ]
   },
   {
     "Point": {
@@ -7231,7 +7358,9 @@
       "Y": -17.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door67"
+    "Labels": [
+      "door: undermountain67"
+    ]
   },
   {
     "Point": {
@@ -7239,7 +7368,9 @@
       "Y": -21.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door68"
+    "Labels": [
+      "door: undermountain68"
+    ]
   },
   {
     "Point": {
@@ -7247,7 +7378,9 @@
       "Y": -27.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door69"
+    "Labels": [
+      "door: undermountain69"
+    ]
   },
   {
     "Point": {
@@ -7255,7 +7388,9 @@
       "Y": -28
     },
     "AngleDegrees": 270.0,
-    "Text": "door70"
+    "Labels": [
+      "door: undermountain70"
+    ]
   },
   {
     "Point1": {
@@ -7383,7 +7518,9 @@
       "Y": 23
     },
     "AngleDegrees": 90.0,
-    "Text": "door10"
+    "Labels": [
+      "door: undermountain10"
+    ]
   },
   {
     "Point1": {
@@ -7571,7 +7708,9 @@
       "Y": 2
     },
     "AngleDegrees": 270.0,
-    "Text": "door2"
+    "Labels": [
+      "door: undermountain2"
+    ]
   },
   {
     "Point1": {
@@ -9809,7 +9948,9 @@
       "Y": 6
     },
     "AngleDegrees": 90.0,
-    "Text": "door4"
+    "Labels": [
+      "door: undermountain4"
+    ]
   },
   {
     "Point": {
@@ -9817,7 +9958,9 @@
       "Y": 5.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door5"
+    "Labels": [
+      "door: undermountain5"
+    ]
   },
   {
     "Point": {
@@ -9825,7 +9968,9 @@
       "Y": 9.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door6"
+    "Labels": [
+      "door: undermountain6"
+    ]
   },
   {
     "Point": {
@@ -9833,7 +9978,9 @@
       "Y": 13.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door7"
+    "Labels": [
+      "door: undermountain7"
+    ]
   },
   {
     "Point": {
@@ -9841,7 +9988,9 @@
       "Y": 16
     },
     "AngleDegrees": 90.0,
-    "Text": "door8"
+    "Labels": [
+      "door: undermountain8"
+    ]
   },
   {
     "Point": {
@@ -9849,7 +9998,9 @@
       "Y": 17.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door9"
+    "Labels": [
+      "door: undermountain9"
+    ]
   },
   {
     "Point": {
@@ -9857,7 +10008,9 @@
       "Y": 23.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door11"
+    "Labels": [
+      "door: undermountain11"
+    ]
   },
   {
     "Point": {
@@ -9865,7 +10018,9 @@
       "Y": 20
     },
     "AngleDegrees": 90.0,
-    "Text": "door12"
+    "Labels": [
+      "door: undermountain12"
+    ]
   },
   {
     "Point": {
@@ -9873,7 +10028,9 @@
       "Y": 23.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door13"
+    "Labels": [
+      "door: undermountain13"
+    ]
   },
   {
     "Point": {
@@ -9881,7 +10038,9 @@
       "Y": 23.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door14"
+    "Labels": [
+      "door: undermountain14"
+    ]
   },
   {
     "Point": {
@@ -9889,7 +10048,9 @@
       "Y": 24.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door15"
+    "Labels": [
+      "door: undermountain15"
+    ]
   },
   {
     "Point": {
@@ -9897,7 +10058,9 @@
       "Y": 22.5
     },
     "AngleDegrees": 0.0,
-    "Text": "door16"
+    "Labels": [
+      "door: undermountain16"
+    ]
   },
   {
     "Point1": {
@@ -9975,7 +10138,9 @@
       "Y": 4
     },
     "AngleDegrees": 90.0,
-    "Text": "door17"
+    "Labels": [
+      "door: undermountain17"
+    ]
   },
   {
     "Point1": {
@@ -10373,7 +10538,9 @@
       "Y": 0.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door59"
+    "Labels": [
+      "door: undermountain59"
+    ]
   },
   {
     "Point1": {
@@ -10661,7 +10828,9 @@
       "Y": 0.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door60"
+    "Labels": [
+      "door: undermountain60"
+    ]
   },
   {
     "Point": {
@@ -10669,7 +10838,9 @@
       "Y": 7
     },
     "AngleDegrees": 270.0,
-    "Text": "door61"
+    "Labels": [
+      "door: undermountain61"
+    ]
   },
   {
     "Point": {
@@ -10677,7 +10848,9 @@
       "Y": 10.5
     },
     "AngleDegrees": 180.0,
-    "Text": "door62"
+    "Labels": [
+      "door: undermountain62"
+    ]
   },
   {
     "Point": {
@@ -10685,7 +10858,9 @@
       "Y": 12
     },
     "AngleDegrees": 90.0,
-    "Text": "door63"
+    "Labels": [
+      "door: undermountain63"
+    ]
   },
   {
     "Point": {
@@ -10693,7 +10868,9 @@
       "Y": 12
     },
     "AngleDegrees": 90.0,
-    "Text": "door64"
+    "Labels": [
+      "door: undermountain64"
+    ]
   },
   {
     "Point1": {

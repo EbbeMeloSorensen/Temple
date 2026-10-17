@@ -1,9 +1,9 @@
 {
   "StartPosition": {
-    "X": 0.0,
+    "X": -0.0,
     "Y": 0.0
   },
-  "StartOrientation": 180.0,
+  "StartOrientation": 270.0,
   "SiteComponents": [
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -394,6 +394,18 @@
           "Y": -2.0
         }
       ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+      "Point1": {
+        "X": 1.0,
+        "Y": 2.0
+      },
+      "Point2": {
+        "X": 1.0,
+        "Y": -2.0
+      },
+      "EventID": "wilderness"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -885,7 +897,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door1"
+      "Id": "undermountain1"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -896,7 +908,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door3"
+      "Id": "undermountain3"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -907,7 +919,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door18"
+      "Id": "undermountain18"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -1035,7 +1047,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door19"
+      "Id": "undermountain19"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -3399,7 +3411,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door20"
+      "Id": "undermountain20"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3410,7 +3422,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door21"
+      "Id": "undermountain21"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3421,7 +3433,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door22"
+      "Id": "undermountain22"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3432,7 +3444,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door23"
+      "Id": "undermountain23"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3443,7 +3455,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door24"
+      "Id": "undermountain24"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3454,7 +3466,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door25"
+      "Id": "undermountain25"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3465,7 +3477,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door26"
+      "Id": "undermountain26"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3476,7 +3488,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door27"
+      "Id": "undermountain27"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3487,7 +3499,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door28"
+      "Id": "undermountain28"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3498,7 +3510,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door29"
+      "Id": "undermountain29"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3509,7 +3521,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door30"
+      "Id": "undermountain30"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3520,7 +3532,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door31"
+      "Id": "undermountain31"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3531,7 +3543,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door32"
+      "Id": "undermountain32"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -3646,7 +3658,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door33"
+      "Id": "undermountain33"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3657,7 +3669,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door34"
+      "Id": "undermountain34"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3668,7 +3680,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door35"
+      "Id": "undermountain35"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3679,7 +3691,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door36"
+      "Id": "undermountain36"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3690,7 +3702,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door37"
+      "Id": "undermountain37"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3701,7 +3713,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door38"
+      "Id": "undermountain38"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3712,7 +3724,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door39"
+      "Id": "undermountain39"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3723,7 +3735,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door40"
+      "Id": "undermountain40"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3734,7 +3746,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door41"
+      "Id": "undermountain41"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3745,7 +3757,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door42"
+      "Id": "undermountain42"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3756,7 +3768,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door43"
+      "Id": "undermountain43"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -3767,7 +3779,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door44"
+      "Id": "undermountain44"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -5364,7 +5376,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door49"
+      "Id": "undermountain49"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -5375,7 +5387,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door50"
+      "Id": "undermountain50"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -5386,7 +5398,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door75"
+      "Id": "undermountain75"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -5397,7 +5409,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door76"
+      "Id": "undermountain76"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -5408,7 +5420,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door77"
+      "Id": "undermountain77"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -6069,7 +6081,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door71"
+      "Id": "undermountain71"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -6080,7 +6092,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door72"
+      "Id": "undermountain72"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -6091,7 +6103,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door73"
+      "Id": "undermountain73"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -6102,7 +6114,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door74"
+      "Id": "undermountain74"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -8349,7 +8361,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door45"
+      "Id": "undermountain45"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8360,7 +8372,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door46"
+      "Id": "undermountain46"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8371,7 +8383,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door47"
+      "Id": "undermountain47"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8382,7 +8394,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door48"
+      "Id": "undermountain48"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8393,7 +8405,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door51"
+      "Id": "undermountain51"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8404,7 +8416,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door52"
+      "Id": "undermountain52"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8415,7 +8427,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door53"
+      "Id": "undermountain53"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8426,7 +8438,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door54"
+      "Id": "undermountain54"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8437,7 +8449,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door55"
+      "Id": "undermountain55"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8448,7 +8460,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door56"
+      "Id": "undermountain56"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8459,7 +8471,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door57"
+      "Id": "undermountain57"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8470,7 +8482,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door58"
+      "Id": "undermountain58"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -8481,7 +8493,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door65"
+      "Id": "undermountain65"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -9428,7 +9440,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door66"
+      "Id": "undermountain66"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -9439,7 +9451,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door67"
+      "Id": "undermountain67"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -9450,7 +9462,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door68"
+      "Id": "undermountain68"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -9461,7 +9473,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door69"
+      "Id": "undermountain69"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -9472,7 +9484,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door70"
+      "Id": "undermountain70"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -9639,7 +9651,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door10"
+      "Id": "undermountain10"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -9884,7 +9896,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door2"
+      "Id": "undermountain2"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -12794,7 +12806,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door4"
+      "Id": "undermountain4"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12805,7 +12817,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door5"
+      "Id": "undermountain5"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12816,7 +12828,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door6"
+      "Id": "undermountain6"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12827,7 +12839,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door7"
+      "Id": "undermountain7"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12838,7 +12850,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door8"
+      "Id": "undermountain8"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12849,7 +12861,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door9"
+      "Id": "undermountain9"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12860,7 +12872,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door11"
+      "Id": "undermountain11"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12871,7 +12883,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door12"
+      "Id": "undermountain12"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12882,7 +12894,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door13"
+      "Id": "undermountain13"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12893,7 +12905,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door14"
+      "Id": "undermountain14"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12904,7 +12916,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door15"
+      "Id": "undermountain15"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -12915,7 +12927,7 @@
       },
       "Width": 0.75,
       "Orientation": 90.0,
-      "Id": "door16"
+      "Id": "undermountain16"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -13017,7 +13029,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door17"
+      "Id": "undermountain17"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -13535,7 +13547,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door59"
+      "Id": "undermountain59"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
@@ -13910,7 +13922,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door60"
+      "Id": "undermountain60"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -13921,7 +13933,7 @@
       },
       "Width": 0.75,
       "Orientation": 0.0,
-      "Id": "door61"
+      "Id": "undermountain61"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -13932,7 +13944,7 @@
       },
       "Width": 0.75,
       "Orientation": 270.0,
-      "Id": "door62"
+      "Id": "undermountain62"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -13943,7 +13955,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door63"
+      "Id": "undermountain63"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Door",
@@ -13954,7 +13966,7 @@
       },
       "Width": 0.75,
       "Orientation": 180.0,
-      "Id": "door64"
+      "Id": "undermountain64"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
