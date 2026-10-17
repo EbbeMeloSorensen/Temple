@@ -2,20 +2,20 @@
   {
     "Point1": {
       "X": -5,
-      "Y": -12
+      "Y": -0
     },
     "Point2": {
-      "X": -5,
+      "X": -1,
       "Y": -0
     }
   },
   {
     "Point1": {
       "X": -5,
-      "Y": -0
+      "Y": -7
     },
     "Point2": {
-      "X": -1,
+      "X": -5,
       "Y": -0
     }
   },
@@ -383,6 +383,109 @@
     "Labels": [
       "battle: bugbear_chieftain",
       "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"find_ethon\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
+    ]
+  },
+  {
+    "Point1": {
+      "X": -5,
+      "Y": -12
+    },
+    "Point2": {
+      "X": -5,
+      "Y": -8
+    }
+  },
+  {
+    "Point": {
+      "X": -5,
+      "Y": -7.5
+    },
+    "AngleDegrees": 0.0,
+    "Labels": [
+      "door: village5"
+    ]
+  },
+  {
+    "Point1": {
+      "X": -5,
+      "Y": -8
+    },
+    "Point2": {
+      "X": -7,
+      "Y": -8
+    }
+  },
+  {
+    "Point1": {
+      "X": -7,
+      "Y": -7
+    },
+    "Point2": {
+      "X": -5,
+      "Y": -7
+    }
+  },
+  {
+    "Point1": {
+      "X": -7,
+      "Y": -8
+    },
+    "Point2": {
+      "X": -7,
+      "Y": -10
+    }
+  },
+  {
+    "Point1": {
+      "X": -7,
+      "Y": -10
+    },
+    "Point2": {
+      "X": -10,
+      "Y": -10
+    }
+  },
+  {
+    "Point1": {
+      "X": -10,
+      "Y": -10
+    },
+    "Point2": {
+      "X": -10,
+      "Y": -5
+    }
+  },
+  {
+    "Point1": {
+      "X": -10,
+      "Y": -5
+    },
+    "Point2": {
+      "X": -7,
+      "Y": -5
+    }
+  },
+  {
+    "Point1": {
+      "X": -7,
+      "Y": -5
+    },
+    "Point2": {
+      "X": -7,
+      "Y": -7
+    }
+  },
+  {
+    "Point1": {
+      "X": -6.5,
+      "Y": -8
+    },
+    "Point2": {
+      "X": -6.5,
+      "Y": -7
+    },
+    "Labels": [
+      "exit: sewers"
     ]
   },
   {

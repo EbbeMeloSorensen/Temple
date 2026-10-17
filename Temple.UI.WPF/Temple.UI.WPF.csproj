@@ -21,6 +21,7 @@
     <None Remove="DD\Assets\Quests\quests.json" />
     <None Remove="DD\Assets\SiteData\graveyard.json" />
     <None Remove="DD\Assets\SiteData\mine.json" />
+    <None Remove="DD\Assets\SiteData\sewers.json" />
     <None Remove="DD\Assets\SiteData\townhall.json" />
     <None Remove="DD\Images\alyth.png" />
     <None Remove="DD\Images\Archer.PNG" />
@@ -97,6 +98,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DD\Assets\Quests\quests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DD\Assets\SiteData\sewers.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DD\Assets\SiteData\townhall.json">

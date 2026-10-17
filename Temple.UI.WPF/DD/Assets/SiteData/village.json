@@ -10,10 +10,10 @@
       "BarrierPoints": [
         {
           "X": -5.0,
-          "Y": 12.0
+          "Y": 0.0
         },
         {
-          "X": -5.0,
+          "X": -1.0,
           "Y": 0.0
         }
       ]
@@ -23,10 +23,10 @@
       "BarrierPoints": [
         {
           "X": -5.0,
-          "Y": 0.0
+          "Y": 7.0
         },
         {
-          "X": -1.0,
+          "X": -5.0,
           "Y": 0.0
         }
       ]
@@ -474,6 +474,133 @@
         "Y": 2.5
       },
       "EventID": "bugbear_chieftain"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 12.0
+        },
+        {
+          "X": -5.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Door",
+      "Position": {
+        "X": -5.0,
+        "Y": 7.5,
+        "Z": 0.0
+      },
+      "Width": 0.75,
+      "Orientation": 90.0,
+      "Id": "village5"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -5.0,
+          "Y": 8.0
+        },
+        {
+          "X": -7.0,
+          "Y": 8.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 7.0
+        },
+        {
+          "X": -5.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 8.0
+        },
+        {
+          "X": -7.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 10.0
+        },
+        {
+          "X": -10.0,
+          "Y": 10.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 10.0
+        },
+        {
+          "X": -10.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -10.0,
+          "Y": 5.0
+        },
+        {
+          "X": -7.0,
+          "Y": 5.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
+      "BarrierPoints": [
+        {
+          "X": -7.0,
+          "Y": 5.0
+        },
+        {
+          "X": -7.0,
+          "Y": 7.0
+        }
+      ]
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_LeaveSite",
+      "Point1": {
+        "X": -6.5,
+        "Y": 8.0
+      },
+      "Point2": {
+        "X": -6.5,
+        "Y": 7.0
+      },
+      "EventID": "sewers"
     },
     {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
