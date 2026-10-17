@@ -272,17 +272,6 @@
     }
   },
   {
-    "Point": {
-      "X": -2,
-      "Y": -3.5
-    },
-    "AngleDegrees": 0.0,
-    "Labels": [
-      "door: village2",
-      "\"ConditionForAccessibility\": {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_sewer_door_from_alyth\"\r\n}"
-    ]
-  },
-  {
     "Point1": {
       "X": -4,
       "Y": -9
@@ -360,32 +349,6 @@
     ]
   },
   {
-    "Point": {
-      "X": -3,
-      "Y": -4.5
-    },
-    "AngleDegrees": 270.0,
-    "Labels": [
-      "npc: ethon",
-      "ModelId: human male",
-      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n  \"Conditions\": [\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    },\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"find_ethon\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": false\r\n      }\r\n    }\r\n  ]\r\n}"
-    ]
-  },
-  {
-    "Point1": {
-      "X": -2.25,
-      "Y": -4.5
-    },
-    "Point2": {
-      "X": -2.25,
-      "Y": -2.5
-    },
-    "Labels": [
-      "battle: bugbear_chieftain",
-      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"find_ethon\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
-    ]
-  },
-  {
     "Point1": {
       "X": -5,
       "Y": -12
@@ -394,16 +357,6 @@
       "X": -5,
       "Y": -8
     }
-  },
-  {
-    "Point": {
-      "X": -5,
-      "Y": -7.5
-    },
-    "AngleDegrees": 0.0,
-    "Labels": [
-      "door: village5"
-    ]
   },
   {
     "Point1": {
@@ -486,6 +439,27 @@
     },
     "Labels": [
       "exit: sewers"
+    ]
+  },
+  {
+    "Point": {
+      "X": -5,
+      "Y": -7.5
+    },
+    "AngleDegrees": 0.0,
+    "Labels": [
+      "door: village5",
+      "ConditionForAccessibility: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.FactEstablishedCondition\",\r\n  \"FactId\": \"got_key_to_sewer_door_from_alyth\"\r\n}"
+    ]
+  },
+  {
+    "Point": {
+      "X": -2,
+      "Y": -3.5
+    },
+    "AngleDegrees": 0.0,
+    "Labels": [
+      "door: village2"
     ]
   },
   {

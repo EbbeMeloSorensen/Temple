@@ -91,5 +91,31 @@
     "Labels": [
       "exit: village"
     ]
+  },
+  {
+    "Point": {
+      "X": -8.5,
+      "Y": -9.5
+    },
+    "AngleDegrees": 270.0,
+    "Labels": [
+      "npc: ethon",
+      "ModelId: human male",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.OrGameCondition\",\r\n  \"Conditions\": [\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"rat_infestation\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": true\r\n      }\r\n    },\r\n    {\r\n      \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n      \"QuestId\": \"find_ethon\",\r\n      \"RequiredStatus\": {\r\n        \"QuestState\": 2,\r\n        \"AreCompletionCriteriaSatisfied\": false\r\n      }\r\n    }\r\n  ]\r\n}"
+    ]
+  },
+  {
+    "Point1": {
+      "X": -7.25,
+      "Y": -8.5
+    },
+    "Point2": {
+      "X": -7.25,
+      "Y": -6.5
+    },
+    "Labels": [
+      "battle: bugbear_chieftain",
+      "ConditionForPresence: {\r\n  \"$type\": \"Temple.Infrastructure.GameConditions.QuestStatusCondition\",\r\n  \"QuestId\": \"find_ethon\",\r\n  \"RequiredStatus\": {\r\n    \"QuestState\": 2,\r\n    \"AreCompletionCriteriaSatisfied\": false\r\n  }\r\n}"
+    ]
   }
 ]

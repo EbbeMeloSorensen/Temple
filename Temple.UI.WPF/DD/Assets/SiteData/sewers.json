@@ -114,6 +114,58 @@
         "Y": 7.0
       },
       "EventID": "village"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.NPC",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.OrGameCondition",
+        "Conditions": [
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "rat_infestation",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": true
+            }
+          },
+          {
+            "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+            "QuestId": "find_ethon",
+            "RequiredStatus": {
+              "QuestState": 2,
+              "AreCompletionCriteriaSatisfied": false
+            }
+          }
+        ]
+      },
+      "Position": {
+        "X": -8.5,
+        "Y": 9.5,
+        "Z": 0.0
+      },
+      "Orientation": 0.0,
+      "ModelId": "human male",
+      "Id": "ethon"
+    },
+    {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "ConditionForPresence": {
+        "$type": "Temple.Infrastructure.GameConditions.QuestStatusCondition",
+        "QuestId": "find_ethon",
+        "RequiredStatus": {
+          "QuestState": 2,
+          "AreCompletionCriteriaSatisfied": false
+        }
+      },
+      "Point1": {
+        "X": -7.25,
+        "Y": 8.5
+      },
+      "Point2": {
+        "X": -7.25,
+        "Y": 6.5
+      },
+      "EventID": "bugbear_chieftain"
     }
   ]
 }
