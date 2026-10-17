@@ -4,13 +4,18 @@ namespace Temple.ViewModel.DD.Exploration;
 
 public class DoorRotationViewModel : ViewModelBase
 {
-    public double _rotationAngle;
+    private double _rotationAngle;
 
     public double RotationAngle
     {
         get => _rotationAngle;
         set
         {
+            if (_rotationAngle.Equals(value))
+            {
+                return;
+            }
+
             _rotationAngle = value;
             RaisePropertyChanged();
         }

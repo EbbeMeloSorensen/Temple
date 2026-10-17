@@ -54,7 +54,10 @@ namespace Temple.ViewModel.DD.Exploration
         private string _locationInfo;
         private bool _displayLocationIfo;
 
-        private Dictionary<string, DoorRotationViewModel> DoorRotationViewModelDictionary { get; }
+        private Dictionary<int, DoorRotationViewModel> DoorRotationViewModelDictionary { get; }
+        private readonly DoorGeometryCache _doorGeometryCache = new();
+        private readonly ArrayList _dynamicGeometricObjects = new();
+        private readonly GeometryLayer _dynamicGeometryLayer;
 
         public Engine Engine { get; }
 
@@ -191,7 +194,9 @@ namespace Temple.ViewModel.DD.Exploration
                 DampFocusShifts = false
             };
 
-            DoorRotationViewModelDictionary = new Dictionary<string, DoorRotationViewModel>();
+            DoorRotationViewModelDictionary = new Dictionary<int, DoorRotationViewModel>();
+            _dynamicGeometryLayer = new GeometryLayer(_dynamicGeometricObjects, true);
+            GeometryViewModel.GeometryLayers.Add(_dynamicGeometryLayer);
 
             GeometryViewModel.PropertyChanged += GeometryViewModel_PropertyChanged;
             Engine.CurrentStateChanged += Engine_CurrentStateChanged;
@@ -408,6 +413,7 @@ namespace Temple.ViewModel.DD.Exploration
                 _controller,
                 _gameQueryService);
 
+            _doorGeometryCache.Clear();
             InitializeGeometryDataStore(_scene2D);
             StartAnimation(_scene2D);
 
@@ -602,6 +608,7 @@ namespace Temple.ViewModel.DD.Exploration
         private void UpdateStaticGeometricObjects()
         {
             GeometryViewModel.ClearLayer(false);
+            DoorRotationViewModelDictionary.Clear();
 
             if (_geometryDataStore != null)
             {
@@ -660,7 +667,7 @@ namespace Temple.ViewModel.DD.Exploration
                             var doorOpeningRotation = new RotateTransform3D(axisAngleRotation);
 
                             var doorRotationViewModel = new DoorRotationViewModel { RotationAngle = angle };
-                            DoorRotationViewModelDictionary[$"{bodyDoor.Id}"] = doorRotationViewModel;
+                            DoorRotationViewModelDictionary[bodyDoor.Id] = doorRotationViewModel;
 
                             BindingOperations.SetBinding(
                                 axisAngleRotation,
@@ -715,85 +722,67 @@ namespace Temple.ViewModel.DD.Exploration
 
         private void UpdateDynamicGeometricObjects()
         {
-            // Update the dynamic part of the 2D scene
-            var geometricObjects2D = new ArrayList();
+            var geometryIndex = 0;
+            var geometryChanged = false;
+            _doorGeometryCache.BeginFrame();
 
-            _currentState.BodyStates.ForEach(bs =>
+            foreach (var bs in _currentState.BodyStates)
             {
+                object geometry;
                 switch (bs.Body)
                 {
-                    // Player
                     case CircularBody circularBody:
-                        geometricObjects2D.Add(new Circle2D(
-                            new Point2D(bs.Position.X, bs.Position.Y),
-                            circularBody.Radius));
+                        var previousCircle = geometryIndex < _dynamicGeometricObjects.Count
+                            ? _dynamicGeometricObjects[geometryIndex] as Circle2D
+                            : null;
+                        geometry = previousCircle != null &&
+                                   previousCircle.Center.X == bs.Position.X &&
+                                   previousCircle.Center.Y == bs.Position.Y &&
+                                   previousCircle.Radius == circularBody.Radius
+                            ? previousCircle
+                            : new Circle2D(new Point2D(bs.Position.X, bs.Position.Y), circularBody.Radius);
                         break;
-                    // Doors
                     case BodyDoor bodyDoor:
-                        var bodyStateDoor = bs as BodyStateDoor;
-                        var angle = (bodyStateDoor.PercentageOpen) * 0.5 * Math.PI / 100;
+                        var bodyStateDoor = (BodyStateDoor)bs;
+                        geometry = _doorGeometryCache.GetGeometry(bodyStateDoor);
 
-                        var doorAsVector = new Vector2D(
-                            bodyDoor.Point2.X - bodyDoor.Point1.X,
-                            bodyDoor.Point2.Y - bodyDoor.Point1.Y);
-
-                        var doorWidth = doorAsVector.Length;
-                        var hatted = doorAsVector.Hat();
-
-                        if (!bodyStateDoor.OpenClockWise)
+                        if (DoorRotationViewModelDictionary.TryGetValue(bodyDoor.Id, out var rotation))
                         {
-                            hatted = -hatted;
+                            var angle = bodyStateDoor.PercentageOpen * 90 / 100;
+                            rotation.RotationAngle = bodyStateDoor.OpenClockWise ? -angle : angle;
                         }
-
-                        var pt2_x =
-                            bodyDoor.Point1.X +
-                            Math.Cos(angle) * doorAsVector.X +
-                            Math.Sin(angle) * hatted.X;
-
-                        var pt2_y =
-                            bodyDoor.Point1.Y +
-                            Math.Cos(angle) * doorAsVector.Y +
-                            Math.Sin(angle) * hatted.Y;
-
-                        geometricObjects2D.Add(new LineSegment2D(
-                            new Point2D(
-                                bodyDoor.Point1.X,
-                                bodyDoor.Point1.Y),
-                            new Point2D(
-                                pt2_x,
-                                pt2_y)));
                         break;
+                    default:
+                        continue;
                 }
-            });
 
-            GeometryViewModel.ReplaceDynamicGeometryLayer(geometricObjects2D);
-
-            if (DoorRotationViewModelDictionary.Any())
-            {
-                // Update rotation for the doors
-                _currentState.BodyStates.ForEach(bs =>
+                if (geometryIndex == _dynamicGeometricObjects.Count)
                 {
-                    switch (bs.Body)
-                    {
-                        case BodyDoor bodyDoor:
-                            var bodyStateDoor = bs as BodyStateDoor;
+                    _dynamicGeometricObjects.Add(geometry);
+                    geometryChanged = true;
+                }
+                else if (!ReferenceEquals(_dynamicGeometricObjects[geometryIndex], geometry))
+                {
+                    _dynamicGeometricObjects[geometryIndex] = geometry;
+                    geometryChanged = true;
+                }
+                geometryIndex++;
+            }
 
-                            if (DoorRotationViewModelDictionary.TryGetValue($"{bodyDoor.Id}",
-                                    out DoorRotationViewModel vm))
-                            {
-                                var angle = (bodyStateDoor.PercentageOpen) * 90 / 100;
+            if (geometryIndex < _dynamicGeometricObjects.Count)
+            {
+                _dynamicGeometricObjects.RemoveRange(geometryIndex, _dynamicGeometricObjects.Count - geometryIndex);
+                geometryChanged = true;
+            }
 
-                                if (bodyStateDoor.OpenClockWise)
-                                {
-                                    angle *= -1;
-                                }
+            _doorGeometryCache.EndFrame();
 
-                                vm.RotationAngle = angle;
-                            }
-
-                            break;
-                    }
-                });
+            // Notify the canvas after updating the retained layer. Replacing the entire
+            // dynamic layer through Craft's helper also clears and re-adds static layers.
+            if (geometryChanged)
+            {
+                var layerIndex = GeometryViewModel.GeometryLayers.IndexOf(_dynamicGeometryLayer);
+                GeometryViewModel.GeometryLayers[layerIndex] = _dynamicGeometryLayer;
             }
         }
 

@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="Temple.ViewModel.UnitTest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Temple.Application\Temple.Application.csproj" />
     <ProjectReference Include="..\Temple.Infrastructure.Presentation\Temple.Infrastructure.Presentation.csproj" />
     <ProjectReference Include="..\Temple.Infrastructure\Temple.Infrastructure.csproj" />
