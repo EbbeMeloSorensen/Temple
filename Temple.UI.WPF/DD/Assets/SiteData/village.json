@@ -58,6 +58,19 @@
       ]
     },
     {
+      "$type": "Temple.Domain.Entities.DD.Exploration.EventTrigger_ScriptedBattle",
+      "Point1": {
+        "X": 4.0,
+        "Y": 0.0
+      },
+      "Point2": {
+        "X": 5.0,
+        "Y": 1.0
+      },
+      "EventID": "final",
+      "EntranceID": "south"
+    },
+    {
       "$type": "Temple.Domain.Entities.DD.Exploration.Barrier",
       "BarrierPoints": [
         {

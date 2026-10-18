@@ -18,7 +18,7 @@ public class BattleSceneFactory : IBattleSceneFactory
             "skeletons_in_graveyard" => GetSceneGraveyard(party),
             "Dungeon 1, Room A, Goblin" => GetSceneA(party),
             "Dungeon 1, Room B, Goblin" => GetSceneB(party, entranceId),
-            "Final Battle" => GetSceneF(party, entranceId),
+            "final" => GetSceneF(party, entranceId),
             _ => throw new ArgumentException($"Unknown battle scene ID: {battleSceneId}", nameof(battleSceneId))
         };
     }
@@ -435,14 +435,14 @@ public class BattleSceneFactory : IBattleSceneFactory
         // Party
         var adventurerPositions = entranceId switch
         {
-            "South" => new List<Tuple<int, int>>
+            "south" => new List<Tuple<int, int>>
             {
                 new (6, 8),
                 new (5, 8),
                 new (6, 9),
                 new (5, 9)
             },
-            "East" => new List<Tuple<int, int>>
+            "east" => new List<Tuple<int, int>>
             {
                 new (10, 5),
                 new (10, 6),

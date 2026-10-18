@@ -40,6 +40,20 @@
     }
   },
   {
+    "Point1": {
+      "X": 4,
+      "Y": -0
+    },
+    "Point2": {
+      "X": 5,
+      "Y": -1
+    },
+    "Labels": [
+      "battle: final",
+      "EntranceId: south"
+    ]
+  },
+  {
     "Point": {
       "X": 0,
       "Y": -0

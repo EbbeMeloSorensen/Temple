@@ -197,12 +197,12 @@ public class SiteDataIOTest
     public void ImportSiteDataFromOtherFormat()
     {
         // Arrange
-        //var inputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\village_raw.json";
-        //var outputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\village.json";
+        var inputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\village_raw.json";
+        var outputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\village.json";
         //var inputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\sewers_raw.json";
         //var outputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\sewers.json";
-        var inputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\undermountain_raw.json";
-        var outputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\undermountain.json";
+        //var inputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\undermountain_raw.json";
+        //var outputFile = @"C:\Git\GitHub\Temple\Temple.UI.WPF\DD\Assets\SiteData\undermountain.json";
 
         // Act
         var siteData = SiteDataIO.ImportSiteDataFromFile(inputFile);

@@ -57,7 +57,7 @@ public class BattleViewModel : TempleViewModel
             else
             {
                 // Victory
-                if (_battleId == "Final Battle")
+                if (_battleId == "final")
                 {
                     _controller.GoToVictory();
                 }
