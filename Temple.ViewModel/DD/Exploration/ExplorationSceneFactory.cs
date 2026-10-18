@@ -35,6 +35,7 @@ public static class ExplorationSceneFactory
 
         if (controller.ApplicationData.ExplorationPosition == null)
         {
+            // Saved positions use world units; scale only the site's initial map position.
             controller.ApplicationData.ExplorationPosition =
                 new Vector2D(
                     siteData.StartPosition.X * sizeRatio,
@@ -54,8 +55,8 @@ public static class ExplorationSceneFactory
             new BodyStateClassic(
                 new Player(1, ballRadius),
                 new Vector2D(
-                    controller.ApplicationData.ExplorationPosition.X * sizeRatio,
-                    -controller.ApplicationData.ExplorationPosition.Y * sizeRatio))
+                    controller.ApplicationData.ExplorationPosition.X,
+                    -controller.ApplicationData.ExplorationPosition.Y))
                 {
                     Orientation = orientationInRadians
                 });

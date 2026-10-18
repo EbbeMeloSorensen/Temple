@@ -17,6 +17,27 @@ namespace Temple.ViewModel.UnitTest;
 
 public class ExplorationInputTests
 {
+    [Theory]
+    [InlineData(0.5)]
+    [InlineData(1.524)]
+    [InlineData(2.0)]
+    public void SiteEntryScalesMapPositionOnceAndReentryPreservesSavedWorldPosition(double sizeRatio)
+    {
+        var controller = CreateController();
+        var site = new SiteData { StartPosition = new Point2D(2, 3), StartOrientation = 90 };
+        var scene = ExplorationSceneFactory.GenerateScene(site, controller, null!, sizeRatio);
+        var player = scene.InitialState.TryGetBodyState(1);
+        Assert.Equal(2 * sizeRatio, player.Position.X);
+        Assert.Equal(-3 * sizeRatio, player.Position.Y);
+
+        // Movement saves world coordinates with the site's positive-Y convention.
+        controller.ApplicationData.ExplorationPosition = new Vector2D(7, 11);
+        var reentered = ExplorationSceneFactory.GenerateScene(site, controller, null!, sizeRatio);
+        var returnedPlayer = reentered.InitialState.TryGetBodyState(1);
+        Assert.Equal(7, returnedPlayer.Position.X);
+        Assert.Equal(-11, returnedPlayer.Position.Y);
+    }
+
     private static ApplicationController CreateController()
     {
         var machine = new ApplicationStateMachine();
