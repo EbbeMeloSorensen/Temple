@@ -37,6 +37,8 @@
                     Command="{Binding PassCurrentCreatureCommand}"/>
             <Button Margin ="3" Content="Automate" FontSize="20"
                     Command="{Binding AutomateCurrentCreatureCommand}"/>
+            <Button Margin ="3" Content="Cheat" FontSize="20"
+                    Command="{Binding CheatCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

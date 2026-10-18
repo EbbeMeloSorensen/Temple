@@ -22,6 +22,7 @@ namespace Temple.ViewModel.DD.Battle
         protected RelayCommand _pauseCommand;
         protected RelayCommand _resumeCommand;
         protected RelayCommand _resetCreaturesCommand;
+        private RelayCommand _cheatCommand;
         protected AsyncCommand _startBattleCommand;
         protected AsyncCommand _passCurrentCreatureCommand;
         protected AsyncCommand _automateCurrentCreatureCommand;
@@ -95,6 +96,12 @@ namespace Temple.ViewModel.DD.Battle
                     CanResetCreatures));
             }
         }
+
+        public RelayCommand CheatCommand => _cheatCommand ?? (_cheatCommand = new RelayCommand(
+            Cheat,
+            () => _engine.BattleHasStarted.Object &&
+                  !_engine.BattleHasEnded.Object &&
+                  !_engine.AutoRunning.Object));
 
         public RelayCommand PauseCommand
         {
@@ -176,6 +183,11 @@ namespace Temple.ViewModel.DD.Battle
 
             boardViewModel.AttackAnimationCompleted += async (s, e) =>
             {
+                if (_engine.BattleHasEnded.Object)
+                {
+                    return;
+                }
+
                 if (UpdateBoard)
                 {
                     _boardViewModel.UpdateCreatureViewModels(
@@ -212,6 +224,21 @@ namespace Temple.ViewModel.DD.Battle
         }
 
         protected abstract Task Proceed();
+
+        private void Cheat()
+        {
+            if (!CheatCommand.CanExecute(null))
+            {
+                return;
+            }
+
+            _engine.RemoveHostileCreatures();
+            _boardViewModel.ClearPlayerOptions();
+            _boardViewModel.UpdateCreatureViewModels(_engine.Creatures, _engine.CurrentCreature);
+            TeamStatsViewModel.Update(_engine.Creatures);
+            UpdateCommandStates();
+            OnBattleDecided(BattleResult.Victory);
+        }
 
         private void Pause()
         {
@@ -362,6 +389,7 @@ namespace Temple.ViewModel.DD.Battle
             PassCurrentCreatureCommand.RaiseCanExecuteChanged();
             AutomateCurrentCreatureCommand.RaiseCanExecuteChanged();
             ResetCreaturesCommand.RaiseCanExecuteChanged();
+            CheatCommand.RaiseCanExecuteChanged();
         }
 
         private void OnBattleDecided(

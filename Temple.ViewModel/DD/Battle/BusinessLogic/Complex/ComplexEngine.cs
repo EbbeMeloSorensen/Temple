@@ -446,6 +446,26 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic.Complex
             return null;
         }
 
+        public void RemoveHostileCreatures()
+        {
+            if (!BattleHasStarted.Object || BattleHasEnded.Object || AutoRunning.Object)
+            {
+                return;
+            }
+
+            Creatures.RemoveAll(creature => creature.IsHostile);
+            _actingOrder.Clear();
+            _evasionEvents.Clear();
+            CurrentCreature = null;
+            TargetCreature = null;
+            SquareIndexForCurrentCreature.Object = null;
+            SquareIndexesCurrentCreatureCanMoveTo.Object = null;
+            SquareIndexesCurrentCreatureCanAttackWithMeleeWeapon.Object = null;
+            SquareIndexesCurrentCreatureCanAttackWithRangedWeapon.Object = null;
+            BattleDecided = true;
+            BattleHasEnded.Object = true;
+        }
+
         public void StartBattle()
         {
             if (_scene == null)

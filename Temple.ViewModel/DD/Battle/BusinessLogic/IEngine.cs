@@ -51,6 +51,8 @@ namespace Temple.ViewModel.DD.Battle.BusinessLogic
 
         void StartBattle();
 
+        void RemoveHostileCreatures();
+
         bool CurrentPlayerControlledCreatureHasAnyOptionsLeft();
 
         bool CanStartBattle();
