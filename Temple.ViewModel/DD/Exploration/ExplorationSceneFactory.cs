@@ -346,6 +346,17 @@ public static class ExplorationSceneFactory
                     var point1 = doorCenter - doorHalfVector;
                     var point2 = doorCenter + doorHalfVector;
 
+                    if (sizeRatio > 1)
+                    {
+                        // The unscaled doorway frame spans one map unit. Each filler
+                        // extends it by (sizeRatio - 1) / 2, independent of door width.
+                        var frameHalfVector = new Vector2D(Math.Sin(radians), Math.Cos(radians)) * 0.5;
+                        scene.AddBoundary(new LineSegment(
+                            doorCenter - frameHalfVector * sizeRatio, doorCenter - frameHalfVector));
+                        scene.AddBoundary(new LineSegment(
+                            doorCenter + frameHalfVector, doorCenter + frameHalfVector * sizeRatio));
+                    }
+
                     if (string.IsNullOrEmpty(door.Id))
                     {
                         throw new InvalidOperationException("Door has to have an Id");

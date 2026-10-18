@@ -1,6 +1,7 @@
 using Craft.Logging;
 using Craft.Math;
 using Craft.Simulation;
+using Craft.Simulation.Bodies;
 using Craft.Simulation.BodyStates;
 using Craft.Simulation.Engine;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -8,6 +9,7 @@ using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
 using Temple.Domain.Entities.DD.Exploration;
+using Temple.Domain.Entities.DD.Common;
 using Temple.Domain.Entities.DD.Quests;
 using Temple.ViewModel.DD.Exploration;
 using Temple.ViewModel.DD.Exploration.Bodies;
@@ -17,6 +19,55 @@ namespace Temple.ViewModel.UnitTest;
 
 public class ExplorationInputTests
 {
+    [Theory]
+    [InlineData(1.524, 0, 0.75)]
+    [InlineData(2, 90, 0.6)]
+    [InlineData(3, 37, 0.9)]
+    [InlineData(1, 0, 0.75)]
+    [InlineData(0.5, 0, 0.75)]
+    public void DoorFillersUseOnlyRatioForWidthAndOuterSpan(double ratio, double orientation, double doorWidth)
+    {
+        var site = new SiteData { StartPosition = new Point2D(0, 0), StartOrientation = 90 };
+        site.SiteComponents.Add(new Door
+        {
+            Id = "test", Position = new Vector3D(4, 6, 0), Width = doorWidth, Orientation = orientation
+        });
+        var scene = ExplorationSceneFactory.GenerateScene(site, CreateController(), new EmptyQueries(), ratio);
+        var lines = scene.Boundaries.OfType<Craft.Simulation.Boundaries.LineSegment>().ToList();
+        var door = Assert.IsType<BodyDoor>(scene.InitialState.TryGetBodyState(100).Body);
+        Assert.Equal(doorWidth, (door.Point2 - door.Point1).Length, 10);
+        if (ratio <= 1)
+        {
+            Assert.Empty(lines);
+            return;
+        }
+
+        Assert.Equal(2, lines.Count);
+        Assert.All(lines, line => Assert.Equal((ratio - 1) / 2, (line.Point2 - line.Point1).Length, 10));
+        Assert.Equal(ratio, (lines[1].Point2 - lines[0].Point1).Length, 10);
+        Assert.Equal(1, (lines[1].Point1 - lines[0].Point2).Length, 10);
+        Assert.Equal(4 * ratio, (lines[0].Point1.X + lines[1].Point2.X) / 2, 10);
+        Assert.Equal(-6 * ratio, (lines[0].Point1.Y + lines[1].Point2.Y) / 2, 10);
+
+        // Unrelated wall endpoints must not change the fillers.
+        site.AddWall(new[] { new Point2D(-20, 6), new Point2D(20, 6) });
+        var withWall = ExplorationSceneFactory.GenerateScene(site, CreateController(), new EmptyQueries(), ratio);
+        var unchanged = withWall.Boundaries.OfType<Craft.Simulation.Boundaries.LineSegment>().Take(2).ToList();
+        for (var i = 0; i < 2; i++)
+        {
+            Assert.Equal(lines[i].Point1.X, unchanged[i].Point1.X);
+            Assert.Equal(lines[i].Point2.Y, unchanged[i].Point2.Y);
+        }
+    }
+
+    private sealed class EmptyQueries : IGameQueryService
+    {
+        public bool IsFactEstablished(string factId) => false;
+        public bool IsKnowledgeGained(string knowledgeId) => false;
+        public bool DoesQuestStatusEqualRequiredValue(string questId, QuestStatus status) => false;
+        public bool IsBattleWon(string battleId) => false;
+    }
+
     [Theory]
     [InlineData(0.5)]
     [InlineData(1.524)]
