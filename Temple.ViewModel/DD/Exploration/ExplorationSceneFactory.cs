@@ -26,7 +26,8 @@ public static class ExplorationSceneFactory
     public static Scene GenerateScene(
         SiteData siteData,
         ApplicationController controller,
-        IGameQueryService gameQueryService)
+        IGameQueryService gameQueryService,
+        double sizeRatio = 1.524)
     {
         var ballRadius = 0.16;
 
@@ -34,7 +35,11 @@ public static class ExplorationSceneFactory
 
         if (controller.ApplicationData.ExplorationPosition == null)
         {
-            controller.ApplicationData.ExplorationPosition = siteData.StartPosition.AsVector2D();
+            controller.ApplicationData.ExplorationPosition =
+                new Vector2D(
+                    siteData.StartPosition.X * sizeRatio,
+                    siteData.StartPosition.Y * sizeRatio);
+                
             controller.ApplicationData.ExplorationOrientation = siteData.StartOrientation;
         }
 
@@ -49,8 +54,8 @@ public static class ExplorationSceneFactory
             new BodyStateClassic(
                 new Player(1, ballRadius),
                 new Vector2D(
-                    controller.ApplicationData.ExplorationPosition.X,
-                    -controller.ApplicationData.ExplorationPosition.Y))
+                    controller.ApplicationData.ExplorationPosition.X * sizeRatio,
+                    -controller.ApplicationData.ExplorationPosition.Y * sizeRatio))
                 {
                     Orientation = orientationInRadians
                 });
@@ -303,19 +308,21 @@ public static class ExplorationSceneFactory
                     barrier.BarrierPoints.AdjacentPairs().ToList().ForEach(_ =>
                     {
                         scene.AddBoundary(new LineSegment(
-                            new Vector2D(_.Item1.X, -_.Item1.Y),
-                            new Vector2D(_.Item2.X, -_.Item2.Y)));
+                            new Vector2D(_.Item1.X * sizeRatio, -_.Item1.Y * sizeRatio),
+                            new Vector2D(_.Item2.X * sizeRatio, -_.Item2.Y * sizeRatio)));
                     });
 
                     break;
                 }
                 case Cylinder cylinder:
                 {
-                    scene.AddBoundary(new Boundaries.Cylinder(new Vector2D(
-                        cylinder.Position.X, -cylinder.Position.Y), cylinder.Radius, null, cylinder.Length));
+                    throw new NotImplementedException("cylinders coming soon");
 
-                    scene.Props.Add(new PropCircle(npcId++, cylinder.Radius * 2, new Vector2D(
-                        cylinder.Position.X, -cylinder.Position.Y)));
+                    //scene.AddBoundary(new Boundaries.Cylinder(new Vector2D(
+                    //    cylinder.Position.X, -cylinder.Position.Y), cylinder.Radius, null, cylinder.Length));
+
+                    //scene.Props.Add(new PropCircle(npcId++, cylinder.Radius * 2, new Vector2D(
+                    //    cylinder.Position.X, -cylinder.Position.Y)));
 
                     break;
                 }
@@ -325,7 +332,10 @@ public static class ExplorationSceneFactory
                     var affectedByGravity = true;
                     var affectedByBoundaries = true;
 
-                    var doorCenter = new Vector2D(door.Position.X, -door.Position.Y);
+                    var doorCenter = new Vector2D(
+                        door.Position.X * sizeRatio,
+                        -door.Position.Y * sizeRatio);
+
                     var radians = (door.Orientation + 270) * Math.PI / 180;
 
                     var doorHalfVector = new Vector2D(
@@ -384,10 +394,10 @@ public static class ExplorationSceneFactory
                     var npcRadius = 0.16;
 
                     scene.AddBoundary(new Boundaries.NPC(new Vector2D(
-                        npc.Position.X, -npc.Position.Y), npcRadius, tag, npc.ModelId, npc.Orientation));
+                        npc.Position.X * sizeRatio, -npc.Position.Y * sizeRatio), npcRadius, tag, npc.ModelId, npc.Orientation));
 
                     scene.Props.Add(new PropCircle(npcId++, npcRadius * 2, new Vector2D(
-                        npc.Position.X, -npc.Position.Y)));
+                        npc.Position.X * sizeRatio, -npc.Position.Y * sizeRatio)));
 
                     break;
                 }
@@ -398,8 +408,8 @@ public static class ExplorationSceneFactory
                         var tag = $"info: {siteLocationInfoEventTrigger.EventID}";
 
                         scene.AddBoundary(new Trigger(
-                            new Vector2D(siteLocationInfoEventTrigger.Point1.X, -siteLocationInfoEventTrigger.Point1.Y),
-                            new Vector2D(siteLocationInfoEventTrigger.Point2.X, -siteLocationInfoEventTrigger.Point2.Y),
+                            new Vector2D(siteLocationInfoEventTrigger.Point1.X * sizeRatio, -siteLocationInfoEventTrigger.Point1.Y * sizeRatio),
+                            new Vector2D(siteLocationInfoEventTrigger.Point2.X * sizeRatio, -siteLocationInfoEventTrigger.Point2.Y * sizeRatio),
                             tag)
                         {
                             //Visible = false
@@ -424,8 +434,8 @@ public static class ExplorationSceneFactory
                     }
 
                     scene.AddBoundary(new Trigger(
-                        new Vector2D(leaveSiteEventTrigger.Point1.X, -leaveSiteEventTrigger.Point1.Y),
-                        new Vector2D(leaveSiteEventTrigger.Point2.X, -leaveSiteEventTrigger.Point2.Y),
+                        new Vector2D(leaveSiteEventTrigger.Point1.X * sizeRatio, -leaveSiteEventTrigger.Point1.Y * sizeRatio),
+                        new Vector2D(leaveSiteEventTrigger.Point2.X * sizeRatio, -leaveSiteEventTrigger.Point2.Y * sizeRatio),
                         tag)
                         {
                             //Visible = false
@@ -441,7 +451,8 @@ public static class ExplorationSceneFactory
                         scriptedBattleEventTrigger.Point2,
                         scriptedBattleEventTrigger.EventID,
                         scriptedBattleEventTrigger.EntranceID,
-                        controller.ApplicationData.BattlesWon);
+                        controller.ApplicationData.BattlesWon,
+                        sizeRatio);
                     break;
                 }
             }
@@ -460,7 +471,8 @@ public static class ExplorationSceneFactory
         Point2D point2,
         string battleId,
         string? entranceId,
-        IReadOnlySet<string> battlesWon)
+        IReadOnlySet<string> battlesWon,
+        double sizeRatio)
     {
         if (battlesWon.Contains(battleId)) return;
 
@@ -472,8 +484,8 @@ public static class ExplorationSceneFactory
         }
 
         scene.AddBoundary(new Trigger(
-            new Vector2D(point1.X, -point1.Y),
-            new Vector2D(point2.X, -point2.Y),
+            new Vector2D(point1.X * sizeRatio, -point1.Y * sizeRatio),
+            new Vector2D(point2.X * sizeRatio, -point2.Y * sizeRatio),
             tag)
             {
                 //Visible = false
