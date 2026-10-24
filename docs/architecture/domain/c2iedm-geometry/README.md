@@ -4,7 +4,8 @@ The seven concrete `Surface` specializations and `OrbitAreaAlignmentCode` belong
 to `Temple.Domain.Entities.C2IEDM.Geometry.Surfaces`. The abstract `Surface` and
 the other geometry categories remain in the parent namespace.
 
-- [Inheritance overview](overview.svg): every type, with the nested namespace package.
+- [Overview](overview.svg): every type, with inheritance, namespace packages,
+  and the `VerticalDistance`, `LinePoint`, and coordinate-system associations.
 - [Complete class diagram](complete.svg): inheritance and all navigation properties.
 - [Surfaces detail](surfaces.svg): the specializations and their associations to the parent namespace.
 - [PlantUML source](geometry.puml): the complete model, with individual navigation relations.
@@ -17,9 +18,12 @@ properties are omitted because the associations already describe those reference
 Multiplicities reflect the C# declarations; the diagrams do not assert composition
 or exclusive ownership.
 
-The overview intentionally omits associations. The complete view includes the
-optional `AbsolutePoint.VerticalDistance` association and both optional vertical
-distances on `GeometricVolume`.
+The overview includes the optional `AbsolutePoint.VerticalDistance` association,
+both optional vertical distances on `GeometricVolume`, the bidirectional
+`Line`/`LinePoint` association, and `LinePoint.Point`. It also shows
+`RelativePoint.CoordinateSystem` and the three point references on
+`PointReference`: `OriginPoint`, `XVectorPoint`, and `YVectorPoint`.
+Other associations appear in the complete view.
 
 ## Regeneration
 

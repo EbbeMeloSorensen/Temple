@@ -116,18 +116,21 @@ def write_svg(view, classes, enums, inheritance, associations):
     for parent, child in inheritance:
         if parent in selected and child in selected:
             lines.append(f'{parent} -> {child} [dir=back,arrowtail=empty];')
-    if view != "overview":
-        groups = defaultdict(list)
-        for source, target, role, multiplicity in associations:
-            if source in selected and target in selected and (source, target) != ("LinePoint", "Line"):
-                groups[source, target].append(f"{role} [{multiplicity}]")
-        for (source, target), roles in groups.items():
-            extra = ""
-            if (source, target) == ("Line", "LinePoint"):
-                roles, extra = ["Line [1] / LinePoints [0..*]"], "dir=both,arrowtail=vee,"
-            label = "\\n".join(roles)
-            lines.append(f'{source} -> {target} [constraint=false,{extra}arrowhead=vee,color="#256a91",'
-                         f'fontcolor="#205674",fontname="Segoe UI",fontsize=11,label="{label}"];')
+    groups = defaultdict(list)
+    for source, target, role, multiplicity in associations:
+        if view == "overview" and not {source, target} & {
+            "VerticalDistance", "LinePoint", "CoordinateSystem", "PointReference"
+        }:
+            continue
+        if source in selected and target in selected and (source, target) != ("LinePoint", "Line"):
+            groups[source, target].append(f"{role} [{multiplicity}]")
+    for (source, target), roles in groups.items():
+        extra = ""
+        if (source, target) == ("Line", "LinePoint"):
+            roles, extra = ["Line [1] / LinePoints [0..*]"], "dir=both,arrowtail=vee,"
+        label = "\\n".join(roles)
+        lines.append(f'{source} -> {target} [constraint=false,{extra}arrowhead=vee,color="#256a91",'
+                     f'fontcolor="#205674",fontname="Segoe UI",fontsize=11,label="{label}"];')
     lines.extend(['OrbitArea -> OrbitAreaAlignmentCode [style=dashed,arrowhead=open,label="uses",'
                   'fontname="Segoe UI",fontsize=11];', "}", "}"])
     result = subprocess.run(["dot", "-Tsvg"], input="\n".join(lines), text=True, capture_output=True, check=True)
