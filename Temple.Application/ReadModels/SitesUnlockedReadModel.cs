@@ -11,8 +11,9 @@ public class SitesUnlockedReadModel : ISitesUnlockedReader
     public IEnumerable<string> SitesUnlocked => _sitesUnlocked;
 
     public SitesUnlockedReadModel(
-        QuestEventBus eventBus)
+        QuestEventBus eventBus, IEnumerable<string>? initialProgress = null)
     {
+        _sitesUnlocked.UnionWith(initialProgress ?? Enumerable.Empty<string>());
         eventBus.Subscribe<SiteUnlockedEvent>(HandleSiteUnlocked);
     }
 

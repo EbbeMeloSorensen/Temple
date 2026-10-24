@@ -12,11 +12,13 @@ namespace Temple.ViewModel
         public RelayCommand GoToPeopleManagementCommand { get; }
         public RelayCommand ExportStateMachineCommand { get; }
         public RelayCommand ShutdownCommand { get; }
+        public GameSaveViewModel Saves { get; }
 
         public HomeViewModel(
             ApplicationController controller)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            Saves = new GameSaveViewModel(controller, canSave: false);
 
             StartNewGameCommand = new RelayCommand(_controller.StartNewGame);
             GoToPeopleManagementCommand = new RelayCommand(_controller.GoToPeopleManagement);

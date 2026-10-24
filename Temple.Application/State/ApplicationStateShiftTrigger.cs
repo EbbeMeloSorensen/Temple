@@ -8,6 +8,7 @@ public enum ApplicationStateShiftTrigger
     GoToSmurfManagement,
     GoToPeopleManagement,
     StartNewGame,
+    LoadGame,
     GoToExploration,
     GoToInGameMenu,
     GoToDialogue,

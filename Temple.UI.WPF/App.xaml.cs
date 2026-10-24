@@ -66,6 +66,9 @@ namespace Temple.UI.WPF
                             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
                             services.AddScoped<IStateMachineIO, StateMachineIO>();
                             services.AddSingleton<IGameIOHandler, GameIOHandler>();
+                            services.AddSingleton<IGameSaveStore>(_ => new JsonGameSaveStore(
+                                System.IO.Path.Combine(Environment.GetFolderPath(
+                                    Environment.SpecialFolder.LocalApplicationData), "Temple", "Saves")));
                             services.AddScoped<ISiteDataFactory, SiteDataFactory>();
                             services.AddScoped<IDialogueSessionFactory, DialogueSessionFactory>();
                             services.AddScoped<IBattleSceneFactory, BattleSceneFactory>();

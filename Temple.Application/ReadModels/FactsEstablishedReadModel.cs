@@ -9,8 +9,9 @@ public class FactsEstablishedReadModel : IFactsEstablishedReader
     private readonly HashSet<string> _factsEstablished = new HashSet<string>();
 
     public FactsEstablishedReadModel(
-        QuestEventBus eventBus)
+        QuestEventBus eventBus, IEnumerable<string>? initialProgress = null)
     {
+        _factsEstablished.UnionWith(initialProgress ?? Enumerable.Empty<string>());
         eventBus.Subscribe<FactEstablishedEvent>(HandleFactEstablished);
     }
 

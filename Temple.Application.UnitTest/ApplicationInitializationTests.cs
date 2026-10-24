@@ -1,3 +1,4 @@
+using Temple.Application.Saves;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
 using Temple.Application.Core;
@@ -53,7 +54,7 @@ public class ApplicationInitializationTests
     }
 
     private static ApplicationController CreateController(InitializerScope scope) =>
-        new(new ApplicationStateMachine(), scope, new GameSessionFactory(new EmptyGameIOHandler()),
+        new(new ApplicationStateMachine(), scope, new GameSessionFactory(new EmptyGameIOHandler(), new GameSaveValidator()), null!, new GameSaveValidator(),
             NullLogger<ApplicationController>.Instance);
 
     private sealed class RecordingInitializer : IAppDataInitializer

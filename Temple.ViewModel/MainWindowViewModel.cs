@@ -4,6 +4,7 @@ using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
+using Temple.Application.State.Payloads;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
@@ -91,7 +92,10 @@ namespace Temple.ViewModel
                         _dialogueSessionFactory.Initialize(
                             _controller.CurrentSession.Queries,
                             _controller.CurrentSession.EventBus);
-                        _controller.ExitState();
+                        if (applicationState.Payload is ExplorationPayload or WildernessPayload)
+                            _controller.GoToNextApplicationState(applicationState.Payload);
+                        else
+                            _controller.ExitState();
                         break;
 
                     case StateMachineState.Interlude:

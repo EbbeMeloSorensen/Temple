@@ -27,6 +27,24 @@ depend on WPF focus and window activation; gameplay remains in the view model.
 
 People management, Smurf management, Dungeons and Dragons adventure game.
 
+## Saved games
+
+Open the in-game menu to save to one of three slots. Saving replaces the selected
+slot. Load a slot from that menu or from the main menu. Exploration is stopped
+while the in-game menu is open, and the menu disables interaction during file I/O.
+Battle and dialogue cannot be saved midway through an action.
+
+The WPF application stores JSON files in `%LOCALAPPDATA%\Temple\Saves`. Each write
+flushes a temporary file in the same directory before renaming it over the slot.
+An unsuccessful write leaves the previous file in place.
+
+`GameSave` is a detached progress snapshot. Its format and content versions are
+validated before a candidate session replaces the active game. Incompatible saves
+are rejected; no migration between versions is currently provided. Keep creature
+definition IDs stable in `PartyCatalog`, and increment `CurrentContentVersion`
+when content identifiers or their interpretation become incompatible. Progress
+restoration initializes query projections without replaying gameplay events.
+
 ## Layers
 
 This is a solution made in compliance with the "Clean Architecture" architectural pattern. The solution consists of the following layers:

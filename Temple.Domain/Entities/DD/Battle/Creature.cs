@@ -37,5 +37,14 @@
         {
             return CreatureType.Name;
         }
+
+        public void RestoreProgress(int hitPoints, bool isAutomatic)
+        {
+            // Negative hit points are possible after a lethal battle attack.
+            if (hitPoints > CreatureType.MaxHitPoints)
+                throw new ArgumentOutOfRangeException(nameof(hitPoints), "Hit points exceed the creature's maximum.");
+            HitPoints = hitPoints;
+            IsAutomatic = isAutomatic;
+        }
     }
 }

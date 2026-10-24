@@ -1,3 +1,4 @@
+using Temple.Application.Saves;
 using Microsoft.Extensions.Logging.Abstractions;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
@@ -15,7 +16,7 @@ public class GameSessionTests
     {
         var loader = new QuestLoader();
         var machine = new ApplicationStateMachine();
-        using var controller = new ApplicationController(machine, null!, new GameSessionFactory(loader),
+        using var controller = new ApplicationController(machine, null!, new GameSessionFactory(loader, new GameSaveValidator()), null!, new GameSaveValidator(),
             NullLogger<ApplicationController>.Instance);
         machine.Fire(ApplicationStateShiftTrigger.Initialize);
         controller.StartNewGame();
@@ -77,7 +78,7 @@ public class GameSessionTests
     {
         var loader = new QuestLoader();
         var machine = new ApplicationStateMachine();
-        using var controller = new ApplicationController(machine, null!, new GameSessionFactory(loader),
+        using var controller = new ApplicationController(machine, null!, new GameSessionFactory(loader, new GameSaveValidator()), null!, new GameSaveValidator(),
             NullLogger<ApplicationController>.Instance);
         machine.Fire(ApplicationStateShiftTrigger.Initialize);
         controller.StartNewGame();

@@ -1,3 +1,4 @@
+using Temple.Application.Saves;
 using Craft.Logging;
 using Craft.Math;
 using Craft.Simulation;
@@ -92,7 +93,7 @@ public class ExplorationInputTests
     private static ApplicationController CreateController()
     {
         var machine = new ApplicationStateMachine();
-        var controller = new ApplicationController(machine, null!, new GameSessionFactory(new EmptyGameIO()),
+        var controller = new ApplicationController(machine, null!, new GameSessionFactory(new EmptyGameIO(), new GameSaveValidator()), null!, new GameSaveValidator(),
             NullLogger<ApplicationController>.Instance);
         machine.Fire(ApplicationStateShiftTrigger.Initialize);
         controller.StartNewGame();

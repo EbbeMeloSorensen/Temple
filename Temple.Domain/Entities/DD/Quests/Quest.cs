@@ -39,4 +39,16 @@ public sealed class Quest
     {
         AreCompletionCriteriaSatisfied = true;
     }
+
+    // Rehydrate progress without executing rules or raising gameplay events.
+    public void RestoreProgress(QuestState state, bool completionCriteriaSatisfied)
+    {
+        if (!Enum.IsDefined(state))
+            throw new ArgumentOutOfRangeException(nameof(state));
+        if (state == QuestState.Completed && !completionCriteriaSatisfied)
+            throw new ArgumentException("A completed quest must have satisfied its completion criteria.");
+
+        State = state;
+        AreCompletionCriteriaSatisfied = completionCriteriaSatisfied;
+    }
 }

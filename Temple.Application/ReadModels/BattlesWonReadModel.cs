@@ -10,8 +10,9 @@ public class BattlesWonReadModel : IBattlesWonReader
 
 
     public BattlesWonReadModel(
-        QuestEventBus eventBus)
+        QuestEventBus eventBus, IEnumerable<string>? initialProgress = null)
     {
+        _battlesWon.UnionWith(initialProgress ?? Enumerable.Empty<string>());
         eventBus.Subscribe<BattleWonEvent>(HandleBattleWon);
     }
 

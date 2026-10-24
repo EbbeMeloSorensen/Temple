@@ -14,12 +14,14 @@ public class InGameMenuViewModel : TempleViewModel
     public QuestCollectionViewModel QuestCollectionViewModel { get; }
 
     public RelayCommand Exit_Command { get; }
+    public GameSaveViewModel Saves { get; }
 
     public InGameMenuViewModel(
         ApplicationController controller,
         IQuestStatusReader questStatusReadModel)
     {
         _controller = controller ?? throw new ArgumentNullException(nameof(controller));
+        Saves = new GameSaveViewModel(controller, canSave: true);
 
         QuestCollectionViewModel = new QuestCollectionViewModel(
             questStatusReadModel,

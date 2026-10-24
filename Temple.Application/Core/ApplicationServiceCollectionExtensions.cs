@@ -1,6 +1,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Temple.Application.Saves;
 
 namespace Temple.Application.Core;
 
@@ -18,7 +19,10 @@ public static class ApplicationServiceCollectionExtensions
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(People.Create.Handler).Assembly));
 
-        services.AddValidatorsFromAssembly(typeof(People.Create.CommandValidator).Assembly);
+        services.AddValidatorsFromAssembly(typeof(People.Create.CommandValidator).Assembly,
+            filter: result => result.ValidatorType != typeof(GameSaveValidator));
+        // The session factory and controller are singletons; this validator is stateless.
+        services.AddSingleton<IValidator<GameSave>, GameSaveValidator>();
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 

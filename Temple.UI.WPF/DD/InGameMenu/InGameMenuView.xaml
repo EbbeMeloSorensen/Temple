@@ -8,8 +8,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance inGameMenu:InGameMenuViewModel }">
-    <Grid>
-        <TabControl SelectedIndex="1">
+    <Grid IsEnabled="{Binding Saves.IsInteractionEnabled}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="12">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Save slot" Target="{Binding ElementName=SaveSlot}"/>
+                <ComboBox x:Name="SaveSlot" Width="60" ItemsSource="{Binding Saves.Slots}"
+                          SelectedItem="{Binding Saves.SelectedSlot}" AutomationProperties.Name="Save slot"/>
+                <Button Content="Save to slot" Margin="8,0,0,0" Padding="12,4"
+                        Command="{Binding Saves.SaveCommand}" ToolTip="Replaces the save in the selected slot."/>
+                <Button Content="Load slot" Margin="8,0,0,0" Padding="12,4"
+                        Command="{Binding Saves.LoadCommand}"/>
+                <Button Content="Back to game" Margin="20,0,0,0" Padding="12,4"
+                        Command="{Binding Exit_Command}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Saves.StatusMessage}" TextWrapping="Wrap" Margin="0,6,0,0"/>
+        </StackPanel>
+        <TabControl Grid.Row="1" SelectedIndex="1">
             <TabItem Header="Inventory">
                 <inventory:InventoryView DataContext="{Binding InventoryViewModel}"/>
             </TabItem>
@@ -18,7 +36,5 @@
             </TabItem>
         </TabControl>
 
-        <Button Width="120" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20"
-                Content="Back to game" Command="{Binding Exit_Command}"/>
     </Grid>
 </UserControl>

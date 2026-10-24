@@ -9,8 +9,9 @@ public class KnowledgeGainedReadModel : IKnowledgeGainedReader
     private readonly HashSet<string> _knowledgeGained = new HashSet<string>();
 
     public KnowledgeGainedReadModel(
-        QuestEventBus eventBus)
+        QuestEventBus eventBus, IEnumerable<string>? initialProgress = null)
     {
+        _knowledgeGained.UnionWith(initialProgress ?? Enumerable.Empty<string>());
         eventBus.Subscribe<KnowledgeGainedEvent>(HandleKnowledgeGained);
     }
 

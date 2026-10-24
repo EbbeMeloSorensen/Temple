@@ -6,10 +6,19 @@
              xmlns:viewModel="clr-namespace:Temple.ViewModel;assembly=Temple.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance viewModel:HomeViewModel }">
-    <Grid Background="Black">
+    <Grid Background="Black" IsEnabled="{Binding Saves.IsInteractionEnabled}">
         <StackPanel VerticalAlignment="Center">
             <Button Content="Start New Game" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Width="240"
                     Command="{Binding StartNewGameCommand}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Label Content="Save slot" Foreground="White" Target="{Binding ElementName=SaveSlot}"/>
+                <ComboBox x:Name="SaveSlot" Width="60" ItemsSource="{Binding Saves.Slots}"
+                          SelectedItem="{Binding Saves.SelectedSlot}" AutomationProperties.Name="Save slot"/>
+                <Button Content="Load Game" Margin="8,0,0,0" Padding="12,4"
+                        Command="{Binding Saves.LoadCommand}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Saves.StatusMessage}" Foreground="White" TextWrapping="Wrap"
+                       MaxWidth="500" HorizontalAlignment="Center" Margin="12,5"/>
             <Button Content="Exit Application.." FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Width="240" Margin="0, 5, 0, 0"
                     Command="{Binding ShutdownCommand}"/>
             <Button Content="Smurfs.." HorizontalAlignment="Center" FontSize="24" Width="240" Margin="0, 5, 0, 0"
