@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Temple.Infrastructure\Temple.Infrastructure.csproj" />
+    <ProjectReference Include="..\Temple.Persistence.EFCore.AppData\Temple.Persistence.EFCore.AppData.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -413,7 +413,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.ToTable("RelativePoints");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.CorridorArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.CorridorArea", b =>
                 {
                     b.HasBaseType("Temple.Domain.Entities.C2IEDM.Geometry.Surface");
 
@@ -428,7 +428,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.ToTable("CorridorAreas");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Ellipse", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.Ellipse", b =>
                 {
                     b.HasBaseType("Temple.Domain.Entities.C2IEDM.Geometry.Surface");
 
@@ -450,7 +450,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.ToTable("Ellipses");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.FanArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.FanArea", b =>
                 {
                     b.HasBaseType("Temple.Domain.Entities.C2IEDM.Geometry.Surface");
 
@@ -474,7 +474,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.ToTable("FanAreas");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.OrbitArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.OrbitArea", b =>
                 {
                     b.HasBaseType("Temple.Domain.Entities.C2IEDM.Geometry.Surface");
 
@@ -497,7 +497,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.ToTable("OrbitAreas");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.PolyArcArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.PolyArcArea", b =>
                 {
                     b.HasBaseType("Temple.Domain.Entities.C2IEDM.Geometry.Surface");
 
@@ -523,7 +523,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.ToTable("PolyArcAreas");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.PolygonArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.PolygonArea", b =>
                 {
                     b.HasBaseType("Temple.Domain.Entities.C2IEDM.Geometry.Surface");
 
@@ -535,7 +535,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.ToTable("PolygonAreas");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.TrackArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.TrackArea", b =>
                 {
                     b.HasBaseType("Temple.Domain.Entities.C2IEDM.Geometry.Surface");
 
@@ -802,7 +802,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.Navigation("CoordinateSystem");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.CorridorArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.CorridorArea", b =>
                 {
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Line", "CenterLine")
                         .WithMany()
@@ -812,14 +812,14 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
 
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Surface", null)
                         .WithOne()
-                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.CorridorArea", "Id")
+                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.CorridorArea", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("CenterLine");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Ellipse", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.Ellipse", b =>
                 {
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Point", "CentrePoint")
                         .WithMany()
@@ -835,7 +835,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
 
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Surface", null)
                         .WithOne()
-                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Ellipse", "Id")
+                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.Ellipse", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -852,11 +852,11 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.Navigation("SecondConjugateDiameterPoint");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.FanArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.FanArea", b =>
                 {
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Surface", null)
                         .WithOne()
-                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.FanArea", "Id")
+                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.FanArea", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -869,7 +869,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.Navigation("VertexPoint");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.OrbitArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.OrbitArea", b =>
                 {
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Point", "FirstPoint")
                         .WithMany()
@@ -879,7 +879,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
 
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Surface", null)
                         .WithOne()
-                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.OrbitArea", "Id")
+                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.OrbitArea", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -894,7 +894,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.Navigation("SecondPoint");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.PolyArcArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.PolyArcArea", b =>
                 {
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Point", "BearingOriginPoint")
                         .WithMany()
@@ -910,7 +910,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
 
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Surface", null)
                         .WithOne()
-                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.PolyArcArea", "Id")
+                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.PolyArcArea", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -919,7 +919,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                     b.Navigation("DefiningLine");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.PolygonArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.PolygonArea", b =>
                 {
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Line", "BoundingLine")
                         .WithMany()
@@ -929,14 +929,14 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
 
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Surface", null)
                         .WithOne()
-                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.PolygonArea", "Id")
+                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.PolygonArea", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("BoundingLine");
                 });
 
-            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.TrackArea", b =>
+            modelBuilder.Entity("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.TrackArea", b =>
                 {
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Point", "BeginPoint")
                         .WithMany()
@@ -952,7 +952,7 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
 
                     b.HasOne("Temple.Domain.Entities.C2IEDM.Geometry.Surface", null)
                         .WithOne()
-                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.TrackArea", "Id")
+                        .HasForeignKey("Temple.Domain.Entities.C2IEDM.Geometry.Surfaces.TrackArea", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -1,4 +1,4 @@
-﻿namespace Temple.Domain.Entities.C2IEDM.Geometry
+﻿namespace Temple.Domain.Entities.C2IEDM.Geometry.Surfaces
 {
     public class PolygonArea : Surface
     {

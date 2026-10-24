@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Temple.Domain.Entities.C2IEDM.Geometry;
+using Temple.Domain.Entities.C2IEDM.Geometry.Surfaces;
 using Temple.Domain.Entities.C2IEDM.ObjectItems;
 using Temple.Domain.Entities.PR;
 using Temple.Domain.Entities.Smurfs;

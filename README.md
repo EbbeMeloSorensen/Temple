@@ -47,6 +47,9 @@ restoration initializes query projections without replaying gameplay events.
 
 ## Layers
 
+The [C2IEDM Geometry class diagrams](docs/architecture/domain/c2iedm-geometry/README.md)
+show its namespaces, inheritance, and associations, with regeneration instructions.
+
 This is a solution made in compliance with the "Clean Architecture" architectural pattern. The solution consists of the following layers:
 
 ### Domain Layer

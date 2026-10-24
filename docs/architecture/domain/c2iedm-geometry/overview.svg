@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1388pt" height="1596pt" viewBox="0.00 0.00 1388.40 1596.40">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(43.2 1553.2)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-43.2,43.2 -43.2,-1553.2 1345.2,-1553.2 1345.2,43.2 -43.2,43.2" />
+<g id="clust1" class="cluster"><title>cluster_geometry</title>
+<polygon fill="white" stroke="#71839a" points="8,-8 8,-1502 1294,-1502 1294,-8 8,-8" />
+<path d="M8.0,-1502.0 v-28 h410 v28" fill="white" stroke="#71839a" stroke-width="1.4" /><text x="20.0" y="-1511.0" font-family="Segoe UI" font-size="13" fill="#24364b">Temple.Domain.Entities.C2IEDM.Geometry</text></g>
+<g id="clust2" class="cluster"><title>cluster_surfaces</title>
+<polygon fill="white" stroke="#71839a" points="570,-554 570,-1434 1264,-1434 1264,-554 570,-554" />
+<path d="M570.0,-1434.0 v-28 h95 v28" fill="white" stroke="#71839a" stroke-width="1.4" /><text x="582.0" y="-1443.0" font-family="Segoe UI" font-size="13" fill="#24364b">Surfaces</text></g>
+
+<g id="node1" class="node"><title>AbsolutePoint</title>
+<polygon fill="#e9f0f8" stroke="none" points="663,-347 663,-373 842,-373 842,-347 663,-347" />
+<text text-anchor="start" x="711.5" y="-357.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">AbsolutePoint</text>
+<text text-anchor="start" x="669" y="-331.4" font-family="Segoe UI" font-size="12.00">+ LatitudeCoordinate : double</text>
+<text text-anchor="start" x="669" y="-306.4" font-family="Segoe UI" font-size="12.00">+ LongitudeCoordinate : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="662,-347 662,-347 843,-347 843,-347 662,-347" />
+<polygon fill="none" stroke="#71839a" points="661.5,-296 661.5,-374 842.5,-374 842.5,-296 661.5,-296" />
+</g>
+
+<g id="node2" class="node"><title>ConeVolume</title>
+<polygon fill="#e9f0f8" stroke="none" points="708,-43 708,-69 796,-69 796,-43 708,-43" />
+<text text-anchor="start" x="714.5" y="-53.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">ConeVolume</text>
+<polygon fill="none" stroke="#71839a" points="707,-42 707,-70 797,-70 797,-42 707,-42" />
+</g>
+
+<g id="node3" class="node"><title>CoordinateSystem</title>
+<polygon fill="#e9f0f8" stroke="none" points="61,-1225 61,-1251 176,-1251 176,-1225 61,-1225" />
+<text text-anchor="start" x="67.5" y="-1235.9" font-family="Segoe UI" font-weight="bold" font-style="italic" font-size="12.00">CoordinateSystem</text>
+<text text-anchor="start" x="67" y="-1209.4" font-family="Segoe UI" font-size="12.00">+ ID : Guid</text>
+<polygon fill="#71839a" stroke="#71839a" points="60,-1225 60,-1225 177,-1225 177,-1225 60,-1225" />
+<polygon fill="none" stroke="#71839a" points="59.5,-1199.5 59.5,-1252.5 176.5,-1252.5 176.5,-1199.5 59.5,-1199.5" />
+</g>
+
+<g id="node9" class="node"><title>PointReference</title>
+<polygon fill="#e9f0f8" stroke="none" points="346,-1213 346,-1239 447,-1239 447,-1213 346,-1213" />
+<text text-anchor="start" x="352.5" y="-1223.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">PointReference</text>
+<polygon fill="none" stroke="#71839a" points="344.5,-1212 344.5,-1240 447.5,-1240 447.5,-1212 344.5,-1212" />
+</g>
+
+<g id="edge6" class="edge"><title>CoordinateSystem-&gt;PointReference</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M193.006,-1226C237.934,-1226 294.486,-1226 336.316,-1226" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="192.758,-1223.2 184.758,-1226 192.758,-1228.8 192.758,-1223.2" />
+</g>
+
+<g id="node4" class="node"><title>GeometricVolume</title>
+<polygon fill="#e9f0f8" stroke="none" points="340,-180 340,-206 453,-206 453,-180 340,-180" />
+<text text-anchor="start" x="346.5" y="-190.9" font-family="Segoe UI" font-weight="bold" font-style="italic" font-size="12.00">GeometricVolume</text>
+<polygon fill="none" stroke="#71839a" points="338.5,-179 338.5,-207 453.5,-207 453.5,-179 338.5,-179" />
+</g>
+
+<g id="edge2" class="edge"><title>GeometricVolume-&gt;ConeVolume</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M429.541,-170.222C463.212,-147.675 518.06,-113.749 570,-94 611.867,-78.0806 661.852,-68.2271 698.675,-62.5558" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="427.748,-168.053 422.685,-174.851 430.882,-172.694 427.748,-168.053" />
+</g>
+
+<g id="node11" class="node"><title>SphereVolume</title>
+<polygon fill="#e9f0f8" stroke="none" points="672,-144 672,-170 833,-170 833,-144 672,-144" />
+<text text-anchor="start" x="710" y="-154.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">SphereVolume</text>
+<text text-anchor="start" x="678" y="-128.4" font-family="Segoe UI" font-size="12.00">+ RadiusDimension : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="671,-144 671,-144 834,-144 834,-144 671,-144" />
+<polygon fill="none" stroke="#71839a" points="670.5,-118.5 670.5,-171.5 833.5,-171.5 833.5,-118.5 670.5,-118.5" />
+</g>
+
+<g id="edge8" class="edge"><title>GeometricVolume-&gt;SphereVolume</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M469.592,-183.157C525.41,-175.589 602.787,-165.097 662.279,-157.03" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="469.069,-180.402 461.517,-184.252 469.821,-185.951 469.069,-180.402" />
+</g>
+
+<g id="node13" class="node"><title>SurfaceVolume</title>
+<polygon fill="#e9f0f8" stroke="none" points="702,-221 702,-247 803,-247 803,-221 702,-221" />
+<text text-anchor="start" x="708.5" y="-231.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">SurfaceVolume</text>
+<polygon fill="none" stroke="#71839a" points="700.5,-220 700.5,-248 803.5,-248 803.5,-220 700.5,-220" />
+</g>
+
+<g id="edge17" class="edge"><title>GeometricVolume-&gt;SurfaceVolume</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M469.789,-201.43C535.569,-209.049 631.172,-220.122 692.217,-227.192" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="469.786,-198.611 461.517,-200.472 469.142,-204.174 469.786,-198.611" />
+</g>
+
+<g id="node5" class="node"><title>Line</title>
+<polygon fill="#e9f0f8" stroke="none" points="377,-312 377,-338 415,-338 415,-312 377,-312" />
+<text text-anchor="start" x="383.5" y="-322.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">Line</text>
+<polygon fill="none" stroke="#71839a" points="376,-311 376,-339 416,-339 416,-311 376,-311" />
+</g>
+
+<g id="node6" class="node"><title>LinePoint</title>
+<polygon fill="#e9f0f8" stroke="none" points="47,-931 47,-957 189,-957 189,-931 47,-931" />
+<text text-anchor="start" x="90.5" y="-941.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">LinePoint</text>
+<text text-anchor="start" x="53" y="-915.4" font-family="Segoe UI" font-size="12.00">+ Index : int</text>
+<text text-anchor="start" x="53" y="-890.4" font-family="Segoe UI" font-size="12.00">+ SequenceQuantity : int</text>
+<polygon fill="#71839a" stroke="#71839a" points="46,-931 46,-931 190,-931 190,-931 46,-931" />
+<polygon fill="none" stroke="#71839a" points="46,-880 46,-958 190,-958 190,-880 46,-880" />
+</g>
+
+<g id="node7" class="node"><title>Location</title>
+<polygon fill="#e9f0f8" stroke="none" points="84,-353 84,-379 152,-379 152,-353 84,-353" />
+<text text-anchor="start" x="94" y="-363.9" font-family="Segoe UI" font-weight="bold" font-style="italic" font-size="12.00">Location</text>
+<text text-anchor="start" x="90" y="-337.4" font-family="Segoe UI" font-size="12.00">+ Id : Guid</text>
+<polygon fill="#71839a" stroke="#71839a" points="83,-353 83,-353 153,-353 153,-353 83,-353" />
+<polygon fill="none" stroke="#71839a" points="83,-327.5 83,-380.5 153,-380.5 153,-327.5 83,-327.5" />
+</g>
+
+<g id="edge3" class="edge"><title>Location-&gt;GeometricVolume</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M168.296,-325.244C224.986,-292.175 316.334,-238.888 363.921,-211.13" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="166.718,-322.923 161.219,-329.372 169.54,-327.76 166.718,-322.923" />
+</g>
+
+<g id="edge4" class="edge"><title>Location-&gt;Line</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M169.207,-348.725C227.568,-342.593 321.751,-332.696 367.838,-327.854" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="168.882,-345.943 161.219,-349.564 169.468,-351.513 168.882,-345.943" />
+</g>
+
+<g id="node8" class="node"><title>Point</title>
+<polygon fill="#e9f0f8" stroke="none" points="374,-388 374,-414 418,-414 418,-388 374,-388" />
+<text text-anchor="start" x="380.5" y="-398.9" font-family="Segoe UI" font-weight="bold" font-style="italic" font-size="12.00">Point</text>
+<polygon fill="none" stroke="#71839a" points="373,-387 373,-415 419,-415 419,-387 373,-387" />
+</g>
+
+<g id="edge5" class="edge"><title>Location-&gt;Point</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M169.385,-362.58C226.47,-372.301 317.665,-387.831 364.721,-395.844" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="169.575,-359.772 161.219,-361.189 168.635,-365.293 169.575,-359.772" />
+</g>
+
+<g id="node12" class="node"><title>Surface</title>
+<polygon fill="#e9f0f8" stroke="none" points="369,-886 369,-912 424,-912 424,-886 369,-886" />
+<text text-anchor="start" x="375.5" y="-896.9" font-family="Segoe UI" font-weight="bold" font-style="italic" font-size="12.00">Surface</text>
+<polygon fill="none" stroke="#71839a" points="367.5,-885 367.5,-913 424.5,-913 424.5,-885 367.5,-885" />
+</g>
+
+<g id="edge9" class="edge"><title>Location-&gt;Surface</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M138.172,-391.858C192.573,-499.281 346.507,-803.244 385.786,-880.806" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="140.543,-390.341 134.43,-384.469 135.547,-392.871 140.543,-390.341" />
+</g>
+
+<g id="edge1" class="edge"><title>Point-&gt;AbsolutePoint</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M435.106,-393.895C486.817,-384.254 581.028,-366.69 653.155,-353.242" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="434.533,-391.154 427.182,-395.373 435.56,-396.659 434.533,-391.154" />
+</g>
+
+<g id="node10" class="node"><title>RelativePoint</title>
+<polygon fill="#e9f0f8" stroke="none" points="657,-498 657,-524 847,-524 847,-498 657,-498" />
+<text text-anchor="start" x="713" y="-508.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">RelativePoint</text>
+<text text-anchor="start" x="663" y="-482.4" font-family="Segoe UI" font-size="12.00">+ XCoordinateDimension : double</text>
+<text text-anchor="start" x="663" y="-457.4" font-family="Segoe UI" font-size="12.00">+ YCoordinateDimension : double</text>
+<text text-anchor="start" x="663" y="-432.4" font-family="Segoe UI" font-size="12.00">+ ZCoordinateDimension : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="656,-498 656,-498 848,-498 848,-498 656,-498" />
+<polygon fill="none" stroke="#71839a" points="656,-422.5 656,-525.5 848,-525.5 848,-422.5 656,-422.5" />
+</g>
+
+<g id="edge7" class="edge"><title>Point-&gt;RelativePoint</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M435.222,-408.882C485.667,-419.284 576.415,-437.998 647.724,-452.703" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="435.583,-406.097 427.182,-407.224 434.451,-411.582 435.583,-406.097" />
+</g>
+
+<g id="node15" class="node"><title>CorridorArea</title>
+<polygon fill="#e9f0f8" stroke="none" points="674,-608 674,-634 831,-634 831,-608 674,-608" />
+<text text-anchor="start" x="715.5" y="-618.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">CorridorArea</text>
+<text text-anchor="start" x="680" y="-592.4" font-family="Segoe UI" font-size="12.00">+ WidthDimension : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="673,-608 673,-608 832,-608 832,-608 673,-608" />
+<polygon fill="none" stroke="#71839a" points="672.5,-582.5 672.5,-635.5 831.5,-635.5 831.5,-582.5 672.5,-582.5" />
+</g>
+
+<g id="edge10" class="edge"><title>Surface-&gt;CorridorArea</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M408.317,-873.471C431.394,-824.405 488.669,-716.776 570,-660 597.707,-640.658 632.595,-628.62 664.33,-621.141" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="405.732,-872.391 404.908,-880.827 410.813,-874.745 405.732,-872.391" />
+</g>
+
+<g id="node16" class="node"><title>Ellipse</title>
+<polygon fill="#e9f0f8" stroke="none" points="727,-685 727,-711 778,-711 778,-685 727,-685" />
+<text text-anchor="start" x="733.5" y="-695.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">Ellipse</text>
+<polygon fill="none" stroke="#71839a" points="725.5,-684 725.5,-712 778.5,-712 778.5,-684 725.5,-684" />
+</g>
+
+<g id="edge11" class="edge"><title>Surface-&gt;Ellipse</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M415.468,-874.545C444.274,-838.256 503.541,-770.709 570,-736 617.388,-711.252 679.699,-702.621 717.476,-699.611" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="413.184,-872.92 410.449,-880.942 417.59,-876.377 413.184,-872.92" />
+</g>
+
+<g id="node17" class="node"><title>FanArea</title>
+<polygon fill="#e9f0f8" stroke="none" points="647,-861 647,-887 858,-887 858,-861 647,-861" />
+<text text-anchor="start" x="729" y="-871.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">FanArea</text>
+<text text-anchor="start" x="653" y="-845.4" font-family="Segoe UI" font-size="12.00">+ MinimumRangeDimension : double</text>
+<text text-anchor="start" x="653" y="-820.4" font-family="Segoe UI" font-size="12.00">+ MaximumRangeDimension : double</text>
+<text text-anchor="start" x="653" y="-795.4" font-family="Segoe UI" font-size="12.00">+ OrientationAngle : double</text>
+<text text-anchor="start" x="653" y="-770.4" font-family="Segoe UI" font-size="12.00">+ SectorSizeAngle : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="646,-861 646,-861 859,-861 859,-861 646,-861" />
+<polygon fill="none" stroke="#71839a" points="645.5,-760 645.5,-888 858.5,-888 858.5,-760 645.5,-760" />
+</g>
+
+<g id="edge12" class="edge"><title>Surface-&gt;FanArea</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M440.397,-889.806C489.15,-879.477 570.241,-862.296 637.342,-848.08" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="439.81,-887.068 432.564,-891.465 440.97,-892.546 439.81,-887.068" />
+</g>
+
+<g id="node18" class="node"><title>OrbitArea</title>
+<polygon fill="#e9f0f8" stroke="none" points="604,-987 604,-1013 901,-1013 901,-987 604,-987" />
+<text text-anchor="start" x="724.5" y="-997.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">OrbitArea</text>
+<text text-anchor="start" x="610" y="-971.4" font-family="Segoe UI" font-size="12.00">+ OrbitAreaAlignmentCode : OrbitAreaAlignmentCode</text>
+<text text-anchor="start" x="610" y="-946.4" font-family="Segoe UI" font-size="12.00">+ WidthDimension : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="603,-987 603,-987 902,-987 902,-987 603,-987" />
+<polygon fill="none" stroke="#71839a" points="602.5,-936 602.5,-1014 901.5,-1014 901.5,-936 602.5,-936" />
+</g>
+
+<g id="edge13" class="edge"><title>Surface-&gt;OrbitArea</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M440.503,-908.34C479.192,-916.646 538.187,-929.311 594.4,-941.38" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="440.973,-905.577 432.564,-906.635 439.798,-911.052 440.973,-905.577" />
+</g>
+
+<g id="node19" class="node"><title>PolyArcArea</title>
+<polygon fill="#e9f0f8" stroke="none" points="663,-1138 663,-1164 841,-1164 841,-1138 663,-1138" />
+<text text-anchor="start" x="716.5" y="-1148.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">PolyArcArea</text>
+<text text-anchor="start" x="669" y="-1122.4" font-family="Segoe UI" font-size="12.00">+ BeginBearingAngle : double</text>
+<text text-anchor="start" x="669" y="-1097.4" font-family="Segoe UI" font-size="12.00">+ EndBearingAngle : double</text>
+<text text-anchor="start" x="669" y="-1072.4" font-family="Segoe UI" font-size="12.00">+ ArcRadiusDimension : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="662,-1138 662,-1138 842,-1138 842,-1138 662,-1138" />
+<polygon fill="none" stroke="#71839a" points="662,-1062.5 662,-1165.5 842,-1165.5 842,-1062.5 662,-1062.5" />
+</g>
+
+<g id="edge14" class="edge"><title>Surface-&gt;PolyArcArea</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M421.985,-922.862C454.201,-952.702 512.9,-1003.99 570,-1038 596.06,-1053.52 625.877,-1067.44 653.688,-1078.99" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="423.663,-920.599 415.903,-917.192 419.845,-924.695 423.663,-920.599" />
+</g>
+
+<g id="node20" class="node"><title>PolygonArea</title>
+<polygon fill="#e9f0f8" stroke="none" points="708,-1215 708,-1241 796,-1241 796,-1215 708,-1215" />
+<text text-anchor="start" x="714.5" y="-1225.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">PolygonArea</text>
+<polygon fill="none" stroke="#71839a" points="707,-1214 707,-1242 797,-1242 797,-1214 707,-1214" />
+</g>
+
+<g id="edge15" class="edge"><title>Surface-&gt;PolygonArea</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M404.627,-925.021C422.903,-982.529 474.9,-1120.74 570,-1189 607.604,-1215.99 660.173,-1224.96 698.973,-1227.64" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="407.225,-923.946 402.174,-917.139 401.878,-925.61 407.225,-923.946" />
+</g>
+
+<g id="node21" class="node"><title>TrackArea</title>
+<polygon fill="#e9f0f8" stroke="none" points="660,-1341 660,-1367 845,-1367 845,-1341 660,-1341" />
+<text text-anchor="start" x="723.5" y="-1351.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">TrackArea</text>
+<text text-anchor="start" x="666" y="-1325.4" font-family="Segoe UI" font-size="12.00">+ LeftWidthDimension : double</text>
+<text text-anchor="start" x="666" y="-1300.4" font-family="Segoe UI" font-size="12.00">+ RightWidthDimension : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="659,-1341 659,-1341 846,-1341 846,-1341 659,-1341" />
+<polygon fill="none" stroke="#71839a" points="658.5,-1290 658.5,-1368 845.5,-1368 845.5,-1290 658.5,-1290" />
+</g>
+
+<g id="edge16" class="edge"><title>Surface-&gt;TrackArea</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" d="M402.035,-925.177C416.19,-991.795 462.533,-1169.32 570,-1266 592.509,-1286.25 621.887,-1300.07 650.405,-1309.46" />
+<polygon fill="none" stroke="#53657b" stroke-width="1.2" points="404.758,-924.518 400.393,-917.253 399.274,-925.654 404.758,-924.518" />
+</g>
+
+<g id="node14" class="node"><title>VerticalDistance</title>
+<polygon fill="#e9f0f8" stroke="none" points="56,-207 56,-233 181,-233 181,-207 56,-207" />
+<text text-anchor="start" x="71.5" y="-217.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">VerticalDistance</text>
+<text text-anchor="start" x="62" y="-191.4" font-family="Segoe UI" font-size="12.00">+ Id : Guid</text>
+<text text-anchor="start" x="62" y="-166.4" font-family="Segoe UI" font-size="12.00">+ Dimension : double</text>
+<polygon fill="#71839a" stroke="#71839a" points="55,-207 55,-207 182,-207 182,-207 55,-207" />
+<polygon fill="none" stroke="#71839a" points="54.5,-156 54.5,-234 181.5,-234 181.5,-156 54.5,-156" />
+</g>
+
+<g id="node22" class="node"><title>OrbitAreaAlignmentCode</title>
+<polygon fill="#f5f0e6" stroke="none" points="1072,-994 1072,-1031 1231,-1031 1231,-994 1072,-994" />
+<text text-anchor="start" x="1101.5" y="-1015.9" font-family="Segoe UI" font-size="12.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="start" x="1078.5" y="-1003.9" font-family="Segoe UI" font-weight="bold" font-size="12.00">OrbitAreaAlignmentCode</text>
+<text text-anchor="start" x="1078" y="-978.4" font-family="Segoe UI" font-size="12.00">Centre</text>
+<text text-anchor="start" x="1078" y="-953.4" font-family="Segoe UI" font-size="12.00">Left</text>
+<text text-anchor="start" x="1078" y="-928.4" font-family="Segoe UI" font-size="12.00">Right</text>
+<polygon fill="#71839a" stroke="#71839a" points="1071,-994 1071,-994 1232,-994 1232,-994 1071,-994" />
+<polygon fill="none" stroke="#71839a" points="1070.5,-918 1070.5,-1032 1231.5,-1032 1231.5,-918 1070.5,-918" />
+</g>
+
+<g id="edge18" class="edge"><title>OrbitArea-&gt;OrbitAreaAlignmentCode</title>
+<path fill="none" stroke="#53657b" stroke-width="1.2" stroke-dasharray="5,2" d="M909.62,-975C958.413,-975 1010.74,-975 1054.08,-975" />
+<polygon fill="#53657b" stroke="#53657b" stroke-width="1.2" points="1062.34,-975 1054.34,-978.6 1058.34,-975.1 1054.34,-975.1 1054.34,-975 1054.34,-974.9 1058.34,-974.9 1054.34,-971.4 1062.34,-975 1062.34,-975" />
+<text text-anchor="middle" x="986" y="-978.2" font-family="Segoe UI" font-size="11.00">uses</text>
+</g>
+</g>
+</svg>

@@ -1,0 +1,124 @@
+@startuml
+skinparam packageStyle folder
+skinparam classAttributeIconSize 0
+hide empty methods
+package "Temple.Domain.Entities.C2IEDM.Geometry" {
+    class AbsolutePoint {
+      +LatitudeCoordinate : double
+      +LongitudeCoordinate : double
+    }
+    class ConeVolume {
+    }
+    abstract class CoordinateSystem {
+      +ID : Guid
+    }
+    abstract class GeometricVolume {
+    }
+    class Line {
+    }
+    class LinePoint {
+      +Index : int
+      +SequenceQuantity : int
+    }
+    abstract class Location {
+      +Id : Guid
+    }
+    abstract class Point {
+    }
+    class PointReference {
+    }
+    class RelativePoint {
+      +XCoordinateDimension : double
+      +YCoordinateDimension : double
+      +ZCoordinateDimension : double
+    }
+    class SphereVolume {
+      +RadiusDimension : double
+    }
+    abstract class Surface {
+    }
+    class SurfaceVolume {
+    }
+    class VerticalDistance {
+      +Id : Guid
+      +Dimension : double
+    }
+  package "Surfaces" {
+    class CorridorArea {
+      +WidthDimension : double
+    }
+    class Ellipse {
+    }
+    class FanArea {
+      +MinimumRangeDimension : double
+      +MaximumRangeDimension : double
+      +OrientationAngle : double
+      +SectorSizeAngle : double
+    }
+    class OrbitArea {
+      +OrbitAreaAlignmentCode : OrbitAreaAlignmentCode
+      +WidthDimension : double
+    }
+    class PolyArcArea {
+      +BeginBearingAngle : double
+      +EndBearingAngle : double
+      +ArcRadiusDimension : double
+    }
+    class PolygonArea {
+    }
+    class TrackArea {
+      +LeftWidthDimension : double
+      +RightWidthDimension : double
+    }
+    enum OrbitAreaAlignmentCode {
+      Centre
+      Left
+      Right
+    }
+  }
+}
+Point <|-- AbsolutePoint
+GeometricVolume <|-- ConeVolume
+Location <|-- GeometricVolume
+Location <|-- Line
+Location <|-- Point
+CoordinateSystem <|-- PointReference
+Point <|-- RelativePoint
+GeometricVolume <|-- SphereVolume
+Location <|-- Surface
+Surface <|-- CorridorArea
+Surface <|-- Ellipse
+Surface <|-- FanArea
+Surface <|-- OrbitArea
+Surface <|-- PolyArcArea
+Surface <|-- PolygonArea
+Surface <|-- TrackArea
+GeometricVolume <|-- SurfaceVolume
+AbsolutePoint --> "0..1" VerticalDistance : VerticalDistance
+ConeVolume --> "1" Surface : DefiningSurface
+ConeVolume --> "1" Point : VertexPoint
+GeometricVolume --> "0..1" VerticalDistance : LowerVerticalDistance
+GeometricVolume --> "0..1" VerticalDistance : UpperVerticalDistance
+Line --> "0..*" LinePoint : LinePoints
+LinePoint --> "1" Line : Line
+LinePoint --> "1" Point : Point
+PointReference --> "1" Point : OriginPoint
+PointReference --> "1" Point : XVectorPoint
+PointReference --> "1" Point : YVectorPoint
+RelativePoint --> "1" CoordinateSystem : CoordinateSystem
+SphereVolume --> "1" Point : CentrePoint
+CorridorArea --> "1" Line : CenterLine
+Ellipse --> "1" Point : CentrePoint
+Ellipse --> "1" Point : FirstConjugateDiameterPoint
+Ellipse --> "1" Point : SecondConjugateDiameterPoint
+FanArea --> "1" Point : VertexPoint
+OrbitArea --> "1" Point : FirstPoint
+OrbitArea --> "1" Point : SecondPoint
+PolyArcArea --> "1" Line : DefiningLine
+PolyArcArea --> "1" Point : BearingOriginPoint
+PolygonArea --> "1" Line : BoundingLine
+TrackArea --> "1" Point : BeginPoint
+TrackArea --> "1" Point : EndPoint
+SurfaceVolume --> "1" Surface : DefiningSurface
+OrbitArea ..> OrbitAreaAlignmentCode
+@enduml
