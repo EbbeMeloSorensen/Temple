@@ -92,7 +92,7 @@ public class ExplorationInputTests
     private static ApplicationController CreateController()
     {
         var machine = new ApplicationStateMachine();
-        var controller = new ApplicationController(machine, null!, new EmptyGameIO(),
+        var controller = new ApplicationController(machine, null!, new GameSessionFactory(new EmptyGameIO()),
             NullLogger<ApplicationController>.Instance);
         machine.Fire(ApplicationStateShiftTrigger.Initialize);
         controller.StartNewGame();

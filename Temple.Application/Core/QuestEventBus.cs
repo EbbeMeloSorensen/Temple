@@ -7,13 +7,21 @@ namespace Temple.Application.Core;
 // Her er det blot quests, der notificeres, og de kan så agere ved at ændre tilstand, hvilket
 // QuestStatusReadModel objektet overvåger og formidler til de komponenter, der styrer brugergrænsensefladen,
 // såsom SiteDataFactory
-public sealed class QuestEventBus
+public sealed class QuestEventBus : IDisposable
 {
     private readonly Dictionary<Type, List<Delegate>> _handlers = new();
+    private bool _disposed;
+
+    public void Dispose()
+    {
+        _disposed = true;
+        _handlers.Clear();
+    }
 
     public void Subscribe<TEvent>(Action<TEvent> handler)
         where TEvent : IGameEvent
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         var type = typeof(TEvent);
 
         if (!_handlers.TryGetValue(type, out var list))
@@ -28,6 +36,7 @@ public sealed class QuestEventBus
     public void Publish<TEvent>(TEvent gameEvent)
         where TEvent : IGameEvent
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         var eventType = gameEvent.GetType();
 
         foreach (var (key, handlers) in _handlers)

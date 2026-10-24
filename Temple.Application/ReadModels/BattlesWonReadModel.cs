@@ -2,7 +2,7 @@
 using Temple.Application.Interfaces.Readers;
 using Temple.Domain.Entities.DD.Quests.Events;
 
-namespace Temple.ViewModel.DD.ReadModels;
+namespace Temple.Application.ReadModels;
 
 public class BattlesWonReadModel : IBattlesWonReader
 {

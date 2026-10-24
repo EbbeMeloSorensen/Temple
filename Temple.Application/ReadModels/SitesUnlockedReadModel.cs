@@ -2,7 +2,7 @@
 using Temple.Application.Core;
 using Temple.Application.Interfaces.Readers;
 
-namespace Temple.ViewModel.DD.ReadModels;
+namespace Temple.Application.ReadModels;
 
 public class SitesUnlockedReadModel : ISitesUnlockedReader
 {

@@ -3,15 +3,12 @@ using GalaSoft.MvvmLight;
 using Craft.ViewModels.Dialogs;
 using Temple.Application.Core;
 using Temple.Application.Interfaces;
-using Temple.Application.Interfaces.Readers;
 using Temple.Application.State;
-using Temple.Infrastructure.GameConditions;
 using Temple.ViewModel.DD;
 using Temple.ViewModel.DD.Battle;
 using Temple.ViewModel.DD.Dialogue;
 using Temple.ViewModel.DD.Exploration;
 using Temple.ViewModel.DD.InGameMenu;
-using Temple.ViewModel.DD.ReadModels;
 using Temple.ViewModel.DD.Wilderness;
 using Temple.ViewModel.PR;
 using Temple.ViewModel.Smurfs;
@@ -26,11 +23,6 @@ namespace Temple.ViewModel
         private readonly ISiteRenderer _siteRenderer;
         private readonly IDialogueSessionFactory _dialogueSessionFactory;
         private readonly IBattleSceneFactory _battleSceneFactory;
-        private readonly IFactsEstablishedReader _factsEstablishedReader;
-        private readonly IKnowledgeGainedReader _knowledgeGainedReader;
-        private readonly IQuestStatusReader _questStatusReader;
-        private readonly ISitesUnlockedReader _sitesUnlockedReader;
-        private readonly IBattlesWonReader _battlesWonReader;
         private readonly ApplicationController _controller;
 
         private string _currentApplicationStateAsText;
@@ -71,23 +63,6 @@ namespace Temple.ViewModel
             _dialogueSessionFactory = dialogueSessionFactory;
             _battleSceneFactory = battleSceneFactory;
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _factsEstablishedReader = new FactsEstablishedReadModel(controller.EventBus);
-            _knowledgeGainedReader = new KnowledgeGainedReadModel(controller.EventBus);
-            _questStatusReader = new QuestStatusReadModel(controller.EventBus);
-            _sitesUnlockedReader = new SitesUnlockedReadModel(controller.EventBus);
-            _battlesWonReader = new BattlesWonReadModel(controller.EventBus);
-
-            var gameQueryService = new GameQueryService(
-                _knowledgeGainedReader,
-                _factsEstablishedReader,
-                _questStatusReader,
-                _battlesWonReader,
-                _sitesUnlockedReader);
-
-            _dialogueSessionFactory.Initialize(
-                gameQueryService,
-                controller.EventBus);
-
             CurrentApplicationStateAsText = _controller.CurrentApplicationState.StateMachineState.ToString();
 
             _controller.ApplicationStateChanged += (applicationState) =>
@@ -113,8 +88,9 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.GameStartup:
-                        _sitesUnlockedReader.Initialize(_controller.SiteIds);
-                        _questStatusReader.Initialize(_controller.Quests);
+                        _dialogueSessionFactory.Initialize(
+                            _controller.CurrentSession.Queries,
+                            _controller.CurrentSession.EventBus);
                         _controller.ExitState();
                         break;
 
@@ -128,7 +104,7 @@ namespace Temple.ViewModel
                             _controller,
                             _siteDataFactory,
                             _siteRenderer,
-                            gameQueryService);
+                            _controller.CurrentSession.Queries);
 
                         CurrentViewModel = explorationViewModel.Init(applicationState.Payload);
                         break;
@@ -150,14 +126,14 @@ namespace Temple.ViewModel
                         break;
 
                     case StateMachineState.InGameMenu:
-                        var inGameMenuViewModel = new InGameMenuViewModel(_controller, _questStatusReader);
+                        var inGameMenuViewModel = new InGameMenuViewModel(_controller, _controller.CurrentSession.QuestStatusReader);
                         CurrentViewModel = inGameMenuViewModel.Init(applicationState.Payload);
                         break;
 
                     case StateMachineState.Wilderness:
                         CurrentViewModel = new WildernessViewModel(
                             _controller,
-                            _sitesUnlockedReader);
+                            _controller.CurrentSession.SitesUnlockedReader);
                         break;
 
                     case StateMachineState.Defeat:

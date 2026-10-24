@@ -65,7 +65,7 @@ namespace Temple.UI.WPF
                             services.AddScoped<IPagingHandler<SmurfDto>, PagingHandler<SmurfDto>>();
                             services.AddScoped<IPagingHandler<PersonDto>, PagingHandler<PersonDto>>();
                             services.AddScoped<IStateMachineIO, StateMachineIO>();
-                            services.AddScoped<IGameIOHandler, GameIOHandler>();
+                            services.AddSingleton<IGameIOHandler, GameIOHandler>();
                             services.AddScoped<ISiteDataFactory, SiteDataFactory>();
                             services.AddScoped<IDialogueSessionFactory, DialogueSessionFactory>();
                             services.AddScoped<IBattleSceneFactory, BattleSceneFactory>();

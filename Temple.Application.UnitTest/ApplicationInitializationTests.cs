@@ -53,7 +53,7 @@ public class ApplicationInitializationTests
     }
 
     private static ApplicationController CreateController(InitializerScope scope) =>
-        new(new ApplicationStateMachine(), scope, new EmptyGameIOHandler(),
+        new(new ApplicationStateMachine(), scope, new GameSessionFactory(new EmptyGameIOHandler()),
             NullLogger<ApplicationController>.Instance);
 
     private sealed class RecordingInitializer : IAppDataInitializer

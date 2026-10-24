@@ -22,6 +22,8 @@ public static class ApplicationServiceCollectionExtensions
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
+        services.AddSingleton<Temple.Application.Interfaces.IGameSessionFactory, GameSessionFactory>();
+
         return services;
     }
 }

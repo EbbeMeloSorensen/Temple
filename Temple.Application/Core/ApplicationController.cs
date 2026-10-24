@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Temple.Domain.Entities.DD.Battle;
 using Temple.Domain.Entities.DD.Quests;
-using Temple.Domain.Entities.DD.Quests.Events;
 using Temple.Persistence;
 using Temple.Application.Interfaces;
 using Temple.Application.State;
@@ -10,22 +8,27 @@ using Temple.Application.State.Payloads;
 
 namespace Temple.Application.Core;
 
-public class ApplicationController
+public class ApplicationController : IDisposable
 {
     private readonly ApplicationStateMachine _applicationStateMachine;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<ApplicationController> _logger;
 
-    public IReadOnlyCollection<string> SiteIds { get; }
-    public IReadOnlyCollection<Quest> Quests { get; }
+    private readonly IGameSessionFactory _sessionFactory;
+    private GameSession? _session;
 
-    public QuestEventBus EventBus { get; }
+    public GameSession CurrentSession => _session
+        ?? throw new InvalidOperationException("No game has been started.");
+
+    public IReadOnlyCollection<string> SiteIds => CurrentSession.SiteIds;
+    public IReadOnlyCollection<Quest> Quests => CurrentSession.Quests;
+    public QuestEventBus EventBus => CurrentSession.EventBus;
 
     public event EventHandler<string>? ProgressChanged;
 
     public ApplicationState CurrentApplicationState => _applicationStateMachine.CurrentState;
 
-    public ApplicationData ApplicationData { get; private set; }
+    public ApplicationData ApplicationData => CurrentSession.ApplicationData;
 
     public event Action<ApplicationState>? ApplicationStateChanged
     {
@@ -36,34 +39,14 @@ public class ApplicationController
     public ApplicationController(
         ApplicationStateMachine applicationStateMachine,
         IServiceScopeFactory scopeFactory,
-        IGameIOHandler gameIOHandler,
+        IGameSessionFactory sessionFactory,
         ILogger<ApplicationController> logger)
     {
         _applicationStateMachine = applicationStateMachine;
         _scopeFactory = scopeFactory;
         _logger = logger;
 
-        // Find ud af, hvilke sites, der er (af hensyn til diagnosticering)
-        // Måske skal der være nogle header-filer for sites, der bare indeholder information
-        // om, hvor på mappet de er
-
-        SiteIds = gameIOHandler
-            .ReadSiteIdsFromDirectory($"DD//Assets//SiteData")
-            .ToList();
-
-        Quests = gameIOHandler
-            .ReadQuestListFromFile($"DD//Assets//Quests//quests.json")
-            .ToList();
-
-        EventBus = new QuestEventBus();
-
-        // (The QuestRuntime exists for its side effects, i.e. it is not an unused variable)
-        _ = new QuestRuntime(Quests, EventBus);
-
-        EventBus.Subscribe<KnowledgeGainedEvent>(HandleKnowledgeGained);
-        EventBus.Subscribe<FactEstablishedEvent>(HandleFactEstablished);
-        EventBus.Subscribe<BattleWonEvent>(HandleBattleWon);
-        EventBus.Subscribe<SiteUnlockedEvent>(HandleSiteUnlocked);
+        _sessionFactory = sessionFactory;
     }
 
     public async Task InitializeAsync()
@@ -105,16 +88,15 @@ public class ApplicationController
 
     public void StartNewGame()
     {
-        ApplicationData = new ApplicationData();
+        if (_applicationStateMachine.CurrentState.StateMachineState != StateMachineState.MainMenu)
+        {
+            throw new InvalidOperationException("A new game can only be started from the main menu.");
+        }
 
-        // Vi starter ud med at man bare får et standard party
-        GeneratePartyData();
-
-        // Magic number!
-        ApplicationData.CurrentSiteId = "village";
-        //ApplicationData.CurrentSiteId = "undermountain";
-        //ApplicationData.CurrentSiteId = "mine";
-        //ApplicationData.CurrentSiteId = "maze";
+        // Only replace the current session after its replacement is ready.
+        var nextSession = _sessionFactory.CreateNew();
+        _session?.Dispose();
+        _session = nextSession;
 
         _applicationStateMachine.NextPayload = new InterludePayload
         {
@@ -201,6 +183,8 @@ public class ApplicationController
         _applicationStateMachine.Fire(ApplicationStateShiftTrigger.ShutdownRequested);
     }
 
+    public void Dispose() => _session?.Dispose();
+
     private void Report(
         string message)
     {
@@ -208,67 +192,4 @@ public class ApplicationController
         ProgressChanged?.Invoke(this, message);
     }
 
-    private void GeneratePartyData()
-    {
-        // Attacks
-        var longSword = new MeleeAttack(name: "Longsword", maxDamage: 10);
-        var bowAndArrow = new RangedAttack(name: "Bow & Arrow", maxDamage: 4, range: 5);
-
-        // Creature types
-        var knight = new CreatureType("Knight",
-            maxHitPoints: 8, //20,
-            armorClass: 3,
-            thaco: 5,
-            initiativeModifier: 0,
-            movement: 4,
-            attacks: new List<Attack>
-            {
-                longSword,
-                longSword,
-                longSword
-            });
-
-        var archer = new CreatureType(
-            name: "Archer",
-            maxHitPoints: 12,
-            armorClass: 6,
-            thaco: 14,
-            initiativeModifier: 10,
-            movement: 6,
-            attacks: new List<Attack>
-            {
-                bowAndArrow,
-                bowAndArrow
-            });
-
-        var adventurer1 = new Creature(knight, false);
-        var adventurer2 = new Creature(archer, false);
-
-        ApplicationData.Party.Add(adventurer1);
-        ApplicationData.Party.Add(adventurer2);
-    }
-
-    private void HandleKnowledgeGained(
-        KnowledgeGainedEvent e)
-    {
-        ApplicationData.KnowledgeGained.Add(e.KnowledgeId);
-    }
-
-    private void HandleFactEstablished(
-        FactEstablishedEvent e)
-    {
-        ApplicationData.FactsEstablished.Add(e.FactId);
-    }
-
-    private void HandleBattleWon(
-        BattleWonEvent e)
-    {
-        ApplicationData.BattlesWon.Add(e.BattleId);
-    }
-
-    private void HandleSiteUnlocked(
-        SiteUnlockedEvent e)
-    {
-        ApplicationData.SitesUnlocked.Add(e.SiteId);
-    }
 }

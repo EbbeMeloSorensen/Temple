@@ -2,7 +2,7 @@
 using Temple.Domain.Entities.DD.Quests;
 using Temple.Application.Interfaces.Readers;
 
-namespace Temple.Infrastructure.GameConditions;
+namespace Temple.Application.Core;
 
 public class GameQueryService : IGameQueryService
 {
