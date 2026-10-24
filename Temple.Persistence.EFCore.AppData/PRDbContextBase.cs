@@ -6,6 +6,7 @@ using Temple.Domain.Entities.PR;
 using Temple.Domain.Entities.Smurfs;
 using Temple.Persistence.EFCore.AppData.EntityConfigurations.C2IEDM.Geometry.Locations.Line;
 using Temple.Persistence.EFCore.AppData.EntityConfigurations.PR;
+using Temple.Persistence.EFCore.AppData.EntityConfigurations.Smurfs;
 
 namespace Temple.Persistence.EFCore.AppData
 {
@@ -72,6 +73,7 @@ namespace Temple.Persistence.EFCore.AppData
 
             modelBuilder.ApplyConfiguration(new PersonConfiguration(Versioned));
             modelBuilder.ApplyConfiguration(new PersonCommentConfiguration(Versioned));
+            modelBuilder.ApplyConfiguration(new SmurfConfiguration());
 
             if (Versioned)
             {

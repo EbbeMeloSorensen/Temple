@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="528pt" height="345pt" viewBox="0.00 0.00 527.60 344.60">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(28.8 315.8)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-28.8,28.8 -28.8,-315.8 498.8,-315.8 498.8,28.8 -28.8,28.8" />
+<g id="clust1" class="cluster"><title>cluster_smurfs</title>
+<path d="M8.0,-279.0 H250.5 V-253.0 H462.0 V-8.0 H8.0 Z M8.0,-253.0 H250.5" fill="white" stroke="#71839a" /><text x="18.0" y="-261.0" font-family="Segoe UI" font-size="13">Temple.Domain.Entities.Smurfs</text></g>
+
+<g id="node1" class="node"><title>Smurf</title>
+<polygon fill="#e9f0f8" stroke="none" points="46,-191 46,-222 171,-222 171,-191 46,-191" />
+<text text-anchor="start" x="89.5" y="-204.1" font-family="Segoe UI" font-weight="bold" font-size="13.00">Smurf</text>
+<text text-anchor="start" x="54" y="-172.6" font-family="Segoe UI" font-size="13.00">+ID : Guid</text>
+<text text-anchor="start" x="54" y="-142.6" font-family="Segoe UI" font-size="13.00">+Name : string</text>
+<text text-anchor="start" x="54" y="-112.6" font-family="Segoe UI" font-size="13.00">+Role : SmurfRole</text>
+<text text-anchor="start" x="54" y="-82.6" font-family="Segoe UI" font-size="13.00">+Smurf()</text>
+<text text-anchor="start" x="54" y="-52.6" font-family="Segoe UI" font-size="13.00">+ToString() : string</text>
+<polygon fill="#71839a" stroke="#71839a" points="45,-191 45,-191 172,-191 172,-191 45,-191" />
+<polygon fill="none" stroke="#71839a" points="44.5,-40.5 44.5,-223.5 171.5,-223.5 171.5,-40.5 44.5,-40.5" />
+</g>
+
+<g id="node2" class="node"><title>SmurfRole</title>
+<polygon fill="#e9f0f8" stroke="none" points="298,-155 298,-198 425,-198 425,-155 298,-155" />
+<text text-anchor="start" x="306.5" y="-180.1" font-family="Segoe UI" font-size="13.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="start" x="329.5" y="-167.1" font-family="Segoe UI" font-weight="bold" font-size="13.00">SmurfRole</text>
+<text text-anchor="start" x="306" y="-136.6" font-family="Segoe UI" font-size="13.00">Unspecified = 0</text>
+<text text-anchor="start" x="306" y="-106.6" font-family="Segoe UI" font-size="13.00">Builder = 1</text>
+<text text-anchor="start" x="306" y="-76.6" font-family="Segoe UI" font-size="13.00">Farmer = 2</text>
+<polygon fill="#71839a" stroke="#71839a" points="297,-155 297,-155 426,-155 426,-155 297,-155" />
+<polygon fill="none" stroke="#71839a" points="296.5,-64.5 296.5,-199.5 425.5,-199.5 425.5,-64.5 296.5,-64.5" />
+</g>
+
+<g id="edge1" class="edge"><title>Smurf-&gt;SmurfRole</title>
+<path fill="none" stroke="#256a91" d="M179.585,-132C210.202,-132 246.249,-132 278.042,-132" />
+<polygon fill="#256a91" stroke="#256a91" points="288.202,-132 278.202,-136.5 283.202,-132 278.202,-132 278.202,-132 278.202,-132 283.202,-132 278.202,-127.5 288.202,-132 288.202,-132" />
+<text text-anchor="middle" x="234" y="-135.4" font-family="Segoe UI" font-size="12.00">Role [1]</text>
+</g>
+</g>
+</svg>

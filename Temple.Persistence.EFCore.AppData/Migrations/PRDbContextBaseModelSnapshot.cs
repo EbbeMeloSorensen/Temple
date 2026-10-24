@@ -255,6 +255,11 @@ namespace Temple.Persistence.EFCore.AppData.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Role")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(0);
+
                     b.HasKey("ID");
 
                     b.ToTable("Smurfs");

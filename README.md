@@ -50,6 +50,9 @@ restoration initializes query projections without replaying gameplay events.
 The [C2IEDM Geometry class diagrams](docs/architecture/domain/c2iedm-geometry/README.md)
 show its namespaces, inheritance, and associations, with regeneration instructions.
 
+The [Smurfs roundtrip exercise](docs/architecture/domain/smurfs/README.md) records
+a proposed model, its implementation, and a check that reconciles the diagram with C#.
+
 This is a solution made in compliance with the "Clean Architecture" architectural pattern. The solution consists of the following layers:
 
 ### Domain Layer

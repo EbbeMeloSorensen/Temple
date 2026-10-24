@@ -1,0 +1,12 @@
+@startuml
+skinparam packageStyle folder
+skinparam classAttributeIconSize 0
+package "Temple.Domain.Entities.Smurfs" {
+    class Smurf {
+        +ID : Guid
+        +Name : string
+        +Smurf()
+        +ToString() : string
+    }
+}
+@enduml

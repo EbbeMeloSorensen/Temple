@@ -6,6 +6,8 @@
 
         public string Name { get; set; }
 
+        public SmurfRole Role { get; set; } = SmurfRole.Unspecified;
+
         public Smurf()
         {
             Name = "";
