@@ -34,7 +34,8 @@ namespace Temple.Persistence.EFCore.Identity
 
                 foreach (var user in users)
                 {
-                    var result = await userManager.CreateAsync(user, "Super-long-very-secure-secret-key-that-is-at-least-64-bytes-in-length!!!!");
+                    //var result = await userManager.CreateAsync(user, "Super-long-very-secure-secret-key-that-is-at-least-64-bytes-in-length!!!!");
+                    var result = await userManager.CreateAsync(user, "Pa$$w0rd");
 
                     if (!result.Succeeded)
                     {
