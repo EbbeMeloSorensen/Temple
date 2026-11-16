@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
@@ -193,9 +193,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Craft.UI.Utils" Version="1.0.44" />
-    <PackageReference Include="Craft.UIElements" Version="1.0.44" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+    <PackageReference Include="Craft.UI.Utils" Version="1.0.45" />
+    <PackageReference Include="Craft.UIElements" Version="1.0.45" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.14" />
   </ItemGroup>
 
   <ItemGroup>
